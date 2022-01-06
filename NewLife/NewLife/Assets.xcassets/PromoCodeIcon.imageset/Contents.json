@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "PromoCodeIcon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

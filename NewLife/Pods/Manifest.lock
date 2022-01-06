@@ -1,0 +1,188 @@
+PODS:
+  - Alamofire (5.2.0)
+  - AlamofireImage (4.1.0):
+    - Alamofire (~> 5.1)
+  - AppsFlyerFramework (6.4.2):
+    - AppsFlyerFramework/Main (= 6.4.2)
+  - AppsFlyerFramework/Main (6.4.2)
+  - FBSDKCoreKit (9.0.1):
+    - FBSDKCoreKit/Basics (= 9.0.1)
+    - FBSDKCoreKit/Core (= 9.0.1)
+  - FBSDKCoreKit/Basics (9.0.1)
+  - FBSDKCoreKit/Core (9.0.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (9.0.1):
+    - FBSDKLoginKit/Login (= 9.0.1)
+  - FBSDKLoginKit/Login (9.0.1):
+    - FBSDKCoreKit (~> 9.0.1)
+  - Firebase/Core (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 7.6.0)
+  - Firebase/CoreOnly (7.6.0):
+    - FirebaseCore (= 7.6.0)
+  - Firebase/Crashlytics (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 7.6.0)
+  - Firebase/DynamicLinks (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseDynamicLinks (~> 7.6.0)
+  - Firebase/Messaging (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.6.0)
+  - FirebaseAnalytics (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleAppMeasurement (= 7.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30907.0)
+  - FirebaseCore (7.6.0):
+    - FirebaseCoreDiagnostics (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.6.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30907.0)
+  - FirebaseCrashlytics (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleDataTransport (~> 8.0)
+    - nanopb (~> 2.30907.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseDynamicLinks (7.6.0):
+    - FirebaseCore (~> 7.0)
+  - FirebaseInstallations (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseMessaging (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstanceID (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Reachability (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - GoogleAppMeasurement (7.6.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30907.0)
+  - GoogleDataTransport (8.2.0):
+    - nanopb (~> 2.30907.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.2.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.2.2)"
+  - GoogleUtilities/Reachability (7.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.2.2):
+    - GoogleUtilities/Logger
+  - lottie-ios (3.1.8)
+  - nanopb (2.30907.0):
+    - nanopb/decode (= 2.30907.0)
+    - nanopb/encode (= 2.30907.0)
+  - nanopb/decode (2.30907.0)
+  - nanopb/encode (2.30907.0)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - PromisesObjC (1.2.12)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
+  - SwiftVideoBackground (3.4.0)
+  - SwiftyStoreKit (0.15.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - AppsFlyerFramework
+  - FBSDKLoginKit
+  - Firebase/Core (~> 7.6.0)
+  - Firebase/Crashlytics (~> 7.6.0)
+  - Firebase/DynamicLinks (~> 7.6.0)
+  - Firebase/Messaging (~> 7.6.0)
+  - lottie-ios
+  - NVActivityIndicatorView
+  - SwiftMessages
+  - SwiftVideoBackground
+  - SwiftyStoreKit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - AppsFlyerFramework
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
+    - FirebaseDynamicLinks
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleUtilities
+    - lottie-ios
+    - nanopb
+    - NVActivityIndicatorView
+    - PromisesObjC
+    - SwiftMessages
+    - SwiftVideoBackground
+    - SwiftyStoreKit
+
+SPEC CHECKSUMS:
+  Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
+  AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
+  AppsFlyerFramework: 2303994c0bda3afa48eba93680ab5fe48f46cd94
+  FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
+  FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
+  Firebase: e1e089d9aac215a52442583f818ab61de3c4581b
+  FirebaseAnalytics: 9f8f4feab1f3fddf4e4515f8f022fe6aa9e51043
+  FirebaseCore: 0a43b7f1c5b36f3358cd703011ca4c7e0df55870
+  FirebaseCoreDiagnostics: ee1184d51da3293335b83355aad20f537acc24cf
+  FirebaseCrashlytics: 1e87b25303b1840b3c99c37ee427c3e9564a4be1
+  FirebaseDynamicLinks: 1ba27bcead0c55cb3fa48db7e1ca75005f8123d0
+  FirebaseInstallations: 6e4e77396559bc2ae0504823837ed737b1c7e47f
+  FirebaseInstanceID: cf243611700eddc916b093353adbd4da822cfa63
+  FirebaseMessaging: 4b9b2850fcfcaac2820097ee3703ba6cfff3df84
+  GoogleAppMeasurement: c542a2feaac9ab98fd074e8f1a02c3585bbfbd47
+  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
+  GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
+  SwiftVideoBackground: 826e0567c737ded2a211aa309e9951c643695e8f
+  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+
+PODFILE CHECKSUM: bbbe7707602bc263ba97617036839bef212acdc7
+
+COCOAPODS: 1.11.2

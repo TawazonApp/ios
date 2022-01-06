@@ -1,0 +1,19 @@
+# This is a sample configuration file
+
+###################################### Base2CSV ######################################
+
+## required, location of strings files (FILENAMES)
+filenames: ["/Users/shadi/Desktop/newlife_ios/NewLife/babelish/Localizable_ar.strings", "/Users/shadi/Desktop/newlife_ios/NewLife/babelish/Localizable_en.strings"]
+
+## optional
+headers: ["Constants", "Arabic", "English"] # override headers of columns, default is name of input files and 'Variables' for reference
+csv_filename: "/Users/shadi/Desktop/newlife_ios/NewLife/babelish/TranslationFile.csv"              # location of output file
+# dryrun: true                                # prints out content of hash without writing file
+
+###################################### CSV2Base ######################################
+
+## required
+filename: /Users/asal/Documents/Projects/Development/babelish/MarkerTranslationInputFile.csv   # CSV file (CSV_FILENAME) to convert from or name of file in Google Drive
+langs:                               # Languages to convert. i.e. English:en
+  English: "en"
+  ChineseSimplified: "zh-Hans"

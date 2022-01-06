@@ -1,0 +1,6 @@
+framework module Pods_TawazonUITests {
+  umbrella header "Pods-TawazonUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

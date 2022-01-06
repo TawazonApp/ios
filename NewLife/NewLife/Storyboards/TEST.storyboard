@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dTE-1H-6H5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="S0V-RV-Xi6">
+            <objects>
+                <viewController storyboardIdentifier="TESTViewController" id="dTE-1H-6H5" customClass="TESTViewController" customModule="NewLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ViY-sg-0D6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymj-DJ-ENu" customClass="GradientView" customModule="NewLife" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ymj-DJ-ENu" firstAttribute="leading" secondItem="ViY-sg-0D6" secondAttribute="leading" id="EmD-YA-RzC"/>
+                            <constraint firstAttribute="trailing" secondItem="Ymj-DJ-ENu" secondAttribute="trailing" id="Ods-2Y-NFg"/>
+                            <constraint firstItem="Ymj-DJ-ENu" firstAttribute="top" secondItem="ViY-sg-0D6" secondAttribute="top" id="ler-UI-eU3"/>
+                            <constraint firstAttribute="bottom" secondItem="Ymj-DJ-ENu" secondAttribute="bottom" id="xxj-Du-3l3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ra2-mb-nmg"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="gradientView" destination="Ymj-DJ-ENu" id="Jcg-Hr-dlJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TMH-Ew-HFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165.59999999999999" y="143.47826086956522"/>
+        </scene>
+    </scenes>
+</document>
