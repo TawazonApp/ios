@@ -107,6 +107,15 @@ class MainTabBarController: UITabBarController {
                 let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "Test")
                 self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
+        }else if notificationData.type == .subCategory{
+            if AudioPlayerManager.shared.isPlaying() {
+                showSessionPlayerBar()
+                dismissSessionControllerIfNeeded()
+            }
+            if let subCategoryId = notificationData.data as? String{
+                let subCategoryViewController =  SubCategorySessionListViewController.instantiate(id: subCategoryId)
+                self.navigationController?.pushViewController(subCategoryViewController, animated: true)
+            }
         }
         appDelegate?.notificationData = nil
     }

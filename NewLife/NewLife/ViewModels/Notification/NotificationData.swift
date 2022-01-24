@@ -12,6 +12,7 @@ enum NotificationType:String {
     case playSession = "play_session"
     case category = "category"
     case section = "section"
+    case subCategory = "subCategory"
     case none = ""
 }
 

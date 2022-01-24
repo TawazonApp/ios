@@ -289,21 +289,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
-//        if dynamicLink.pathComponents.contains("view") {
-//            let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
-//            print("components: \(components)")
-//            let sessionId = components?.queryItems?.first(where: { $0.name == "id" })?.value
-//            print("components?.queryItems: \(components?.queryItems)")
-//            let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
-//            print("notificationData, sessionId: \(sessionId), appStatus: \(appStatus)")
-//            let notificationData = NotificationData(type: NotificationType.playSession, data: sessionId, appStatus: appStatus)
-//            (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
-//            NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
-//        }
-        print("dynamicLink: \(dynamicLink)")
-        
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
+        print(dynamicLink.pathComponents)
         let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
         // play session
         if dynamicLink.pathComponents.contains("session") {
@@ -322,7 +310,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             let sectionId = components?.queryItems?.first(where: { $0.name == "id" })?.value
             notificationData = NotificationData(type: NotificationType.section, data: sectionId, appStatus: appStatus)
         }
-            
+        else{
+            let path = components?.queryItems?.first(where: { $0.name == "path"})?.value
+            let pathCom = path?.components(separatedBy: ",")
+            notificationData = NotificationData(type: NotificationType.subCategory, data: pathCom?.last, appStatus: appStatus)
+        }
         (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
         NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
         

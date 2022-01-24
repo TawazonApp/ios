@@ -37,6 +37,14 @@ class SessionServiceOffline: SessionService {
         }
     }
     
+    func fetchSubCategorySectionSessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategorySectionModel?, CustomError?) -> Void) {
+        
+        service.fetchSubCategorySectionSessions(subCategoryId: subCategoryId, page: page, pageSize: pageSize) { (subCategorySection, error) in
+
+            completion(subCategorySection, error)
+        }
+    }
+    
     func fetchDownloadedSessions(page: Int, pageSize: Int, completion: @escaping (SessionsModel?, CustomError?) -> Void) {
         
         service.fetchDownloadedSessions(page: page, pageSize: pageSize) { (sessionsModel, error) in

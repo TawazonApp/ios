@@ -15,7 +15,7 @@ protocol SessionService {
     func fetchCategoryData(categoryId: String, page: Int, pageSize:Int, completion: @escaping (CategoryModel?, CustomError?) -> Void)
     
     func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void)
-    
+    func fetchSubCategorySectionSessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategorySectionModel?, CustomError?) -> Void)
     func fetchDownloadedSessions(page: Int, pageSize:Int, completion: @escaping (SessionsModel?, CustomError?) -> Void)
     
     func addToDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void)
@@ -67,6 +67,18 @@ class APISessionService: SessionService {
         }
     }
     
+    func fetchSubCategorySectionSessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategorySectionModel?, CustomError?) -> Void) {
+       
+       let url = Api.subCategorySectionSessionsListUrl.replacingOccurrences(of: "{categoryID}", with: subCategoryId).url!
+       
+       ConnectionUtils.performGetRequest(url: url, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+           var subCategorySectionModel: SubCategorySectionModel?
+           if let data = data {
+               subCategorySectionModel = SubCategorySectionModel(data: data)
+           }
+           completion(subCategorySectionModel, error)
+       }
+   }
     func fetchDownloadedSessions(page: Int, pageSize: Int, completion: @escaping (SessionsModel?, CustomError?) -> Void) {
         
         ConnectionUtils.performGetRequest(url: Api.sessionsDownloadListUrl.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
