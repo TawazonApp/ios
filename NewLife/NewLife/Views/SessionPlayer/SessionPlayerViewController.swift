@@ -444,6 +444,9 @@ extension SessionPlayerViewController {
 extension SessionPlayerViewController {
     
     class func instantiate(session: SessionVM, delegate: SessionPlayerDelegate?) -> SessionPlayerViewController {
+        if !(session.session?.playBackgroundSound ?? true) {
+            BackgroundAudioManager.shared.stopBackgroundSound()
+        }
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: SessionPlayerViewController.identifier) as! SessionPlayerViewController
         viewController.delegate = delegate
