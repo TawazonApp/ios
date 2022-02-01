@@ -123,7 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppsFlyerLib.shared().appsFlyerDevKey = Constants.appsFlyerDevKey
         AppsFlyerLib.shared().appleAppID = APPInfo.appId
         AppsFlyerLib.shared().delegate = self
-        AppsFlyerLib.shared().deepLinkDelegate = self
        NotificationCenter.default.addObserver(self,
        selector: #selector(sendLaunch),
        name: UIApplication.didBecomeActiveNotification,
@@ -291,30 +290,30 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func handleDynamicLink(dynamicLink: URL) {
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
-        print(dynamicLink.pathComponents)
+        
         let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
-        // play session
-        if dynamicLink.pathComponents.contains("session") {
-            let sessionId = components?.queryItems?.first(where: { $0.name == "id" })?.value
-            notificationData = NotificationData(type: NotificationType.playSession, data: sessionId, appStatus: appStatus)
+        let itemId = dynamicLink.lastPathComponent
+        if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
+            notificationData = NotificationData(type: NotificationType.none, data: campaignId, appStatus: appStatus)
             (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
-            
-        }
-        // open category
-        else if dynamicLink.pathComponents.contains("category") {
-            let categoryId = components?.queryItems?.first(where: { $0.name == "id" })?.value
-            notificationData = NotificationData(type: NotificationType.category, data: categoryId, appStatus: appStatus)
+            NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)
         }
         // open section
-        else if dynamicLink.pathComponents.contains("sections") {
-            let sectionId = components?.queryItems?.first(where: { $0.name == "id" })?.value
-            notificationData = NotificationData(type: NotificationType.section, data: sectionId, appStatus: appStatus)
+        if dynamicLink.path.contains(DynamicLinkPath.section.rawValue) {
+            notificationData = NotificationData(type: NotificationType.section, data: itemId, appStatus: appStatus)
         }
-        else{
-            let path = components?.queryItems?.first(where: { $0.name == "path"})?.value
-            let pathCom = path?.components(separatedBy: ",")
-            notificationData = NotificationData(type: NotificationType.subCategory, data: pathCom?.last, appStatus: appStatus)
+        else if dynamicLink.path.contains(DynamicLinkPath.session.rawValue) {
+            notificationData = NotificationData(type: NotificationType.playSession, data: itemId, appStatus: appStatus)
         }
+        else if dynamicLink.path.contains(DynamicLinkPath.category.rawValue) {
+            if let categoryId = MainTabBarView.tabBarItemsIds.getItemId(forCategory: itemId) {
+                notificationData = NotificationData(type: NotificationType.category, data: categoryId.rawValue, appStatus: appStatus)
+            }else{
+                notificationData = NotificationData(type: NotificationType.subCategory, data: itemId, appStatus: appStatus)
+            }
+            
+        }
+        
         (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
         NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
         
@@ -398,23 +397,4 @@ extension AppDelegate: AppsFlyerLibDelegate {
          print("\(error)")
      }
   
-}
-extension AppDelegate: DeepLinkDelegate {
-    func didResolveDeepLink(_ result: DeepLinkResult) {
-        switch result.status {
-        case .notFound:
-            print("Deep link not found")
-        case .found:
-            let deepLinkStr:String = result.deepLink!.toString()
-            print("DeepLink data is: \(deepLinkStr)")
-            if( result.deepLink?.isDeferred == true) {
-                print("This is a deferred deep link")
-            } else {
-                print("This is a direct deep link")
-            }
-            print("result.deepLink!: \(result.deepLink!.clickEvent["utm_medium"])")
-        case .failure:
-            print("Error %@", result.error!)
-        }
-    }
 }

@@ -104,6 +104,9 @@ class SectionSessionListViewController: HandleErrorViewController {
                 self?.showErrorMessage( message: error.message ?? "generalErrorMessage".localized)
             }
             self?.reloadCollectionData()
+            if self?.section.name == ""{
+                self?.titleLabel.text = self?.viewModel.name
+            }
         }
     }
     

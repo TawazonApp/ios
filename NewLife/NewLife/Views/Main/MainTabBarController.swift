@@ -71,6 +71,9 @@ class MainTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(performNotificationActionIfNeeded), name: NSNotification.Name.didReceiveRemoteNotification
             , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HandleDynamiclinksTracking), name: NSNotification.Name.didReceiveDeeplink
+            , object: nil)
     }
     
     private func playMainBackgroundAudio() {
@@ -78,7 +81,6 @@ class MainTabBarController: UITabBarController {
     }
     
   @objc private func performNotificationActionIfNeeded() {
-    //TODO: hide all presented view controller
         guard let notificationData = appDelegate?.notificationData else {
             return
         }
@@ -104,7 +106,8 @@ class MainTabBarController: UITabBarController {
             }
         }else if notificationData.type == .section {
             if let sectionId = notificationData.data as? String{
-                let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "Test")
+                //TODO: set view name
+                let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "")
                 self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
         }else if notificationData.type == .subCategory{
@@ -113,13 +116,22 @@ class MainTabBarController: UITabBarController {
                 dismissSessionControllerIfNeeded()
             }
             if let subCategoryId = notificationData.data as? String{
+                //TODO: set view name
                 let subCategoryViewController =  SubCategorySessionListViewController.instantiate(id: subCategoryId)
                 self.navigationController?.pushViewController(subCategoryViewController, animated: true)
             }
         }
         appDelegate?.notificationData = nil
     }
-    
+    //TODO: call tracker manager for dynamic links
+    @objc private func HandleDynamiclinksTracking(){
+        guard let notificationData = appDelegate?.notificationData else {
+            return
+        }
+        if let campaignId = notificationData.data as? String{
+            TrackerManager.shared.sendOpenDynamiclinkEvent(campaignId: campaignId)
+        }
+    }
     func openCategory(categoryId: String) {
         guard let id = MainTabBarView.tabBarItemsIds(rawValue: categoryId) else {
             return

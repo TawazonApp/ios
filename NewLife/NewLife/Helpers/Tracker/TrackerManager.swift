@@ -201,4 +201,14 @@ class TrackerManager: TrackingService {
             service.sendCompleteRegistrationEvent(method: method)
         }
     }
+    
+    //MARK: Server Tracking
+    func sendOpenDynamiclinkEvent(campaignId: String) {
+        let now = round(Date().timeIntervalSince1970)
+        let serverTrackingModel = TrackingModel(name: "open_app", campaignId: campaignId, time: now)
+        
+        ConnectionUtils.performPostRequest(url: Api.trackingUrl.url!, parameters: try? serverTrackingModel.jsonDictionary()) { (data, error) in
+            
+        }
+    }
 }

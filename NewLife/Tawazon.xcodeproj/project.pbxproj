@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		041FA204278AC0DC0008F5E7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FA203278AC0DC0008F5E7 /* Language.swift */; };
+		049D350227A95BE200304EF4 /* TrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* TrackingModel.swift */; };
 		04FCB7F1279DF5FE0072077B /* SubCategorySessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F0279DF5FE0072077B /* SubCategorySessionListViewController.swift */; };
 		04FCB7F3279E8E770072077B /* SubCategorySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F2279E8E770072077B /* SubCategorySectionVM.swift */; };
 		04FCB7F5279EA8830072077B /* SubCategorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F4279EA8830072077B /* SubCategorySectionModel.swift */; };
@@ -329,6 +330,7 @@
 
 /* Begin PBXFileReference section */
 		041FA203278AC0DC0008F5E7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		049D350127A95BE200304EF4 /* TrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingModel.swift; sourceTree = "<group>"; };
 		04FCB7F0279DF5FE0072077B /* SubCategorySessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySessionListViewController.swift; sourceTree = "<group>"; };
 		04FCB7F2279E8E770072077B /* SubCategorySectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySectionVM.swift; sourceTree = "<group>"; };
 		04FCB7F4279EA8830072077B /* SubCategorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySectionModel.swift; sourceTree = "<group>"; };
@@ -681,6 +683,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049D350327A9C3A700304EF4 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				049D350127A95BE200304EF4 /* TrackingModel.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
 		04FCB7ED279DF4150072077B /* SubCategory section */ = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1319,7 @@
 		F3DC8E152223DC4700C7DEC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				049D350327A9C3A700304EF4 /* Tracking */,
 				F3DC42612584C1FB00BF18A7 /* Onboarding */,
 				F3E280FF223FCA9B00066C04 /* General */,
 				F3C73B1D223D567F0026B8E1 /* User */,
@@ -2103,6 +2114,7 @@
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
 				F3DC423F2584B43E00BF18A7 /* OnboardingViewController.swift in Sources */,
+				049D350227A95BE200304EF4 /* TrackingModel.swift in Sources */,
 				F3B16AF8222EB474002B0406 /* DownloadedLibraryVM.swift in Sources */,
 				F3273459246EA1310013B19F /* InstagramUtils.swift in Sources */,
 				F3DC8E492224474000C7DEC4 /* LaunchSloganView.swift in Sources */,
