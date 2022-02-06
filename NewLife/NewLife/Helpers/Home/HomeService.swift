@@ -17,7 +17,7 @@ protocol HomeService {
     
     func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void)
     
-    func getSectionSessions(sectionId: String, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void)
+    func getSectionSessions(sectionId: String, type: SectionData.SectionType , completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void)
     
     func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
 }
@@ -70,8 +70,11 @@ class APIHomeService: HomeService {
         }
     }
     
-    func getSectionSessions(sectionId: String, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-        let urlString = Api.sectionSessions.replacingOccurrences(of: "{id}", with: sectionId)
+    func getSectionSessions(sectionId: String, type: SectionData.SectionType ,completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
+        var urlString = Api.sectionSessions.replacingOccurrences(of: "{id}", with: sectionId)
+        if type == .subCategory {
+            urlString = Api.subCategorySectionSessionsListUrl.replacingOccurrences(of: "{categoryID}", with: sectionId)
+        }
         ConnectionUtils.performGetRequest(url: urlString.url!, parameters: nil) { (data, error) in
             var model: SectionSessions?
             if let data = data {

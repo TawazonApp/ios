@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		041FA204278AC0DC0008F5E7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FA203278AC0DC0008F5E7 /* Language.swift */; };
-		049D350227A95BE200304EF4 /* TrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* TrackingModel.swift */; };
-		04FCB7F1279DF5FE0072077B /* SubCategorySessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F0279DF5FE0072077B /* SubCategorySessionListViewController.swift */; };
-		04FCB7F3279E8E770072077B /* SubCategorySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F2279E8E770072077B /* SubCategorySectionVM.swift */; };
-		04FCB7F5279EA8830072077B /* SubCategorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FCB7F4279EA8830072077B /* SubCategorySectionModel.swift */; };
+		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
+		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		48D6347B4BA6A6AB9DE5D990 /* Pods_TawazonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */; };
 		ABF0A3D50F7F86CFDCDBB632 /* Pods_Tawazon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */; };
 		E698D13D51968D272F083B97 /* Pods_TawazonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */; };
@@ -330,10 +328,8 @@
 
 /* Begin PBXFileReference section */
 		041FA203278AC0DC0008F5E7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		049D350127A95BE200304EF4 /* TrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingModel.swift; sourceTree = "<group>"; };
-		04FCB7F0279DF5FE0072077B /* SubCategorySessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySessionListViewController.swift; sourceTree = "<group>"; };
-		04FCB7F2279E8E770072077B /* SubCategorySectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySectionVM.swift; sourceTree = "<group>"; };
-		04FCB7F4279EA8830072077B /* SubCategorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategorySectionModel.swift; sourceTree = "<group>"; };
+		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
+		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		07264B016C315C4C6734C8AC /* Pods-TawazonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.release.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.release.xcconfig"; sourceTree = "<group>"; };
 		0926BFEBF363F061FB9AD9E3 /* Pods-Tawazon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.release.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.release.xcconfig"; sourceTree = "<group>"; };
 		42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tawazon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -686,17 +682,17 @@
 		049D350327A9C3A700304EF4 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
-				049D350127A95BE200304EF4 /* TrackingModel.swift */,
+				049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */,
 			);
 			path = Tracking;
 			sourceTree = "<group>";
 		};
-		04FCB7ED279DF4150072077B /* SubCategory section */ = {
+		04C548B427ABC7D2001D3C0F /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				04FCB7F0279DF5FE0072077B /* SubCategorySessionListViewController.swift */,
+				04C548B527ABC807001D3C0F /* SectionData.swift */,
 			);
-			path = "SubCategory section";
+			path = Section;
 			sourceTree = "<group>";
 		};
 		0F028AE4DE4DEA0C329798C0 /* Frameworks */ = {
@@ -958,7 +954,6 @@
 				F3AF0FB0223B107A00E29615 /* Sessions+CoreDataProperties.swift */,
 				F3E280F0223F92B600066C04 /* SessionFavoritesModel.swift */,
 				F32D4A7224829FC900E3FCD6 /* SessionInfoModel.swift */,
-				04FCB7F4279EA8830072077B /* SubCategorySectionModel.swift */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -1140,7 +1135,6 @@
 				F3DC8EA02226F16E00C7DEC4 /* CategorySessionVM.swift */,
 				F3DC8EA42227207600C7DEC4 /* SubCategoryVM.swift */,
 				F3E280F2223F9D8100066C04 /* BaseSessionVM.swift */,
-				04FCB7F2279E8E770072077B /* SubCategorySectionVM.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1336,6 +1330,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04C548B427ABC7D2001D3C0F /* Section */,
 				F3EC82B72264FF7A00DDEBC0 /* Notification */,
 				F3E280FC223FCA3E00066C04 /* General */,
 				F3C73B22223D56E00026B8E1 /* Premium */,
@@ -1519,7 +1514,6 @@
 		F3DC8E952226D67000C7DEC4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				04FCB7ED279DF4150072077B /* SubCategory section */,
 				F3DC8E692225666B00C7DEC4 /* Meditations */,
 				F3DC8E53222487F900C7DEC4 /* Children */,
 				F3DC8E50222487CE00C7DEC4 /* MySoul */,
@@ -1988,7 +1982,6 @@
 				F3DC8E5E22248F7400C7DEC4 /* MainTabBarController.swift in Sources */,
 				F317A185222DEA2B00CBD760 /* PlayerControlsView.swift in Sources */,
 				F32D4A7124829E7400E3FCD6 /* MainTabBarControllerVM.swift in Sources */,
-				04FCB7F5279EA8830072077B /* SubCategorySectionModel.swift in Sources */,
 				F317A17E222DD27500CBD760 /* SessionVM.swift in Sources */,
 				F3580BE8249CF38B00EBE1C1 /* AudioPlayerManager.swift in Sources */,
 				F3921CE722495357002A12EC /* LoadingHudView.swift in Sources */,
@@ -2001,7 +1994,6 @@
 				F3DC8E8022269D3200C7DEC4 /* HomeServiceCache.swift in Sources */,
 				F3E280FE223FCA6500066C04 /* FCMVM.swift in Sources */,
 				F3ABBAAF2254E2D300141339 /* PremiumPurchaseSummaryVM.swift in Sources */,
-				04FCB7F1279DF5FE0072077B /* SubCategorySessionListViewController.swift in Sources */,
 				F334416A24793CFA00FA3234 /* CircularButton.swift in Sources */,
 				F34E257D224F5ED1007CA6E2 /* IAPExt.swift in Sources */,
 				F3DC8E752226839100C7DEC4 /* HomeVideoCollectionCell.swift in Sources */,
@@ -2044,7 +2036,6 @@
 				F317A187222E004C00CBD760 /* SessionFavoriteButton.swift in Sources */,
 				F3B16AF1222E94D1002B0406 /* OurStoryActionsView.swift in Sources */,
 				F35A02DC26208DA600C35016 /* HomeTableView.swift in Sources */,
-				04FCB7F3279E8E770072077B /* SubCategorySectionVM.swift in Sources */,
 				F3DC8EA322271F4E00C7DEC4 /* SubCategoryCollectionCell.swift in Sources */,
 				F3580BEE249CF38B00EBE1C1 /* AudioTracksQueue.swift in Sources */,
 				F32021DD223EACD300CCC33A /* ProfileEditFieldVM.swift in Sources */,
@@ -2114,7 +2105,7 @@
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
 				F3DC423F2584B43E00BF18A7 /* OnboardingViewController.swift in Sources */,
-				049D350227A95BE200304EF4 /* TrackingModel.swift in Sources */,
+				049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */,
 				F3B16AF8222EB474002B0406 /* DownloadedLibraryVM.swift in Sources */,
 				F3273459246EA1310013B19F /* InstagramUtils.swift in Sources */,
 				F3DC8E492224474000C7DEC4 /* LaunchSloganView.swift in Sources */,
@@ -2144,6 +2135,7 @@
 				F3CA028E2231B955008165C2 /* MembershipFormVM.swift in Sources */,
 				F3AF0FB2223B107A00E29615 /* Sessions+CoreDataProperties.swift in Sources */,
 				F3DC8E5B22248E9500C7DEC4 /* NavigationController.swift in Sources */,
+				04C548B627ABC807001D3C0F /* SectionData.swift in Sources */,
 				F3C73B18223D3EB60026B8E1 /* HomeModel.swift in Sources */,
 				F3B16AF4222E9600002B0406 /* OurStoryActionView.swift in Sources */,
 				F317A177222D180000CBD760 /* SoundEffectsCollectionCell.swift in Sources */,

@@ -18,6 +18,7 @@ class SectionSessionListViewController: HandleErrorViewController {
     @IBOutlet weak var backgroundView: HomeBackgroundView!
 
     var section: (id: String, name: String)!
+    var type : SectionData.SectionType!
     var viewModel: SectionSessionsVM!
     private var viewDidAppeared = false
     private var statusBarHidden = false {
@@ -99,12 +100,12 @@ class SectionSessionListViewController: HandleErrorViewController {
     }
     
     private func fetchData() {
-        viewModel.getSessions { [weak self] (error) in
+        viewModel.getSessions(type: self.type) { [weak self] (error) in
             if let error = error {
                 self?.showErrorMessage( message: error.message ?? "generalErrorMessage".localized)
             }
             self?.reloadCollectionData()
-            if self?.section.name == ""{
+            if self?.section.name.isEmptyWithTrim ?? false{
                 self?.titleLabel.text = self?.viewModel.name
             }
         }
@@ -208,10 +209,11 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
 
 
 extension SectionSessionListViewController {
-    class func instantiate(id: String, name: String) -> SectionSessionListViewController {
+    class func instantiate(id: String, name: String, type: SectionData.SectionType) -> SectionSessionListViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: SectionSessionListViewController.identifier) as! SectionSessionListViewController
         viewController.section = (id: id, name: name)
+        viewController.type = type
         return viewController
     }
 }

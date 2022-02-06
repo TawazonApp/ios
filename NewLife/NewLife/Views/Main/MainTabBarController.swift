@@ -72,7 +72,7 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(performNotificationActionIfNeeded), name: NSNotification.Name.didReceiveRemoteNotification
             , object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(HandleDynamiclinksTracking), name: NSNotification.Name.didReceiveDeeplink
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDynamiclinksTracking), name: NSNotification.Name.didReceiveDeeplink
             , object: nil)
     }
     
@@ -106,8 +106,8 @@ class MainTabBarController: UITabBarController {
             }
         }else if notificationData.type == .section {
             if let sectionId = notificationData.data as? String{
-                //TODO: set view name
-                let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "")
+                
+                let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "", type: .homeSection)
                 self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
         }else if notificationData.type == .subCategory{
@@ -116,15 +116,15 @@ class MainTabBarController: UITabBarController {
                 dismissSessionControllerIfNeeded()
             }
             if let subCategoryId = notificationData.data as? String{
-                //TODO: set view name
-                let subCategoryViewController =  SubCategorySessionListViewController.instantiate(id: subCategoryId)
-                self.navigationController?.pushViewController(subCategoryViewController, animated: true)
+                
+                let sectionViewController =  SectionSessionListViewController.instantiate(id: subCategoryId, name: "", type: .subCategory)
+                self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
         }
         appDelegate?.notificationData = nil
     }
-    //TODO: call tracker manager for dynamic links
-    @objc private func HandleDynamiclinksTracking(){
+    
+    @objc private func handleDynamiclinksTracking(){
         guard let notificationData = appDelegate?.notificationData else {
             return
         }

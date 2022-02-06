@@ -19,15 +19,17 @@ struct SectionSessions: Codable, ModelInitializable {
 }
 
 struct SectionModel: Codable, ModelInitializable {
-    let id, title: String
-    let subtitle, icon: String?
-    let categoryId: String?
-    let style: HomeSectionStyle?
+    let id, name: String
+//    let subtitle, icon: String?
+//    let categoryId: String?
+//    let style: HomeSectionStyle?
     
     enum CodingKeys: String, CodingKey {
-        case id, title, subtitle, icon
-        case categoryId = "category_id"
-        case style
+        case id
+        case name = "title"
+//        case subtitle, icon
+//        case categoryId = "category_id"
+//        case style
     }
 }
 
