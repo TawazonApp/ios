@@ -59,6 +59,7 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         startPlayerLoadingIfNeeded()
         updateButtonStates()
         hideSessionPlayerBar()
+        stopBackgroundMusicIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,7 +115,11 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         NotificationCenter.default.addObserver(self,  selector: #selector(downloadSessionsProgressChanged(_:)),  name: Notification.Name.downloadSessionsProgressChanged, object: nil)
         NotificationCenter.default.addObserver(self,  selector: #selector(remoteAudioControlDidReceived(_:)),  name: Notification.Name.remoteAudioControlDidReceived, object: nil)
     }
-    
+    private func stopBackgroundMusicIfNeeded(){
+        if !(session?.session?.playBackgroundSound ?? true) {
+            BackgroundAudioManager.shared.stopBackgroundSound()
+        }
+    }
     private func hideSessionPlayerBar() {
         NotificationCenter.default.post(name: NSNotification.Name.hideSessionPlayerBar, object: nil)
     }
@@ -444,9 +449,7 @@ extension SessionPlayerViewController {
 extension SessionPlayerViewController {
     
     class func instantiate(session: SessionVM, delegate: SessionPlayerDelegate?) -> SessionPlayerViewController {
-        if !(session.session?.playBackgroundSound ?? true) {
-            BackgroundAudioManager.shared.stopBackgroundSound()
-        }
+        
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: SessionPlayerViewController.identifier) as! SessionPlayerViewController
         viewController.delegate = delegate
