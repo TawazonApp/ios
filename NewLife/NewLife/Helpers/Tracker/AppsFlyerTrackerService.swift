@@ -48,16 +48,14 @@ class AppsFlyerTrackingService: TrackingService {
     }
     
     func sendLoginEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(AFEventLogin, withValues: values)
     }
     
     func sendCompleteRegistrationEvent(method: RegistrationMethod) {
         var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         values[AFEventParamRegistrationMethod] = method.rawValue
         AppsFlyerLib.shared().logEvent(AFEventCompleteRegistration, withValues: values)
     }
@@ -77,8 +75,7 @@ class AppsFlyerTrackingService: TrackingService {
         values["plan"] = plan?.getPlan ?? ""
         values[AFEventParamPrice] = price
         values[AFEventParamCurrency] = currency
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         var eventName = ""
         if trial {
             eventName = "af_app_purchase_\(plan?.eventPeriodName ?? "unknown")"
@@ -92,8 +89,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values[AFEventParamContentId] = productId
         values["plan"] = plan
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.tapCancelSubscription,
                                              withValues: values)
     }
@@ -102,8 +98,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.setGoal,
                                              withValues: values)
     }
@@ -112,8 +107,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.tapCategory,
                                              withValues: values)
     }
@@ -122,8 +116,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.tapSubCategory,
                                              withValues: values)
     }
@@ -131,8 +124,7 @@ class AppsFlyerTrackingService: TrackingService {
     func sendPlaySoundEffectEvent(name: String) {
         var values = getBaseEventValues()
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.playSoundEffect,
                                              withValues: values)
     }
@@ -141,8 +133,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.playSession,
                                              withValues: values)
     }
@@ -151,8 +142,7 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.downloadSession,
                                              withValues: values)
     }
@@ -161,56 +151,49 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = id
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.likeSession,
                                              withValues: values)
     }
     
     func sendOpenMoreEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openMore,
                                              withValues: values)
     }
     
     func sendOpenUserProfileEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openUserProfile,
                                              withValues: values)
     }
     
     func sendUserChangeNameEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.userChangeName,
                                              withValues: values)
     }
     
     func sendUserChangePhotoEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.userChangePhoto,
                                              withValues: values)
     }
     
     func sendUserChangePasswordEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.userChangePassword,
                                              withValues: values)
     }
     
     func sendOpenDownloadedLibraryEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openDownloadedLibrary,
                                              withValues: values)
     }
@@ -219,32 +202,28 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["id"] = sectionId
         values["name"] = name
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openSectionSessionList,
                                              withValues: values)
     }
     
     func sendOpenPremiumEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openPremium,
                                              withValues: values)
     }
     
     func sendClosePremiumEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.closePremium,
                                              withValues: values)
     }
     
     func sendSkipPremiumEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.skipPremium,
                                              withValues: values)
     }
@@ -252,79 +231,72 @@ class AppsFlyerTrackingService: TrackingService {
     func sendNotificationStatusChangedEvent(status: Bool) {
         var values = getBaseEventValues()
         values["status"] = status
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.notificationStatusChanged,
                                              withValues: values)
     }
     
     func sendOpenSupportEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openSupport,
                                              withValues: values)
     }
     
     func sendOpenOurStoryEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openOurStory,
                                              withValues: values)
     }
     
     func sendOpenPrivacyPolicyEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openPrivacyPolicy,
                                              withValues: values)
     }
     
     func sendOpenTermsOfUseEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.openTermsOfUse,
                                              withValues: values)
     }
     
     func sendSuccesslogoutEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.successlogout,
                                              withValues: values)
     }
     
     func sendCancelLogoutEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.cancellogout,
                                              withValues: values)
     }
     
     func sendRateAppEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.rateApp,
                                              withValues: values)
     }
     
     func sendShareAppEvent() {
-        var values = getBaseEventValues()
-        values["campaignId"] = getCampaignId()
-        values["currentCampaignId"] = getCurrentCampaignId()
+        let values = getBaseEventValues()
+        
         AppsFlyerLib.shared().logEvent(CustomEvents.shareApp,
                                              withValues: values)
         
     }
     
     private func getBaseEventValues() -> [AnyHashable : Any] {
-        return ["idfa": UIApplication.identifierForAdvertising ?? ""]
+        return ["idfa": UIApplication.identifierForAdvertising ?? "",
+                "campaignId" : getCampaignId(),
+                "currentCampaignId" :getCurrentCampaignId()]
     }
     private func getCampaignId() -> String{
         if let campaignId = UserDefaults.originalCampaignId() {

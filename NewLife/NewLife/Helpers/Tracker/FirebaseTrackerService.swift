@@ -46,186 +46,192 @@ class FirebaseTrackingService: TrackingService {
     }
     
     func sendLoginEvent() {
-        Analytics.logEvent(AnalyticsEventLogin, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                             "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(AnalyticsEventLogin, parameters: values)
     }
     
     func sendCompleteRegistrationEvent(method: RegistrationMethod) {
-        Analytics.logEvent(AnalyticsEventSignUp, parameters: [AnalyticsParameterSignUpMethod: method.rawValue,
-                                                              "campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                              "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values[AnalyticsParameterSignUpMethod] = method.rawValue
+        Analytics.logEvent(AnalyticsEventSignUp, parameters: values)
     }
     
     func sendStartSubscriptionEvent(productId: String, plan: PremiumPurchase?, price: Double, currency: String, trial: Bool) {
         let planString = plan?.getPlan() ?? ""
-        Analytics.logEvent(CustomEvents.startSubscription, parameters: [
-            AnalyticsParameterItemID: productId,
-            "plan" : planString,
-            AnalyticsParameterPrice: price,
-            AnalyticsParameterCurrency: currency,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values[AnalyticsParameterItemID] = productId
+        values["plan"] = planString
+        values["AnalyticsParameterPrice"] = price
+        values["AnalyticsParameterCurrency"] = currency
+        
+        Analytics.logEvent(CustomEvents.startSubscription, parameters: values)
     }
     
     func sendTapCancelSubscriptionEvent(productId: String, plan: String) {
-        Analytics.logEvent(CustomEvents.tapCancelSubscription, parameters: [
-            AnalyticsParameterItemID: productId,
-            "plan" : plan,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values[AnalyticsParameterItemID] = productId
+        values["plan"] = plan
+        
+        Analytics.logEvent(CustomEvents.tapCancelSubscription, parameters: values)
     }
     
     func sendSetGoalEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.setGoal, parameters: [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.setGoal, parameters: values)
     }
     
     func sendTapCategoryEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.tapCategory, parameters: [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.tapCategory, parameters: values)
     }
     
     func sendTapSubCategoryEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.tapSubCategory, parameters: [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.tapSubCategory, parameters: values)
     }
     
     func sendPlaySoundEffectEvent(name: String) {
-        Analytics.logEvent(CustomEvents.playSoundEffect, parameters: [
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.playSoundEffect, parameters: values)
     }
     
     func sendPlaySessionEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.playSession, parameters:  [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.playSession, parameters:  values)
     }
     
     func sendDownloadSessionEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.downloadSession, parameters: [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.downloadSession, parameters: values)
     }
     
     func sendLikeSessionEvent(id: String, name: String) {
-        Analytics.logEvent(CustomEvents.likeSession, parameters: [
-            "id" : id,
-            "name": name,
-            "campaignId": UserDefaults.originalCampaignId() ?? "",
-            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = id
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.likeSession, parameters: values)
     }
     
     func sendOpenMoreEvent() {
-        Analytics.logEvent(CustomEvents.openMore, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                               "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openMore, parameters: values)
     }
     
     func sendOpenUserProfileEvent() {
-        Analytics.logEvent(CustomEvents.openUserProfile, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                      "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openUserProfile, parameters: values)
     }
     
-    func sendUserChangeNameEvent() {
-        Analytics.logEvent(CustomEvents.userChangeName, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                     "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+    func sendUserChangeNameEvent(){
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.userChangeName, parameters: values)
     }
     
     func sendUserChangePhotoEvent() {
-        Analytics.logEvent(CustomEvents.userChangePhoto, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                      "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.userChangePhoto, parameters: values)
     }
     
     func sendUserChangePasswordEvent() {
-        Analytics.logEvent(CustomEvents.userChangePassword, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                         "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.userChangePassword, parameters: values)
     }
     
     func sendOpenDownloadedLibraryEvent() {
-        Analytics.logEvent(CustomEvents.openDownloadedLibrary, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openDownloadedLibrary, parameters: values)
     }
     
     func sendOpenSectionSessionList(sectionId: String, name: String) {
-        Analytics.logEvent(CustomEvents.openDownloadedLibrary, parameters: [
-                            "id" : sectionId,
-                            "name": name,
-                            "campaignId": UserDefaults.originalCampaignId() ?? "",
-                            "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["id"] = sectionId
+        values["name"] = name
+        
+        Analytics.logEvent(CustomEvents.openDownloadedLibrary, parameters: values)
     }
     
     func sendOpenPremiumEvent() {
-        Analytics.logEvent(CustomEvents.openPremium, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                  "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openPremium, parameters: values)
     }
     
-    func sendClosePremiumEvent() {
-        Analytics.logEvent(CustomEvents.closePremium, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                   "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+    func sendClosePremiumEvent (){
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.closePremium, parameters: values)
     }
     
     func sendSkipPremiumEvent() {
-        Analytics.logEvent(CustomEvents.skipPremium, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                  "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.skipPremium, parameters: values)
     }
     
     func sendNotificationStatusChangedEvent(status: Bool) {
-        Analytics.logEvent(CustomEvents.notificationStatusChanged, parameters: ["status": status,
-                                                                                "campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                                "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        var values = getBaseEventValues()
+        values["status"] = status
+        
+        Analytics.logEvent(CustomEvents.notificationStatusChanged, parameters: values)
     }
     
     func sendOpenSupportEvent() {
-        Analytics.logEvent(CustomEvents.openSupport, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                  "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openSupport, parameters: values)
     }
     
     func sendOpenOurStoryEvent() {
-        Analytics.logEvent(CustomEvents.openOurStory, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                   "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openOurStory, parameters: values)
     }
     
     func sendOpenPrivacyPolicyEvent() {
-        Analytics.logEvent(CustomEvents.openPrivacyPolicy, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                        "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openPrivacyPolicy, parameters: values)
     }
     
     func sendOpenTermsOfUseEvent() {
-        Analytics.logEvent(CustomEvents.openTermsOfUse, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                     "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openTermsOfUse, parameters: values)
     }
     
     func sendSuccesslogoutEvent() {
-        Analytics.logEvent(CustomEvents.successlogout, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                    "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.successlogout, parameters: values)
     }
     
     func sendCancelLogoutEvent() {
-        Analytics.logEvent(CustomEvents.cancellogout, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                                   "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.cancellogout, parameters: values)
     }
     
     func sendRateAppEvent() {
-        Analytics.logEvent(CustomEvents.rateApp, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                              "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.rateApp, parameters: values)
     }
     
     func sendShareAppEvent() {
-        Analytics.logEvent(CustomEvents.shareApp, parameters: ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                                                               "currentCampaignId": UserDefaults.currentCampaignId() ?? ""])
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.shareApp, parameters: values)
+    }
+    
+    private func getBaseEventValues() -> [String : Any] {
+        return ["campaignId": UserDefaults.originalCampaignId() ?? "",
+                "currentCampaignId": UserDefaults.currentCampaignId() ?? ""]
     }
 }
