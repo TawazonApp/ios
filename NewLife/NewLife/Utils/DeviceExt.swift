@@ -75,6 +75,8 @@ struct UserDefaultsKeys {
     static let ratedSessions = "ratedSessions"
     static let firstOpened = "AppFirstOpenedKey"
     static let discountOfferOpened = "DiscountOfferKey"
+    static let originalCampaignId = "OriginalCampaignId"
+    static let currentCampaignId = "CurrentCampaignId"
 }
 
 extension UserDefaults {
@@ -184,5 +186,17 @@ extension UserDefaults {
     
     class func discountOfferOpened(id: String) {
         UserDefaults.standard.setValue(true, forKey: "Discount-\(id)")
+    }
+    class func saveOriginalCampaign(id: String){
+        UserDefaults.standard.set(id, forKey: UserDefaultsKeys.originalCampaignId)
+    }
+    class func originalCampaignId() -> String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.originalCampaignId) as? String
+    }
+    class func saveCurrentCampaign(id: String){
+        UserDefaults.standard.set(id, forKey: UserDefaultsKeys.currentCampaignId)
+    }
+    class func currentCampaignId() -> String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.currentCampaignId) as? String
     }
 }

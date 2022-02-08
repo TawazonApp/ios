@@ -21,9 +21,10 @@ class SectionSessionsVM {
         self.homeService = homeService
     }
     
-    func getSessions(completion: @escaping ( _ error: CustomError?) -> Void) {
-        homeService.getSectionSessions(sectionId: id) { [weak self] (section, error) in
+    func getSessions(type: SectionData.SectionType,completion: @escaping ( _ error: CustomError?) -> Void) {
+        homeService.getSectionSessions(sectionId: id, type: type) { [weak self] (section, error) in
             self?.sessions = section?.items.map({ HomeSessionVM(session: $0 )}) ?? []
+            self?.name = section?.section.name ?? ""
             completion(error)
         }
     }

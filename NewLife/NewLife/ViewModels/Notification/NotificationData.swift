@@ -11,9 +11,17 @@ import UIKit
 enum NotificationType:String {
     case playSession = "play_session"
     case category = "category"
+    case section = "section"
+    case subCategory = "subCategory"
     case none = ""
 }
 
+enum DynamicLinkPath: String{
+    case session = "/meditations/view"
+    case category = "/meditations/list"
+    case section = "/sections/meditations/list"
+    case tracking = "/tracking"
+}
 enum NotificationAppStatus {
     case foreground
     case background

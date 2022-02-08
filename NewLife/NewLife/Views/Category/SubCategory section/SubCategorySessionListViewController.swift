@@ -1,15 +1,15 @@
 //
-//  SectionSessionListViewController.swift
+//  SubCategorySessionListViewController.swift
 //  Tawazon
 //
-//  Created by Shadi on 04/12/2020.
-//  Copyright © 2020 Inceptiontech. All rights reserved.
+//  Created by mac on 23/01/2022.
+//  Copyright © 2022 Inceptiontech. All rights reserved.
 //
 
 import UIKit
 
-class SectionSessionListViewController: HandleErrorViewController {
-    
+class SubCategorySessionListViewController: HandleErrorViewController {
+
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var backButton: UIButton!
@@ -17,9 +17,9 @@ class SectionSessionListViewController: HandleErrorViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backgroundView: HomeBackgroundView!
 
-    var section: (id: String, name: String)!
-    var type : SectionData.SectionType!
-    var viewModel: SectionSessionsVM!
+    var subCategoryId:String!
+    var subCategoryVM: SubCategorySectionVM!
+    
     private var viewDidAppeared = false
     private var statusBarHidden = false {
         didSet {
@@ -32,10 +32,9 @@ class SectionSessionListViewController: HandleErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = SectionSessionsVM(homeService: HomeServiceFactory.service(), sectionName: section.name, sectionId: section.id)
+        subCategoryVM = SubCategorySectionVM(service: SessionServiceOffline(service: SessionServiceFactory.service()), subCategoryId: subCategoryId, subCategoryName: "")
         initialize()
         fetchData()
-        sendOpenEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +79,7 @@ class SectionSessionListViewController: HandleErrorViewController {
         titleLabel.textColor = UIColor.white
         
         backgroundImageView.image = UIImage(named: "SessionListHeader")
-        titleLabel.text = section.name
+        titleLabel.text = subCategoryVM.name
         setupCollectionContentInset()
         initializeNotification()
     }
@@ -100,15 +99,13 @@ class SectionSessionListViewController: HandleErrorViewController {
     }
     
     private func fetchData() {
-        viewModel.getSessions(type: self.type) { [weak self] (error) in
+        subCategoryVM.getSessions(completion: { [weak self] (error) in
             if let error = error {
                 self?.showErrorMessage( message: error.message ?? "generalErrorMessage".localized)
             }
+            self?.initialize()
             self?.reloadCollectionData()
-            if self?.section.name.isEmptyWithTrim ?? false{
-                self?.titleLabel.text = self?.viewModel.name
-            }
-        }
+        })
     }
     
     private func reloadCollectionData() {
@@ -130,10 +127,6 @@ class SectionSessionListViewController: HandleErrorViewController {
         self.present(viewcontroller, animated: true, completion: nil)
     }
     
-    private func sendOpenEvent() {
-        TrackerManager.shared.sendOpenSectionSessionList(sectionId: section.id, name: section.name)
-    }
-    
     private func openPremiumViewController() {
         guard self.presentedViewController == nil else {
             return
@@ -152,15 +145,15 @@ class SectionSessionListViewController: HandleErrorViewController {
 }
 
 
-extension SectionSessionListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SubCategorySessionListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.sessions.count
+        return subCategoryVM.sessions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTableSessionCollectionCell.identifier, for: indexPath) as! HomeTableSessionCollectionCell
-        cell.session = viewModel.sessions[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategorySessionCollectionCell.identifier, for: indexPath) as! CategorySessionCollectionCell
+        cell.session = subCategoryVM?.sessions[indexPath.item]
         return cell
     }
     
@@ -194,7 +187,7 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let session = viewModel.sessions[safe: indexPath.item] else {
+        guard let session = subCategoryVM.sessions[safe: indexPath.item] else {
             return
         }
         let cell = collectionView.cellForItem(at: indexPath)
@@ -208,17 +201,16 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
 }
 
 
-extension SectionSessionListViewController {
-    class func instantiate(id: String, name: String, type: SectionData.SectionType) -> SectionSessionListViewController {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: SectionSessionListViewController.identifier) as! SectionSessionListViewController
-        viewController.section = (id: id, name: name)
-        viewController.type = type
+extension SubCategorySessionListViewController {
+    class func instantiate(id: String) -> SubCategorySessionListViewController {
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: SubCategorySessionListViewController.identifier) as! SubCategorySessionListViewController
+        viewController.subCategoryId = id
         return viewController
     }
 }
 
-extension SectionSessionListViewController: SessionPlayerDelegate {
+extension SubCategorySessionListViewController: SessionPlayerDelegate {
     func sessionStoped(_ session: SessionVM) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
             SessionRateViewController.show(session: session, from: self, force: false)
@@ -227,7 +219,7 @@ extension SectionSessionListViewController: SessionPlayerDelegate {
 }
 
 
-extension SectionSessionListViewController {
+extension SubCategorySessionListViewController {
     @objc func showSessionPlayerBar(_ notification: Notification) {
         showSessionPlayerBar()
     }
@@ -273,7 +265,7 @@ extension SectionSessionListViewController {
     }
 }
 
-extension SectionSessionListViewController: MainPlayerBarViewDelegate {
+extension SubCategorySessionListViewController: MainPlayerBarViewDelegate {
     
     func playerTapped() {
         guard let session = SessionPlayerMananger.shared.session?.session else { return }

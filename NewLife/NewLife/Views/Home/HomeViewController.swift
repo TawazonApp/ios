@@ -366,7 +366,7 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
             (tabBarController as? MainTabBarController)?.openCategory(categoryId: tabBarId.rawValue)
             return
         } else {
-            let sectionViewController =  SectionSessionListViewController.instantiate(id: section.id, name: section.title)
+            let sectionViewController =  SectionSessionListViewController.instantiate(id: section.id, name: section.title, type: .homeSection)
             self.navigationController?.pushViewController(sectionViewController, animated: true)
             
         }

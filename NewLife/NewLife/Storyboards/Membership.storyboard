@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -356,7 +356,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MembershipTextFieldCell" rowHeight="64" id="g9S-oN-VSU" customClass="MembershipTextFieldCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="335" height="64"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="335" height="64"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g9S-oN-VSU" id="hvQ-qU-sUI">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="64"/>
@@ -423,7 +423,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MembershipButtonCell" id="7eB-PG-S2J" customClass="MembershipButtonCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="92" width="335" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="108.5" width="335" height="28.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7eB-PG-S2J" id="N1j-Ru-2SV">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="28.5"/>
@@ -573,7 +573,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MembershipButtonCell" id="VuG-6V-5q4" customClass="MembershipButtonCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="335" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="335" height="28.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VuG-6V-5q4" id="ZyO-yr-q0P">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="28.5"/>
@@ -598,7 +598,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MembershipTextFieldCell" rowHeight="64" id="kh5-5Y-65U" customClass="MembershipTextFieldCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56.5" width="335" height="64"/>
+                                                <rect key="frame" x="0.0" y="73" width="335" height="64"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kh5-5Y-65U" id="nQb-Nb-MIT">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="64"/>
@@ -1361,7 +1361,7 @@
                                                                 </constraints>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PremiumFeatureCell" rowHeight="80" id="jfx-uA-wgW" customClass="PremiumFeatureCell" customModule="Tawazon" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jfx-uA-wgW" id="hrd-1G-Ugs">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>

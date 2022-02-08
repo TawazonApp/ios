@@ -201,4 +201,22 @@ class TrackerManager: TrackingService {
             service.sendCompleteRegistrationEvent(method: method)
         }
     }
+    
+    //MARK: Server Tracking
+    func sendOpenDynamiclinkEvent(campaignId: String) {
+        let now = round(Date().timeIntervalSince1970)
+        let param = ["name": "open_app", "campaign_id": campaignId, "event_timestamp": now] as [String : Any]
+        ConnectionUtils.performPostRequest(url: Api.trackingUrl.url!, parameters: param) { (data, error) in
+            
+            var campaign: CampaignTrackingModel?
+            if let data = data {
+                campaign = CampaignTrackingModel(data: data)
+                if campaign?.status ?? false{
+                    UserDefaults.saveOriginalCampaign(id: campaign?.item.originalCampaignId ?? "")
+                    UserDefaults.saveCurrentCampaign(id: campaign?.item.currentCampaignId ?? "")
+                }
+                
+            }
+        }
+    }
 }

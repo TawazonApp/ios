@@ -66,7 +66,7 @@ class APISessionService: SessionService {
             completion(subCategoryModel, error)
         }
     }
-    
+
     func fetchDownloadedSessions(page: Int, pageSize: Int, completion: @escaping (SessionsModel?, CustomError?) -> Void) {
         
         ConnectionUtils.performGetRequest(url: Api.sessionsDownloadListUrl.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in

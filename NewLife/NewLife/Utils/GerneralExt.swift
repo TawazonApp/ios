@@ -56,6 +56,8 @@ extension NSNotification.Name {
     
     static let didReceiveRemoteNotification = NSNotification.Name(rawValue: "didReceiveRemoteNotification")
     
+    static let didReceiveDeeplink = NSNotification.Name(rawValue: "didReceiveDeeplink")
+    
     static let remoteAudioControlDidReceived = NSNotification.Name(rawValue: "remoteAudioControlDidReceived")
     
     

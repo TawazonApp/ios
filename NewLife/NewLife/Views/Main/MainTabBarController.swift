@@ -71,6 +71,9 @@ class MainTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(performNotificationActionIfNeeded), name: NSNotification.Name.didReceiveRemoteNotification
             , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDynamiclinksTracking), name: NSNotification.Name.didReceiveDeeplink
+            , object: nil)
     }
     
     private func playMainBackgroundAudio() {
@@ -78,7 +81,6 @@ class MainTabBarController: UITabBarController {
     }
     
   @objc private func performNotificationActionIfNeeded() {
-    //TODO: hide all presented view controller
         guard let notificationData = appDelegate?.notificationData else {
             return
         }
@@ -92,16 +94,44 @@ class MainTabBarController: UITabBarController {
                    
                // }
             } else if let sessionId = notificationData.data as? String {
-                handlePlaySessionFromLink(sessionId: sessionId)
+                self.handlePlaySessionFromLink(sessionId: sessionId)
             }
         } else if notificationData.type == .category {
             if let category = notificationData.data as? CategoryModel, let categoryId =  category.id {
                 openCategory(categoryId: categoryId)
+            }else if let categoryId = notificationData.data as? String{
+                showSessionPlayerBar()
+                dismissSessionControllerIfNeeded()
+                openCategory(categoryId: categoryId)
+            }
+        }else if notificationData.type == .section {
+            if let sectionId = notificationData.data as? String{
+                
+                let sectionViewController =  SectionSessionListViewController.instantiate(id: sectionId, name: "", type: .homeSection)
+                self.navigationController?.pushViewController(sectionViewController, animated: true)
+            }
+        }else if notificationData.type == .subCategory{
+            if AudioPlayerManager.shared.isPlaying() {
+                showSessionPlayerBar()
+                dismissSessionControllerIfNeeded()
+            }
+            if let subCategoryId = notificationData.data as? String{
+                
+                let sectionViewController =  SectionSessionListViewController.instantiate(id: subCategoryId, name: "", type: .subCategory)
+                self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
         }
         appDelegate?.notificationData = nil
     }
     
+    @objc private func handleDynamiclinksTracking(){
+        guard let notificationData = appDelegate?.notificationData else {
+            return
+        }
+        if let campaignId = notificationData.data as? String{
+            TrackerManager.shared.sendOpenDynamiclinkEvent(campaignId: campaignId)
+        }
+    }
     func openCategory(categoryId: String) {
         guard let id = MainTabBarView.tabBarItemsIds(rawValue: categoryId) else {
             return
@@ -132,7 +162,19 @@ class MainTabBarController: UITabBarController {
         playerBar?.removeFromSuperview()
         playerBar = nil
     }
-    
+    func dismissSessionControllerIfNeeded() {
+        if AudioPlayerManager.shared.isPlaying() {
+            let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            if var topController = keyWindow?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                if topController is SessionPlayerViewController {
+                    (topController as! SessionPlayerViewController).dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
     private func addPlayerBarIfNeeded() {
         guard playerBar == nil else {
             return
@@ -161,6 +203,12 @@ class MainTabBarController: UITabBarController {
             }
             //if !sessionModel.isLock {
                 if !AudioPlayerManager.shared.isPlaying() {
+                    if self?.playerBar?.isPlaying ?? false {
+                        self?.hideSessionPlayerBar()
+                    }
+                    self?.openSessionPlayerViewController(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel))
+                }else{
+                    self?.dismissSessionControllerIfNeeded()
                     self?.openSessionPlayerViewController(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel))
                 }
           //  }

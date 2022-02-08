@@ -14,6 +14,10 @@ struct Api {
     static let apiUrl = "\(baseUrl)/api/v1"
     static let apiUrlV2 = "\(baseUrl)/api/v2"
     static let authorization = "$2y$08$SUh5WUM4STdKZmtYOHh5duA2bPXmyg7BmzxORifly3mDit6oU4Y1y"
+    
+    //Tracking
+    static let trackingUrl = "\(apiUrlV2)/firebase/dynamic-links/events/log"
+    
    //Membership
     static let loginUrl = "\(apiUrl)/auth/login"
     static let appleLoginUrl = "\(apiUrl)/auth/login/apple"
@@ -48,6 +52,7 @@ struct Api {
     //Session
     static let categorySessionsListUrl  = "\(apiUrl)/sessions/list/{id}"
     static let subCategorySessionsListUrl = "\(apiUrl)/sessions/list/{id}"
+    static let subCategorySectionSessionsListUrl = "\(apiUrlV2)/meditations/list/{categoryID}"
     static let sessionsDownloadListUrl = "\(apiUrl)/sessions/downloads/list"
     static let addSessionToDownloadUrl = "\(apiUrl)/sessions/downloads/add/{id}"
     static let removeSessionToDownloadUrl = "\(apiUrl)/sessions/downloads/remove/{id}"

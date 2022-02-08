@@ -288,14 +288,36 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
-        if dynamicLink.pathComponents.contains(NotificationType.playSession.rawValue) {
-            let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
-            let sessionId = components?.queryItems?.first(where: { $0.name == "id" })?.value
-            let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
-            let notificationData = NotificationData(type: NotificationType.playSession, data: sessionId, appStatus: appStatus)
+        var notificationData: NotificationData? = nil
+        let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
+        
+        let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
+        let itemId = dynamicLink.lastPathComponent
+        if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
+            notificationData = NotificationData(type: NotificationType.none, data: campaignId, appStatus: appStatus)
             (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
-            NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)
         }
+        // open section
+        if dynamicLink.path.contains(DynamicLinkPath.section.rawValue) {
+            notificationData = NotificationData(type: NotificationType.section, data: itemId, appStatus: appStatus)
+        }
+        else if dynamicLink.path.contains(DynamicLinkPath.session.rawValue) {
+            notificationData = NotificationData(type: NotificationType.playSession, data: itemId, appStatus: appStatus)
+        }
+        else if dynamicLink.path.contains(DynamicLinkPath.category.rawValue) {
+            if let categoryId = MainTabBarView.tabBarItemsIds.getItemId(forCategory: itemId) {
+                notificationData = NotificationData(type: NotificationType.category, data: categoryId.rawValue, appStatus: appStatus)
+            }else{
+                notificationData = NotificationData(type: NotificationType.subCategory, data: itemId, appStatus: appStatus)
+            }
+            
+        }
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
+        NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
+        
+        
     }
 }
 
