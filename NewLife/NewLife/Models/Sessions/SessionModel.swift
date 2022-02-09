@@ -25,6 +25,8 @@ struct SessionModel: Codable {
     var localImagePath: String?
     var localAudioPath: String?
     var shareLink: String?
+    let playBackgroundSound: Bool
+    
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -42,6 +44,7 @@ struct SessionModel: Codable {
         case localImagePath
         case localAudioPath
         case shareLink = "share_link"
+        case playBackgroundSound = "allow_background_music"
     }
     
     func isFavorite() -> Bool {
@@ -72,6 +75,7 @@ extension SessionModel {
         self.thumbnailUrl = session.thumbnailUrl
         self.audioUrl = session.audioUrl ?? ""
         self.audioSource = session.audioSource ?? ""
+        self.playBackgroundSound = session.playBackgroundSound
     }
  
     init?(data: Data) {
@@ -117,6 +121,8 @@ extension SessionModel {
         favorite = try container.decodeIfPresent(Int.self, forKey: .favorite) ?? 0
         
         shareLink =  try container.decodeIfPresent(String.self, forKey: .shareLink)
+        
+        playBackgroundSound = try container.decode(Bool.self, forKey: .playBackgroundSound)
         
         localImagePath = nil
         localAudioPath = nil

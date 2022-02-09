@@ -134,10 +134,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-1O-9op">
-                                <rect key="frame" x="118.5" y="20" width="138" height="48"/>
+                                <rect key="frame" x="87.5" y="20" width="200" height="136"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="138" id="WP8-Wk-oS6"/>
-                                    <constraint firstAttribute="height" constant="48" id="fS7-ze-T7q"/>
+                                    <constraint firstAttribute="width" constant="200" id="WP8-Wk-oS6"/>
+                                    <constraint firstAttribute="height" constant="136" id="fS7-ze-T7q"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFY-f6-kSd">
@@ -293,10 +293,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I4a-hf-OjO">
-                                <rect key="frame" x="118.5" y="20" width="138" height="48"/>
+                                <rect key="frame" x="125" y="20" width="125" height="86"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="JL7-r3-fhI"/>
-                                    <constraint firstAttribute="width" constant="138" id="fXe-Vi-eYq"/>
+                                    <constraint firstAttribute="height" constant="86" id="JL7-r3-fhI"/>
+                                    <constraint firstAttribute="width" constant="125" id="fXe-Vi-eYq"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLv-af-yGk">

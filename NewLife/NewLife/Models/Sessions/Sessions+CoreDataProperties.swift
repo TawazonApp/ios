@@ -33,6 +33,7 @@ extension Sessions {
     @NSManaged public var thumbnailUrl: String?
     @NSManaged public var shareLink: String?
     
+    @NSManaged public var playBackgroundSound: Bool
     
     @nonobjc public class func sessionsFetchRequest() -> NSFetchRequest<Sessions> {
         return NSFetchRequest<Sessions>(entityName: "Sessions")
@@ -70,6 +71,7 @@ extension Sessions {
         self.free = sessionModel.isFree()
         self.isFavorite = sessionModel.isFavorite()
         self.descriptionString = sessionModel.descriptionString
+        self.playBackgroundSound = sessionModel.playBackgroundSound
     }
     
 }
