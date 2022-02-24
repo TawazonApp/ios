@@ -352,12 +352,24 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     }
     
     private func playSession(_ session: HomeSessionVM) {
-//        if (session.isLock) {
-//            showPremiumPermissionAlert()
-//        } else {
+        if (session.isLock) {
+            self.openPremiumViewController()
+        } else {
             openSessionPlayerViewController(session: session)
-       // }
+        }
         requestNotificationPermission += 1
+    }
+    
+    private func openPremiumViewController() {
+        guard self.presentedViewController == nil else {
+            return
+        }
+        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        
+        let navigationController = NavigationController.init(rootViewController: viewcontroller)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     private func openSectionView(_ section: HomeSectionVM) {

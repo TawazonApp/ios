@@ -202,7 +202,12 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
         generator.impactOccurred()
         cell?.pulsate()
         if let sessionModel = session.session {
-            playSession(session: sessionModel)
+            if session.isLock {
+                openPremiumViewController()
+            }else{
+                playSession(session: sessionModel)
+            }
+            
         }
     }
 }
