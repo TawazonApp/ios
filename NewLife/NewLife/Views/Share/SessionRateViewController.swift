@@ -67,6 +67,9 @@ extension SessionRateViewController {
                 return
             }
         }
+        if session.session?.isLock ?? false {
+            return
+        }
         let rateViewController = SessionRateViewController.instantiate(session: session)
         rateViewController.modalPresentationStyle = .custom
         rateViewController.transitioningDelegate = from

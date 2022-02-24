@@ -126,5 +126,5 @@ enum PremiumPurchase: String {
 
 enum Constants {
     static let appsFlyerDevKey = "FaJiLhP57L5T9KhDcypEmh"
-    static let lockFreeDuration: TimeInterval = 20
+    static let lockFreeDuration: TimeInterval = 0
 }

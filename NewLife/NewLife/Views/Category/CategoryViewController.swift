@@ -179,11 +179,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         DispatchQueue.main.async { [weak self] in
-//            if session.isLock {
-//                self?.showPremiumPermissionAlert()
-//            } else {
+            if session.isLock {
+                self?.openPremiumViewController()
+            } else {
                 self?.openSessionPlayerViewController(session: session)
-           // }
+            }
         }
     }
     
@@ -203,6 +203,17 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         updateSummaryAlphaValue()
         updateTopOverlayViewAlphaValue()
         updateHeaderLayout()
+    }
+    private func openPremiumViewController() {
+        guard self.presentedViewController == nil else {
+            return
+        }
+        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        
+        let navigationController = NavigationController.init(rootViewController: viewcontroller)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
