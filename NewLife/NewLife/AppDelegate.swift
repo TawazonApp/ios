@@ -296,7 +296,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
             //TODO: save campaign id to temp userDefaults array
             UserDefaults.saveTempCampaigns(id: campaignId)
-            print("TempArray: \(UserDefaults.getTempCampaigns())")
+            
             notificationData = NotificationData(type: NotificationType.none, data: campaignId, appStatus: appStatus)
             (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
             NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)

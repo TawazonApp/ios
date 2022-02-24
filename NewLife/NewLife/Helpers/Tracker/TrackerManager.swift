@@ -206,7 +206,7 @@ class TrackerManager: TrackingService {
     func sendOpenDynamiclinkEvent(campaignId: String) {
 //        let now = round(Date().timeIntervalSince1970)
         let tempCampaigns = UserDefaults.getTempCampaigns()
-        let param = ["campaigns": tempCampaigns] as [String : Any]
+        let param = ["items": tempCampaigns] as [String : Any]
          
         ConnectionUtils.performPostRequest(url: Api.trackingUrl.url!, parameters: param) { (data, error) in
             
@@ -217,7 +217,6 @@ class TrackerManager: TrackingService {
                     UserDefaults.saveOriginalCampaign(id: campaign?.item.originalCampaignId ?? "")
                     UserDefaults.saveCurrentCampaign(id: campaign?.item.currentCampaignId ?? "")
                     UserDefaults.resetTempCampaigns()
-                    print("Campians: \(UserDefaults.getTempCampaigns())")
                 }
                 
             }

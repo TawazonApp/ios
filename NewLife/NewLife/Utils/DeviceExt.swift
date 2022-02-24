@@ -205,12 +205,10 @@ extension UserDefaults {
         let now = round(Date().timeIntervalSince1970)
         let param = ["name": "open_app", "campaign_id": id, "event_timestamp": now] as [String : Any]
         tempCampaigns.append(param)
-        print("outside if: \(tempCampaigns)")
         
         UserDefaults.standard.set(tempCampaigns, forKey: UserDefaultsKeys.tempCampigns)
     }
     class func getTempCampaigns() -> [[String : Any]]{
-        print("getTempCampaigns: \(UserDefaults.standard.value(forKey: UserDefaultsKeys.tempCampigns) as?[String:String] ?? [:])")
         return UserDefaults.standard.value(forKey: UserDefaultsKeys.tempCampigns) as? [[String : Any]] ?? []
     }
     class func resetTempCampaigns(){
