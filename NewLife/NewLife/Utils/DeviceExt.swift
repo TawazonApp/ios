@@ -77,6 +77,7 @@ struct UserDefaultsKeys {
     static let discountOfferOpened = "DiscountOfferKey"
     static let originalCampaignId = "OriginalCampaignId"
     static let currentCampaignId = "CurrentCampaignId"
+    static let tempCampigns = "TempCampaigns"
 }
 
 extension UserDefaults {
@@ -198,5 +199,20 @@ extension UserDefaults {
     }
     class func currentCampaignId() -> String? {
         return UserDefaults.standard.value(forKey: UserDefaultsKeys.currentCampaignId) as? String
+    }
+    class func saveTempCampaigns(id: String){
+        var tempCampaigns = self.getTempCampaigns()
+        let now = round(Date().timeIntervalSince1970)
+        let param = ["name": "open_app", "campaign_id": id, "event_timestamp": now] as [String : Any]
+        tempCampaigns.append(param)
+        
+        UserDefaults.standard.set(tempCampaigns, forKey: UserDefaultsKeys.tempCampigns)
+    }
+    class func getTempCampaigns() -> [[String : Any]]{
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.tempCampigns) as? [[String : Any]] ?? []
+    }
+    class func resetTempCampaigns(){
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.tempCampigns)
+        UserDefaults.standard.synchronize()
     }
 }

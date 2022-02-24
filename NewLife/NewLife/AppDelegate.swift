@@ -294,6 +294,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
         let itemId = dynamicLink.lastPathComponent
         if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
+            UserDefaults.saveTempCampaigns(id: campaignId)
+            
             notificationData = NotificationData(type: NotificationType.none, data: campaignId, appStatus: appStatus)
             (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
             NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)
