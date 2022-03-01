@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Sessions" representedClassName="Sessions" syncable="YES">
         <attribute name="audioFilePath" optional="YES" attributeType="String"/>
         <attribute name="audioSource" optional="YES" attributeType="String"/>
@@ -13,12 +13,13 @@
         <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="playBackgroundSound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="shareLink" optional="YES" attributeType="String"/>
         <attribute name="thumbnailFilePath" optional="YES" attributeType="String"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String"/>
         <attribute name="userId" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Sessions" positionX="-63" positionY="-18" width="128" height="283"/>
+        <element name="Sessions" positionX="-63" positionY="-18" width="128" height="284"/>
     </elements>
 </model>
