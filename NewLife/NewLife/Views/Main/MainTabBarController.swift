@@ -125,12 +125,7 @@ class MainTabBarController: UITabBarController {
     }
     
     @objc private func handleDynamiclinksTracking(){
-        guard let notificationData = appDelegate?.notificationData else {
-            return
-        }
-        if let campaignId = notificationData.data as? String{
-            TrackerManager.shared.sendOpenDynamiclinkEvent(campaignId: campaignId)
-        }
+        TrackerManager.shared.sendOpenDynamiclinkEvent()
     }
     func openCategory(categoryId: String) {
         guard let id = MainTabBarView.tabBarItemsIds(rawValue: categoryId) else {

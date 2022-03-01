@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         initialViewContoller()
         setupIAP()
+        sendCampaignIds()
         DispatchQueue.main.async { [weak self] in
             self?.setupAudioPlayerManager()
         }
@@ -295,9 +296,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let itemId = dynamicLink.lastPathComponent
         if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
             UserDefaults.saveTempCampaigns(id: campaignId)
-            
-            notificationData = NotificationData(type: NotificationType.none, data: campaignId, appStatus: appStatus)
-            (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
             NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)
         }
         // open section
@@ -319,6 +317,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
         NotificationCenter.default.post(name: NSNotification.Name.didReceiveRemoteNotification, object: nil)
         
+        
+    }
+    private func sendCampaignIds(){
+        if !UserDefaults.getTempCampaigns().isEmpty {
+            TrackerManager.shared.sendOpenDynamiclinkEvent()
+        }
         
     }
 }

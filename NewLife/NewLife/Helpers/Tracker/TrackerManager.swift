@@ -203,8 +203,7 @@ class TrackerManager: TrackingService {
     }
     
     //MARK: Server Tracking
-    func sendOpenDynamiclinkEvent(campaignId: String) {
-//        let now = round(Date().timeIntervalSince1970)
+    func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()
         let param = ["items": tempCampaigns] as [String : Any]
          
