@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum libraryType {
+    case downloads
+    case favorite
+}
+
 class DownloadedLibraryVM: NSObject {
     
     var sessions: [LibrarySessionVM] = []
@@ -20,7 +25,7 @@ class DownloadedLibraryVM: NSObject {
         self.service = SessionServiceOffline(service: service)
     }
     
-    func fetchData(completion: @escaping (CustomError?) -> Void) {
+    func fetchData(type: libraryType, completion: @escaping (CustomError?) -> Void) {
         
         let page = 1
         let pageSize = self.pageSize
@@ -29,7 +34,7 @@ class DownloadedLibraryVM: NSObject {
         pagingData.hasMore = true
         pagingData.processing = true
         
-        fetchSessions(page: page, pageSize: pageSize) { [weak self] (sessions, error) in
+        fetchSessions(type: type, page: page, pageSize: pageSize) { [weak self] (sessions, error) in
             
             self?.pagingData.processing = false
             
@@ -39,14 +44,14 @@ class DownloadedLibraryVM: NSObject {
                 self?.sessions.append(contentsOf: sessions)
             } else {
                 if self?.sessions.count == 0 {
-                    self?.sessions = LocalSessionsManager.shared.fetchLocalSessions().map({ return (LibrarySessionVM(session: $0))})
+                    self?.sessions = LocalSessionsManager.shared.fetchLocalSessions().map({ return (LibrarySessionVM(service: SessionServiceFactory.service(), session: $0))})
                 }
             }
             completion(error)
         }
     }
     
-    func fetchMore(completion: @escaping (CustomError?) -> Void) {
+    func fetchMore(type: libraryType, completion: @escaping (CustomError?) -> Void) {
         
         guard pagingData.processing == false, pagingData.hasMore == true else {
             completion(CustomError(message: "fetchMoreItemsFailedError".localized, statusCode: nil))
@@ -57,7 +62,7 @@ class DownloadedLibraryVM: NSObject {
         let nextPage = pagingData.page + 1
         let pageSize = self.pageSize
         
-        fetchSessions(page: nextPage, pageSize: pageSize) { [weak self] (sessions, error) in
+        fetchSessions(type: type, page: nextPage, pageSize: pageSize) { [weak self] (sessions, error) in
             
             self?.pagingData.processing = false
             
@@ -76,15 +81,23 @@ class DownloadedLibraryVM: NSObject {
 
 extension DownloadedLibraryVM {
     
-    private func fetchSessions(page: Int, pageSize: Int, completion: @escaping ([LibrarySessionVM], CustomError?) -> Void) {
+    private func fetchSessions(type: libraryType, page: Int, pageSize: Int, completion: @escaping ([LibrarySessionVM], CustomError?) -> Void) {
         
         var sessions = [LibrarySessionVM]()
-        
-        service.fetchDownloadedSessions(page: page, pageSize: pageSize) { (sessionsModel, error) in
-            for session in sessionsModel?.sessions ?? [] {
-                sessions.append(LibrarySessionVM(session: session))
+        if type == .downloads {
+            service.fetchDownloadedSessions(page: page, pageSize: pageSize) { (sessionsModel, error) in
+                for session in sessionsModel?.sessions ?? [] {
+                    sessions.append(LibrarySessionVM(service: SessionServiceFactory.service(), session: session))
+                }
+                completion(sessions, error)
             }
-            completion(sessions, error)
+        } else if type == .favorite{
+            service.fetchFavoriteSessions(page: page, pageSize: pageSize) { (sessionFavoritesModel, error) in
+                for session in sessionFavoritesModel?.favorites ?? [] {
+                    sessions.append(LibrarySessionVM(service: SessionServiceFactory.service(), session: session))
+                }
+                completion(sessions, error)
+            }
         }
     }
 }
