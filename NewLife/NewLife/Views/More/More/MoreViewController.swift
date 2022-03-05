@@ -99,6 +99,10 @@ class MoreViewController: BaseViewController {
             UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openDownloadedLibraryViewController()
             return
         }
+        if cellData.type == MoreCellVM.MoreCellType.favorites {
+            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openFavoritesViewController()
+            return
+        }
         
         if cellData.type == MoreCellVM.MoreCellType.userProfile {
             openProfileViewController()
@@ -147,7 +151,13 @@ class MoreViewController: BaseViewController {
     
     private func openDownloadedLibraryViewController()  {
         SystemSoundID.play(sound: .Sound1)
-        let viewController = DownloadedLibraryViewController.instantiate()
+        let viewController = DownloadedLibraryViewController.instantiate(type: .downloads)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func openFavoritesViewController()  {
+        SystemSoundID.play(sound: .Sound1)
+        let viewController = DownloadedLibraryViewController.instantiate(type: .favorite)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -328,4 +328,8 @@ extension UIColor {
     class var duskBlue: UIColor {
         return UIColor(red: 61.0 / 255.0, green: 37.0 / 255.0, blue: 122.0 / 255.0, alpha: 1.0)
     }
+    
+    class var haiti: UIColor{
+        return UIColor(red: 35.0 / 255.0, green: 35.0 / 255.0, blue: 47.0 / 255.0, alpha: 1.0)
+    }
 }

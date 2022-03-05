@@ -44,6 +44,13 @@ class SessionServiceOffline: SessionService {
         }
         
     }
+    func fetchFavoriteSessions(page: Int, pageSize: Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void) {
+        
+        service.fetchFavoriteSessions(page: page, pageSize: pageSize) { (SessionFavoritesModel, error) in
+            completion(SessionFavoritesModel, error)
+        }
+        
+    }
     
     func addToDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void) {
         service.addToDownloadList(sessionId: sessionId) { (error) in

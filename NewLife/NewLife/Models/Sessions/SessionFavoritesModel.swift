@@ -9,9 +9,13 @@
 import Foundation
 
 struct SessionFavoritesModel: Codable, ModelInitializable {
-    var favorites: [String]!
+    var favorites: [SessionModel]!
     
-    init(favorites: [String]) {
+    enum CodingKeys: String, CodingKey {
+        case favorites = "items"
+    }
+    
+    init(favorites: [SessionModel]) {
         self.favorites = favorites
     }
 }

@@ -13,57 +13,23 @@ enum SessionDownloadStatus {
     case none
 }
 
-class LibrarySessionVM: BaseSessionVM {
-    
-    init(session: SessionModel) {
-        super.init()
-        self.session = session
-    }
-    
-    var name: String? {
-        return session?.name
-    }
+class LibrarySessionVM: BaseLibrarySessionVM {
     
     var descriptionString: String? {
         return session?.descriptionString
     }
     
-    var durationString: String? {
-        guard let duration = session?.duration else { return nil }
-        return durationString(seconds: duration)
-    }
-    
-    var imageUrl: URL? {
+    override var imageUrl: URL? {
         return session?.thumbnailUrl?.url
     }
     
-    var localImageUrl: URL? {
+    override var localImageUrl: URL? {
         if let localImageUrl = session?.localThumbnailPath, localImageUrl.isEmptyWithTrim == false {
             return URL(fileURLWithPath: FileUtils.getFilePath(fileName: localImageUrl))
         }
         return nil
     }
-    
-    var downloadStatus: SessionDownloadStatus {
-        if session?.localAudioPath != nil {
-            return .downloaded
-        }
-        if let sessionId = session?.id,  LocalSessionsManager.shared.progressSessions.contains(sessionId) {
-            return .downloading
-        }
-        return .none
-    }
-    
-    private func durationString(seconds: Int) -> String {
-        return seconds.seconds2Duration
-    }
-    
-    func download() {
-        guard let session = session else { return }
-        LocalSessionsManager.shared.downloadSession(session: session) {(error) in
-            
-        }
-    }
+ 
     
     func deleteSession(completion: @escaping (CustomError?) -> Void) {
         guard let session = session else { return }

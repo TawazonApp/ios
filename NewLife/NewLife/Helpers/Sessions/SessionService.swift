@@ -18,6 +18,8 @@ protocol SessionService {
     
     func fetchDownloadedSessions(page: Int, pageSize:Int, completion: @escaping (SessionsModel?, CustomError?) -> Void)
     
+    func fetchFavoriteSessions(page: Int, pageSize:Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void)
+    
     func addToDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void)
     
     func removeFromDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void)
@@ -79,6 +81,18 @@ class APISessionService: SessionService {
             completion(sessionsModel, error)
         }
     }
+    func fetchFavoriteSessions(page: Int, pageSize: Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void) {
+        
+        ConnectionUtils.performGetRequest(url: Api.sessionsFavoriteListUrl.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+
+            var sessionFavoritesModel: SessionFavoritesModel?
+            if let data = data {
+                sessionFavoritesModel = SessionFavoritesModel(data: data)
+            }
+
+            completion(sessionFavoritesModel, error)
+        }
+    }
     
     
     func downloadSessionFile(localFileUrl: URL, remoteUrl: URL, completion: @escaping (CustomError?) -> Void) {
@@ -106,18 +120,29 @@ class APISessionService: SessionService {
     
     func addToFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
         
-        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrl.url!, parameters: try? favorites.jsonDictionary()) { (data, error) in
+        let favoriteList = getFavorites(favorites: favorites)
+
+        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrl.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
     
     func removeFromFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
         
-        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrl.url!, parameters: try? favorites.jsonDictionary()) { (data, error) in
+        let favoriteList = getFavorites(favorites: favorites)
+        
+        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrl.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
-    
+    private func getFavorites(favorites: SessionFavoritesModel) -> [String: [String]]{
+        var favoriteIds: [String] = [String]()
+        for session in favorites.favorites {
+            favoriteIds.append(session.id)
+        }
+        
+        return ["favorites": favoriteIds]
+    }
     func rateSession(sessionId: String, rate: Int, completion: @escaping (CustomError?) -> Void) {
         let url = Api.rateSession.replacingOccurrences(of: "{id}", with: sessionId).url!
         let paramters = ["rate" : rate]

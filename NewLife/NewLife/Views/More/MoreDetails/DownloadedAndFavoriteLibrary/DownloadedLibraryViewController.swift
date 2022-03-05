@@ -13,6 +13,7 @@ class DownloadedLibraryViewController: MoreDetailsViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var data: DownloadedLibraryVM!
+    var type : libraryType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,14 @@ class DownloadedLibraryViewController: MoreDetailsViewController {
     }
    
     private func initialize() {
-        backgroundImageName = "DownloadedLibraryBackground"
-        title = "downloadedLibraryViewTitle".localized
+        if type == .downloads {
+            backgroundImageName = "DownloadedLibraryBackground"
+            title = "downloadedLibraryViewTitle".localized
+        }else if type == .favorite{
+            backgroundImageName = "FavoritesLibraryBackground"
+            title = "favoriteLibraryViewTitle".localized
+        }
+        
     }
     
     private func initializeNotificationCenter() {
@@ -42,7 +49,7 @@ class DownloadedLibraryViewController: MoreDetailsViewController {
     
     private func fetchData() {
         
-        data.fetchData { [weak self] (error) in
+        data.fetchData(type: type!) { [weak self] (error) in
             if let error = error {
                 self?.showErrorMessage( message: error.message ?? "generalErrorMessage".localized)
             }
@@ -100,6 +107,13 @@ extension DownloadedLibraryViewController: LibrarySessionCollectionCellDelegate 
     func deleteSessionTapped(session: LibrarySessionVM) {
         showDeleteSessionConfirmationAlert(session: session)
     }
+    func removeFavoriteSessionTapped(session: LibrarySessionVM) {
+        if session.isFavorite{
+            session.removeFromFavorites { [weak self] (error) in
+                self?.fetchData()
+            }
+        }
+    }
 }
 
 extension DownloadedLibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -114,6 +128,7 @@ extension DownloadedLibraryViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LibrarySessionCollectionCell.identifier, for: indexPath) as! LibrarySessionCollectionCell
+        cell.type = type
         cell.session = data.sessions[indexPath.item]
         cell.delegate = self
         return cell
@@ -136,11 +151,11 @@ extension DownloadedLibraryViewController: UICollectionViewDelegate, UICollectio
         
         if  indexPath.item >= (data.sessions.count - 4) {
             
-            data.fetchMore { [weak self] (error) in
+            data.fetchMore(type: type!, completion:  { [weak self] (error) in
                 if error == nil {
                     self?.reloadCollectionData()
                 }
-            }
+            })
         }
     }
 }
@@ -148,9 +163,10 @@ extension DownloadedLibraryViewController: UICollectionViewDelegate, UICollectio
 
 extension DownloadedLibraryViewController {
     
-    class func instantiate() -> DownloadedLibraryViewController {
+    class func instantiate(type: libraryType) -> DownloadedLibraryViewController {
         let storyboard = UIStoryboard(name: "More", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: DownloadedLibraryViewController.identifier) as! DownloadedLibraryViewController
+        viewController.type = type
         return viewController
     }
 }

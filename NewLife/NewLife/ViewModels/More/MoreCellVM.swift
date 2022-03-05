@@ -14,6 +14,7 @@ class MoreCellVM: NSObject {
         case userProfile
         case login
         case downloadedLibrary
+        case favorites
         case premium
         case notifications
         case lanaguge
@@ -53,6 +54,9 @@ extension MoreCellVM {
             break
         case .downloadedLibrary:
             name = "MoreDownloadLibrary"
+            break
+        case .favorites:
+            name = "MoreFavorites"
             break
         case .premium:
             name = "MorePremium"
@@ -94,6 +98,9 @@ extension MoreCellVM {
         case .downloadedLibrary:
             title = "MoreDownloadLibraryTitle".localized
             break
+        case .favorites:
+            title = "MoreFavoritesTitle".localized
+            break
         case .premium:
             title = "MorePremiumTitle".localized
             break
@@ -134,6 +141,9 @@ extension MoreCellVM {
             break
         case .downloadedLibrary:
             subTitle = "MoreDownloadLibrarySubTitle".localized
+            break
+        case .favorites:
+            subTitle = "MoreFavoritesSubTitle".localized
             break
         case .premium:
             subTitle = "MorePremiumSubTitle".localized
