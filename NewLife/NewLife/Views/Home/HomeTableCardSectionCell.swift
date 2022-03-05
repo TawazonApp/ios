@@ -57,7 +57,12 @@ class HomeTableCardSectionCell: UITableViewCell {
         
         subTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         subTitleLabel.textColor = UIColor.white
-        gradientView.applyGradientColor(colors: [UIColor.dusk.cgColor, UIColor.duskTwo.cgColor], startPoint: .bottom, endPoint: .top)
+        //TODO: set gradient colors: appHome/categoryHome
+        if true {
+            gradientView.applyGradientColor(colors: [UIColor.dusk.cgColor, UIColor.duskTwo.cgColor], startPoint: .bottom, endPoint: .top)
+        }else{
+            
+        }
         gradientView.layer.cornerRadius = 32
         gradientView.layer.masksToBounds = true
         layer.masksToBounds = false

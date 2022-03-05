@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MyBodyViewController: CategoryViewController {
+class MyBodyViewController: SuperCategoryViewController {
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        category = CategoryVM(id: CategoryIds.myBody, service: SessionServiceOffline(service: SessionServiceFactory.service()))
+        category = SuperCategoryVM(id: CategoryIds.myBody, service: SessionServiceOffline(service: SessionServiceFactory.service()))
         
     }
     

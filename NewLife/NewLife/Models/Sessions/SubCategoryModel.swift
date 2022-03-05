@@ -11,11 +11,13 @@ import Foundation
 struct SubCategoryModel: Codable, ModelInitializable {
     let id: String!
     let name: String!
+    let isHome: Bool!
     var sessions: [SessionModel]?
     
     enum CodingKeys: String, CodingKey {
         case id
         case name = "title"
         case sessions
+        case isHome = "is_home"
     }
 }

@@ -24,7 +24,7 @@ class CategoryHeaderView: UIView {
     
     let maxFontSize: CGFloat = 32
     let minFontSize: CGFloat = 20
-    let scaleFactor: CGFloat = 0.15
+    var scaleFactor: CGFloat = 0.15
     
     var selectedSubCategoryIndex: Int = 0 {
         didSet {
@@ -69,7 +69,7 @@ class CategoryHeaderView: UIView {
         nameLabel.bottomInset = 10
     }
     
-    private func fillData() {
+     func fillData() {
         backgroundColor = category.backgroundColor
         nameLabel.text = category.name
         nameLabel.textColor = category.titleColor
@@ -93,7 +93,7 @@ class CategoryHeaderView: UIView {
         
     }
     
-    private func updateSizeStyle(ratio: CGFloat) {
+    func updateSizeStyle(ratio: CGFloat) {
         let scale = scaleFactor * (1 - ratio)
         topConstraint.constant = -(scale * self.frame.height)
 

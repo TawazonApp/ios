@@ -51,6 +51,7 @@ struct Api {
     
     //Session
     static let categorySessionsListUrl  = "\(apiUrl)/sessions/list/{id}"
+    static let categoryDetailsUrl  = "\(apiUrlV2)/sessions/list/{id}"
     static let subCategorySessionsListUrl = "\(apiUrl)/sessions/list/{id}"
     static let subCategorySectionSessionsListUrl = "\(apiUrlV2)/meditations/list/{categoryID}"
     static let sessionsDownloadListUrl = "\(apiUrl)/sessions/downloads/list"
