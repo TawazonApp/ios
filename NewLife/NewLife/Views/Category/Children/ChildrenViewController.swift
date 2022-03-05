@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ChildrenViewController: CategoryViewController {
+class ChildrenViewController: SuperCategoryViewController {
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        category = CategoryVM(id: CategoryIds.children, service: SessionServiceOffline(service: SessionServiceFactory.service()))
+        category = SuperCategoryVM(id: CategoryIds.children, service: SessionServiceOffline(service: SessionServiceFactory.service()))
         
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
 }

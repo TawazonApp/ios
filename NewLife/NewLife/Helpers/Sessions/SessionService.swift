@@ -14,6 +14,8 @@ protocol SessionService {
     
     func fetchCategoryData(categoryId: String, page: Int, pageSize:Int, completion: @escaping (CategoryModel?, CustomError?) -> Void)
     
+    func fetchCategoryDetails(categoryId: String, page: Int, pageSize:Int, completion: @escaping (SuperCategoryModel?, CustomError?) -> Void)
+    
     func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void)
     
     func fetchDownloadedSessions(page: Int, pageSize:Int, completion: @escaping (SessionsModel?, CustomError?) -> Void)
@@ -55,6 +57,18 @@ class APISessionService: SessionService {
             completion(categoryModel, error)
         }
     }
+    
+    func fetchCategoryDetails(categoryId: String, page: Int, pageSize:Int, completion: @escaping (SuperCategoryModel?, CustomError?) -> Void){
+        
+       let url = Api.categoryDetailsUrl.replacingOccurrences(of: "{id}", with: categoryId).url!
+       ConnectionUtils.performGetRequest(url: url, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+           var superCategoryModel: SuperCategoryModel?
+           if let data = data {
+               superCategoryModel = SuperCategoryModel(data: data)
+           }
+           completion(superCategoryModel, error)
+       }
+   }
     
      func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void) {
         

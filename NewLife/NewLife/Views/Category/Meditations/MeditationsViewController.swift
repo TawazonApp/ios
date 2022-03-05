@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MeditationsViewController: CategoryViewController {
+class MeditationsViewController: SuperCategoryViewController {
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        category = CategoryVM(id: CategoryIds.meditations, service: SessionServiceOffline(service: SessionServiceFactory.service()))
+        category = SuperCategoryVM(id: CategoryIds.meditations, service: SessionServiceOffline(service: SessionServiceFactory.service()))
         
     }
     

@@ -30,6 +30,10 @@ extension UIColor {
         return UIColor(red: 7.0 / 255.0, green: 3.0 / 255.0, blue: 25.0 / 255.0, alpha: 1.0)
     }
     
+    class var midnightExpress: UIColor{
+        return UIColor(red: 24.0 / 255.0, green: 23.0 / 255.0, blue: 37.0 / 255.0, alpha: 1.0)
+    }
+
     class var darkBlueGrey: UIColor {
         return UIColor(red: 16.0 / 255.0, green: 15.0 / 255.0, blue: 55.0 / 255.0, alpha: 1.0)
     }
@@ -267,6 +271,17 @@ extension UIColor {
     
     class var lightPeach: UIColor {
         return UIColor(red: 247.0 / 255.0, green: 216.0 / 255.0, blue: 208.0 / 255.0, alpha: 1.0)
+    }
+    class var cyprus: UIColor {
+        return UIColor(red: 15.0 / 255.0, green: 38.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var mayaBlue: UIColor{
+        return UIColor(red: 93.0 / 255.0 , green: 214.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var royalBlue: UIColor{
+        return UIColor(red: 68.0 / 255.0, green: 119.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
     }
     
     class var lavenderTwo: UIColor {

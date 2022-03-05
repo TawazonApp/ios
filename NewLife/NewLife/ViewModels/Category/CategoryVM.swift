@@ -10,8 +10,10 @@ import UIKit
 
 enum CategoryIds: String {
     case myBody = "38"
+    case music = "129"
     case meditations = "25"
     case mySoul = "36"
+    case podcasts = "134"
     case children = "30"
 }
 
@@ -91,7 +93,12 @@ extension CategoryVM {
         case .meditations:
             title = "MeditationsViewTitle".localized
             break
-            
+        case .music:
+            title = "MusicViewTitle".localized
+            break
+        case .podcasts:
+            title = "PodcastsViewTitle".localized
+            break
         }
         return title
     }
@@ -112,7 +119,12 @@ extension CategoryVM {
         case .meditations:
             color = UIColor.white
             break
-            
+        case .music:
+            color = UIColor.white
+            break
+        case .podcasts:
+            color = UIColor.white
+            break
         }
         return color
     }
@@ -133,7 +145,12 @@ extension CategoryVM {
         case .meditations:
             summary = "MeditationsSummaryText".localized
             break
-            
+        case .music:
+            summary = "MyBodySummaryText".localized
+            break
+        case .podcasts:
+            summary = "MySoulSummaryText".localized
+            break
         }
         return summary
     }
@@ -155,7 +172,12 @@ extension CategoryVM {
         case .meditations:
             image = "MeditationsHeader"
             break
-            
+        case .music:
+            image = "MusicHeader"
+            break
+        case .podcasts:
+            image = "PodcastsHeader"
+            break
         }
         return image
     }
@@ -176,7 +198,12 @@ extension CategoryVM {
         case .meditations:
             color = UIColor.blueberry
             break
-            
+        case .music:
+            color = UIColor.cyprus
+            break
+        case .podcasts:
+            color = UIColor.cyprus
+            break
         }
         return color
     }
@@ -196,6 +223,12 @@ extension CategoryVM {
             break
         case .meditations:
             colors = [UIColor.powderPink, UIColor.lighterPurple]
+            break
+        case .music:
+            colors = [UIColor.darkishPink, UIColor.salmonTwo]
+            break
+        case .podcasts:
+            colors = [UIColor.royalBlue, UIColor.mayaBlue]
             break
         }
         return colors

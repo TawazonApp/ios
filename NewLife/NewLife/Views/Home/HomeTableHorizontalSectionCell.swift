@@ -56,13 +56,21 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
         if let imageUrl = data?.iconUrl?.url {
             iconImageView.af.setImage(withURL: imageUrl)
         }
+        setTitleLabelPosition()
         self.calculateCollectionHeight()
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
             self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
         }
     }
-    
+    private func setTitleLabelPosition(){
+        if (data?.iconUrl?.isEmptyWithTrim ?? false) || data?.iconUrl == nil{
+            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.leadingAnchor).isActive = true
+        }else{
+            titleLabel.leadingAnchor.constraint(equalTo: self.iconImageView.trailingAnchor, constant: 8).isActive = true
+        }
+        self.contentView.layoutIfNeeded()
+    }
     private func calculateCollectionHeight() {
         let style =  data?.style ?? .largeList
         let availableWidth = frame.width - (2 * collectionCellSpace)

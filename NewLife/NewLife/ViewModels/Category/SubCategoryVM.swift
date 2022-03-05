@@ -12,6 +12,7 @@ class SubCategoryVM: NSObject {
     
     var id: String!
     var name: String!
+    var isHome: Bool!
     var backgroundColor: UIColor!
     var gradiantColors: [CGColor]!
     var cellTextColor: UIColor!
@@ -30,6 +31,7 @@ class SubCategoryVM: NSObject {
         
         self.id = subCategory.id
         self.name = subCategory.name
+        self.isHome = subCategory.isHome
         self.backgroundColor = backgroundColor
         self.gradiantColors = gradiantColors
         self.cellTextColor = cellTextColor

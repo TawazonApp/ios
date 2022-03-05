@@ -35,11 +35,11 @@ class MainTabBarItemVM: NSObject {
         case .home:
             title = "HomeTabTitle".localized
             break
-        case .myBody:
-            title = "MyBodyTabTitle".localized
+        case .music:
+            title = "MusicTabTitle".localized
             break
-        case .mySoul:
-            title = "MySoulTabTitle".localized
+        case .podcasts:
+            title = "PodcastsTabTitle".localized
             break
         case .children:
             title = "ChildrenTabTitle".localized
@@ -62,11 +62,11 @@ class MainTabBarItemVM: NSObject {
         case .home:
             image = "HomeTab"
             break
-        case .myBody:
-            image = "MyBodyTab"
+        case .music:
+            image = "MusicTab"
             break
-        case .mySoul:
-            image = "MySoulTab"
+        case .podcasts:
+            image = "PodcastTab"
             break
         case .children:
             image = "ChildrenTab"
@@ -89,11 +89,11 @@ class MainTabBarItemVM: NSObject {
         case .home:
             colors = [UIColor.bubblegum, UIColor.lightPurple]
             break
-        case .myBody:
-            colors = [UIColor.salmon, UIColor.bubbleGumPink]
+        case .music:
+            colors = [UIColor.darkishPink, UIColor.salmonTwo]
             break
-        case .mySoul:
-            colors = [UIColor.babyPurple, UIColor.perrywinkle]
+        case .podcasts:
+            colors = [UIColor.mayaBlue, UIColor.royalBlue]
             break
         case .children:
             colors = [UIColor.paleOliveGreen, UIColor.paleTeal]
