@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041FA204278AC0DC0008F5E7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FA203278AC0DC0008F5E7 /* Language.swift */; };
+		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
-		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
+		04F7A55527D421F200EF1314 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04467E1627AA7CF30068274B /* Language.swift */; };
 		48D6347B4BA6A6AB9DE5D990 /* Pods_TawazonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */; };
 		ABF0A3D50F7F86CFDCDBB632 /* Pods_Tawazon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */; };
 		E698D13D51968D272F083B97 /* Pods_TawazonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */; };
@@ -964,10 +964,9 @@
 			isa = PBXGroup;
 			children = (
 				F3B16AEE222E7FCC002B0406 /* MoreDetailsViewController.swift */,
-				F3B16AF9222EB734002B0406 /* DownloadedAndFavoriteLibrary */,
 				F3B16AFC222EBE89002B0406 /* Profile */,
 				F3B16AFD222EBE94002B0406 /* Privacy */,
-				F3B16AF9222EB734002B0406 /* DownloadedLibrary */,
+				F3B16AF9222EB734002B0406 /* DownloadedAndFavoriteLibrary */,
 				F3B16AF2222E95D9002B0406 /* OurStory */,
 			);
 			path = MoreDetails;
@@ -2076,7 +2075,6 @@
 				F3DC8EA52227207600C7DEC4 /* SubCategoryVM.swift in Sources */,
 				F35FD53622357A4500B3CFC5 /* PremiumFeatureCellVM.swift in Sources */,
 				F3DC8E352223E61C00C7DEC4 /* UIColor+Additions.swift in Sources */,
-				04467E1727AA7CF30068274B /* Language.swift in Sources */,
 				F3DC8E992226DB6100C7DEC4 /* CategoryHeaderView.swift in Sources */,
 				F3EE48D5222CA3BB00274F94 /* SoundEffectsPresenterViewController.swift in Sources */,
 				F3617AA0222AC14B00B9D1C9 /* PaddingLabel.swift in Sources */,
@@ -2156,6 +2154,7 @@
 				F3DC8E682225665F00C7DEC4 /* MeditationsViewController.swift in Sources */,
 				F3AF0F9D223A5C7100E29615 /* DatabaseManager.swift in Sources */,
 				F3580BED249CF38B00EBE1C1 /* MediaLibraryHelper.swift in Sources */,
+				04F7A55527D421F200EF1314 /* Language.swift in Sources */,
 				F3B8BFBF2587BA9100E2005A /* PremiumDiscountViewController.swift in Sources */,
 				F3DC8E582224881F00C7DEC4 /* MoreViewController.swift in Sources */,
 				F35FD5342235785000B3CFC5 /* PremiumViewController.swift in Sources */,
