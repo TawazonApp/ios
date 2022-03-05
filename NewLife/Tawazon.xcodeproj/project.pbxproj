@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041FA204278AC0DC0008F5E7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FA203278AC0DC0008F5E7 /* Language.swift */; };
+		04384B7A27D429D100D3E5B7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7927D429D100D3E5B7 /* Language.swift */; };
 		04677F3A27C276FC00493142 /* PodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3927C276FC00493142 /* PodcastsViewController.swift */; };
 		04677F3D27C2772B00493142 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3C27C2772B00493142 /* MusicViewController.swift */; };
 		04677F4027C37FCE00493142 /* SuperCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3F27C37FCE00493142 /* SuperCategoryViewController.swift */; };
@@ -339,7 +339,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		041FA203278AC0DC0008F5E7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		04384B7927D429D100D3E5B7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		04677F3927C276FC00493142 /* PodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsViewController.swift; sourceTree = "<group>"; };
 		04677F3C27C2772B00493142 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		04677F3F27C37FCE00493142 /* SuperCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryViewController.swift; sourceTree = "<group>"; };
@@ -995,7 +995,7 @@
 			isa = PBXGroup;
 			children = (
 				F3AD859D25F67638003C3A0C /* L102Localizer.swift */,
-				04467E1627AA7CF30068274B /* Language.swift */,
+				04384B7927D429D100D3E5B7 /* Language.swift */,
 				F3AD859825F675F8003C3A0C /* LanguageExt.swift */,
 			);
 			path = Language;
@@ -2235,9 +2235,9 @@
 				F3ECD0D7257A43B10048DBD8 /* FeelingsSessions.swift in Sources */,
 				F33441642479395200FA3234 /* SessionInfoViewController.swift in Sources */,
 				F3DC8E682225665F00C7DEC4 /* MeditationsViewController.swift in Sources */,
+				04384B7A27D429D100D3E5B7 /* Language.swift in Sources */,
 				F3AF0F9D223A5C7100E29615 /* DatabaseManager.swift in Sources */,
 				F3580BED249CF38B00EBE1C1 /* MediaLibraryHelper.swift in Sources */,
-				04F7A55527D421F200EF1314 /* Language.swift in Sources */,
 				F3B8BFBF2587BA9100E2005A /* PremiumDiscountViewController.swift in Sources */,
 				F3DC8E582224881F00C7DEC4 /* MoreViewController.swift in Sources */,
 				F35FD5342235785000B3CFC5 /* PremiumViewController.swift in Sources */,
