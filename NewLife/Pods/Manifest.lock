@@ -114,6 +114,7 @@ PODS:
   - SwiftMessages/App (7.0.1)
   - SwiftVideoBackground (3.4.0)
   - SwiftyStoreKit (0.15.0)
+  - UXCam (3.3.9)
 
 DEPENDENCIES:
   - Alamofire
@@ -129,6 +130,7 @@ DEPENDENCIES:
   - SwiftMessages
   - SwiftVideoBackground
   - SwiftyStoreKit
+  - UXCam
 
 SPEC REPOS:
   trunk:
@@ -156,6 +158,7 @@ SPEC REPOS:
     - SwiftMessages
     - SwiftVideoBackground
     - SwiftyStoreKit
+    - UXCam
 
 SPEC CHECKSUMS:
   Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
@@ -182,7 +185,8 @@ SPEC CHECKSUMS:
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftVideoBackground: 826e0567c737ded2a211aa309e9951c643695e8f
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+  UXCam: fb294bf954e708fc308a645ae65bb967cac0760e
 
-PODFILE CHECKSUM: bbbe7707602bc263ba97617036839bef212acdc7
+PODFILE CHECKSUM: fcb95d3a511e57ca704186d16e21f2765846aff5
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.0

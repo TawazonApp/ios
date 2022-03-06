@@ -20,6 +20,7 @@ target 'Tawazon' do
     pod 'NVActivityIndicatorView'
     pod 'AppsFlyerFramework'
     
+    pod 'UXCam'
     target 'TawazonTests' do
         inherit! :search_paths
         # Pods for testing
