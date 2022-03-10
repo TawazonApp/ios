@@ -11,7 +11,7 @@ import UIKit
 class TrackerManager: TrackingService {
     
     static let shared = TrackerManager()
-    let services: [TrackingService] = [AppsFlyerTrackingService(), FirebaseTrackingService()]
+    let services: [TrackingService] = [AppsFlyerTrackingService(), FirebaseTrackingService(), UXCamTrackerService()]
     
     private init() {
     }
