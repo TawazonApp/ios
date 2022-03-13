@@ -20,6 +20,7 @@ class UXCamTrackerService: TrackingService {
         static let playSession = "play_session"
         static let downloadSession = "download_session"
         static let likeSession = "like_session"
+        static let sessionListenForPreiod = "session_listen_for_period"
         static let openMore = "open_more"
         static let openUserProfile = "open_user_profile"
         static let userChangeName = "user_change_name"
@@ -228,6 +229,12 @@ class UXCamTrackerService: TrackingService {
     func sendShareAppEvent() {
         let values = getBaseEventValues()
         UXCam.logEvent(CustomEvents.shareApp, withProperties: values)
+    }
+    
+    func sendSessionListenForPeriodEvent(period: Double) {
+        var values = getBaseEventValues()
+        values["period"] = period
+        UXCam.logEvent(CustomEvents.sessionListenForPreiod, withProperties: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

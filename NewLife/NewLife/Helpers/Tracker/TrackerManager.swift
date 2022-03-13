@@ -190,6 +190,12 @@ class TrackerManager: TrackingService {
     }
     
     
+    func sendSessionListenForPeriodEvent(period: Double) {
+        for service in services {
+            service.sendSessionListenForPeriodEvent(period: period)
+        }
+    }
+    
     func sendLoginEvent() {
         for service in services {
             service.sendLoginEvent()

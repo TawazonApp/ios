@@ -22,6 +22,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let playSession = "af_play_session"
         static let downloadSession = "af_download_session"
         static let likeSession = "af_like_session"
+        static let sessionListenForPreiod = "af_session_listen_for_period"
         static let openMore = "af_open_more"
         static let openUserProfile = "af_open_user_profile"
         static let userChangeName = "af_user_change_name"
@@ -306,6 +307,13 @@ class AppsFlyerTrackingService: TrackingService {
             return ""
         }
     }
+    
+    func sendSessionListenForPeriodEvent(period: Double) {
+        var values = getBaseEventValues()
+        values["period"] = period
+        AppsFlyerLib.shared().logEvent(CustomEvents.sessionListenForPreiod, withValues: values)
+    }
+    
     private func getCurrentCampaignId() -> String{
         if let currentCampaignId = UserDefaults.currentCampaignId() {
             return currentCampaignId

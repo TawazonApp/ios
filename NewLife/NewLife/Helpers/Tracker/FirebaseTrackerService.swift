@@ -20,6 +20,7 @@ class FirebaseTrackingService: TrackingService {
         static let playSession = "play_session"
         static let downloadSession = "download_session"
         static let likeSession = "like_session"
+        static let sessionListenForPreiod = "session_listen_for_period"
         static let openMore = "open_more"
         static let openUserProfile = "open_user_profile"
         static let userChangeName = "user_change_name"
@@ -228,6 +229,12 @@ class FirebaseTrackingService: TrackingService {
     func sendShareAppEvent() {
         let values = getBaseEventValues()
         Analytics.logEvent(CustomEvents.shareApp, parameters: values)
+    }
+    
+    func sendSessionListenForPeriodEvent(period: Double) {
+        var values = getBaseEventValues()
+        values["period"] = period
+        Analytics.logEvent(CustomEvents.sessionListenForPreiod, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

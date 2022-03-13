@@ -46,4 +46,5 @@ protocol TrackingService {
     func sendCancelLogoutEvent()
     func sendRateAppEvent()
     func sendShareAppEvent()
+    func sendSessionListenForPeriodEvent(period: Double)
 }
