@@ -30,6 +30,7 @@ class FirebaseTrackingService: TrackingService {
         static let openPremium = "open_premium"
         static let closePremium = "close_premium"
         static let skipPremium = "skip_premium"
+        static let FailToPurchase = "fail_to_purchase"
         static let notificationStatusChanged = "notification_status_changed"
         static let openSupport = "open_support"
         static let openOurStory = "open_our_story"
@@ -235,6 +236,12 @@ class FirebaseTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["period"] = period
         Analytics.logEvent(CustomEvents.sessionListenForPreiod, parameters: values)
+    }
+    
+    func sendFailToPurchaseEvent(message: String) {
+        var values = getBaseEventValues()
+        values["message"] = message
+        Analytics.logEvent(CustomEvents.FailToPurchase, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

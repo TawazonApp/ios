@@ -33,6 +33,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let openPremium = "af_open_premium"
         static let closePremium = "af_close_premium"
         static let skipPremium = "af_skip_premium"
+        static let FailToPurchase = "af_fail_to_purchase"
         static let notificationStatusChanged = "af_notification_status_changed"
         static let openSupport = "af_open_support"
         static let openOurStory = "af_open_our_story"
@@ -312,6 +313,12 @@ class AppsFlyerTrackingService: TrackingService {
         var values = getBaseEventValues()
         values["period"] = period
         AppsFlyerLib.shared().logEvent(CustomEvents.sessionListenForPreiod, withValues: values)
+    }
+    
+    func sendFailToPurchaseEvent(message: String) {
+        var values = getBaseEventValues()
+        values["message"] = message
+        AppsFlyerLib.shared().logEvent(CustomEvents.FailToPurchase, withValues: values)
     }
     
     private func getCurrentCampaignId() -> String{

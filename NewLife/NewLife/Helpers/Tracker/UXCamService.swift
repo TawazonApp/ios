@@ -30,6 +30,7 @@ class UXCamTrackerService: TrackingService {
         static let openPremium = "open_premium"
         static let closePremium = "close_premium"
         static let skipPremium = "skip_premium"
+        static let FailToPurchase = "fail_to_purchase"
         static let notificationStatusChanged = "notification_status_changed"
         static let openSupport = "open_support"
         static let openOurStory = "open_our_story"
@@ -235,6 +236,12 @@ class UXCamTrackerService: TrackingService {
         var values = getBaseEventValues()
         values["period"] = period
         UXCam.logEvent(CustomEvents.sessionListenForPreiod, withProperties: values)
+    }
+    
+    func sendFailToPurchaseEvent(message: String) {
+        var values = getBaseEventValues()
+        values["message"] = message
+        UXCam.logEvent(CustomEvents.FailToPurchase, withProperties: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {
