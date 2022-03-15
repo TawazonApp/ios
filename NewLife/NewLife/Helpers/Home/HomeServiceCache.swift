@@ -83,8 +83,8 @@ class HomeServiceCache: HomeService {
         }
     }
     
-    func getSectionSessions(sectionId: String, type: SectionData.SectionType , completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-        service.getSectionSessions(sectionId: sectionId,type: type, completion: completion)
+    func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
+        service.getSectionSessions(sectionId: sectionId,type: type, page: page, pageSize: pageSize, completion: completion)
     }
     
     func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void) {

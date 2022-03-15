@@ -12,8 +12,9 @@ struct SectionSessions: Codable, ModelInitializable {
     let status: Bool
     let section: SectionModel
     let items: [SessionModel]
+    let pagination: pagination
     enum CodingKeys: String, CodingKey {
-        case status, items
+        case status, items, pagination
         case section = "item"
     }
 }

@@ -164,6 +164,16 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if  viewModel.pagingData.hasMore && (indexPath.row == viewModel.sessions.count - 1){
+            viewModel.getMore(type: self.type, completion:  { [weak self] (error) in
+                if error == nil {
+                    self?.reloadCollectionData()
+                }
+            })
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width - 40
         return CGSize(width: width, height: width * 0.8)
