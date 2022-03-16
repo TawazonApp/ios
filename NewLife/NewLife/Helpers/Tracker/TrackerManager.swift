@@ -191,7 +191,6 @@ class TrackerManager: TrackingService {
     
     
     func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
-        print("sendSessionListenForPeriodEvent: \(period), \(sessionId)")
         for service in services {
             service.sendSessionListenForPeriodEvent(period: period, sessionId: sessionId)
         }
