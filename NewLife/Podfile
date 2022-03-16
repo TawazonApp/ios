@@ -16,6 +16,7 @@ target 'Tawazon' do
     pod 'Firebase/Messaging', '~> 7.6.0'
     pod 'Firebase/DynamicLinks', '~> 7.6.0'
     pod 'Firebase/Crashlytics', '~> 7.6.0'
+    pod 'Firebase/RemoteConfig'
     pod 'SwiftyStoreKit'
     pod 'NVActivityIndicatorView'
     pod 'AppsFlyerFramework'

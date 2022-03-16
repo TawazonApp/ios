@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		04384B7A27D429D100D3E5B7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7927D429D100D3E5B7 /* Language.swift */; };
 		04384B7C27D5F52700D3E5B7 /* UXCamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7B27D5F52700D3E5B7 /* UXCamService.swift */; };
 		04677F3A27C276FC00493142 /* PodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3927C276FC00493142 /* PodcastsViewController.swift */; };
@@ -340,6 +341,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		04384B7927D429D100D3E5B7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		04384B7B27D5F52700D3E5B7 /* UXCamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXCamService.swift; sourceTree = "<group>"; };
 		04677F3927C276FC00493142 /* PodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsViewController.swift; sourceTree = "<group>"; };
@@ -705,6 +707,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040F339C27E0A497000B1E19 /* RemoteConfig */ = {
+			isa = PBXGroup;
+			children = (
+				040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */,
+			);
+			path = RemoteConfig;
+			sourceTree = "<group>";
+		};
 		04677F3827C276DC00493142 /* Podcasts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1422,6 +1432,7 @@
 		F3DC8E172223DC6800C7DEC4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				040F339C27E0A497000B1E19 /* RemoteConfig */,
 				F3AD859725F675DE003C3A0C /* Language */,
 				F31657FF2359DD280049605A /* Tracker */,
 				F32021E4223EC1D400CCC33A /* Home */,
@@ -2114,6 +2125,7 @@
 				F3DC8E732226828000C7DEC4 /* HomeVideosContainerView.swift in Sources */,
 				F3375980255FE48B006EC615 /* HomeBackgroundView.swift in Sources */,
 				F3E281122241361500066C04 /* PremiumPurchaseVM.swift in Sources */,
+				040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */,
 				F3EC82B92264FF8D00DDEBC0 /* NotificationData.swift in Sources */,
 				F317A187222E004C00CBD760 /* SessionFavoriteButton.swift in Sources */,
 				04677F4727C3937400493142 /* SuperCategoryModel.swift in Sources */,
