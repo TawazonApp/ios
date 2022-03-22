@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
+        
         initializeUXCam()
         initializeFirebase()
         initializeFabric()
@@ -42,9 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
        
         UserInfoManager.shared.registerAppsflyer()
+        initializeRemoteConfig()
         return true
     }
-    
+    func initializeRemoteConfig(){
+        _ = RemoteConfigManager.shared
+    }
     func resetApp() {
         UserInfoManager.shared.restCache()
         initialViewContoller()

@@ -221,6 +221,45 @@ class GradientLabel: UILabel {
     }
 }
 
+class GradientButton: UIButton {
+    
+    private struct Animation {
+        static let keyPath = "colors"
+        static let key = "ColorChange"
+    }
+    
+    override open class var layerClass: AnyClass {
+        get {
+            return CAGradientLayer.classForCoder()
+        }
+    }
+    
+    func applyGradientColor(colors: [CGColor], startPoint: GradientPoint, endPoint: GradientPoint)  {
+        let gradientLayer = self.layer as! CAGradientLayer
+        gradientLayer.colors = colors
+        gradientLayer.startPoint = startPoint.point
+        gradientLayer.endPoint = endPoint.point
+        gradientLayer.drawsAsynchronously = true
+    }
+    
+    func animateGradient(colors: [CGColor], duration: TimeInterval) {
+        let gradient = self.layer as! CAGradientLayer
+        let animation = CABasicAnimation(keyPath: Animation.keyPath)
+        animation.duration = duration
+        animation.toValue = colors
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
+        gradient.add(animation, forKey: Animation.key)
+    }
+    
+    open override func removeFromSuperview() {
+        let gradient = self.layer as! CAGradientLayer
+        super.removeFromSuperview()
+        gradient.removeAllAnimations()
+        gradient.removeFromSuperlayer()
+    }
+}
+
 class GradientImageView: UIImageView {
     
     override open class var layerClass: AnyClass {

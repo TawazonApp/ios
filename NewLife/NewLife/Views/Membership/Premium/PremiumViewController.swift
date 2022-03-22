@@ -12,7 +12,7 @@ import SwiftyStoreKit
 import StoreKit
 import SafariServices
 
-class PremiumViewController: HandleErrorViewController {
+class PremiumViewController: BasePremiumViewController {
     
     @IBOutlet weak var headerView: PremiumHeaderView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -25,20 +25,20 @@ class PremiumViewController: HandleErrorViewController {
     @IBOutlet weak var renewablePurchaseSummaryView: PremiumRenewablePurchaseSummaryView!
     @IBOutlet weak var onTimePurchaseSummaryView: PremiumOnTimePurchaseSummaryView!
 
-    enum NextView {
-        case dimiss
-        case mainViewController
-    }
+//    enum NextView {
+//        case dimiss
+//        case mainViewController
+//    }
     
-    enum PurchaseProccessTypes {
-        case success
-        case cancel
-        case fail
-    }
+//    enum PurchaseProccessTypes {
+//        case success
+//        case cancel
+//        case fail
+//    }
     
-    var nextView: NextView = .dimiss
+//    var nextView: NextView = .dimiss
     var features = PremiumFeaturesVM()
-    var purchase = PremiumPurchaseVM()
+//    var purchase = PremiumPurchaseVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,10 +158,10 @@ class PremiumViewController: HandleErrorViewController {
         }
     }
     
-    private func openMainViewController() {
-        SystemSoundID.play(sound: .LaunchToHome)
-        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
-    }
+//    private func openMainViewController() {
+//        SystemSoundID.play(sound: .LaunchToHome)
+//        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
+//    }
     
     private func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
         let viewController = PrivacyViewController.instantiate(viewType: viewType)
@@ -250,14 +250,14 @@ class PremiumViewController: HandleErrorViewController {
         self.present(viewController, animated: true, completion: nil)
     }
     
-    func purchaseAction(product: SKProduct?) {
-        
-        if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
-            performPurchase(purchaseId: purchaseId, product: product)
-        } else {
-            goToNextViewController()
-        }
-    }
+//    func purchaseAction(product: SKProduct?) {
+//
+//        if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+//            performPurchase(purchaseId: purchaseId, product: product)
+//        } else {
+//            goToNextViewController()
+//        }
+//    }
     
     private func openAppleCancelSubscription() {
         guard let url =  "https://support.apple.com/ar-sa/HT202039".url else {
@@ -313,31 +313,31 @@ extension PremiumViewController {
     private func sendFailToPurchaseEvent(error: String){
         TrackerManager.shared.sendFailToPurchaseEvent(message: error)
     }
-    func purchaseErrorMessage(error: SKError) -> String? {
-            switch error.code {
-            case .unknown:
-                return error.localizedDescription
-            case .clientInvalid: // client is not allowed to issue the request, etc.
-                return  "purchaseClientInvalid".localized
-            case .paymentCancelled: // user cancelled the request, etc.
-                return nil
-            case .paymentInvalid: // purchase identifier was invalid, etc.
-                return "purchasePaymentInvalid".localized
-            case .paymentNotAllowed: // this device is not allowed to make the payment
-                return "purchasePaymentNotAllowed".localized
-            case .storeProductNotAvailable: // Product is not available in the current storefront
-                return "purchaseStoreProductNotAvailable".localized
-            case .cloudServicePermissionDenied: // user has not allowed access to cloud service information
-                 return "purchaseCloudServicePermissionDenied".localized
-            case .cloudServiceNetworkConnectionFailed: // the device could not connect to the nework
-                 return "purchaseCloudServiceNetworkConnectionFailed".localized
-            case .cloudServiceRevoked: // user has revoked permission to use this cloud service
-                return "purchaseCloudServiceRevoked".localized
-            default:
-                return  (error as NSError).localizedDescription
-            }
-        
-    }
+//    func purchaseErrorMessage(error: SKError) -> String? {
+//            switch error.code {
+//            case .unknown:
+//                return error.localizedDescription
+//            case .clientInvalid: // client is not allowed to issue the request, etc.
+//                return  "purchaseClientInvalid".localized
+//            case .paymentCancelled: // user cancelled the request, etc.
+//                return nil
+//            case .paymentInvalid: // purchase identifier was invalid, etc.
+//                return "purchasePaymentInvalid".localized
+//            case .paymentNotAllowed: // this device is not allowed to make the payment
+//                return "purchasePaymentNotAllowed".localized
+//            case .storeProductNotAvailable: // Product is not available in the current storefront
+//                return "purchaseStoreProductNotAvailable".localized
+//            case .cloudServicePermissionDenied: // user has not allowed access to cloud service information
+//                 return "purchaseCloudServicePermissionDenied".localized
+//            case .cloudServiceNetworkConnectionFailed: // the device could not connect to the nework
+//                 return "purchaseCloudServiceNetworkConnectionFailed".localized
+//            case .cloudServiceRevoked: // user has revoked permission to use this cloud service
+//                return "purchaseCloudServiceRevoked".localized
+//            default:
+//                return  (error as NSError).localizedDescription
+//            }
+//
+//    }
     
 }
 

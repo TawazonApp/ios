@@ -347,4 +347,28 @@ extension UIColor {
     class var haiti: UIColor{
         return UIColor(red: 35.0 / 255.0, green: 35.0 / 255.0, blue: 47.0 / 255.0, alpha: 1.0)
     }
+    
+    class var veniceBlue: UIColor{
+        return UIColor(red: 40.0 / 255.0, green: 69.0 / 255.0, blue: 110.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var deepLilac: UIColor{
+        return UIColor(red: 145.0 / 255.0, green: 85.0 / 255.0, blue: 195.0 / 255.0, alpha: 1.0)
+    }
+
+    class var freeSpeechBlue: UIColor{
+        return UIColor(red: 86.0 / 255.0, green: 85.0 / 255.0, blue: 195.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var columbiaBlue: UIColor{
+        return UIColor(red: 142.0 / 255.0, green: 214.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var regalBlue: UIColor{
+        return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
+    }
+
+    class var mariner: UIColor{
+        return UIColor(red: 65.0 / 255.0, green: 79.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0)
+    }
 }
