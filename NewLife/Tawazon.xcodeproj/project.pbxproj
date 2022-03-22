@@ -733,7 +733,7 @@
 			path = RemoteConfig;
 			sourceTree = "<group>";
 		};
-		040F33B427E2062C000B1E19 /* premium4 */ = {
+		040F33B427E2062C000B1E19 /* Premium4 */ = {
 			isa = PBXGroup;
 			children = (
 				040F33B527E20776000B1E19 /* Premium4ViewController.swift */,
@@ -742,7 +742,7 @@
 				0422056027E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift */,
 				0422056227E9C2300018BA31 /* PlansView.swift */,
 			);
-			path = premium4;
+			path = Premium4;
 			sourceTree = "<group>";
 		};
 		0422056627E9EBEC0018BA31 /* Premium5 */ = {
@@ -988,7 +988,7 @@
 			isa = PBXGroup;
 			children = (
 				0422056627E9EBEC0018BA31 /* Premium5 */,
-				040F33B427E2062C000B1E19 /* premium4 */,
+				040F33B427E2062C000B1E19 /* Premium4 */,
 				0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */,
 				040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */,
 				F35FD5332235785000B3CFC5 /* PremiumViewController.swift */,
