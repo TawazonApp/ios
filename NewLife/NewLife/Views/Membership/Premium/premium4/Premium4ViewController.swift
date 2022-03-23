@@ -81,15 +81,6 @@ class Premium4ViewController: BasePremiumViewController {
         noteLabel.layer.opacity = 0.71
         noteLabel.text = "defaultPurchaseDescriptionPremium4".localized
     }
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        if nextView == .mainViewController {
-            TrackerManager.shared.sendSkipPremiumEvent()
-            openMainViewController()
-        } else {
-            TrackerManager.shared.sendClosePremiumEvent()
-            dismiss(animated: true, completion: nil)
-        }
-    }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         print("purchaseButtonTapped: \(plansContainer.selectedPlan )")

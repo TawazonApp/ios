@@ -29,6 +29,9 @@ class GeneralPremiumViewController: UIViewController {
             case .premiumFour:
             loadPremium4ViewController()
             
+            case .premiumFive:
+                loadPremium5ViewController()
+            
             case .none:
             loadDefaultView()
         }
@@ -51,6 +54,22 @@ class GeneralPremiumViewController: UIViewController {
     }
     private func loadPremium4ViewController() {
         let viewcontroller = Premium4ViewController.instantiate(nextView: .dimiss)
+        addChild(viewcontroller)
+        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(viewcontroller.view)
+
+        NSLayoutConstraint.activate([
+            viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+
+        viewcontroller.didMove(toParent: self)
+    }
+    
+    private func loadPremium5ViewController() {
+        let viewcontroller = Premium5ViewController.instantiate(nextView: .dimiss)
         addChild(viewcontroller)
         viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewcontroller.view)

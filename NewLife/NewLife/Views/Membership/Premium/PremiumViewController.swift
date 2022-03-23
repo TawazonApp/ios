@@ -231,16 +231,16 @@ class PremiumViewController: BasePremiumViewController {
           }
       }
     
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        if nextView == .mainViewController {
-            TrackerManager.shared.sendSkipPremiumEvent()
-            openMainViewController()
-        } else {
-            SystemSoundID.play(sound: .Sound1)
-            TrackerManager.shared.sendClosePremiumEvent()
-            dismiss(animated: true, completion: nil)
-        }
-    }
+//    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+//        if nextView == .mainViewController {
+//            TrackerManager.shared.sendSkipPremiumEvent()
+//            openMainViewController()
+//        } else {
+//            SystemSoundID.play(sound: .Sound1)
+//            TrackerManager.shared.sendClosePremiumEvent()
+//            dismiss(animated: true, completion: nil)
+//        }
+//    }
     
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
         let viewController = PromoCodeViewController.instantiate()

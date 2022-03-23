@@ -14,6 +14,7 @@ enum RCValueKeys: String {
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
     case premiumFour = "Premium4ViewController"
+    case premiumFive = "Premium5ViewController"
 }
 
 class RemoteConfigManager{

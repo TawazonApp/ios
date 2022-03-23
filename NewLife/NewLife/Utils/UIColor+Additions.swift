@@ -371,4 +371,22 @@ extension UIColor {
     class var mariner: UIColor{
         return UIColor(red: 65.0 / 255.0, green: 79.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0)
     }
+    
+    class var macaroniAndCheese: UIColor{
+        return UIColor(red: 255.0 / 255.0, green: 177.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+    }
+
+    class var carnationPink: UIColor{
+        return UIColor(red: 159.0 / 255.0, green: 179.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
+    class var tacao: UIColor{
+        return UIColor(red: 242.0 / 255.0, green: 164.0 / 255.0, blue: 119.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var darkPink: UIColor{
+        return UIColor(red: 229.0 / 255.0, green: 71.0 / 255.0, blue: 114.0 / 255.0, alpha: 1.0)
+    }
+    
+    
 }

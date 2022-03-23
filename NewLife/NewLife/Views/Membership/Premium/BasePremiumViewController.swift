@@ -28,6 +28,16 @@ class BasePremiumViewController: HandleErrorViewController {
         case fail
     }
     
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        if nextView == .mainViewController {
+            TrackerManager.shared.sendSkipPremiumEvent()
+            openMainViewController()
+        } else {
+            TrackerManager.shared.sendClosePremiumEvent()
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     func purchaseAction(product: SKProduct?) {
         
         if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
