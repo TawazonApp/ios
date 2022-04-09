@@ -21,9 +21,17 @@ class Premium4ViewController: BasePremiumViewController {
     @IBOutlet weak var purchaseButton: GradientButton!
     @IBOutlet weak var noteLabel: UILabel!
     
-    
-    var plans: [(title: String, price: String, trial: String, isSelected: Bool , color: UIColor)] = [] {
+    var features: [FeatureItem]? {
         didSet {
+            imagesContainer.images = features
+            fetchPlans()
+        }
+    }
+    
+    var plans: [PremiumPurchaseCellVM]? {
+        didSet {
+//            let planArray = plans?.filter({$0.color != nil && !($0.color.isEmptyWithTrim)})
+            print("plans var .count: \(plans?.count)")
             plansContainer.plans = plans
         }
     }
@@ -33,25 +41,27 @@ class Premium4ViewController: BasePremiumViewController {
 
         initialize()
         
-        var images : [(imageName: String, caption: String)] = []
-        for i in 1..<5  {
-            images.append((imageName: "File 1\(i).jpeg", caption: "ابدأ بتعلّم اليقظة والاستماع للموسيقى الهادئة واستمتع بالاقتباسات اليومية."))
-        }
-        imagesContainer.images = images
+        data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+            print("getPremiumPageDetails DONE: \(error)")
+            print("Data: \(self.data.premiumDetails?.premiumPage.featureItems.first?.title)")
+            self.features = self.data.premiumDetails?.premiumPage.featureItems
+        })
         
-        var plansArray: [(title: String, price: String, trial: String, isSelected: Bool , color: UIColor)] = []
-        plansArray.append((title: "شهري", price:"31.90 ₪ / شهر",trial: "7 أيام مجاناً", isSelected: false, color: .columbiaBlue))
-        plansArray.append((title: "سنوي", price: "219.90 ₪ / شهر",trial: "7 أيام مجاناً", isSelected: false, color: .lightSlateBlue))
-        plans = plansArray
+        
     }
 
+    private func fetchPlans(){
+        data.fetchPremiumPurchaseProducts(completion: { (error) in
+            self.plans = self.data.plansArray
+        })
+    }
     private func initialize() {
         view.backgroundColor = UIColor.veniceBlue
         
         headerView.applyGradientColor(colors: [UIColor.veniceBlue.withAlphaComponent(0.0).cgColor, UIColor.veniceBlue.withAlphaComponent(0.71).cgColor, UIColor.veniceBlue.cgColor], startPoint: .bottom, endPoint: .top)
         
         headerTitlePart1Label.font = UIFont.munaFont(ofSize: 18.0)
-        headerTitlePart1Label.text = "titleLabelPart1Premium4".localized
+        headerTitlePart1Label.text = "premium4TitleLabelPart1".localized
         headerTitlePart1Label.textColor = .white
         
         headerTitlePart2Label.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.freeSpeechBlue.cgColor], startPoint: .top, endPoint: .bottom)
@@ -61,7 +71,7 @@ class Premium4ViewController: BasePremiumViewController {
         
         headerTitlePart3Label.font = UIFont.munaBoldFont(ofSize: 32.0)
         headerTitlePart3Label.textColor = UIColor.white
-        headerTitlePart3Label.text = "titleLabelPart3Premium4".localized
+        headerTitlePart3Label.text = "premium4TitleLabelPart3".localized
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
         cancelButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -71,7 +81,7 @@ class Premium4ViewController: BasePremiumViewController {
         
         purchaseButton.layer.cornerRadius = 20
         purchaseButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
-        purchaseButton.setTitle("purchaseButtonTitlePremium4".localized, for: .normal)
+        purchaseButton.setTitle("premium4PurchaseButtonTitle".localized, for: .normal)
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
@@ -79,12 +89,12 @@ class Premium4ViewController: BasePremiumViewController {
         noteLabel.font = UIFont.munaFont(ofSize: 12.0)
         noteLabel.textColor = UIColor.white
         noteLabel.layer.opacity = 0.71
-        noteLabel.text = "defaultPurchaseDescriptionPremium4".localized
+        noteLabel.text = "premium4DefaultPurchaseDescription".localized
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         print("purchaseButtonTapped: \(plansContainer.selectedPlan )")
-//        purchaseAction(product: plansContainer.plans[safe: plansContainer.selectedPlan])
+        purchaseAction(product: data.products[plansContainer.selectedPlan])
     }
 }
 extension Premium4ViewController {

@@ -13,6 +13,7 @@ class PremiumPurchaseCellVM: NSObject {
     var id: String!
     var iconName: String?
     var title: String!
+    var color: String!
     var price: String!
     var descriptionString: String!
     var isSelected: Bool!
@@ -20,10 +21,11 @@ class PremiumPurchaseCellVM: NSObject {
     var discountPrice: String?
     var trialDescription: String?
     
-    init(id: String!, title: String, price: String, discountPrice: String?, trialDescription: String?, isSelected: Bool? = false) {
+    init(id: String!, title: String, color: String, price: String, discountPrice: String?, trialDescription: String?, isSelected: Bool? = false) {
         super.init()
         self.id = id
         self.title = title
+        self.color = color
         self.price = price
         self.discountPrice = discountPrice
         self.trialDescription = trialDescription

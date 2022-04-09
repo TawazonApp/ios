@@ -13,6 +13,7 @@ enum RCValueKeys: String {
 }
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
+    case premiumOne = "Premium1ViewController"
     case premiumFour = "Premium4ViewController"
     case premiumFive = "Premium5ViewController"
 }
@@ -90,12 +91,12 @@ extension RemoteConfigManager{
       RemoteConfig.remoteConfig()[key.rawValue].numberValue.doubleValue
     }
     
-//    func color(forKey key: RCValueKeys) -> UIColor {
-//      let colorAsHexString = RemoteConfig.remoteConfig()[key.rawValue]
-//        .stringValue ?? "#FFFFFF"
-//        let convertedColor = UIColor(colorAsHexString)
-//      return convertedColor
-//    }
+    func color(forKey key: RCValueKeys) -> UIColor {
+      let colorAsHexString = RemoteConfig.remoteConfig()[key.rawValue]
+        .stringValue ?? "#FFFFFF"
+        let convertedColor = UIColor(colorAsHexString)
+      return convertedColor
+    }
     
 
     

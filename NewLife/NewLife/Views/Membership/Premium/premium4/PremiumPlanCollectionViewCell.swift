@@ -13,11 +13,12 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var planPricelabel: UILabel!
     @IBOutlet weak var planTriallabel: UILabel!
     
-    var plan : (title: String, price: String, trial: String, isSelected: Bool , color: UIColor)!{
+    var plan : PremiumPurchaseCellVM!{
         didSet{
             setData()
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -39,17 +40,19 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
         
     }
     private func setData(){
-        contentView.layer.borderColor = plan.color.cgColor
-        contentView.layer.borderWidth = plan.isSelected ? 1.5 : 0
+        contentView.layer.borderColor = UIColor(plan.color).cgColor
+        contentView.layer.borderWidth = isSelected ? 1.5 : 0
         
         planTitlelabel.text = plan.title
-        planPricelabel.text = plan.price
-        planTriallabel.text = plan.trial
-        planTitlelabel.backgroundColor = plan.color
-        planTriallabel.textColor = plan.color
+        planPricelabel.text = plan.discountPrice
+        planTriallabel.text = plan.trialDescription ?? ""
+        planTitlelabel.backgroundColor = UIColor(plan.color)
+        planTriallabel.textColor = UIColor(plan.color)
         
     }
     func setIsSelected(selected: Bool) {
+        isSelected = selected
         plan.isSelected = selected
+        setData()
     }
 }

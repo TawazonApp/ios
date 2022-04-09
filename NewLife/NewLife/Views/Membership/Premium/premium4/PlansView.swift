@@ -12,7 +12,7 @@ class PlansView: UIView {
 
     @IBOutlet weak var plansCollectionView: UICollectionView!
     
-    var plans: [(title: String, price: String, trial: String, isSelected: Bool , color: UIColor)] = [] {
+    var plans: [PremiumPurchaseCellVM]? {
         didSet {
             reloadData()
         }
@@ -31,9 +31,8 @@ class PlansView: UIView {
     }
     
     private func reloadData() {
-        print("plans.count: \(plans.count)")
+        print("plans.count: \(plans?.count)")
         plansCollectionView.reloadData()
-        
     }
 }
 extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -43,18 +42,18 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return plans.count
+        return plans?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PremiumPlanCollectionViewCell.identifier, for: indexPath) as! PremiumPlanCollectionViewCell
-        cell.plan = plans[indexPath.row]
+        cell.plan = plans?[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let collectionViewSize = (collectionView.frame.size.width / CGFloat(plans.count)) - 6
+        let collectionViewSize = (collectionView.frame.size.width / CGFloat(plans?.count ?? 0)) - 6
         return CGSize(width: collectionViewSize , height: 104 )
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

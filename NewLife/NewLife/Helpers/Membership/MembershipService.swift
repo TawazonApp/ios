@@ -52,6 +52,8 @@ protocol MembershipService {
     
     func getSubscriptionsTypes(completion: @escaping (SubscriptionTypes?, CustomError?) -> Void)
     
+    func getPremiumDetails(viewId: Int, completion: @escaping (BasePremiumModel?, CustomError?) -> Void)
+    
 }
 
 class APIMembershipService: MembershipService {
@@ -208,6 +210,14 @@ class APIMembershipService: MembershipService {
             let subscriptionTypes : SubscriptionTypes? = (data != nil) ? SubscriptionTypes.init(data: data!) : nil
             completion(subscriptionTypes, error)
         }
+    }
+    
+    func getPremiumDetails(viewId: Int, completion: @escaping (BasePremiumModel?, CustomError?) -> Void) {
+        let path = Api.premiumDetails.replacingOccurrences(of: "{id}", with: String(viewId)).url
+        ConnectionUtils.performGetRequest(url: path!, parameters: nil, completion: { (data, error) in
+            let premiumDetails : BasePremiumModel? = (data != nil) ? BasePremiumModel.init(data: data!) : nil
+            completion(premiumDetails, error)
+        })
     }
 }
 

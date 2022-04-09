@@ -39,11 +39,19 @@ class Premium5ViewController: BasePremiumViewController {
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var purchaseButton: GradientButton!
     
+    var features: [FeatureItem]? {
+        didSet {
+            setData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialize()
-        
+        data.getPremiumPageDetails(premiumId: premiumPageIds.premium5.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+            self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
+        })
     }
     
     private func initialize(){
@@ -55,13 +63,7 @@ class Premium5ViewController: BasePremiumViewController {
         headerTitlePart1.textColor = .white
         headerTitlePart1.text = "premium5TitlePart1".localized
         
-        let attributedString = NSMutableAttributedString(string: "premium5TitlePart2".localized, attributes: [
-            .font: UIFont.lbc(ofSize: 20.0),
-          .foregroundColor: UIColor.white,
-          .kern: 0.0
-        ])
-        attributedString.addAttribute(.font, value: UIFont(name: "LBC-Bold", size: 20.0)!, range: Language.language == .arabic ?  NSRange(location: 25, length: 6) : NSRange(location: 8, length: 5))
-        headerTitlePart2.attributedText = attributedString
+        
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
         cancelButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -71,52 +73,85 @@ class Premium5ViewController: BasePremiumViewController {
         
         contentTitle.font = .munaBoldFont(ofSize: 22.0)
         contentTitle.textColor = .white
-        contentTitle.text = "premium5ContentTitle".localized
+        
         
         day1Label.font = .munaBoldFont(ofSize: 20.0)
         day1Label.textColor = UIColor.columbiaBlue
-        day1Label.text = "premium5Day1Title".localized
+        
         
         day5Label.font = .munaBoldFont(ofSize: 20.0)
         day5Label.textColor = UIColor.macaroniAndCheese
-        day5Label.text = "premium5Day5Title".localized
+        
         
         day7Label.font = .munaBoldFont(ofSize: 20.0)
         day7Label.textColor = UIColor.carnationPink
-        day7Label.text = "premium5Day7Title".localized
+        
         
         gradientView.applyGradientColor(colors: [UIColor.columbiaBlue.cgColor, UIColor.tacao.cgColor, UIColor.darkPink.cgColor, UIColor.regalBlue.withAlphaComponent(0.4).cgColor, UIColor.regalBlue.withAlphaComponent(0.0).cgColor], startPoint: .top, endPoint: .bottom)
         gradientView.layer.cornerRadius = 22.0
-        day1Image.image = UIImage(named: "Premium5Day1")
-        day5Image.image = UIImage(named: "Premium5Day5")
-        day7Image.image = UIImage(named: "Premium5Day7")
+        
         
         day1DescriptionLabel.font = .munaFont(ofSize: 17.0)
         day1DescriptionLabel.textColor = UIColor.white
-        day1DescriptionLabel.text = "premium5Day1DescriptionTitle".localized
+        
         
         day5DescriptionLabel.font = .munaFont(ofSize: 17.0)
         day5DescriptionLabel.textColor = UIColor.white
-        day5DescriptionLabel.text = "premium5Day5DescriptionTitle".localized
+        
         
         day7DescriptionLabel.font = .munaFont(ofSize: 17.0)
         day7DescriptionLabel.textColor = UIColor.white
-        day7DescriptionLabel.text = "premium5Day7DescriptionTitle".localized
+        
         
         noteLabel.font = UIFont.munaBoldFont(ofSize: 16.0)
         noteLabel.textColor = UIColor.white
-        noteLabel.text = "defaultPurchaseDescriptionPremium5".localized
+        
         
         purchaseButton.layer.cornerRadius = 20
         purchaseButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
-        purchaseButton.setTitle("purchaseButtonTitlePremium5".localized, for: .normal)
+        
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
     }
 
+    private func setData(){
+        let attributedString = NSMutableAttributedString(string: data.premiumDetails?.premiumPage.title ?? "", attributes: [
+            .font: UIFont.lbc(ofSize: 20.0),
+          .foregroundColor: UIColor.white,
+          .kern: 0.0
+        ])
+        attributedString.addAttribute(.font, value: UIFont(name: "LBC-Bold", size: 20.0)!, range: Language.language == .arabic ?  NSRange(location: 25, length: 6) : NSRange(location: 8, length: 5))
+        headerTitlePart2.attributedText = attributedString
+        
+        contentTitle.text = data.premiumDetails?.premiumPage.subtitle
+        
+        if let imagePath = features?[0].image{
+            day1Image.af.setImage(withURL: imagePath.url!)
+        }
+        if let imagePath = features?[1].image{
+            day5Image.af.setImage(withURL: imagePath.url!)
+        }
+        if let imagePath = features?[2].image{
+            day7Image.af.setImage(withURL: imagePath.url!)
+        }
+        
+        day1Label.text = features?[0].title
+        day5Label.text = features?[1].title
+        day7Label.text = features?[2].title
+        
+        day1DescriptionLabel.text = features?[0].content
+        day5DescriptionLabel.text = features?[1].content
+        day7DescriptionLabel.text = features?[2].content
+        
+        noteLabel.text = data.premiumDetails?.premiumPage.content
+        
+        purchaseButton.setTitle(data.premiumDetails?.premiumPage.continueLabel, for: .normal)
+    }
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        print("purchaseButtonTapped:")
-//        purchaseAction(product: plansContainer.plans[safe: plansContainer.selectedPlan])
+        let selectedPlan = data.plansArray.filter({$0.isSelected}).first
+        let selectedProduct = data.products.filter({$0.productIdentifier == selectedPlan?.id}).first
+        
+        purchaseAction(product: selectedProduct)
     }
 }
 extension Premium5ViewController {

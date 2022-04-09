@@ -14,7 +14,7 @@ class ImagesContainerViewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var separatorView: GradientView!
     @IBOutlet weak var caption: UILabel!
     
-    var imageData : (imageName: String, caption: String)!{
+    var imageData : FeatureItem!{
         didSet{
             setData()
         }
@@ -31,8 +31,11 @@ class ImagesContainerViewCollectionViewCell: UICollectionViewCell {
     }
     
     private func setData(){
-        imageView.image = UIImage(named: imageData.imageName)
-        caption.text = imageData.caption
+        if let imagePath = imageData.image{
+            imageView.af.setImage(withURL: imagePath.url!)
+        }
+        
+        caption.text = imageData.title
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {

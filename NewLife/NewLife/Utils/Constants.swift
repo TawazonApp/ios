@@ -71,6 +71,7 @@ struct Api {
     static let registerAppsflyer = "\(apiUrl)/appsflyer/register"
     static let redeemCoupons = "\(apiUrl)/coupons/redeem"
     static let subscriptionsTypes = "\(apiUrlV2)/subscriptions/types"
+    static let premiumDetails = "\(apiUrlV2)/premium-pages/view/{id}"
 }
 
 struct APPInfo {

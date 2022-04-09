@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func preFetchCachingData() {
         ProfileVM(service: MembershipServiceFactory.service()).userInfo { (error) in }
-        
+        print("preFetchCachingData: getSubscriptionsTypes")
         UserInfoManager.shared.getSubscriptionsTypes(service: MembershipServiceFactory.service()) { (_, _) in
         }
     }

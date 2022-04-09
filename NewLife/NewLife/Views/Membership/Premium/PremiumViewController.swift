@@ -250,14 +250,14 @@ class PremiumViewController: BasePremiumViewController {
         self.present(viewController, animated: true, completion: nil)
     }
     
-//    func purchaseAction(product: SKProduct?) {
-//
-//        if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
-//            performPurchase(purchaseId: purchaseId, product: product)
-//        } else {
-//            goToNextViewController()
-//        }
-//    }
+    override func purchaseAction(product: SKProduct?) {
+
+        if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+            performPurchase(purchaseId: purchaseId, product: product)
+        } else {
+            goToNextViewController()
+        }
+    }
     
     private func openAppleCancelSubscription() {
         guard let url =  "https://support.apple.com/ar-sa/HT202039".url else {
@@ -296,14 +296,14 @@ extension PremiumViewController {
         }
     }
     
-    private func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
-        let currency = purchase.product.priceLocale.currencyCode ?? ""
-        let price = purchase.product.price.doubleValue
-        let productId = purchase.productId
-        let plan = PremiumPurchase(rawValue: productId)
-        let trial = purchase.product.isTrial
-        TrackerManager.shared.sendStartSubscriptionEvent(productId: productId, plan: plan, price: price, currency: currency, trial: trial)
-    }
+//    private func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
+//        let currency = purchase.product.priceLocale.currencyCode ?? ""
+//        let price = purchase.product.price.doubleValue
+//        let productId = purchase.productId
+//        let plan = PremiumPurchase(rawValue: productId)
+//        let trial = purchase.product.isTrial
+//        TrackerManager.shared.sendStartSubscriptionEvent(productId: productId, plan: plan, price: price, currency: currency, trial: trial)
+//    }
     
     private func sendCancelSubscriptionEvent(purchaseId: PremiumPurchase) {
         let plan = purchaseId.getPlan()

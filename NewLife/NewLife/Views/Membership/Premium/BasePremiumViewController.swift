@@ -20,6 +20,8 @@ class BasePremiumViewController: HandleErrorViewController {
 
     var purchase = PremiumPurchaseVM()
     
+    var data = BasePremiumVM()
+    
     var nextView: NextView = .dimiss
     
     enum PurchaseProccessTypes {
@@ -27,6 +29,7 @@ class BasePremiumViewController: HandleErrorViewController {
         case cancel
         case fail
     }
+    
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         if nextView == .mainViewController {
@@ -39,8 +42,7 @@ class BasePremiumViewController: HandleErrorViewController {
     }
     
     func purchaseAction(product: SKProduct?) {
-        
-        if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+        if let item = data.plansArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
             performPurchase(purchaseId: purchaseId, product: product)
         } else {
             goToNextViewController()
@@ -142,7 +144,7 @@ extension BasePremiumViewController{
 }
 //MARK: Events
 extension BasePremiumViewController{
-    private func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
+    func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
         let currency = purchase.product.priceLocale.currencyCode ?? ""
         let price = purchase.product.price.doubleValue
         let productId = purchase.productId

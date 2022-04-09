@@ -13,7 +13,7 @@ class ImagesContainerView: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var images: [(imageName: String, caption: String)] = [] {
+    var images: [FeatureItem]? {
         didSet {
             reloadData()
         }
@@ -35,7 +35,8 @@ class ImagesContainerView: UIView {
     }
     
     private func reloadData() {
-        pageControl.numberOfPages = images.count
+        print("images?.count: \(images?.count)")
+        pageControl.numberOfPages = images?.count ?? 0
         collectionView.reloadData()
         DispatchQueue.main.async { [weak self] in
             self?.updatePageControl()
@@ -45,13 +46,13 @@ class ImagesContainerView: UIView {
     private func updatePageControl() {
         let pageWidth = collectionView.frame.size.width
         var page = Int(floor(collectionView.contentOffset.x / pageWidth ))
-        page = (images.count - 1) - page
+        page = (images?.count ?? 0 > 0) ? (images!.count - 1) - page : 0
         pageControl.currentPage = page
     }
     
     @IBAction func pageControlTapped(_ sender: Any) {
         let pageWidth = collectionView.frame.size.width
-        collectionView.contentOffset.x =  (CGFloat((images.count - 1))  - CGFloat(pageControl.currentPage)) * pageWidth
+        collectionView.contentOffset.x =  (CGFloat((images?.count ?? 0 - 1))  - CGFloat(pageControl.currentPage)) * pageWidth
     }
 }
 
@@ -62,12 +63,12 @@ extension ImagesContainerView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesContainerViewCollectionViewCell.identifier, for: indexPath) as! ImagesContainerViewCollectionViewCell
-        cell.imageData = images[indexPath.row]
+        cell.imageData = images?[indexPath.row]
         return cell
     }
     
