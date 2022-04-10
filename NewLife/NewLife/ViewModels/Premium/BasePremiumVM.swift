@@ -67,11 +67,14 @@ class BasePremiumVM : NSObject{
             let discountPrice = product.price
             let discountPriceString = getPriceString(price: discountPrice, locale: product.priceLocale)
             var orgionalPriceString: String?
-            if let discount = plan?.discount, discount < 1 {
-                let orgionalPrice = Float(truncating: product.price) / (1 - discount)
-                let priceDecimal = NSDecimalNumber(value: orgionalPrice)
-                orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
+            
+                let orgionalPrice = Float(truncating: product.price)
+                var priceDecimal = NSDecimalNumber(value: orgionalPrice)
+            if product.productIdentifier == PremiumPurchase.yearly.rawValue {
+                priceDecimal = NSDecimalNumber(value: orgionalPrice / 12)
             }
+                orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
+
             print("product: \(product.priceLocale), \(product.price), \(orgionalPriceString), \(plan?.discount)")
             if plan?.enabled ?? false{
                 let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)

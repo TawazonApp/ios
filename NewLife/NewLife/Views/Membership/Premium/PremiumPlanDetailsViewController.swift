@@ -133,8 +133,8 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
     
     private func setData(){
         print("purchaseData: \(purchaseData?.id)")
-        planTitleLabel.text = "سنوي"
-        planPriceLabel.text = purchaseData?.id.localized
+        planTitleLabel.text = purchaseData?.title
+        planPriceLabel.text = purchaseData?.descriptionString
         planTrialLabel.text = purchaseData?.subTitle
         planEndSubscribtionDateLabel.text = purchaseData?.expireString
         

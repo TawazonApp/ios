@@ -48,7 +48,7 @@ class Premium5ViewController: BasePremiumViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("subviews: \(self.view.subviews.count)")
         initialize()
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium5.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
