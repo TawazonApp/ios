@@ -402,6 +402,12 @@ extension UIColor {
         return UIColor(red: 47.0 / 255.0, green: 28.0 / 255.0, blue: 91.0 / 255.0, alpha: 1.0)
     }
     
+    class var tiber: UIColor{
+        return UIColor(red: 18.0 / 255.0, green: 35.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
+    }
+    class var magnolia: UIColor{
+        return UIColor(red: 230.0 / 255.0, green: 227.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
     
 }
 

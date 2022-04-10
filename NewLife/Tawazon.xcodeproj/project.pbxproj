@@ -36,6 +36,7 @@
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
+		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
 		04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A427CF7BC2000880E2 /* TopTabBarView.swift */; };
 		04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A627CF9127000880E2 /* TopTabBarItemView.swift */; };
@@ -385,6 +386,7 @@
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
+		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
 		04F800A427CF7BC2000880E2 /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		04F800A627CF9127000880E2 /* TopTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemView.swift; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 				F34E2578224F502E007CA6E2 /* PremiumRenewablePurchaseSummaryView.swift */,
 				F34E257A224F5051007CA6E2 /* PremiumOnTimePurchaseSummaryView.swift */,
 				F32717B924A5F3C600E3C88C /* PromoCodeViewController.swift */,
+				04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */,
 			);
 			path = Premium;
 			sourceTree = "<group>";
@@ -2317,6 +2320,7 @@
 				F3E280F3223F9D8100066C04 /* BaseSessionVM.swift in Sources */,
 				F3B16AFB222EB772002B0406 /* LibrarySessionCollectionCell.swift in Sources */,
 				F3E6F6F9224E7614005A566A /* PermissionAlertView.swift in Sources */,
+				04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */,
 				F3DC8E602224991400C7DEC4 /* MainTabBarView.swift in Sources */,
 				F3DC8EAD2228341600C7DEC4 /* MoreCell.swift in Sources */,
 				F3ECD0C025612B8E0048DBD8 /* HomeFeelingSelectionView.swift in Sources */,
@@ -2594,7 +2598,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.16;
+				MARKETING_VERSION = 1.2.17;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -2642,7 +2646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.16;
+				MARKETING_VERSION = 1.2.17;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

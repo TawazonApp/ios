@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class Premium5ViewController: BasePremiumViewController {
 
@@ -109,7 +110,6 @@ class Premium5ViewController: BasePremiumViewController {
         
         purchaseButton.layer.cornerRadius = 20
         purchaseButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
-        
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
     }
@@ -152,6 +152,15 @@ class Premium5ViewController: BasePremiumViewController {
         let selectedProduct = data.products.filter({$0.productIdentifier == selectedPlan?.id}).first
         
         purchaseAction(product: selectedProduct)
+    }
+    
+    @IBAction func redeemButtonTapped(_ sender: Any) {
+        let paymentQueue = SKPaymentQueue.default()
+        if #available(iOS 14.0, *) {
+            DispatchQueue.main.async {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
+        }
     }
 }
 extension Premium5ViewController {

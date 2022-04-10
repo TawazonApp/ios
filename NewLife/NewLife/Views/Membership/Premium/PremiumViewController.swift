@@ -125,10 +125,10 @@ class PremiumViewController: BasePremiumViewController {
     private func showPurchaseProducts() {
         stackView.addArrangedSubview(purchaseView)
         purchaseView.isHidden = false
-//        if !UserDefaults.isAnonymousUser() {
-//            promoCodeView.isHidden = false
-//            stackView.addArrangedSubview(promoCodeView)
-//        }
+        if !UserDefaults.isAnonymousUser() {
+            promoCodeView.isHidden = false
+            stackView.addArrangedSubview(promoCodeView)
+        }
         
         DispatchQueue.main.async { [weak self] in
             self?.fetchPremiumPurchaseProducts()
@@ -163,12 +163,12 @@ class PremiumViewController: BasePremiumViewController {
 //        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
 //    }
     
-    private func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
-        let viewController = PrivacyViewController.instantiate(viewType: viewType)
-        viewController.modalPresentationStyle = .custom
-        viewController.transitioningDelegate = self
-        self.present(viewController, animated: true, completion: nil)
-    }
+//    private func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
+//        let viewController = PrivacyViewController.instantiate(viewType: viewType)
+//        viewController.modalPresentationStyle = .custom
+//        viewController.transitioningDelegate = self
+//        self.present(viewController, animated: true, completion: nil)
+//    }
     
     private func openLoginViewController() {
         SystemSoundID.play(sound: .Sound1)
@@ -243,11 +243,17 @@ class PremiumViewController: BasePremiumViewController {
 //    }
     
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
-        let viewController = PromoCodeViewController.instantiate()
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.delegate = self
-        self.present(viewController, animated: true, completion: nil)
+//        let viewController = PromoCodeViewController.instantiate()
+//        viewController.modalPresentationStyle = .overCurrentContext
+//        viewController.modalTransitionStyle = .crossDissolve
+//        viewController.delegate = self
+//        self.present(viewController, animated: true, completion: nil)
+        
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
     }
     
     override func purchaseAction(product: SKProduct?) {

@@ -41,6 +41,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
             loadDefaultView()
         }
     }
+   
     private func loadDefaultView(){
         let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
         addChild(viewcontroller)
@@ -58,23 +59,67 @@ class GeneralPremiumViewController: BasePremiumViewController {
     }
     
     private func loadPremium1ViewController() {
-        let viewcontroller = Premium1ViewController.instantiate(nextView: .dimiss)
-        addChild(viewcontroller)
-        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(viewcontroller.view)
+        if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
+            loadPremiumPlanDetailsViewController()
+        }else{
+            let viewcontroller = Premium1ViewController.instantiate(nextView: .dimiss)
+            addChild(viewcontroller)
+            viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(viewcontroller.view)
 
-        NSLayoutConstraint.activate([
-            viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
+            NSLayoutConstraint.activate([
+                viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
 
-        viewcontroller.didMove(toParent: self)
+            viewcontroller.didMove(toParent: self)
+        }
     }
     
     private func loadPremium4ViewController() {
-        let viewcontroller = Premium4ViewController.instantiate(nextView: .dimiss)
+        if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
+            loadPremiumPlanDetailsViewController()
+        }else{
+            let viewcontroller = Premium4ViewController.instantiate(nextView: .dimiss)
+            addChild(viewcontroller)
+            viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(viewcontroller.view)
+
+            NSLayoutConstraint.activate([
+                viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
+
+            viewcontroller.didMove(toParent: self)
+        }
+    }
+    
+    private func loadPremium5ViewController() {
+        if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
+            loadPremiumPlanDetailsViewController()
+        }else{
+            let viewcontroller = Premium5ViewController.instantiate(nextView: .dimiss)
+            addChild(viewcontroller)
+            viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(viewcontroller.view)
+
+            NSLayoutConstraint.activate([
+                viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
+
+            viewcontroller.didMove(toParent: self)
+        }
+    }
+
+    private func loadPremiumPlanDetailsViewController() {
+        let viewcontroller = PremiumPlanDetailsViewController.instantiate(nextView: .dimiss)
         addChild(viewcontroller)
         viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewcontroller.view)
@@ -89,22 +134,6 @@ class GeneralPremiumViewController: BasePremiumViewController {
         viewcontroller.didMove(toParent: self)
     }
     
-    private func loadPremium5ViewController() {
-        let viewcontroller = Premium5ViewController.instantiate(nextView: .dimiss)
-        addChild(viewcontroller)
-        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(viewcontroller.view)
-
-        NSLayoutConstraint.activate([
-            viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-
-        viewcontroller.didMove(toParent: self)
-    }
-
 }
 extension GeneralPremiumViewController {
     

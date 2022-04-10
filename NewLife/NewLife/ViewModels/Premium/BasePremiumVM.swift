@@ -72,6 +72,7 @@ class BasePremiumVM : NSObject{
                 let priceDecimal = NSDecimalNumber(value: orgionalPrice)
                 orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
             }
+            print("product: \(product.priceLocale), \(product.price), \(orgionalPriceString), \(plan?.discount)")
             if plan?.enabled ?? false{
                 let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)
                 purchaseItems.append(purchase)
@@ -86,12 +87,15 @@ class BasePremiumVM : NSObject{
     }
     
     private func getTrialPeriod(product: SKProduct)-> String? {
+        print("getTrialPeriod: \(product.localizedTitle)")
         var trialDescription: String? = nil
         if #available(iOS 11.2, *),
             let introductoryPrice = product.introductoryPrice, introductoryPrice.paymentMode == SKProductDiscount.PaymentMode.freeTrial {
+            print("introductoryPrice: \(introductoryPrice.subscriptionPeriod)")
             let subscriptionPeriod = introductoryPrice.subscriptionPeriod
             trialDescription = subscriptionPeriod.unit.description(numberOfUnits: subscriptionPeriod.numberOfUnits)
         }
+        print("trialDescription: \(trialDescription)")
         return trialDescription
     }
     

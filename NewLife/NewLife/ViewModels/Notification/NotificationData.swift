@@ -13,6 +13,7 @@ enum NotificationType:String {
     case category = "category"
     case section = "section"
     case subCategory = "subCategory"
+    case redeem = "redeem"
     case none = ""
 }
 
@@ -21,6 +22,7 @@ enum DynamicLinkPath: String{
     case category = "/meditations/list"
     case section = "/sections/meditations/list"
     case tracking = "/tracking"
+    case redeem = "/redeem"
 }
 enum NotificationAppStatus {
     case foreground

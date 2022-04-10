@@ -30,6 +30,14 @@ class BasePremiumViewController: HandleErrorViewController {
         case fail
     }
     
+    private func fetchUserInfoIfNeeded(completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void) {
+        
+        //Fetch User Data
+        UserInfoManager.shared.fetchUserInfo(service: MembershipServiceFactory.service()) {(error) in
+            let userInfo = UserInfoManager.shared.getUserInfo()
+            completion(userInfo, error)
+        }
+    }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         if nextView == .mainViewController {
@@ -140,6 +148,12 @@ extension BasePremiumViewController{
                 return  (error as NSError).localizedDescription
             }
         
+    }
+    func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
+        let viewController = PrivacyViewController.instantiate(viewType: viewType)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 //MARK: Events
