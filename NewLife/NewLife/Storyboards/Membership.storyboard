@@ -1090,10 +1090,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGA-aU-vM1">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1419"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1439"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0LY-xu-GSa">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1419"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0LY-xu-GSa">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1439"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5M-rq-R6v" customClass="PremiumHeaderView" customModule="Tawazon" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
@@ -1130,7 +1130,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CI3-oL-AeI" customClass="PremiumRenewablePurchaseSummaryView" customModule="Tawazon" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="88" width="414" height="348"/>
+                                                        <rect key="frame" x="0.0" y="92" width="414" height="348"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Zc-o8Y">
                                                                 <rect key="frame" x="20" y="26" width="374" height="28"/>
@@ -1263,7 +1263,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-YF-RVM" customClass="PremiumOnTimePurchaseSummaryView" customModule="Tawazon" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="436" width="414" height="221"/>
+                                                        <rect key="frame" x="0.0" y="444" width="414" height="221"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlW-bN-dDe">
                                                                 <rect key="frame" x="20" y="26" width="374" height="28"/>
@@ -1352,7 +1352,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIu-h3-46Z" customClass="PremiumFeaturesView" customModule="Tawazon" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="657" width="414" height="336"/>
+                                                        <rect key="frame" x="0.0" y="669" width="414" height="336"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XL4-0l-hvY">
                                                                 <rect key="frame" x="0.0" y="16" width="414" height="320"/>
@@ -1418,7 +1418,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3W-yz-Te7" customClass="PremiumPurchaseView" customModule="Tawazon" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="993" width="414" height="386"/>
+                                                        <rect key="frame" x="0.0" y="1009" width="414" height="386"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Ie-CQ-A3f">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
@@ -1542,10 +1542,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzX-Wy-G8W">
-                                                                <rect key="frame" x="0.0" y="369" width="375" height="40"/>
+                                                                <rect key="frame" x="0.0" y="369" width="414" height="40"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGB-3t-TdN">
-                                                                        <rect key="frame" x="164.5" y="0.0" width="46" height="40"/>
+                                                                        <rect key="frame" x="184" y="0.0" width="46" height="40"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <connections>
                                                                             <action selector="restorePurchaseButtonTapped:" destination="AWJ-Og-8qC" eventType="touchUpInside" id="mX1-6e-P4D"/>
@@ -1587,7 +1587,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYj-83-r5t">
-                                                        <rect key="frame" x="0.0" y="1379" width="414" height="40"/>
+                                                        <rect key="frame" x="0.0" y="1399" width="414" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mak-bq-cps">
                                                                 <rect key="frame" x="184" y="0.0" width="46" height="40"/>
