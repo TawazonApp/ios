@@ -30,24 +30,29 @@ class Premium4ViewController: BasePremiumViewController {
     
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
-//            let planArray = plans?.filter({$0.color != nil && !($0.color.isEmptyWithTrim)})
-            print("plans var .count: \(plans?.count)")
+            print("HIDE")
             plansContainer.plans = plans
+            LoadingHud.shared.hide(animated: true)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initialize()
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
+            self?.fetchData()
+        }
+    }
+    
+    private func fetchData(){
+        LoadingHud.shared.show(animated: true)
+        
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
-            print("getPremiumPageDetails DONE: \(error)")
-            print("Data: \(self.data.premiumDetails?.premiumPage.featureItems.first?.title)")
+            
             self.features = self.data.premiumDetails?.premiumPage.featureItems
         })
-        
-        
     }
 
     private func fetchPlans(){
@@ -56,6 +61,8 @@ class Premium4ViewController: BasePremiumViewController {
         })
     }
     private func initialize() {
+        view.clearLabels()
+        
         view.backgroundColor = UIColor.veniceBlue
         
         headerView.applyGradientColor(colors: [UIColor.veniceBlue.withAlphaComponent(0.0).cgColor, UIColor.veniceBlue.withAlphaComponent(0.71).cgColor, UIColor.veniceBlue.cgColor], startPoint: .bottom, endPoint: .top)
