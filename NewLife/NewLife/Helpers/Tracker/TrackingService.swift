@@ -46,6 +46,6 @@ protocol TrackingService {
     func sendCancelLogoutEvent()
     func sendRateAppEvent()
     func sendShareAppEvent()
-    func sendSessionListenForPeriodEvent(period: Double)
+    func sendSessionListenForPeriodEvent(period: Double, sessionId: String)
     func sendFailToPurchaseEvent(message: String)
 }

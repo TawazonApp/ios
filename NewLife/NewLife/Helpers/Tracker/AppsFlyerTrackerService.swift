@@ -309,9 +309,10 @@ class AppsFlyerTrackingService: TrackingService {
         }
     }
     
-    func sendSessionListenForPeriodEvent(period: Double) {
+    func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
         var values = getBaseEventValues()
         values["period"] = period
+        values["id"] = sessionId
         AppsFlyerLib.shared().logEvent(CustomEvents.sessionListenForPreiod, withValues: values)
     }
     

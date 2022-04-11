@@ -232,9 +232,10 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.shareApp, parameters: values)
     }
     
-    func sendSessionListenForPeriodEvent(period: Double) {
+    func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
         var values = getBaseEventValues()
         values["period"] = period
+        values["id"] = sessionId
         Analytics.logEvent(CustomEvents.sessionListenForPreiod, parameters: values)
     }
     

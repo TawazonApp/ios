@@ -21,6 +21,8 @@ class PremiumViewController: BasePremiumViewController {
     @IBOutlet weak var containerView: UIScrollView!
     @IBOutlet weak var promoCodeButton: UIButton!
     @IBOutlet weak var promoCodeView: UIView!
+    @IBOutlet weak var restorePurchasesButton: UIButton!
+    @IBOutlet weak var restorePurchasesView: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var renewablePurchaseSummaryView: PremiumRenewablePurchaseSummaryView!
     @IBOutlet weak var onTimePurchaseSummaryView: PremiumOnTimePurchaseSummaryView!
@@ -75,6 +77,11 @@ class PremiumViewController: BasePremiumViewController {
         promoCodeButton.setTitle("promoCodeButtonTitle".localized, for: .normal)
         promoCodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         promoCodeButton.tintColor = UIColor.darkSlateBlue
+
+        restorePurchasesView.isHidden = true
+        restorePurchasesButton.setTitle("restorePurchasesButtonTitle".localized, for: .normal)
+        restorePurchasesButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        restorePurchasesButton.tintColor = UIColor.darkSlateBlue
     }
     
     private func showPurchaseCorrectView() {
@@ -129,7 +136,9 @@ class PremiumViewController: BasePremiumViewController {
             promoCodeView.isHidden = false
             stackView.addArrangedSubview(promoCodeView)
         }
-        
+        if !UserDefaults.isAnonymousUser() {
+            restorePurchasesView.isHidden = false
+        }
         DispatchQueue.main.async { [weak self] in
             self?.fetchPremiumPurchaseProducts()
         }
@@ -248,14 +257,20 @@ class PremiumViewController: BasePremiumViewController {
 //        viewController.modalTransitionStyle = .crossDissolve
 //        viewController.delegate = self
 //        self.present(viewController, animated: true, completion: nil)
-        
+
         // open offerCode sheet
         let paymentQueue = SKPaymentQueue.default()
             if #available(iOS 14.0, *) {
                 paymentQueue.presentCodeRedemptionSheet()
             }
     }
-    
+    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
+        LoadingHud.shared.show(animated: true)
+        restorePurchase(completion: {
+            LoadingHud.shared.hide(animated: true)
+        })
+    }
+
     override func purchaseAction(product: SKProduct?) {
 
         if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {

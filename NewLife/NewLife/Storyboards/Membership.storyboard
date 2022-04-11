@@ -1541,20 +1541,42 @@
                                                                     <constraint firstItem="jcx-ya-37P" firstAttribute="leading" secondItem="ZTe-EJ-038" secondAttribute="leading" id="xge-Qs-K4h"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzX-Wy-G8W">
+                                                                <rect key="frame" x="0.0" y="369" width="375" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGB-3t-TdN">
+                                                                        <rect key="frame" x="164.5" y="0.0" width="46" height="40"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <connections>
+                                                                            <action selector="restorePurchaseButtonTapped:" destination="AWJ-Og-8qC" eventType="touchUpInside" id="mX1-6e-P4D"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="LGB-3t-TdN" firstAttribute="top" secondItem="zzX-Wy-G8W" secondAttribute="top" id="dCc-x5-PVW"/>
+                                                                    <constraint firstItem="LGB-3t-TdN" firstAttribute="centerX" secondItem="zzX-Wy-G8W" secondAttribute="centerX" id="o2t-X1-rqU"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="qgg-sk-Jev"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="LGB-3t-TdN" secondAttribute="bottom" id="w2k-zz-XmB"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="zzX-Wy-G8W" firstAttribute="leading" secondItem="p3W-yz-Te7" secondAttribute="leading" id="IQX-ht-GnR"/>
                                                             <constraint firstItem="ZTe-EJ-038" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p3W-yz-Te7" secondAttribute="leading" constant="20" id="K3O-7I-a7e"/>
                                                             <constraint firstItem="ZTe-EJ-038" firstAttribute="top" secondItem="avL-yN-5Ng" secondAttribute="bottom" id="Kvn-Xi-HWW"/>
                                                             <constraint firstItem="9Ie-CQ-A3f" firstAttribute="top" secondItem="p3W-yz-Te7" secondAttribute="top" id="N0v-gw-1Dp"/>
                                                             <constraint firstAttribute="trailing" secondItem="9Ie-CQ-A3f" secondAttribute="trailing" id="Ug7-9R-e9f"/>
                                                             <constraint firstAttribute="bottom" secondItem="ZTe-EJ-038" secondAttribute="bottom" constant="20" id="ZMu-Ut-aDa"/>
                                                             <constraint firstItem="avL-yN-5Ng" firstAttribute="top" secondItem="9Ie-CQ-A3f" secondAttribute="bottom" constant="16" id="Zs9-fp-skC"/>
+                                                            <constraint firstItem="zzX-Wy-G8W" firstAttribute="top" secondItem="ZTe-EJ-038" secondAttribute="bottom" constant="3" id="dLK-nY-FqQ"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZTe-EJ-038" secondAttribute="trailing" constant="20" id="gMI-BM-YS7"/>
                                                             <constraint firstItem="9Ie-CQ-A3f" firstAttribute="leading" secondItem="p3W-yz-Te7" secondAttribute="leading" id="i3l-sv-2fj"/>
                                                             <constraint firstItem="ZTe-EJ-038" firstAttribute="centerX" secondItem="p3W-yz-Te7" secondAttribute="centerX" id="jPG-Ke-e5R"/>
                                                             <constraint firstAttribute="trailing" secondItem="avL-yN-5Ng" secondAttribute="trailing" constant="20" id="kxf-vR-8Xu"/>
                                                             <constraint firstItem="avL-yN-5Ng" firstAttribute="leading" secondItem="p3W-yz-Te7" secondAttribute="leading" constant="20" id="oh2-vP-Oli"/>
+                                                            <constraint firstAttribute="trailing" secondItem="zzX-Wy-G8W" secondAttribute="trailing" id="v3q-OK-XXO"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="collectionHeightConstraint" destination="9AC-cU-HcH" id="AOU-pf-qTG"/>
@@ -1641,6 +1663,8 @@
                         <outlet property="promoCodeView" destination="aYj-83-r5t" id="gpz-tl-NqK"/>
                         <outlet property="purchaseView" destination="p3W-yz-Te7" id="j4O-nJ-Bfn"/>
                         <outlet property="renewablePurchaseSummaryView" destination="CI3-oL-AeI" id="1zR-EY-VBP"/>
+                        <outlet property="restorePurchasesButton" destination="LGB-3t-TdN" id="5ND-hw-cNS"/>
+                        <outlet property="restorePurchasesView" destination="zzX-Wy-G8W" id="1FI-6L-myB"/>
                         <outlet property="stackView" destination="0LY-xu-GSa" id="oFr-Ey-L8A"/>
                     </connections>
                 </viewController>

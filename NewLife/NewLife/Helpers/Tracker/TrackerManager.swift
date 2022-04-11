@@ -190,9 +190,9 @@ class TrackerManager: TrackingService {
     }
     
     
-    func sendSessionListenForPeriodEvent(period: Double) {
+    func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
         for service in services {
-            service.sendSessionListenForPeriodEvent(period: period)
+            service.sendSessionListenForPeriodEvent(period: period, sessionId: sessionId)
         }
     }
     func sendFailToPurchaseEvent(message: String){

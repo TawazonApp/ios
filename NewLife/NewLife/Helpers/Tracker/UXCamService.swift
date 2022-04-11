@@ -232,9 +232,10 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.shareApp, withProperties: values)
     }
     
-    func sendSessionListenForPeriodEvent(period: Double) {
+    func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
         var values = getBaseEventValues()
         values["period"] = period
+        values["id"] = sessionId
         UXCam.logEvent(CustomEvents.sessionListenForPreiod, withProperties: values)
     }
     

@@ -358,7 +358,8 @@ extension SessionPlayerViewController {
             self?.updateButtonStates()
             self?.updateSongInformation(with: track)
         })
-       var sentEvent = false
+       var finishEventDidSent = false
+       var eventDidSent = false
         // Listen to the playback time changed. Thirs event occurs every `AudioPlayerManager.PlayingTimeRefreshRate` seconds.
         AudioPlayerManager.shared.addPlaybackTimeChangeCallback(self, callback: { [weak self] (track: AudioTrack?) in
             if let session = AudioPlayerManager.shared.currentSession, session.isLock,
@@ -374,15 +375,19 @@ extension SessionPlayerViewController {
                 let roundedSeconds = round(seconds)
                 let roundedDuration = round(Double((track?.durationInSeconds() ?? 0.0)))
                 
-                if (((TimeInterval(roundedSeconds) == Constants.listenForDuration) ||
-                     (TimeInterval(roundedSeconds) == roundedDuration)) &&
-                    TimeInterval(roundedSeconds) > 0.0 && !sentEvent) {
-                    sentEvent = true
-                    TrackerManager.shared.sendSessionListenForPeriodEvent(period: TimeInterval(roundedSeconds))
-                }else if TimeInterval(roundedSeconds) > Constants.listenForDuration
-                            && TimeInterval(roundedSeconds) != roundedDuration
-                            && sentEvent{
-                    sentEvent = false
+                if ((TimeInterval(roundedSeconds) == Constants.listenForDuration) &&
+                    TimeInterval(roundedSeconds) > 0.0 && !eventDidSent) {
+                    eventDidSent = true
+                    if let session = AudioPlayerManager.shared.currentSession{
+                        TrackerManager.shared.sendSessionListenForPeriodEvent(period: TimeInterval(roundedSeconds), sessionId: session.id)
+                    }
+                    
+                }else if  (TimeInterval(roundedSeconds) == roundedDuration) &&
+                            TimeInterval(roundedSeconds) > 0.0 && !finishEventDidSent{
+                    finishEventDidSent = true
+                    if let session = AudioPlayerManager.shared.currentSession{
+                        TrackerManager.shared.sendSessionListenForPeriodEvent(period: TimeInterval(roundedSeconds), sessionId: session.id)
+                    }
                 }
             }
             self?.updatePlaybackTime(track)
