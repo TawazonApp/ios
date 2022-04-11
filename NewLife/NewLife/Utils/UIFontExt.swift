@@ -60,5 +60,19 @@ extension UIFont {
         }
         return UIFont.init(name: "SFProRounded-Regular", size: ofSize + englishSizeOffset)!
     }
+    
+    class func munaFont(ofSize: CGFloat, language: Language = Language.language) -> UIFont {
+        if language == .arabic {
+            return UIFont.init(name: "Muna", size: ofSize)!
+        }
+        return UIFont.init(name: "SFProRounded-Regular", size: ofSize + englishSizeOffset)!
+    }
+    
+    class func munaBoldFont(ofSize: CGFloat, language: Language = Language.language)-> UIFont {
+        if language == .arabic {
+            return UIFont.init(name: "MunaBold", size: ofSize)!
+        }
+        return UIFont.init(name: "SFProRounded-Bold", size: ofSize + englishSizeOffset)!
+    }
 }
 

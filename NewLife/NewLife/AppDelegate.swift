@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
+        
         initializeUXCam()
         initializeFirebase()
         initializeFabric()
@@ -42,9 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
        
         UserInfoManager.shared.registerAppsflyer()
+        initializeRemoteConfig()
         return true
     }
-    
+    func initializeRemoteConfig(){
+        _ = RemoteConfigManager.shared
+    }
     func resetApp() {
         UserInfoManager.shared.restCache()
         initialViewContoller()
@@ -200,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func preFetchCachingData() {
         ProfileVM(service: MembershipServiceFactory.service()).userInfo { (error) in }
-        
+        print("preFetchCachingData: getSubscriptionsTypes")
         UserInfoManager.shared.getSubscriptionsTypes(service: MembershipServiceFactory.service()) { (_, _) in
         }
     }
@@ -274,8 +278,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         guard let action = userInfo["action"] as? String else {
             return
         }
-        
+        print("userInfo: \(userInfo)")
         if let info = userInfo["info"] as? String {
+            print("3: \(info)")
             var notificationData: NotificationData? = nil
             let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
             if action == NotificationType.playSession.rawValue {
@@ -286,6 +291,19 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 if let category = CategoryModel(info, using: String.Encoding.utf8) {
                     notificationData = NotificationData(type: NotificationType.playSession, data: category, appStatus: appStatus)
                 }
+            } else if action == NotificationType.redeem.rawValue {
+                let infoData = Data(info.utf8)
+                do {
+                    let infoJson = try JSONSerialization.jsonObject(with: infoData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                    print("2")
+                    if let offerCode = infoJson["code"] as? String {
+                        notificationData = NotificationData(type: NotificationType.redeem, data: offerCode, appStatus: appStatus)
+                        //TODO: open premium page
+                    }
+
+                } catch let error {
+                    print(error)
+                }
             }
             
             (UIApplication.shared.delegate as? AppDelegate)?.notificationData = notificationData
@@ -294,6 +312,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
+        print("handleDynamicLink")
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
         
@@ -302,6 +321,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let campaignId = components?.queryItems?.first(where: { $0.name == "campaignId" })?.value{
             UserDefaults.saveTempCampaigns(id: campaignId)
             NotificationCenter.default.post(name: NSNotification.Name.didReceiveDeeplink, object: nil)
+        }
+        if dynamicLink.path.contains(DynamicLinkPath.redeem.rawValue) {
+            if let offerCode = components?.queryItems?.first(where: { $0.name == "code" })?.value{
+                openOffer(with: offerCode)
+                //TODO: open premium page
+            }
         }
         // open section
         if dynamicLink.path.contains(DynamicLinkPath.section.rawValue) {
@@ -329,6 +354,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             TrackerManager.shared.sendOpenDynamiclinkEvent()
         }
         
+    }
+    
+    private func openOffer(with _code: String){
+        guard let url = URL(string: Api.appleOfferLink.replacingOccurrences(of: "{CODE}", with: _code)) else { return }
+        UIApplication.shared.open(url)
     }
 }
 

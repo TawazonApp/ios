@@ -120,10 +120,19 @@ class MainTabBarController: UITabBarController {
                 let sectionViewController =  SectionSessionListViewController.instantiate(id: subCategoryId, name: "", type: .subCategory)
                 self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
+        }else if notificationData.type == .redeem{
+            print("4")
+            if let offerCode = notificationData.data as? String{
+                print("offerCode :\(offerCode)")
+                openOffer(with: offerCode)
+            }
         }
         appDelegate?.notificationData = nil
     }
-    
+    private func openOffer(with _code: String){
+        guard let url = URL(string: Api.appleOfferLink.replacingOccurrences(of: "{CODE}", with: _code)) else { return }
+        UIApplication.shared.open(url)
+    }
     @objc private func handleDynamiclinksTracking(){
         TrackerManager.shared.sendOpenDynamiclinkEvent()
     }

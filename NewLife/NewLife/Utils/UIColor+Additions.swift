@@ -8,6 +8,16 @@
 
 import UIKit
 
+/// MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
+/// UnableToScanHexValue:      "Scan hex error"
+/// MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
+public enum UIColorInputError: Error {
+  case missingHashMarkAsPrefix
+  case unableToScanHexValue
+  case mismatchedHexStringLength
+  case outputHexStringForWideDisplayColor
+}
+
 extension UIColor {
     
     class var duskyBlue: UIColor {
@@ -347,4 +357,150 @@ extension UIColor {
     class var haiti: UIColor{
         return UIColor(red: 35.0 / 255.0, green: 35.0 / 255.0, blue: 47.0 / 255.0, alpha: 1.0)
     }
+    
+    class var veniceBlue: UIColor{
+        return UIColor(red: 40.0 / 255.0, green: 69.0 / 255.0, blue: 110.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var deepLilac: UIColor{
+        return UIColor(red: 145.0 / 255.0, green: 85.0 / 255.0, blue: 195.0 / 255.0, alpha: 1.0)
+    }
+
+    class var freeSpeechBlue: UIColor{
+        return UIColor(red: 86.0 / 255.0, green: 85.0 / 255.0, blue: 195.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var columbiaBlue: UIColor{
+        return UIColor(red: 142.0 / 255.0, green: 214.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var regalBlue: UIColor{
+        return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
+    }
+
+    class var mariner: UIColor{
+        return UIColor(red: 65.0 / 255.0, green: 79.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var macaroniAndCheese: UIColor{
+        return UIColor(red: 255.0 / 255.0, green: 177.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+    }
+
+    class var carnationPink: UIColor{
+        return UIColor(red: 159.0 / 255.0, green: 179.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
+    class var tacao: UIColor{
+        return UIColor(red: 242.0 / 255.0, green: 164.0 / 255.0, blue: 119.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var darkPink: UIColor{
+        return UIColor(red: 229.0 / 255.0, green: 71.0 / 255.0, blue: 114.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var christalle: UIColor{
+        return UIColor(red: 47.0 / 255.0, green: 28.0 / 255.0, blue: 91.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var tiber: UIColor{
+        return UIColor(red: 18.0 / 255.0, green: 35.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
+    }
+    class var magnolia: UIColor{
+        return UIColor(red: 230.0 / 255.0, green: 227.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+}
+
+
+extension UIColor{
+    /// The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, fails to default color.
+    ///
+    /// - parameter rgba: String value.
+    public convenience init(_ rgba: String, defaultColor: UIColor = UIColor.clear) {
+      guard let color = try? UIColor(rgbaThrows: rgba) else {
+        self.init(cgColor: defaultColor.cgColor)
+        return
+      }
+
+      self.init(cgColor: color.cgColor)
+    }
+    
+    /// The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, throws error.
+    ///
+    /// - parameter rgba: String value.
+    public convenience init(rgbaThrows rgba: String) throws {
+      guard rgba.hasPrefix("#") else {
+        throw UIColorInputError.missingHashMarkAsPrefix
+      }
+
+      let hexString = String(rgba[String.Index(utf16Offset: 1, in: rgba)...])
+      var hexValue: UInt32 = 0
+
+      guard Scanner(string: hexString).scanHexInt32(&hexValue) else {
+        throw UIColorInputError.unableToScanHexValue
+      }
+
+      switch hexString.count {
+      case 3:
+        self.init(hex3: UInt16(hexValue))
+      case 4:
+        self.init(hex4: UInt16(hexValue))
+      case 6:
+        self.init(hex6: hexValue)
+      case 8:
+        self.init(hex8: hexValue)
+      default:
+        throw UIColorInputError.mismatchedHexStringLength
+      }
+    }
+    
+    /// The shorthand three-digit hexadecimal representation of color.
+    /// #RGB defines to the color #RRGGBB.
+    ///
+    /// - parameter hex3: Three-digit hexadecimal value.
+    /// - parameter alpha: 0.0 - 1.0. The default is 1.0.
+    public convenience init(hex3: UInt16, alpha: CGFloat = 1) {
+      let divisor = CGFloat(15)
+      let red = CGFloat((hex3 & 0xF00) >> 8) / divisor
+      let green = CGFloat((hex3 & 0x0F0) >> 4) / divisor
+      let blue = CGFloat( hex3 & 0x00F) / divisor
+      self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    /// The shorthand four-digit hexadecimal representation of color with alpha.
+    /// #RGBA defines to the color #RRGGBBAA.
+    ///
+    /// - parameter hex4: Four-digit hexadecimal value.
+    public convenience init(hex4: UInt16) {
+      let divisor = CGFloat(15)
+      let red = CGFloat((hex4 & 0xF000) >> 12) / divisor
+      let green = CGFloat((hex4 & 0x0F00) >> 8) / divisor
+      let blue = CGFloat((hex4 & 0x00F0) >> 4) / divisor
+      let alpha = CGFloat( hex4 & 0x000F       ) / divisor
+      self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    /// The six-digit hexadecimal representation of color of the form #RRGGBB.
+    ///
+    /// - parameter hex6: Six-digit hexadecimal value.
+    public convenience init(hex6: UInt32, alpha: CGFloat = 1) {
+      let divisor = CGFloat(255)
+      let red = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
+      let green = CGFloat((hex6 & 0x00FF00) >> 8) / divisor
+      let blue = CGFloat( hex6 & 0x0000FF       ) / divisor
+      self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    /// The six-digit hexadecimal representation of color with alpha of the form #RRGGBBAA.
+    ///
+    /// - parameter hex8: Eight-digit hexadecimal value.
+    public convenience init(hex8: UInt32) {
+      let divisor = CGFloat(255)
+      let red = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
+      let green = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
+      let blue = CGFloat((hex8 & 0x0000FF00) >> 8) / divisor
+      let alpha = CGFloat( hex8 & 0x000000FF       ) / divisor
+      self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
 }

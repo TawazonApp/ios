@@ -90,7 +90,7 @@ class PremiumPurchaseVM: NSObject {
                 orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
             }
             
-            let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: product.localizedTitle, price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)
+            let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: product.localizedTitle, color: "", price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)
             purchaseItems.append(purchase)
         }
         purchaseItems.sort(by: { $0.order < $1.order })

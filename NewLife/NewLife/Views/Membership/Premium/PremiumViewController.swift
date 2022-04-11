@@ -12,7 +12,7 @@ import SwiftyStoreKit
 import StoreKit
 import SafariServices
 
-class PremiumViewController: HandleErrorViewController {
+class PremiumViewController: BasePremiumViewController {
     
     @IBOutlet weak var headerView: PremiumHeaderView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -27,20 +27,20 @@ class PremiumViewController: HandleErrorViewController {
     @IBOutlet weak var renewablePurchaseSummaryView: PremiumRenewablePurchaseSummaryView!
     @IBOutlet weak var onTimePurchaseSummaryView: PremiumOnTimePurchaseSummaryView!
 
-    enum NextView {
-        case dimiss
-        case mainViewController
-    }
+//    enum NextView {
+//        case dimiss
+//        case mainViewController
+//    }
     
-    enum PurchaseProccessTypes {
-        case success
-        case cancel
-        case fail
-    }
+//    enum PurchaseProccessTypes {
+//        case success
+//        case cancel
+//        case fail
+//    }
     
-    var nextView: NextView = .dimiss
+//    var nextView: NextView = .dimiss
     var features = PremiumFeaturesVM()
-    var purchase = PremiumPurchaseVM()
+//    var purchase = PremiumPurchaseVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ class PremiumViewController: HandleErrorViewController {
         promoCodeButton.setTitle("promoCodeButtonTitle".localized, for: .normal)
         promoCodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         promoCodeButton.tintColor = UIColor.darkSlateBlue
-        
+
         restorePurchasesView.isHidden = true
         restorePurchasesButton.setTitle("restorePurchasesButtonTitle".localized, for: .normal)
         restorePurchasesButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
@@ -132,10 +132,10 @@ class PremiumViewController: HandleErrorViewController {
     private func showPurchaseProducts() {
         stackView.addArrangedSubview(purchaseView)
         purchaseView.isHidden = false
-//        if !UserDefaults.isAnonymousUser() {
-//            promoCodeView.isHidden = false
-//            stackView.addArrangedSubview(promoCodeView)
-//        }
+        if !UserDefaults.isAnonymousUser() {
+            promoCodeView.isHidden = false
+            stackView.addArrangedSubview(promoCodeView)
+        }
         if !UserDefaults.isAnonymousUser() {
             restorePurchasesView.isHidden = false
         }
@@ -167,17 +167,17 @@ class PremiumViewController: HandleErrorViewController {
         }
     }
     
-    private func openMainViewController() {
-        SystemSoundID.play(sound: .LaunchToHome)
-        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
-    }
+//    private func openMainViewController() {
+//        SystemSoundID.play(sound: .LaunchToHome)
+//        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
+//    }
     
-    private func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
-        let viewController = PrivacyViewController.instantiate(viewType: viewType)
-        viewController.modalPresentationStyle = .custom
-        viewController.transitioningDelegate = self
-        self.present(viewController, animated: true, completion: nil)
-    }
+//    private func openPrivacyViewController(viewType: PrivacyViewController.ViewType)  {
+//        let viewController = PrivacyViewController.instantiate(viewType: viewType)
+//        viewController.modalPresentationStyle = .custom
+//        viewController.transitioningDelegate = self
+//        self.present(viewController, animated: true, completion: nil)
+//    }
     
     private func openLoginViewController() {
         SystemSoundID.play(sound: .Sound1)
@@ -240,23 +240,29 @@ class PremiumViewController: HandleErrorViewController {
           }
       }
     
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        if nextView == .mainViewController {
-            TrackerManager.shared.sendSkipPremiumEvent()
-            openMainViewController()
-        } else {
-            SystemSoundID.play(sound: .Sound1)
-            TrackerManager.shared.sendClosePremiumEvent()
-            dismiss(animated: true, completion: nil)
-        }
-    }
+//    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+//        if nextView == .mainViewController {
+//            TrackerManager.shared.sendSkipPremiumEvent()
+//            openMainViewController()
+//        } else {
+//            SystemSoundID.play(sound: .Sound1)
+//            TrackerManager.shared.sendClosePremiumEvent()
+//            dismiss(animated: true, completion: nil)
+//        }
+//    }
     
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
-        let viewController = PromoCodeViewController.instantiate()
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.delegate = self
-        self.present(viewController, animated: true, completion: nil)
+//        let viewController = PromoCodeViewController.instantiate()
+//        viewController.modalPresentationStyle = .overCurrentContext
+//        viewController.modalTransitionStyle = .crossDissolve
+//        viewController.delegate = self
+//        self.present(viewController, animated: true, completion: nil)
+
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
     }
     @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
         LoadingHud.shared.show(animated: true)
@@ -264,9 +270,9 @@ class PremiumViewController: HandleErrorViewController {
             LoadingHud.shared.hide(animated: true)
         })
     }
-    
-    func purchaseAction(product: SKProduct?) {
-        
+
+    override func purchaseAction(product: SKProduct?) {
+
         if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
             performPurchase(purchaseId: purchaseId, product: product)
         } else {
@@ -311,14 +317,14 @@ extension PremiumViewController {
         }
     }
     
-    private func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
-        let currency = purchase.product.priceLocale.currencyCode ?? ""
-        let price = purchase.product.price.doubleValue
-        let productId = purchase.productId
-        let plan = PremiumPurchase(rawValue: productId)
-        let trial = purchase.product.isTrial
-        TrackerManager.shared.sendStartSubscriptionEvent(productId: productId, plan: plan, price: price, currency: currency, trial: trial)
-    }
+//    private func sendStartSubscriptionEvent(purchase: PurchaseDetails) {
+//        let currency = purchase.product.priceLocale.currencyCode ?? ""
+//        let price = purchase.product.price.doubleValue
+//        let productId = purchase.productId
+//        let plan = PremiumPurchase(rawValue: productId)
+//        let trial = purchase.product.isTrial
+//        TrackerManager.shared.sendStartSubscriptionEvent(productId: productId, plan: plan, price: price, currency: currency, trial: trial)
+//    }
     
     private func sendCancelSubscriptionEvent(purchaseId: PremiumPurchase) {
         let plan = purchaseId.getPlan()
@@ -328,31 +334,31 @@ extension PremiumViewController {
     private func sendFailToPurchaseEvent(error: String){
         TrackerManager.shared.sendFailToPurchaseEvent(message: error)
     }
-    func purchaseErrorMessage(error: SKError) -> String? {
-            switch error.code {
-            case .unknown:
-                return error.localizedDescription
-            case .clientInvalid: // client is not allowed to issue the request, etc.
-                return  "purchaseClientInvalid".localized
-            case .paymentCancelled: // user cancelled the request, etc.
-                return nil
-            case .paymentInvalid: // purchase identifier was invalid, etc.
-                return "purchasePaymentInvalid".localized
-            case .paymentNotAllowed: // this device is not allowed to make the payment
-                return "purchasePaymentNotAllowed".localized
-            case .storeProductNotAvailable: // Product is not available in the current storefront
-                return "purchaseStoreProductNotAvailable".localized
-            case .cloudServicePermissionDenied: // user has not allowed access to cloud service information
-                 return "purchaseCloudServicePermissionDenied".localized
-            case .cloudServiceNetworkConnectionFailed: // the device could not connect to the nework
-                 return "purchaseCloudServiceNetworkConnectionFailed".localized
-            case .cloudServiceRevoked: // user has revoked permission to use this cloud service
-                return "purchaseCloudServiceRevoked".localized
-            default:
-                return  (error as NSError).localizedDescription
-            }
-        
-    }
+//    func purchaseErrorMessage(error: SKError) -> String? {
+//            switch error.code {
+//            case .unknown:
+//                return error.localizedDescription
+//            case .clientInvalid: // client is not allowed to issue the request, etc.
+//                return  "purchaseClientInvalid".localized
+//            case .paymentCancelled: // user cancelled the request, etc.
+//                return nil
+//            case .paymentInvalid: // purchase identifier was invalid, etc.
+//                return "purchasePaymentInvalid".localized
+//            case .paymentNotAllowed: // this device is not allowed to make the payment
+//                return "purchasePaymentNotAllowed".localized
+//            case .storeProductNotAvailable: // Product is not available in the current storefront
+//                return "purchaseStoreProductNotAvailable".localized
+//            case .cloudServicePermissionDenied: // user has not allowed access to cloud service information
+//                 return "purchaseCloudServicePermissionDenied".localized
+//            case .cloudServiceNetworkConnectionFailed: // the device could not connect to the nework
+//                 return "purchaseCloudServiceNetworkConnectionFailed".localized
+//            case .cloudServiceRevoked: // user has revoked permission to use this cloud service
+//                return "purchaseCloudServiceRevoked".localized
+//            default:
+//                return  (error as NSError).localizedDescription
+//            }
+//
+//    }
     
 }
 

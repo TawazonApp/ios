@@ -169,7 +169,7 @@ class MoreViewController: BaseViewController {
     
     private func openPremiumViewController() {
         SystemSoundID.play(sound: .Sound1)
-        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss)
         
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom
