@@ -510,6 +510,17 @@ extension UIView {
         layer.add(shake, forKey: "position")
     }
     
+    func clearLabels() {
+        for subview in self.subviews {
+            if subview.isKind(of: UILabel.self){
+                (subview as! UILabel).text = ""
+            }else if subview.isKind(of: UIButton.self){
+                (subview as! UIButton).setTitle("", for: .normal)
+            }else{
+                subview.clearLabels()
+            }
+        }
+    }
 }
 
 extension UIImage {

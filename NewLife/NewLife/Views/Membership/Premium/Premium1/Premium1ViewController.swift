@@ -28,21 +28,34 @@ class Premium1ViewController: BasePremiumViewController {
             reloadData()
         }
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initialize()
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
+            self?.fetchData()
+        }
+        
+    }
+    
+    private func fetchData(){
+        LoadingHud.shared.show(animated: true)
+        
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium1.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+            
+            LoadingHud.shared.hide(animated: true)
+
             self.features = self.data.premiumDetails?.premiumPage.featureItems
         })
-        
-        print("Premium1ViewController: \(self.data.premiumDetails?.premiumPage.featureItems.first?.title)")
     }
     
     private func initialize(){
+        view.clearLabels()
         
         view.backgroundColor = UIColor.cyprus
         
@@ -93,6 +106,7 @@ class Premium1ViewController: BasePremiumViewController {
     private func reloadData() {
         setData()
         Premium1FeaturesTableView.reloadData()
+        
     }
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         let selectedPlan = data.plansArray.filter({$0.isSelected}).first

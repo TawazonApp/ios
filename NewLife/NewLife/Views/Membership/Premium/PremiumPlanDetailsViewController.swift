@@ -35,11 +35,7 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
     @IBOutlet weak var planFeaturesTable: UITableView!
     
     
-    var features: [FeatureItem]? {
-        didSet {
-            reloadData()
-        }
-    }
+    var features = PremiumFeaturesVM()
     
     var purchaseData: PremiumPurchaseSummaryVM? {
         didSet{
@@ -55,6 +51,8 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
     }
     
     private func initialize(){
+        view.clearLabels()
+        
         view.backgroundColor = .tiber
         headerImage.image = UIImage(named: "PremiumPlanDetailsHeader")
         
@@ -164,12 +162,12 @@ extension PremiumPlanDetailsViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return features?.count ?? 0
+        return features.tableArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Premium1FeaturesTableViewCell.identifier) as! Premium1FeaturesTableViewCell
-        cell.itemLabel.text = features?[indexPath.row].title
+        cell.itemLabel.text = features.tableArray[indexPath.row].title
         return cell
     }
 }

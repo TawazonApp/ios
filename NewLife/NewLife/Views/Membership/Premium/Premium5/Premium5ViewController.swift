@@ -49,13 +49,24 @@ class Premium5ViewController: BasePremiumViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("subviews: \(self.view.subviews.count)")
+        view.clearLabels()
         initialize()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
+            self?.fetchData()
+        }
+        
+    }
+    private func fetchData(){
+        LoadingHud.shared.show(animated: true)
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium5.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+            LoadingHud.shared.hide(animated: true)
             self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
         })
     }
     
     private func initialize(){
+        view.clearLabels()
+        
         (view as? GradientView)?.applyGradientColor(colors: [UIColor.regalBlue.cgColor, UIColor.mariner.cgColor], startPoint: .bottom, endPoint: .top)
         headerView.backgroundColor = .regalBlue
         headerImage.image = UIImage(named: "Premium5Header")

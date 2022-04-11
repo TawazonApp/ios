@@ -44,11 +44,15 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderWidth = isSelected ? 1.5 : 0
         
         planTitlelabel.text = plan.title
-        planPricelabel.text = plan.discountPrice
+        planPricelabel.text = getPriceString()
         planTriallabel.text = plan.trialDescription ?? ""
         planTitlelabel.backgroundColor = UIColor(plan.color)
         planTriallabel.textColor = UIColor(plan.color)
         
+    }
+    private func getPriceString() -> String{
+        var priceString = "premium4PlanPriceString".localized
+        return priceString.replacingOccurrences(of: "{price}", with: plan.price)
     }
     func setIsSelected(selected: Bool) {
         isSelected = selected

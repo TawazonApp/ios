@@ -15,7 +15,6 @@
 		0417042627FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */; };
 		0417042827FD98E10023FB18 /* HomePremiumBanner4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417042727FD98E10023FB18 /* HomePremiumBanner4View.swift */; };
 		0422055F27E892AE0018BA31 /* Muna.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0422055E27E892AE0018BA31 /* Muna.ttc */; };
-		0422056127E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056027E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift */; };
 		0422056327E9C2300018BA31 /* PlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056227E9C2300018BA31 /* PlansView.swift */; };
 		0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */; };
 		0422056827E9EC180018BA31 /* Premium5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056727E9EC180018BA31 /* Premium5ViewController.swift */; };
@@ -37,6 +36,7 @@
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
+		04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */; };
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
 		04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A427CF7BC2000880E2 /* TopTabBarView.swift */; };
 		04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A627CF9127000880E2 /* TopTabBarItemView.swift */; };
@@ -365,7 +365,6 @@
 		0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerTableViewCell.swift; sourceTree = "<group>"; };
 		0417042727FD98E10023FB18 /* HomePremiumBanner4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBanner4View.swift; sourceTree = "<group>"; };
 		0422055E27E892AE0018BA31 /* Muna.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Muna.ttc; sourceTree = "<group>"; };
-		0422056027E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
 		0422056227E9C2300018BA31 /* PlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansView.swift; sourceTree = "<group>"; };
 		0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPremiumViewController.swift; sourceTree = "<group>"; };
 		0422056727E9EC180018BA31 /* Premium5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Premium5ViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +386,7 @@
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
+		04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
 		04F800A427CF7BC2000880E2 /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		04F800A627CF9127000880E2 /* TopTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemView.swift; sourceTree = "<group>"; };
@@ -753,8 +753,8 @@
 				040F33B527E20776000B1E19 /* Premium4ViewController.swift */,
 				040F33B727E72965000B1E19 /* ImagesContainerView.swift */,
 				040F33B927E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift */,
-				0422056027E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift */,
 				0422056227E9C2300018BA31 /* PlansView.swift */,
+				04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */,
 			);
 			path = Premium4;
 			sourceTree = "<group>";
@@ -2204,6 +2204,7 @@
 				F3DE73B5223670B60052B18C /* UserInfoManager.swift in Sources */,
 				F3DC8E332223E55300C7DEC4 /* UIFontExt.swift in Sources */,
 				F31658012359DD3D0049605A /* TrackerManager.swift in Sources */,
+				04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */,
 				F31A031425601BC100C582F8 /* HomeTableCardSessionView.swift in Sources */,
 				F317A17C222D736400CBD760 /* ParallaxImageView.swift in Sources */,
 				F3DE73B22236654C0052B18C /* RegisterModel.swift in Sources */,
@@ -2288,7 +2289,6 @@
 				F3AF0FA4223A8B2000E29615 /* SessionsModel.swift in Sources */,
 				F3DC8E972226D68900C7DEC4 /* CategoryViewController.swift in Sources */,
 				F3DC8EA12226F16E00C7DEC4 /* CategorySessionVM.swift in Sources */,
-				0422056127E8BA250018BA31 /* PremiumPlanCollectionViewCell.swift in Sources */,
 				F3CA028222311373008165C2 /* WelecomeStartView.swift in Sources */,
 				F3DF365D25850FD3004CE028 /* FeelingSessionsView.swift in Sources */,
 				04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */,
