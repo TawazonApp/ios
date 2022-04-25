@@ -44,7 +44,7 @@ extension RemoteConfigManager{
     func fetchRemoteConfigCloudValues() {
         print("fetchRemoteConfigCloudValues")
       //FIXME: remove on production
-      activateDebugMode()
+//      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {
