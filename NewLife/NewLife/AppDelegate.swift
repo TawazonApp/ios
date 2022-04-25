@@ -71,27 +71,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BackgroundAudioManager.shared.remoteControlReceivedWithEvent(event)
         }
     }
-    
+    private func checkURL(openedUrl: URL) -> URL{
+        let components = URLComponents(url: openedUrl, resolvingAgainstBaseURL: false)
+        if let targetUrl = components?.queryItems?.first(where: { $0.name == "target_url" })?.value{
+            if targetUrl.contains("links.tawazonapp.com") {
+                let lastComp = URLComponents(url: URL(string: targetUrl)!, resolvingAgainstBaseURL: false)?.path.lastPathComponent
+                if let firebaseUrl = URL(string: "https://tawazon.page.link/\(lastComp ?? "")"){
+                    return firebaseUrl
+                }
+                
+            }
+        }
+        return openedUrl
+    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        _ = application(app, open: url, sourceApplication: options[.sourceApplication] as? String, annotation: "")
-        AppsFlyerLib.shared().handleOpen(url, options: options)
+        let openedUrl = checkURL(openedUrl: url)
+        _ = application(app, open: openedUrl, sourceApplication: options[.sourceApplication] as? String, annotation: "")
+        AppsFlyerLib.shared().handleOpen(openedUrl, options: options)
         
-        _ = ApplicationDelegate.shared.application(app, open: url, options: options)
+        _ = ApplicationDelegate.shared.application(app, open: openedUrl, options: options)
         return true
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let openedUrl = checkURL(openedUrl: url)
         
-        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: openedUrl) {
             if let url = dynamicLink.url {
                 handleDynamicLink(dynamicLink: url)
             }
         }
+        DynamicLinks.dynamicLinks().handleUniversalLink(openedUrl) { (dynamicLink, error) in
+            if let url = dynamicLink?.url {
+                self.handleDynamicLink(dynamicLink: url)
+            }
+        }
+        AppsFlyerLib.shared().handleOpen(openedUrl, sourceApplication: sourceApplication, withAnnotation: annotation)
         
-        
-        AppsFlyerLib.shared().handleOpen(url, sourceApplication: sourceApplication, withAnnotation: annotation)
-        
-        _ = ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        _ = ApplicationDelegate.shared.application(application, open: openedUrl, sourceApplication: sourceApplication, annotation: annotation)
         return true
     }
     

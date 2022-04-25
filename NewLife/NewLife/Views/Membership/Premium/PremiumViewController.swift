@@ -132,10 +132,10 @@ class PremiumViewController: BasePremiumViewController {
     private func showPurchaseProducts() {
         stackView.addArrangedSubview(purchaseView)
         purchaseView.isHidden = false
-        if !UserDefaults.isAnonymousUser() {
+//        if !UserDefaults.isAnonymousUser() {
             promoCodeView.isHidden = false
             stackView.addArrangedSubview(promoCodeView)
-        }
+//        }
         if !UserDefaults.isAnonymousUser() {
             restorePurchasesView.isHidden = false
         }

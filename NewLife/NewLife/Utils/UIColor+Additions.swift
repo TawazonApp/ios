@@ -408,7 +408,9 @@ extension UIColor {
     class var magnolia: UIColor{
         return UIColor(red: 230.0 / 255.0, green: 227.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
-    
+    class var heliotrope: UIColor{
+        return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
+    }
 }
 
 

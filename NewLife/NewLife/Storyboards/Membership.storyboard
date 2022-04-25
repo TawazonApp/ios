@@ -1960,11 +1960,19 @@
                                     <action selector="purchaseButtonTapped:" destination="bmh-OI-1bh" eventType="touchUpInside" id="Tck-r7-FCP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m13-61-vTF">
+                                <rect key="frame" x="184" y="846" width="46" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="promoCodeButtonTapped:" destination="bmh-OI-1bh" eventType="touchUpInside" id="Oea-kZ-EOh"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtv-5U-mkW" customClass="PlansView" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="24" y="603.66666666666663" width="366" height="132"/>
+                                <rect key="frame" x="8" y="603.66666666666663" width="398" height="132"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hYg-ot-Zgw">
-                                        <rect key="frame" x="0.0" y="0.0" width="366" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="132"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="13" id="7HD-p2-ovi">
                                             <size key="itemSize" width="157" height="104"/>
@@ -1974,10 +1982,10 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PremiumPlanCollectionViewCell" id="zlv-if-QDU" customClass="PremiumPlanCollectionViewCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="14" width="157" height="104"/>
+                                                <rect key="frame" x="0.0" y="14" width="101" height="104"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="saX-eS-Tqb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="157" height="104"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sza-gn-vbR">
@@ -1991,13 +1999,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5r-IO-bgk">
-                                                            <rect key="frame" x="30" y="40" width="97" height="20.333333333333329"/>
+                                                            <rect key="frame" x="9" y="40" width="83" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ha0-Pa-cfH">
-                                                            <rect key="frame" x="30" y="64.333333333333329" width="97" height="20.333333333333329"/>
+                                                            <rect key="frame" x="2" y="64.333333333333329" width="97" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -2005,16 +2013,16 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Sza-gn-vbR" firstAttribute="leading" secondItem="saX-eS-Tqb" secondAttribute="leading" id="0Lc-db-RIL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="R5r-IO-bgk" secondAttribute="trailing" constant="30" id="0YZ-y2-KM7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="R5r-IO-bgk" secondAttribute="trailing" constant="9" id="0YZ-y2-KM7"/>
                                                         <constraint firstItem="ha0-Pa-cfH" firstAttribute="top" secondItem="R5r-IO-bgk" secondAttribute="bottom" constant="4" id="5VR-l7-R7x"/>
                                                         <constraint firstItem="R5r-IO-bgk" firstAttribute="top" secondItem="Sza-gn-vbR" secondAttribute="bottom" constant="12" id="896-l2-IJ6"/>
-                                                        <constraint firstItem="R5r-IO-bgk" firstAttribute="leading" secondItem="saX-eS-Tqb" secondAttribute="leading" constant="30" id="Ynz-wk-VFD"/>
-                                                        <constraint firstAttribute="trailing" secondItem="ha0-Pa-cfH" secondAttribute="trailing" constant="30" id="cqM-qI-85Z"/>
+                                                        <constraint firstItem="R5r-IO-bgk" firstAttribute="leading" secondItem="saX-eS-Tqb" secondAttribute="leading" constant="9" id="Ynz-wk-VFD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ha0-Pa-cfH" secondAttribute="trailing" constant="2" id="cqM-qI-85Z"/>
                                                         <constraint firstItem="Sza-gn-vbR" firstAttribute="top" secondItem="saX-eS-Tqb" secondAttribute="top" id="j1b-BQ-Sid"/>
-                                                        <constraint firstItem="ha0-Pa-cfH" firstAttribute="leading" secondItem="saX-eS-Tqb" secondAttribute="leading" constant="30" id="uDE-d6-Sic"/>
+                                                        <constraint firstItem="ha0-Pa-cfH" firstAttribute="leading" secondItem="saX-eS-Tqb" secondAttribute="leading" constant="2" id="uDE-d6-Sic"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="157" height="104"/>
+                                                <size key="customSize" width="101" height="104"/>
                                                 <connections>
                                                     <outlet property="planPricelabel" destination="R5r-IO-bgk" id="4ij-6i-adh"/>
                                                     <outlet property="planTitlelabel" destination="Sza-gn-vbR" id="Bd9-cr-iCK"/>
@@ -2043,12 +2051,14 @@
                         <viewLayoutGuide key="safeArea" id="sYH-Is-cF2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="m13-61-vTF" firstAttribute="top" secondItem="v03-2N-u9q" secondAttribute="bottom" constant="4" id="0n7-Ff-MwC"/>
                             <constraint firstItem="v03-2N-u9q" firstAttribute="top" secondItem="mCD-52-5oO" secondAttribute="bottom" constant="12" id="5IO-4B-8s5"/>
-                            <constraint firstItem="wtv-5U-mkW" firstAttribute="leading" secondItem="sYH-Is-cF2" secondAttribute="leading" constant="24" id="AJs-Uv-x14"/>
+                            <constraint firstItem="wtv-5U-mkW" firstAttribute="leading" secondItem="sYH-Is-cF2" secondAttribute="leading" constant="8" id="AJs-Uv-x14"/>
+                            <constraint firstItem="m13-61-vTF" firstAttribute="centerX" secondItem="7XB-QA-EwF" secondAttribute="centerX" id="Auz-cW-GxZ"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="mCD-52-5oO" secondAttribute="trailing" constant="28" id="Fv5-JW-Dz8"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="v03-2N-u9q" secondAttribute="trailing" constant="24" id="Rur-Tx-eDJ"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="bottom" secondItem="v03-2N-u9q" secondAttribute="bottom" constant="20" id="TAz-2O-ri3"/>
-                            <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="wtv-5U-mkW" secondAttribute="trailing" constant="24" id="Ucw-Bf-IQz"/>
+                            <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="wtv-5U-mkW" secondAttribute="trailing" constant="8" id="Ucw-Bf-IQz"/>
                             <constraint firstItem="mCD-52-5oO" firstAttribute="top" secondItem="wtv-5U-mkW" secondAttribute="bottom" constant="18" id="XGd-M8-YBs"/>
                             <constraint firstItem="1dp-aM-5KZ" firstAttribute="height" secondItem="g1V-pL-ffr" secondAttribute="height" multiplier="0.4" id="ZKn-IV-Dfg"/>
                             <constraint firstItem="g1V-pL-ffr" firstAttribute="width" secondItem="7XB-QA-EwF" secondAttribute="width" id="czy-Sa-3qx"/>
@@ -2072,6 +2082,7 @@
                         <outlet property="imagesContainer" destination="g1V-pL-ffr" id="5qj-UU-NGU"/>
                         <outlet property="noteLabel" destination="mCD-52-5oO" id="t04-RN-2qz"/>
                         <outlet property="plansContainer" destination="wtv-5U-mkW" id="ejU-sF-F5E"/>
+                        <outlet property="promoCodeButton" destination="m13-61-vTF" id="xtc-sI-zgG"/>
                         <outlet property="purchaseButton" destination="v03-2N-u9q" id="ISn-8g-sdt"/>
                     </connections>
                 </viewController>

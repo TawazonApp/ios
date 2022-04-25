@@ -134,7 +134,9 @@ class MainTabBarController: UITabBarController {
         UIApplication.shared.open(url)
     }
     @objc private func handleDynamiclinksTracking(){
-        TrackerManager.shared.sendOpenDynamiclinkEvent()
+        if !UserDefaults.getTempCampaigns().isEmpty {
+            TrackerManager.shared.sendOpenDynamiclinkEvent()
+        }
     }
     func openCategory(categoryId: String) {
         guard let id = MainTabBarView.tabBarItemsIds(rawValue: categoryId) else {
