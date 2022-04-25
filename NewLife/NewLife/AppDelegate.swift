@@ -329,7 +329,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
-        print("handleDynamicLink")
+        print("handleDynamicLink: \(dynamicLink.absoluteString)")
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
         

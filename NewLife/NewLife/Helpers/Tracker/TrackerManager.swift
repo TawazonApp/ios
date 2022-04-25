@@ -217,7 +217,7 @@ class TrackerManager: TrackingService {
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()
         let param = ["items": tempCampaigns] as [String : Any]
-         
+        print("param: \(param)")
         ConnectionUtils.performPostRequest(url: Api.trackingUrl.url!, parameters: param) { (data, error) in
             
             var campaign: CampaignTrackingModel?
