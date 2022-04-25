@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import StoreKit
 
 class Premium4ViewController: BasePremiumViewController {
 
@@ -19,6 +20,7 @@ class Premium4ViewController: BasePremiumViewController {
     @IBOutlet weak var imagesContainer: ImagesContainerView!
     @IBOutlet weak var plansContainer: PlansView!
     @IBOutlet weak var purchaseButton: GradientButton!
+    @IBOutlet weak var promoCodeButton: UIButton!
     @IBOutlet weak var noteLabel: UILabel!
     
     var features: [FeatureItem]? {
@@ -92,6 +94,9 @@ class Premium4ViewController: BasePremiumViewController {
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
+        promoCodeButton.setTitle("promoCodeButtonTitle".localized, for: .normal)
+        promoCodeButton.titleLabel?.font = UIFont.munaFont(ofSize: 13)
+        promoCodeButton.tintColor = UIColor.white
         
         noteLabel.font = UIFont.munaFont(ofSize: 12.0)
         noteLabel.textColor = UIColor.white
@@ -102,6 +107,13 @@ class Premium4ViewController: BasePremiumViewController {
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         print("purchaseButtonTapped: \(plansContainer.selectedPlan )")
         purchaseAction(product: data.products[plansContainer.selectedPlan])
+    }
+    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
     }
 }
 extension Premium4ViewController {
