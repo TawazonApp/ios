@@ -239,8 +239,10 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.sessionListenForPreiod, withProperties: values)
     }
     
-    func sendFailToPurchaseEvent(message: String) {
+    func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {
         var values = getBaseEventValues()
+        values["item_name"] = productId
+        values["plan"] = plan
         values["message"] = message
         UXCam.logEvent(CustomEvents.FailToPurchase, withProperties: values)
     }

@@ -161,7 +161,7 @@ class PremiumViewController: BasePremiumViewController {
             LoadingHud.shared.hide(animated: true)
             if let error = error {
                 self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
-                self?.sendFailToPurchaseEvent(error: error.message ?? "generalErrorMessage".localized)
+//                self?.sendFailToPurchaseEvent(error: error.message ?? "generalErrorMessage".localized)
             }
             self?.purchaseView.purchase = self?.purchase
         }
@@ -205,7 +205,9 @@ class PremiumViewController: BasePremiumViewController {
             
             if let error = error {
                 self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
-                self?.sendFailToPurchaseEvent(error: error.message ?? "generalErrorMessage".localized)
+                if type == .fail{
+                    self?.sendFailToPurchaseEvent(purchaseId: purchaseId,error: error.message ?? "generalErrorMessage".localized)
+                }
             } else if type == .success {
                 self?.goToNextViewController()
             }
@@ -331,8 +333,9 @@ extension PremiumViewController {
         TrackerManager.shared.sendTapCancelSubscriptionEvent(productId: purchaseId.rawValue, plan: plan)
     }
     
-    private func sendFailToPurchaseEvent(error: String){
-        TrackerManager.shared.sendFailToPurchaseEvent(message: error)
+    private func sendFailToPurchaseEvent(purchaseId: PremiumPurchase, error: String){
+        let plan = purchaseId.getPlan()
+        TrackerManager.shared.sendFailToPurchaseEvent(productId: purchaseId.rawValue, plan: plan, message: error)
     }
 //    func purchaseErrorMessage(error: SKError) -> String? {
 //            switch error.code {

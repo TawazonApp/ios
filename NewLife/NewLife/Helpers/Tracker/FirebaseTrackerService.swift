@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class FirebaseTrackingService: TrackingService {
+    
+    
     enum CustomEvents {
         static let startSubscription = "start_subscription_trial"
         static let tapCancelSubscription = "tap_cancel_subscription"
@@ -239,8 +241,10 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.sessionListenForPreiod, parameters: values)
     }
     
-    func sendFailToPurchaseEvent(message: String) {
+    func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {
         var values = getBaseEventValues()
+        values[AnalyticsParameterItemID] = productId
+        values["plan"] = plan
         values["message"] = message
         Analytics.logEvent(CustomEvents.FailToPurchase, parameters: values)
     }
