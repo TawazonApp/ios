@@ -12,6 +12,8 @@
 	<array>
 		<string>applinks:newlifearabia.page.link</string>
 		<string>applinks:tawazon.page.link</string>
+		<string>applinks:tawazon.app.link</string>
+		<string>applinks:tawazon-alternate.app.link</string>
 	</array>
 	<key>com.apple.developer.authentication-services.autofill-credential-provider</key>
 	<true/>

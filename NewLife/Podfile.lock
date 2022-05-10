@@ -5,6 +5,7 @@ PODS:
   - AppsFlyerFramework (6.4.2):
     - AppsFlyerFramework/Main (= 6.4.2)
   - AppsFlyerFramework/Main (6.4.2)
+  - Branch (1.41.0)
   - FBSDKCoreKit (9.0.1):
     - FBSDKCoreKit/Basics (= 9.0.1)
     - FBSDKCoreKit/Core (= 9.0.1)
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AppsFlyerFramework
+  - Branch (from `https://github.com/BranchMetrics/ios-branch-deep-linking.git`)
   - FBSDKLoginKit
   - Firebase/Core (~> 7.6.0)
   - Firebase/Crashlytics (~> 7.6.0)
@@ -174,10 +176,20 @@ SPEC REPOS:
     - SwiftyStoreKit
     - UXCam
 
+EXTERNAL SOURCES:
+  Branch:
+    :git: https://github.com/BranchMetrics/ios-branch-deep-linking.git
+
+CHECKOUT OPTIONS:
+  Branch:
+    :commit: 30da0e324ebbe78dd8de3e30fbb10c48fa2ed25c
+    :git: https://github.com/BranchMetrics/ios-branch-deep-linking.git
+
 SPEC CHECKSUMS:
   Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   AppsFlyerFramework: 2303994c0bda3afa48eba93680ab5fe48f46cd94
+  Branch: 460652136e6bce7eebb0387bb2dcbfc5d9b98322
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
   Firebase: e1e089d9aac215a52442583f818ab61de3c4581b
@@ -203,6 +215,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   UXCam: fb294bf954e708fc308a645ae65bb967cac0760e
 
-PODFILE CHECKSUM: 38d2a4778f5b49784b2d8c310a1c3bba560fe701
+PODFILE CHECKSUM: ef992eddcf3b2a530e730db1b1c6db8c6dc8d32f
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.3

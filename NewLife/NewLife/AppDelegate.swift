@@ -18,6 +18,7 @@ import SwiftyStoreKit
 import AppsFlyerLib
 import AudioToolbox
 import UXCam
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         initializeUXCam()
+        initializeBranchIO(with: launchOptions)
         initializeFirebase()
         initializeFabric()
         initializeAppsFlayer()
@@ -86,6 +88,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let openedUrl = checkURL(openedUrl: url)
+        
+        //check for link_click_id
+          if url.absoluteString.contains("link_click_id") == true{
+            return Branch.getInstance().application(app, open: url, options: options)
+          }
+        
         _ = application(app, open: openedUrl, sourceApplication: options[.sourceApplication] as? String, annotation: "")
         AppsFlyerLib.shared().handleOpen(openedUrl, options: options)
         
@@ -114,6 +122,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
+        if ((userActivity.webpageURL?.absoluteString.contains("app.link")) != nil){
+            return Branch.getInstance().continue(userActivity)
+          }
+        
         AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
         
         let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamicLink, error) in
@@ -128,6 +140,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializeUXCam(){
         UXCam.optIntoSchematicRecordings()
         UXCam.start(withKey:"am0notpy21t31es")
+    }
+    
+    private func initializeBranchIO(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
+        // enable pasteboard check
+            Branch.getInstance().checkPasteboardOnInstall()
+            
+        // listener for Branch Deep Link data
+        print("initializeBranchIO")
+         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+              // do stuff with deep link data (nav to page, display content, etc)
+             print("Params: \(params as? [String: AnyObject])")
+             // Option 1: read deep link data
+               guard let data = params as? [String: AnyObject] else { return }
+             if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
+                 self.handleDynamicLink(dynamicLink: branchLink)
+             }
+         }
     }
     private func initializeFabric() {
         Fabric.with([Crashlytics.self])
@@ -260,6 +289,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         handleNotification(userInfo: userInfo)
+        Branch.getInstance().handlePushNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
