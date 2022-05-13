@@ -52,11 +52,16 @@ class Premium4ViewController: BasePremiumViewController {
         LoadingHud.shared.show(animated: true)
         
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
-            
+            self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
+            self.headerTitlePart3Label.text = self.data.premiumDetails?.premiumPage.title
+            print("continueLabel: \(self.data.premiumDetails?.premiumPage.continueLabel)")
             self.features = self.data.premiumDetails?.premiumPage.featureItems
+            
         })
     }
-
+    private func setData(){
+        
+    }
     private func fetchPlans(){
         data.fetchPremiumPurchaseProducts(completion: { (error) in
             self.plans = self.data.plansArray
@@ -80,6 +85,8 @@ class Premium4ViewController: BasePremiumViewController {
         
         headerTitlePart3Label.font = UIFont.munaBoldFont(ofSize: 32.0)
         headerTitlePart3Label.textColor = UIColor.white
+        headerTitlePart3Label.numberOfLines = 0
+        headerTitlePart3Label.lineBreakMode = .byWordWrapping
         headerTitlePart3Label.text = "premium4TitleLabelPart3".localized
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2

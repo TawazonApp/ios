@@ -29,30 +29,34 @@ class ImagesContainerView: UIView {
         backgroundColor = UIColor.clear
         
         collectionView.backgroundColor = UIColor.clear
+        collectionView.decelerationRate = .fast
+        
+        collectionView.collectionViewLayout = ArabicCollectionFlow()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
         
         pageControl.tintColor = UIColor.white.withAlphaComponent(0.5)
         pageControl.currentPageIndicatorTintColor = UIColor.white
     }
     
     private func reloadData() {
-        print("images?.count: \(images?.count)")
         pageControl.numberOfPages = images?.count ?? 0
         collectionView.reloadData()
         DispatchQueue.main.async { [weak self] in
-            self?.updatePageControl()
+            self?.updatePageControl(page: 0)
         }
     }
     
-    private func updatePageControl() {
-        let pageWidth = collectionView.frame.size.width
-        var page = Int(floor(collectionView.contentOffset.x / pageWidth ))
-        page = (images?.count ?? 0 > 0) ? (images!.count - 1) - page : 0
+    private func updatePageControl(page: Int = 0) {
+        
         pageControl.currentPage = page
+        centerItemIfNeeded(indexPath: IndexPath(item: page, section: 0))
+        
     }
     
     @IBAction func pageControlTapped(_ sender: Any) {
-        let pageWidth = collectionView.frame.size.width
-        collectionView.contentOffset.x =  (CGFloat((images?.count ?? 0 - 1))  - CGFloat(pageControl.currentPage)) * pageWidth
+        centerItemIfNeeded(indexPath: IndexPath(item: pageControl.currentPage, section: 0))
     }
 }
 
@@ -68,16 +72,40 @@ extension ImagesContainerView: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesContainerViewCollectionViewCell.identifier, for: indexPath) as! ImagesContainerViewCollectionViewCell
-        cell.imageData = images?[indexPath.row]
+        cell.imageData = images?[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.frame.size
     }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updatePageControl()
+        var visibleRect = CGRect()
+
+            visibleRect.origin = collectionView.contentOffset
+            visibleRect.size = collectionView.bounds.size
+
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+
+            guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
+
+        updatePageControl(page: indexPath.item)
     }
     
     
+    private func centerItemIfNeeded(indexPath: IndexPath) {
+        
+        collectionView.isPagingEnabled = false
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        collectionView.isPagingEnabled = true
+    }
+}
+
+
+
+class ArabicCollectionFlow: UICollectionViewFlowLayout {
+  override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+      return Language.language == .arabic ? true : false
+  }
 }

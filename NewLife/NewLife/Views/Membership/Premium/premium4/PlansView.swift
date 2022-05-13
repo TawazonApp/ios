@@ -11,9 +11,14 @@ import UIKit
 class PlansView: UIView {
 
     @IBOutlet weak var plansCollectionView: UICollectionView!
+    @IBOutlet weak var mostPopularLabel: UILabel!
     
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
+            if let plansCount = plans?.count, plansCount > 0{
+                print("plansCount: \(plansCount)")
+                plans!.sort(by: { $0.priority < $1.priority })
+            }
             reloadData()
         }
     }
@@ -24,22 +29,25 @@ class PlansView: UIView {
     private var collectionCellWidth: CGFloat = 101
     private var collectionCellHeight: CGFloat = 104
     private var collectionCellSelectedHeight: CGFloat = 120
-    private var collectionCellSelectedWidth: CGFloat = 101
+    private var collectionCellSelectedWidth: CGFloat = 109
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        initialize()
     }
     
-    private func initialize() {
-        
+    private func setData() {
+        mostPopularLabel.font = UIFont.munaBoldFont(ofSize: 13.0)
+        mostPopularLabel.textColor = UIColor.lightSlateBlue
+        mostPopularLabel.text = "premium4mostPopularLabel".localized
     }
     
     private func reloadData() {
+        setData()
+        
         plansCollectionView.reloadData()
-        plansCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-        selectedPlan = 0
+        plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+        selectedPlan = 1
+        
     }
 }
 extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -57,14 +65,10 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         cell.plan = plans?[indexPath.row]
         return cell
     }
-    
-//    private override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        collectionView.performBatchUpdates(nil, completion: nil)
-//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        collectionView.decelerationRate = .fast
         switch collectionView.indexPathsForSelectedItems?.first {
         case .some(indexPath):
             return CGSize(width: collectionCellSelectedWidth , height: collectionCellSelectedHeight )
@@ -97,7 +101,7 @@ print("leftInset")
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        let totalWidth = 101 * (plans?.count ?? 0)
+        let totalWidth = 101 * (plans?.count ?? 0) + Int(collectionCellWidth - collectionCellSelectedWidth)
         let totalSpacingWidth = 12 * (plans?.count ?? 1 - 1)
         let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
         let rightInset = leftInset

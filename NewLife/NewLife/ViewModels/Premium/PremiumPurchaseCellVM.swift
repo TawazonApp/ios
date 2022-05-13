@@ -19,10 +19,11 @@ class PremiumPurchaseCellVM: NSObject {
     var descriptionString: String!
     var isSelected: Bool!
     var order: Int!
+    var priority: Int!
     var discountPrice: String?
     var trialDescription: String?
     
-    init(id: String!, title: String, color: String, price: String, monthlyPrice: String = "", discountPrice: String?, trialDescription: String?, isSelected: Bool? = false) {
+    init(id: String!, title: String, color: String, price: String, monthlyPrice: String = "", discountPrice: String?, trialDescription: String?, isSelected: Bool? = false, priority: Int = 0) {
         super.init()
         self.id = id
         self.title = title
@@ -36,6 +37,7 @@ class PremiumPurchaseCellVM: NSObject {
         self.iconName = getIconName()
         self.isSelected = isSelected
         order = getOrder()
+        self.priority = priority
     }
     
     private func getOrder() -> Int {

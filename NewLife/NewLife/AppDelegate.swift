@@ -147,11 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Branch.getInstance().checkPasteboardOnInstall()
             
         // listener for Branch Deep Link data
-        print("initializeBranchIO")
          Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
-              // do stuff with deep link data (nav to page, display content, etc)
-             print("Params: \(params as? [String: AnyObject])")
-             // Option 1: read deep link data
                guard let data = params as? [String: AnyObject] else { return }
              if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
                  self.handleDynamicLink(dynamicLink: branchLink)
@@ -179,6 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppsFlyerLib.shared().appsFlyerDevKey = Constants.appsFlyerDevKey
         AppsFlyerLib.shared().appleAppID = APPInfo.appId
         AppsFlyerLib.shared().delegate = self
+        AppsFlyerLib.shared().deepLinkDelegate = self
        NotificationCenter.default.addObserver(self,
        selector: #selector(sendLaunch),
        name: UIApplication.didBecomeActiveNotification,
@@ -485,4 +482,45 @@ extension AppDelegate: AppsFlyerLibDelegate {
          print("\(error)")
      }
   
+}
+extension AppDelegate: DeepLinkDelegate {
+    func didResolveDeepLink(_ result: DeepLinkResult) {
+        print("didResolveDeepLink")
+        var fruitNameStr: String?
+        switch result.status {
+        case .notFound:
+            NSLog("[AFSDK] Deep link not found")
+            return
+        case .failure:
+            print("Error %@", result.error!)
+            return
+        case .found:
+            NSLog("[AFSDK] Deep link found")
+        }
+        
+        guard let deepLinkObj:DeepLink = result.deepLink else {
+            NSLog("[AFSDK] Could not extract deep link object")
+            return
+        }
+        print("deepLinkObj: \(deepLinkObj)")
+        if deepLinkObj.clickEvent.keys.contains("deep_link_sub2") {
+            let ReferrerId:String = deepLinkObj.clickEvent["deep_link_sub2"] as! String
+            NSLog("[AFSDK] AppsFlyer: Referrer ID: \(ReferrerId)")
+        } else {
+            NSLog("[AFSDK] Could not extract referrerId")
+        }
+        
+        let deepLinkStr:String = deepLinkObj.toString()
+        NSLog("[AFSDK] DeepLink data is: \(deepLinkStr)")
+            
+        if( deepLinkObj.isDeferred == true) {
+            NSLog("[AFSDK] This is a deferred deep link")
+        }
+        else {
+            NSLog("[AFSDK] This is a direct deep link")
+        }
+        
+        fruitNameStr = deepLinkObj.deeplinkValue
+//        walkToSceneWithParams(fruitName: fruitNameStr!, deepLinkData: deepLinkObj.clickEvent)
+    }
 }

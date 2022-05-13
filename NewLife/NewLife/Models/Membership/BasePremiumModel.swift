@@ -47,6 +47,7 @@ struct Plan: Codable {
     let enabled: Bool
     let discount: Float?
     let discountCampaign: DiscountCampaign?
+    let priority: String?
 }
 
 // MARK: - DiscountCampaign
