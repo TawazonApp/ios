@@ -1878,18 +1878,29 @@
                                             <action selector="pageControlTapped:" destination="g1V-pL-ffr" eventType="valueChanged" id="0qF-c2-IBb"/>
                                         </connections>
                                     </pageControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-D7-w7G">
+                                        <rect key="frame" x="100" y="36" width="214" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="siG-D7-w7G" secondAttribute="trailing" constant="100" id="4Ay-rI-xJi"/>
                                     <constraint firstItem="Ssb-vC-eyq" firstAttribute="centerX" secondItem="g1V-pL-ffr" secondAttribute="centerX" id="Apg-1A-zGy"/>
                                     <constraint firstAttribute="bottom" secondItem="ghv-Pb-r3o" secondAttribute="bottom" constant="18" id="JGy-e0-6FA"/>
                                     <constraint firstAttribute="bottom" secondItem="Ssb-vC-eyq" secondAttribute="bottom" constant="3" id="M7V-ao-gFh"/>
                                     <constraint firstItem="ghv-Pb-r3o" firstAttribute="leading" secondItem="g1V-pL-ffr" secondAttribute="leading" id="ajf-IN-wc7"/>
                                     <constraint firstItem="ghv-Pb-r3o" firstAttribute="top" secondItem="g1V-pL-ffr" secondAttribute="top" id="dXl-V4-qCW"/>
+                                    <constraint firstItem="siG-D7-w7G" firstAttribute="leading" secondItem="g1V-pL-ffr" secondAttribute="leading" constant="100" id="ksp-Kx-8gN"/>
                                     <constraint firstAttribute="trailing" secondItem="ghv-Pb-r3o" secondAttribute="trailing" id="ndg-zr-Tov"/>
+                                    <constraint firstItem="siG-D7-w7G" firstAttribute="top" secondItem="g1V-pL-ffr" secondAttribute="top" constant="36" id="tEZ-GM-GVJ"/>
+                                    <constraint firstItem="siG-D7-w7G" firstAttribute="centerX" secondItem="g1V-pL-ffr" secondAttribute="centerX" id="uYY-At-0Qc"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="collectionView" destination="ghv-Pb-r3o" id="IaP-Fs-DRD"/>
+                                    <outlet property="headerTitleLabel" destination="siG-D7-w7G" id="uuu-Ka-XOe"/>
                                     <outlet property="pageControl" destination="Ssb-vC-eyq" id="pqj-ry-bDR"/>
                                 </connections>
                             </view>
@@ -2100,7 +2111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLK-hr-aVj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853.60000000000002" y="852.3238380809596"/>
+            <point key="canvasLocation" x="862" y="850"/>
         </scene>
         <!--Premium5 View Controller-->
         <scene sceneID="Dhq-VI-E0E">

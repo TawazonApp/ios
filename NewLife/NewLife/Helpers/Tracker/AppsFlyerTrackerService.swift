@@ -209,9 +209,9 @@ class AppsFlyerTrackingService: TrackingService {
                                              withValues: values)
     }
     
-    func sendOpenPremiumEvent() {
-        let values = getBaseEventValues()
-        
+    func sendOpenPremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
         AppsFlyerLib.shared().logEvent(CustomEvents.openPremium,
                                              withValues: values)
     }

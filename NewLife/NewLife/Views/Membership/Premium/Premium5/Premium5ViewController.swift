@@ -48,8 +48,6 @@ class Premium5ViewController: BasePremiumViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("subviews: \(self.view.subviews.count)")
-        view.clearLabels()
         initialize()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.fetchData()
@@ -60,7 +58,10 @@ class Premium5ViewController: BasePremiumViewController {
         LoadingHud.shared.show(animated: true)
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium5.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             LoadingHud.shared.hide(animated: true)
-            self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
+            if self.data.premiumDetails?.premiumPage.featureItems.count ?? 0 > 0 {
+                self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
+            }
+            
         })
     }
     

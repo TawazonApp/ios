@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 import SwiftyStoreKit
 import StoreKit
+import Alamofire
 
 class HomeViewController: SoundEffectsPresenterViewController {
     
@@ -364,7 +365,7 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
         guard self.presentedViewController == nil else {
             return
         }
-        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .session)
         
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom

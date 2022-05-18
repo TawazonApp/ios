@@ -7,12 +7,16 @@
 //
 
 import UIKit
-
+protocol ImagesContainerDelegate : class{
+    func updateHeaderTitle(item: Int)
+}
 class ImagesContainerView: UIView {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    weak var delegate : ImagesContainerDelegate?
     var images: [FeatureItem]? {
         didSet {
             reloadData()
@@ -28,6 +32,13 @@ class ImagesContainerView: UIView {
     private func initialize() {
         backgroundColor = UIColor.clear
         
+        headerTitleLabel.font = UIFont.munaBoldFont(ofSize: 32.0)
+        headerTitleLabel.textColor = UIColor.white
+        headerTitleLabel.numberOfLines = 0
+        headerTitleLabel.lineBreakMode = .byWordWrapping
+        headerTitleLabel.text = "premium4TitleLabelPart3".localized
+        headerTitleLabel.isHidden = true
+        
         collectionView.backgroundColor = UIColor.clear
         collectionView.decelerationRate = .fast
         
@@ -41,9 +52,14 @@ class ImagesContainerView: UIView {
     }
     
     private func reloadData() {
+        
         pageControl.numberOfPages = images?.count ?? 0
         collectionView.reloadData()
         DispatchQueue.main.async { [weak self] in
+            if let firstImage = self?.images?[0]{
+                self?.headerTitleLabel.text = firstImage.title
+            }
+            
             self?.updatePageControl(page: 0)
         }
     }
@@ -52,7 +68,7 @@ class ImagesContainerView: UIView {
         
         pageControl.currentPage = page
         centerItemIfNeeded(indexPath: IndexPath(item: page, section: 0))
-        
+        delegate?.updateHeaderTitle(item: page)
     }
     
     @IBAction func pageControlTapped(_ sender: Any) {

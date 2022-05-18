@@ -172,8 +172,9 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.openDownloadedLibrary, parameters: values)
     }
     
-    func sendOpenPremiumEvent() {
-        let values = getBaseEventValues()
+    func sendOpenPremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
         Analytics.logEvent(CustomEvents.openPremium, parameters: values)
     }
     

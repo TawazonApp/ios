@@ -16,13 +16,32 @@ enum premiumPageIds: Int{
 }
 class GeneralPremiumViewController: BasePremiumViewController {
     
+    enum FromView {
+        case list
+        case session
+        case section
+        case profile
+    }
+    
+    var fromView: FromView = .session
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.loadParsedView()
     }
     private func loadParsedView(){
-        let viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
+        //TODO: from list or session
+        var viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
+        switch fromView{
+        case .list:
+            viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
+        case .profile:
+            viewNameString = RemoteConfigManager.shared.string(forKey: .profilePremuimPageViewName)
+        case .session:
+            viewNameString = RemoteConfigManager.shared.string(forKey: .homeFeedPremuimPageViewName)
+        case .section:
+            viewNameString = RemoteConfigManager.shared.string(forKey: .sectionPremuimPageViewName)
+        }
         let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
         switch viewName{
             case .defaultView:
@@ -40,6 +59,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
             case .none:
             loadDefaultView()
         }
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: viewNameString)
     }
    
     private func loadDefaultView(){
@@ -50,21 +70,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
     private func loadPremium1ViewController() {
         if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
             loadPremiumPlanDetailsViewController()
-        }else{
-//            let viewcontroller = Premium1ViewController.instantiate(nextView: .dimiss)
-//            addChild(viewcontroller)
-//            viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
-//            view.addSubview(viewcontroller.view)
-//
-//            NSLayoutConstraint.activate([
-//                viewcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//                viewcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//                viewcontroller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//                viewcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//            ])
-//
-//            viewcontroller.didMove(toParent: self)
-            
+        }else{            
             let viewcontroller = Premium1ViewController.instantiate(nextView: .dimiss)
             self.navigationController!.setViewControllers([viewcontroller], animated: false)
         }
@@ -98,10 +104,11 @@ class GeneralPremiumViewController: BasePremiumViewController {
 }
 extension GeneralPremiumViewController {
     
-    class func instantiate(nextView: NextView) -> GeneralPremiumViewController {
+    class func instantiate(nextView: NextView, fromView: FromView) -> GeneralPremiumViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: GeneralPremiumViewController.identifier) as! GeneralPremiumViewController
         viewController.nextView = nextView
+        viewController.fromView = fromView
         return viewController
     }
 }

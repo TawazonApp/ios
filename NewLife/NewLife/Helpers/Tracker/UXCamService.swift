@@ -170,8 +170,9 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.openDownloadedLibrary, withProperties: values)
     }
     
-    func sendOpenPremiumEvent() {
-        let values = getBaseEventValues()
+    func sendOpenPremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
         UXCam.logEvent(CustomEvents.openPremium, withProperties: values)
     }
     

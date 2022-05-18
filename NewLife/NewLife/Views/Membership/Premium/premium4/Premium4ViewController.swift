@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import StoreKit
+import Dispatch
 
 class Premium4ViewController: BasePremiumViewController {
 
@@ -53,7 +54,7 @@ class Premium4ViewController: BasePremiumViewController {
         
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
-            self.headerTitlePart3Label.text = self.data.premiumDetails?.premiumPage.title
+            
             print("continueLabel: \(self.data.premiumDetails?.premiumPage.continueLabel)")
             self.features = self.data.premiumDetails?.premiumPage.featureItems
             
@@ -68,6 +69,7 @@ class Premium4ViewController: BasePremiumViewController {
         })
     }
     private func initialize() {
+        imagesContainer.delegate = self
         view.clearLabels()
         
         view.backgroundColor = UIColor.veniceBlue
@@ -130,5 +132,15 @@ extension Premium4ViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: Premium4ViewController.identifier) as! Premium4ViewController
         viewController.nextView = nextView
         return viewController
+    }
+}
+
+
+extension Premium4ViewController : ImagesContainerDelegate{
+    func updateHeaderTitle(item: Int) {
+        if let image = features?[item]{
+            self.headerTitlePart3Label.text = image.title
+        }
+        
     }
 }

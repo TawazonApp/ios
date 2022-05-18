@@ -50,7 +50,7 @@ class PremiumViewController: BasePremiumViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.showPurchaseCorrectView()
         }
-        TrackerManager.shared.sendOpenPremiumEvent()
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: premuimPageViewNameValues.defaultView.rawValue)
     }
     
     private func initialize() {

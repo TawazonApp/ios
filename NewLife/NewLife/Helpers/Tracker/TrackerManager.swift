@@ -118,9 +118,9 @@ class TrackerManager: TrackingService {
         }
     }
     
-    func sendOpenPremiumEvent() {
+    func sendOpenPremiumEvent(viewName: String) {
         for service in services {
-             service.sendOpenPremiumEvent()
+             service.sendOpenPremiumEvent(viewName: viewName)
         }
     }
     

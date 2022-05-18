@@ -135,9 +135,9 @@ class MembershipFormView: UIView {
         }
         appleIdButtonHeightConstraint.constant = 0
         
-        guard data is LoginFormVM else {
-            return
-        }
+//        guard data is LoginFormVM else {
+//            return
+//        }
         if #available(iOS 13.0, *) {
             appleIdButtonHeightConstraint.constant = 56
             appleIdButtonContainer.isHidden = false
@@ -232,9 +232,9 @@ extension MembershipFormView: ASAuthorizationControllerDelegate {
     
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        guard let loginVM = data as? LoginFormVM else {
-            return
-        }
+//        guard let loginVM = data as? LoginFormVM else {
+//            return
+//        }
         if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential, let identityToken = appleIDCredential.identityToken {
             let token = String(decoding: identityToken, as: UTF8.self)
             let name = "\(appleIDCredential.fullName?.givenName ?? "") \(appleIDCredential.fullName?.familyName ?? "")"
@@ -242,7 +242,7 @@ extension MembershipFormView: ASAuthorizationControllerDelegate {
             
             LoadingHud.shared.show(animated: true)
             
-            loginVM.appleLogin(data: loginModel) { [weak self] (error) in
+            data.appleLogin(data: loginModel) { [weak self] (error) in
                 LoadingHud.shared.hide(animated: true)
                 if let error = error {
                     self?.delegate?.showErrorMessageView(title: nil, message: error.message ?? "generalErrorMessage".localized)

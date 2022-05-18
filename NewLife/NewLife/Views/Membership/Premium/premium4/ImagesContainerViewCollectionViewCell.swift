@@ -35,7 +35,7 @@ class ImagesContainerViewCollectionViewCell: UICollectionViewCell {
             imageView.af.setImage(withURL: imagePath.url!)
         }
         
-        caption.text = imageData.title
+        caption.text = imageData.content
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
