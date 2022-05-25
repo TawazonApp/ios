@@ -18,6 +18,7 @@ import SwiftyStoreKit
 import AppsFlyerLib
 import AudioToolbox
 import UXCam
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         initializeUXCam()
+        initializeBranchIO(with: launchOptions)
         initializeFirebase()
         initializeFabric()
         initializeAppsFlayer()
@@ -71,31 +73,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BackgroundAudioManager.shared.remoteControlReceivedWithEvent(event)
         }
     }
-    
+    private func checkURL(openedUrl: URL) -> URL{
+        let components = URLComponents(url: openedUrl, resolvingAgainstBaseURL: false)
+        if let targetUrl = components?.queryItems?.first(where: { $0.name == "target_url" })?.value{
+            if targetUrl.contains("links.tawazonapp.com") {
+                let lastComp = URLComponents(url: URL(string: targetUrl)!, resolvingAgainstBaseURL: false)?.path.lastPathComponent
+                if let firebaseUrl = URL(string: "https://tawazon.page.link/\(lastComp ?? "")"){
+                    return firebaseUrl
+                }
+                
+            }
+        }
+        return openedUrl
+    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        _ = application(app, open: url, sourceApplication: options[.sourceApplication] as? String, annotation: "")
-        AppsFlyerLib.shared().handleOpen(url, options: options)
+        let openedUrl = checkURL(openedUrl: url)
         
-        _ = ApplicationDelegate.shared.application(app, open: url, options: options)
+        //check for link_click_id
+          if url.absoluteString.contains("link_click_id") == true{
+            return Branch.getInstance().application(app, open: url, options: options)
+          }
+        
+        _ = application(app, open: openedUrl, sourceApplication: options[.sourceApplication] as? String, annotation: "")
+        AppsFlyerLib.shared().handleOpen(openedUrl, options: options)
+        
+        _ = ApplicationDelegate.shared.application(app, open: openedUrl, options: options)
         return true
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let openedUrl = checkURL(openedUrl: url)
         
-        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: openedUrl) {
             if let url = dynamicLink.url {
                 handleDynamicLink(dynamicLink: url)
             }
         }
+        DynamicLinks.dynamicLinks().handleUniversalLink(openedUrl) { (dynamicLink, error) in
+            if let url = dynamicLink?.url {
+                self.handleDynamicLink(dynamicLink: url)
+            }
+        }
+        AppsFlyerLib.shared().handleOpen(openedUrl, sourceApplication: sourceApplication, withAnnotation: annotation)
         
-        
-        AppsFlyerLib.shared().handleOpen(url, sourceApplication: sourceApplication, withAnnotation: annotation)
-        
-        _ = ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        _ = ApplicationDelegate.shared.application(application, open: openedUrl, sourceApplication: sourceApplication, annotation: annotation)
         return true
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        if ((userActivity.webpageURL?.absoluteString.contains("app.link")) != nil){
+            return Branch.getInstance().continue(userActivity)
+          }
         
         AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
         
@@ -111,6 +140,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializeUXCam(){
         UXCam.optIntoSchematicRecordings()
         UXCam.start(withKey:"am0notpy21t31es")
+    }
+    
+    private func initializeBranchIO(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
+        // enable pasteboard check
+            Branch.getInstance().checkPasteboardOnInstall()
+            
+        // listener for Branch Deep Link data
+         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+               guard let data = params as? [String: AnyObject] else { return }
+             if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
+                 self.handleDynamicLink(dynamicLink: branchLink)
+             }
+         }
     }
     private func initializeFabric() {
         Fabric.with([Crashlytics.self])
@@ -133,6 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppsFlyerLib.shared().appsFlyerDevKey = Constants.appsFlyerDevKey
         AppsFlyerLib.shared().appleAppID = APPInfo.appId
         AppsFlyerLib.shared().delegate = self
+        AppsFlyerLib.shared().deepLinkDelegate = self
        NotificationCenter.default.addObserver(self,
        selector: #selector(sendLaunch),
        name: UIApplication.didBecomeActiveNotification,
@@ -243,6 +286,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         handleNotification(userInfo: userInfo)
+        Branch.getInstance().handlePushNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -312,7 +356,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
-        print("handleDynamicLink")
+        print("handleDynamicLink: \(dynamicLink.absoluteString)")
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
         
@@ -438,4 +482,45 @@ extension AppDelegate: AppsFlyerLibDelegate {
          print("\(error)")
      }
   
+}
+extension AppDelegate: DeepLinkDelegate {
+    func didResolveDeepLink(_ result: DeepLinkResult) {
+        print("didResolveDeepLink")
+        var fruitNameStr: String?
+        switch result.status {
+        case .notFound:
+            NSLog("[AFSDK] Deep link not found")
+            return
+        case .failure:
+            print("Error %@", result.error!)
+            return
+        case .found:
+            NSLog("[AFSDK] Deep link found")
+        }
+        
+        guard let deepLinkObj:DeepLink = result.deepLink else {
+            NSLog("[AFSDK] Could not extract deep link object")
+            return
+        }
+        print("deepLinkObj: \(deepLinkObj)")
+        if deepLinkObj.clickEvent.keys.contains("deep_link_sub2") {
+            let ReferrerId:String = deepLinkObj.clickEvent["deep_link_sub2"] as! String
+            NSLog("[AFSDK] AppsFlyer: Referrer ID: \(ReferrerId)")
+        } else {
+            NSLog("[AFSDK] Could not extract referrerId")
+        }
+        
+        let deepLinkStr:String = deepLinkObj.toString()
+        NSLog("[AFSDK] DeepLink data is: \(deepLinkStr)")
+            
+        if( deepLinkObj.isDeferred == true) {
+            NSLog("[AFSDK] This is a deferred deep link")
+        }
+        else {
+            NSLog("[AFSDK] This is a direct deep link")
+        }
+        
+        fruitNameStr = deepLinkObj.deeplinkValue
+//        walkToSceneWithParams(fruitName: fruitNameStr!, deepLinkData: deepLinkObj.clickEvent)
+    }
 }

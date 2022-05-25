@@ -34,7 +34,7 @@ protocol TrackingService {
     func sendUserChangePasswordEvent()
     func sendOpenDownloadedLibraryEvent()
     func sendOpenSectionSessionList(sectionId: String, name: String)
-    func sendOpenPremiumEvent()
+    func sendOpenPremiumEvent(viewName: String)
     func sendClosePremiumEvent()
     func sendSkipPremiumEvent()
     func sendNotificationStatusChangedEvent(status: Bool)
@@ -47,5 +47,5 @@ protocol TrackingService {
     func sendRateAppEvent()
     func sendShareAppEvent()
     func sendSessionListenForPeriodEvent(period: Double, sessionId: String)
-    func sendFailToPurchaseEvent(message: String)
+    func sendFailToPurchaseEvent(productId: String, plan: String, message: String)
 }

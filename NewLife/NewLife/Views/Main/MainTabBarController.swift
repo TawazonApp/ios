@@ -134,7 +134,9 @@ class MainTabBarController: UITabBarController {
         UIApplication.shared.open(url)
     }
     @objc private func handleDynamiclinksTracking(){
-        TrackerManager.shared.sendOpenDynamiclinkEvent()
+        if !UserDefaults.getTempCampaigns().isEmpty {
+            TrackerManager.shared.sendOpenDynamiclinkEvent()
+        }
     }
     func openCategory(categoryId: String) {
         guard let id = MainTabBarView.tabBarItemsIds(rawValue: categoryId) else {
@@ -264,7 +266,7 @@ class MainTabBarController: UITabBarController {
         guard self.presentedViewController == nil else {
             return
         }
-        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .session)
         
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom

@@ -405,15 +405,15 @@ extension UIColor {
     class var tiber: UIColor{
         return UIColor(red: 18.0 / 255.0, green: 35.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
     }
-    
+
     class var magnolia: UIColor{
         return UIColor(red: 230.0 / 255.0, green: 227.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
-    
+
     class var licorice: UIColor{
         return UIColor(red: 43.0 / 255.0, green: 53.0 / 255.0, blue: 68.0 / 255.0, alpha: 1.0)
     }
-    
+
     class var eastBay: UIColor{
         return UIColor(red: 72.0 / 255.0, green: 88.0 / 255.0, blue: 107.0 / 255.0, alpha: 1.0)
     }
@@ -429,6 +429,9 @@ extension UIColor {
         return UIColor(red: 59.0 / 255.0, green: 72.0 / 255.0, blue: 88.0 / 255.0, alpha: 1.0)
     }
 
+    class var heliotrope: UIColor{
+        return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
+    }
 }
 
 

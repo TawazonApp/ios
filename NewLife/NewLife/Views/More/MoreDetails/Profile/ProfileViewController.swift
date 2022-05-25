@@ -173,7 +173,7 @@ class ProfileViewController: MoreDetailsViewController {
     }
     
     private func openPremiumViewController() {
-        let viewcontroller = PremiumViewController.instantiate(nextView: .dimiss)
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .profile)
         
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom

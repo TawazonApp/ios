@@ -17,9 +17,7 @@ class LoadingHud: NSObject {
     private override init() {}
     
     func show(animated: Bool) {
-        print("show")
         if loadingView == nil {
-            print("NULL view")
             loadingView = LoadingHudView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
             loadingView!.show(animated: animated)
         }

@@ -47,17 +47,17 @@ class LoginFormVM: MembershipFormVM {
         }
     }
     
-    func appleLogin(data: AppleLoginModel, completion: @escaping ( _ error: CustomError?) -> Void) {
-        service.appleLogin(data: data) { (membershipModel, error) in
-            if let membershipModel = membershipModel {
-                
-                UserDefaults.saveUserToken(token: membershipModel.token)
-                
-                UserInfoManager.shared.setUserInfo(userInfo: membershipModel.userInfo)
-                UserInfoManager.shared.setGoals(goals: GoalsModel.init(goals: membershipModel.goals))
-                TrackerManager.shared.sendLoginEvent()
-            }
-            completion(error)
-        }
-    }
+//    func appleLogin(data: AppleLoginModel, completion: @escaping ( _ error: CustomError?) -> Void) {
+//        service.appleLogin(data: data) { (membershipModel, error) in
+//            if let membershipModel = membershipModel {
+//                
+//                UserDefaults.saveUserToken(token: membershipModel.token)
+//                
+//                UserInfoManager.shared.setUserInfo(userInfo: membershipModel.userInfo)
+//                UserInfoManager.shared.setGoals(goals: GoalsModel.init(goals: membershipModel.goals))
+//                TrackerManager.shared.sendLoginEvent()
+//            }
+//            completion(error)
+//        }
+//    }
 }

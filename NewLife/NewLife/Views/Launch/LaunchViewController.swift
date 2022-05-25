@@ -18,7 +18,7 @@ class LaunchViewController: BaseViewController {
         super.viewDidLoad()
         initialize()
         preFetchCachingData()
-        
+        sendCampaignIds()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) { [weak self] in
             
             if UserDefaults.userToken() != nil {
@@ -61,6 +61,13 @@ class LaunchViewController: BaseViewController {
     
     private func preFetchCachingData() {
         ProfileVM(service: MembershipServiceFactory.service()).userInfo { (error) in }
+    }
+    
+    private func sendCampaignIds(){
+        if !UserDefaults.getTempCampaigns().isEmpty {
+            TrackerManager.shared.sendOpenDynamiclinkEvent()
+        }
+        
     }
 }
 

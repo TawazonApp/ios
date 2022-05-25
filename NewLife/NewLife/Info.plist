@@ -36,6 +36,26 @@
 				<string>com.newlife.apps.newlife</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>io.Branch.Tawazon</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>Tawazon</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>link.tawazonapp.com</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>link.tawazonapp.com</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -125,6 +145,16 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>branch_key</key>
+	<dict>
+		<key>live</key>
+		<string>key_live_bp7HQwHCbmUmvTTiiPze9cocuthxgj8d</string>
+	</dict>
+	<key>branch_universal_link_domains</key>
+	<array>
+		<string>tawazon.app.link</string>
+		<string>tawazon-alternate.app.link</string>
 	</array>
 </dict>
 </plist>

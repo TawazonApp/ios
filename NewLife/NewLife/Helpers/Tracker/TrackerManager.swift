@@ -118,9 +118,9 @@ class TrackerManager: TrackingService {
         }
     }
     
-    func sendOpenPremiumEvent() {
+    func sendOpenPremiumEvent(viewName: String) {
         for service in services {
-             service.sendOpenPremiumEvent()
+             service.sendOpenPremiumEvent(viewName: viewName)
         }
     }
     
@@ -195,9 +195,9 @@ class TrackerManager: TrackingService {
             service.sendSessionListenForPeriodEvent(period: period, sessionId: sessionId)
         }
     }
-    func sendFailToPurchaseEvent(message: String){
+    func sendFailToPurchaseEvent(productId: String, plan: String, message: String){
         for service in services {
-            service.sendFailToPurchaseEvent(message: message)
+            service.sendFailToPurchaseEvent(productId: productId, plan: plan, message: message)
         }
     }
     
@@ -217,7 +217,7 @@ class TrackerManager: TrackingService {
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()
         let param = ["items": tempCampaigns] as [String : Any]
-         
+        print("param: \(param)")
         ConnectionUtils.performPostRequest(url: Api.trackingUrl.url!, parameters: param) { (data, error) in
             
             var campaign: CampaignTrackingModel?

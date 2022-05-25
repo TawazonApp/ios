@@ -209,9 +209,9 @@ class AppsFlyerTrackingService: TrackingService {
                                              withValues: values)
     }
     
-    func sendOpenPremiumEvent() {
-        let values = getBaseEventValues()
-        
+    func sendOpenPremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
         AppsFlyerLib.shared().logEvent(CustomEvents.openPremium,
                                              withValues: values)
     }
@@ -295,20 +295,6 @@ class AppsFlyerTrackingService: TrackingService {
         
     }
     
-    private func getBaseEventValues() -> [AnyHashable : Any] {
-        return ["idfa": UIApplication.identifierForAdvertising ?? "",
-                "campaignId" : getCampaignId(),
-                "currentCampaignId" :getCurrentCampaignId()]
-    }
-    private func getCampaignId() -> String{
-        if let campaignId = UserDefaults.originalCampaignId() {
-            return campaignId
-        }
-        else{
-            return ""
-        }
-    }
-    
     func sendSessionListenForPeriodEvent(period: Double, sessionId: String) {
         var values = getBaseEventValues()
         values["period"] = period
@@ -316,18 +302,17 @@ class AppsFlyerTrackingService: TrackingService {
         AppsFlyerLib.shared().logEvent(CustomEvents.sessionListenForPreiod, withValues: values)
     }
     
-    func sendFailToPurchaseEvent(message: String) {
+    func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {
         var values = getBaseEventValues()
+        values[AFEventParamContentId] = productId
+        values["plan"] = plan
         values["message"] = message
         AppsFlyerLib.shared().logEvent(CustomEvents.FailToPurchase, withValues: values)
     }
     
-    private func getCurrentCampaignId() -> String{
-        if let currentCampaignId = UserDefaults.currentCampaignId() {
-            return currentCampaignId
-        }
-        else{
-            return ""
-        }
+    private func getBaseEventValues() -> [AnyHashable : Any] {
+        return ["idfa": UIApplication.identifierForAdvertising ?? "",
+                "campaignId": UserDefaults.originalCampaignId() ?? "",
+                "currentCampaignId": UserDefaults.currentCampaignId() ?? ""]
     }
 }

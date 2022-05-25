@@ -67,17 +67,21 @@ class BasePremiumVM : NSObject{
             let discountPrice = product.price
             let discountPriceString = getPriceString(price: discountPrice, locale: product.priceLocale)
             var orgionalPriceString: String?
-            
-                let orgionalPrice = Float(truncating: product.price)
-                var priceDecimal = NSDecimalNumber(value: orgionalPrice)
+            let orgionalPrice = Float(truncating: product.price)
+            var priceDecimal = NSDecimalNumber(value: orgionalPrice)
+            orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
+
             if product.productIdentifier == PremiumPurchase.yearly.rawValue {
                 priceDecimal = NSDecimalNumber(value: orgionalPrice / 12)
+            }else if product.productIdentifier == PremiumPurchase.threeMonth.rawValue{
+                priceDecimal = NSDecimalNumber(value: orgionalPrice / 3)
             }
-                orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
-
-            print("product: \(product.priceLocale), \(product.price), \(orgionalPriceString), \(plan?.discount)")
+            let monthlyPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
+            
             if plan?.enabled ?? false{
-                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)
+                let planPriority = Int(plan?.priority ?? "") ?? 0
+                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
+                print("Priority: \(planPriority) title: \(plan?.title)")
                 purchaseItems.append(purchase)
             }
             

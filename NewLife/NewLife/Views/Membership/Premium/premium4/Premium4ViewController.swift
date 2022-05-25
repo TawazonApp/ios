@@ -8,6 +8,8 @@
 
 import UIKit
 import AudioToolbox
+import StoreKit
+import Dispatch
 
 class Premium4ViewController: BasePremiumViewController {
 
@@ -19,6 +21,7 @@ class Premium4ViewController: BasePremiumViewController {
     @IBOutlet weak var imagesContainer: ImagesContainerView!
     @IBOutlet weak var plansContainer: PlansView!
     @IBOutlet weak var purchaseButton: GradientButton!
+    @IBOutlet weak var promoCodeButton: UIButton!
     @IBOutlet weak var noteLabel: UILabel!
     
     var features: [FeatureItem]? {
@@ -50,17 +53,23 @@ class Premium4ViewController: BasePremiumViewController {
         LoadingHud.shared.show(animated: true)
         
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+            self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
             
+            print("continueLabel: \(self.data.premiumDetails?.premiumPage.continueLabel)")
             self.features = self.data.premiumDetails?.premiumPage.featureItems
+            
         })
     }
-
+    private func setData(){
+        
+    }
     private func fetchPlans(){
         data.fetchPremiumPurchaseProducts(completion: { (error) in
             self.plans = self.data.plansArray
         })
     }
     private func initialize() {
+        imagesContainer.delegate = self
         view.clearLabels()
         
         view.backgroundColor = UIColor.veniceBlue
@@ -78,6 +87,8 @@ class Premium4ViewController: BasePremiumViewController {
         
         headerTitlePart3Label.font = UIFont.munaBoldFont(ofSize: 32.0)
         headerTitlePart3Label.textColor = UIColor.white
+        headerTitlePart3Label.numberOfLines = 0
+        headerTitlePart3Label.lineBreakMode = .byWordWrapping
         headerTitlePart3Label.text = "premium4TitleLabelPart3".localized
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
@@ -92,6 +103,9 @@ class Premium4ViewController: BasePremiumViewController {
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
+        promoCodeButton.setTitle("promoCodeButtonTitle".localized, for: .normal)
+        promoCodeButton.titleLabel?.font = UIFont.munaFont(ofSize: 13)
+        promoCodeButton.tintColor = UIColor.white
         
         noteLabel.font = UIFont.munaFont(ofSize: 12.0)
         noteLabel.textColor = UIColor.white
@@ -103,6 +117,13 @@ class Premium4ViewController: BasePremiumViewController {
         print("purchaseButtonTapped: \(plansContainer.selectedPlan )")
         purchaseAction(product: data.products[plansContainer.selectedPlan])
     }
+    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
+    }
 }
 extension Premium4ViewController {
     
@@ -111,5 +132,15 @@ extension Premium4ViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: Premium4ViewController.identifier) as! Premium4ViewController
         viewController.nextView = nextView
         return viewController
+    }
+}
+
+
+extension Premium4ViewController : ImagesContainerDelegate{
+    func updateHeaderTitle(item: Int) {
+        if let image = features?[item]{
+            self.headerTitlePart3Label.text = image.title
+        }
+        
     }
 }

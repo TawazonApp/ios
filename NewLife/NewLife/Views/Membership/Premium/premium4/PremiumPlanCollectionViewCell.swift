@@ -34,7 +34,7 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
         planTitlelabel.textColor = .regalBlue
         
         planPricelabel.textColor = .white
-        planPricelabel.font = UIFont.munaFont(ofSize: 16.0)
+        planPricelabel.font = UIFont.munaFont(ofSize: 15.0)
         
         planTriallabel.font = UIFont.munaFont(ofSize: 14.0)
         
@@ -45,14 +45,15 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
         
         planTitlelabel.text = plan.title
         planPricelabel.text = getPriceString()
-        planTriallabel.text = plan.trialDescription ?? ""
+        planTriallabel.text = !(plan.trialDescription?.isEmptyWithTrim ?? true) ? plan.trialDescription : (plan.id != PremiumPurchase.monthly.rawValue ?  plan.price : "")
+
         planTitlelabel.backgroundColor = UIColor(plan.color)
         planTriallabel.textColor = UIColor(plan.color)
         
     }
     private func getPriceString() -> String{
-        var priceString = "premium4PlanPriceString".localized
-        return priceString.replacingOccurrences(of: "{price}", with: plan.price)
+        let priceString = "premium4PlanPriceString".localized
+        return priceString.replacingOccurrences(of: "{price}", with: plan.monthlyPrice)
     }
     func setIsSelected(selected: Bool) {
         isSelected = selected
