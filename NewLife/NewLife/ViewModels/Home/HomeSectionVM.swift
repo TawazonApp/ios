@@ -15,6 +15,7 @@ class HomeSectionVM {
     var iconUrl: String?
     var sessions: [HomeSessionVM]
     var style: HomeSectionStyle
+    var bannerType: HomeBannerStyle?
     let categoryId: String?
     
     init(section: HomeSectionModel) {
@@ -24,6 +25,7 @@ class HomeSectionVM {
         self.iconUrl = section.icon
         self.sessions = section.sessions.map({ HomeSessionVM(session: $0) })
         style = section.style ?? .list
+        bannerType = section.bannerType
         categoryId = section.categoryId
     }
     

@@ -288,7 +288,35 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 sectionCell.delegate = self
                 sectionCell.data = section
                 cell = sectionCell
-            } else {
+            }
+            else if section.style == .banner{
+                if section.bannerType == .banner1{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerTableViewCell.identifier) as! HomePremiumBannerTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    cell = sectionCell
+                }
+                else if section.bannerType ==  .banner2{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner2TableViewCell.identifier) as! HomePremiumBanner2TableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    cell = sectionCell
+                }
+                else if section.bannerType ==  .banner3{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner3TableViewCell.identifier) as! HomePremiumBanner3TableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    cell = sectionCell
+                }
+                else if section.bannerType ==  .banner4{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner4TableViewCell.identifier) as! HomePremiumBanner4TableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    cell = sectionCell
+                }
+                else if section.bannerType ==  .banner5{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner5TableViewCell.identifier) as! HomePremiumBanner5TableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    cell = sectionCell
+                }
+            }
+            else {
                 let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
                 sectionCell.delegate = self
                            sectionCell.data = section
@@ -297,11 +325,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
            
         }
         cell.layer.masksToBounds = false
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row > 0 {
+            if let section = home.sections?[indexPath.row - 1] {
+                if section.bannerType == .banner2 || section.bannerType == .banner5 {
+                    openPremiumPage(fromBanner: true)
+                }
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -396,4 +435,23 @@ extension HomeViewController: SessionPlayerDelegate {
             SessionRateViewController.show(session: session, from: self, force: false)
         }
     }
+}
+
+extension HomeViewController: HomeTableBannerCellDelegate{
+    func purchaseTapped() {
+        openPremiumPage(fromBanner: true)
+    }
+    
+    func moreTapped() {
+        openPremiumPage(fromBanner: false)
+    }
+    private func openPremiumPage(fromBanner: Bool){
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss)
+        viewcontroller.fromBanner = fromBanner
+        let navigationController = NavigationController.init(rootViewController: viewcontroller)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
 }

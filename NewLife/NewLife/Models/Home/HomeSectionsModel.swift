@@ -17,6 +17,17 @@ enum HomeSectionStyle: String, Codable {
     case card
     case list
     case largeList
+    case banner
+    case verticalList
+}
+
+enum HomeBannerStyle: String, Codable  {
+    case banner1
+    case banner2
+    case banner3
+    case banner4
+    case banner5
+    case banner6
 }
 
 struct HomeSectionModel: Codable, ModelInitializable {
@@ -25,11 +36,13 @@ struct HomeSectionModel: Codable, ModelInitializable {
     let categoryId: String?
     let sessions: [SessionModel]
     let style: HomeSectionStyle?
+    let bannerType: HomeBannerStyle?
     
     enum CodingKeys: String, CodingKey {
         case id, title, subtitle, icon
         case categoryId = "category_id"
         case sessions
         case style
+        case bannerType
     }
 }

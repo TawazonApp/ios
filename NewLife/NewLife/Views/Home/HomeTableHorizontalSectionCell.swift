@@ -56,8 +56,9 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
         if let imageUrl = data?.iconUrl?.url {
             iconImageView.af.setImage(withURL: imageUrl)
         }
-        setTitleLabelPosition()
         self.calculateCollectionHeight()
+        setTitleLabelPosition()
+        
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
             self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
@@ -85,7 +86,8 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
         if (data?.sessions.count ?? 0) <= 1 {
             collectionCellWidth = availableWidth - 5
         }
-        collectionheightConstraint.constant = collectionCellHeight
+        collectionheightConstraint.constant = collectionCellHeight + (collectionView.contentInset.top + collectionView.contentInset.bottom + 10) + (2 * collectionCellSpace)
+        collectionView.layoutIfNeeded()
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
@@ -105,7 +107,10 @@ extension HomeTableHorizontalSectionCell: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionCellWidth, height: collectionCellHeight)
+        if collectionCellHeight < collectionView.frame.size.height {
+            return CGSize(width: collectionCellWidth, height: collectionCellHeight)
+        }
+        return CGSize(width: collectionCellWidth, height: 116)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

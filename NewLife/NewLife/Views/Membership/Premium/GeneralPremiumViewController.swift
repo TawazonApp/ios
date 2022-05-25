@@ -16,14 +16,17 @@ enum premiumPageIds: Int{
 }
 class GeneralPremiumViewController: BasePremiumViewController {
     
+    var fromBanner: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.loadParsedView()
     }
     private func loadParsedView(){
-        let viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
-        let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
+        let viewNameString = premuimPageViewNameValues.premiumFour.rawValue
+        let bannerNameString = RemoteConfigManager.shared.string(forKey: .premuimOfBannerViewName)
+        let viewName = fromBanner == false ? premuimPageViewNameValues.init(rawValue: viewNameString): premuimPageViewNameValues.init(rawValue: bannerNameString)
         switch viewName{
             case .defaultView:
                 loadDefaultView()
