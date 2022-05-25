@@ -16,13 +16,14 @@ enum premiumPageIds: Int{
 }
 class GeneralPremiumViewController: BasePremiumViewController {
     
-    var fromBanner: Bool = false
+//    var fromBanner: Bool = false
 
     enum FromView {
         case list
         case session
         case section
         case profile
+        case banner
     }
 
     var fromView: FromView = .session
@@ -34,6 +35,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
     private func loadParsedView(){
         //TODO: from list or session
         var viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
+        
         switch fromView{
         case .list:
             viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
@@ -43,11 +45,11 @@ class GeneralPremiumViewController: BasePremiumViewController {
             viewNameString = RemoteConfigManager.shared.string(forKey: .homeFeedPremuimPageViewName)
         case .section:
             viewNameString = RemoteConfigManager.shared.string(forKey: .sectionPremuimPageViewName)
+        case .banner:
+            viewNameString = RemoteConfigManager.shared.string(forKey: .premuimOfBannerViewName)
         }
-//         let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
+         let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
 
-        let bannerNameString = RemoteConfigManager.shared.string(forKey: .premuimOfBannerViewName)
-        let viewName = fromBanner == false ? premuimPageViewNameValues.init(rawValue: viewNameString): premuimPageViewNameValues.init(rawValue: bannerNameString)
          switch viewName{
             case .defaultView:
                 loadDefaultView()

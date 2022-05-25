@@ -9,9 +9,8 @@
 import FirebaseRemoteConfig
 
 enum RCValueKeys: String {
-  case premuimPageViewName
-    case premuimOfBannerViewName
     case premuimPageViewName
+    case premuimOfBannerViewName
     case homeFeedPremuimPageViewName
     case profilePremuimPageViewName
     case sectionPremuimPageViewName
@@ -38,7 +37,6 @@ class RemoteConfigManager{
 //MARK: fetch and load
 extension RemoteConfigManager{
     func loadDefaultValues() {
-        print("loadDefaultValues")
       let appDefaults: [String: Any?] = [
         RCValueKeys.premuimPageViewName.rawValue: "PremiumViewController",
       ]
@@ -47,9 +45,8 @@ extension RemoteConfigManager{
     }
     
     func fetchRemoteConfigCloudValues() {
-        print("fetchRemoteConfigCloudValues")
       //FIXME: remove on production
-      activateDebugMode()
+//      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {
@@ -62,28 +59,25 @@ extension RemoteConfigManager{
         }
 
         RemoteConfig.remoteConfig().activate { _, _ in
-            let appPrimaryPremiumViewName = RemoteConfig.remoteConfig()
+            _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.premuimPageViewName.rawValue)
             .stringValue ?? "undefined"
-            print("appPrimaryPremiumViewName: \(appPrimaryPremiumViewName), rawValue: \(RCValueKeys.premuimPageViewName.rawValue)")
-
-            let homeFeedPremuimPageViewName = RemoteConfig.remoteConfig()
+            
+            _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.homeFeedPremuimPageViewName.rawValue)
               .stringValue ?? "undefined"
-            print("homeFeedPremuimPageViewName: \(homeFeedPremuimPageViewName), rawValue: \(RCValueKeys.homeFeedPremuimPageViewName.rawValue)")
-
-            let profilePremuimPageViewName = RemoteConfig.remoteConfig()
+            
+            _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.profilePremuimPageViewName.rawValue)
               .stringValue ?? "undefined"
-            print("profilePremuimPageViewName: \(profilePremuimPageViewName), rawValue: \(RCValueKeys.profilePremuimPageViewName.rawValue)")
-
-            let sectionPremuimPageViewName = RemoteConfig.remoteConfig()
+            
+            _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.sectionPremuimPageViewName.rawValue)
               .stringValue ?? "undefined"
-            print("sectionPremuimPageViewName: \(sectionPremuimPageViewName), rawValue: \(RCValueKeys.sectionPremuimPageViewName.rawValue)")
+            
 
 
-            print("CONFIG: \(RemoteConfig.remoteConfig().allKeys(from: .remote))")
+            
           self?.fetchComplete = true
           DispatchQueue.main.async {
             self?.loadingDoneCallback?()

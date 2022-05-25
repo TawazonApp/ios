@@ -447,8 +447,12 @@ extension HomeViewController: HomeTableBannerCellDelegate{
         openPremiumPage(fromBanner: false)
     }
     private func openPremiumPage(fromBanner: Bool){
-        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss)
-        viewcontroller.fromBanner = fromBanner
+        var viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .banner)
+        if !fromBanner {
+            viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .session)
+        }
+        
+        
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
