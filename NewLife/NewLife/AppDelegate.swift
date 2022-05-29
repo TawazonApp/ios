@@ -30,7 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-        
+        UIApplication.isUpdateAvailable(){ (hasUpdates, versionSize)  in
+            let sizeInMB = round((Double(versionSize) ?? 0)/1000000)
+            print("is update available: \(hasUpdates), of: \(sizeInMB)")
+            if hasUpdates{
+                //TODO: Show popup
+            }
+          }
         initializeUXCam()
         initializeBranchIO(with: launchOptions)
         initializeFirebase()

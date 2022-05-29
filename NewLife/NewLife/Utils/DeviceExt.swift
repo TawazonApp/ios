@@ -45,6 +45,37 @@ extension UIApplication {
         }
     }
     
+    class func isUpdateAvailable(callback: @escaping (Bool, String)->Void) {
+        let bundleId = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
+        
+        ConnectionUtils.performGetRequest(url: "https://itunes.apple.com/lookup?bundleId=\(bundleId)".url!, parameters: nil) { (data, error) in
+            if let data = data{
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] , let results = json["results"] as? [[String: Any]], let versionStore = (results.first)?["version"]  as? String, let versionSize = (results.first)?["fileSizeBytes"]  as? String{
+                                let arrayStoreVersion = versionStore.split(separator: ".").compactMap { Int($0) }
+                                let arrayLocalVersion = appVersion.split(separator: ".").compactMap { Int($0) }
+
+                                if arrayLocalVersion.count != arrayStoreVersion.count {
+                                  callback(true, versionSize) // different versioning system
+                                  return
+                                }
+
+                                // check each segment of the version
+                                for (localSegment, storeSegment) in zip(arrayLocalVersion, arrayStoreVersion) {
+                                  if localSegment < storeSegment {
+                                    callback(true, versionSize)
+                                    return
+                                  }
+                                }
+                              }
+                              callback(false, "") // no new version or failed to fetch app store version
+                } catch let error as NSError {
+                    print("Failed to load: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
     class var appName: String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
     }
