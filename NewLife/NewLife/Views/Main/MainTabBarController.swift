@@ -157,9 +157,11 @@ class MainTabBarController: UITabBarController {
     }
     
     func showSessionPlayerBar() {
+        print("MAIN")
         guard AudioPlayerManager.shared.isPlaying() else {
             return
         }
+        print("isPlaying")
         addPlayerBarIfNeeded()
         playerBar?.playSession()
     }

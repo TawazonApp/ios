@@ -101,6 +101,8 @@ extension UIApplication {
 struct UserDefaultsKeys {
     static let userToken = "UserTokenKey"
     static let userSelectGoals = "UserSelectGoalsKey"
+    static let userSelectedVoice = "UserSelectedVoiceKey"
+    static let userSelectedDialect = "UserSelectedDialectKey"
     static let userId = "UserIdKey"
     static let userPremium = "UserPremiumKey"
     static let ratedSessions = "ratedSessions"
@@ -219,6 +221,22 @@ extension UserDefaults {
     class func discountOfferOpened(id: String) {
         UserDefaults.standard.setValue(true, forKey: "Discount-\(id)")
     }
+    //Voices and dialects
+    //set
+    class func saveSelectedVoice(code: String){
+        UserDefaults.standard.setValue(code, forKey: UserDefaultsKeys.userSelectedVoice)
+    }
+    class func saveSelectedDialect(code: String){
+        UserDefaults.standard.setValue(code, forKey: UserDefaultsKeys.userSelectedDialect)
+    }
+    //get
+    class func selectedVoice() -> String?{
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.userSelectedVoice) as? String
+    }
+    class func selectedDialect() -> String?{
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.userSelectedDialect) as? String
+    }
+    //Campaigns
     class func saveOriginalCampaign(id: String){
         UserDefaults.standard.set(id, forKey: UserDefaultsKeys.originalCampaignId)
     }

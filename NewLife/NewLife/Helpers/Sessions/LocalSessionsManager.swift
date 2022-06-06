@@ -147,7 +147,7 @@ class LocalSessionsManager: NSObject {
     }
     
     private func downloadSessionAudio(session: SessionModel, userId: String, completion: @escaping (_ localAudioPath: String?, CustomError?) -> Void) {
-        
+        //TODO: change downnloadable link
         guard let remoteAudioUrl = session.audioSource.url else  {
         
             completion(nil, CustomError(message: "invalidSessionFilePathError".localized, statusCode: nil))

@@ -294,26 +294,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 if section.bannerType == .banner1{
                     let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerTableViewCell.identifier) as! HomePremiumBannerTableViewCell
                     sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
                     cell = sectionCell
                 }
                 else if section.bannerType ==  .banner2{
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner2TableViewCell.identifier) as! HomePremiumBanner2TableViewCell
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumGradientBannerTableViewCell.identifier) as! HomePremiumGradientBannerTableViewCell
                     sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
                     cell = sectionCell
                 }
                 else if section.bannerType ==  .banner3{
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner3TableViewCell.identifier) as! HomePremiumBanner3TableViewCell
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumCenteredSpecialBannerTableViewCell.identifier) as! HomePremiumCenteredSpecialBannerTableViewCell
                     sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
                     cell = sectionCell
                 }
                 else if section.bannerType ==  .banner4{
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner4TableViewCell.identifier) as! HomePremiumBanner4TableViewCell
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerWithHeaderLogoTableViewCell.identifier) as! HomePremiumBannerWithHeaderLogoTableViewCell
                     sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
                     cell = sectionCell
                 }
                 else if section.bannerType ==  .banner5{
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBanner5TableViewCell.identifier) as! HomePremiumBanner5TableViewCell
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumFullWidthBannerTableViewCell.identifier) as! HomePremiumFullWidthBannerTableViewCell
                     sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
                     cell = sectionCell
                 }
             }
@@ -337,7 +342,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
             if let section = home.sections?[indexPath.row - 1] {
-                if section.bannerType == .banner2 || section.bannerType == .banner5 {
+                if section.clickable == true {
                     openPremiumPage(fromBanner: true)
                 }
             }

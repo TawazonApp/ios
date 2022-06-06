@@ -252,6 +252,7 @@ class FirebaseTrackingService: TrackingService {
     
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
-                "currentCampaignId": UserDefaults.currentCampaignId() ?? ""]
+                "currentCampaignId": UserDefaults.currentCampaignId() ?? "",
+                "is_premium" : UserDefaults.isPremium()]
     }
 }

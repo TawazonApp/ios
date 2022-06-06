@@ -77,6 +77,11 @@ class MoreViewController: BaseViewController {
         Language.language = language
         NotificationCenter.default.post(name: .languageChanged, object: nil)
         (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
+        self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
+    }
+    
+    @objc private func showSessionPlayerBar() {
+        NotificationCenter.default.post(name: NSNotification.Name.showSessionPlayerBar, object: nil)
     }
     
     private func openViewController(cellData: MoreCellVM) {

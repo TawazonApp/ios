@@ -32,17 +32,22 @@ enum HomeBannerStyle: String, Codable  {
 
 struct HomeSectionModel: Codable, ModelInitializable {
     let id, title: String
-    let subtitle, icon: String?
+    let subtitle, icon, buttonLabel, moreLabel, image: String?
     let categoryId: String?
     let sessions: [SessionModel]
     let style: HomeSectionStyle?
     let bannerType: HomeBannerStyle?
+    let clickable: Bool?
+    
     
     enum CodingKeys: String, CodingKey {
-        case id, title, subtitle, icon
+        case id, title, subtitle, icon, image
         case categoryId = "category_id"
         case sessions
         case style
         case bannerType
+        case buttonLabel = "button_label"
+        case moreLabel = "more_label"
+        case clickable
     }
 }

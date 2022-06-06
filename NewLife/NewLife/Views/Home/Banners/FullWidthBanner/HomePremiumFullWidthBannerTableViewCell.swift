@@ -8,18 +8,25 @@
 
 import UIKit
 
-class HomePremiumBanner4TableViewCell: UITableViewCell {
+class HomePremiumFullWidthBannerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bannerContainerView: BaseBannerView!
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var stackImages: UIStackView!
     @IBOutlet var backgroundStackImages: [UIImageView]!
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var tawazonTitleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var purchaseButton: UIButton!
     @IBOutlet weak var moreButton: GradientButton!
     
+    
+    var data: HomeSectionVM? {
+        didSet {
+            reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,38 +45,67 @@ class HomePremiumBanner4TableViewCell: UITableViewCell {
         gradientView.applyGradientColor(colors: [UIColor.blueZodiac.cgColor, UIColor.licorice.withAlphaComponent(0.74).cgColor, UIColor.eastBay.withAlphaComponent(0.0).cgColor], startPoint: .bottom, endPoint: .top)
         
         for (index, imageView) in backgroundStackImages.enumerated(){
-            imageView.contentMode = .scaleToFill
+            imageView.contentMode = .scaleAspectFill
             imageView.backgroundColor = .clear
-            imageView.image = UIImage(named: "HomeBanner4BG\(index)")
+//            imageView.image = UIImage(named: "HomeBanner4BG\(index)")
         }
         
+        backgroundImage.contentMode = .scaleToFill
+        backgroundImage.backgroundColor = .clear
         
         tawazonTitleImage.contentMode = .scaleToFill
         tawazonTitleImage.backgroundColor = .clear
         tawazonTitleImage.image = UIImage(named: "HomeBanner2Logo")
         
-        titleLabel.text = "homePremiumBanner4Title".localized
+//        titleLabel.text = "homePremiumBanner4Title".localized
         titleLabel.font = .munaBoldFont(ofSize: 28.0)
         titleLabel.textColor = .white
         
         
-        subTitleLabel.text = "homePremiumBanner4SubTitle".localized
+//        subTitleLabel.text = "homePremiumBanner4SubTitle".localized
         subTitleLabel.font = .munaBoldFont(ofSize: 24.0)
         subTitleLabel.textColor = .white
 
 
         purchaseButton.backgroundColor = .white
-        purchaseButton.setTitle("homePremiumBanner4PurchaseButtonTitle".localized, for: .normal)
+//        purchaseButton.setTitle("homePremiumBanner4PurchaseButtonTitle".localized, for: .normal)
         purchaseButton.layer.cornerRadius = 6
         purchaseButton.tintColor = .licorice
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
         moreButton.backgroundColor = .licorice.withAlphaComponent(0.36)
-        moreButton.setTitle("homePremiumBanner4MoreButtonTitle".localized, for: .normal)
+//        moreButton.setTitle("homePremiumBanner4MoreButtonTitle".localized, for: .normal)
         moreButton.layer.cornerRadius = 6
         moreButton.layer.borderWidth = 1
         moreButton.layer.borderColor = UIColor.white.cgColor
         moreButton.tintColor = .white
         moreButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
+    }
+    
+    private func reloadData() {
+        titleLabel.text = data?.title
+        subTitleLabel.text = data?.subTitle
+        purchaseButton.setTitle(data?.buttonLabel, for: .normal)
+        moreButton.setTitle(data?.moreLabel, for: .normal)
+        
+        loadBannerImage()
+    }
+    private func loadBannerImage(){
+        backgroundImage.image = nil
+        let loadingIndicator = UIActivityIndicatorView(style: .white)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor).isActive = true
+        loadingIndicator.center = backgroundImage.center
+        loadingIndicator.startAnimating()
+        
+        if let imageUrl = data?.imageUrl?.url {
+            backgroundImage.af.setImage(withURL: imageUrl, completion:  { (_) in
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+            })
+            
+        }
     }
 }

@@ -313,6 +313,7 @@ class AppsFlyerTrackingService: TrackingService {
     private func getBaseEventValues() -> [AnyHashable : Any] {
         return ["idfa": UIApplication.identifierForAdvertising ?? "",
                 "campaignId": UserDefaults.originalCampaignId() ?? "",
-                "currentCampaignId": UserDefaults.currentCampaignId() ?? ""]
+                "currentCampaignId": UserDefaults.currentCampaignId() ?? "",
+                "is_premium" : UserDefaults.isPremium()]
     }
 }

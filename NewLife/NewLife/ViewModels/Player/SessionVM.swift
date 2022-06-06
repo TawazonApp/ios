@@ -15,6 +15,9 @@ class SessionVM: BaseLibrarySessionVM {
         return session?.id
     }
     
+    var audioSources: [AudioSourceModel]?{
+        return session?.audioSources
+    }
     
     var author: String? {
         return session?.author
@@ -45,5 +48,17 @@ class SessionVM: BaseLibrarySessionVM {
     private func sendDownloadSessionEvent(id: String, name: String) {
         TrackerManager.shared.sendDownloadSessionEvent(id: id, name: name)
     }
-    
+    func getSessionAudioSource() -> String{
+        let userPreferredVoice = UserDefaults.selectedVoice()
+        let userPreferredDialect = UserDefaults.selectedDialect()
+        
+        let selectedSessionVoice = self.audioSources?.filter{$0.title == userPreferredVoice}.first
+        let selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.title == userPreferredDialect}.first
+        
+        if !(selectedSessionDialect?.stream.isEmptyWithTrim ?? true) {
+            return selectedSessionDialect!.stream
+        }
+        //TODO: return fall-back link
+        return ""
+    }
 }

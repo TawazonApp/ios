@@ -17,6 +17,7 @@ protocol SessionPlayerDelegate: class {
 
 class SessionPlayerViewController: SoundEffectsPresenterViewController {
     
+    @IBOutlet weak var voiceAndDialectsButton: GradientButton!
     @IBOutlet weak var backgroundImageView: ParallaxImageView!
     @IBOutlet weak var overlayView: GradientView!
     @IBOutlet weak var downloadButton: DownloadSessionButton!
@@ -65,7 +66,8 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if didAppeared == false {
-            self.playSession()
+            let sessionURL = session?.getSessionAudioSource()
+            self.playSession(sessoinAudioSource: sessionURL)
             backgroundImageView.animate()
             didAppeared = true
         }
@@ -102,6 +104,15 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         overlayView.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
         
         playButton.tintColor = UIColor.white
+        
+        voiceAndDialectsButton.setTitle("voiceAndDialectsTitle".localized, for: .normal)
+        voiceAndDialectsButton.tintColor = .white
+        voiceAndDialectsButton.layer.cornerRadius = 22.0
+        voiceAndDialectsButton.titleLabel?.font = UIFont.munaFont(ofSize: 18)
+        voiceAndDialectsButton.setImage(#imageLiteral(resourceName: "VoiceAndDialect"), for: .normal)
+        voiceAndDialectsButton.applyGradientColor(colors: [UIColor.yellow.withAlphaComponent(0.33).cgColor], startPoint: .top, endPoint: .bottom)
+        voiceAndDialectsButton.backgroundColor = .black.withAlphaComponent(0.31)
+        
         initializeShareButton()
         updatePlayButtonStyle()
     }
@@ -124,7 +135,7 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         NotificationCenter.default.post(name: NSNotification.Name.hideSessionPlayerBar, object: nil)
     }
     
-    private func showSessionPlayerBar() {
+    @objc private func showSessionPlayerBar() {
         NotificationCenter.default.post(name: NSNotification.Name.showSessionPlayerBar, object: nil)
     }
     
@@ -249,6 +260,10 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         showRateSessionView()
     }
     
+    @IBAction func voicesAndDialectsButtonTapped(_ sender: UIButton) {
+        showVoicesAndDialectsView()
+    }
+    
     func showSessionDownloadedSuccessMessage() {
         
         if swiftMessages != nil {
@@ -302,6 +317,18 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         }
         SessionRateViewController.show(session: session, from: self, force: true)
     }
+    
+    private func showVoicesAndDialectsView() {
+        guard let session = session else {
+            return
+        }
+        didAppeared = false
+        let voicesAndDialectsViewController = VoicesAndDialectsViewController.instantiate(session: session)
+        voicesAndDialectsViewController.modalPresentationStyle = .custom
+        voicesAndDialectsViewController.transitioningDelegate = self
+        voicesAndDialectsViewController.delegate = self
+        self.present(voicesAndDialectsViewController, animated: true, completion: nil)
+    }
 }
 
 
@@ -333,11 +360,11 @@ extension SessionPlayerViewController: PlayerControlsViewDelegate {
 
 extension SessionPlayerViewController {
     
-    private func playSession() {
-        if AudioPlayerManager.shared.isPlaying(url: session?.audioUrl) == true {
+    private func playSession(sessoinAudioSource: String? = "") {
+        if AudioPlayerManager.shared.isPlaying(url: sessoinAudioSource?.url) == true {
             return
         }
-        guard let soundUrl = session?.localAudioUrl ?? session?.audioUrl else {
+        guard let soundUrl = sessoinAudioSource?.url ?? session?.localAudioUrl ?? session?.audioUrl else {
             return
         }
         if AudioPlayerManager.shared.isCurrentTrack(url: soundUrl) {
@@ -483,5 +510,24 @@ extension SessionPlayerViewController {
 extension AudioPlayerManager {
     func isCurrentTrack(url: URL) -> Bool {
         return currentTrack?.identifier() == url.absoluteString
+    }
+}
+extension SessionPlayerViewController : VoicesAndDialectsDelegate{
+    func sessionStreamLinkChanged(audioSource: String) {
+        playSession(sessoinAudioSource: audioSource)
+    }
+    func changeInterfaceLanguage(language: Language) {
+        changeLanguage(language: language)
+        self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
+        
+    }
+    
+    private func changeLanguage(language: Language) {
+        guard language != Language.language else {
+            return
+        }
+        Language.language = language
+        NotificationCenter.default.post(name: .languageChanged, object: nil)
+        (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
     }
 }
