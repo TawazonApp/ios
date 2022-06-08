@@ -30,6 +30,7 @@ class MainTabBarController: UITabBarController {
            self.performNotificationActionIfNeeded()
         }
         playMainBackgroundAudio()
+        checkAppUpdate()
     }
     
     deinit {
@@ -80,6 +81,29 @@ class MainTabBarController: UITabBarController {
         BackgroundAudioManager.shared.mainBackgroundAudio.play()
     }
     
+    func checkAppUpdate(){
+        UIApplication.isUpdateAvailable(){ (hasUpdates, versionSize)  in
+            let _ = round((Double(versionSize) ?? 0)/1000000)
+            if hasUpdates{
+                self.showUpdateAppAlert()
+            }
+          }
+    }
+    
+    private func showUpdateAppAlert(){
+        let alert = UIAlertController(title: "upateAppAlertTitle".localized, message: "upateAppAlertMessage".localized, preferredStyle: .alert)
+        let updateAction = UIAlertAction(title: "update".localized, style: .default) { (action) in
+            if let url = URL(string: "itms-apps://apple.com/app/id1456167174") {
+                UIApplication.shared.open(url)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "notNow".localized, style: .default)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(updateAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
   @objc private func performNotificationActionIfNeeded() {
         guard let notificationData = appDelegate?.notificationData else {
             return
@@ -121,9 +145,7 @@ class MainTabBarController: UITabBarController {
                 self.navigationController?.pushViewController(sectionViewController, animated: true)
             }
         }else if notificationData.type == .redeem{
-            print("4")
             if let offerCode = notificationData.data as? String{
-                print("offerCode :\(offerCode)")
                 openOffer(with: offerCode)
             }
         }
@@ -157,11 +179,9 @@ class MainTabBarController: UITabBarController {
     }
     
     func showSessionPlayerBar() {
-        print("MAIN")
         guard AudioPlayerManager.shared.isPlaying() else {
             return
         }
-        print("isPlaying")
         addPlayerBarIfNeeded()
         playerBar?.playSession()
     }

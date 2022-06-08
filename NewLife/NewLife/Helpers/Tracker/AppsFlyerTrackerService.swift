@@ -43,6 +43,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let cancellogout = "af_cancel_logout"
         static let rateApp = "af_rate_app"
         static let shareApp = "af_share_app"
+        static let openVoicesAndDialects = "open_voices_and_dialects"
     }
     
     func sendUserId(userId: String?) {
@@ -310,6 +311,10 @@ class AppsFlyerTrackingService: TrackingService {
         AppsFlyerLib.shared().logEvent(CustomEvents.FailToPurchase, withValues: values)
     }
     
+    func sendOpenVoicesAndDialectsEvent() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.openVoicesAndDialects, withValues: values)
+    }
     private func getBaseEventValues() -> [AnyHashable : Any] {
         return ["idfa": UIApplication.identifierForAdvertising ?? "",
                 "campaignId": UserDefaults.originalCampaignId() ?? "",

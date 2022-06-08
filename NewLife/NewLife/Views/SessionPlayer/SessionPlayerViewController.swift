@@ -61,6 +61,7 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         updateButtonStates()
         hideSessionPlayerBar()
         stopBackgroundMusicIfNeeded()
+        reduceVoulme(volume: 0.25)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +81,9 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         
         NotificationCenter.default.removeObserver(self)
     }
-    
+    private func reduceVoulme(volume: Double) {
+        BackgroundAudioManager.shared.volume = volume
+    }
     private func initialize() {
         
         self.view.layer.masksToBounds = true
@@ -360,11 +363,11 @@ extension SessionPlayerViewController: PlayerControlsViewDelegate {
 
 extension SessionPlayerViewController {
     
-    private func playSession(sessoinAudioSource: String? = "") {
-        if AudioPlayerManager.shared.isPlaying(url: sessoinAudioSource?.url) == true {
+    private func playSession(sessoinAudioSource: URL?) {
+        if AudioPlayerManager.shared.isPlaying(url: sessoinAudioSource) == true {
             return
         }
-        guard let soundUrl = sessoinAudioSource?.url ?? session?.localAudioUrl ?? session?.audioUrl else {
+        guard let soundUrl = sessoinAudioSource ?? session?.localAudioUrl ?? session?.audioUrl else {
             return
         }
         if AudioPlayerManager.shared.isCurrentTrack(url: soundUrl) {
@@ -514,7 +517,7 @@ extension AudioPlayerManager {
 }
 extension SessionPlayerViewController : VoicesAndDialectsDelegate{
     func sessionStreamLinkChanged(audioSource: String) {
-        playSession(sessoinAudioSource: audioSource)
+        playSession(sessoinAudioSource: audioSource.url)
     }
     func changeInterfaceLanguage(language: Language) {
         changeLanguage(language: language)

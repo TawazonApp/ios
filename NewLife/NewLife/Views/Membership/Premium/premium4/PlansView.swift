@@ -16,7 +16,6 @@ class PlansView: UIView {
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
             if let plansCount = plans?.count, plansCount > 0{
-                print("plansCount: \(plansCount)")
                 plans!.sort(by: { $0.priority < $1.priority })
             }
             reloadData()
@@ -96,7 +95,6 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 
         let leftInset = (frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
             let rightInset = leftInset
-print("leftInset")
         print(leftInset)
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }

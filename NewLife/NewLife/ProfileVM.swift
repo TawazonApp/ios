@@ -75,6 +75,7 @@ class ProfileVM: NSObject {
             if error == nil {
                 self?.userInfo = userModel
                 UserInfoManager.shared.setUserInfo(userInfo: userModel)
+                UserInfoManager.shared.setUserSettings()
             }
             completion(error)
         }

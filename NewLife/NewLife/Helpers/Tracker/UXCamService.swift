@@ -40,6 +40,7 @@ class UXCamTrackerService: TrackingService {
         static let cancellogout = "cancel_logout"
         static let rateApp = "rate_app"
         static let shareApp = "share_app"
+        static let openVoicesAndDialects = "open_voices_and_dialects"
     }
     
     func sendUserId(userId: String?) {
@@ -247,7 +248,10 @@ class UXCamTrackerService: TrackingService {
         values["message"] = message
         UXCam.logEvent(CustomEvents.FailToPurchase, withProperties: values)
     }
-    
+    func sendOpenVoicesAndDialectsEvent(){
+        let values = getBaseEventValues()
+        UXCam.logEvent(CustomEvents.openVoicesAndDialects, withProperties: values)
+    }
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",

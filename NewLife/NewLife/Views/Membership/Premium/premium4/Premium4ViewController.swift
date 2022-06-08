@@ -33,7 +33,6 @@ class Premium4ViewController: BasePremiumViewController {
     
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
-            print("HIDE")
             plansContainer.plans = plans
             LoadingHud.shared.hide(animated: true)
         }
@@ -55,7 +54,6 @@ class Premium4ViewController: BasePremiumViewController {
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
             
-            print("continueLabel: \(self.data.premiumDetails?.premiumPage.continueLabel)")
             self.features = self.data.premiumDetails?.premiumPage.featureItems
             
         })
@@ -114,7 +112,6 @@ class Premium4ViewController: BasePremiumViewController {
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        print("purchaseButtonTapped: \(plansContainer.selectedPlan )")
         purchaseAction(product: data.products[plansContainer.selectedPlan])
     }
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {

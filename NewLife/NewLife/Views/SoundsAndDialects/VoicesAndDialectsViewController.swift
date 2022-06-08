@@ -25,10 +25,20 @@ class VoicesAndDialectsViewController: HandleErrorViewController {
     var selectedVoice: Int = NSNotFound
     var selectedDialect: Int = NSNotFound
     var appLanguages = [Language.english, Language.arabic]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initialize()
+        selectedVoice = 0
+        selectedDialect = 0
+        
+        sendOpenVoicesAndDialectsEvent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         populateData()
     }
     
@@ -54,9 +64,15 @@ class VoicesAndDialectsViewController: HandleErrorViewController {
         } else if let imageUrl = session?.imageUrl {
             backgroundImageView.af.setImage(withURL: imageUrl)
         }
-        if let _ = session.audioSources?.first, let _ = session.audioSources?.first?.dialects{
-            selectedVoice = 0
-            selectedDialect = 0
+        getUserPrefferedAudioSettings()
+    }
+    
+    private func getUserPrefferedAudioSettings(){
+        if let preferredVoiceAndDialect = session?.getSessionPreferredVoiceAndDialect(), preferredVoiceAndDialect.voice != nil, preferredVoiceAndDialect.dialect != nil{
+            selectedVoice = session.audioSources?.firstIndex(where: {$0.code == preferredVoiceAndDialect.voice?.code}) ?? 0
+            selectedDialect = session.audioSources?[selectedVoice].dialects.firstIndex(where: {$0.code == preferredVoiceAndDialect.dialect?.code}) ?? 0
+            
+            voicesAndDialectsTableView.reloadData()
         }
     }
     
@@ -64,6 +80,9 @@ class VoicesAndDialectsViewController: HandleErrorViewController {
         self.dismiss(animated: true)
     }
     
+    private func sendOpenVoicesAndDialectsEvent() {
+        TrackerManager.shared.sendOpenVoicesAndDialectsEvent()
+    }
 }
 
 extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -97,10 +116,10 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        print("cellForRowAt")
         let cell = tableView.dequeueReusableCell(withIdentifier: VoicesAndDialectsTableViewCell.identifier) as! VoicesAndDialectsTableViewCell
         
         cell.tintColor = .white
+        cell.accessoryType = .none
         
         switch indexPath.section {
         case 0:
@@ -142,10 +161,19 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
             selectedCell.setSelectedStyle(selected: true)
             tableView.reloadSections([1], with: .automatic)
         case 1:
+            if selectedDialect >= 0 && selectedDialect < tableView.numberOfRows(inSection: 1) {
+                let oldSelectedCell = tableView.cellForRow(at: IndexPath(item: selectedDialect, section: 1)) as! VoicesAndDialectsTableViewCell
+                oldSelectedCell.setSelectedStyle(selected: false)
+            }
             selectedDialect = indexPath.row
-            selectedCell.setSelected(true, animated: true)
+            selectedCell.setSelectedStyle(selected: true)
+            
+            savePrefferedAudioSettings(voice: session.audioSources?[selectedVoice].code ?? "", dialect: session.audioSources?[selectedVoice].dialects[indexPath.row].code ?? "")
+            
             if let audioSource = session.audioSources?[selectedVoice].dialects[indexPath.row].stream{
                 delegate?.sessionStreamLinkChanged(audioSource: audioSource)
+                
+                
                 self.dismiss(animated: true)
             }
             
@@ -166,6 +194,15 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56.0
+    }
+    
+    private func savePrefferedAudioSettings(voice: String, dialect: String){
+        UserDefaults.saveSelectedVoice(code: voice)
+        UserDefaults.saveSelectedDialect(code: dialect)
+        
+        session.service.setUserSessionSettings(settings: UserSettings(defaultAudioSource: dialect)){(error) in
+            print("error: \(error)")
+        }
     }
 }
 extension VoicesAndDialectsViewController {

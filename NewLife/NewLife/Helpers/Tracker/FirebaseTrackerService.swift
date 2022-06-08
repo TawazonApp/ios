@@ -42,6 +42,7 @@ class FirebaseTrackingService: TrackingService {
         static let cancellogout = "cancel_logout"
         static let rateApp = "rate_app"
         static let shareApp = "share_app"
+        static let openVoicesAndDialects = "open_voices_and_dialects"
     }
     
     func sendUserId(userId: String?) {
@@ -250,6 +251,10 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.FailToPurchase, parameters: values)
     }
     
+    func sendOpenVoicesAndDialectsEvent() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openVoicesAndDialects, parameters: values)
+    }
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",

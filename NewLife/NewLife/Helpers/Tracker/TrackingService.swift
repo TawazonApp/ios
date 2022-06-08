@@ -48,4 +48,5 @@ protocol TrackingService {
     func sendShareAppEvent()
     func sendSessionListenForPeriodEvent(period: Double, sessionId: String)
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String)
+    func sendOpenVoicesAndDialectsEvent()
 }

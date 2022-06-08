@@ -34,6 +34,8 @@ protocol SessionService {
     
     func fetchSessionInfo(sessionId: String,completion: @escaping (SessionModel?, CustomError?) -> Void)
     
+    func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
+    
 }
 
 class SessionServiceFactory {
@@ -173,6 +175,12 @@ class APISessionService: SessionService {
                 sessionInfoModel = SessionInfoModel(data: data)
             }
             completion(sessionInfoModel?.session, error)
+        }
+    }
+    
+    func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
+        ConnectionUtils.performPostRequest(url: Api.userSettings.url!, parameters: try? settings.jsonDictionary()){ (data, error) in
+            completion(error)
         }
     }
 

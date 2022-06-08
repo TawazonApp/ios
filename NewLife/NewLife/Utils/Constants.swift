@@ -41,6 +41,9 @@ struct Api {
     static let goalsListUrl = "\(apiUrl)/goals/list"
     static let goalsUpdateUrl = "\(apiUrl)/goals/update"
     
+    //Settings
+    static let userSettings = "\(apiUrlV2)/auth/settings/update"
+    
     //Home
     static let homeUrl = "\(apiUrl)/home"
     static let homeSectionsUrl = "\(apiUrlV2)/home"

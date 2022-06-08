@@ -91,4 +91,10 @@ class SessionServiceOffline: SessionService {
     func fetchSessionInfo(sessionId: String, completion: @escaping (SessionModel?, CustomError?) -> Void) {
         service.fetchSessionInfo(sessionId: sessionId, completion: completion)
     }
+    
+    func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.setUserSessionSettings(settings: settings){ (error) in
+            completion(error)
+        }
+    }
 }

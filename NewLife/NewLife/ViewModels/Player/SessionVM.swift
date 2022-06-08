@@ -48,17 +48,26 @@ class SessionVM: BaseLibrarySessionVM {
     private func sendDownloadSessionEvent(id: String, name: String) {
         TrackerManager.shared.sendDownloadSessionEvent(id: id, name: name)
     }
-    func getSessionAudioSource() -> String{
+    
+    func getSessionPreferredVoiceAndDialect() -> (voice: AudioSourceModel?, dialect: Dialect?){
         let userPreferredVoice = UserDefaults.selectedVoice()
         let userPreferredDialect = UserDefaults.selectedDialect()
         
-        let selectedSessionVoice = self.audioSources?.filter{$0.title == userPreferredVoice}.first
-        let selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.title == userPreferredDialect}.first
+        if userPreferredVoice == nil || userPreferredDialect == nil {
+            return (nil,nil)
+        }
+        let selectedSessionVoice = self.audioSources?.filter{$0.code == userPreferredVoice}.first
+        let selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.code == userPreferredDialect}.first
+        
+        return (selectedSessionVoice, selectedSessionDialect)
+    }
+    
+    func getSessionAudioSource() -> URL?{
+        let selectedSessionDialect = getSessionPreferredVoiceAndDialect().dialect
         
         if !(selectedSessionDialect?.stream.isEmptyWithTrim ?? true) {
-            return selectedSessionDialect!.stream
+            return selectedSessionDialect!.stream.url
         }
-        //TODO: return fall-back link
-        return ""
+        return self.audioUrl
     }
 }

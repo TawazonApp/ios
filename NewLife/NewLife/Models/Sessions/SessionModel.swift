@@ -60,18 +60,18 @@ struct SessionModel: Codable {
 }
 
 struct AudioSourceModel: Codable {
-    let title: String
+    let title, code: String
     let dialects: [Dialect]
     
     enum CodingKeys: String, CodingKey {
-        case title
+        case title, code
         case dialects = "items"
     }
 }
 
 // MARK: - Item
 struct Dialect: Codable {
-    let title: String
+    let title, code: String
     let stream, download: String
     let hash: String
     

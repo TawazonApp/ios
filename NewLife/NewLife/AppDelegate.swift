@@ -30,13 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-        UIApplication.isUpdateAvailable(){ (hasUpdates, versionSize)  in
-            let sizeInMB = round((Double(versionSize) ?? 0)/1000000)
-            print("is update available: \(hasUpdates), of: \(sizeInMB)")
-            if hasUpdates{
-                //TODO: Show popup
-            }
-          }
+        
         initializeUXCam()
         initializeBranchIO(with: launchOptions)
         initializeFirebase()
@@ -253,7 +247,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func preFetchCachingData() {
         ProfileVM(service: MembershipServiceFactory.service()).userInfo { (error) in }
-        print("preFetchCachingData: getSubscriptionsTypes")
         UserInfoManager.shared.getSubscriptionsTypes(service: MembershipServiceFactory.service()) { (_, _) in
         }
     }
@@ -328,9 +321,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         guard let action = userInfo["action"] as? String else {
             return
         }
-        print("userInfo: \(userInfo)")
         if let info = userInfo["info"] as? String {
-            print("3: \(info)")
             var notificationData: NotificationData? = nil
             let appStatus: NotificationAppStatus =  (UIApplication.shared.applicationState == .active) ? .foreground : .background
             if action == NotificationType.playSession.rawValue {
@@ -345,7 +336,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 let infoData = Data(info.utf8)
                 do {
                     let infoJson = try JSONSerialization.jsonObject(with: infoData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-                    print("2")
                     if let offerCode = infoJson["code"] as? String {
                         notificationData = NotificationData(type: NotificationType.redeem, data: offerCode, appStatus: appStatus)
                         //TODO: open premium page
@@ -362,7 +352,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     func handleDynamicLink(dynamicLink: URL) {
-        print("handleDynamicLink: \(dynamicLink.absoluteString)")
         var notificationData: NotificationData? = nil
         let components = URLComponents(url: dynamicLink, resolvingAgainstBaseURL: false)
         
@@ -416,7 +405,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 extension AppDelegate : MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(fcmToken)")
+        print("Firebase registration token: \(String(describing: fcmToken))")
         sendFcmToken()
     }
     
@@ -491,8 +480,6 @@ extension AppDelegate: AppsFlyerLibDelegate {
 }
 extension AppDelegate: DeepLinkDelegate {
     func didResolveDeepLink(_ result: DeepLinkResult) {
-        print("didResolveDeepLink")
-        var fruitNameStr: String?
         switch result.status {
         case .notFound:
             NSLog("[AFSDK] Deep link not found")
@@ -526,7 +513,5 @@ extension AppDelegate: DeepLinkDelegate {
             NSLog("[AFSDK] This is a direct deep link")
         }
         
-        fruitNameStr = deepLinkObj.deeplinkValue
-//        walkToSceneWithParams(fruitName: fruitNameStr!, deepLinkData: deepLinkObj.clickEvent)
     }
 }

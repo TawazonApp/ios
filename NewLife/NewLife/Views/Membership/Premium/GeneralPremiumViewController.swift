@@ -33,7 +33,6 @@ class GeneralPremiumViewController: BasePremiumViewController {
         self.loadParsedView()
     }
     private func loadParsedView(){
-        //TODO: from list or session
         var viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
         
         switch fromView{

@@ -12,7 +12,7 @@ struct UserInfoModel: Codable, ModelInitializable {
     let id, name, email: String?
     let premium: UserPremiumModel?
     var image: String?
-    
+    let settings: UserSettings
     func isPremium() -> Bool {
         return premium != nil
     }
@@ -31,5 +31,8 @@ struct UserPremiumModel: Codable, ModelInitializable {
     }
 }
 
+struct UserSettings: Codable, ModelInitializable {
+    let defaultAudioSource: String
+}
 
 

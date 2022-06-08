@@ -22,7 +22,6 @@ class BasePremiumVM : NSObject{
     var products: [SKProduct] = [] {
         didSet {
             plansArray = purchaseItems()
-            print("plansArray.counnt: \(plansArray.count)")
         }
     }
     
@@ -81,7 +80,6 @@ class BasePremiumVM : NSObject{
             if plan?.enabled ?? false{
                 let planPriority = Int(plan?.priority ?? "") ?? 0
                 let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
-                print("Priority: \(planPriority) title: \(plan?.title)")
                 purchaseItems.append(purchase)
             }
             
@@ -94,15 +92,12 @@ class BasePremiumVM : NSObject{
     }
     
     private func getTrialPeriod(product: SKProduct)-> String? {
-        print("getTrialPeriod: \(product.localizedTitle)")
         var trialDescription: String? = nil
         if #available(iOS 11.2, *),
             let introductoryPrice = product.introductoryPrice, introductoryPrice.paymentMode == SKProductDiscount.PaymentMode.freeTrial {
-            print("introductoryPrice: \(introductoryPrice.subscriptionPeriod)")
             let subscriptionPeriod = introductoryPrice.subscriptionPeriod
             trialDescription = subscriptionPeriod.unit.description(numberOfUnits: subscriptionPeriod.numberOfUnits)
         }
-        print("trialDescription: \(trialDescription)")
         return trialDescription
     }
     

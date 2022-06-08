@@ -38,16 +38,11 @@ class VoicesAndDialectsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
-        
-        
     }
     func setSelectedStyle(selected: Bool) {
-        print("setSelectedStyle: \(selected), \(self.titleLabel.text)")
         if selected {
             titleLabel.font = UIFont.munaBoldFont(ofSize: 22.0)
             self.accessoryType = .checkmark
-            self.accessoryView?.backgroundColor = .darkPink
         }else{
             titleLabel.font = UIFont.munaFont(ofSize: 22.0)
             self.accessoryType = .none
