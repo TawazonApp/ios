@@ -51,11 +51,15 @@ class HomePremiumBannerTableViewCell: UITableViewCell {
         titlePart1Label.font = .munaFont(ofSize: 18.0)
         titlePart1Label.textColor = .white
         titlePart1Label.textAlignment = .center
+        titlePart1Label.adjustsFontSizeToFitWidth = true
+        titlePart1Label.minimumScaleFactor = 0.5
         
 //        titlePart2Label.text = "homePremiumBanner1TitlePart2".localized
         titlePart2Label.font = .munaBoldFont(ofSize: 24.0)
         titlePart2Label.textColor = .white
         titlePart2Label.textAlignment = .center
+        titlePart2Label.adjustsFontSizeToFitWidth = true
+        titlePart2Label.minimumScaleFactor = 0.5
         
         purchaseButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
 //        purchaseButton.setTitle("homePremiumBanner1PurchaseButtonTitle".localized, for: .normal)

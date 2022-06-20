@@ -13,10 +13,6 @@
 		040F33BA27E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B927E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift */; };
 		0417042627FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */; };
 		041D82C228438BE200DF6928 /* VoicesAndDialectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */; };
-		041D82C728439EC900DF6928 /* AudioSourceItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C328439EC800DF6928 /* AudioSourceItem+CoreDataClass.swift */; };
-		041D82C828439EC900DF6928 /* AudioSources+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C428439EC900DF6928 /* AudioSources+CoreDataProperties.swift */; };
-		041D82C928439EC900DF6928 /* AudioSources+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C528439EC900DF6928 /* AudioSources+CoreDataClass.swift */; };
-		041D82CA28439EC900DF6928 /* AudioSourceItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C628439EC900DF6928 /* AudioSourceItem+CoreDataProperties.swift */; };
 		041D82CC284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */; };
 		0422055F27E892AE0018BA31 /* Muna.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0422055E27E892AE0018BA31 /* Muna.ttc */; };
 		0422056327E9C2300018BA31 /* PlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056227E9C2300018BA31 /* PlansView.swift */; };
@@ -47,6 +43,8 @@
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
 		04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */; };
+		04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C328574945006C7AA1 /* SearchViewController.swift */; };
+		04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */; };
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
 		04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A427CF7BC2000880E2 /* TopTabBarView.swift */; };
 		04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A627CF9127000880E2 /* TopTabBarItemView.swift */; };
@@ -373,10 +371,6 @@
 		040F33B927E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerTableViewCell.swift; sourceTree = "<group>"; };
 		041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsViewController.swift; sourceTree = "<group>"; };
-		041D82C328439EC800DF6928 /* AudioSourceItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioSourceItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		041D82C428439EC900DF6928 /* AudioSources+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioSources+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		041D82C528439EC900DF6928 /* AudioSources+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioSources+CoreDataClass.swift"; sourceTree = "<group>"; };
-		041D82C628439EC900DF6928 /* AudioSourceItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioSourceItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsTableViewCell.swift; sourceTree = "<group>"; };
 		0422055E27E892AE0018BA31 /* Muna.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Muna.ttc; sourceTree = "<group>"; };
 		0422056227E9C2300018BA31 /* PlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansView.swift; sourceTree = "<group>"; };
@@ -407,6 +401,8 @@
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
 		04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
+		04EC40C328574945006C7AA1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
 		04F800A427CF7BC2000880E2 /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		04F800A627CF9127000880E2 /* TopTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemView.swift; sourceTree = "<group>"; };
@@ -909,6 +905,15 @@
 			path = Section;
 			sourceTree = "<group>";
 		};
+		04EC40C2285748FF006C7AA1 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				04EC40C328574945006C7AA1 /* SearchViewController.swift */,
+				04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		04F800A327CF7B88000880E2 /* TopTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,10 +1185,6 @@
 				F3AF0FA3223A8B2000E29615 /* SessionsModel.swift */,
 				F3AF0FA5223A8BB600E29615 /* CategoryModel.swift */,
 				F3AF0FA7223AADB800E29615 /* SubCategoryModel.swift */,
-				041D82C528439EC900DF6928 /* AudioSources+CoreDataClass.swift */,
-				041D82C428439EC900DF6928 /* AudioSources+CoreDataProperties.swift */,
-				041D82C328439EC800DF6928 /* AudioSourceItem+CoreDataClass.swift */,
-				041D82C628439EC900DF6928 /* AudioSourceItem+CoreDataProperties.swift */,
 				F3AF0FAF223B107A00E29615 /* Sessions+CoreDataClass.swift */,
 				F3AF0FB0223B107A00E29615 /* Sessions+CoreDataProperties.swift */,
 				F3E280F0223F92B600066C04 /* SessionFavoritesModel.swift */,
@@ -1530,6 +1531,7 @@
 		F3DC8E142223DC4100C7DEC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04EC40C2285748FF006C7AA1 /* Search */,
 				041D82C028438BB300DF6928 /* SoundsAndDialects */,
 				F3DF36672587BA09004CE028 /* PremiumDiscount */,
 				F3DC423D2584B42700BF18A7 /* Onboarding */,
@@ -2229,6 +2231,7 @@
 				F334416824793A9100FA3234 /* SessionRateViewController.swift in Sources */,
 				F317A173222D147000CBD760 /* BackgroundAudioVM.swift in Sources */,
 				0456D1B927EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift in Sources */,
+				04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */,
 				F3DE73AB223664270052B18C /* MembershipModel.swift in Sources */,
 				F3AF0F99223A469B00E29615 /* FileUtils.swift in Sources */,
 				0456D1BB27F19EF800C174C6 /* BasePremiumVM.swift in Sources */,
@@ -2305,7 +2308,6 @@
 				F32021DD223EACD300CCC33A /* ProfileEditFieldVM.swift in Sources */,
 				04677F4227C3840400493142 /* CategorySectionsView.swift in Sources */,
 				040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */,
-				041D82C728439EC900DF6928 /* AudioSourceItem+CoreDataClass.swift in Sources */,
 				F3CA02922231BC13008165C2 /* MembershipFormButtonCellVM.swift in Sources */,
 				F3DC8EAF2228342600C7DEC4 /* MoreSwitchCell.swift in Sources */,
 				04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */,
@@ -2356,7 +2358,6 @@
 				F3ECD0B6256128D30048DBD8 /* HomeTableFeelingCell.swift in Sources */,
 				F3DE73C32237BE500052B18C /* LogoutVM.swift in Sources */,
 				F3DE73CB2237F73C0052B18C /* ForgetPasswordVM.swift in Sources */,
-				041D82C928439EC900DF6928 /* AudioSources+CoreDataClass.swift in Sources */,
 				F3580BE7249CF38B00EBE1C1 /* MPMediaItem+AudioPlayerManager.swift in Sources */,
 				F3AF0F97223960A000E29615 /* GoalsIdsModel.swift in Sources */,
 				F3B16AF6222EB42D002B0406 /* LibrarySessionVM.swift in Sources */,
@@ -2387,6 +2388,7 @@
 				F3DC8E552224880800C7DEC4 /* ChildrenViewController.swift in Sources */,
 				0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */,
 				F3DC8EA7222805F700C7DEC4 /* AnimationExt.swift in Sources */,
+				04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */,
 				F354605F273579BD00068A4D /* SKProductExt.swift in Sources */,
 				F3DC8E4522243AF300C7DEC4 /* GerneralExt.swift in Sources */,
 				F3DE73B722367B1E0052B18C /* ErrorModel.swift in Sources */,
@@ -2418,7 +2420,6 @@
 				F3B16AF4222E9600002B0406 /* OurStoryActionView.swift in Sources */,
 				043FCB36280582F800F25FA4 /* BaseBannerView.swift in Sources */,
 				F317A177222D180000CBD760 /* SoundEffectsCollectionCell.swift in Sources */,
-				041D82C828439EC900DF6928 /* AudioSources+CoreDataProperties.swift in Sources */,
 				F3CA02942231C590008165C2 /* MembershipTextFieldCell.swift in Sources */,
 				F375B25E24796528000829E1 /* StarReview.swift in Sources */,
 				F3DE73BC2236C5F20052B18C /* ProfileCell.swift in Sources */,
@@ -2448,7 +2449,6 @@
 				F3E280F1223F92B600066C04 /* SessionFavoritesModel.swift in Sources */,
 				0422056327E9C2300018BA31 /* PlansView.swift in Sources */,
 				04BB3270281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift in Sources */,
-				041D82CA28439EC900DF6928 /* AudioSourceItem+CoreDataProperties.swift in Sources */,
 				F3B16AE6222E7AB1002B0406 /* ProfileViewController.swift in Sources */,
 				04677F3D27C2772B00493142 /* MusicViewController.swift in Sources */,
 				F39D657E2584C8D3000342DB /* UILabelExt.swift in Sources */,
@@ -2673,7 +2673,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2686,7 +2686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.25;
+				MARKETING_VERSION = 1.2.27;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -2722,7 +2722,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2734,7 +2734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.25;
+				MARKETING_VERSION = 1.2.27;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

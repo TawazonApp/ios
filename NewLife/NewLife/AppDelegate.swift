@@ -58,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppsFlyerLib.shared().start()
+        if UserDefaults.userAppBackgroundSound() == nil {
+            UserDefaults.saveUserAppBackgroundSound(status: true)
+        }
         BackgroundAudioManager.shared.playPauseBackgroundSounds()
     }
     
@@ -254,18 +257,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
+        let storeDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        let url = storeDirectory.appendingPathComponent("NewLife2.sqlite")
         
         let container = NSPersistentContainer(name: "NewLife")
-        let description = NSPersistentStoreDescription()
+        let description = NSPersistentStoreDescription(url: url)
         description.shouldInferMappingModelAutomatically = true
         description.shouldMigrateStoreAutomatically = true
         container.persistentStoreDescriptions = [description]
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                
+                print("NOT LOADED: \(error), \(error.userInfo)")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            print("LOADED")
         })
         return container
     }()

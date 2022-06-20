@@ -103,6 +103,7 @@ struct UserDefaultsKeys {
     static let userSelectGoals = "UserSelectGoalsKey"
     static let userSelectedVoice = "UserSelectedVoiceKey"
     static let userSelectedDialect = "UserSelectedDialectKey"
+    static let userAppBackgroundSound = "userAppBackgroundSound"
     static let userId = "UserIdKey"
     static let userPremium = "UserPremiumKey"
     static let ratedSessions = "ratedSessions"
@@ -235,6 +236,15 @@ extension UserDefaults {
     }
     class func selectedDialect() -> String?{
         return UserDefaults.standard.value(forKey: UserDefaultsKeys.userSelectedDialect) as? String
+    }
+    //Background sound
+    //set
+    class func saveUserAppBackgroundSound(status: Bool){
+        UserDefaults.standard.setValue(status, forKey: UserDefaultsKeys.userAppBackgroundSound)
+    }
+    //get
+    class func userAppBackgroundSound() -> Bool?{
+        return UserDefaults.standard.value(forKey: UserDefaultsKeys.userAppBackgroundSound) as? Bool
     }
     //Campaigns
     class func saveOriginalCampaign(id: String){

@@ -88,14 +88,14 @@ class LocalSessionsManager: NSObject {
         _ = DatabaseManager.shared.deleteSession(session: session)
     }
     
-    func downloadSession(session: SessionModel, completion: @escaping (CustomError?) -> Void) {
+    func downloadSession(session: SessionModel, sessionURL: URL? = nil, completion: @escaping (CustomError?) -> Void) {
         let sessionId = session.id
         progressSessions.append(sessionId)
         
         service.addToDownloadList(sessionId: session.id) { (error) in
         }
         
-        performDownloadSession(session: session) { [weak self] (newSession, error) in
+        performDownloadSession(session: session, sessionURL: sessionURL) { [weak self] (newSession, error) in
             self?.sendSessionDownloadedNotification(session: newSession)
             completion(error)
             self?.progressSessions.remove(element: sessionId)
@@ -119,14 +119,14 @@ class LocalSessionsManager: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name.sessionModelDownloadValuesChanged, object: data)
     }
     
-  private func performDownloadSession(session: SessionModel, completion: @escaping (_ session: SessionModel? ,CustomError?) -> Void) {
+    private func performDownloadSession(session: SessionModel, sessionURL: URL?, completion: @escaping (_ session: SessionModel? ,CustomError?) -> Void) {
     
         guard let userId = UserDefaults.userId() else {
             completion(nil, CustomError(message: "userNotDefineError".localized, statusCode: nil))
             return
         }
         
-        downloadSessionAudio(session: session, userId: userId) { [weak self](localAudioPath, error) in
+      downloadSessionAudio(session: session, sessionURL: sessionURL, userId: userId) { [weak self](localAudioPath, error) in
 
             if let error = error {
                 completion(nil, error)
@@ -146,17 +146,22 @@ class LocalSessionsManager: NSObject {
         
     }
     
-    private func downloadSessionAudio(session: SessionModel, userId: String, completion: @escaping (_ localAudioPath: String?, CustomError?) -> Void) {
+    private func downloadSessionAudio(session: SessionModel, sessionURL: URL?, userId: String, completion: @escaping (_ localAudioPath: String?, CustomError?) -> Void) {
         //TODO: change downnloadable link
-        guard let remoteAudioUrl = session.audioSource.url else  {
+        
+        guard var remoteAudioUrl = session.audioSource.url else  {
         
             completion(nil, CustomError(message: "invalidSessionFilePathError".localized, statusCode: nil))
             return
         }
-        
+        if sessionURL != nil{
+            remoteAudioUrl = sessionURL!
+        }
+        print("remoteAudioUrl: \(remoteAudioUrl)")
          let localAudio = getSessionAudioLocalUrl(id: session.id, userId: userId, fileExtension: remoteAudioUrl.pathExtension)
         
         service.downloadSessionFile(localFileUrl: localAudio.fullUrl, remoteUrl: remoteAudioUrl) { (error) in
+            print("localAudio.path: \(localAudio.path)")
             completion(localAudio.path, error)
         }
     }

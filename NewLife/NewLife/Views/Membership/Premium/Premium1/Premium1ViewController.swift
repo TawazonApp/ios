@@ -51,6 +51,7 @@ class Premium1ViewController: BasePremiumViewController {
             LoadingHud.shared.hide(animated: true)
 
             self.features = self.data.premiumDetails?.premiumPage.featureItems
+            self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
         })
     }
     

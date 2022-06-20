@@ -83,6 +83,7 @@ class SoundEffectsViewController: BaseViewController {
     private func togglePlay(indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! SoundEffectsCollectionCell
         
+        
         if  cell.audio.playingStatus != BackgroundAudioVM.PlayingStatus.playing {
             cell.startPlayingAnimation()
             cell.audio.play()
@@ -183,8 +184,10 @@ class SoundEffectsViewController: BaseViewController {
     @IBAction func backgroundSoundButton(_ sender: UIButton) {
         if BackgroundAudioManager.shared.mainBackgroundAudio.playingStatus == .playing {
             BackgroundAudioManager.shared.stopBackgroundSound()
+            UserDefaults.saveUserAppBackgroundSound(status: false)
         } else {
             BackgroundAudioManager.shared.playBackgroundSound()
+            UserDefaults.saveUserAppBackgroundSound(status: true)
         }
         updateBackgroundSoundStyle()
     }

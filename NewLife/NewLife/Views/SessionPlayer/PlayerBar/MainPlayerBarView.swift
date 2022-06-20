@@ -122,10 +122,11 @@ extension MainPlayerBarView {
     
     func playSession() {
         fillData()
-        if AudioPlayerManager.shared.isPlaying(url: session?.audioUrl) == true {
+        let sessionURL = session?.getSessionAudioSource()
+        if AudioPlayerManager.shared.isPlaying(url: sessionURL) == true {
             return
         }
-        let soundUrl = session?.localAudioUrl ?? session?.audioUrl
+        let soundUrl = session?.localAudioUrl ?? sessionURL ?? session?.audioUrl
         if let soundUrl = soundUrl, AudioPlayerManager.shared.isPlaying(url: soundUrl) == false {
             AudioPlayerManager.shared.stop(clearQueue: true)
             AudioPlayerManager.shared.play(url: soundUrl, session: session!.session)

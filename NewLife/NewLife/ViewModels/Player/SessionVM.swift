@@ -40,8 +40,10 @@ class SessionVM: BaseLibrarySessionVM {
     }
 
     override func download() {
-        super.download()
         guard let session = session else { return }
+        LocalSessionsManager.shared.downloadSession(session: session, sessionURL: getSessionAudioSource()) {(error) in
+            
+        }
         sendDownloadSessionEvent(id: session.id, name: session.name)
     }
     

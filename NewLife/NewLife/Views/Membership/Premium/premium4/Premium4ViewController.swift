@@ -55,6 +55,7 @@ class Premium4ViewController: BasePremiumViewController {
             self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
             
             self.features = self.data.premiumDetails?.premiumPage.featureItems
+            self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
             
         })
     }

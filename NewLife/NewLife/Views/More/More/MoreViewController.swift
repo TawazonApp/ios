@@ -75,11 +75,21 @@ class MoreViewController: BaseViewController {
             return
         }
         Language.language = language
+        fetchSessionInfo()
         NotificationCenter.default.post(name: .languageChanged, object: nil)
         (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
         self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
     }
-    
+    private func fetchSessionInfo(){
+        guard AudioPlayerManager.shared.isPlaying() else {
+            return
+        }
+        SessionPlayerMananger.shared.session?.service.fetchSessionInfo(sessionId: (SessionPlayerMananger.shared.session?.id)!){ (sessionModel, error) in
+            if let sessionModel = sessionModel {
+                SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
+            }
+        }
+    }
     @objc private func showSessionPlayerBar() {
         NotificationCenter.default.post(name: NSNotification.Name.showSessionPlayerBar, object: nil)
     }

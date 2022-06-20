@@ -78,7 +78,12 @@ class MainTabBarController: UITabBarController {
     }
     
     private func playMainBackgroundAudio() {
-        BackgroundAudioManager.shared.mainBackgroundAudio.play()
+        if UserDefaults.userAppBackgroundSound() ?? true {
+            BackgroundAudioManager.shared.mainBackgroundAudio.play()
+        }else{
+            BackgroundAudioManager.shared.mainBackgroundAudio.stop()
+        }
+        
     }
     
     func checkAppUpdate(){

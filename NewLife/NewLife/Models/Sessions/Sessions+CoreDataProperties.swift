@@ -35,7 +35,6 @@ extension Sessions {
     
     @NSManaged public var playBackgroundSound: Bool
     
-    @NSManaged public var audioSources: NSSet?
     
     @nonobjc public class func sessionsFetchRequest() -> NSFetchRequest<Sessions> {
         return NSFetchRequest<Sessions>(entityName: "Sessions")
@@ -77,19 +76,4 @@ extension Sessions {
     }
     
 }
-// MARK: Generated accessors for audioSources
-extension Sessions {
 
-    @objc(addAudioSourcesObject:)
-    @NSManaged public func addToAudioSources(_ value: AudioSources)
-
-    @objc(removeAudioSourcesObject:)
-    @NSManaged public func removeFromAudioSources(_ value: AudioSources)
-
-    @objc(addAudioSources:)
-    @NSManaged public func addToAudioSources(_ values: NSSet)
-
-    @objc(removeAudioSources:)
-    @NSManaged public func removeFromAudioSources(_ values: NSSet)
-
-}

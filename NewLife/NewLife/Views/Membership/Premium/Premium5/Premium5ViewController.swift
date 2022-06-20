@@ -61,6 +61,7 @@ class Premium5ViewController: BasePremiumViewController {
             if self.data.premiumDetails?.premiumPage.featureItems.count ?? 0 > 0 {
                 self.features = self.data.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
             }
+            self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
             
         })
     }

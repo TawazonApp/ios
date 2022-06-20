@@ -51,11 +51,15 @@ class HomePremiumGradientBannerTableViewCell: UITableViewCell {
         titleLabel.font = .munaBoldFont(ofSize: 32.0)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
         
 //        subTitleLabel.text = "homePremiumBanner2SubTitle".localized
         subTitleLabel.font = .munaBoldFont(ofSize: 20.0)
         subTitleLabel.textColor = .white
         subTitleLabel.textAlignment = .center
+        subTitleLabel.adjustsFontSizeToFitWidth = true
+        subTitleLabel.minimumScaleFactor = 0.5
     }
 
     private func reloadData() {

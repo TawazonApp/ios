@@ -59,12 +59,16 @@ class HomePremiumFullWidthBannerTableViewCell: UITableViewCell {
         
 //        titleLabel.text = "homePremiumBanner4Title".localized
         titleLabel.font = .munaBoldFont(ofSize: 28.0)
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
         titleLabel.textColor = .white
         
         
 //        subTitleLabel.text = "homePremiumBanner4SubTitle".localized
         subTitleLabel.font = .munaBoldFont(ofSize: 24.0)
         subTitleLabel.textColor = .white
+        subTitleLabel.adjustsFontSizeToFitWidth = true
+        subTitleLabel.minimumScaleFactor = 0.5
 
 
         purchaseButton.backgroundColor = .white

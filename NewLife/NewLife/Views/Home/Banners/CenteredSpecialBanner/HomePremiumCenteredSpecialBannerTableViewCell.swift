@@ -48,12 +48,16 @@ class HomePremiumCenteredSpecialBannerTableViewCell: UITableViewCell {
 //        titleLabel.text = "homePremiumBanner3Title".localized
         titleLabel.font = .munaFont(ofSize: 20.0)
         titleLabel.textColor = .cyprus
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
         
 //        subTitleLabel.text = "homePremiumBanner3SubTitle".localized
         subTitleLabel.font = .munaBoldFont(ofSize: 28.0)
         subTitleLabel.textColor = .cyprus
         subTitleLabel.numberOfLines = 0
         subTitleLabel.lineBreakMode = .byWordWrapping
+        subTitleLabel.adjustsFontSizeToFitWidth = true
+        subTitleLabel.minimumScaleFactor = 0.5
         
         purchaseButton.backgroundColor = .white
 //        purchaseButton.setTitle("homePremiumBanner3PurchaseButtonTitle".localized, for: .normal)

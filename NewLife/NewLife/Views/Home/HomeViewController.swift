@@ -221,8 +221,10 @@ class HomeViewController: SoundEffectsPresenterViewController {
     @IBAction func backgroundSoundButtonTapped(_ sender: UIButton) {
         if BackgroundAudioManager.shared.mainBackgroundAudio.playingStatus == .playing {
             BackgroundAudioManager.shared.stopBackgroundSound()
+            UserDefaults.saveUserAppBackgroundSound(status: false)
         } else {
             BackgroundAudioManager.shared.playBackgroundSound()
+            UserDefaults.saveUserAppBackgroundSound(status: true)
         }
         updateBackgroundSoundStyle()
         requestNotificationPermission += 1

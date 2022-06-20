@@ -108,6 +108,9 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
         
         playButton.tintColor = UIColor.white
         
+        if session?.audioSources?.count ?? 0 == 1 && session?.audioSources?.first?.dialects.count == 1{
+            voiceAndDialectsButton.isHidden = true
+        }
         voiceAndDialectsButton.setTitle("voiceAndDialectsTitle".localized, for: .normal)
         voiceAndDialectsButton.tintColor = .white
         voiceAndDialectsButton.layer.cornerRadius = 22.0
@@ -148,6 +151,7 @@ class SessionPlayerViewController: SoundEffectsPresenterViewController {
     }
     
     private func fillData() {
+        print("FILLDATA: \(session?.name)")
         titleLabel.text = session?.name
         subTitleLabel.text = session?.author
         
@@ -367,9 +371,11 @@ extension SessionPlayerViewController {
         if AudioPlayerManager.shared.isPlaying(url: sessoinAudioSource) == true {
             return
         }
-        guard let soundUrl = sessoinAudioSource ?? session?.localAudioUrl ?? session?.audioUrl else {
+        
+        guard let soundUrl =  session?.localAudioUrl ?? sessoinAudioSource ?? session?.audioUrl else {
             return
         }
+        
         if AudioPlayerManager.shared.isCurrentTrack(url: soundUrl) {
             updateButtonStates()
             updateSongInformation(with: AudioPlayerManager.shared.currentTrack)
@@ -521,6 +527,11 @@ extension SessionPlayerViewController : VoicesAndDialectsDelegate{
     }
     func changeInterfaceLanguage(language: Language) {
         changeLanguage(language: language)
+        session?.service.fetchSessionInfo(sessionId: (session?.id)!){ (sessionModel, error) in
+            if let sessionModel = sessionModel {
+                SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
+            }
+        }
         self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
         
     }

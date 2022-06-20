@@ -28,8 +28,8 @@ class UserInfoManager: NSObject {
     }
     
     func setUserSettings(){
-        let sessionVoiceCode = userInfo?.settings.defaultAudioSource.components(separatedBy: ".").first ?? ""
-        let sessionDialectCode = userInfo?.settings.defaultAudioSource ?? ""
+        let sessionVoiceCode = userInfo?.settings?.defaultAudioSource.components(separatedBy: ".").first ?? ""
+        let sessionDialectCode = userInfo?.settings?.defaultAudioSource ?? ""
         
         UserDefaults.saveSelectedVoice(code: sessionVoiceCode)
         UserDefaults.saveSelectedDialect(code: sessionDialectCode)

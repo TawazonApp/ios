@@ -12,6 +12,9 @@ import AudioToolbox
 class SoundEffectsPresenterViewController: HandleErrorViewController {
     
     @IBOutlet weak var soundsButton: UIButton?
+    @IBOutlet weak var searchButton: UIButton?
+    
+    let searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,13 @@ class SoundEffectsPresenterViewController: HandleErrorViewController {
             soundsButton.layer.cornerRadius = soundsButton.frame.height/2
             soundsButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             soundsButton.setImage(UIImage(named: "SoundEffects"), for: .normal)
+        }
+        
+        if let searchButton = searchButton {
+            searchButton.tintColor = UIColor.white
+            searchButton.layer.cornerRadius = searchButton.frame.height/2
+            searchButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            searchButton.setImage(UIImage(named: "Search"), for: .normal)
         }
         
     }
@@ -45,6 +55,15 @@ class SoundEffectsPresenterViewController: HandleErrorViewController {
         openSoundEffectsViewController()
     }
     
+    @IBAction func searchButtonTapped(_ sender: SoundEffectsButton) {
+        openSearchViewController()
+    }
+    
+    private func openSearchViewController(){
+        let searchViewController = SearchViewController.instantiate()
+        searchViewController.modalPresentationStyle = .custom
+        self.present(searchViewController, animated: true, completion: nil)
+    }
 }
 
 extension SoundEffectsPresenterViewController: SoundEffectsViewControllerDelegate {
