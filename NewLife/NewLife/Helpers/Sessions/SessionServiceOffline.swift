@@ -9,6 +9,13 @@
 import Foundation
 
 class SessionServiceOffline: SessionService {
+    func fetchSearchResults(page: Int, pageSize: Int, query: String?, completion: @escaping (SearchModel?, CustomError?) -> Void) {
+        service.fetchSearchResults(page: page, pageSize: pageSize, query: query){
+            (serachModel, error) in
+            completion(serachModel,error)
+        }
+    }
+    
     
     let service: SessionService!
     init(service: SessionService) {

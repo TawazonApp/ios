@@ -18,6 +18,8 @@ protocol SessionService {
     
     func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void)
     
+    func fetchSearchResults(page: Int, pageSize: Int, query: String?, completion: @escaping (SearchModel?, CustomError?) -> Void )
+    
     func fetchDownloadedSessions(page: Int, pageSize:Int, completion: @escaping (SessionsModel?, CustomError?) -> Void)
     
     func fetchFavoriteSessions(page: Int, pageSize:Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void)
@@ -46,6 +48,22 @@ class SessionServiceFactory {
 }
 
 class APISessionService: SessionService {
+    
+    func fetchSearchResults(page: Int, pageSize: Int, query: String? = "", completion: @escaping (SearchModel?, CustomError?) -> Void) {
+        
+        let url = Api.searchSession.replacingOccurrences(of: "{query}", with: query ?? "").url!
+        let param = ["page": page, "limit": pageSize]
+        
+        ConnectionUtils.performGetRequest(url: url, parameters: param){
+            (data, error) in
+            var searchModel: SearchModel?
+            if let data = data{
+                searchModel = SearchModel(data: data)
+            }
+            completion(searchModel, error)
+        }
+    }
+    
     
      func fetchCategoryData(categoryId: String, page: Int, pageSize:Int, completion: @escaping (CategoryModel?, CustomError?) -> Void) {
         

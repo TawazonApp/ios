@@ -45,7 +45,7 @@ class UXCamTrackerService: TrackingService {
     
     func sendUserId(userId: String?) {
         UXCam.setUserIdentity(userId ?? "")
-        UXCam.setUserProperty(UIApplication.identifierForAdvertising ?? "", value: "idfa")
+        UXCam.setUserProperty("idfa", value: UIApplication.identifierForAdvertising ?? "")
     }
     
     func sendLoginEvent() {

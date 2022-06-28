@@ -14,6 +14,12 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     
+    var session: HomeSessionVM! {
+        didSet {
+            fillData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -22,10 +28,13 @@ class SearchTableViewCell: UITableViewCell {
 
     func initialize(){
         self.backgroundColor = .clear
+        self.selectionStyle = .none
         contentView.backgroundColor = .clear
         
         iconImage.layer.cornerRadius = 20
-        iconImage.contentMode = .scaleAspectFit
+        iconImage.layer.masksToBounds = true
+        iconImage.clipsToBounds = true
+        iconImage.contentMode = .center
         iconImage.backgroundColor = .clear
         
         titleLabel.font = .lbcBold(ofSize: 16.0)
@@ -36,6 +45,18 @@ class SearchTableViewCell: UITableViewCell {
         durationLabel.layer.opacity = 0.6
         
     }
+    
+    func fillData()  {
+        titleLabel.text = session.name
+        durationLabel.text = session.durationString
+        iconImage.image = nil
+        if let imageUrl = session.imageUrl?.url {
+            iconImage.af.setImage(withURL: imageUrl)
+            iconImage.layer.cornerRadius = 20
+            iconImage.layer.masksToBounds = true
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

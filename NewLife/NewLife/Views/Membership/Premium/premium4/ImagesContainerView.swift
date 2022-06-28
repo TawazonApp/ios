@@ -97,21 +97,28 @@ extension ImagesContainerView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let items = images?.count, items > 0 else
+        {
+            return
+        }
         var visibleRect = CGRect()
 
-            visibleRect.origin = collectionView.contentOffset
-            visibleRect.size = collectionView.bounds.size
+        visibleRect.origin = collectionView.contentOffset
+        visibleRect.size = collectionView.bounds.size
 
-            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
 
-            guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
+        guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
 
         updatePageControl(page: indexPath.item)
     }
     
     
     private func centerItemIfNeeded(indexPath: IndexPath) {
-        
+        guard let items = images?.count, items > 0 else
+        {
+            return
+        }
         collectionView.isPagingEnabled = false
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         collectionView.isPagingEnabled = true

@@ -65,6 +65,7 @@ struct Api {
     static let rateSession = "\(apiUrl)/sessions/rate/{id}"
     static let sessionInfo = "\(apiUrl)/sessions/info/{id}"
     
+    static let searchSession = "\(apiUrlV2)/sessions/search?q={query}"
      static let addToFavoritesUrl = "\(apiUrl)/favourites/add"
      static let removeFromFavoritesUrl = "\(apiUrl)/favourites/delete"
     static let trackSessionUrl = "\(apiUrlV2)/sessions/track"
