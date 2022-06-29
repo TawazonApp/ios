@@ -142,6 +142,7 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
     }
     
     @IBAction func cancelSubscribtionButtonTapped(_ sender: UIButton) {
+        //TODO: send cancel subscribtion button tapped
         PermissionAlert.shared.show(type: PermissionAlertView.AlertType.cancelSubscription, animated: true, actionHandler: {
             PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
                 guard let url =  "https://support.apple.com/ar-sa/HT202039".url else {
@@ -153,6 +154,12 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
         }, cancelHandler: {
             PermissionAlert.shared.hide(animated: true)
         })
+    }
+    func sendUnsbscribeButtonTappedEvent(){
+        if purchaseData != nil{
+            TrackerManager.shared.sendUnsbscribeButtonTappedEvent(productId: purchaseData!.id, name: purchaseData!.title)
+        }
+        
     }
 }
 extension PremiumPlanDetailsViewController: UITableViewDelegate, UITableViewDataSource{

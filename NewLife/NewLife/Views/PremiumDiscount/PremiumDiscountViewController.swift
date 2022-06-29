@@ -100,11 +100,12 @@ class PremiumDiscountViewController: HandleErrorViewController {
 //                    completion(PurchaseProccessTypes.success, nil)
 //                }
             } else if case .error(let error) = result {
-                self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
+                
                 if let errorMessage = self?.purchaseErrorMessage(error: error) {
                     let errorResult = CustomError(message: errorMessage, statusCode: nil)
                     completion(PurchaseProccessTypes.fail, errorResult)
                 } else {
+                    self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
                     completion(PurchaseProccessTypes.cancel, nil)
                 }
             }

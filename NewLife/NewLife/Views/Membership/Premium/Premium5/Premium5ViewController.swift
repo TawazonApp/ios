@@ -52,7 +52,7 @@ class Premium5ViewController: BasePremiumViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.fetchData()
         }
-        
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     private func fetchData(){
         LoadingHud.shared.show(animated: true)

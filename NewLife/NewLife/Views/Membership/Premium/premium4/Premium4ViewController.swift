@@ -42,10 +42,11 @@ class Premium4ViewController: BasePremiumViewController {
         super.viewDidLoad()
         
         initialize()
-        
+        SKPaymentQueue.default().add(self)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.fetchData()
         }
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
     private func fetchData(){
@@ -121,6 +122,13 @@ class Premium4ViewController: BasePremiumViewController {
             if #available(iOS 14.0, *) {
                 paymentQueue.presentCodeRedemptionSheet()
             }
+    }
+    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
+        super.cancelButtonTapped(sender)
+        if nextView == .mainViewController {
+        } else {
+            TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
+        }
     }
 }
 extension Premium4ViewController {

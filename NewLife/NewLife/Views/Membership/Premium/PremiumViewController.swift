@@ -47,10 +47,11 @@ class PremiumViewController: BasePremiumViewController {
         initialize()
         featuresView.features = features
         purchaseView.purchase = purchase
+        SKPaymentQueue.default().add(self)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.showPurchaseCorrectView()
         }
-        TrackerManager.shared.sendOpenPremiumEvent(viewName: premuimPageViewNameValues.defaultView.rawValue)
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
     private func initialize() {
@@ -252,6 +253,13 @@ class PremiumViewController: BasePremiumViewController {
 //            dismiss(animated: true, completion: nil)
 //        }
 //    }
+    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
+        super.cancelButtonTapped(sender)
+        if nextView == .mainViewController {
+        } else {
+            TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
+        }
+    }
     
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
 //        let viewController = PromoCodeViewController.instantiate()
@@ -276,6 +284,7 @@ class PremiumViewController: BasePremiumViewController {
     override func purchaseAction(product: SKProduct?) {
 
         if let item = purchase.tableArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+            selectedPlan = product
             performPurchase(purchaseId: purchaseId, product: product)
         } else {
             goToNextViewController()
@@ -308,11 +317,12 @@ extension PremiumViewController {
 //                    completion(PurchaseProccessTypes.success, nil)
 //                }
             } else if case .error(let error) = result {
-                self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
+               
                 if let errorMessage = self?.purchaseErrorMessage(error: error) {
                     let errorResult = CustomError(message: errorMessage, statusCode: nil)
                     completion(PurchaseProccessTypes.fail, errorResult)
                 } else {
+                    self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
                     completion(PurchaseProccessTypes.cancel, nil)
                 }
             }

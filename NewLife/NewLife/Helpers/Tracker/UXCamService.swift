@@ -10,9 +10,12 @@ import UIKit
 import UXCam
 
 class UXCamTrackerService: TrackingService {
+    
+    
     enum CustomEvents {
-        static let startSubscription = "start_subscription_trial"
-        static let tapCancelSubscription = "tap_cancel_subscription"
+        static let startSubscription = "purchase_process_sucess"
+        static let unsbscribeTapped = "tap_unsubscribe"
+        static let tapCancelSubscription = "cancel_payment_process"
         static let setGoal = "set_goal"
         static let tapCategory = "tap_category"
         static let tapSubCategory = "tap_sub_category"
@@ -27,10 +30,12 @@ class UXCamTrackerService: TrackingService {
         static let userChangePhoto = "user_change_photo"
         static let userChangePassword = "user_change_password"
         static let openDownloadedLibrary = "open_downloaded_library"
-        static let openPremium = "open_premium"
-        static let closePremium = "close_premium"
+        static let openPremium = "open_premium_view"
+        static let closePremium = "close_premium_view"
         static let skipPremium = "skip_premium"
-        static let FailToPurchase = "fail_to_purchase"
+        static let tapProduct = "tap_product"
+        static let startPaymentProcess = "Start_payment_process"
+        static let FailToPurchase = "purchase_process_fail"
         static let notificationStatusChanged = "notification_status_changed"
         static let openSupport = "open_support"
         static let openOurStory = "open_our_story"
@@ -68,6 +73,32 @@ class UXCamTrackerService: TrackingService {
         values["AnalyticsParameterCurrency"] = currency
         
         UXCam.logEvent(CustomEvents.startSubscription, withProperties: values)
+    }
+    
+    func sendTapProductEvent(productId: String, name: String, price: Double) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        values["price"] = price
+        
+        UXCam.logEvent(CustomEvents.tapProduct, withProperties: values)
+    }
+    
+    func sendStartPaymentProcessEvent(productId: String, name: String, price: Double) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        values["price"] = price
+        
+        UXCam.logEvent(CustomEvents.startPaymentProcess, withProperties: values)
+    }
+    
+    func sendUnsbscribeButtonTappedEvent(productId: String, name: String) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        
+        UXCam.logEvent(CustomEvents.unsbscribeTapped, withProperties: values)
     }
     
     func sendTapCancelSubscriptionEvent(productId: String, plan: String) {
@@ -177,9 +208,12 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.openPremium, withProperties: values)
     }
     
-    func sendClosePremiumEvent (){
-        let values = getBaseEventValues()
-        UXCam.logEvent(CustomEvents.closePremium, withProperties: values)
+    func sendClosePremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
+        
+        UXCam.logEvent(CustomEvents.closePremium,
+                       withProperties: values)
     }
     
     func sendSkipPremiumEvent() {

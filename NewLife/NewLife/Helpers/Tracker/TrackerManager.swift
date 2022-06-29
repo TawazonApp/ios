@@ -10,6 +10,7 @@ import UIKit
 
 class TrackerManager: TrackingService {
     
+    
     static let shared = TrackerManager()
     let services: [TrackingService] = [AppsFlyerTrackingService(), FirebaseTrackingService(), UXCamTrackerService()]
     
@@ -25,6 +26,24 @@ class TrackerManager: TrackingService {
     func sendStartSubscriptionEvent(productId: String, plan: PremiumPurchase?, price: Double, currency: String, trial: Bool) {
         for service in services {
             service.sendStartSubscriptionEvent(productId: productId, plan: plan, price: price, currency: currency, trial: trial)
+        }
+    }
+    
+    func sendTapProductEvent(productId: String, name: String, price: Double) {
+        for service in services {
+            service.sendTapProductEvent(productId: productId,name: name, price: price)
+        }
+    }
+    
+    func sendStartPaymentProcessEvent(productId: String, name: String, price: Double) {
+        for service in services {
+            service.sendStartPaymentProcessEvent(productId: productId,name: name, price: price)
+        }
+    }
+    
+    func sendUnsbscribeButtonTappedEvent(productId: String, name: String) {
+        for service in services {
+            service.sendUnsbscribeButtonTappedEvent(productId: productId,name: name)
         }
     }
     
@@ -124,9 +143,9 @@ class TrackerManager: TrackingService {
         }
     }
     
-    func sendClosePremiumEvent() {
+    func sendClosePremiumEvent(viewName: String) {
         for service in services {
-            service.sendClosePremiumEvent()
+            service.sendClosePremiumEvent(viewName: viewName)
         }
     }
     

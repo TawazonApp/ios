@@ -87,6 +87,10 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         selectedPlan = indexPath.item
         selectedCell.setIsSelected(selected: true)
         
+        if let plan  = plans?[indexPath.item]{
+            TrackerManager.shared.sendTapProductEvent(productId: plan.id, name: plan.title, price: (plan.discountPrice! as NSString).doubleValue)
+        }
+        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 

@@ -40,7 +40,7 @@ class Premium1ViewController: BasePremiumViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
             self?.fetchData()
         }
-        
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
     private func fetchData(){
@@ -114,6 +114,13 @@ class Premium1ViewController: BasePremiumViewController {
         let selectedProduct = data.products.filter({$0.productIdentifier == selectedPlan?.id}).first
         
         purchaseAction(product: selectedProduct)
+    }
+    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
+        super.cancelButtonTapped(sender)
+        if nextView == .mainViewController {
+        } else {
+            TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
+        }
     }
 }
 extension Premium1ViewController: UITableViewDelegate, UITableViewDataSource{

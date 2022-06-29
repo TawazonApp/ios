@@ -16,7 +16,7 @@ enum NextView {
     case mainViewController
 }
 
-class BasePremiumViewController: HandleErrorViewController {
+class BasePremiumViewController: HandleErrorViewController, SKPaymentTransactionObserver {
 
     var purchase = PremiumPurchaseVM()
     
@@ -29,6 +29,7 @@ class BasePremiumViewController: HandleErrorViewController {
         case cancel
         case fail
     }
+    var selectedPlan : SKProduct?
     
     private func fetchUserInfoIfNeeded(completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void) {
         
@@ -44,13 +45,13 @@ class BasePremiumViewController: HandleErrorViewController {
             TrackerManager.shared.sendSkipPremiumEvent()
             openMainViewController()
         } else {
-            TrackerManager.shared.sendClosePremiumEvent()
             dismiss(animated: true, completion: nil)
         }
     }
     
     func purchaseAction(product: SKProduct?) {
         if let item = data.plansArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+            selectedPlan = product
             performPurchase(purchaseId: purchaseId, product: product)
         } else {
             goToNextViewController()
@@ -103,11 +104,12 @@ extension BasePremiumViewController{
 //                    completion(PurchaseProccessTypes.success, nil)
 //                }
             } else if case .error(let error) = result {
-                self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
+                
                 if let errorMessage = self?.purchaseErrorMessage(error: error) {
                     let errorResult = CustomError(message: errorMessage, statusCode: nil)
                     completion(PurchaseProccessTypes.fail, errorResult)
                 } else {
+                    self?.sendCancelSubscriptionEvent(purchaseId: purchaseId)
                     completion(PurchaseProccessTypes.cancel, nil)
                 }
             }
@@ -178,5 +180,40 @@ extension BasePremiumViewController{
     private func sendFailToPurchaseEvent(purchaseId: PremiumPurchase, error: String){
         let plan = purchaseId.getPlan()
         TrackerManager.shared.sendFailToPurchaseEvent(productId: purchaseId.rawValue, plan: plan, message: error)
+    }
+    
+    public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+          switch transaction.transactionState {
+          case .purchased:
+            
+            break
+          case .failed:
+              if let error = transaction.error as? SKError{
+                  print("error: \(error.code)")
+                  switch error.code{
+                  case .paymentCancelled:
+                      print("Cancelled")
+                  default:
+                      break
+                  }
+              }
+            break
+          case .restored:
+            
+            break
+          case .deferred:
+            break
+          case .purchasing:
+            print("purchasing")
+              if selectedPlan != nil{
+                  sendStartPaymentEvent()
+              }
+          }
+        }
+      }
+    
+    private func sendStartPaymentEvent(){
+        TrackerManager.shared.sendStartPaymentProcessEvent(productId: selectedPlan!.productIdentifier, name: selectedPlan!.localizedTitle, price: selectedPlan!.price.doubleValue)
     }
 }

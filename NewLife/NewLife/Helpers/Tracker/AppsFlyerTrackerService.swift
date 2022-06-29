@@ -13,8 +13,9 @@ import AppsFlyerLib
 
 class AppsFlyerTrackingService: TrackingService {
     enum CustomEvents {
-        static let startSubscription = "af_start_subscription_trial"
-        static let tapCancelSubscription = "af_tap_cancel_subscription"
+        static let startSubscription = "purchase_process_sucess"
+        static let unsbscribeTapped = "tap_unsubscribe"
+        static let tapCancelSubscription = "cancel_payment_process"
         static let setGoal = "af_set_goal"
         static let tapCategory = "af_tap_category"
         static let tapSubCategory = "af_tap_sub_category"
@@ -30,10 +31,12 @@ class AppsFlyerTrackingService: TrackingService {
         static let userChangePassword = "af_user_change_password"
         static let openDownloadedLibrary = "af_open_downloaded_library"
         static let openSectionSessionList = "af_section_session_list"
-        static let openPremium = "af_open_premium"
-        static let closePremium = "af_close_premium"
+        static let openPremium = "open_premium_view"
+        static let closePremium = "close_premium_view"
         static let skipPremium = "af_skip_premium"
-        static let FailToPurchase = "af_fail_to_purchase"
+        static let tapProduct = "tap_product"
+        static let startPaymentProcess = "Start_payment_process"
+        static let FailToPurchase = "purchase_process_fail"
         static let notificationStatusChanged = "af_notification_status_changed"
         static let openSupport = "af_open_support"
         static let openOurStory = "af_open_our_story"
@@ -86,6 +89,32 @@ class AppsFlyerTrackingService: TrackingService {
             eventName = "af_app_trial_started_\(plan?.eventPeriodName ?? "unknown")"
         }
         AppsFlyerLib.shared().logEvent(eventName, withValues: values)
+    }
+    
+    func sendTapProductEvent(productId: String, name: String, price: Double) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        values["price"] = price
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.tapProduct, withValues: values)
+    }
+    
+    func sendStartPaymentProcessEvent(productId: String, name: String, price: Double) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        values["price"] = price
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.startPaymentProcess, withValues: values)
+    }
+    
+    func sendUnsbscribeButtonTappedEvent(productId: String, name: String) {
+        var values = getBaseEventValues()
+        values["id"] = productId
+        values["name"] = name
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.unsbscribeTapped, withValues: values)
     }
     
     func sendTapCancelSubscriptionEvent(productId: String, plan: String) {
@@ -217,8 +246,9 @@ class AppsFlyerTrackingService: TrackingService {
                                              withValues: values)
     }
     
-    func sendClosePremiumEvent() {
-        let values = getBaseEventValues()
+    func sendClosePremiumEvent(viewName: String) {
+        var values = getBaseEventValues()
+        values["premiumViewName"] = viewName
         
         AppsFlyerLib.shared().logEvent(CustomEvents.closePremium,
                                              withValues: values)

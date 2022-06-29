@@ -114,6 +114,9 @@ extension PremiumPurchaseView: UICollectionViewDelegate, UICollectionViewDataSou
         DispatchQueue.main.async { [weak self] in
             self?.delegate?.purchaseButtonTapped(product: self?.purchase.products[safe: self?.selectedPurchase ?? -1])
         }
+        let plan  = purchase.tableArray[indexPath.item]
+        TrackerManager.shared.sendTapProductEvent(productId: plan.id, name: plan.title, price: (plan.discountPrice! as NSString).doubleValue)
+        //TODO: start purchase proccess event
     }
     
 }

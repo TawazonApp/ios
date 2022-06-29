@@ -76,6 +76,7 @@ class PremiumRenewablePurchaseSummaryView: UIView {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        //TODO: cancel tapped
         PermissionAlert.shared.show(type: PermissionAlertView.AlertType.cancelSubscription, animated: true, actionHandler: {
             PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
                 self?.delegate?.openCancelSubscriptionDetails()
@@ -83,5 +84,12 @@ class PremiumRenewablePurchaseSummaryView: UIView {
         }, cancelHandler: {
             PermissionAlert.shared.hide(animated: true)
         })
+    }
+    
+    func sendUnsbscribeButtonTappedEvent(){
+        if data != nil{
+            TrackerManager.shared.sendUnsbscribeButtonTappedEvent(productId: data!.id, name: data!.title)
+        }
+        
     }
 }

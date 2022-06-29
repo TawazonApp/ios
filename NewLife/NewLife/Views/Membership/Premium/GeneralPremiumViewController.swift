@@ -65,7 +65,6 @@ class GeneralPremiumViewController: BasePremiumViewController {
             case .none:
             loadDefaultView()
         }
-        TrackerManager.shared.sendOpenPremiumEvent(viewName: viewNameString)
     }
    
     private func loadDefaultView(){
