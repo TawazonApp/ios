@@ -130,6 +130,7 @@ class SearchViewController: BaseViewController {
                 print("getSearchDataError: \(String(describing: error))")
             }
             self.categories = self.data?.categories ?? []
+            self.selectedCategoryIndex = 0
             self.tableSessions = self.data?.categories?.count ?? 0 > 0 ? self.data?.categories?[0].sessions : self.data?.sections?.first?.sessions
             
             if self.data?.message != nil{
@@ -250,9 +251,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         headerTitle.textColor = .white
        
         if categoriesDataAvailable()  && selectedCategoryIndex == 0{
-            headerTitle.text = self.data?.categories?[section].name
+            headerTitle.text = "\(self.data?.categories?[section].name ?? "") (\(self.data?.categories?[section].sessions.count ?? 0))"
         }else if categoriesDataAvailable(){
-            headerTitle.text = self.data?.categories?[selectedCategoryIndex - 1].name
+            headerTitle.text = "\(self.data?.categories?[selectedCategoryIndex - 1].name ?? "") (\(self.data?.categories?[selectedCategoryIndex - 1].sessions.count ?? 0))"
         } else{
             headerTitle.text = self.data?.sections?[section].title
         }
@@ -275,7 +276,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         if categoriesDataAvailable() {
             
             let separator = GradientView(frame: footerView.frame)
-            separator.applyGradientColor(colors: [UIColor.lightSlateBlue.cgColor, UIColor.lynch.cgColor, UIColor.sanJuan.withAlphaComponent(0).cgColor], startPoint: .right, endPoint: .left)
+            if Language.language == .arabic {
+                separator.applyGradientColor(colors: [UIColor.lightSlateBlue.cgColor, UIColor.lynch.cgColor, UIColor.sanJuan.withAlphaComponent(0).cgColor], startPoint: .right, endPoint: .left)
+            }else{
+                separator.applyGradientColor(colors: [UIColor.lightSlateBlue.cgColor, UIColor.lynch.cgColor, UIColor.sanJuan.withAlphaComponent(0).cgColor], startPoint: .left, endPoint: .right)
+            }
+            
             footerView.addSubview(separator)
             
             separator.translatesAutoresizingMaskIntoConstraints = false
