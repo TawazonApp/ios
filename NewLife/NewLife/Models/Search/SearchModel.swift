@@ -11,4 +11,5 @@ import Foundation
 struct SearchModel: Codable, ModelInitializable {
     let sections: [HomeSectionModel]
     let categories: [SearchCategoryModel]
+    let message: String?
 }

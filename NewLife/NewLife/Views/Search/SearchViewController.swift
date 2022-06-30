@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreAudio
 
 class SearchViewController: BaseViewController {
 
@@ -15,26 +16,45 @@ class SearchViewController: BaseViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var dividerImage: UIImageView!
     @IBOutlet weak var sessionsTableView: UITableView!
-    
+    @IBOutlet weak var categoriesCollection: UICollectionView!
+    @IBOutlet weak var noResultView: UIView!
+    @IBOutlet weak var noResultImage: UIImageView!
+    @IBOutlet weak var noResultLabel: UILabel!
+    @IBOutlet weak var searchResultStack: UIStackView!
     @IBOutlet weak var mostListenedView: UIView!
     
     var data: SearchVM? {
         didSet {
-            print("SearchVM")
+            
         }
     }
+
+    var categories = [SearchCategoryVM]()
+    var selectedCategoryIndex: Int = 0 {
+        didSet {
+            updateCategorySelectStyle(index: oldValue, isSelected: false)
+            updateCategorySelectStyle(index: selectedCategoryIndex, isSelected: true)
+        }
+    }
+    var tableSessions: [HomeSessionVM]?
+    var timer: Timer? = nil
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initialize()
-        
         data = SearchVM(service: SessionServiceFactory.service())
         performSearch()
+        
     }
     
 
     func initialize(){
         view.backgroundColor = UIColor.cyprus
+        let tapOnScreen: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(viewTapped(_:)))
+        tapOnScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOnScreen)
         
         mostListenedView.backgroundColor = .clear
         
@@ -57,6 +77,29 @@ class SearchViewController: BaseViewController {
             // Fallback on earlier versions
         }
         
+        searchResultStack.backgroundColor = .clear
+        searchResultStack.removeArrangedSubview(noResultView)
+        searchResultStack.removeArrangedSubview(categoriesCollection)
+        
+        categoriesCollection.backgroundColor = .clear
+        categoriesCollection.isHidden = true
+        categoriesCollection.collectionViewLayout = ArabicCollectionFlow()
+        if let layout = categoriesCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+        
+        noResultView.isHidden = true
+        noResultView.backgroundColor = .clear
+        
+        noResultImage.image = UIImage(named: "NoResults")
+        
+        noResultLabel.text = "searchNoResultMessage".localized
+        noResultLabel.font = UIFont.munaFont(ofSize: 18.0)
+        noResultLabel.numberOfLines = 0
+        noResultLabel.textColor = .white
+        noResultLabel.adjustsFontSizeToFitWidth = true
+        noResultLabel.minimumScaleFactor = 0.5
+        
         dividerImage.image = UIImage(named: "SearchDivider")
         
         sessionsTableView.backgroundColor = .clear
@@ -68,16 +111,45 @@ class SearchViewController: BaseViewController {
         data?.getSearchData(query: query){
             (error) in
             if error != nil{
-                print("getSearchDataError: \(error)")
+                print("getSearchDataError: \(String(describing: error))")
             }
-            print("data.sections: \(self.data?.sections?.first?.title)")
-            print("data.categories: \(self.data?.categories?.count)")
+            self.categories = self.data?.categories ?? []
+            self.tableSessions = self.data?.categories?.count ?? 0 > 0 ? self.data?.categories?[0].sessions : self.data?.sections?.first?.sessions
+            
+            if self.data?.message != nil{
+                self.noResultLabel.text = self.data?.message
+            }
+            let isNoResult = (!self.categoriesDataAvailable()) && !(self.searchBar.text?.isEmpty ?? true)
+            self.updateViewAppereance(noResult: isNoResult)
             self.sessionsTableView.reloadData()
+            self.collectionReloadData()
         }
     }
     
+    private func collectionReloadData() {
+        categoriesCollection.reloadData()
+    }
+    
+    private func updateViewAppereance(noResult: Bool){
+        if noResult {
+            print("show no result message")
+            searchResultStack.insertArrangedSubview(noResultView, at: 0)
+            searchResultStack.removeArrangedSubview(categoriesCollection)
+        }else{
+            print("result message")
+            searchResultStack.removeArrangedSubview(noResultView)
+            searchResultStack.insertArrangedSubview(categoriesCollection, at: 0)
+        }
+        
+        noResultView.isHidden = !noResult
+        categoriesCollection.isHidden = noResult
+    }
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
 
@@ -91,27 +163,25 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        if categoriesDataAvailable() {
-            return data?.categories?.count ?? 0
-        }else {
-            return data?.sections?.count ?? 0
+        if categoriesDataAvailable() && selectedCategoryIndex == 0 {
+            return self.data?.categories?.count ?? 0
         }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if categoriesDataAvailable() {
+        if categoriesDataAvailable() && selectedCategoryIndex == 0 {
             return data?.categories?[section].sessions.count ?? 0
-        }else {
-            return data?.sections?[section].sessions.count ?? 0
         }
+        return self.tableSessions?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier) as! SearchTableViewCell
-        if categoriesDataAvailable() {
+        if categoriesDataAvailable() && selectedCategoryIndex == 0 {
             cell.session = self.data?.categories?[indexPath.section].sessions[indexPath.row]
         }else{
-            cell.session = self.data?.sections?[indexPath.section].sessions[indexPath.row]
+            cell.session = self.tableSessions?[indexPath.row]
         }
         
         return cell
@@ -119,11 +189,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var session: HomeSessionVM?
-        if categoriesDataAvailable() {
+        if categoriesDataAvailable() && selectedCategoryIndex == 0 {
             session = self.data?.categories?[indexPath.section].sessions[indexPath.row]
         }else{
-            session = self.data?.sections?[indexPath.section].sessions[indexPath.row]
+            session = self.tableSessions?[indexPath.row]
         }
+        
         if session != nil {
             playSession(session!)
         }
@@ -162,7 +233,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         headerTitle.font = .kacstPen(ofSize: 16.0)
         headerTitle.textColor = .white
         if categoriesDataAvailable() {
-            headerTitle.text = self.data?.categories?[section].name
+            headerTitle.text = "\(self.data?.categories?[section].name ?? "") (\(self.data?.categories?[section].sessions.count ?? 0))"
         }else{
             headerTitle.text = self.data?.sections?[section].title
         }
@@ -179,7 +250,26 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24.0
     }
-    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.sessionsTableView.frame.width, height: 1))
+        
+        if categoriesDataAvailable() {
+            
+            let separator = GradientView(frame: footerView.frame)
+            separator.applyGradientColor(colors: [UIColor.lightSlateBlue.cgColor, UIColor.lynch.cgColor, UIColor.sanJuan.withAlphaComponent(0).cgColor], startPoint: .right, endPoint: .left)
+            footerView.addSubview(separator)
+            
+            separator.translatesAutoresizingMaskIntoConstraints = false
+            separator.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 20).isActive = true
+            separator.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 0).isActive = true
+            separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            separator.widthAnchor.constraint(equalToConstant: footerView.frame.width - 40).isActive = true
+        }
+        return footerView
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
     private func playSession(_ session: HomeSessionVM) {
         guard let sessionModel = session.session else { return }
         let viewcontroller = SessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
@@ -201,16 +291,93 @@ extension SearchViewController:  UISearchBarDelegate{
         performSearch(query: searchBar.text)
         self.searchBar.resignFirstResponder()
     }
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "searchCancelButton".localized
-        self.searchBar.showsCancelButton = true
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        debounce(seconds: 0.35){
+            self.performSearch(query: searchText)
+        }
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = false
         searchBar.text = ""
         self.searchBar.resignFirstResponder()
     }
 }
+extension SearchViewController{
+    func debounce(seconds: TimeInterval, function: @escaping () -> Swift.Void ) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
+            function()
+        })
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categories.count > 0 ? categories.count + 1 : 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCategoryCollectionViewCell.identifier, for: indexPath) as! SearchCategoryCollectionViewCell
+        
+        cell.isAll = false
+        if indexPath.item == 0{
+            cell.isAll = true
+        }else{
+            cell.category = categories[indexPath.item - 1]
+        }
+        cell.setSelected = (indexPath.item == selectedCategoryIndex)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let height: CGFloat = 32
+        if indexPath.item == 0 {
+            let width = "allSearchCategoryLabel".localized.width(withConstrainedHeight: height, font: UIFont.kacstPen(ofSize: 18)) + 20
+            return CGSize(width: width, height: height)
+        }
+        let category = categories[indexPath.item - 1]
+        
+        let width = category.name.width(withConstrainedHeight: height, font: UIFont.kacstPen(ofSize: 18)) + 20
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if selectedCategoryIndex != indexPath.item {
+            selectedCategoryIndex = indexPath.item
+            if selectedCategoryIndex != 0 {
+                self.tableSessions = self.data?.categories?[indexPath.item - 1].sessions
+            }
+            
+            centerItemIfNeeded(indexPath: indexPath)
+            sessionsTableView.reloadData()
+        }
+       
+    }
+    
+    private func centerItemIfNeeded(indexPath: IndexPath) {
+        if categoriesCollection.contentSize.width > categoriesCollection.frame.width {
+            categoriesCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+    private func updateCategorySelectStyle(index: Int, isSelected: Bool) {
+        guard let cell = categoriesCollection.cellForItem(at: IndexPath(item: index, section: 0)) as? SearchCategoryCollectionViewCell else {
+            return
+        }
+        cell.setSelected = isSelected
+    }
+    
+}
+
+
 extension SearchViewController{
     class func instantiate() -> SearchViewController {
         let storyboard = UIStoryboard(name: "Categories", bundle: nil)

@@ -267,6 +267,13 @@ extension UIColor {
         return UIColor(red: 67.0 / 255.0, green: 63.0 / 255.0, blue: 73.0 / 255.0, alpha: 1.0)
     }
     
+    class var lynch: UIColor {
+        return UIColor(red: 99.0 / 255.0, green: 120.0 / 255.0, blue: 139.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var sanJuan: UIColor {
+        return UIColor(red: 62.0 / 255.0, green: 90.0 / 255.0, blue: 98.0 / 255.0, alpha: 1.0)
+    }
     class var cornflowerTwo: UIColor {
         return UIColor(red: 99.0 / 255.0, green: 116.0 / 255.0, blue: 1.0, alpha: 1.0)
     }

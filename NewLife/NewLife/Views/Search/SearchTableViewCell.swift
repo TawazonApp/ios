@@ -29,6 +29,7 @@ class SearchTableViewCell: UITableViewCell {
     func initialize(){
         self.backgroundColor = .clear
         self.selectionStyle = .none
+        
         contentView.backgroundColor = .clear
         
         iconImage.layer.cornerRadius = 20
@@ -39,6 +40,8 @@ class SearchTableViewCell: UITableViewCell {
         
         titleLabel.font = .lbcBold(ofSize: 16.0)
         titleLabel.textColor = .white
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
         
         durationLabel.font = .kacstPen(ofSize: 14.0)
         durationLabel.textColor = .white

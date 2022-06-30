@@ -11,7 +11,7 @@ import UIKit
 class SearchVM: NSObject {
     private (set) var sections: [HomeSectionVM]?
     var categories: [SearchCategoryVM]?
-    
+    var message: String?
     var service: SessionService!
     
     init(service: SessionService) {
@@ -26,7 +26,10 @@ class SearchVM: NSObject {
                 self.sections = sections.map({ HomeSectionVM(section: $0) })
             }
             if let categories = searchResult?.categories{
-                self.categories = categories.map({SearchCategoryVM(sarchCategory: $0, backgroundColor: .yellow, gradiantColors: [UIColor.liliac.cgColor, UIColor.blueberry.cgColor], cellTextColor: .black, cellBackgroundColor: .red)})
+                self.categories = categories.map({SearchCategoryVM(sarchCategory: $0, backgroundColor: .clear, gradiantColors: [UIColor.bubblegum.cgColor, UIColor.lightPurple.cgColor], cellTextColor: .white, cellBackgroundColor: .white.withAlphaComponent(0.25))})
+            }
+            if let message = searchResult?.message{
+                self.message = message
             }
             completion(error)
         }
