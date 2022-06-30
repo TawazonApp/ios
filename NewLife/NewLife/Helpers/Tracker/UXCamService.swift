@@ -46,6 +46,9 @@ class UXCamTrackerService: TrackingService {
         static let rateApp = "rate_app"
         static let shareApp = "share_app"
         static let openVoicesAndDialects = "open_voices_and_dialects"
+        static let openSearch = "open_search_view"
+        static let searchFor = "search_for"
+        static let playSessionFromSearch = "play_session_from_search"
     }
     
     func sendUserId(userId: String?) {
@@ -273,6 +276,24 @@ class UXCamTrackerService: TrackingService {
         values["period"] = period
         values["id"] = sessionId
         UXCam.logEvent(CustomEvents.sessionListenForPreiod, withProperties: values)
+    }
+    
+    func sendOpenSearchEvent() {
+        let values = getBaseEventValues()
+        UXCam.logEvent(CustomEvents.openSearch, withProperties: values)
+    }
+    
+    func sendSearchFor(query: String) {
+        var values = getBaseEventValues()
+        values["query"] = query
+        UXCam.logEvent(CustomEvents.searchFor, withProperties: values)
+    }
+    
+    func sendTapPlaySessionFromSearchResultEvent(id: String, name: String) {
+        var values = getBaseEventValues()
+        values["name"] = name
+        values["id"] = id
+        UXCam.logEvent(CustomEvents.playSessionFromSearch, withProperties: values)
     }
     
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {

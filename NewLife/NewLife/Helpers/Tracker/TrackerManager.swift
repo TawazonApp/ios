@@ -214,6 +214,25 @@ class TrackerManager: TrackingService {
             service.sendSessionListenForPeriodEvent(period: period, sessionId: sessionId)
         }
     }
+    
+    func sendOpenSearchEvent() {
+        for service in services {
+             service.sendOpenSearchEvent()
+        }
+    }
+    
+    func sendSearchFor(query: String) {
+        for service in services {
+            service.sendSearchFor(query: query)
+        }
+    }
+    
+    func sendTapPlaySessionFromSearchResultEvent(id: String, name: String) {
+        for service in services {
+            service.sendTapPlaySessionFromSearchResultEvent(id: id, name: name)
+        }
+    }
+    
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String){
         for service in services {
             service.sendFailToPurchaseEvent(productId: productId, plan: plan, message: message)

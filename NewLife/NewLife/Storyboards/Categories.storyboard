@@ -655,11 +655,24 @@
                                     <action selector="soundsButtonTapped:" destination="qE0-uw-LUe" eventType="touchUpInside" id="nMa-6i-Q3K"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnR-jf-N8w">
+                                <rect key="frame" x="28" y="56" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="9Tt-UO-YP1"/>
+                                    <constraint firstAttribute="width" constant="48" id="QBa-Ua-egO"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="qE0-uw-LUe" eventType="touchUpInside" id="wpP-Ie-ZUv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bqt-kT-u9d"/>
                         <constraints>
                             <constraint firstItem="Bqt-kT-u9d" firstAttribute="trailing" secondItem="Uo7-tb-IRM" secondAttribute="trailing" id="1fl-5j-xrd"/>
                             <constraint firstItem="Bqt-kT-u9d" firstAttribute="trailing" secondItem="fu5-zp-QOi" secondAttribute="trailing" constant="28" id="1yA-nt-MZh"/>
+                            <constraint firstItem="bnR-jf-N8w" firstAttribute="leading" secondItem="Bqt-kT-u9d" secondAttribute="leading" constant="28" id="2S9-SS-dQP"/>
                             <constraint firstAttribute="bottom" secondItem="Mai-RK-pF5" secondAttribute="bottom" id="2ju-Nk-PAZ"/>
                             <constraint firstItem="Bqt-kT-u9d" firstAttribute="trailing" secondItem="Fqb-84-L48" secondAttribute="trailing" id="3QL-NN-OfP"/>
                             <constraint firstItem="s8P-dY-Hhx" firstAttribute="leading" secondItem="Bqt-kT-u9d" secondAttribute="leading" id="64g-Tp-bNp"/>
@@ -667,6 +680,7 @@
                             <constraint firstItem="fu5-zp-QOi" firstAttribute="top" secondItem="Bqt-kT-u9d" secondAttribute="top" constant="12" id="9Hi-tH-Euh"/>
                             <constraint firstItem="Uo7-tb-IRM" firstAttribute="leading" secondItem="Bqt-kT-u9d" secondAttribute="leading" id="BUn-xQ-FDS"/>
                             <constraint firstItem="9NG-DY-SVn" firstAttribute="leading" secondItem="cSf-M4-esl" secondAttribute="leading" id="GPm-AV-gDC"/>
+                            <constraint firstItem="bnR-jf-N8w" firstAttribute="centerY" secondItem="fu5-zp-QOi" secondAttribute="centerY" id="IG3-fC-HpN"/>
                             <constraint firstItem="9NG-DY-SVn" firstAttribute="trailing" secondItem="cSf-M4-esl" secondAttribute="trailing" id="K09-x9-CcW"/>
                             <constraint firstItem="9NG-DY-SVn" firstAttribute="top" secondItem="Uo7-tb-IRM" secondAttribute="top" id="Moc-R0-vu6"/>
                             <constraint firstItem="9NG-DY-SVn" firstAttribute="bottom" secondItem="cSf-M4-esl" secondAttribute="bottom" id="Obb-uH-SG3"/>
@@ -690,6 +704,7 @@
                         <outlet property="bottomOverlayView" destination="Mai-RK-pF5" id="ADb-yP-7JR"/>
                         <outlet property="contentView" destination="9NG-DY-SVn" id="uKQ-He-B91"/>
                         <outlet property="headerView" destination="Fqb-84-L48" id="DDO-U0-Qn2"/>
+                        <outlet property="searchButton" destination="bnR-jf-N8w" id="uxP-Tf-ctM"/>
                         <outlet property="sectionsView" destination="tbZ-To-y3g" id="FjK-V3-lFL"/>
                         <outlet property="sessionsView" destination="5mK-qT-KTa" id="qDQ-Uo-oVy"/>
                         <outlet property="soundsButton" destination="fu5-zp-QOi" id="J2q-84-BiN"/>
@@ -1336,6 +1351,18 @@
                                     <constraint firstAttribute="height" constant="35" id="D4g-K2-yqj"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozj-Ux-dHb">
+                                <rect key="frame" x="28" y="56" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="5Xc-bw-XfX"/>
+                                    <constraint firstAttribute="height" constant="48" id="kKX-FA-2pF"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="DX7-kM-w1S" eventType="touchUpInside" id="9Zf-l6-975"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2a-ba-e3c">
                                 <rect key="frame" x="338" y="56" width="48" height="48"/>
                                 <constraints>
@@ -1357,6 +1384,7 @@
                             <constraint firstItem="qO1-xc-S0y" firstAttribute="trailing" secondItem="Jj4-jC-Dxh" secondAttribute="trailing" constant="20" id="ERj-8l-XeZ"/>
                             <constraint firstItem="Jj4-jC-Dxh" firstAttribute="top" secondItem="rEh-3N-j3J" secondAttribute="bottom" id="FL3-gw-i6c"/>
                             <constraint firstItem="rEh-3N-j3J" firstAttribute="top" secondItem="EM8-Hp-Obl" secondAttribute="top" id="FPb-rP-8Qj"/>
+                            <constraint firstItem="Ozj-Ux-dHb" firstAttribute="centerY" secondItem="A2a-ba-e3c" secondAttribute="centerY" id="Izh-eL-hnW"/>
                             <constraint firstItem="qO1-xc-S0y" firstAttribute="trailing" secondItem="Pew-eU-C12" secondAttribute="trailing" id="N9V-KK-dDi"/>
                             <constraint firstAttribute="bottom" secondItem="SaC-e6-8wg" secondAttribute="bottom" id="NUx-Ez-2Uv"/>
                             <constraint firstItem="Iq5-Dg-kku" firstAttribute="top" secondItem="Pew-eU-C12" secondAttribute="top" id="QyX-Tw-Bbw"/>
@@ -1365,6 +1393,7 @@
                             <constraint firstItem="Iq5-Dg-kku" firstAttribute="bottom" secondItem="EM8-Hp-Obl" secondAttribute="bottom" id="Vtn-F7-zC1"/>
                             <constraint firstItem="Iq5-Dg-kku" firstAttribute="trailing" secondItem="EM8-Hp-Obl" secondAttribute="trailing" id="W86-eX-gOR"/>
                             <constraint firstItem="rEh-3N-j3J" firstAttribute="leading" secondItem="qO1-xc-S0y" secondAttribute="leading" id="XO1-48-iYz"/>
+                            <constraint firstItem="Ozj-Ux-dHb" firstAttribute="leading" secondItem="qO1-xc-S0y" secondAttribute="leading" constant="28" id="aSM-3T-u7B"/>
                             <constraint firstItem="Jj4-jC-Dxh" firstAttribute="leading" secondItem="qO1-xc-S0y" secondAttribute="leading" constant="20" id="cXn-40-T2p"/>
                             <constraint firstItem="qO1-xc-S0y" firstAttribute="trailing" secondItem="rEh-3N-j3J" secondAttribute="trailing" id="dvN-lT-TV5"/>
                             <constraint firstItem="qO1-xc-S0y" firstAttribute="trailing" secondItem="HKW-54-dza" secondAttribute="trailing" id="ftU-Gh-QTm"/>
@@ -1381,6 +1410,7 @@
                         <outlet property="bottomOverlayView" destination="SaC-e6-8wg" id="iyA-In-7xI"/>
                         <outlet property="contentView" destination="Iq5-Dg-kku" id="Nv7-VD-3Gq"/>
                         <outlet property="headerView" destination="rEh-3N-j3J" id="vsz-Xl-SRv"/>
+                        <outlet property="searchButton" destination="Ozj-Ux-dHb" id="czo-eI-TIh"/>
                         <outlet property="sectionsView" destination="Qe2-49-q85" id="coF-0h-m65"/>
                         <outlet property="sessionsView" destination="duc-zF-6Ta" id="WGv-E5-ro2"/>
                         <outlet property="soundsButton" destination="A2a-ba-e3c" id="aOV-8x-dcM"/>
@@ -2037,6 +2067,18 @@
                                     <action selector="soundsButtonTapped:" destination="NcI-LQ-SzC" eventType="touchUpInside" id="Sgi-LU-hxG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFF-Yd-gw7">
+                                <rect key="frame" x="28" y="56" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="EmG-mJ-Nc4"/>
+                                    <constraint firstAttribute="height" constant="48" id="F6s-cG-QV6"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="NcI-LQ-SzC" eventType="touchUpInside" id="3NC-wC-Uyg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h4w-dM-SE1"/>
                         <constraints>
@@ -2065,13 +2107,16 @@
                             <constraint firstItem="eae-dq-9MF" firstAttribute="leading" secondItem="aos-O6-rNG" secondAttribute="leading" id="erK-k4-1sT"/>
                             <constraint firstItem="h4w-dM-SE1" firstAttribute="trailing" secondItem="cic-GT-TJq" secondAttribute="trailing" constant="28" id="gEv-xh-quW"/>
                             <constraint firstAttribute="bottom" secondItem="RZW-m1-Eqo" secondAttribute="bottom" id="lWF-Ys-sCf"/>
+                            <constraint firstItem="yFF-Yd-gw7" firstAttribute="centerY" secondItem="cic-GT-TJq" secondAttribute="centerY" id="n6D-rM-sU4"/>
                             <constraint firstItem="h4w-dM-SE1" firstAttribute="trailing" secondItem="QvK-pV-NM8" secondAttribute="trailing" id="qBp-xI-XP9"/>
+                            <constraint firstItem="yFF-Yd-gw7" firstAttribute="leading" secondItem="h4w-dM-SE1" secondAttribute="leading" constant="28" id="rfQ-dD-yIr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomOverlayView" destination="RZW-m1-Eqo" id="qcH-B1-fLq"/>
                         <outlet property="contentView" destination="eae-dq-9MF" id="Xal-9H-VNW"/>
                         <outlet property="headerView" destination="U9d-M9-dvD" id="tWe-Nz-GP6"/>
+                        <outlet property="searchButton" destination="yFF-Yd-gw7" id="0QG-aN-m0e"/>
                         <outlet property="sectionsView" destination="3aE-G7-VAq" id="e4V-YU-7mG"/>
                         <outlet property="sessionsView" destination="J3q-QB-88O" id="baX-rp-7VD"/>
                         <outlet property="soundsButton" destination="cic-GT-TJq" id="Gcj-yC-OHz"/>
@@ -2900,9 +2945,22 @@
                                     <action selector="soundsButtonTapped:" destination="YQ8-Ds-UNa" eventType="touchUpInside" id="lL5-3s-wXH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dht-8i-t0L">
+                                <rect key="frame" x="28" y="56" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="82g-3O-sev"/>
+                                    <constraint firstAttribute="height" constant="48" id="g0V-3c-4Ci"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="YQ8-Ds-UNa" eventType="touchUpInside" id="Nxy-bd-f0n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="P3B-DR-aTW"/>
                         <constraints>
+                            <constraint firstItem="dht-8i-t0L" firstAttribute="centerY" secondItem="u8A-3b-lDf" secondAttribute="centerY" id="2Uq-bU-TxY"/>
                             <constraint firstAttribute="bottom" secondItem="kvw-vs-CLB" secondAttribute="bottom" id="41d-M5-fbb"/>
                             <constraint firstItem="sPy-SZ-gjk" firstAttribute="height" secondItem="d1I-kM-tWH" secondAttribute="height" multiplier="1:4" id="4aZ-pG-Xug"/>
                             <constraint firstItem="0kC-vB-Dxz" firstAttribute="top" secondItem="1sn-ll-IIQ" secondAttribute="bottom" id="4fQ-Nt-beH"/>
@@ -2923,6 +2981,7 @@
                             <constraint firstItem="YJl-Ka-JM0" firstAttribute="centerY" secondItem="u8A-3b-lDf" secondAttribute="centerY" id="gH2-U2-h6O"/>
                             <constraint firstItem="P3B-DR-aTW" firstAttribute="trailing" secondItem="u8A-3b-lDf" secondAttribute="trailing" constant="28" id="hdk-up-BMD"/>
                             <constraint firstAttribute="bottom" secondItem="sPy-SZ-gjk" secondAttribute="bottom" id="lp4-MF-qIl"/>
+                            <constraint firstItem="dht-8i-t0L" firstAttribute="leading" secondItem="P3B-DR-aTW" secondAttribute="leading" constant="28" id="nxB-cc-uKy"/>
                             <constraint firstItem="1sn-ll-IIQ" firstAttribute="top" secondItem="d1I-kM-tWH" secondAttribute="top" id="rA6-k1-YPx"/>
                             <constraint firstItem="1sn-ll-IIQ" firstAttribute="leading" secondItem="P3B-DR-aTW" secondAttribute="leading" id="tgT-Mh-LgE"/>
                             <constraint firstItem="cHC-zW-xj9" firstAttribute="bottom" secondItem="d1I-kM-tWH" secondAttribute="bottom" id="u39-Jf-SJO"/>
@@ -2935,6 +2994,7 @@
                         <outlet property="bottomOverlayView" destination="sPy-SZ-gjk" id="2Vr-Uk-YCb"/>
                         <outlet property="contentView" destination="cHC-zW-xj9" id="fTW-fu-bbu"/>
                         <outlet property="headerView" destination="1sn-ll-IIQ" id="o0L-OM-X8f"/>
+                        <outlet property="searchButton" destination="dht-8i-t0L" id="PFv-Hu-1aq"/>
                         <outlet property="sectionsView" destination="rUR-zw-VmS" id="8na-6y-wY0"/>
                         <outlet property="sessionsView" destination="Nqs-uX-k8o" id="8W5-3E-eku"/>
                         <outlet property="soundsButton" destination="u8A-3b-lDf" id="fSe-2U-TEk"/>

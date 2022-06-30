@@ -38,7 +38,8 @@ class SearchViewController: BaseViewController {
     }
     var tableSessions: [HomeSessionVM]?
     var timer: Timer? = nil
-    
+    let searchDebouncer = Debouncer()
+    let eventDebouncer = Debouncer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,21 @@ class SearchViewController: BaseViewController {
         initialize()
         data = SearchVM(service: SessionServiceFactory.service())
         performSearch()
-        
+        sendOpenSearchEvent()
     }
     
 
+    private func sendOpenSearchEvent(){
+        TrackerManager.shared.sendOpenSearchEvent()
+    }
+    
+    private func sendSearchFor(query: String){
+        TrackerManager.shared.sendSearchFor(query: query)
+    }
+    
+    private func sendTapPlaySessionFromSearchResultEvent(id: String, name: String){
+        TrackerManager.shared.sendTapPlaySessionFromSearchResultEvent(id: id, name: name)
+    }
     func initialize(){
         view.backgroundColor = UIColor.cyprus
         let tapOnScreen: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector(viewTapped(_:)))
@@ -107,6 +119,10 @@ class SearchViewController: BaseViewController {
         sessionsTableView.dataSource = self
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private func performSearch(query: String? = "") {
         data?.getSearchData(query: query){
             (error) in
@@ -232,9 +248,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         let headerTitle = UILabel()
         headerTitle.font = .kacstPen(ofSize: 16.0)
         headerTitle.textColor = .white
-        if categoriesDataAvailable() {
-            headerTitle.text = "\(self.data?.categories?[section].name ?? "") (\(self.data?.categories?[section].sessions.count ?? 0))"
-        }else{
+       
+        if categoriesDataAvailable()  && selectedCategoryIndex == 0{
+            headerTitle.text = self.data?.categories?[section].name
+        }else if categoriesDataAvailable(){
+            headerTitle.text = self.data?.categories?[selectedCategoryIndex - 1].name
+        } else{
             headerTitle.text = self.data?.sections?[section].title
         }
         
@@ -275,6 +294,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         let viewcontroller = SessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self
+        sendTapPlaySessionFromSearchResultEvent(id: sessionModel.id, name: sessionModel.name)
         self.present(viewcontroller, animated: true, completion: nil)
     }
 }
@@ -293,21 +313,18 @@ extension SearchViewController:  UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        debounce(seconds: 0.35){
+        
+        searchDebouncer.debounce(seconds: 0.35){
             self.performSearch(query: searchText)
+        }
+        
+        eventDebouncer.debounce(seconds: 1){
+            self.sendSearchFor(query: searchText)
         }
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.searchBar.resignFirstResponder()
-    }
-}
-extension SearchViewController{
-    func debounce(seconds: TimeInterval, function: @escaping () -> Swift.Void ) {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
-            function()
-        })
     }
 }
 
@@ -383,5 +400,18 @@ extension SearchViewController{
         let storyboard = UIStoryboard(name: "Categories", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: SearchViewController.identifier) as! SearchViewController
         return viewController
+    }
+}
+
+
+
+class Debouncer{
+    var timer : Timer? = nil
+    
+    func debounce(seconds: TimeInterval, function: @escaping () -> Swift.Void ) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
+            function()
+        })
     }
 }

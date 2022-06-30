@@ -12,6 +12,7 @@ import AppsFlyerLib
 
 
 class AppsFlyerTrackingService: TrackingService {
+    
     enum CustomEvents {
         static let startSubscription = "purchase_process_sucess"
         static let unsbscribeTapped = "tap_unsubscribe"
@@ -47,6 +48,9 @@ class AppsFlyerTrackingService: TrackingService {
         static let rateApp = "af_rate_app"
         static let shareApp = "af_share_app"
         static let openVoicesAndDialects = "open_voices_and_dialects"
+        static let openSearch = "open_search_view"
+        static let searchFor = "search_for"
+        static let playSessionFromSearch = "play_session_from_search"
     }
     
     func sendUserId(userId: String?) {
@@ -331,6 +335,24 @@ class AppsFlyerTrackingService: TrackingService {
         values["period"] = period
         values["id"] = sessionId
         AppsFlyerLib.shared().logEvent(CustomEvents.sessionListenForPreiod, withValues: values)
+    }
+    
+    func sendOpenSearchEvent() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.openSearch, withValues: values)
+    }
+    
+    func sendSearchFor(query: String) {
+        var values = getBaseEventValues()
+        values["query"] = query
+        AppsFlyerLib.shared().logEvent(CustomEvents.searchFor, withValues: values)
+    }
+    
+    func sendTapPlaySessionFromSearchResultEvent(id: String, name: String) {
+        var values = getBaseEventValues()
+        values["name"] = name
+        values["id"] = id
+        AppsFlyerLib.shared().logEvent(CustomEvents.playSessionFromSearch, withValues: values)
     }
     
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {

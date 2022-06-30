@@ -46,6 +46,9 @@ class FirebaseTrackingService: TrackingService {
         static let rateApp = "rate_app"
         static let shareApp = "share_app"
         static let openVoicesAndDialects = "open_voices_and_dialects"
+        static let openSearch = "open_search_view"
+        static let searchFor = "search_for"
+        static let playSessionFromSearch = "play_session_from_search"
     }
     
     func sendUserId(userId: String?) {
@@ -273,6 +276,24 @@ class FirebaseTrackingService: TrackingService {
         values["period"] = period
         values["id"] = sessionId
         Analytics.logEvent(CustomEvents.sessionListenForPreiod, parameters: values)
+    }
+    
+    func sendOpenSearchEvent() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.openSearch, parameters: values)
+    }
+    
+    func sendSearchFor(query: String) {
+        var values = getBaseEventValues()
+        values["query"] = query
+        Analytics.logEvent(CustomEvents.searchFor, parameters: values)
+    }
+    
+    func sendTapPlaySessionFromSearchResultEvent(id: String, name: String) {
+        var values = getBaseEventValues()
+        values["name"] = name
+        values["id"] = id
+        Analytics.logEvent(CustomEvents.playSessionFromSearch, parameters: values)
     }
     
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String) {
