@@ -12,6 +12,7 @@ class SearchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var premiumIcon: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
     
     var session: HomeSessionVM! {
@@ -58,6 +59,9 @@ class SearchTableViewCell: UITableViewCell {
             iconImage.layer.cornerRadius = 20
             iconImage.layer.masksToBounds = true
         }
+        
+        premiumIcon.image = nil
+        premiumIcon.image = session.isLock ? UIImage(named: "SessionLock") : nil
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
