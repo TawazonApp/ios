@@ -138,7 +138,7 @@ class CategoryViewController: SoundEffectsPresenterViewController {
     
     private func openSessionPlayerViewController(session: CategorySessionVM) {
         guard let session = session.session else { return }
-        let viewcontroller = SessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: session), delegate: self)
+        let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: session), delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self
         self.present(viewcontroller, animated: true, completion: nil)

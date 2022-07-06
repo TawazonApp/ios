@@ -297,7 +297,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
     }
     private func playSession(_ session: HomeSessionVM) {
         guard let sessionModel = session.session else { return }
-        let viewcontroller = SessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
+        let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self
         sendTapPlaySessionFromSearchResultEvent(id: sessionModel.id, name: sessionModel.name)

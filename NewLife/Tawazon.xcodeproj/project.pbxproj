@@ -34,6 +34,7 @@
 		04677F4727C3937400493142 /* SuperCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4627C3937400493142 /* SuperCategoryModel.swift */; };
 		04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4827C39D3F00493142 /* SuperCategoryVM.swift */; };
 		04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */; };
+		046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		04A75F61286ADA3D003C7756 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A75F5F286ADA3D003C7756 /* SearchModel.swift */; };
@@ -46,6 +47,7 @@
 		04BB3272281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */; };
 		04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
+		04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */; };
 		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
 		04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */; };
 		04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C328574945006C7AA1 /* SearchViewController.swift */; };
@@ -397,6 +399,7 @@
 		04677F4627C3937400493142 /* SuperCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryModel.swift; sourceTree = "<group>"; };
 		04677F4827C39D3F00493142 /* SuperCategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryVM.swift; sourceTree = "<group>"; };
 		04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryHeaderView.swift; sourceTree = "<group>"; };
+		046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
 		04A75F5F286ADA3D003C7756 /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
@@ -409,6 +412,7 @@
 		04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumFullWidthBannerTableViewCell.swift; sourceTree = "<group>"; };
 		04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerWithHeaderLogoTableViewCell.swift; sourceTree = "<group>"; };
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
+		04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
 		04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
 		04EC40C328574945006C7AA1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -933,6 +937,14 @@
 			path = Section;
 			sourceTree = "<group>";
 		};
+		04D0B4B92872C55400BEBED7 /* DetailedSessionPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */,
+			);
+			path = DetailedSessionPlayer;
+			sourceTree = "<group>";
+		};
 		04EC40C2285748FF006C7AA1 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -994,6 +1006,7 @@
 		F317A178222D730B00CBD760 /* SessionPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				04D0B4B92872C55400BEBED7 /* DetailedSessionPlayer */,
 				F3715CE92242EF2600B7A465 /* PlayerBar */,
 				F317A179222D732500CBD760 /* SessionPlayerViewController.swift */,
 				F317A17B222D736400CBD760 /* ParallaxImageView.swift */,
@@ -1001,6 +1014,7 @@
 				F317A181222DDC3100CBD760 /* CircularProgressBar.swift */,
 				F317A184222DEA2B00CBD760 /* PlayerControlsView.swift */,
 				F317A186222E004C00CBD760 /* SessionFavoriteButton.swift */,
+				046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */,
 			);
 			path = SessionPlayer;
 			sourceTree = "<group>";
@@ -2254,6 +2268,7 @@
 			files = (
 				F35FD5312235748700B3CFC5 /* GoalModel.swift in Sources */,
 				F3DE73B02236653D0052B18C /* LoginModel.swift in Sources */,
+				04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */,
 				F3DC8E292223E47200C7DEC4 /* UIViewExt.swift in Sources */,
 				F3DC8E392223F3D000C7DEC4 /* LaunchView.swift in Sources */,
 				0456D1BD27F1B7E000C174C6 /* BasePremiumModel.swift in Sources */,
@@ -2331,6 +2346,7 @@
 				F3EC82B92264FF8D00DDEBC0 /* NotificationData.swift in Sources */,
 				F317A187222E004C00CBD760 /* SessionFavoriteButton.swift in Sources */,
 				04677F4727C3937400493142 /* SuperCategoryModel.swift in Sources */,
+				046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */,
 				F3B16AF1222E94D1002B0406 /* OurStoryActionsView.swift in Sources */,
 				F35A02DC26208DA600C35016 /* HomeTableView.swift in Sources */,
 				F3DC8EA322271F4E00C7DEC4 /* SubCategoryCollectionCell.swift in Sources */,
@@ -2722,7 +2738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -2770,7 +2786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

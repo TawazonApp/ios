@@ -51,7 +51,7 @@ class PlayerControlsView: UIView {
         durationLabel.text = duration
     }
     
-    @IBAction func backwardButtonTapped(_ sender: UIButton) {
+    @IBAction func backwardButtonTapped(_ sender: UIButton) {print("taaaaapped")
         delegate?.backwardButtonTapped()
     }
     

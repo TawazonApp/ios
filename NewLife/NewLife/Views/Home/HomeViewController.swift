@@ -243,7 +243,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
     
     private func openSessionPlayerViewController(session: HomeSessionVM) {
         guard let sessionModel = session.session else { return }
-        let viewcontroller = SessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
+        let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self
         self.present(viewcontroller, animated: true, completion: nil)

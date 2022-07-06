@@ -250,7 +250,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func openSessionPlayerViewController(session: SessionVM) {
-        let viewcontroller = SessionPlayerViewController.instantiate(session: session, delegate: self)
+        let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: session, delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self
         self.present(viewcontroller, animated: true, completion: nil)

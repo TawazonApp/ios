@@ -1,9 +1,9 @@
 //
-//  SessionPlayerViewController.swift
-//  NewLife
+//  DetailedSessionPlayerViewController.swift
+//  Tawazon
 //
-//  Created by Shadi on 04/03/2019.
-//  Copyright © 2019 Inceptiontech. All rights reserved.
+//  Created by mac on 04/07/2022.
+//  Copyright © 2022 Inceptiontech. All rights reserved.
 //
 
 import UIKit
@@ -11,27 +11,30 @@ import MediaPlayer
 import NVActivityIndicatorView
 import SwiftMessages
 
-//protocol SessionPlayerDelegate: class {
-//    func sessionStoped(_ session: SessionVM)
-//}
 
-class SessionPlayerViewController: SuperSessionPlayerViewController {
+
+
+
+class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     
-//    @IBOutlet weak var voiceAndDialectsButton: GradientButton!
+//    @IBOutlet weak var voiceAndDialectsButton: UIButton!
 //    @IBOutlet weak var backgroundImageView: ParallaxImageView!
 //    @IBOutlet weak var overlayView: GradientView!
 //    @IBOutlet weak var downloadButton: DownloadSessionButton!
 //    @IBOutlet weak var dismissButton: UIButton!
 //    @IBOutlet weak var favoriteButton: SessionFavoriteButton!
-    @IBOutlet weak var shareButton: CircularButton!
-    @IBOutlet weak var rateButton: CircularButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var rateButton: UIButton!
     
 //    @IBOutlet weak var titleLabel: UILabel!
 //    @IBOutlet weak var subTitleLabel: UILabel!
     
-    @IBOutlet weak var progressView: PlayerProgressView!
 //    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var progressSlider: ProgressSlider!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var fullDurationLabel: UILabel!
 //    @IBOutlet weak var controlsView: PlayerControlsView!
+    @IBOutlet weak var footerControlsStack: UIStackView!
     
 //    weak var delegate: SessionPlayerDelegate?
 //    var playingLoading: NVActivityIndicatorView?
@@ -98,37 +101,93 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //        downloadButton.layer.cornerRadius = downloadButton.frame.height/2
 //        downloadButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
 //
-//        titleLabel.font = UIFont.lbcBold(ofSize: 24, language: .arabic)
+//        titleLabel.font = UIFont.lbcBold(ofSize: 28, language: .arabic)
 //        titleLabel.textColor = UIColor.white
+//        titleLabel.numberOfLines = 0
+//        titleLabel.lineBreakMode = .byWordWrapping
 //
-//        subTitleLabel.font = UIFont.kacstPen(ofSize: 16, language: .arabic)
-//        subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.7)
+//        subTitleLabel.font = UIFont.munaFont(ofSize: 16, language: .arabic)
+//        subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.86)
+//        subTitleLabel.textAlignment = .center
+//        subTitleLabel.numberOfLines = 0
+//        subTitleLabel.lineBreakMode = .byWordWrapping
 //
 //        overlayView.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
 //
 //        playButton.tintColor = UIColor.white
         
-        //////////////////////////////////////////////
+        ///////////////////////////////////////////
         if session?.audioSources?.count ?? 0 == 1 && session?.audioSources?.first?.dialects.count == 1{
             voiceAndDialectsButton.isHidden = true
+            footerControlsStack.removeArrangedSubview(voiceAndDialectsButton)
         }
+        
+        fullDurationLabel.font = UIFont.munaFont(ofSize: 14.0)
+        fullDurationLabel.textColor = .white
+        
+        durationLabel.font = UIFont.munaFont(ofSize: 14.0)
+        durationLabel.textColor = .white
+        
         voiceAndDialectsButton.setTitle("voiceAndDialectsTitle".localized, for: .normal)
         voiceAndDialectsButton.tintColor = .white
-        voiceAndDialectsButton.layer.cornerRadius = 22.0
+        voiceAndDialectsButton.roundCorners(corners: .allCorners, radius: 12.0)
         voiceAndDialectsButton.titleLabel?.font = UIFont.munaFont(ofSize: 18)
         voiceAndDialectsButton.setImage(#imageLiteral(resourceName: "VoiceAndDialect"), for: .normal)
-        voiceAndDialectsButton.applyGradientColor(colors: [UIColor.yellow.withAlphaComponent(0.33).cgColor], startPoint: .top, endPoint: .bottom)
-        voiceAndDialectsButton.backgroundColor = .black.withAlphaComponent(0.31)
+        voiceAndDialectsButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
+        if #available(iOS 13.0, *) {
+            voiceAndDialectsButton.addBlurEffect(style: .systemUltraThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            voiceAndDialectsButton.addBlurEffect(style: .dark)
+        }
+        favoriteButton.roundCorners(corners: .allCorners, radius: 0.0)
+        favoriteButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
+        if #available(iOS 13.0, *) {
+            favoriteButton.addBlurEffect(style: .systemUltraThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            favoriteButton.addBlurEffect(style: .dark)
+        }
+                
+        progressSlider.tintColor = .white
+        progressSlider.value = 0
+        progressSlider.setThumbImage(UIImage(named: "ProgressTracker"), for: .normal)
+        if #available(iOS 14.0, *) {
+            progressSlider.setMaximumTrackImage(UIImage(named: "ProgressSliderTracker"), for: .normal)
+        }
+        
         
         initializeShareButton()
 //        updatePlayButtonStyle()
     }
     
     private func initializeShareButton() {
+        let leftCorners : UIRectCorner = [[.bottomLeft, .topLeft]]
+        let rightCorners : UIRectCorner = [.bottomRight, .topRight]
         shareButton.setImage(#imageLiteral(resourceName: "ShareSession.pdf"), for: .normal)
+        shareButton.roundCorners(corners: Language.language == .english ? leftCorners : rightCorners, radius: 12.0)
+        shareButton.backgroundColor = .darkGray.withAlphaComponent(0.26)
+        shareButton.tintColor = .white
+        if #available(iOS 13.0, *) {
+            shareButton.addBlurEffect(style: .systemUltraThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            shareButton.addBlurEffect(style: .dark)
+        }
+        
         rateButton.setImage(#imageLiteral(resourceName: "EmptyRateStar.pdf"), for: .normal)
+        rateButton.roundCorners(corners: Language.language == .english ? rightCorners : leftCorners, radius: 12.0)
+        rateButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
+        rateButton.tintColor = .white
+        if #available(iOS 13.0, *) {
+            rateButton.addBlurEffect(style: .systemUltraThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            rateButton.addBlurEffect(style: .dark)
+        }
+        
     }
-//
+    
 //    private func initializeNotificationCenter() {
 //        NotificationCenter.default.addObserver(self,  selector: #selector(downloadSessionsProgressChanged(_:)),  name: Notification.Name.downloadSessionsProgressChanged, object: nil)
 //        NotificationCenter.default.addObserver(self,  selector: #selector(remoteAudioControlDidReceived(_:)),  name: Notification.Name.remoteAudioControlDidReceived, object: nil)
@@ -141,20 +200,23 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //    private func hideSessionPlayerBar() {
 //        NotificationCenter.default.post(name: NSNotification.Name.hideSessionPlayerBar, object: nil)
 //    }
-//
+    
 //    @objc private func showSessionPlayerBar() {
 //        NotificationCenter.default.post(name: NSNotification.Name.showSessionPlayerBar, object: nil)
 //    }
-//
+    
 //    private func updatePlayButtonStyle() {
 //        let image: UIImage? = isPlaying ? UIImage(named: "PlayerPause") :  UIImage(named: "PlayerPlay")
 //        playButton.setImage(image, for: .normal)
 //    }
-
-//    private func fillData() {
+    
+    override func fillData() {
 //        titleLabel.text = session?.name
 //        subTitleLabel.text = session?.author
-//
+        /////////////////////// super >> next line
+        super.fillData()
+        fullDurationLabel.text = session?.durationString
+        
 //        backgroundImageView.image = nil
 //        if let localiImageUrl = session?.localImageUrl {
 //            backgroundImageView.image = UIImage(contentsOfFile: localiImageUrl.path)
@@ -166,8 +228,8 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //        downloadButton.downloadStatus = session?.downloadStatus
 //        initialDownloadStatus = session?.downloadStatus ?? .none
 //        setFavoriteButtonData()
-//    }
-//
+    }
+    
 //    private func setFavoriteButtonData() {
 //        favoriteButton.isFavorite = session?.isFavorite ?? false
 //    }
@@ -185,7 +247,7 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //            }
 //        }
 //    }
-//
+    
 //    @objc private func downloadSessionsProgressChanged(_ notification: Notification) {
 //        downloadButton.downloadStatus = session?.downloadStatus
 //        if initialDownloadStatus != session?.downloadStatus &&  session?.downloadStatus == .downloaded {
@@ -213,7 +275,7 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //            self.dismiss(animated: true, completion: nil)
 //        }
 //    }
-//
+    
 //    private func openLoginViewController() {
 //        SystemSoundID.play(sound: .Sound1)
 //
@@ -336,10 +398,28 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //        voicesAndDialectsViewController.delegate = self
 //        self.present(voicesAndDialectsViewController, animated: true, completion: nil)
 //    }
+    ////////////////////////////////////////
+    @IBAction func progressSliderTapped(_ sender: UISlider) {
+        if isPlaying {
+            isPlaying = !AudioPlayerManager.shared.isPlaying()
+            AudioPlayerManager.shared.togglePlayPause()
+        }
+    }
+    @IBAction func progressSliderValueChanged(_ sender: UISlider) {
+       
+        let newTime = sender.value * (AudioPlayerManager.shared.currentTrack?.durationInSeconds() ?? 0)
+        let seekTime = CMTimeMake(value: Int64(newTime), timescale: 1)
+        AudioPlayerManager.shared.seek(toTime: seekTime)
+        updateSongInformation(with: AudioPlayerManager.shared.currentTrack)
+        if !isPlaying {
+            isPlaying = !AudioPlayerManager.shared.isPlaying()
+            AudioPlayerManager.shared.togglePlayPause()
+        }
+    }
 }
 
 
-//extension SessionPlayerViewController: PlayerControlsViewDelegate {
+//extension DetailedSessionPlayerViewController: PlayerControlsViewDelegate {
 //
 //    func backwardButtonTapped() {
 //        guard AudioPlayerManager.shared.canRewind() else {
@@ -349,7 +429,7 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //            let newTime = currentTimeInSeconds - 10
 //            let seekTime = CMTimeMake(value: Int64(newTime), timescale: 1)
 //            AudioPlayerManager.shared.seek(toTime: seekTime)
-//            updateSongInformation(with: AudioPlayerManager.shared.currentTrack)
+//           updateSongInformation(with: AudioPlayerManager.shared.currentTrack)
 //        }
 //
 //    }
@@ -363,9 +443,10 @@ class SessionPlayerViewController: SuperSessionPlayerViewController {
 //            updateSongInformation(with: AudioPlayerManager.shared.currentTrack)
 //        }
 //    }
+//
 //}
 
-extension SessionPlayerViewController {
+extension DetailedSessionPlayerViewController {
     
 //    private func playSession(sessoinAudioSource: URL?) {
 //        if AudioPlayerManager.shared.isPlaying(url: sessoinAudioSource) == true {
@@ -429,7 +510,7 @@ extension SessionPlayerViewController {
 //            self?.updatePlaybackTime(track)
 //        })
 //    }
-    
+//
 //    private func openPremiumViewController() {
 //        guard self.presentedViewController == nil else {
 //            return
@@ -441,9 +522,11 @@ extension SessionPlayerViewController {
 //        navigationController.transitioningDelegate = self
 //        self.present(navigationController, animated: true, completion: nil)
 //    }
-    //////////////////////////////////////
+    ////////////////////////////////////
     private func initPlaybackTimeViews() {
-        progressView.progress = 0
+//        progressView.progress = 0
+//        progressBar.progress = 0
+        progressSlider.value = 0
         /*
          progressView.progress = 0
          progressView.currentTime = nil
@@ -462,11 +545,12 @@ extension SessionPlayerViewController {
 //
     override func updatePlaybackTime(_ track: AudioTrack?) {
         super.updatePlaybackTime(track)
-        progressView.progress = CGFloat(track?.currentProgress() ?? 0)
+        progressSlider.value = Float(CGFloat(track?.currentProgress() ?? 0))
 //        showAndHideLoadingIndicator(track: track)
 //        controlsView.duration = track?.displayableTimeLeftString()
+        durationLabel.text = track?.displayablePlaybackTimeString()
     }
-
+//
 //    private func showAndHideLoadingIndicator(track: AudioTrack?) {
 //        if track != nil && track!.currentTimeInSeconds() == 0 && AudioPlayerManager.shared.isPlaying() {
 //            startPlayerLoadingIfNeeded()
@@ -474,19 +558,21 @@ extension SessionPlayerViewController {
 //            stopPlayerLoading()
 //        }
 //    }
-    ////////////////////////////////////////////
+    /////////////////////////////////
     override func startPlayerLoadingIfNeeded() {
-        super.startPlayerLoadingIfNeeded()
         if playingLoading == nil {
-            playingLoading = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: progressView.frame.width, height: progressView.frame.height), type: NVActivityIndicatorType.circleStrokeSpin, color: UIColor.white, padding: nil)
-            
-            progressView.addSubview(playingLoading!)
+            playingLoading = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width/3, height: view.frame.height/3), type: NVActivityIndicatorType.circleStrokeSpin, color: UIColor.white, padding: nil)
+
+            view.addSubview(playingLoading!)
+            playingLoading?.translatesAutoresizingMaskIntoConstraints = false
+            playingLoading?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            playingLoading?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             playingLoading?.startAnimating()
         }
-//        playButton.alpha = 0.5
-//        playButton.isEnabled = false
-//        controlsView.alpha = 0.5
-//        controlsView.isUserInteractionEnabled = false
+        playButton.alpha = 0.5
+        playButton.isEnabled = false
+        controlsView.alpha = 0.5
+        controlsView.isUserInteractionEnabled = false
     }
     
     private func stopPlayerLoading() {
@@ -505,12 +591,12 @@ extension SessionPlayerViewController {
 //    }
 }
 
-extension SessionPlayerViewController {
+extension DetailedSessionPlayerViewController {
     
-    class func instantiate(session: SessionVM, delegate: SessionPlayerDelegate?) -> SessionPlayerViewController {
+    class func instantiate(session: SessionVM, delegate: SessionPlayerDelegate?) -> DetailedSessionPlayerViewController {
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: SessionPlayerViewController.identifier) as! SessionPlayerViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: DetailedSessionPlayerViewController.identifier) as! DetailedSessionPlayerViewController
         viewController.delegate = delegate
         SessionPlayerMananger.shared.session = session
         return viewController
@@ -518,12 +604,7 @@ extension SessionPlayerViewController {
     
 }
 
-//extension AudioPlayerManager {
-//    func isCurrentTrack(url: URL) -> Bool {
-//        return currentTrack?.identifier() == url.absoluteString
-//    }
-//}
-//extension SessionPlayerViewController : VoicesAndDialectsDelegate{
+//extension DetailedSessionPlayerViewController : VoicesAndDialectsDelegate{
 //    func sessionStreamLinkChanged(audioSource: String) {
 //        playSession(sessoinAudioSource: audioSource.url)
 //    }
@@ -547,3 +628,34 @@ extension SessionPlayerViewController {
 //        (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
 //    }
 //}
+
+extension UIButton {
+    func addBlurEffect(style: UIBlurEffect.Style = .regular) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.isUserInteractionEnabled = false
+        blurView.backgroundColor = .clear
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        blurView.layer.masksToBounds = true
+        self.insertSubview(blurView, at: 0)
+        if let imageView = self.imageView{
+            imageView.backgroundColor = .clear
+            self.bringSubviewToFront(imageView)
+        }
+    }
+}
+public class ProgressSlider : UISlider
+{
+    func addBlurEffect(style: UIBlurEffect.Style = .regular) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.isUserInteractionEnabled = false
+        blurView.backgroundColor = .clear
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        blurView.layer.masksToBounds = true
+        self.insertSubview(blurView, at: 0)
+        
+    }
+}
