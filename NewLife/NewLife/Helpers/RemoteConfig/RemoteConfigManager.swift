@@ -75,6 +75,10 @@ extension RemoteConfigManager{
                 .configValue(forKey: RCValueKeys.sectionPremuimPageViewName.rawValue)
               .stringValue ?? "undefined"
             
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.premuimOfBannerViewName.rawValue)
+              .stringValue ?? "undefined"
+            
 
 
             

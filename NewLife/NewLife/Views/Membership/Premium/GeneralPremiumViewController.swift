@@ -48,7 +48,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
             viewNameString = RemoteConfigManager.shared.string(forKey: .premuimOfBannerViewName)
         }
          let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
-
+print("viewName: \(viewName)")
          switch viewName{
             case .defaultView:
                 loadDefaultView()
