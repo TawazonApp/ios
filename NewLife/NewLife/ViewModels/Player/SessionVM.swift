@@ -39,6 +39,13 @@ class SessionVM: BaseLibrarySessionVM {
         return session?.shareLink
     }
 
+    override var durationString: String?{
+        if let selectedSessionDialect = getSessionPreferredVoiceAndDialect().dialect {
+            return selectedSessionDialect.duration.seconds2Duration
+        }
+        return super.durationString
+    }
+    
     override func download() {
         guard let session = session else { return }
         LocalSessionsManager.shared.downloadSession(session: session, sessionURL: getSessionAudioSource()) {(error) in

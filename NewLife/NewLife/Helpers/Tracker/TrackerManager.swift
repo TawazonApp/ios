@@ -257,6 +257,12 @@ class TrackerManager: TrackingService {
         }
     }
     
+    func sendChangeVoicesAndDialectsEvent(voice: String, dialect: String){
+        for service in services {
+            service.sendChangeVoicesAndDialectsEvent(voice: voice, dialect: dialect)
+        }
+    }
+    
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()

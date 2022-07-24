@@ -52,7 +52,7 @@ protocol TrackingService {
     func sendSessionListenForPeriodEvent(period: Double, sessionId: String)
     func sendFailToPurchaseEvent(productId: String, plan: String, message: String)
     func sendOpenVoicesAndDialectsEvent()
-    
+    func sendChangeVoicesAndDialectsEvent(voice: String, dialect: String)
     func sendOpenSearchEvent()
     func sendSearchFor(query: String)
     func sendTapPlaySessionFromSearchResultEvent(id: String, name: String)

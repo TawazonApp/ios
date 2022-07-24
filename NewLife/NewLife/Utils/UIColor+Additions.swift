@@ -439,6 +439,11 @@ extension UIColor {
     class var heliotrope: UIColor{
         return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
     }
+    
+    class var roseBud: UIColor{
+        return UIColor(red: 255.0 / 255.0, green: 162.0 / 255.0, blue: 162.0 / 255.0, alpha: 1.0)
+    }
+
 }
 
 

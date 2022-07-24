@@ -13,7 +13,7 @@ class FirebaseTrackingService: TrackingService {
     
     
     enum CustomEvents {
-        static let startSubscription = "purchase_process_sucess"
+        static let startSubscription = "purchase_process_success"
         static let unsbscribeTapped = "tap_unsubscribe"
         static let tapCancelSubscription = "cancel_payment_process"
         static let setGoal = "set_goal"
@@ -34,7 +34,7 @@ class FirebaseTrackingService: TrackingService {
         static let closePremium = "close_premium_view"
         static let skipPremium = "skip_premium"
         static let tapProduct = "tap_product"
-        static let startPaymentProcess = "Start_payment_process"
+        static let startPaymentProcess = "start_payment_process"
         static let FailToPurchase = "purchase_process_fail"
         static let notificationStatusChanged = "notification_status_changed"
         static let openSupport = "open_support"
@@ -46,6 +46,7 @@ class FirebaseTrackingService: TrackingService {
         static let rateApp = "rate_app"
         static let shareApp = "share_app"
         static let openVoicesAndDialects = "open_voices_and_dialects"
+        static let changeVoicesAndDialects = "change_voices_and_dialects"
         static let openSearch = "open_search_view"
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
@@ -54,6 +55,7 @@ class FirebaseTrackingService: TrackingService {
     func sendUserId(userId: String?) {
         Analytics.setUserID(userId)
         Analytics.setUserProperty(UIApplication.identifierForAdvertising, forName: "idfa")
+        Analytics.setUserProperty("\(UserDefaults.isPremium())", forName: "is_premium")
     }
     
     func sendLoginEvent() {
@@ -308,6 +310,14 @@ class FirebaseTrackingService: TrackingService {
         let values = getBaseEventValues()
         Analytics.logEvent(CustomEvents.openVoicesAndDialects, parameters: values)
     }
+    
+    func sendChangeVoicesAndDialectsEvent(voice: String, dialect: String){
+        var values = getBaseEventValues()
+        values["voice"] = voice
+        values["dialect"] = dialect
+        Analytics.logEvent(CustomEvents.changeVoicesAndDialects, parameters: values)
+    }
+    
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",

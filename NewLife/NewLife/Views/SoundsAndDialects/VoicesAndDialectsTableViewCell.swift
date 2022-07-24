@@ -35,10 +35,12 @@ class VoicesAndDialectsTableViewCell: UITableViewCell {
         bottomBorder.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
         self.layer.addSublayer(bottomBorder)
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
+    
     func setSelectedStyle(selected: Bool) {
         if selected {
             titleLabel.font = UIFont.munaBoldFont(ofSize: 22.0)

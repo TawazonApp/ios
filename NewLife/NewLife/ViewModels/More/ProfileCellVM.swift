@@ -15,6 +15,7 @@ class ProfileCellVM: NSObject {
         case changeProfilePicture
         case changePassword
         case changeToPremium
+        case deleteAccount
         case logout
     }
     
@@ -48,6 +49,10 @@ class ProfileCellVM: NSObject {
         case .changePassword:
             result.title = "profileChangePasswordTitle".localized
             result.imageName = "ProfilePassword"
+            break
+        case .deleteAccount:
+            result.title = "profileDeleteAccountTitle".localized
+            result.imageName = "ProfileDeleteAccount"
             break
         case .logout:
             result.title = "profileLogoutTitle".localized

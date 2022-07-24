@@ -9,6 +9,11 @@
 import UIKit
 
 
+protocol ProfileDeleteAccountDelegate: class {
+    func userNeedSupport()
+}
+
+
 class PermissionAlert: NSObject {
     
     static let shared = PermissionAlert()
@@ -16,9 +21,10 @@ class PermissionAlert: NSObject {
     private var alertView: PermissionAlertView?
     private override init() {}
     
-    func show(type: PermissionAlertView.AlertType ,animated: Bool, actionHandler: (()->Void)?, cancelHandler: (()->Void)?) {
+    func show(type: PermissionAlertView.AlertType ,animated: Bool, delegate: ProfileDeleteAccountDelegate? = nil, actionHandler: (()->Void)?, cancelHandler: (()->Void)?) {
         if alertView == nil {
             alertView = PermissionAlertView.fromNib()
+            alertView?.delegate = delegate
             alertView!.show(type: type, animated: animated, actionHandler: actionHandler, cancelHandler: cancelHandler)
         }
     }
@@ -46,12 +52,14 @@ class PermissionAlertView: UIView, NibInstantiatable {
         case login
         case premium
         case cancelSubscription
+        case deleteAccount
     }
     
-    typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, actionTitle: String, cancelTitle: String)
+    typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
     
     var actionHandler: (()->Void)? = nil
     var cancelHandler:(()->Void)? = nil
+    var delegate: ProfileDeleteAccountDelegate?
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentView: UIView!
@@ -59,6 +67,7 @@ class PermissionAlertView: UIView, NibInstantiatable {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var bodyActionButton: UIButton!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
@@ -81,16 +90,19 @@ class PermissionAlertView: UIView, NibInstantiatable {
         iconImageView.layer.cornerRadius = iconImageView.frame.height/2
         iconImageView.layer.masksToBounds = true
         
-        titleLabel.font = UIFont.lbcBold(ofSize: 17, language: .arabic)
+        titleLabel.font = .munaBoldFont(ofSize: 20, language: .arabic)
         titleLabel.tintColor = UIColor.charcoalGrey
         
-        subTitleLabel.font = UIFont.kacstPen(ofSize: 20, language: .arabic)
+        subTitleLabel.font = UIFont.munaFont(ofSize: 15, language: .arabic)
         subTitleLabel.tintColor = UIColor.charcoalGrey
         
-        actionButton.titleLabel?.font = UIFont.kacstPen(ofSize: 22)
+        bodyActionButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 20, language: .arabic)
+        bodyActionButton.tintColor = UIColor.white
+        
+        actionButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 18)
         actionButton.tintColor = UIColor.charcoalGrey
         
-        cancelButton.titleLabel?.font = UIFont.kacstPen(ofSize: 22)
+        cancelButton.titleLabel?.font = UIFont.munaFont(ofSize: 18)
         cancelButton.tintColor = UIColor.charcoalGrey
         
     }
@@ -103,25 +115,41 @@ class PermissionAlertView: UIView, NibInstantiatable {
         iconImageView.image = (data.iconName != nil) ? UIImage(named: data.iconName!) : nil
         
         titleLabel.text = data.title
+        titleLabel.textColor = data.contentColor
+        
         subTitleLabel.text = data.subTitle
+        subTitleLabel.textColor = data.contentColor
+        
+        bodyActionButton.setAttributedTitle(NSMutableAttributedString(
+            string: data.bodyActionTitle ?? "",
+            attributes: [
+                .font: UIFont.munaBoldFont(ofSize: 20, language: .arabic),
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+         ), for: .normal)
         
         actionButton.setTitle(data.actionTitle, for: .normal)
         actionButton.backgroundColor = data.backgroundColor
+        actionButton.tintColor = data.actionTitleColor
         
         cancelButton.setTitle(data.cancelTitle, for: .normal)
         cancelButton.backgroundColor = data.backgroundColor
+        cancelButton.tintColor = data.contentColor
     }
     
     private func dataBy(type: AlertType) -> PermissionAlertData {
         switch type {
         case .login:
-            return (backgroundColor: UIColor.veryLightBlue, iconName: "PermissionLoginAlert", title: "PermissionLoginAlertTitle".localized, subTitle: "PermissionLoginAlertBody".localized, actionTitle: "PermissionLoginAlertActionTitle".localized, cancelTitle: "PermissionLoginAlertCancelTitle".localized)
+            return (backgroundColor: UIColor.veryLightBlue, iconName: "PermissionLoginAlert", title: "PermissionLoginAlertTitle".localized, subTitle: "PermissionLoginAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionLoginAlertActionTitle".localized, cancelTitle: "PermissionLoginAlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
             
         case .premium:
-            return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "PermissionPremiumAlertTitle".localized, subTitle: "PermissionPremiumAlertBody".localized, actionTitle: "PermissionPremiumAlertActionTitle".localized, cancelTitle: "PermissionPremiumAlertCancelTitle".localized)
+            return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "PermissionPremiumAlertTitle".localized, subTitle: "PermissionPremiumAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionPremiumAlertActionTitle".localized, cancelTitle: "PermissionPremiumAlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
 
         case .cancelSubscription:
-        return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "CancelSubscriptionAlertTitle".localized, subTitle: "CancelSubscriptionAlertBody".localized, actionTitle: "CancelSubscriptionAlertActionTitle".localized, cancelTitle: "CancelSubscriptionlertCancelTitle".localized)
+        return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "CancelSubscriptionAlertTitle".localized, subTitle: "CancelSubscriptionAlertBody".localized, bodyActionTitle: "", actionTitle: "CancelSubscriptionAlertActionTitle".localized, cancelTitle: "CancelSubscriptionlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
+            
+        case .deleteAccount:
+            return (backgroundColor: UIColor.lightSlateBlue, iconName: "PermissionDeleteAccount", title: "DeleteAccountAlertTitle".localized, subTitle: "DeleteAccountAlertBody".localized, bodyActionTitle: "DeleteBodyActionTitle".localized , actionTitle: "DeleteAccountAlertActionTitle".localized, cancelTitle: "DeleteAccountAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
     }
     }
     
@@ -188,4 +216,9 @@ class PermissionAlertView: UIView, NibInstantiatable {
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         actionHandler?()
     }
+    
+    @IBAction func bodyActionButtonTapped(_ sender: UIButton) {
+        delegate?.userNeedSupport()
+    }
+   
 }

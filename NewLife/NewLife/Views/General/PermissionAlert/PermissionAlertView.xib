@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PermissionAlertView" customModule="NewLife" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PermissionAlertView" customModule="Tawazon" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-H8-hG0">
-                    <rect key="frame" x="20" y="219" width="335" height="229.5"/>
+                    <rect key="frame" x="20" y="200" width="335" height="267.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nG-Kl-42O">
-                            <rect key="frame" x="0.0" y="0.0" width="335" height="164.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="202.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f6s-gq-t3H">
                                     <rect key="frame" x="143.5" y="28" width="48" height="48"/>
@@ -43,31 +41,40 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUt-it-zFe">
+                                    <rect key="frame" x="152.5" y="148.5" width="30" height="30"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <connections>
+                                        <action selector="bodyActionButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="b9b-uO-vjl"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="hJY-YM-9no" firstAttribute="leading" secondItem="1nG-Kl-42O" secondAttribute="leading" constant="24" id="4vg-Wd-T27"/>
                                 <constraint firstItem="CRG-3o-pUy" firstAttribute="leading" secondItem="1nG-Kl-42O" secondAttribute="leading" constant="24" id="654-1w-oQ9"/>
+                                <constraint firstAttribute="bottom" secondItem="nUt-it-zFe" secondAttribute="bottom" constant="24" id="BU5-PR-uwg"/>
                                 <constraint firstItem="f6s-gq-t3H" firstAttribute="centerX" secondItem="1nG-Kl-42O" secondAttribute="centerX" id="CCb-2u-jHr"/>
                                 <constraint firstItem="CRG-3o-pUy" firstAttribute="top" secondItem="f6s-gq-t3H" secondAttribute="bottom" constant="8" id="ToK-0e-1N5"/>
                                 <constraint firstAttribute="trailing" secondItem="CRG-3o-pUy" secondAttribute="trailing" constant="24" id="VEZ-Lo-Y7q"/>
                                 <constraint firstItem="f6s-gq-t3H" firstAttribute="top" secondItem="1nG-Kl-42O" secondAttribute="top" constant="28" id="Vxh-Eh-JOl"/>
-                                <constraint firstAttribute="bottom" secondItem="hJY-YM-9no" secondAttribute="bottom" constant="24" id="Xd6-IL-gle"/>
+                                <constraint firstItem="nUt-it-zFe" firstAttribute="centerX" secondItem="1nG-Kl-42O" secondAttribute="centerX" id="djA-r8-8FZ"/>
+                                <constraint firstItem="nUt-it-zFe" firstAttribute="top" secondItem="hJY-YM-9no" secondAttribute="bottom" constant="8" id="g6Y-rH-zW8"/>
                                 <constraint firstItem="hJY-YM-9no" firstAttribute="top" secondItem="CRG-3o-pUy" secondAttribute="bottom" constant="8" id="hSd-U2-fD0"/>
                                 <constraint firstAttribute="trailing" secondItem="hJY-YM-9no" secondAttribute="trailing" constant="24" id="hYu-IE-Y6F"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-Fd-fvI">
-                            <rect key="frame" x="0.0" y="165.5" width="335" height="64"/>
+                            <rect key="frame" x="0.0" y="203.5" width="335" height="64"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-Eh-Xgp">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-Eh-Xgp">
                                     <rect key="frame" x="0.0" y="0.0" width="166.5" height="64"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Li-pY-vBs"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-Qg-hHS">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-Qg-hHS">
                                     <rect key="frame" x="167.5" y="0.0" width="167.5" height="64"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
@@ -113,6 +120,7 @@
             <connections>
                 <outlet property="actionButton" destination="2Zh-Eh-Xgp" id="W4Y-V8-vgt"/>
                 <outlet property="actionsView" destination="AxG-Fd-fvI" id="2Vb-2p-dC8"/>
+                <outlet property="bodyActionButton" destination="nUt-it-zFe" id="MKS-7N-buc"/>
                 <outlet property="cancelButton" destination="jQj-Qg-hHS" id="lVg-lo-6GS"/>
                 <outlet property="containerView" destination="dMn-H8-hG0" id="arq-zB-ohJ"/>
                 <outlet property="contentView" destination="1nG-Kl-42O" id="By5-Tn-zgW"/>

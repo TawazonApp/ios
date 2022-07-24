@@ -73,6 +73,7 @@ struct AudioSourceModel: Codable {
 struct Dialect: Codable {
     let title, code: String
     let stream, download: String
+    let duration: Int
     let hash: String
     
 }

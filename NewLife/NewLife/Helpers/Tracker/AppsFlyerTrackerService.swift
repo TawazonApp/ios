@@ -14,7 +14,7 @@ import AppsFlyerLib
 class AppsFlyerTrackingService: TrackingService {
     
     enum CustomEvents {
-        static let startSubscription = "purchase_process_sucess"
+        static let startSubscription = "purchase_process_success"
         static let unsbscribeTapped = "tap_unsubscribe"
         static let tapCancelSubscription = "cancel_payment_process"
         static let setGoal = "af_set_goal"
@@ -36,7 +36,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let closePremium = "close_premium_view"
         static let skipPremium = "af_skip_premium"
         static let tapProduct = "tap_product"
-        static let startPaymentProcess = "Start_payment_process"
+        static let startPaymentProcess = "start_payment_process"
         static let FailToPurchase = "purchase_process_fail"
         static let notificationStatusChanged = "af_notification_status_changed"
         static let openSupport = "af_open_support"
@@ -48,6 +48,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let rateApp = "af_rate_app"
         static let shareApp = "af_share_app"
         static let openVoicesAndDialects = "open_voices_and_dialects"
+        static let changeVoicesAndDialects = "change_voices_and_dialects"
         static let openSearch = "open_search_view"
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
@@ -55,6 +56,7 @@ class AppsFlyerTrackingService: TrackingService {
     
     func sendUserId(userId: String?) {
         AppsFlyerLib.shared().customerUserID = userId
+        AppsFlyerLib.shared().customData = ["is_premium": UserDefaults.isPremium()]
     }
     
     func sendLoginEvent() {
@@ -367,6 +369,14 @@ class AppsFlyerTrackingService: TrackingService {
         let values = getBaseEventValues()
         AppsFlyerLib.shared().logEvent(CustomEvents.openVoicesAndDialects, withValues: values)
     }
+    
+    func sendChangeVoicesAndDialectsEvent(voice: String, dialect: String){
+        var values = getBaseEventValues()
+        values["voice"] = voice
+        values["dialect"] = dialect
+        AppsFlyerLib.shared().logEvent(CustomEvents.changeVoicesAndDialects, withValues: values)
+    }
+    
     private func getBaseEventValues() -> [AnyHashable : Any] {
         return ["idfa": UIApplication.identifierForAdvertising ?? "",
                 "campaignId": UserDefaults.originalCampaignId() ?? "",

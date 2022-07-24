@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class ProfileViewController: MoreDetailsViewController {
     
@@ -148,6 +149,9 @@ class ProfileViewController: MoreDetailsViewController {
         case .changeToPremium:
             openPremiumViewController()
             break
+        case .deleteAccount:
+            showDeleteConfirmationAlert()
+            break
         case .logout:
             showLogoutConfirmationAlert()
             break
@@ -196,6 +200,18 @@ class ProfileViewController: MoreDetailsViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func showDeleteConfirmationAlert() {
+        
+        PermissionAlert.shared.show(type: PermissionAlertView.AlertType.deleteAccount, animated: true, delegate: self, actionHandler: {
+            PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
+                self?.deleteAccount()
+            })
+        }, cancelHandler: {
+            PermissionAlert.shared.hide(animated: true)
+        })
+//        PermissionAlert.
+    }
+    
     private func showEditProfilePictureOptions() {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: .dark)
@@ -231,6 +247,25 @@ class ProfileViewController: MoreDetailsViewController {
                 self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
             } else {
                 self?.performLogout()
+            }
+        }
+    }
+    
+    private func deleteAccount() {
+        let delete = DeleteVM(service: MembershipServiceFactory.service())
+        LoadingHud.shared.show(animated: true)
+        delete.deleteAccount { [weak self] (deleteModel, error)  in
+            LoadingHud.shared.hide(animated: true)
+            if let error = error {
+                self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
+            } else {
+                let alert = UIAlertController(title: deleteModel?.message, message: nil, preferredStyle: .alert, blurStyle: .dark)
+                
+                alert.addAction(title: "deleteResponseOkButton".localized, style: .destructive) { [weak self] (alert) in
+                    self?.performLogout()
+                //TODO: Add event
+                }
+                self?.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -353,5 +388,63 @@ extension ProfileViewController {
         let storyboard = UIStoryboard(name: "More", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as! ProfileViewController
         return viewController
+    }
+}
+extension ProfileViewController: ProfileDeleteAccountDelegate, MFMailComposeViewControllerDelegate {
+
+    func userNeedSupport() {
+        openSupportMailController()
+    }
+    
+    private func openSupportMailController() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([APPInfo.supportEmail])
+            
+            mail.setSubject("supportEmailDeletionSubject".localized)
+            mail.setMessageBody(getSupportMessageBody(), isHTML: false)
+            present(mail, animated: true)
+        } else {
+            showFailEmailAlert(message: "supportEmailNotSupportedAlertMessage".localized)
+        }
+        sendOpenSupportEvent()
+    }
+    
+    private func getSupportMessageBody() -> String {
+        let userId = UserInfoManager.shared.getUserInfo()?.id ?? "anonymous"
+        return "\n\n\n\nUser ID: \(userId)\nTawazon \(UIApplication.appVersion)\n\(UIDevice.modelIdentifier) iOS \(UIDevice.iOSVersion)"
+    }
+    
+    private func showFailEmailAlert(message: String) {
+        
+        let alert = UIAlertController.init(title: "supportEmailFailedAlertTitle".localized, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction.init(title: "supportEmailSentAlertDone".localized, style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true) {
+            if result == .sent {
+                self.showThankYouAlert()
+            } else if result == .failed {
+                self.showFailEmailAlert(message: "supportEmailFailedAlertMessage".localized)
+            }
+        }
+    }
+    
+    private func showThankYouAlert() {
+        
+        let alert = UIAlertController.init(title: "supportEmailSentAlertTitle".localized, message: "supportEmailSentAlertMessage".localized, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction.init(title: "supportEmailSentAlertDone".localized, style: .default, handler: nil))
+            
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func sendOpenSupportEvent() {
+        TrackerManager.shared.sendOpenSupportEvent()
     }
 }

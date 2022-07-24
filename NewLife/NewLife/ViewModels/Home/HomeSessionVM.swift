@@ -23,11 +23,19 @@ class HomeSessionVM: BaseSessionVM {
         return session?.thumbnailUrl
     }
     
+    var audioSources: [AudioSourceModel]?{
+        return session?.audioSources
+    }
+    
     var descriptionString: String? {
         return session?.descriptionString
     }
     
     var durationString: String? {
+        if let selectedSessionDialect = getSessionPreferredVoiceAndDialect().dialect {
+            return durationString(seconds: selectedSessionDialect.duration)
+        }
+        
         guard let duration = session?.duration else { return nil }
         return durationString(seconds: duration)
     }
@@ -38,5 +46,18 @@ class HomeSessionVM: BaseSessionVM {
     
     var isLock: Bool {
         return session?.isLock ?? true
+    }
+    
+    func getSessionPreferredVoiceAndDialect() -> (voice: AudioSourceModel?, dialect: Dialect?){
+        let userPreferredVoice = UserDefaults.selectedVoice()
+        let userPreferredDialect = UserDefaults.selectedDialect()
+        
+        if userPreferredVoice == nil || userPreferredDialect == nil {
+            return (nil,nil)
+        }
+        let selectedSessionVoice = self.audioSources?.filter{$0.code == userPreferredVoice}.first
+        let selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.code == userPreferredDialect}.first
+        
+        return (selectedSessionVoice, selectedSessionDialect)
     }
 }

@@ -18,6 +18,8 @@
 		0422056327E9C2300018BA31 /* PlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056227E9C2300018BA31 /* PlansView.swift */; };
 		0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */; };
 		0422056827E9EC180018BA31 /* Premium5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056727E9EC180018BA31 /* Premium5ViewController.swift */; };
+		0432B7152876CDA8007400B3 /* DeleteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432B7142876CDA8007400B3 /* DeleteVM.swift */; };
+		0432B7172876DFD8007400B3 /* DeleteAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432B7162876DFD8007400B3 /* DeleteAccountModel.swift */; };
 		04384B7A27D429D100D3E5B7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7927D429D100D3E5B7 /* Language.swift */; };
 		04384B7C27D5F52700D3E5B7 /* UXCamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7B27D5F52700D3E5B7 /* UXCamService.swift */; };
 		043FCB272804274C00F25FA4 /* Premium4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FCB262804274C00F25FA4 /* Premium4ViewController.swift */; };
@@ -383,6 +385,8 @@
 		0422056227E9C2300018BA31 /* PlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansView.swift; sourceTree = "<group>"; };
 		0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPremiumViewController.swift; sourceTree = "<group>"; };
 		0422056727E9EC180018BA31 /* Premium5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Premium5ViewController.swift; sourceTree = "<group>"; };
+		0432B7142876CDA8007400B3 /* DeleteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteVM.swift; sourceTree = "<group>"; };
+		0432B7162876DFD8007400B3 /* DeleteAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountModel.swift; sourceTree = "<group>"; };
 		04384B7927D429D100D3E5B7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		04384B7B27D5F52700D3E5B7 /* UXCamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXCamService.swift; sourceTree = "<group>"; };
 		043FCB262804274C00F25FA4 /* Premium4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premium4ViewController.swift; sourceTree = "<group>"; };
@@ -1834,6 +1838,7 @@
 				F32717BB24A610D400E3C88C /* AppleLoginModel.swift */,
 				F31A289C258CEEDC00601AC9 /* SubscriptionTypes.swift */,
 				0456D1BC27F1B7E000C174C6 /* BasePremiumModel.swift */,
+				0432B7162876DFD8007400B3 /* DeleteAccountModel.swift */,
 			);
 			path = Membership;
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				F3DE73CE2237F7780052B18C /* ResetPasswordFormVM.swift */,
 				F302169822465CB5000A0DF1 /* AnonymousUserVM.swift */,
 				F32717BD24A611F000E3C88C /* WelecomeVM.swift */,
+				0432B7142876CDA8007400B3 /* DeleteVM.swift */,
 			);
 			path = Membership;
 			sourceTree = "<group>";
@@ -2366,6 +2372,7 @@
 				F3AF0FAC223AB76100E29615 /* SessionServiceOffline.swift in Sources */,
 				F3DC425A2584C1E000BF18A7 /* OnboardingCollectionCellData.swift in Sources */,
 				F3AF0FB4223B271000E29615 /* FacebookLoginVM.swift in Sources */,
+				0432B7172876DFD8007400B3 /* DeleteAccountModel.swift in Sources */,
 				04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */,
 				04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */,
 				F32717BC24A610D400E3C88C /* AppleLoginModel.swift in Sources */,
@@ -2428,6 +2435,7 @@
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
 				F3DC423F2584B43E00BF18A7 /* OnboardingViewController.swift in Sources */,
 				049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */,
+				0432B7152876CDA8007400B3 /* DeleteVM.swift in Sources */,
 				F3B16AF8222EB474002B0406 /* DownloadedLibraryVM.swift in Sources */,
 				F3273459246EA1310013B19F /* InstagramUtils.swift in Sources */,
 				F3DC8E492224474000C7DEC4 /* LaunchSloganView.swift in Sources */,

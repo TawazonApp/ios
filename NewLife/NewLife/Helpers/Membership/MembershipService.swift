@@ -20,6 +20,8 @@ protocol MembershipService {
     
     func logout(completion: @escaping (_ error: CustomError?) -> Void)
     
+    func deleteAccount(completion: @escaping (DeleteAccountModel?, CustomError?) -> Void)
+    
     func fetchUserInfo(completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void)
     
     func uploadProfileImage(image: UIImage, completion: @escaping (_ error: CustomError?) -> Void)
@@ -109,6 +111,13 @@ class APIMembershipService: MembershipService {
     func logout(completion: @escaping (_ error: CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.logoutUrl.url!, parameters: nil) { (data, error) in
             completion(error)
+        }
+    }
+    
+    func deleteAccount(completion: @escaping (DeleteAccountModel?, CustomError?) -> Void) {
+        ConnectionUtils.performPostRequest(url: Api.deleteAccount.url!, parameters: nil) { (data, error) in
+            let deleteAccountModel : DeleteAccountModel? = (data != nil) ? DeleteAccountModel.init(data: data!) : nil
+            completion(deleteAccountModel, error)
         }
     }
     

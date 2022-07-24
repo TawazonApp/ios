@@ -140,12 +140,14 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .white
         header.textLabel?.font = UIFont.lbc(ofSize: 24)
         header.textLabel?.frame = header.bounds
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! VoicesAndDialectsTableViewCell
         switch indexPath.section  {
@@ -161,7 +163,6 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
                 let dialectIndexPath = IndexPath(row: 0, section: 1)
                 tableView.selectRow(at: dialectIndexPath, animated: false, scrollPosition: .none)
                 tableView.delegate?.tableView!(tableView, didSelectRowAt: dialectIndexPath)
-                print("SELECT, selectedVoice: \(selectedVoice), selectedDialect: \(selectedDialect)")
                 return
             }
             tableView.reloadSections([1], with: .automatic)
@@ -175,13 +176,15 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
             
             savePrefferedAudioSettings(voice: session.audioSources?[selectedVoice].code ?? "", dialect: session.audioSources?[selectedVoice].dialects[indexPath.row].code ?? "")
             
-            if let audioSource = session.audioSources?[selectedVoice].dialects[indexPath.row].stream{
-                delegate?.sessionStreamLinkChanged(audioSource: audioSource)
+            if let voice = session.audioSources?[selectedVoice]{
+                let dialect = voice.dialects[indexPath.row]
                 
+                delegate?.sessionStreamLinkChanged(audioSource: dialect.stream)
+                TrackerManager.shared.sendChangeVoicesAndDialectsEvent(voice: voice.code, dialect: dialect.code)
                 
                 self.dismiss(animated: true)
             }
-            
+                
         default:
             break
             

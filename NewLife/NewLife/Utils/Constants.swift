@@ -27,6 +27,7 @@ struct Api {
     static let logoutUrl = "\(apiUrl)/auth/logout"
     static let forgetPasswordUrl = "\(apiUrl)/auth/forget-password"
     static let resetPasswordUrl = "\(apiUrl)/auth/reset-password"
+    static let deleteAccount = "\(apiUrlV2)/auth/delete"
     static let userInfoUrl = "\(apiUrlV2)/auth/info"
     static let changePasswordUrl = "\(apiUrl)/auth/update-password"
     static let changeUserNameUrl = "\(apiUrl)/auth/info/update"
