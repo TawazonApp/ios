@@ -107,7 +107,7 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         case 0:
             return session.audioSources?.count ?? 0
         case 1:
-            return session.audioSources?.first?.dialects.count ?? 0
+            return session.audioSources?[selectedVoice].dialects.count ?? 0
         default:
             return 0
         }
