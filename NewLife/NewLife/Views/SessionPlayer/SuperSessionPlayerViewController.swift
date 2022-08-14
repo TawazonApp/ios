@@ -143,7 +143,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     
      @objc func fillData() {
         titleLabel.text = session?.name
-        subTitleLabel.text = session?.author
+         subTitleLabel.text = session?.session?.descriptionString
         
         backgroundImageView.image = nil
         if let localiImageUrl = session?.localImageUrl {
@@ -443,6 +443,7 @@ extension SuperSessionPlayerViewController{
 //        progressView.progress = CGFloat(track?.currentProgress() ?? 0)
         showAndHideLoadingIndicator(track: track)
         controlsView.duration = track?.displayableTimeLeftString()
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateProgress"), object: nil)
     }
     
     private func showAndHideLoadingIndicator(track: AudioTrack?) {

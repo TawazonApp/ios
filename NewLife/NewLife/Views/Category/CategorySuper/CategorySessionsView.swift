@@ -11,6 +11,7 @@ import UIKit
 protocol CategorySessionsViewDelegate: class{
     func playSession(_ session: CategorySessionVM)
     func updateHeader(offset: CGPoint)
+    func openSeriesView(seriesId: String)
 }
 class CategorySessionsView: UIView {
     
@@ -60,6 +61,11 @@ extension CategorySessionsView: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         DispatchQueue.main.async { [weak self] in
+//            if session.session?.type == "series" {
+//                self?.delegate?.openSeriesView(seriesId: session.session?.id ?? "")
+//                return
+//            }
+
             self?.delegate?.playSession(session)
         }
     }

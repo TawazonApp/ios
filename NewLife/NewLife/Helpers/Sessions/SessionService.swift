@@ -38,6 +38,9 @@ protocol SessionService {
     
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
     
+    func getSeriesSessions(seriesId: String, completion: @escaping (_ series: SeriesModel?, _ error: CustomError?) -> Void)
+    
+    func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: Int, completion: @escaping (_ error: CustomError?) -> Void)
 }
 
 class SessionServiceFactory {
@@ -198,6 +201,28 @@ class APISessionService: SessionService {
     
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.userSettings.url!, parameters: try? settings.jsonDictionary()){ (data, error) in
+            completion(error)
+        }
+    }
+    
+    func getSeriesSessions(seriesId: String, completion: @escaping (SeriesModel?, CustomError?) -> Void) {
+        let url = Api.seriesDetails.replacingOccurrences(of: "{id}", with: seriesId)
+        
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil, completion: {
+            (data, error) in
+            var seriesModel: SeriesModel?
+            if let data = data{
+                seriesModel = SeriesModel(data: data)
+            }
+            completion(seriesModel, error)
+        })
+    }
+    
+    func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: Int, completion: @escaping (_ error: CustomError?) -> Void){
+        let url = Api.seriesCompletedSession.replacingOccurrences(of: "{id}", with: seriesId)
+        let paramters = ["sessionId" : sessionId, "duration" : duration] as [String : Any]
+        
+        ConnectionUtils.performPostRequest(url: url.url!, parameters: paramters){ (data, error) in
             completion(error)
         }
     }

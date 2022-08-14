@@ -164,6 +164,12 @@ extension SuperCategoryViewController: CategorySectionsViewDelegate{
     
 }
 extension SuperCategoryViewController: CategorySessionsViewDelegate{
+    
+    func openSeriesView(seriesId: String) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func playSession(_ session: CategorySessionVM) {
         guard let session = session.session else { return }
         let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: session), delegate: self)

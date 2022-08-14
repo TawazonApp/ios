@@ -11,6 +11,7 @@ protocol CategorySectionsViewDelegate: class{
     func updateHeader(offset: CGPoint)
     func openSectionView(_ section: HomeSectionVM)
     func playSession(_ session: HomeSessionVM)
+    func openSeriesView(seriesId: String)
 }
 class CategorySectionsView: UIView {
     @IBOutlet weak var sectionsTableView: UITableView!
@@ -64,6 +65,10 @@ extension CategorySectionsView : UITableViewDelegate, UITableViewDataSource{
     
 }
 extension CategorySectionsView: HomeTableCardSectionCellDelegate, HomeTableHorizontalSectionCellDelegate{
+    func openSeriesView(seriesId: String) {
+        delegate?.openSeriesView(seriesId: seriesId)
+    }
+    
     
     func sectionTapped(_ sender: HomeTableCardSectionCell, section: HomeSectionVM?) {
         guard let section = section else {

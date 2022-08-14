@@ -11,6 +11,7 @@ import UIKit
 protocol HomeTableHorizontalSectionCellDelegate: class {
     func playSession(_ sender: HomeTableHorizontalSectionCell, session: HomeSessionVM)
     func sectionTapped(_ sender: HomeTableHorizontalSectionCell, section: HomeSectionVM?)
+    func openSeriesView(seriesId: String)
 }
 
 class HomeTableHorizontalSectionCell: UITableViewCell {
@@ -129,6 +130,11 @@ extension HomeTableHorizontalSectionCell: UICollectionViewDelegate, UICollection
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         cell?.pulsate()
+        
+//        if session.session?.type == "series" {
+//            delegate?.openSeriesView(seriesId: session.session?.id ?? "")
+//            return
+//        }
         delegate?.playSession(self, session: session)
     }
     

@@ -107,7 +107,7 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         case 0:
             return session.audioSources?.count ?? 0
         case 1:
-            return session.audioSources?.first?.dialects.count ?? 0
+            return session.audioSources?[selectedVoice].dialects.count ?? 0
         default:
             return 0
         }
@@ -204,7 +204,6 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         UserDefaults.saveSelectedDialect(code: dialect)
         
         session.service.setUserSessionSettings(settings: UserSettings(defaultAudioSource: dialect)){(error) in
-            print("error: \(error)")
         }
     }
 }

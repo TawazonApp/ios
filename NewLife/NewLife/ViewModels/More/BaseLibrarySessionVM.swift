@@ -34,6 +34,11 @@ class BaseLibrarySessionVM: BaseSessionVM {
         return session?.isFavorite() ?? false
     }
     
+    var isLock: Bool {
+        guard let session = session else { return true }
+        return (session.isFree() == false && UserDefaults.isPremium() == false)
+    }
+    
     var imageUrl: URL? {
         return session?.imageUrl?.url
     }

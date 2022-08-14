@@ -34,6 +34,9 @@ extension Sessions {
     @NSManaged public var shareLink: String?
     
     @NSManaged public var playBackgroundSound: Bool
+    @NSManaged public var completed: Bool
+    @NSManaged public var locked: Bool
+//    @NSManaged public var type: String?
     
     
     @nonobjc public class func sessionsFetchRequest() -> NSFetchRequest<Sessions> {
@@ -73,6 +76,10 @@ extension Sessions {
         self.isFavorite = sessionModel.isFavorite()
         self.descriptionString = sessionModel.descriptionString
         self.playBackgroundSound = sessionModel.playBackgroundSound
+        self.completed = sessionModel.completed ?? false
+        self.locked = sessionModel.locked ?? false
+//        self.type = sessionModel.type
+        
     }
     
 }
