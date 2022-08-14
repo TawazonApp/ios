@@ -50,6 +50,7 @@ class UXCamTrackerService: TrackingService {
         static let openSearch = "open_search_view"
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
+        static let openSeries = "open_series"
     }
     
     func sendUserId(userId: String?) {
@@ -316,6 +317,13 @@ class UXCamTrackerService: TrackingService {
         values["voice"] = voice
         values["dialect"] = dialect
         UXCam.logEvent(CustomEvents.changeVoicesAndDialects, withProperties: values)
+    }
+    
+    func sendOpenSeries(id: String) {
+        var values = getBaseEventValues()
+        values["seriesId"] = id
+        
+        UXCam.logEvent(CustomEvents.openSeries, withProperties: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

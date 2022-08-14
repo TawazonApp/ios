@@ -52,6 +52,7 @@ class AppsFlyerTrackingService: TrackingService {
         static let openSearch = "open_search_view"
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
+        static let openSeries = "open_series"
     }
     
     func sendUserId(userId: String?) {
@@ -375,6 +376,13 @@ class AppsFlyerTrackingService: TrackingService {
         values["voice"] = voice
         values["dialect"] = dialect
         AppsFlyerLib.shared().logEvent(CustomEvents.changeVoicesAndDialects, withValues: values)
+    }
+    
+    func sendOpenSeries(id: String) {
+        var values = getBaseEventValues()
+        values["seriesId"] = id
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.openSeries, withValues: values)
     }
     
     private func getBaseEventValues() -> [AnyHashable : Any] {

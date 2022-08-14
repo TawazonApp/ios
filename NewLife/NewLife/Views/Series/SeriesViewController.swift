@@ -43,6 +43,7 @@ class SeriesViewController: UIViewController {
         
         seriesVM = SeriesVM(service: SessionServiceFactory.service())
         fetchSeriesDetails()
+        TrackerManager.shared.sendOpenSeries(id: seriesId)
     }
     
     override func viewDidAppear(_ animated: Bool) {
