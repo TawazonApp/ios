@@ -149,11 +149,9 @@ class SearchViewController: BaseViewController {
     
     private func updateViewAppereance(noResult: Bool){
         if noResult {
-            print("show no result message")
             searchResultStack.insertArrangedSubview(noResultView, at: 0)
             searchResultStack.removeArrangedSubview(categoriesCollection)
         }else{
-            print("result message")
             searchResultStack.removeArrangedSubview(noResultView)
             searchResultStack.insertArrangedSubview(categoriesCollection, at: 0)
         }
@@ -212,8 +210,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
             session = self.tableSessions?[indexPath.row]
         }
         
-        if session != nil {
-            playSession(session!)
+        if session?.session != nil {
+            if session?.session?.type == "series" {
+                openSeriesView(seriesId: session!.session!.id, session: session!.session!)
+            }else{
+                playSession(session!)
+            }
+            
         }
         
     }
@@ -302,6 +305,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         viewcontroller.transitioningDelegate = self
         sendTapPlaySessionFromSearchResultEvent(id: sessionModel.id, name: sessionModel.name)
         self.present(viewcontroller, animated: true, completion: nil)
+    }
+    func openSeriesView(seriesId: String, session: SessionModel) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
+        self.present(viewController, animated: true)
     }
 }
 extension SearchViewController: SessionPlayerDelegate {

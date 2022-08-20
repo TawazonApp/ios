@@ -13,6 +13,7 @@ public class CircularProgressBar: CALayer {
     
     private var circularPath: UIBezierPath!
     private var trackShapeLayer: CAShapeLayer!
+    private var baseTrackShapeLayer: CAShapeLayer!
     private let rotateTransformation = CATransform3DMakeRotation(-.pi / 2, 0, 0, 1)
     
     public var isUsingAnimation: Bool!
@@ -23,7 +24,7 @@ public class CircularProgressBar: CALayer {
         }
     }
     
-    public init(radius: CGFloat, position: CGPoint, innerTrackColor: UIColor, lineWidth: CGFloat) {
+    public init(radius: CGFloat, position: CGPoint, innerTrackColor: UIColor, lineWidth: CGFloat, withBase: Bool = false) {
         super.init()
         
         let startAngle: CGFloat = .pi
@@ -39,6 +40,24 @@ public class CircularProgressBar: CALayer {
         trackShapeLayer.path = circularPath.cgPath
         trackShapeLayer.transform = rotateTransformation
         trackShapeLayer.applySketchShadow(color: innerTrackColor, alpha: 1.0, x: 0, y: 0, blur: 7, spread: 0)
+       
+        if withBase {
+            //Base path
+            let baseCirclePath : UIBezierPath = UIBezierPath(arcCenter: .zero, radius: radius, startAngle: startAngle, endAngle: startAngle + .pi * 2, clockwise: true)
+            baseCirclePath.stroke()
+            baseTrackShapeLayer = CAShapeLayer()
+            baseTrackShapeLayer.position = position
+            baseTrackShapeLayer.strokeEnd = 1
+            baseTrackShapeLayer.lineWidth = lineWidth
+            baseTrackShapeLayer.lineCap = CAShapeLayerLineCap.round
+            baseTrackShapeLayer.fillColor = UIColor.clear.cgColor
+            baseTrackShapeLayer.path = baseCirclePath.cgPath
+            baseTrackShapeLayer.transform = rotateTransformation
+            baseTrackShapeLayer.strokeColor = UIColor.white.withAlphaComponent(0.12).cgColor
+            
+            addSublayer(baseTrackShapeLayer)
+        }
+        
         addSublayer(trackShapeLayer)
     }
     

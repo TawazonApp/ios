@@ -33,7 +33,7 @@ class APIHomeService: HomeService {
 
     
     func fetchHomeSections(completion: @escaping (_ sections: HomeSectionsModel?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrl.url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrlV2_1.url!, parameters: nil) { (data, error) in
             
             var model: HomeSectionsModel?
             if let data = data {
@@ -71,7 +71,7 @@ class APIHomeService: HomeService {
     }
     
     func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-        var urlString = Api.sectionSessions.replacingOccurrences(of: "{id}", with: sectionId)
+        var urlString = Api.sectionSessionsV2_1.replacingOccurrences(of: "{id}", with: sectionId)
         urlString = "\(urlString)?page=\(page)&limit=\(pageSize)"
         if type == .subCategory {
             urlString = Api.subCategorySectionSessionsListUrl.replacingOccurrences(of: "{categoryID}", with: sectionId)

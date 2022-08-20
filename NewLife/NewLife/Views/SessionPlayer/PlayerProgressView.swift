@@ -11,7 +11,7 @@ import UIKit
 class PlayerProgressView: UIView {
 
     var progressBar: CircularProgressBar!
-    
+    var withBase: Bool = false
     var progress: CGFloat = 0 {
         didSet {
            progressBar.progress = progress
@@ -28,7 +28,7 @@ class PlayerProgressView: UIView {
         let radius = self.frame.width/2
         let position = CGPoint(x: radius, y: radius)
         
-        progressBar = CircularProgressBar(radius: radius, position: position, innerTrackColor: UIColor.white, lineWidth: 2)
+        progressBar = CircularProgressBar(radius: radius, position: position, innerTrackColor: UIColor.white, lineWidth: 2, withBase: withBase)
         
         self.layer.addSublayer(progressBar)
     }

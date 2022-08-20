@@ -14,8 +14,6 @@ class BasePremiumVM : NSObject{
     
     var premiumDetails: BasePremiumModel?{
         didSet{
-            print("premiumDetails: \(premiumDetails?.premiumPage.title)")
-            
         }
     }
     

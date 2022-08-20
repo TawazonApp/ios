@@ -188,8 +188,8 @@ class HomeViewController: SoundEffectsPresenterViewController {
     }
     
     private func buildVideosArray() {
-        let video1 = HomeVideoCellVM(videoName: "NatureTrees", videoType: "mp4")
-        let video2 = HomeVideoCellVM(videoName: "HomeVideo3", videoType: "mp4")
+        let video1 = HomeVideoCellVM(videoName: "HomeVideo3", videoType: "mp4")
+        let video2 = HomeVideoCellVM(videoName: "NatureTrees", videoType: "mp4")
         var items = [video1, video2]
         if home.isRamadan {
             let ramadanVideo = HomeVideoCellVM(videoName: "RamadanVideo", videoType: "mp4")
@@ -376,6 +376,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontalSectionCellDelegate, HomeTableCardSectionCellDelegate {
    
+    func openSeriesView(seriesId: String, session: SessionModel) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func playSession(_ sender: HomeTableFeelingCell, session: HomeSessionVM) {
         playSession(session)
     }

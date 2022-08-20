@@ -52,11 +52,14 @@ class HomeTableCardSectionCell: UITableViewCell {
     }
     
     private func initialize() {
-        titleLabel.font = UIFont.kacstPen(ofSize: 16)
-        titleLabel.textColor = UIColor.white.withAlphaComponent(0.64)
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.textColor = UIColor.white
         
-        subTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        subTitleLabel.textColor = UIColor.white
+        subTitleLabel.font = UIFont.kacstPen(ofSize: 16)
+        subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.64)
+        
+//        subTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+//        subTitleLabel.textColor = UIColor.white
         //TODO: set gradient colors: appHome/categoryHome
         if true {
             gradientView.applyGradientColor(colors: [UIColor.dusk.cgColor, UIColor.duskTwo.cgColor], startPoint: .bottom, endPoint: .top)

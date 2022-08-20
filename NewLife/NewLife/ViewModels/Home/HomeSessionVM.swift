@@ -32,6 +32,10 @@ class HomeSessionVM: BaseSessionVM {
     }
     
     var durationString: String? {
+        if let duration = session?.duration, session?.type == "series" {
+            return "\(duration) \("seriesDurationText".localized)"
+        }
+        
         if let selectedSessionDialect = getSessionPreferredVoiceAndDialect().dialect {
             return durationString(seconds: selectedSessionDialect.duration)
         }

@@ -50,6 +50,8 @@ class BasePremiumViewController: HandleErrorViewController, SKPaymentTransaction
     }
     
     func purchaseAction(product: SKProduct?) {
+        print("data.plansArray.filter({ $0.isSelected}).first: \(data.plansArray.filter({ $0.isSelected}).first?.title)")
+        print("data.plansArray: \(data.plansArray.count)")
         if let item = data.plansArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
             selectedPlan = product
             performPurchase(purchaseId: purchaseId, product: product)
@@ -190,7 +192,6 @@ extension BasePremiumViewController{
             break
           case .failed:
               if let error = transaction.error as? SKError{
-                  print("error: \(error.code)")
                   switch error.code{
                   case .paymentCancelled:
                       print("Cancelled")
@@ -205,7 +206,6 @@ extension BasePremiumViewController{
           case .deferred:
             break
           case .purchasing:
-            print("purchasing")
               if selectedPlan != nil{
                   sendStartPaymentEvent()
               }

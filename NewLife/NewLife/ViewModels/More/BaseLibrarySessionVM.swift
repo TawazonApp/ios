@@ -22,6 +22,10 @@ class BaseLibrarySessionVM: BaseSessionVM {
     }
     
     var durationString: String? {
+        if let duration = session?.duration, session?.type == "series" {
+            return "\(duration) \("seriesDurationText".localized)"
+        }
+        
         guard let duration = session?.duration else { return nil }
         return durationString(seconds: duration)
     }
@@ -32,6 +36,11 @@ class BaseLibrarySessionVM: BaseSessionVM {
     
     var isFavorite: Bool {
         return session?.isFavorite() ?? false
+    }
+    
+    var isLock: Bool {
+        guard let session = session else { return true }
+        return (session.isFree() == false && UserDefaults.isPremium() == false)
     }
     
     var imageUrl: URL? {
@@ -72,9 +81,9 @@ class BaseLibrarySessionVM: BaseSessionVM {
             return
         }
         
-        let favorites = SessionFavoritesModel(favorites: [session!])
+        let favoriteIds = [sessionId]
         
-        service.addToFavorites(favorites: favorites) { (error) in
+        service.addToFavorites(favorites: favoriteIds) { (error) in
             if error == nil {
                 var data: SessionFavoriteNotificationObject
                 data.sessionId = sessionId
@@ -96,9 +105,9 @@ class BaseLibrarySessionVM: BaseSessionVM {
             return
         }
         
-        let favorites = SessionFavoritesModel(favorites: [session!])
+        let favoriteIds = [sessionId]
         
-        service.removeFromFavorites(favorites: favorites) { (error) in
+        service.removeFromFavorites(favorites: favoriteIds) { (error) in
             if error == nil {
                 var data: SessionFavoriteNotificationObject
                 data.sessionId = sessionId

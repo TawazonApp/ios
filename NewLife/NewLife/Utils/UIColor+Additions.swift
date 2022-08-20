@@ -223,6 +223,26 @@ extension UIColor {
         return UIColor(red: 33.0 / 255.0, green: 12.0 / 255.0, blue: 78.0 / 255.0, alpha: 1.0)
     }
     
+    class var tolopea: UIColor {
+        return UIColor(red: 36.0 / 255.0, green: 33.0 / 255.0, blue: 59.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var cherryPie: UIColor {
+        return UIColor(red: 53.0 / 255.0, green: 48.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0)
+    }
+
+    class var meteorite: UIColor {
+        return UIColor(red: 64.0 / 255.0, green: 58.0 / 255.0, blue: 105.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var gulfBlue: UIColor {
+        return UIColor(red: 64.0 / 255.0, green: 58.0 / 255.0, blue: 105.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var waikawaGrey: UIColor {
+        return UIColor(red: 106.0 / 255.0, green: 110.0 / 255.0, blue: 148.0 / 255.0, alpha: 1.0)
+    }
+    
     class var blueberryTwo: UIColor {
         return UIColor(red: 69.0 / 255.0, green: 49.0 / 255.0, blue: 138.0 / 255.0, alpha: 1.0)
     }

@@ -28,9 +28,11 @@ protocol SessionService {
     
     func removeFromDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void)
     
-    func addToFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void)
+//    func addToFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void)
     
-     func removeFromFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void)
+    func addToFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void)
+    
+    func removeFromFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void)
     
     func rateSession(sessionId: String, rate: Int, completion: @escaping (CustomError?) -> Void)
     
@@ -38,6 +40,9 @@ protocol SessionService {
     
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
     
+    func getSeriesSessions(seriesId: String, completion: @escaping (_ series: SeriesModel?, _ error: CustomError?) -> Void)
+    
+    func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
 }
 
 class SessionServiceFactory {
@@ -51,9 +56,8 @@ class APISessionService: SessionService {
     
     func fetchSearchResults(page: Int, pageSize: Int, query: String? = "", completion: @escaping (SearchModel?, CustomError?) -> Void) {
         
-        let url = Api.searchSession.replacingOccurrences(of: "{query}", with: query ?? "").url!
+        let url = Api.searchSessionV2_1.replacingOccurrences(of: "{query}", with: query ?? "").url!
         let param = ["page": page, "limit": pageSize]
-        
         ConnectionUtils.performGetRequest(url: url, parameters: param){
             (data, error) in
             var searchModel: SearchModel?
@@ -80,7 +84,7 @@ class APISessionService: SessionService {
     
     func fetchCategoryDetails(categoryId: String, page: Int, pageSize:Int, completion: @escaping (SuperCategoryModel?, CustomError?) -> Void){
         
-       let url = Api.categoryDetailsUrl.replacingOccurrences(of: "{id}", with: categoryId).url!
+       let url = Api.categoryDetailsUrlV2_1.replacingOccurrences(of: "{id}", with: categoryId).url!
        ConnectionUtils.performGetRequest(url: url, parameters: ["page": page, "limit": pageSize]) { (data, error) in
            var superCategoryModel: SuperCategoryModel?
            if let data = data {
@@ -92,7 +96,7 @@ class APISessionService: SessionService {
     
      func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void) {
         
-        let url = Api.subCategorySessionsListUrl.replacingOccurrences(of: "{id}", with: subCategoryId).url!
+        let url = Api.subCategorySessionsListUrlV2_1.replacingOccurrences(of: "{id}", with: subCategoryId).url!
         
         ConnectionUtils.performGetRequest(url: url, parameters: ["page": page, "limit": pageSize]) { (data, error) in
             var subCategoryModel: SubCategoryModel?
@@ -117,7 +121,7 @@ class APISessionService: SessionService {
     }
     func fetchFavoriteSessions(page: Int, pageSize: Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void) {
         
-        ConnectionUtils.performGetRequest(url: Api.sessionsFavoriteListUrl.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.sessionsFavoriteListUrlV2_1.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
 
             var sessionFavoritesModel: SessionFavoritesModel?
             if let data = data {
@@ -152,23 +156,35 @@ class APISessionService: SessionService {
         }
     }
     
-    func addToFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
+    func addToFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void) {
         
-        let favoriteList = getFavorites(favorites: favorites)
-
-        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrl.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
+        var favoriteIds: [String] = [String]()
+        for sessionId in favorites {
+            favoriteIds.append(sessionId)
+        }
+        
+        let favoriteList = ["favorites": favoriteIds]
+        
+        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrlV2_1.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
     
-    func removeFromFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
+    func removeFromFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void) {
         
-        let favoriteList = getFavorites(favorites: favorites)
+        var favoriteIds: [String] = [String]()
+        for sessionId in favorites {
+            favoriteIds.append(sessionId)
+        }
         
-        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrl.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
+        let favoriteList = ["favorites": favoriteIds]
+        
+        
+        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrlV2_1.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
+    
     private func getFavorites(favorites: SessionFavoritesModel) -> [String: [String]]{
         var favoriteIds: [String] = [String]()
         for session in favorites.favorites {
@@ -198,6 +214,27 @@ class APISessionService: SessionService {
     
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.userSettings.url!, parameters: try? settings.jsonDictionary()){ (data, error) in
+            completion(error)
+        }
+    }
+    
+    func getSeriesSessions(seriesId: String, completion: @escaping (SeriesModel?, CustomError?) -> Void) {
+        let url = Api.seriesDetails.replacingOccurrences(of: "{id}", with: seriesId)
+        
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil, completion: {
+            (data, error) in
+            var seriesModel: SeriesModel?
+            if let data = data{
+                seriesModel = SeriesModel(data: data)
+            }
+            completion(seriesModel, error)
+        })
+    }
+    
+    func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void){
+        let url = Api.seriesCompletedSession.replacingOccurrences(of: "{id}", with: seriesId)
+        let paramters = ["sessionId" : sessionId, "duration" : duration] as [String : Any]
+        ConnectionUtils.performPostRequest(url: url.url!, parameters: paramters){ (data, error) in
             completion(error)
         }
     }

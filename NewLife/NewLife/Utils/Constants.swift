@@ -13,6 +13,7 @@ struct Api {
     //static let baseUrl = "https://api.dev.tawazonapp.com"
     static let apiUrl = "\(baseUrl)/api/v1"
     static let apiUrlV2 = "\(baseUrl)/api/v2"
+    static let apiUrlV2_1 = "\(baseUrl)/api/v2.1"
     static let authorization = "$2y$08$SUh5WUM4STdKZmtYOHh5duA2bPXmyg7BmzxORifly3mDit6oU4Y1y"
     
     //Tracking
@@ -48,27 +49,42 @@ struct Api {
     //Home
     static let homeUrl = "\(apiUrl)/home"
     static let homeSectionsUrl = "\(apiUrlV2)/home"
+    static let homeSectionsUrlV2_1 = "\(apiUrlV2_1)/home"
     static let homeSectionsWithBannersUrl = "\(apiUrlV2)/app/home"
+    static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
     static let feelingsListUrl = "\(apiUrlV2)/feelings/list"
     static let feelingsSessions = "\(apiUrlV2)/feelings/sessions/list"
     static let updateFeelings = "\(apiUrlV2)/feelings/update"
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
+    static let sectionSessionsV2_1 = "\(apiUrlV2_1)/sections/sessions/list/{id}"
+    
+    //Series
+    static let seriesList = "\(apiUrlV2)/meditations/series/list"
+
+    static let seriesDetails = "\(apiUrlV2)/meditations/series/view/{id}"
+    static let seriesCompletedSession = "\(apiUrlV2)/meditations/series/track/{id}"
     
     //Session
     static let categorySessionsListUrl  = "\(apiUrl)/sessions/list/{id}"
     static let categoryDetailsUrl  = "\(apiUrlV2)/sessions/list/{id}"
+    static let categoryDetailsUrlV2_1  = "\(apiUrlV2_1)/sessions/list/{id}"
     static let subCategorySessionsListUrl = "\(apiUrl)/sessions/list/{id}"
+    static let subCategorySessionsListUrlV2_1 = "\(apiUrlV2_1)/sessions/list/{id}"
     static let subCategorySectionSessionsListUrl = "\(apiUrlV2)/meditations/list/{categoryID}"
     static let sessionsDownloadListUrl = "\(apiUrl)/sessions/downloads/list"
     static let sessionsFavoriteListUrl = "\(apiUrlV2)/user/favourites/list"
+    static let sessionsFavoriteListUrlV2_1 = "\(apiUrlV2_1)/user/favourites/list"
     static let addSessionToDownloadUrl = "\(apiUrl)/sessions/downloads/add/{id}"
     static let removeSessionToDownloadUrl = "\(apiUrl)/sessions/downloads/remove/{id}"
     static let rateSession = "\(apiUrl)/sessions/rate/{id}"
     static let sessionInfo = "\(apiUrl)/sessions/info/{id}"
     
     static let searchSession = "\(apiUrlV2)/sessions/search?q={query}"
+    static let searchSessionV2_1 = "\(apiUrlV2_1)/sessions/search?q={query}"
      static let addToFavoritesUrl = "\(apiUrl)/favourites/add"
+    static let addToFavoritesUrlV2_1 = "\(apiUrlV2_1)/favourites/add"
      static let removeFromFavoritesUrl = "\(apiUrl)/favourites/delete"
+    static let removeFromFavoritesUrlV2_1 = "\(apiUrlV2_1)/favourites/delete"
     static let trackSessionUrl = "\(apiUrlV2)/sessions/track"
     
     static let purchaseReceiptUrl = "\(apiUrl)/subscription/apple/verify"

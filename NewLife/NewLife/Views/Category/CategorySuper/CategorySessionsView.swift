@@ -11,6 +11,7 @@ import UIKit
 protocol CategorySessionsViewDelegate: class{
     func playSession(_ session: CategorySessionVM)
     func updateHeader(offset: CGPoint)
+    func openSeriesView(seriesId: String, session: SessionModel)
 }
 class CategorySessionsView: UIView {
     
@@ -60,17 +61,20 @@ extension CategorySessionsView: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         DispatchQueue.main.async { [weak self] in
+            if session.session?.type == "series" {
+                self?.delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
+                return
+            }
+
             self?.delegate?.playSession(session)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         if let selectedSubCategory = selectedSubCategory, indexPath.item >= (selectedSubCategory.sessions.count - 4) {
-            
             selectedSubCategory.fetchMore { (error) in
                 if error == nil {
-                    collectionView.reloadData()
+                    self.sessions = selectedSubCategory.sessions
                 }
             }
         }

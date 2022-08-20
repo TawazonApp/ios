@@ -157,7 +157,6 @@ class LocalSessionsManager: NSObject {
         if sessionURL != nil{
             remoteAudioUrl = sessionURL!
         }
-        print("remoteAudioUrl: \(remoteAudioUrl)")
          let localAudio = getSessionAudioLocalUrl(id: session.id, userId: userId, fileExtension: remoteAudioUrl.pathExtension)
         
         service.downloadSessionFile(localFileUrl: localAudio.fullUrl, remoteUrl: remoteAudioUrl) { (error) in

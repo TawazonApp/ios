@@ -50,6 +50,7 @@ class FirebaseTrackingService: TrackingService {
         static let openSearch = "open_search_view"
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
+        static let openSeries = "open_series"
     }
     
     func sendUserId(userId: String?) {
@@ -316,6 +317,13 @@ class FirebaseTrackingService: TrackingService {
         values["voice"] = voice
         values["dialect"] = dialect
         Analytics.logEvent(CustomEvents.changeVoicesAndDialects, parameters: values)
+    }
+    
+    func sendOpenSeries(id: String) {
+        var values = getBaseEventValues()
+        values["seriesId"] = id
+        
+        Analytics.logEvent(CustomEvents.openSeries, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

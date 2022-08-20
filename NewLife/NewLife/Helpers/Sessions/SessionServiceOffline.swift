@@ -79,13 +79,13 @@ class SessionServiceOffline: SessionService {
     }
     
     
-    func addToFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
+    func addToFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void) {
         service.addToFavorites(favorites: favorites) { (error) in
             completion(error)
         }
     }
     
-    func removeFromFavorites(favorites: SessionFavoritesModel, completion: @escaping (CustomError?) -> Void) {
+    func removeFromFavorites(favorites: [String], completion: @escaping (CustomError?) -> Void){
         service.removeFromFavorites(favorites: favorites) { (error) in
             completion(error)
         }
@@ -103,5 +103,14 @@ class SessionServiceOffline: SessionService {
         service.setUserSessionSettings(settings: settings){ (error) in
             completion(error)
         }
+    }
+    
+    func getSeriesSessions(seriesId: String, completion: @escaping (SeriesModel?, CustomError?) -> Void) {
+        
+        service.getSeriesSessions(seriesId: seriesId, completion: completion)
+    }
+    
+    func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void){
+        service.setSeriesSessionCompleted(seriesId: seriesId, sessionId: sessionId, duration: duration, completion: completion)
     }
 }

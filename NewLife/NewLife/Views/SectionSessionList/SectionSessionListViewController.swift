@@ -211,6 +211,10 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         cell?.pulsate()
+        if session.session?.type == "series" {
+            openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
+            return
+        }
         if let sessionModel = session.session {
             if session.isLock {
                 openPremiumViewController()
@@ -219,6 +223,11 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
             }
             
         }
+    }
+    
+    func openSeriesView(seriesId: String, session: SessionModel) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

@@ -189,6 +189,7 @@ open class AudioPlayerManager: NSObject {
 		} else if (clearQueue == true) {
 			self.clearQueue()
 		}
+        
 	}
 
 	// MARK: Forward

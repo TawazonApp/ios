@@ -36,6 +36,11 @@ class OurStoryViewController: MoreDetailsViewController {
         backgroundImageName = "OurStoryBackground"
         title = "ourStoryViewTitle".localized
         textView.text = "ourStoryText".localized
+        if Language.language == .arabic {
+            textView.textAlignment = .right
+        }else{
+            textView.textAlignment = .left
+        }
         sloganLabel.text = "launchSlogan".localized
         
     }

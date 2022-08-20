@@ -263,6 +263,11 @@ class TrackerManager: TrackingService {
         }
     }
     
+    func sendOpenSeries(id: String) {
+        for service in services {
+            service.sendOpenSeries(id: id)
+        }
+    }
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()

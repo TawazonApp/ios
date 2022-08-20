@@ -116,7 +116,6 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: VoicesAndDialectsTableViewCell.identifier) as! VoicesAndDialectsTableViewCell
-        print("cellForRowAt, selectedVoice: \(selectedVoice), selectedDialect: \(selectedDialect)")
         cell.tintColor = .white
         cell.accessoryType = .none
         cell.setSelectedStyle(selected: false)
@@ -125,14 +124,12 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         case 0:
             cell.titleLabel.text = session.audioSources?[indexPath.row].title
             if indexPath.row == selectedVoice {
-                print("if, selectedVoice: \(selectedVoice)")
                 cell.setSelectedStyle(selected: true)
             }
             
         case 1:
             cell.titleLabel.text = session.audioSources?[selectedVoice].dialects[indexPath.row].title
             if indexPath.row == selectedDialect {
-                print("if, selectedDialect: \(selectedDialect)")
                 cell.setSelectedStyle(selected: true)
             }
         default: break
@@ -204,7 +201,6 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         UserDefaults.saveSelectedDialect(code: dialect)
         
         session.service.setUserSessionSettings(settings: UserSettings(defaultAudioSource: dialect)){(error) in
-            print("error: \(error)")
         }
     }
 }

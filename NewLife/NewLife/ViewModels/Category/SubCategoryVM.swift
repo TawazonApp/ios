@@ -43,7 +43,6 @@ class SubCategoryVM: NSObject {
     }
     
     func fetchMore(completion: @escaping (CustomError?) -> Void) {
-        
         guard pagingData.processing == false, pagingData.hasMore == true else {
             completion(CustomError(message: "fetchMoreItemsFailedError".localized, statusCode: nil))
             return
@@ -56,7 +55,6 @@ class SubCategoryVM: NSObject {
         service.fetchSubCategorySessions(subCategoryId: id, page: nextPage, pageSize: pageSize) { [weak self] (subCategory, error) in
             
             self?.pagingData.processing = false
-            
             if error == nil {
                 
                 self?.pagingData.page = nextPage
