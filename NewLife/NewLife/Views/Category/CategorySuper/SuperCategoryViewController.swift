@@ -34,6 +34,7 @@ class SuperCategoryViewController: SoundEffectsPresenterViewController {
                 sectionsView.sections = self.category?.sections
             }else{
                 sessionsView.sessions = selectedSubCategory?.sessions
+                sessionsView.selectedSubCategory = selectedSubCategory
             }
             updateContentView(isHome: selectedSubCategory?.isHome ?? false)
             if selectedSubCategory != nil {
@@ -165,8 +166,8 @@ extension SuperCategoryViewController: CategorySectionsViewDelegate{
 }
 extension SuperCategoryViewController: CategorySessionsViewDelegate{
     
-    func openSeriesView(seriesId: String) {
-        let viewController = SeriesViewController.instantiate(seriesId: seriesId)
+    func openSeriesView(seriesId: String, session: SessionModel) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

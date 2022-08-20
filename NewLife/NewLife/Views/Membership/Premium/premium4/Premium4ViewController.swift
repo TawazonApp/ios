@@ -56,7 +56,7 @@ class Premium4ViewController: BasePremiumViewController {
             self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
             
             self.features = self.data.premiumDetails?.premiumPage.featureItems
-            self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
+            self.noteLabel.text = self.data.premiumDetails?.premiumPage.content
             
         })
     }
@@ -110,10 +110,11 @@ class Premium4ViewController: BasePremiumViewController {
         noteLabel.font = UIFont.munaFont(ofSize: 12.0)
         noteLabel.textColor = UIColor.white
         noteLabel.layer.opacity = 0.71
-        noteLabel.text = "premium4DefaultPurchaseDescription".localized
+//        noteLabel.text = "premium4DefaultPurchaseDescription".localized
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
+        print("plansContainer.selectedPlan: \(plansContainer.selectedPlan), \(data.products[plansContainer.selectedPlan].localizedTitle)")
         purchaseAction(product: data.products[plansContainer.selectedPlan])
     }
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {

@@ -142,10 +142,8 @@ extension CategoryHeaderView: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if selectedSubCategoryIndex != indexPath.item {
             selectedSubCategoryIndex = indexPath.item
-            
             delegate?.subCategoryTapped(subCategory: subCategories[indexPath.item])
     
             centerItemIfNeeded(indexPath: indexPath)

@@ -376,8 +376,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontalSectionCellDelegate, HomeTableCardSectionCellDelegate {
    
-    func openSeriesView(seriesId: String) {
-        let viewController = SeriesViewController.instantiate(seriesId: seriesId)
+    func openSeriesView(seriesId: String, session: SessionModel) {
+        let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

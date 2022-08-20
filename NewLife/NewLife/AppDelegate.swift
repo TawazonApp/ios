@@ -271,7 +271,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("NOT LOADED: \(error), \(error.userInfo)")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-            print("LOADED")
         })
         return container
     }()

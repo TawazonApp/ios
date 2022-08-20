@@ -39,7 +39,7 @@ class SessionShareViewController: SessionInfoViewController {
     }
     
     private func initialize() {
-        titleLabel.text = "shareSessionViewTitle".localized
+        titleLabel.text = session.session?.type == "series" ? "shareSeriesViewTitle".localized : "shareSessionViewTitle".localized
         shareButton.image = #imageLiteral(resourceName: "ShareByActivity.pdf")
         shareButton.title =   "shareByActivityButtonTitle".localized
         smsButton.image = #imageLiteral(resourceName: "ShareBySms.pdf")

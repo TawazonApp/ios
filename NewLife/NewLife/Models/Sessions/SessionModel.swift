@@ -29,7 +29,7 @@ struct SessionModel: Codable {
     let audioSources: [AudioSourceModel]
     var completed: Bool?
     var locked: Bool?
-//    let type: String?
+    let type: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -51,7 +51,7 @@ struct SessionModel: Codable {
         case audioSources
         case completed
         case locked
-//        case type
+        case type
     }
     
     func isFavorite() -> Bool {
@@ -104,7 +104,7 @@ extension SessionModel {
         self.audioSources = []
         self.completed = session.completed
         self.locked = session.locked
-//        self.type = session.type
+        self.type = session.type
     }
  
     init?(data: Data) {
@@ -159,7 +159,7 @@ extension SessionModel {
         
         locked = try container.decodeIfPresent(Bool.self, forKey: .locked)
         
-//         type = try container.decodeIfPresent(String.self, forKey: .type)
+         type = try container.decodeIfPresent(String.self, forKey: .type)
          
         localImagePath = nil
         localAudioPath = nil

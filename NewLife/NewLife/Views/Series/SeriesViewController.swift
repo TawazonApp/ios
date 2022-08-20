@@ -19,11 +19,10 @@ class SeriesViewController: UIViewController {
     @IBOutlet weak var separatorView: GradientView!
     @IBOutlet weak var seriesTitleLabel: UILabel!
     @IBOutlet weak var seriesSubtitleLabel: UILabel!
-    @IBOutlet weak var verticalSeparatorView: GradientView!
     @IBOutlet weak var seriesProgressView: PlayerProgressView!
     @IBOutlet weak var seriesProgressLabel: UILabel!
-    @IBOutlet weak var seriesDesciptionLabel: UILabel!
     @IBOutlet weak var seriesSessionsTabel: UITableView!
+    @IBOutlet weak var separatorDetailsView: GradientView!
     
     var isPlaying: Bool = AudioPlayerManager.shared.isPlaying()
     
@@ -31,10 +30,22 @@ class SeriesViewController: UIViewController {
     var seriesId: String = ""
     var seriesVM: SeriesVM!
     
+    
+    var seriesSessionModel: SessionModel?
+    
     var playerBar: MainPlayerBarView?
     
     var footerTitleString: String! = "seriesFooterTitle".localized
     var footerSubtitleString: String! = "seriesFooterSubtitle".localized
+    
+    var isPresented: Bool {
+        if let nvc = navigationController {
+            return nvc.viewControllers.firstIndex(of: self) == 0
+        } else {
+            return presentingViewController != nil
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,12 +54,14 @@ class SeriesViewController: UIViewController {
         
         seriesVM = SeriesVM(service: SessionServiceFactory.service())
         fetchSeriesDetails()
+        if AudioPlayerManager.shared.isPlaying() {
+            self.showSessionPlayerBar()
+        }
         TrackerManager.shared.sendOpenSeries(id: seriesId)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
         backgroundImageView.animate()
     }
 
@@ -56,9 +69,11 @@ class SeriesViewController: UIViewController {
         view.backgroundColor = .tolopea
         
         backgroundImageView.backgroundColor = .tolopea
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleToFill
         
         separatorView.applyGradientColor(colors: [UIColor.tolopea.withAlphaComponent(0.0).cgColor, UIColor.tolopea.cgColor], startPoint: .top, endPoint: .bottom)
+        separatorDetailsView.backgroundColor = .clear
+        separatorDetailsView.applyGradientColor(colors: [UIColor.tolopea.cgColor, UIColor.tolopea.withAlphaComponent(0.0).cgColor], startPoint: .top, endPoint: .bottom)
         
         seriesDetailsView.backgroundColor = .tolopea
         
@@ -85,13 +100,8 @@ class SeriesViewController: UIViewController {
         seriesProgressText.append(NSAttributedString(string: "/4", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.6)]))
         seriesProgressLabel.attributedText = seriesProgressText
         
-        seriesDesciptionLabel.font = .kohinoorRegular(ofSize: 14)
-        seriesDesciptionLabel.textColor = .white
-        
-        verticalSeparatorView.backgroundColor = .clear
-        verticalSeparatorView.applyGradientColor(colors: [UIColor.gulfBlue.cgColor, UIColor.waikawaGrey.withAlphaComponent(0).cgColor], startPoint: .bottom, endPoint: .top)
-        
         seriesSessionsTabel.backgroundColor = .clear
+        seriesSessionsTabel.separatorStyle = .none
         
     }
     
@@ -109,6 +119,10 @@ class SeriesViewController: UIViewController {
         
     }
     
+    private func reloadData(){
+        self.seriesSessionsTabel.reloadData()
+        fillData()
+    }
     private func initializeNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showSessionPlayerBar(_:)), name: NSNotification.Name.showSessionPlayerBar
             , object: nil)
@@ -120,7 +134,6 @@ class SeriesViewController: UIViewController {
     private func fillData(){
         seriesTitleLabel.text = seriesVM.details?.title
         seriesSubtitleLabel.text = seriesVM.details?.subtitle
-        seriesDesciptionLabel.text = seriesVM.details?.content
         
         
         if let imageUrl = seriesVM.details?.image?.url {
@@ -139,22 +152,62 @@ class SeriesViewController: UIViewController {
         footerTitleString = seriesVM.details?.footerTitle ?? footerTitleString
         footerSubtitleString = seriesVM.details?.footerSubtitle ?? footerSubtitleString
     
+        setFavoriteButtonData()
+    }
+    
+    private func setFavoriteButtonData() {
+        favoriteButton.isFavorite = seriesVM?.details?.favorite ?? false
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        if isPresented {
+            self.dismiss(animated: true)
+        }
         self.navigationController?.popViewController(animated: true)
         
     }
     
-    @IBAction func favoriateButtonTapped(_ sender: UIButton) {
+    @IBAction func favoriateButtonTapped(_ sender: SessionFavoriteButton) {
+        sender.isFavorite = !sender.isFavorite
+        if sender.isFavorite {
+            sender.animate()
+        }
+        changeFavoriteStatus(favorite: sender.isFavorite)
+    }
+    
+    private func  changeFavoriteStatus(favorite: Bool) {
         
+        if favorite {
+            seriesVM?.addToFavorite { [weak self] (error) in
+                self?.setFavoriteButtonData()
+            }
+        } else {
+            seriesVM?.removeFromFavorites { [weak self] (error) in
+                self?.setFavoriteButtonData()
+                
+            }
+        }
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
+        showShareSessionView()
+    }
+    
+    private func showShareSessionView() {
+        guard let session = seriesSessionModel else {
+            return
+        }
         
+        let seriesSessionVM = SessionVM(service: SessionServiceFactory.service(), session: session)
+        
+        let shareViewController = SessionShareViewController.instantiate(session: seriesSessionVM)
+        shareViewController.modalPresentationStyle = .custom
+        shareViewController.transitioningDelegate = self
+        self.present(shareViewController, animated: true, completion: nil)
     }
     
 }
+
 
 extension SeriesViewController {
     @objc func showSessionPlayerBar(_ notification: Notification) {
@@ -162,10 +215,15 @@ extension SeriesViewController {
     }
     
     @objc func hideSessionPlayerBar(_ notification: Notification) {
+        let reloadView = notification.object as? Bool ?? true
         hideSessionPlayerBar()
         if let session = notification.object as? SessionVM {
             SessionRateViewController.show(session: session, from: self, force: false)
         }
+        if reloadView {
+            reloadData()
+        }
+        
     }
     
     func showSessionPlayerBar() {
@@ -216,12 +274,18 @@ extension SeriesViewController:  MainPlayerBarViewDelegate {
 
 extension SeriesViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return seriesVM.sessions?.count ?? 0
+        return (seriesVM.sessions?.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SeriesSessionHeaderTableViewCell.identifier) as! SeriesSessionHeaderTableViewCell
+            cell.seriesDescriptionLabel.text = seriesVM.details?.content
+            
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: SeriesSessionTableViewCell.identifier) as! SeriesSessionTableViewCell
-        let session = seriesVM.sessions?[indexPath.row]
+        let session = seriesVM.sessions?[indexPath.row - 1]
         cell.session = session
         cell.delegate = self
         
@@ -268,22 +332,21 @@ extension SeriesViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension SeriesViewController: SeriesSessionDelegate{
-    func setCompletedSession(session: SessionVM) {
-        if !(session.session?.completed ?? true) {
-            seriesVM.setCompletedSession(sessionId: session.id!, duration: session.session?.duration ?? 0){
+    func setSessionDuration(session: SessionVM, duration: Int) {
+        seriesVM.setCompletedSession(sessionId: session.id!, duration: duration ){
                 (error) in
                 if (error != nil) {
                     return
                 }
-                self.fetchSeriesDetails()
+            AudioPlayerManager.shared.stop(clearQueue: true)
+            SessionPlayerMananger.shared.session = nil
+            self.fetchSeriesDetails()
             }
-        }
     }
     
     func togglePlaySession(_ session: SessionVM) {
         SessionPlayerMananger.shared.session = session
         openSessionPlayerViewController(session: session)
-        self.seriesSessionsTabel.reloadData()
     }
 }
 extension SeriesViewController{
@@ -303,6 +366,7 @@ extension SeriesViewController{
         let navigationController = NavigationController.init(rootViewController: viewcontroller)
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
+        viewcontroller.transitioningDelegate = self
         self.present(navigationController, animated: true, completion: nil)
     }
 
@@ -315,12 +379,23 @@ func sessionStoped(_ session: SessionVM) {
     }
 }
 }
+extension SeriesViewController{
+    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if !AudioPlayerManager.shared.isPlaying() {
+            reloadData()
+        }
+        
+        return nil
+    }
+}
+
 extension SeriesViewController {
     //TODO: add series to instantiate func parameters
-    class func instantiate(seriesId: String) -> SeriesViewController {
+    class func instantiate(seriesId: String, seriesSession: SessionModel) -> SeriesViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: SeriesViewController.identifier) as! SeriesViewController
         viewController.seriesId = seriesId
+        viewController.seriesSessionModel = seriesSession
         return viewController
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol SeriesSessionDelegate: class {
     func togglePlaySession(_ session: SessionVM)
-    func setCompletedSession(session: SessionVM)
+    func setSessionDuration(session: SessionVM, duration: Int)
 }
 
 class SeriesSessionTableViewCell: UITableViewCell {
@@ -52,6 +52,8 @@ class SeriesSessionTableViewCell: UITableViewCell {
         detailsView.layer.cornerRadius = 42
         
         playButton.tintColor = UIColor.white
+        playButton.backgroundColor = .white.withAlphaComponent(0.12)
+        playButton.roundCorners(corners: .allCorners, radius: playButton.frame.height/2)
         updatePlayButtonStyle(isPlaying: isPlaying)
         
         sessionTitleLabel.font = .kohinoorSemiBold(ofSize: 16)
@@ -61,22 +63,31 @@ class SeriesSessionTableViewCell: UITableViewCell {
         sessionSubtitleLabel.textColor = .white
         sessionSubtitleLabel.layer.opacity = 0.6
         
+        sessionProgressView.withBase = true
+        
         sessionProgressImageView.image = UIImage(named: "SeriesSessionDone")
         sessionProgressImageView.isHidden = true
         
         addCustomSeparator()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        sessionProgressView.progress = 0
+    }
+    
     private func updatePlayButtonStyle(isPlaying: Bool) {
         var image: UIImage?
         if session?.session?.locked ?? true{
-            image = UIImage(named: "PlayerLocked")
+            image = UIImage(named: "SeriesPlayerLocked")
             playButton.setImage(image, for: .normal)
             playButton.isEnabled = false
+            playButton.backgroundColor = .white.withAlphaComponent(0.12)
             return
         }
-         image = isPlaying ? UIImage(named: "PlayerPause") :  UIImage(named: "PlayerPlay")
+         image = isPlaying ? UIImage(named: "SeriesPlayerStop") :  UIImage(named: "SeriesPlayerPlay")
         playButton.setImage(image, for: .normal)
+        playButton.backgroundColor = isPlaying ? .irisTwo : .white.withAlphaComponent(0.12)
         playButton.isEnabled = true
     }
     
@@ -84,21 +95,21 @@ class SeriesSessionTableViewCell: UITableViewCell {
         sessionTitleLabel.text = session?.name
         sessionSubtitleLabel.text = session?.durationString
         
-        sessionProgressView.progress = 0
         
         isPlaying = SessionPlayerMananger.shared.session?.id == session?.id ? true : false
+        
         if isPlaying {
             sessionProgressView.progress = CGFloat(AudioPlayerManager.shared.currentTrack?.currentProgress() ?? 0)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateProgress(_:)), name: NSNotification.Name(rawValue: "UpdateProgress")
+            NotificationCenter.default.addObserver(self, selector: #selector(updateProgress(_:)), name: NSNotification.Name.updatePlayerProgress
                 , object: nil)
         }else{
-            sessionProgressView.progress = 0
+            sessionProgressView.progress = session?.session?.completed ?? false ?  1 : 0
             NotificationCenter.default.removeObserver(self)
         }
         
-            sessionProgressImageView.isHidden = !(session?.session?.completed ?? false)
+        sessionProgressImageView.isHidden = !(session?.session?.completed ?? false)
         
-        session?.isLock ?? true ? playButton.setImage(UIImage(named: "PlayerPremiumSession"), for: .normal) : updatePlayButtonStyle(isPlaying: isPlaying)
+        session?.isLock ?? true ? playButton.setImage(UIImage(named: "SeriesPlayerPremiumSession"), for: .normal) : updatePlayButtonStyle(isPlaying: isPlaying)
     }
     
     @objc func updateProgress(_ notification: Notification) {
@@ -109,13 +120,14 @@ class SeriesSessionTableViewCell: UITableViewCell {
         
         if isPlaying && (roundedcurrentTime == roundedDuration) && roundedcurrentTime > 0 {
             sessionProgressImageView.isHidden = false
-            setSessionCompleted()
+            setSessionDuration()
             isPlaying = false
-            AudioPlayerManager.shared.stop(clearQueue: true)
-            SessionPlayerMananger.shared.session = nil
         }
     }
     
+    private func postSessionDuration(session: SessionModel){
+        
+    }
     private func addCustomSeparator(){
         let separatorView = UIView(frame: CGRect(x: 0, y: 0, width: 3, height: 24))
         separatorView.layer.cornerRadius = 1.5
@@ -127,8 +139,8 @@ class SeriesSessionTableViewCell: UITableViewCell {
         separatorView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         separatorView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
-    private func setSessionCompleted(){
-        delegate?.setCompletedSession(session: session!)
+    private func setSessionDuration(){
+        delegate?.setSessionDuration(session: session!, duration: Int(AudioPlayerManager.shared.currentTrack?.currentTimeInSeconds() ?? 0.0))
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -151,13 +163,15 @@ class SeriesSessionTableViewCell: UITableViewCell {
         if session != nil {
             isPlaying = !isPlaying
             setSelectedStyle(selected: isPlaying)
-            
+            updatePlayButtonStyle(isPlaying: isPlaying)
         }
         if isPlaying {
             SessionPlayerMananger.shared.session = session
             delegate?.togglePlaySession(self.session!)
         }else{
-            AudioPlayerManager.shared.stop(clearQueue: true)
+            self.setSessionDuration()
+            let reloadView = false
+            NotificationCenter.default.post(name: NSNotification.Name.hideSessionPlayerBar, object: reloadView)
         }
     }
     

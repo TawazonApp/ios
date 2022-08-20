@@ -47,9 +47,31 @@ class SuperCategoryVM: CategoryVM{
     }
     func fetchMore(completion: @escaping (CustomError?) -> Void) {
         
-        //TODO: implement fetch more
+        if let hasMore = pagination?.hasMore, hasMore {
+            service.fetchCategoryDetails(categoryId: id, page: pagination!.nextPage, pageSize: pageSize){ (category, error) in
+                if error == nil{
+                    self.pagination = category?.pagination
+                    if let sectionsModel = category?.sections{
+                        self.appendSections(sections: sectionsModel)
+                    }
+                    if let sessionsModel = category?.sessions{
+                        self.appendSessions(sessions: sessionsModel)
+                    }
+                    
+                }
+                completion(error)
+            }
+        }
         
     }
+    private func appendSessions(sessions: [SessionModel]) {
+        let sessions = sessions.map({return CategorySessionVM( session: $0)})
+        self.sessions?.append(contentsOf: sessions)
+    }
     
+    private func appendSections(sections: [HomeSectionModel]) {
+        let sections = sections.map({return HomeSectionVM(section: $0)})
+        self.sections?.append(contentsOf: sections)
+    }
     
 }

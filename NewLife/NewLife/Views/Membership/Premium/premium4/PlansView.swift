@@ -42,11 +42,11 @@ class PlansView: UIView {
     
     private func reloadData() {
         setData()
-        
+        print("reloadData")
         plansCollectionView.reloadData()
         plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         selectedPlan = 1
-        
+        plans?[selectedPlan].isSelected = true
     }
 }
 extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -76,7 +76,7 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("didSelectItemAt")
         collectionView.performBatchUpdates(nil, completion: nil)
         let selectedCell = collectionView.cellForItem(at: indexPath) as! PremiumPlanCollectionViewCell
         
@@ -99,7 +99,7 @@ extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 
         let leftInset = (frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
             let rightInset = leftInset
-        print(leftInset)
+
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {

@@ -31,6 +31,7 @@ struct SeriesDetailsModel: Codable, ModelInitializable {
     let footerSubtitle: String?
     let numberOfSessions: Int
     var completedItemsCount: Int?
+    var favorite: Bool?
     
     
     enum CodingKeys: String, CodingKey {
@@ -44,5 +45,6 @@ struct SeriesDetailsModel: Codable, ModelInitializable {
         case footerSubtitle = "footer_subtitle"
         case numberOfSessions = "items_count"
         case completedItemsCount
+        case favorite
     }
 }

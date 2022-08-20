@@ -27,11 +27,55 @@ class SeriesVM: NSObject{
     
     func setCompletedSession(sessionId: String, duration: Int, completion: @escaping (CustomError?) -> Void){
         if let id = details?.id {
-            service.setSeriesSessionCompleted(seriesId: id, sessionId: sessionId, duration: duration, completion: {
+            service.setSeriesSessionCompleted(seriesId: id, sessionId: sessionId, duration: TimeInterval(duration), completion: {
                 (error) in
                 completion(error)
             })
         }
         
+    }
+    
+    func addToFavorite(completion: @escaping (CustomError?) -> Void) {
+        
+        guard let seriesId = details?.id else{
+            completion(CustomError(message: nil, statusCode: nil))
+            return
+        }
+        
+        let favoriteIds = [seriesId]
+        
+        service.addToFavorites(favorites: favoriteIds) { (error) in
+            if error == nil {
+                var data: SessionFavoriteNotificationObject
+                data.sessionId = seriesId
+                data.favorite = true
+                self.details?.favorite = true
+            }
+            completion(error)
+        }
+        sendLikeSessionEvent(id: details?.id ?? "", name: details?.title ?? "")
+    }
+    
+    private func sendLikeSessionEvent(id: String, name: String) {
+        TrackerManager.shared.sendLikeSessionEvent(id: id, name: name)
+    }
+    
+    func removeFromFavorites(completion: @escaping (CustomError?) -> Void) {
+        guard let seriesId = details?.id else {
+            completion(CustomError(message: nil, statusCode: nil))
+            return
+        }
+        
+        let favoriteIds = [seriesId]
+        
+        service.removeFromFavorites(favorites: favoriteIds) { (error) in
+            if error == nil {
+                var data: SessionFavoriteNotificationObject
+                data.sessionId = seriesId
+                data.favorite = false
+                self.details?.favorite = false
+            }
+            completion(error)
+        }
     }
 }

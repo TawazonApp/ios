@@ -56,6 +56,7 @@
 		04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */; };
 		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
 		04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */; };
+		04D76CE428ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D76CE328ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift */; };
 		04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C328574945006C7AA1 /* SearchViewController.swift */; };
 		04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */; };
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
@@ -427,6 +428,7 @@
 		04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
 		04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
+		04D76CE328ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSessionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		04EC40C328574945006C7AA1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
@@ -844,6 +846,7 @@
 			children = (
 				0432B719288EB720007400B3 /* SeriesViewController.swift */,
 				041D1351288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift */,
+				04D76CE328ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift */,
 			);
 			path = Series;
 			sourceTree = "<group>";
@@ -2334,6 +2337,7 @@
 				F3AF0FA6223A8BB600E29615 /* CategoryModel.swift in Sources */,
 				F3DC8E0F2223D95A00C7DEC4 /* ConnectionUtils.swift in Sources */,
 				F31658072359DD910049605A /* TrackingService.swift in Sources */,
+				04D76CE428ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift in Sources */,
 				F35FD527223526F800B3CFC5 /* GoalCircleView.swift in Sources */,
 				F3715CF722439EE400B7A465 /* TESTViewController.swift in Sources */,
 				041D1352288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift in Sources */,
@@ -2786,7 +2790,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -2834,7 +2838,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

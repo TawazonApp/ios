@@ -198,7 +198,7 @@ extension MainPlayerBarView {
         progressView.currentTime = track?.displayablePlaybackTimeString()
         let remainingTime =
         progressView.remainingTime = "-\(track?.displayableTimeLeftString() ?? "")"
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateProgress"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name.updatePlayerProgress, object: nil)
     }
     
     

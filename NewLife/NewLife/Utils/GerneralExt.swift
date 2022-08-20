@@ -67,6 +67,8 @@ extension NSNotification.Name {
     
     static let languageChanged = NSNotification.Name(rawValue: "LanguageDidChange")
     
+    static let updatePlayerProgress = NSNotification.Name(rawValue: "UpdateProgress")
+    
 }
 
 extension SystemSoundID {
