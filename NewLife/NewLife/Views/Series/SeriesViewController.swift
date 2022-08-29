@@ -103,6 +103,7 @@ class SeriesViewController: UIViewController {
         seriesSessionsTabel.backgroundColor = .clear
         seriesSessionsTabel.separatorStyle = .none
         
+        seriesProgressView.withBase = true
     }
     
     private func fetchSeriesDetails(){

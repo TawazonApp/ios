@@ -11,7 +11,7 @@ import UIKit
 class PlayerProgressView: UIView {
 
     var progressBar: CircularProgressBar!
-    var withBase: Bool = false
+    var withBase: Bool = true
     var progress: CGFloat = 0 {
         didSet {
            progressBar.progress = progress
