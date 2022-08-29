@@ -140,11 +140,27 @@ class SearchViewController: BaseViewController {
             self.updateViewAppereance(noResult: isNoResult)
             self.sessionsTableView.reloadData()
             self.collectionReloadData()
+            self.startGuidedTapping()
         }
     }
     
     private func collectionReloadData() {
         categoriesCollection.reloadData()
+    }
+    
+    private func startGuidedTapping(){
+        let tourView = GuidedTourView(frame: self.view.frame)
+        tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+        
+        let searchGuidedTourSteps = [
+            StepInfo(view: categoriesCollection!,position: categoriesCollection.frame, textInfo: ("TITLE","helpTextCategoriesCollection".localized), isBelow: true, isSameHierarchy: true),
+            
+        ]
+        tourView.steps = searchGuidedTourSteps
+        print("searchGuidedTourSteps: \(searchGuidedTourSteps.count)\n \(searchGuidedTourSteps)")
+        self.view.addSubview(tourView)
+        
+        tourView.showSteps()
     }
     
     private func updateViewAppereance(noResult: Bool){

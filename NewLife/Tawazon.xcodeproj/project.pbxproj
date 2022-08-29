@@ -62,6 +62,9 @@
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
 		04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A427CF7BC2000880E2 /* TopTabBarView.swift */; };
 		04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A627CF9127000880E2 /* TopTabBarItemView.swift */; };
+		04FBEBC028B254F600D9EBCF /* GuidedTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBEBBF28B254F600D9EBCF /* GuidedTourView.swift */; };
+		04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBEBC128B25C9D00D9EBCF /* GuidedTourView.xib */; };
+		04FBEBC428B37DA800D9EBCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBEBC328B37DA800D9EBCF /* InfoView.swift */; };
 		48D6347B4BA6A6AB9DE5D990 /* Pods_TawazonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */; };
 		ABF0A3D50F7F86CFDCDBB632 /* Pods_Tawazon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */; };
 		E698D13D51968D272F083B97 /* Pods_TawazonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */; };
@@ -434,6 +437,9 @@
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
 		04F800A427CF7BC2000880E2 /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		04F800A627CF9127000880E2 /* TopTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemView.swift; sourceTree = "<group>"; };
+		04FBEBBF28B254F600D9EBCF /* GuidedTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTourView.swift; sourceTree = "<group>"; };
+		04FBEBC128B25C9D00D9EBCF /* GuidedTourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTourView.xib; sourceTree = "<group>"; };
+		04FBEBC328B37DA800D9EBCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		07264B016C315C4C6734C8AC /* Pods-TawazonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.release.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.release.xcconfig"; sourceTree = "<group>"; };
 		0926BFEBF363F061FB9AD9E3 /* Pods-Tawazon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.release.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.release.xcconfig"; sourceTree = "<group>"; };
 		42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tawazon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1002,6 +1008,16 @@
 				04F800A627CF9127000880E2 /* TopTabBarItemView.swift */,
 			);
 			path = TopTabBar;
+			sourceTree = "<group>";
+		};
+		04FBEBB828B2546F00D9EBCF /* GuidedTour */ = {
+			isa = PBXGroup;
+			children = (
+				04FBEBBF28B254F600D9EBCF /* GuidedTourView.swift */,
+				04FBEBC128B25C9D00D9EBCF /* GuidedTourView.xib */,
+				04FBEBC328B37DA800D9EBCF /* InfoView.swift */,
+			);
+			path = GuidedTour;
 			sourceTree = "<group>";
 		};
 		0F028AE4DE4DEA0C329798C0 /* Frameworks */ = {
@@ -1810,6 +1826,7 @@
 		F3DC8E5922248E6B00C7DEC4 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				04FBEBB828B2546F00D9EBCF /* GuidedTour */,
 				F3E6F6FA224E7F92005A566A /* PermissionAlert */,
 				F3715CF622439EE400B7A465 /* TESTViewController.swift */,
 				F3DC8E5A22248E9500C7DEC4 /* NavigationController.swift */,
@@ -2163,6 +2180,7 @@
 				F3C73B03223CF9730026B8E1 /* CancelLoginSignup.wav in Resources */,
 				F3DC8DE62223D3ED00C7DEC4 /* LaunchScreen.storyboard in Resources */,
 				F3A363222620898E00F8C084 /* HomeVideo3.mp4 in Resources */,
+				04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */,
 				F369267323295EFC00EA8771 /* PrivacyPolicy.rtf in Resources */,
 				F3DC8E202223DD1900C7DEC4 /* Categories.storyboard in Resources */,
 				F3DC8E2D2223E50A00C7DEC4 /* KacstPen.ttf in Resources */,
@@ -2401,6 +2419,7 @@
 				F3580BEE249CF38B00EBE1C1 /* AudioTracksQueue.swift in Sources */,
 				F32021DD223EACD300CCC33A /* ProfileEditFieldVM.swift in Sources */,
 				04677F4227C3840400493142 /* CategorySectionsView.swift in Sources */,
+				04FBEBC428B37DA800D9EBCF /* InfoView.swift in Sources */,
 				040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */,
 				F3CA02922231BC13008165C2 /* MembershipFormButtonCellVM.swift in Sources */,
 				F3DC8EAF2228342600C7DEC4 /* MoreSwitchCell.swift in Sources */,
@@ -2429,6 +2448,7 @@
 				F3DC8E4722243E9B00C7DEC4 /* LaunchLogoImageView.swift in Sources */,
 				F32021D7223EAAEC00CCC33A /* ProfileEditFieldViewController.swift in Sources */,
 				F3DC8E77222683F300C7DEC4 /* HomeVideoCellVM.swift in Sources */,
+				04FBEBC028B254F600D9EBCF /* GuidedTourView.swift in Sources */,
 				F3ECD0C525614C3A0048DBD8 /* FeelCellModel.swift in Sources */,
 				F3580BEC249CF38B00EBE1C1 /* Log.swift in Sources */,
 				F3DE73AD223664730052B18C /* UserInfoModel.swift in Sources */,
@@ -2777,7 +2797,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2826,7 +2846,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -329,6 +329,13 @@ extension SeriesViewController: UITableViewDelegate, UITableViewDataSource{
         footer.addSubview(footerStack)
         return footer
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let session = seriesVM.sessions?[indexPath.row - 1]{
+            togglePlaySession(session)
+        }
+        
+    }
 }
 
 extension SeriesViewController: SeriesSessionDelegate{

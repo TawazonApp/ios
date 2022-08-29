@@ -57,6 +57,19 @@ class MainTabBarView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
+        
+//        let tourView = GuidedTourView(frame: self.frame)
+//        tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+//        self.addSubview(tourView)
+//        tourView.steps = [
+//            StepInfo(view: items[1], textInfo: ("TITLE","مكان واحد حيث تجتمع التأملات المتنوعة بتأملات الجسد الذي ما يلبس أن يمتزج بتأملات الروح. طالع                                                التأملات، جسدي، روحي"), isBelow: false),
+////            StepInfo(view: searchButton!, textInfo: ("TITLE","ابحث عن ما تريد ضمن أي فئة مباشرة وبشكل سريع عن طريق شريط البحث الممتد إلى أعماق محتويات توازن! 🔦"), isBelow: true),
+////            StepInfo(view: backgroundSoundButton!, textInfo: ("TITLE","قم بتشغيل وإيقاف موسيقى الخلفية للتطبيق! 🪕"), isBelow: true),
+////            StepInfo(view: soundsButton!, textInfo: ("TITLE","قم بإضافة مزيج من المؤثرات الصوتية بما يتناسب والشعور الذي تمر به أو تبحث عن الانغماس فيه. أضف طبقة ممتعة من الأصوات المريحة. 🌊🔥🌧🐧🌳"), isBelow: true),
+////            StepInfo(view: !, textInfo: ("TITLE","قم بتشغيل وإيقاف موسيقى الخلفية للتطبيق! 🪕"), isBelow: true),
+//            
+//        ]
+//        tourView.showSteps()
     }
     
     private func initialize() {

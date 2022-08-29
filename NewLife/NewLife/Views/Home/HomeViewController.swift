@@ -64,6 +64,15 @@ class HomeViewController: SoundEffectsPresenterViewController {
         } else {
             showOnboardingViewIfNeeded()
         }
+
+        let homeGuidedTourSteps = [
+            StepInfo(view: moreButton!,position: moreButton.frame, textInfo: ("TITLE","helpTextMoreButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: searchButton!,position: searchButton!.frame, textInfo: ("TITLE","helpTextSearchButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: backgroundSoundButton!, position: backgroundSoundButton.frame, textInfo: ("TITLE","helpTextBackgroundSoundButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: soundsButton!, position: soundsButton!.frame, textInfo: ("TITLE","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: false),
+            
+        ]
+        NotificationCenter.default.post(name: Notification.Name.homeGuidedTourSteps, object: homeGuidedTourSteps)
     }
     
     func showOnboardingViewIfNeeded() {

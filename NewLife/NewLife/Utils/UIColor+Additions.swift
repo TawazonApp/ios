@@ -132,6 +132,10 @@ extension UIColor {
         return UIColor(red: 143 / 255.0, green: 142 / 255.0, blue: 255 / 255.0, alpha: 1.0)
     }
     
+    class var slateBlue: UIColor {
+        return UIColor(red: 108 / 255.0, green: 87 / 255.0, blue: 198 / 255.0, alpha: 1.0)
+    }
+    
     class var facebookColor: UIColor {
         return UIColor(red: 68 / 255.0, green: 105 / 255.0, blue: 176 / 255.0, alpha: 1.0)
     }

@@ -69,6 +69,8 @@ extension NSNotification.Name {
     
     static let updatePlayerProgress = NSNotification.Name(rawValue: "UpdateProgress")
     
+    static let homeGuidedTourSteps = NSNotification.Name(rawValue: "homeGuidedTourSteps")
+    
 }
 
 extension SystemSoundID {

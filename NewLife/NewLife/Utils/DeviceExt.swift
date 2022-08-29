@@ -112,6 +112,7 @@ struct UserDefaultsKeys {
     static let originalCampaignId = "OriginalCampaignId"
     static let currentCampaignId = "CurrentCampaignId"
     static let tempCampigns = "TempCampaigns"
+    static let firstGuided = "AppFirstGuidedKey"
 }
 
 extension UserDefaults {
