@@ -58,6 +58,8 @@ class SeriesSessionTableViewCell: UITableViewCell {
         
         sessionTitleLabel.font = .kohinoorSemiBold(ofSize: 16)
         sessionTitleLabel.textColor = .white
+        sessionTitleLabel.numberOfLines = 0
+        sessionTitleLabel.lineBreakMode = .byWordWrapping
         
         sessionSubtitleLabel.font = .kohinoorSemiBold(ofSize: 12)
         sessionSubtitleLabel.textColor = .white

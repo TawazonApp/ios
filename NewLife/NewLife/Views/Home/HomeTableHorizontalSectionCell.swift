@@ -42,10 +42,14 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
         backgroundColor = UIColor.clear
         titleLabel.font = UIFont.kacstPen(ofSize: 20)
         titleLabel.textColor = UIColor.white
+        titleLabel.isUserInteractionEnabled = true
+        let titleLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(moreButtonTapped(_:)))
+        titleLabel.addGestureRecognizer(titleLabelTapGesture)
+        
         iconImageView.contentMode = .scaleAspectFit
         collectionView.backgroundColor = UIColor.clear
         
-        moreButton.isHidden = true
+//        moreButton.isHidden = true
         moreButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         moreButton.tintColor = UIColor.white
         moreButton.setTitle("homeMoreSessionsButtonTitle".localized, for: .normal)
@@ -143,6 +147,6 @@ extension HomeTableHorizontalSectionCell: UICollectionViewDelegate, UICollection
         
         let ltlHidden = scrollView.contentOffset.x < scrollView.frame.width || scrollView.contentSize.width < (scrollView.frame.width * 1.5)
         
-        moreButton.isHidden = UIApplication.isRTL() ? rtlHidden : ltlHidden
+//        moreButton.isHidden = UIApplication.isRTL() ? rtlHidden : ltlHidden
     }
 }
