@@ -112,7 +112,10 @@ struct UserDefaultsKeys {
     static let originalCampaignId = "OriginalCampaignId"
     static let currentCampaignId = "CurrentCampaignId"
     static let tempCampigns = "TempCampaigns"
-    static let firstGuided = "AppFirstGuidedKey"
+    static let firstGuidedHome = "AppFirstGuidedHomeKey"
+    static let firstGuidedSearch = "AppFirstGuidedSearchKey"
+    static let firstGuidedSession = "AppFirstGuidedSessionKey"
+    static let firstGuidedSessionDialectsButton = "AppFirstGuidedSessionDialectsButtonKey"
 }
 
 extension UserDefaults {
@@ -213,6 +216,42 @@ extension UserDefaults {
     
     class func appOpened() {
         UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstOpened)
+    }
+    
+    class func isFirstGuidedHome() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.firstGuidedHome)
+        return (value == nil)
+    }
+    
+    class func appHomeGuided() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstGuidedHome)
+    }
+    
+    class func isFirstGuidedSearch() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.firstGuidedSearch)
+        return (value == nil)
+    }
+    
+    class func appSearchGuided() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstGuidedSearch)
+    }
+    
+    class func isFirstGuidedSession() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.firstGuidedSession)
+        return (value == nil)
+    }
+    
+    class func appSessionGuided() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstGuidedSession)
+    }
+    
+    class func isFirstGuidedSessionDialectButton() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.firstGuidedSessionDialectsButton)
+        return (value == nil)
+    }
+    
+    class func appSessionDialectButtonGuided() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstGuidedSessionDialectsButton)
     }
     
     class func isFirstDiscountOffer(id: String) -> Bool {

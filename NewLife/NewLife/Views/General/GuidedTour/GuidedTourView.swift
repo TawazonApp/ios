@@ -12,7 +12,7 @@ struct StepInfo
 {
     let view:UIView
     let position: CGRect
-    let textInfo:(title: String,description: String)?
+    let textInfo:(title: String,description: String)
     let isBelow:Bool
     let isSameHierarchy: Bool
 }
@@ -27,6 +27,7 @@ class GuidedTourView: UIView {
         }
     }
 
+    var screenName: String = ""
     var currentStepIndex = 0
     
     override class func awakeFromNib() {
@@ -60,19 +61,24 @@ class GuidedTourView: UIView {
 //        infoView.removeFromSuperview()
         currentStepIndex = currentStepIndex == (steps.count - 1) ?  0 : (currentStepIndex + 1)
         if currentStepIndex == 0 {
+            print("HIDE")
             hideSteps()
+            return
         }
         showSteps()
         
     }
     
-    @IBAction func skipButtonTapped(_ sender: UIButton) {
+    @IBAction func closeButtonTapped(_ sender: UIButton) {
         print("skipButtonTapped")
+        TrackerManager.shared.sendGuidedTourClosed(isAllSteps: currentStepIndex == (steps.count - 1) ? true : false,
+                                                   viewName: screenName, stepTitle: steps[currentStepIndex].textInfo.title)
+        hideSteps()
     }
     
     func createInfoView(for step: StepInfo, isBelow: Bool){
         var arrowImage : UIImage = UIImage(named: "GuidedTourInfoViewArrowUp")!
-        
+        print("forView: \(step.view)")
         print("isBelow: \(isBelow) step.position: \(step.position)")
         infoView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width - 40, height: 200))
         infoView.backgroundColor = .slateBlue
@@ -85,13 +91,17 @@ class GuidedTourView: UIView {
         infoView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         if isBelow {
             //bellow targeted view
-//            infoView.topAnchor.constraint(equalTo: step.view.bottomAnchor, constant: 20).isActive = true
-            infoView.topAnchor.constraint(equalTo: self.topAnchor , constant: 20 + step.view.frame.size.height + step.view.frame.maxY).isActive = true
+            
+            if step.isSameHierarchy{
+                infoView.topAnchor.constraint(equalTo: step.view.bottomAnchor, constant: 20).isActive = true
+            }else{
+                infoView.topAnchor.constraint(equalTo: self.topAnchor , constant: 20 + step.view.frame.size.height + step.view.frame.maxY).isActive = true
+            }
             
         }else{
             //above
 //            step.view.topAnchor.constraint(equalTo: infoView.bottomAnchor, constant: 20).isActive = true
-            self.bottomAnchor.constraint(equalTo: infoView.bottomAnchor , constant: 40 + step.position.height).isActive = true
+            self.bottomAnchor.constraint(equalTo: infoView.bottomAnchor , constant: 60 + step.position.height).isActive = true
             arrowImage = UIImage(named: "GuidedTourInfoViewArrowDown")!
         }
         
@@ -115,16 +125,37 @@ class GuidedTourView: UIView {
         
         
         // add foucus circle
-        let focusView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
-        focusView.backgroundColor = .white.withAlphaComponent(0.6)
-        focusView.layer.compositingFilter = "darkenBlendMode"
+        let focusView = UIView(frame: CGRect(x: 0, y: 0, width: step.view.frame.width, height: step.view.frame.height))
+        
+        
+        
         focusView.roundCorners(corners: .allCorners, radius: 24.0)
         self.addSubview(focusView)
         focusView.translatesAutoresizingMaskIntoConstraints = false
-        focusView.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        focusView.widthAnchor.constraint(equalToConstant: 48).isActive = true
-//        focusView.centerXAnchor.constraint(equalTo: step.view.centerXAnchor, constant: 0).isActive = true
-//        focusView.centerYAnchor.constraint(equalTo: step.view.centerYAnchor, constant: 0).isActive = true
+        print("focusView.heightAnchor: \(step.view.frame.height)")
+        focusView.heightAnchor.constraint(equalToConstant: step.view.frame.height).isActive = true
+        focusView.widthAnchor.constraint(equalToConstant: step.view.frame.width).isActive = true
+        if step.isSameHierarchy{
+            focusView.centerXAnchor.constraint(equalTo: step.view.centerXAnchor, constant: 0).isActive = true
+            focusView.centerYAnchor.constraint(equalTo: step.view.centerYAnchor, constant: 0).isActive = true
+        }else{
+            if isBelow {
+                //bellow targeted view
+                focusView.topAnchor.constraint(equalTo: self.topAnchor , constant: 8 + step.position.origin.y + step.position.height).isActive = true
+                
+            }else{
+                //above
+                self.bottomAnchor.constraint(equalTo: focusView.bottomAnchor , constant: step.position.origin.y).isActive = true
+            }
+            focusView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: step.position.origin.x).isActive = true
+            
+        }
+        print("focusView.frame: \(focusView.frame)")
+        let overlayLayer = CALayer()
+        overlayLayer.frame = focusView.frame
+        overlayLayer.backgroundColor = UIColor.white.withAlphaComponent(0.3).cgColor
+        overlayLayer.compositingFilter = "darkenBlendMode"
+        focusView.layer.addSublayer(overlayLayer)
         
         // add details
         let descriptionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -132,7 +163,7 @@ class GuidedTourView: UIView {
         descriptionLabel.textColor = .white
         descriptionLabel.numberOfLines = 0
         descriptionLabel.lineBreakMode = .byWordWrapping
-        descriptionLabel.text = step.textInfo?.description
+        descriptionLabel.text = step.textInfo.description
         infoView.addSubview(descriptionLabel)
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -168,11 +199,11 @@ class GuidedTourView: UIView {
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         
         
-        let skipButton = UIButton()
-        skipButton.tintColor = .white
-        skipButton.setTitle("GuidedTourSkipButton".localized, for: .normal)
-        skipButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
-        skipButton.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .touchUpInside)
+        let closeButton = UIButton()
+        closeButton.tintColor = .white
+        closeButton.setTitle("GuidedTourSkipButton".localized, for: .normal)
+        closeButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
         
         
             //stack of buttons
@@ -195,10 +226,14 @@ class GuidedTourView: UIView {
         verticalLine.translatesAutoresizingMaskIntoConstraints = false
         verticalLine.widthAnchor.constraint(equalToConstant: 1).isActive = true
         
+        if currentStepIndex != (steps.count - 1) {
+            actionsStackView.addArrangedSubview(nextButton)
+        }else{
+            actionsStackView.removeArrangedSubview(nextButton)
+        }
         
-        actionsStackView.addArrangedSubview(nextButton)
         actionsStackView.addArrangedSubview(verticalLine)
-        actionsStackView.addArrangedSubview(skipButton)
+        actionsStackView.addArrangedSubview(closeButton)
 //        verticalLine.heightAnchor.constraint(equalTo: actionsStackView.heightAnchor).isActive = true
         
         // add pages

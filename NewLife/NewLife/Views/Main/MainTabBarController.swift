@@ -169,20 +169,24 @@ class MainTabBarController: UITabBarController {
     }
     
     @objc private func startGuidedTour(_ notification: Notification){
-        if var steps = notification.object as? [StepInfo]{
-            
-            let tourView = GuidedTourView(frame: self.view.frame)
-            tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
-            
-            steps.append(StepInfo(view: self.mainTabBar.items[2], position: self.mainTabBar.items[2].frame, textInfo: ("","helpTextMeditationTabBarButton".localized), isBelow: false, isSameHierarchy: true))
-            steps.append(StepInfo(view: self.mainTabBar.items[1], position: self.mainTabBar.items[1].frame, textInfo: ("", "helpTextMusicTabBarButton".localized), isBelow: false, isSameHierarchy: true))
-            steps.append(StepInfo(view: self.mainTabBar.items[3], position: self.mainTabBar.items[3].frame, textInfo: ("", "helpTextPodcastTabBarButton".localized), isBelow: false, isSameHierarchy: true))
-            steps.append(StepInfo(view: self.mainTabBar.items[4], position: self.mainTabBar.items[4].frame, textInfo: ("", "helpTextKidsTabBarButton".localized), isBelow: false, isSameHierarchy: true))
-            tourView.steps = steps
-            print("STEPS MainTabBar: \(steps.count)\n \(steps)")
-            self.view.addSubview(tourView)
-            
-            tourView.showSteps()
+        if UserDefaults.isFirstGuidedHome() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                if var steps = notification.object as? [StepInfo]{
+                    
+                    let tourView = GuidedTourView(frame: self.view.frame)
+                    tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+                    tourView.screenName = "Home"
+                    steps.append(StepInfo(view: self.mainTabBar, position: self.mainTabBar.frame, textInfo: ("bottom_navigation","helpTextMainTabBar".localized), isBelow: false, isSameHierarchy: true))
+                    tourView.steps = steps
+                    print("STEPS MainTabBar: \(steps.count)\n \(steps)")
+                    self.view.addSubview(tourView)
+                    
+                    TrackerManager.shared.sendGuidedTourStarted(viewName: "Home")
+                    tourView.showSteps()
+                    
+                }
+            })
+            UserDefaults.appHomeGuided()
         }
     }
     func openCategory(categoryId: String) {

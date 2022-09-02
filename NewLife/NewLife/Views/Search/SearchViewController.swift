@@ -41,6 +41,8 @@ class SearchViewController: BaseViewController {
     let searchDebouncer = Debouncer()
     let eventDebouncer = Debouncer()
     
+    var isFromSearch : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -140,7 +142,9 @@ class SearchViewController: BaseViewController {
             self.updateViewAppereance(noResult: isNoResult)
             self.sessionsTableView.reloadData()
             self.collectionReloadData()
-            self.startGuidedTapping()
+            if self.isFromSearch && !self.categories.isEmpty{
+                self.startGuidedTapping()
+            }
         }
     }
     
@@ -149,18 +153,29 @@ class SearchViewController: BaseViewController {
     }
     
     private func startGuidedTapping(){
-        let tourView = GuidedTourView(frame: self.view.frame)
-        tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
         
-        let searchGuidedTourSteps = [
-            StepInfo(view: categoriesCollection!,position: categoriesCollection.frame, textInfo: ("TITLE","helpTextCategoriesCollection".localized), isBelow: true, isSameHierarchy: true),
-            
-        ]
-        tourView.steps = searchGuidedTourSteps
-        print("searchGuidedTourSteps: \(searchGuidedTourSteps.count)\n \(searchGuidedTourSteps)")
-        self.view.addSubview(tourView)
-        
-        tourView.showSteps()
+        if UserDefaults.isFirstGuidedSearch(){
+            UserDefaults.appSearchGuided()
+            self.searchBar.resignFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() , execute: {
+                let tourView = GuidedTourView(frame: self.view.frame)
+                tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+                tourView.screenName = "Search"
+                
+                self.view.addSubview(tourView)
+                
+                let searchGuidedTourSteps = [
+                    StepInfo(view: self.categoriesCollection!,position: self.categoriesCollection.frame, textInfo: ("search_categories","helpTextCategoriesCollection".localized), isBelow: true, isSameHierarchy: true),
+                    
+                ]
+                tourView.steps = searchGuidedTourSteps
+                print("searchGuidedTourSteps: \(searchGuidedTourSteps.count)\n \(searchGuidedTourSteps)")
+                
+                TrackerManager.shared.sendGuidedTourStarted(viewName: "Search")
+                tourView.showSteps()
+                
+            })
+        }
     }
     
     private func updateViewAppereance(noResult: Bool){
@@ -336,12 +351,14 @@ extension SearchViewController: SessionPlayerDelegate {
 }
 extension SearchViewController:  UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        isFromSearch = true
         performSearch(query: searchBar.text)
         self.searchBar.resignFirstResponder()
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isFromSearch = true
         
         searchDebouncer.debounce(seconds: 0.35){
             self.performSearch(query: searchText)

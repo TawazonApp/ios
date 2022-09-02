@@ -53,6 +53,8 @@ class AppsFlyerTrackingService: TrackingService {
         static let searchFor = "search_for"
         static let playSessionFromSearch = "play_session_from_search"
         static let openSeries = "open_series"
+        static let startGuidedTour = "guided_tour_started"
+        static let closeGuidedTour = "guided_tour_closed"
     }
     
     func sendUserId(userId: String?) {
@@ -383,6 +385,22 @@ class AppsFlyerTrackingService: TrackingService {
         values["seriesId"] = id
         
         AppsFlyerLib.shared().logEvent(CustomEvents.openSeries, withValues: values)
+    }
+    
+    func sendGuidedTourStarted(viewName: String) {
+        var values = getBaseEventValues()
+        values["viewName"] = viewName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.startGuidedTour, withValues: values)
+    }
+    
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String) {
+        var values = getBaseEventValues()
+        values["viewName"] = viewName
+        values["isAllSteps"] = isAllSteps
+        values["stepTitle"] = stepTitle
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.closeGuidedTour, withValues: values)
     }
     
     private func getBaseEventValues() -> [AnyHashable : Any] {

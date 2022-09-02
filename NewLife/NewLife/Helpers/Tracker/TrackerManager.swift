@@ -268,6 +268,19 @@ class TrackerManager: TrackingService {
             service.sendOpenSeries(id: id)
         }
     }
+    
+    func sendGuidedTourStarted(viewName: String) {
+        for service in services {
+            service.sendGuidedTourStarted(viewName: viewName)
+        }
+    }
+    
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String)  {
+        for service in services {
+            service.sendGuidedTourClosed(isAllSteps: isAllSteps, viewName: viewName, stepTitle: stepTitle)
+        }
+    }
+    
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()

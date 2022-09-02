@@ -116,22 +116,55 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     private func startGuidedTapping(){
-        let tourView = GuidedTourView(frame: self.view.frame)
-        tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+        /*
+         - first open
+         1. session with button >> all steps
+         2. session without button >> all steps except button step
+         - other open
+         1. session with button >> button step only
+         */
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            let tourView = GuidedTourView(frame: self.view.frame)
+            tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
+            tourView.screenName = "Session"
+                        
+            var sessionPlayerGuidedTourSteps : [StepInfo] = []
+            if UserDefaults.isFirstGuidedSession(){
+                self.view.addSubview(tourView)
+                if !self.voiceAndDialectsButton.isHidden{
+                    sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("ovices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+                    UserDefaults.appSessionDialectButtonGuided()
+                }
+                
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.shareButton!,position: self.shareButton.frame, textInfo: ("share","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton.frame, textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.rateButton!,position: self.rateButton.frame, textInfo: ("rate","helpTextRateButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton.frame, textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.soundsButton!,position: self.rateButton.frame, textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: true))
+                
+                
+                
+                
+                
+                
+                UserDefaults.appSessionGuided()
+            }else if UserDefaults.isFirstGuidedSessionDialectButton() && !self.voiceAndDialectsButton.isHidden{
+                self.view.addSubview(tourView)
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("TITLE","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+                UserDefaults.appSessionDialectButtonGuided()
+            }
+            
+            if sessionPlayerGuidedTourSteps.count > 0 {
+                tourView.steps = sessionPlayerGuidedTourSteps
+                print("searchGuidedTourSteps: \(sessionPlayerGuidedTourSteps.count)\n \(sessionPlayerGuidedTourSteps)")
+                TrackerManager.shared.sendGuidedTourStarted(viewName: "Session")
+                tourView.showSteps()
+            }
+            
+            
+        })
         
-        var sessionPlayerGuidedTourSteps : [StepInfo] = []
-        if !voiceAndDialectsButton.isHidden{
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: voiceAndDialectsButton!,position: voiceAndDialectsButton.frame, textInfo: ("TITLE","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
-        }
-        sessionPlayerGuidedTourSteps.append(StepInfo(view: shareButton!,position: shareButton.frame, textInfo: ("TITLE","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
-        sessionPlayerGuidedTourSteps.append(StepInfo(view: favoriteButton!,position: favoriteButton.frame, textInfo: ("TITLE","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
-        sessionPlayerGuidedTourSteps.append(StepInfo(view: rateButton!,position: rateButton.frame, textInfo: ("TITLE","helpTextRateButton".localized), isBelow: false, isSameHierarchy: true))
         
-        tourView.steps = sessionPlayerGuidedTourSteps
-        print("searchGuidedTourSteps: \(sessionPlayerGuidedTourSteps.count)\n \(sessionPlayerGuidedTourSteps)")
-        self.view.addSubview(tourView)
-        
-        tourView.showSteps()
     }
     
     @IBAction func progressSliderTapped(_ sender: UISlider) {
