@@ -178,7 +178,6 @@ class MainTabBarController: UITabBarController {
                     tourView.screenName = "Home"
                     steps.append(StepInfo(view: self.mainTabBar, position: self.mainTabBar.frame, textInfo: ("bottom_navigation","helpTextMainTabBar".localized), isBelow: false, isSameHierarchy: true))
                     tourView.steps = steps
-                    print("STEPS MainTabBar: \(steps.count)\n \(steps)")
                     self.view.addSubview(tourView)
                     
                     TrackerManager.shared.sendGuidedTourStarted(viewName: "Home")

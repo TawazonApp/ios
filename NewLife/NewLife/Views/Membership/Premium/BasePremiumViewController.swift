@@ -50,8 +50,6 @@ class BasePremiumViewController: HandleErrorViewController, SKPaymentTransaction
     }
     
     func purchaseAction(product: SKProduct?) {
-        print("data.plansArray.filter({ $0.isSelected}).first: \(data.plansArray.filter({ $0.isSelected}).first?.title)")
-        print("data.plansArray: \(data.plansArray.count)")
         if let item = data.plansArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
             selectedPlan = product
             performPurchase(purchaseId: purchaseId, product: product)

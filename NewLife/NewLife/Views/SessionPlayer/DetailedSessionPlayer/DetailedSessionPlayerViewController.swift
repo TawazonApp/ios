@@ -131,16 +131,18 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             var sessionPlayerGuidedTourSteps : [StepInfo] = []
             if UserDefaults.isFirstGuidedSession(){
                 self.view.addSubview(tourView)
+                
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.soundsButton!,position: self.rateButton.frame, textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton.frame, textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
                 if !self.voiceAndDialectsButton.isHidden{
-                    sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("ovices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+                    sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
                     UserDefaults.appSessionDialectButtonGuided()
                 }
                 
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.shareButton!,position: self.shareButton.frame, textInfo: ("share","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton.frame, textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
                 sessionPlayerGuidedTourSteps.append(StepInfo(view: self.rateButton!,position: self.rateButton.frame, textInfo: ("rate","helpTextRateButton".localized), isBelow: false, isSameHierarchy: true))
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton.frame, textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.soundsButton!,position: self.rateButton.frame, textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton.frame, textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.shareButton!,position: self.shareButton.frame, textInfo: ("share","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
+                
                 
                 
                 
@@ -150,13 +152,12 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
                 UserDefaults.appSessionGuided()
             }else if UserDefaults.isFirstGuidedSessionDialectButton() && !self.voiceAndDialectsButton.isHidden{
                 self.view.addSubview(tourView)
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("TITLE","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.frame, textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
                 UserDefaults.appSessionDialectButtonGuided()
             }
             
             if sessionPlayerGuidedTourSteps.count > 0 {
                 tourView.steps = sessionPlayerGuidedTourSteps
-                print("searchGuidedTourSteps: \(sessionPlayerGuidedTourSteps.count)\n \(sessionPlayerGuidedTourSteps)")
                 TrackerManager.shared.sendGuidedTourStarted(viewName: "Session")
                 tourView.showSteps()
             }
