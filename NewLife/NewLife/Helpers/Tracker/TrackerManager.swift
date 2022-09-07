@@ -275,9 +275,14 @@ class TrackerManager: TrackingService {
         }
     }
     
-    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String)  {
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String, stepNumber: Int)  {
         for service in services {
-            service.sendGuidedTourClosed(isAllSteps: isAllSteps, viewName: viewName, stepTitle: stepTitle)
+            service.sendGuidedTourClosed(isAllSteps: isAllSteps, viewName: viewName, stepTitle: stepTitle, stepNumber: stepNumber)
+        }
+    }
+    func sendGuidedTourRestarted(){
+        for service in services {
+            service.sendGuidedTourRestarted()
         }
     }
     

@@ -58,5 +58,6 @@ protocol TrackingService {
     func sendTapPlaySessionFromSearchResultEvent(id: String, name: String)
     func sendOpenSeries(id: String)
     func sendGuidedTourStarted(viewName: String)
-    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String)
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String, stepNumber: Int)
+    func sendGuidedTourRestarted()
 }

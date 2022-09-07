@@ -521,6 +521,16 @@ extension UIView {
             }
         }
     }
+    
+    func respectLanguageFrame()-> CGRect{
+        var frame = self.frame
+        if Language.language == .arabic{
+            frame = CGRect(x: UIScreen.main.bounds.width - (frame.origin.x + frame.width), y: frame.origin.y, width: frame.width, height: frame.height)
+        }
+        
+        
+        return frame
+    }
 }
 
 extension UIImage {

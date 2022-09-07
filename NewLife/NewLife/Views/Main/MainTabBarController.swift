@@ -170,7 +170,7 @@ class MainTabBarController: UITabBarController {
     
     @objc private func startGuidedTour(_ notification: Notification){
         if UserDefaults.isFirstGuidedHome() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 if var steps = notification.object as? [StepInfo]{
                     
                     let tourView = GuidedTourView(frame: self.view.frame)

@@ -75,7 +75,7 @@ class GuidedTourView: UIView {
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         TrackerManager.shared.sendGuidedTourClosed(isAllSteps: isFinishedAll,
-                                                   viewName: screenName, stepTitle: steps[currentStepIndex].textInfo.title)
+                                                   viewName: screenName, stepTitle: steps[currentStepIndex].textInfo.title, stepNumber: currentStepIndex)
         hideSteps()
     }
     
@@ -234,6 +234,7 @@ class GuidedTourView: UIView {
             actionsStackView.addArrangedSubview(nextButton)
         }else{
             actionsStackView.removeArrangedSubview(nextButton)
+            closeButton.setTitle("GuidedTourCloseButton".localized, for: .normal)
         }
         
         actionsStackView.addArrangedSubview(verticalLine)
@@ -244,26 +245,41 @@ class GuidedTourView: UIView {
         pageControl.numberOfPages = steps.count
         pageControl.currentPage = currentStepIndex
         
+        if Language.language == .arabic{
+            UIPageControl.appearance().semanticContentAttribute = .forceRightToLeft
+        }else{
+            UIPageControl.appearance().semanticContentAttribute = .forceLeftToRight
+        }
         infoView.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.centerXAnchor.constraint(equalTo: infoView.centerXAnchor, constant: 0).isActive = true
         actionsView.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 5).isActive = true
-        
-        
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-           
-           if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-            if currentStepIndex < steps.count - 1{
-                currentStepIndex = currentStepIndex + 1
+        if Language.language == .arabic {
+            if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+                if currentStepIndex > 0 {
+                    currentStepIndex = currentStepIndex - 1
+                }
             }
-           }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-            if currentStepIndex > 0 {
-                currentStepIndex = currentStepIndex - 1
+         else if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+          if currentStepIndex < steps.count - 1{
+              currentStepIndex = currentStepIndex + 1
+          }
             }
-           }
+        }else{
+            if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+             if currentStepIndex < steps.count - 1{
+                 currentStepIndex = currentStepIndex + 1
+             }
+            }
+         else if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+             if currentStepIndex > 0 {
+                 currentStepIndex = currentStepIndex - 1
+             }
+            }
+        }
         clearViews()
         showSteps()
     }

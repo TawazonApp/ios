@@ -52,6 +52,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         buildVideosArray()
         fetchHomeSections()
         updateBackgroundSoundStyle()
+        startHomeGuidedTour()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,15 +65,11 @@ class HomeViewController: SoundEffectsPresenterViewController {
         } else {
             showOnboardingViewIfNeeded()
         }
-
-        let homeGuidedTourSteps = [
-            StepInfo(view: moreButton!,position: moreButton.frame, textInfo: ("more_menu","helpTextMoreButton".localized), isBelow: true, isSameHierarchy: false),
-            StepInfo(view: searchButton!,position: searchButton!.frame, textInfo: ("search","helpTextSearchButton".localized), isBelow: true, isSameHierarchy: false),
-            StepInfo(view: backgroundSoundButton!, position: backgroundSoundButton.frame, textInfo: ("background_music","helpTextBackgroundSoundButton".localized), isBelow: true, isSameHierarchy: false),
-            StepInfo(view: soundsButton!, position: soundsButton!.frame, textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: false),
-            
-        ]
-        NotificationCenter.default.post(name: Notification.Name.homeGuidedTourSteps, object: homeGuidedTourSteps)
+    }
+      
+    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        startHomeGuidedTour()
+        return nil
     }
     
     func showOnboardingViewIfNeeded() {
@@ -81,6 +78,18 @@ class HomeViewController: SoundEffectsPresenterViewController {
             UserDefaults.appOpened()
         }
     }
+    
+    private func startHomeGuidedTour(){
+        let homeGuidedTourSteps = [
+            StepInfo(view: moreButton!,position: moreButton.respectLanguageFrame(), textInfo: ("more_menu","helpTextMoreButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: searchButton!,position: searchButton!.respectLanguageFrame(), textInfo: ("search","helpTextSearchButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: backgroundSoundButton!, position: backgroundSoundButton.respectLanguageFrame(), textInfo: ("background_music","helpTextBackgroundSoundButton".localized), isBelow: true, isSameHierarchy: false),
+            StepInfo(view: soundsButton!, position: soundsButton!.respectLanguageFrame(), textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: false),
+            
+        ]
+        NotificationCenter.default.post(name: Notification.Name.homeGuidedTourSteps, object: homeGuidedTourSteps)
+    }
+    
     
     func showDiscountIfNeeded() {
         guard #available(iOS 11.2, *) else {
@@ -238,7 +247,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         updateBackgroundSoundStyle()
         requestNotificationPermission += 1
     }
-    
+
     private func openMoreViewController() {
         SystemSoundID.play(sound: .Sound2)
         let viewcontroller = MoreViewController.instantiate()

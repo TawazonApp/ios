@@ -53,6 +53,7 @@ class UXCamTrackerService: TrackingService {
         static let openSeries = "open_series"
         static let startGuidedTour = "guided_tour_started"
         static let closeGuidedTour = "guided_tour_closed"
+        static let restartGuidedTour = "tap_restart_tutorial"
     }
     
     func sendUserId(userId: String?) {
@@ -335,16 +336,22 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.startGuidedTour, withProperties: values)
     }
     
-    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String) {
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String, stepNumber: Int) {
         var values = getBaseEventValues()
         values["viewName"] = viewName
-        values["isAllSteps"] = isAllSteps
+        values["isFinishedAllSteps"] = isAllSteps
         values["stepTitle"] = stepTitle
+        values["stepNumber"] = stepNumber
         
         UXCam.logEvent(CustomEvents.closeGuidedTour, withProperties: values)
     }
     
-
+    func sendGuidedTourRestarted() {
+        let values = getBaseEventValues()
+        
+        UXCam.logEvent(CustomEvents.restartGuidedTour, withProperties: values)
+    }
+    
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",

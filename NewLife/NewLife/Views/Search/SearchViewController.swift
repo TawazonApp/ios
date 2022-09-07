@@ -165,11 +165,10 @@ class SearchViewController: BaseViewController {
                 self.view.addSubview(tourView)
                 
                 let searchGuidedTourSteps = [
-                    StepInfo(view: self.categoriesCollection!,position: self.categoriesCollection.frame, textInfo: ("search_categories","helpTextCategoriesCollection".localized), isBelow: true, isSameHierarchy: true),
+                    StepInfo(view: self.categoriesCollection!,position: self.categoriesCollection.respectLanguageFrame(), textInfo: ("search_categories","helpTextCategoriesCollection".localized), isBelow: true, isSameHierarchy: true),
                     
                 ]
                 tourView.steps = searchGuidedTourSteps
-                print("searchGuidedTourSteps: \(searchGuidedTourSteps.count)\n \(searchGuidedTourSteps)")
                 
                 TrackerManager.shared.sendGuidedTourStarted(viewName: "Search")
                 tourView.showSteps()

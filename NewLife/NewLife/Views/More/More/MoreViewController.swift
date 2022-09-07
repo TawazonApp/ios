@@ -143,6 +143,11 @@ class MoreViewController: BaseViewController {
             openPremiumViewController()
             return
         }
+        
+        if cellData.type == MoreCellVM.MoreCellType.guidedTour {
+            startGuidedTour()
+            return
+        }
     }
     
     
@@ -211,6 +216,17 @@ class MoreViewController: BaseViewController {
         }, cancelHandler: {
             PermissionAlert.shared.hide(animated: true)
         })
+    }
+    
+    private func startGuidedTour(){
+        TrackerManager.shared.sendGuidedTourRestarted()
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.firstGuidedHome)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.firstGuidedSearch)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.firstGuidedSession)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.firstGuidedSessionDialectsButton)
+        
+        SystemSoundID.play(sound: .Sound2)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

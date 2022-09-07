@@ -53,6 +53,7 @@ class FirebaseTrackingService: TrackingService {
         static let openSeries = "open_series"
         static let startGuidedTour = "guided_tour_started"
         static let closeGuidedTour = "guided_tour_closed"
+        static let restartGuidedTour = "tap_restart_tutorial"
     }
     
     func sendUserId(userId: String?) {
@@ -335,13 +336,20 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.startGuidedTour, parameters: values)
     }
     
-    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String) {
+    func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String, stepNumber: Int) {
         var values = getBaseEventValues()
         values["viewName"] = viewName
-        values["isAllSteps"] = isAllSteps
+        values["isFinishedAllSteps"] = isAllSteps
         values["stepTitle"] = stepTitle
+        values["stepNumber"] = stepNumber
         
         Analytics.logEvent(CustomEvents.closeGuidedTour, parameters: values)
+    }
+    
+    func sendGuidedTourRestarted() {
+        let values = getBaseEventValues()
+        
+        Analytics.logEvent(CustomEvents.restartGuidedTour, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

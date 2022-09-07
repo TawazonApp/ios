@@ -22,6 +22,7 @@ class MoreCellVM: NSObject {
         case privacyPolicy
         case termsAndConditions
         case ourStory
+        case guidedTour
         case appVersion
         
         
@@ -82,6 +83,8 @@ extension MoreCellVM {
         case .appVersion:
             name = ""
             break
+        case .guidedTour:
+            name = "MoreGuidedTour"
         }
         return name
     }
@@ -126,6 +129,8 @@ extension MoreCellVM {
             title = "moreAppVersionTitle".localized
             break
             
+        case .guidedTour:
+            title = "moreGuidedTourTitle".localized
         }
         return title
     }
@@ -169,6 +174,8 @@ extension MoreCellVM {
             subTitle = "moreAppVersionSubTitle".localized.appending(" \(UIApplication.appVersion)")
             break
             
+        case .guidedTour:
+            subTitle = "moreGuidedTourSubTitle".localized
         }
         return subTitle
     }
