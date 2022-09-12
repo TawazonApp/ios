@@ -35,8 +35,8 @@ class SeriesViewController: UIViewController {
     
     var playerBar: MainPlayerBarView?
     
-    var footerTitleString: String! = "seriesFooterTitle".localized
-    var footerSubtitleString: String! = "seriesFooterSubtitle".localized
+    var footerTitleString: String! = ""
+    var footerSubtitleString: String! = ""
     
     var isPresented: Bool {
         if let nvc = navigationController {
