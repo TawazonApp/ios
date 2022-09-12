@@ -286,6 +286,24 @@ class TrackerManager: TrackingService {
         }
     }
     
+    func sendSetAppLanguage(language: String) {
+        for service in services {
+            service.sendSetAppLanguage(language: language)
+        }
+    }
+    
+    func sendSetInstallSource(installSource: String) {
+        for service in services {
+            service.sendSetInstallSource(installSource: installSource)
+        }
+    }
+    
+    func sendCloseInstallSource() {
+        for service in services {
+            service.sendCloseInstallSource()
+        }
+    }
+    
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()

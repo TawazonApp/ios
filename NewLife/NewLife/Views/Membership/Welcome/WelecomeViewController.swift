@@ -37,11 +37,21 @@ class WelecomeViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        playVideo()
+//        playVideo()
+        
+        if UserDefaults.isFirstOpenedInstallSources() && !UserDefaults.isFirstOpened() {
+            print("viewWillAppear")
+            self.showOnboardingInstallSourcesViewController()
+            UserDefaults.appOpenedInstallSources()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(showOnboardingInstallSourcesViewController), name: NSNotification.Name.showOnboardingInstallSources
+            , object: nil)
+        
+        
         if UserDefaults.isFirstOpened() {
             showOnboardingViewController()
             UserDefaults.appOpened()
@@ -84,7 +94,11 @@ class WelecomeViewController: HandleErrorViewController {
         
         startView.delegate = self
         addAppleIDButton()
-        backgroundImageView.image = appLaunchImage()
+        
+        backgroundImageView.image = UIImage(named: "OnboardingBackground")
+        backgroundImageView.contentMode = .scaleAspectFill
+        
+        self.view.backgroundColor = .darkBlueGreyThree
     }
     func appLaunchImage() -> UIImage? {
 
@@ -267,7 +281,16 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     private func showOnboardingViewController() {
-        let viewController = OnboardingViewController.instantiate()
+        let viewController = OnboardingLanguageViewController.instantiate()
+
+        navigationController?.present(viewController, animated: true, completion: {
+            
+        })
+    }
+    
+    @objc private func showOnboardingInstallSourcesViewController() {
+        let viewController = OnboardingInstallSourcesViewController.instantiate()
+        
         navigationController?.present(viewController, animated: true, completion: {
             
         })

@@ -53,6 +53,13 @@
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CA28967CCF000B41C8 /* SeriesModel.swift */; };
 		04C594CE28968EDA000B41C8 /* SeriesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CD28968EDA000B41C8 /* SeriesVM.swift */; };
+		04CEB94428C9D4E700C42B76 /* OnboardingLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */; };
+		04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */; };
+		04CEB94828C9F7A500C42B76 /* InstallSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */; };
+		04CEB94B28C9F86A00C42B76 /* InstallSourceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94A28C9F86A00C42B76 /* InstallSourceVM.swift */; };
+		04CEB94D28C9F95000C42B76 /* InstallSourcesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94C28C9F95000C42B76 /* InstallSourcesVM.swift */; };
+		04CEB94F28C9FB7200C42B76 /* InstallSourcesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94E28C9FB7200C42B76 /* InstallSourcesModel.swift */; };
+		04CEB95128C9FE7F00C42B76 /* InstallSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB95028C9FE7F00C42B76 /* InstallSourceTableViewCell.swift */; };
 		04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */; };
 		04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */; };
 		04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */; };
@@ -428,6 +435,13 @@
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04C594CA28967CCF000B41C8 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		04C594CD28968EDA000B41C8 /* SeriesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesVM.swift; sourceTree = "<group>"; };
+		04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLanguageViewController.swift; sourceTree = "<group>"; };
+		04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstallSourcesViewController.swift; sourceTree = "<group>"; };
+		04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourceModel.swift; sourceTree = "<group>"; };
+		04CEB94A28C9F86A00C42B76 /* InstallSourceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourceVM.swift; sourceTree = "<group>"; };
+		04CEB94C28C9F95000C42B76 /* InstallSourcesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourcesVM.swift; sourceTree = "<group>"; };
+		04CEB94E28C9FB7200C42B76 /* InstallSourcesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourcesModel.swift; sourceTree = "<group>"; };
+		04CEB95028C9FE7F00C42B76 /* InstallSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourceTableViewCell.swift; sourceTree = "<group>"; };
 		04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		04D1BA6828018D93006A358A /* PremiumPlanDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanDetailsViewController.swift; sourceTree = "<group>"; };
 		04D1BA6A28039FCB006A358A /* PremiumPlanCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -983,6 +997,15 @@
 			path = Series;
 			sourceTree = "<group>";
 		};
+		04CEB94928C9F84700C42B76 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				04CEB94A28C9F86A00C42B76 /* InstallSourceVM.swift */,
+				04CEB94C28C9F95000C42B76 /* InstallSourcesVM.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		04D0B4B92872C55400BEBED7 /* DetailedSessionPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,6 +1550,9 @@
 			children = (
 				F3DC423E2584B43E00BF18A7 /* OnboardingViewController.swift */,
 				F3DC42542584BFD300BF18A7 /* OnboardingCollectionCell.swift */,
+				04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */,
+				04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */,
+				04CEB95028C9FE7F00C42B76 /* InstallSourceTableViewCell.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1535,6 +1561,8 @@
 			isa = PBXGroup;
 			children = (
 				F3DC42592584C1E000BF18A7 /* OnboardingCollectionCellData.swift */,
+				04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */,
+				04CEB94E28C9FB7200C42B76 /* InstallSourcesModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1673,6 +1701,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04CEB94928C9F84700C42B76 /* OnBoarding */,
 				04C594CC28968EC0000B41C8 /* Series */,
 				04A75F63286ADA5E003C7756 /* Search */,
 				04C548B427ABC7D2001D3C0F /* Section */,
@@ -2331,6 +2360,7 @@
 			files = (
 				F35FD5312235748700B3CFC5 /* GoalModel.swift in Sources */,
 				F3DE73B02236653D0052B18C /* LoginModel.swift in Sources */,
+				04CEB94F28C9FB7200C42B76 /* InstallSourcesModel.swift in Sources */,
 				04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */,
 				F3DC8E292223E47200C7DEC4 /* UIViewExt.swift in Sources */,
 				F3DC8E392223F3D000C7DEC4 /* LaunchView.swift in Sources */,
@@ -2464,6 +2494,7 @@
 				F35FD53622357A4500B3CFC5 /* PremiumFeatureCellVM.swift in Sources */,
 				F3DC8E352223E61C00C7DEC4 /* UIColor+Additions.swift in Sources */,
 				F3DC8E992226DB6100C7DEC4 /* CategoryHeaderView.swift in Sources */,
+				04CEB94B28C9F86A00C42B76 /* InstallSourceVM.swift in Sources */,
 				F3EE48D5222CA3BB00274F94 /* SoundEffectsPresenterViewController.swift in Sources */,
 				F3617AA0222AC14B00B9D1C9 /* PaddingLabel.swift in Sources */,
 				F3DC8E9B2226DBD800C7DEC4 /* CategorySummaryView.swift in Sources */,
@@ -2496,6 +2527,7 @@
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
 				04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
+				04CEB94428C9D4E700C42B76 /* OnboardingLanguageViewController.swift in Sources */,
 				F3DC423F2584B43E00BF18A7 /* OnboardingViewController.swift in Sources */,
 				049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */,
 				0432B7152876CDA8007400B3 /* DeleteVM.swift in Sources */,
@@ -2508,6 +2540,7 @@
 				0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */,
 				F3DC8EA7222805F700C7DEC4 /* AnimationExt.swift in Sources */,
 				04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */,
+				04CEB95128C9FE7F00C42B76 /* InstallSourceTableViewCell.swift in Sources */,
 				F354605F273579BD00068A4D /* SKProductExt.swift in Sources */,
 				F3DC8E4522243AF300C7DEC4 /* GerneralExt.swift in Sources */,
 				F3DE73B722367B1E0052B18C /* ErrorModel.swift in Sources */,
@@ -2535,6 +2568,7 @@
 				F3DC8E5B22248E9500C7DEC4 /* NavigationController.swift in Sources */,
 				04677F4027C37FCE00493142 /* SuperCategoryViewController.swift in Sources */,
 				04C548B627ABC807001D3C0F /* SectionData.swift in Sources */,
+				04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */,
 				F3C73B18223D3EB60026B8E1 /* HomeModel.swift in Sources */,
 				F3B16AF4222E9600002B0406 /* OurStoryActionView.swift in Sources */,
 				043FCB36280582F800F25FA4 /* BaseBannerView.swift in Sources */,
@@ -2569,6 +2603,7 @@
 				F3E280F1223F92B600066C04 /* SessionFavoritesModel.swift in Sources */,
 				0422056327E9C2300018BA31 /* PlansView.swift in Sources */,
 				04BB3270281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift in Sources */,
+				04CEB94D28C9F95000C42B76 /* InstallSourcesVM.swift in Sources */,
 				F3B16AE6222E7AB1002B0406 /* ProfileViewController.swift in Sources */,
 				04677F3D27C2772B00493142 /* MusicViewController.swift in Sources */,
 				F39D657E2584C8D3000342DB /* UILabelExt.swift in Sources */,
@@ -2579,6 +2614,7 @@
 				043FCB272804274C00F25FA4 /* Premium4ViewController.swift in Sources */,
 				F32021E1223EC05F00CCC33A /* ChangeUserNameModel.swift in Sources */,
 				F3DC8E272223E42B00C7DEC4 /* LaunchViewController.swift in Sources */,
+				04CEB94828C9F7A500C42B76 /* InstallSourceModel.swift in Sources */,
 				F3DE73C92237F3620052B18C /* ForgetPasswordFormView.swift in Sources */,
 				F375B262247DC434000829E1 /* SessionRateVM.swift in Sources */,
 				F32D4A7524840B4A00E3FCD6 /* StoreExt.swift in Sources */,
@@ -2797,7 +2833,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2846,7 +2882,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

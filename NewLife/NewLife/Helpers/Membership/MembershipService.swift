@@ -32,6 +32,10 @@ protocol MembershipService {
     
     func setUserGoals(selectedGoalsIds: GoalsIdsModel, completion: @escaping (_ error: CustomError?) -> Void)
     
+    func fetchInstallSources(completion: @escaping (_ installSources: InstallSourcesModel?, _ error: CustomError?) -> Void)
+    
+    func setInstallSource(selectedInstallSourceId: String, completion: @escaping (_ error: CustomError?) -> Void)
+    
     func forgetPassword(data: ForgetPasswordModel, completion: @escaping (CustomError?) -> Void)
     
     func resetPassword(data: ResetPasswordModel, completion: @escaping (CustomError?) -> Void)
@@ -156,6 +160,21 @@ class APIMembershipService: MembershipService {
     
     func setUserGoals(selectedGoalsIds: GoalsIdsModel, completion: @escaping (_ error: CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.goalsUpdateUrl.url!, parameters: try? selectedGoalsIds.jsonDictionary()) { (data, error) in
+            completion(error)
+        }
+    }
+    
+    func fetchInstallSources(completion: @escaping (_ installSources: InstallSourcesModel?, _ error: CustomError?) -> Void) {
+        ConnectionUtils.performGetRequest(url: Api.installSourcesListUrl.url!, parameters: nil) { (data, error) in
+            
+            let installSources : InstallSourcesModel? = (data != nil) ? InstallSourcesModel.init(data: data!) : nil
+            completion(installSources, error)
+        }
+    }
+    
+    func setInstallSource(selectedInstallSourceId: String, completion: @escaping (_ error: CustomError?) -> Void) {
+        let param = ["id": selectedInstallSourceId] as [String : Any]
+        ConnectionUtils.performPostRequest(url: Api.installSourcesUpdateUrl.url!, parameters: param) { (data, error) in
             completion(error)
         }
     }

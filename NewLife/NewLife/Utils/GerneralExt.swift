@@ -71,6 +71,7 @@ extension NSNotification.Name {
     
     static let homeGuidedTourSteps = NSNotification.Name(rawValue: "homeGuidedTourSteps")
     
+    static let showOnboardingInstallSources = NSNotification.Name(rawValue: "showOnboardingInstallSources")
 }
 
 extension SystemSoundID {

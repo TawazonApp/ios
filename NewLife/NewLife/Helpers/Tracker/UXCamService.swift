@@ -54,6 +54,9 @@ class UXCamTrackerService: TrackingService {
         static let startGuidedTour = "guided_tour_started"
         static let closeGuidedTour = "guided_tour_closed"
         static let restartGuidedTour = "tap_restart_tutorial"
+        static let setAppLang = "set_app_language"
+        static let setInstallSource = "set_install_source"
+        static let closeInstallSource = "close_install_source"
     }
     
     func sendUserId(userId: String?) {
@@ -350,6 +353,27 @@ class UXCamTrackerService: TrackingService {
         let values = getBaseEventValues()
         
         UXCam.logEvent(CustomEvents.restartGuidedTour, withProperties: values)
+    }
+    
+    func sendSetAppLanguage(language: String) {
+        var values = getBaseEventValues()
+        values["language"] = language
+        values["deviceLanguage"] = NSLocale.current.languageCode
+        
+        UXCam.logEvent(CustomEvents.setAppLang, withProperties: values)
+    }
+    
+    func sendSetInstallSource(installSource: String) {
+        var values = getBaseEventValues()
+        values["installSource"] = installSource
+        
+        UXCam.logEvent(CustomEvents.setInstallSource, withProperties: values)
+    }
+    
+    func sendCloseInstallSource() {
+        let values = getBaseEventValues()
+        
+        UXCam.logEvent(CustomEvents.closeInstallSource, withProperties: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

@@ -39,6 +39,10 @@ struct Api {
     static let profileImageUrl = "\(apiUrl)/auth/update-profile-picture"
     static let removeProfileImageUrl = "\(apiUrl)/auth/remove-profile-picture"
 
+    //Install sources
+    static let installSourcesListUrl = "\(apiUrlV2_1)/device/install-sources/list"
+    static let installSourcesUpdateUrl = "\(apiUrlV2_1)/device/install-sources/update"
+    
     //Goals
     static let goalsListUrl = "\(apiUrl)/goals/list"
     static let goalsUpdateUrl = "\(apiUrl)/goals/update"

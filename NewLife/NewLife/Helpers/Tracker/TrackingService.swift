@@ -60,4 +60,7 @@ protocol TrackingService {
     func sendGuidedTourStarted(viewName: String)
     func sendGuidedTourClosed(isAllSteps: Bool, viewName: String, stepTitle: String, stepNumber: Int)
     func sendGuidedTourRestarted()
+    func sendSetAppLanguage(language: String)
+    func sendSetInstallSource(installSource: String)
+    func sendCloseInstallSource()
 }

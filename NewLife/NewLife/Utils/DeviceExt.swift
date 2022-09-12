@@ -108,6 +108,7 @@ struct UserDefaultsKeys {
     static let userPremium = "UserPremiumKey"
     static let ratedSessions = "ratedSessions"
     static let firstOpened = "AppFirstOpenedKey"
+    static let firstOpenedInstallSources = "AppFirstOpenedInstallSourcesKey"
     static let discountOfferOpened = "DiscountOfferKey"
     static let originalCampaignId = "OriginalCampaignId"
     static let currentCampaignId = "CurrentCampaignId"
@@ -216,6 +217,15 @@ extension UserDefaults {
     
     class func appOpened() {
         UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstOpened)
+    }
+    
+    class func isFirstOpenedInstallSources() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.firstOpenedInstallSources)
+        return (value == nil)
+    }
+    
+    class func appOpenedInstallSources() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstOpenedInstallSources)
     }
     
     class func isFirstGuidedHome() -> Bool {
