@@ -139,18 +139,18 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             sessionPlayerGuidedTourSteps.append(StepInfo(view: self.soundsButton!,position: self.rateButton.respectLanguageFrame(), textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: true))
             sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton.respectLanguageFrame(), textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
             if !self.voiceAndDialectsButton.isHidden{
-                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.respectLanguageFrame(), textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+                sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.footerControlsStack.frame, textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
                 UserDefaults.appSessionDialectButtonGuided()
             }
             
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.rateButton!,position: self.rateButton.respectLanguageFrame(), textInfo: ("rate","helpTextRateButton".localized), isBelow: false, isSameHierarchy: true))
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton.respectLanguageFrame(), textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.shareButton!,position: self.shareButton.respectLanguageFrame(), textInfo: ("share","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.rateButton!,position: self.footerControlsStack.frame, textInfo: ("rate","helpTextRateButton".localized), isBelow: false, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.footerControlsStack.frame, textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: false, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.shareButton!,position: self.footerControlsStack.frame, textInfo: ("share","helpTextShareButton".localized), isBelow: false, isSameHierarchy: true))
             
             UserDefaults.appSessionGuided()
         }else if UserDefaults.isFirstGuidedSessionDialectButton() && !self.voiceAndDialectsButton.isHidden{
             self.view.addSubview(tourView)
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.voiceAndDialectsButton.respectLanguageFrame(), textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.footerControlsStack.frame, textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
             UserDefaults.appSessionDialectButtonGuided()
         }
         

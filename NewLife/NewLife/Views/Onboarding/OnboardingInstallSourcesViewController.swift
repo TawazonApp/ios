@@ -62,6 +62,7 @@ class OnboardingInstallSourcesViewController: HandleErrorViewController {
         descriptionLabel.textColor = .white
         
         sourcesTable.backgroundColor = .clear
+        sourcesTable.separatorStyle = .none
     }
     
     private func fetchAndReload() {
@@ -79,6 +80,7 @@ class OnboardingInstallSourcesViewController: HandleErrorViewController {
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
+        UserDefaults.appOpenedInstallSources()
         TrackerManager.shared.sendCloseInstallSource()
         dismiss(animated: true)
     }
@@ -100,6 +102,7 @@ extension OnboardingInstallSourcesViewController: UITableViewDelegate, UITableVi
 
 extension OnboardingInstallSourcesViewController: InstallSourceDelegate{
     func selectInstallSource(source: InstallSourceVM) {
+        UserDefaults.appOpenedInstallSources()
         installSources.setSelectedSource(source: source, completion: {error in
             if let error = error {
                 self.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)

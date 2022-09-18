@@ -1152,14 +1152,15 @@
                                             <action selector="moreButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="tbE-cl-N2o"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icF-ys-yuQ">
-                                        <rect key="frame" x="338" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBa-sa-Zlo">
+                                        <rect key="frame" x="218" y="0.0" width="48" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="EDN-g6-i5U"/>
-                                            <constraint firstAttribute="height" constant="48" id="F2c-wk-4Xx"/>
+                                            <constraint firstAttribute="width" secondItem="uBa-sa-Zlo" secondAttribute="height" multiplier="1:1" id="XbL-wR-8YU"/>
+                                            <constraint firstAttribute="height" constant="48" id="zwV-pX-vvW"/>
                                         </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <connections>
-                                            <action selector="soundsButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="5x0-QU-5Wd"/>
+                                            <action selector="searchButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="SgA-yP-wpT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMa-Uw-eKi">
@@ -1172,15 +1173,14 @@
                                             <action selector="backgroundSoundButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="l2L-mE-grN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBa-sa-Zlo">
-                                        <rect key="frame" x="218" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icF-ys-yuQ">
+                                        <rect key="frame" x="338" y="0.0" width="48" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="uBa-sa-Zlo" secondAttribute="height" multiplier="1:1" id="XbL-wR-8YU"/>
-                                            <constraint firstAttribute="height" constant="48" id="zwV-pX-vvW"/>
+                                            <constraint firstAttribute="width" constant="48" id="EDN-g6-i5U"/>
+                                            <constraint firstAttribute="height" constant="48" id="F2c-wk-4Xx"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <connections>
-                                            <action selector="searchButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="SgA-yP-wpT"/>
+                                            <action selector="soundsButtonTapped:" destination="E3d-z2-b4h" eventType="touchUpInside" id="5x0-QU-5Wd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1203,7 +1203,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HSM-qf-fAP" firstAttribute="leading" secondItem="AXg-Qr-RT1" secondAttribute="leading" id="2VU-ya-J0d"/>
-                            <constraint firstItem="AXg-Qr-RT1" firstAttribute="trailing" secondItem="dOi-gB-T1M" secondAttribute="trailing" id="387-2h-AC7"/>
+                            <constraint firstAttribute="trailing" secondItem="dOi-gB-T1M" secondAttribute="trailing" id="387-2h-AC7"/>
                             <constraint firstItem="HSM-qf-fAP" firstAttribute="top" secondItem="S7Q-so-pOw" secondAttribute="top" id="Aki-t4-aHY"/>
                             <constraint firstItem="dOi-gB-T1M" firstAttribute="top" secondItem="AXg-Qr-RT1" secondAttribute="top" constant="12" id="JLm-Gt-T3h"/>
                             <constraint firstItem="AeR-9P-7se" firstAttribute="leading" secondItem="S7Q-so-pOw" secondAttribute="leading" id="OBN-k5-gR9"/>
@@ -1212,7 +1212,7 @@
                             <constraint firstItem="0hL-Xq-jFQ" firstAttribute="top" secondItem="S7Q-so-pOw" secondAttribute="top" id="aMg-bS-ee4"/>
                             <constraint firstItem="0hL-Xq-jFQ" firstAttribute="leading" secondItem="S7Q-so-pOw" secondAttribute="leading" id="bva-Gp-7ma"/>
                             <constraint firstAttribute="bottom" secondItem="AeR-9P-7se" secondAttribute="bottom" id="eel-HJ-TLB"/>
-                            <constraint firstItem="dOi-gB-T1M" firstAttribute="leading" secondItem="AXg-Qr-RT1" secondAttribute="leading" id="fZx-xL-RIM"/>
+                            <constraint firstItem="dOi-gB-T1M" firstAttribute="leading" secondItem="S7Q-so-pOw" secondAttribute="leading" id="fZx-xL-RIM"/>
                             <constraint firstAttribute="trailing" secondItem="AeR-9P-7se" secondAttribute="trailing" id="iiY-d9-ZKY"/>
                             <constraint firstItem="AeR-9P-7se" firstAttribute="top" secondItem="HSM-qf-fAP" secondAttribute="centerY" constant="100" id="sHV-Gh-C6S"/>
                             <constraint firstItem="EeT-tW-ddo" firstAttribute="height" secondItem="HSM-qf-fAP" secondAttribute="height" multiplier="0.4" id="u4H-mB-khe"/>
@@ -1220,6 +1220,7 @@
                             <constraint firstItem="HSM-qf-fAP" firstAttribute="height" relation="lessThanOrEqual" secondItem="S7Q-so-pOw" secondAttribute="height" multiplier="0.7" id="zrB-0T-0bD"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="backgroundSoundButton" destination="ZMa-Uw-eKi" id="o97-Wf-GKL"/>
                         <outlet property="backgroundView" destination="AeR-9P-7se" id="kvf-Wg-93t"/>
@@ -1307,7 +1308,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="وفر 50% اليوم" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXC-m2-BVQ">
-                                                    <rect key="frame" x="25" y="340" width="364" height="32"/>
+                                                    <rect key="frame" x="25" y="334" width="364" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="1ps-7i-xy4"/>
                                                     </constraints>
@@ -1316,7 +1317,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="بمناسبة اليوم العالمي للغة العربية" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e31-pZ-dGE">
-                                                    <rect key="frame" x="25" y="380" width="364" height="20"/>
+                                                    <rect key="frame" x="25" y="374" width="364" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="P0X-7V-azX"/>
                                                     </constraints>
@@ -1325,7 +1326,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FTp-sE-dDE">
-                                                    <rect key="frame" x="48" y="476" width="341" height="0.0"/>
+                                                    <rect key="frame" x="48" y="460" width="341" height="16"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQE-Wu-0Yv">
                                                             <rect key="frame" x="0.0" y="0.0" width="341" height="0.0"/>
@@ -1403,7 +1404,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1K-zA-BOe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="341" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="16" width="341" height="0.0"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscountCheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OAH-5f-iWi">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -2129,7 +2130,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-Uw-Q1S">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i1v-7r-u0C">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2374,7 +2375,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qg-pU-lG3">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O9D-Cm-PXL">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2791,7 +2792,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-6a-DzZ">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="52T-9L-ILE">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>

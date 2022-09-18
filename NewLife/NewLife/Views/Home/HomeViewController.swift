@@ -52,7 +52,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         buildVideosArray()
         fetchHomeSections()
         updateBackgroundSoundStyle()
-        startHomeGuidedTour()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,6 +129,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
             viewDidAppeared = true
             sectionsTableView.videosContainer = videosContainer
         }
+        startHomeGuidedTour()
     }
     
     override func viewDidLayoutSubviews() {

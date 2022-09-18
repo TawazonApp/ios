@@ -56,23 +56,24 @@ class OnboardingLanguageViewController: UIViewController {
         descriptionEnLabel.font = .lbc(ofSize: 18)
         descriptionEnLabel.textColor = .white
         
+        languagesStack.backgroundColor = .clear
+        languagesStack.distribution = .fillEqually
+        languagesStack.spacing = 12
+        
         arabicButton.backgroundColor = .white
-        arabicButton.roundCorners(corners: .allCorners, radius: 18)
+//        arabicButton.roundCorners(corners: .allCorners, radius: 18)
+        arabicButton.layer.cornerRadius = 18
         arabicButton.tintColor = .black
         arabicButton.setTitle("عربي", for: .normal)
         arabicButton.titleLabel?.font = .munaFont(ofSize: 20)
         
         englishButton.backgroundColor = .white
-        englishButton.roundCorners(corners: .allCorners, radius: 18)
+//        englishButton.roundCorners(corners: .allCorners, radius: 18)
+        englishButton.layer.cornerRadius = 18
         englishButton.tintColor = .black
         englishButton.setTitle("English", for: .normal)
         englishButton.titleLabel?.font = .munaFont(ofSize: 18)
         
-        if Language.language == .arabic{
-            UIStackView.appearance().semanticContentAttribute = .forceLeftToRight
-        }else{
-            UIStackView.appearance().semanticContentAttribute = .forceLeftToRight
-        }
     }
     
     @IBAction func arabicButtonTapped(_ sender: Any) {
@@ -84,7 +85,7 @@ class OnboardingLanguageViewController: UIViewController {
     }
     
     private func changeLanguage(language: Language) {
-        TrackerManager.shared.sendSetAppLanguage(language: language.rawValue)
+        UserDefaults.appOpened()
         guard language != Language.language else {
             self.dismiss(animated: true)
             NotificationCenter.default.post(name: Notification.Name.showOnboardingInstallSources, object: nil)

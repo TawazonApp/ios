@@ -63,12 +63,13 @@ public enum Language: String {
             guard language != newValue else {
                 return
             }
-            
+            UserDefaults.standard.removeObject(forKey: appleLanguagesKey)
             if newValue == .default {
                 UserDefaults.standard.removeObject(forKey: appleLanguagesKey)
 
             } else {
-                UserDefaults.standard.set([newValue.rawValue], forKey: appleLanguagesKey)                
+                UserDefaults.standard.set([newValue.rawValue], forKey: appleLanguagesKey)
+                UserDefaults.standard.synchronize()
             }
             UIView.appearance().semanticContentAttribute = Language.language.semantic
             L102Localizer.configure()

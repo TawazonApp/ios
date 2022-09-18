@@ -232,12 +232,12 @@ class GuidedTourView: UIView {
         
         if currentStepIndex != (steps.count - 1) {
             actionsStackView.addArrangedSubview(nextButton)
+            actionsStackView.addArrangedSubview(verticalLine)
         }else{
             actionsStackView.removeArrangedSubview(nextButton)
-            closeButton.setTitle("GuidedTourCloseButton".localized, for: .normal)
+            actionsStackView.removeArrangedSubview(verticalLine)
         }
         
-        actionsStackView.addArrangedSubview(verticalLine)
         actionsStackView.addArrangedSubview(closeButton)
         
         // add pages

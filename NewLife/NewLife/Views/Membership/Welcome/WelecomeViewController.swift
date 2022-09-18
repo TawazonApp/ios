@@ -42,7 +42,6 @@ class WelecomeViewController: HandleErrorViewController {
         if UserDefaults.isFirstOpenedInstallSources() && !UserDefaults.isFirstOpened() {
             print("viewWillAppear")
             self.showOnboardingInstallSourcesViewController()
-            UserDefaults.appOpenedInstallSources()
         }
     }
     
@@ -54,7 +53,6 @@ class WelecomeViewController: HandleErrorViewController {
         
         if UserDefaults.isFirstOpened() {
             showOnboardingViewController()
-            UserDefaults.appOpened()
         }
     }
     

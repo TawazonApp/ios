@@ -27,10 +27,12 @@ class InstallSourceTableViewCell: UITableViewCell {
 
     func Initialize(){
         self.backgroundColor = .clear
+        self.selectionStyle = .none
         
         self.contentView.backgroundColor = .clear
         installSourceButton.backgroundColor = .white
-        installSourceButton.roundCorners(corners: .allCorners, radius: 18)
+//        installSourceButton.roundCorners(corners: .allCorners, radius: 18)
+        installSourceButton.layer.cornerRadius = 18
         installSourceButton.tintColor = .black
         installSourceButton.titleLabel?.font = .munaFont(ofSize: 20)
     }
