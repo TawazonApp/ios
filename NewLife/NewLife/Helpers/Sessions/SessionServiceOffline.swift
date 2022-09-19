@@ -113,4 +113,8 @@ class SessionServiceOffline: SessionService {
     func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void){
         service.setSeriesSessionCompleted(seriesId: seriesId, sessionId: sessionId, duration: duration, completion: completion)
     }
+    
+    func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void){
+        service.getSessionComments(sessionId: sessionId, completion: completion)
+    }
 }

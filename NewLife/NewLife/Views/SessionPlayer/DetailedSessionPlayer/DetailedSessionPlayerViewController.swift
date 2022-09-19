@@ -19,6 +19,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var rateButton: UIButton!
+    @IBOutlet weak var commentsButton: UIButton!
     
     @IBOutlet weak var progressSlider: ProgressSlider!
     @IBOutlet weak var durationLabel: UILabel!
@@ -43,6 +44,8 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     private func initialize() {
+        favoriteButton.layer.cornerRadius = favoriteButton.frame.height / 2
+        favoriteButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         if session?.audioSources?.count ?? 0 == 1 && session?.audioSources?.first?.dialects.count == 1{
             voiceAndDialectsButton.isHidden = true
@@ -67,15 +70,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             // Fallback on earlier versions
             voiceAndDialectsButton.addBlurEffect(style: .dark)
         }
-        favoriteButton.roundCorners(corners: .allCorners, radius: 0.0)
-        favoriteButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
-        if #available(iOS 13.0, *) {
-            favoriteButton.addBlurEffect(style: .systemUltraThinMaterialDark)
-        } else {
-            // Fallback on earlier versions
-            favoriteButton.addBlurEffect(style: .dark)
-        }
-                
+
         progressSlider.tintColor = .white
         progressSlider.value = 0
         progressSlider.setThumbImage(UIImage(named: "ProgressTracker"), for: .normal)
@@ -84,14 +79,14 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         }
         
         
-        initializeShareButton()
+        initializeBottomStackButtons()
     }
     
-    private func initializeShareButton() {
+    private func initializeBottomStackButtons() {
         let leftCorners : UIRectCorner = [[.bottomLeft, .topLeft]]
         let rightCorners : UIRectCorner = [.bottomRight, .topRight]
         shareButton.setImage(#imageLiteral(resourceName: "ShareSession.pdf"), for: .normal)
-        shareButton.roundCorners(corners: Language.language == .english ? leftCorners : rightCorners, radius: 12.0)
+        shareButton.roundCorners(corners: Language.language == .english ? rightCorners : leftCorners, radius: 12.0)
         shareButton.backgroundColor = .darkGray.withAlphaComponent(0.26)
         shareButton.tintColor = .white
         if #available(iOS 13.0, *) {
@@ -102,7 +97,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         }
         
         rateButton.setImage(#imageLiteral(resourceName: "EmptyRateStar.pdf"), for: .normal)
-        rateButton.roundCorners(corners: Language.language == .english ? rightCorners : leftCorners, radius: 12.0)
+        rateButton.roundCorners(corners: .allCorners, radius: 0.0)
         rateButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
         rateButton.tintColor = .white
         if #available(iOS 13.0, *) {
@@ -112,6 +107,16 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             rateButton.addBlurEffect(style: .dark)
         }
         
+        commentsButton.setImage(#imageLiteral(resourceName: "Comments.pdf"), for: .normal)
+        commentsButton.roundCorners(corners: Language.language == .english ? leftCorners : rightCorners, radius: 12.0)
+        commentsButton.backgroundColor = .darkGray.withAlphaComponent(0.16)
+        commentsButton.tintColor = .white
+        if #available(iOS 13.0, *) {
+            commentsButton.addBlurEffect(style: .systemUltraThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            commentsButton.addBlurEffect(style: .dark)
+        }
     }
     
     override func fillData() {
@@ -177,6 +182,18 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             isPlaying = !AudioPlayerManager.shared.isPlaying()
             AudioPlayerManager.shared.togglePlayPause()
         }
+    }
+    
+    @IBAction func commentsButtonTapped(_ sender: Any) {
+        showCommentsViewController()
+    }
+    
+    private func showCommentsViewController(){
+        guard let session = session else {
+            return
+        }
+        let CommentsViewController = SessionCommentsViewController.instantiate(session: session)
+        self.present(CommentsViewController, animated: true, completion: nil)
     }
 }
 

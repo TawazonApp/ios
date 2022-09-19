@@ -471,6 +471,10 @@ extension UIColor {
     class var roseBud: UIColor{
         return UIColor(red: 255.0 / 255.0, green: 162.0 / 255.0, blue: 162.0 / 255.0, alpha: 1.0)
     }
+    
+    class var elephant: UIColor{
+        return UIColor(red: 42.0 / 255.0, green: 58.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
+    }
 
 }
 

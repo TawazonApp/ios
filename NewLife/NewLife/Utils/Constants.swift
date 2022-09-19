@@ -82,6 +82,7 @@ struct Api {
     static let removeSessionToDownloadUrl = "\(apiUrl)/sessions/downloads/remove/{id}"
     static let rateSession = "\(apiUrl)/sessions/rate/{id}"
     static let sessionInfo = "\(apiUrl)/sessions/info/{id}"
+    static let sessionCommentsListUrl = "\(apiUrlV2_1)/items/comments/list/{id}"
     
     static let searchSession = "\(apiUrlV2)/sessions/search?q={query}"
     static let searchSessionV2_1 = "\(apiUrlV2_1)/sessions/search?q={query}"

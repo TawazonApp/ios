@@ -41,6 +41,11 @@
 		046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
+		049D409428D840B600EAD265 /* SessionCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409328D840B600EAD265 /* SessionCommentsViewController.swift */; };
+		049D409628D84D5900EAD265 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409528D84D5900EAD265 /* CommentTableViewCell.swift */; };
+		049D409928D8847200EAD265 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409828D8847200EAD265 /* CommentModel.swift */; };
+		049D409B28D884D600EAD265 /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409A28D884D600EAD265 /* CommentsModel.swift */; };
+		049D409E28D8869D00EAD265 /* CommentsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409D28D8869D00EAD265 /* CommentsVM.swift */; };
 		04A75F61286ADA3D003C7756 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A75F5F286ADA3D003C7756 /* SearchModel.swift */; };
 		04A75F62286ADA3D003C7756 /* SearchCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A75F60286ADA3D003C7756 /* SearchCategoryModel.swift */; };
 		04A75F66286ADA5E003C7756 /* SearchCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A75F64286ADA5E003C7756 /* SearchCategoryVM.swift */; };
@@ -423,6 +428,11 @@
 		046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
+		049D409328D840B600EAD265 /* SessionCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommentsViewController.swift; sourceTree = "<group>"; };
+		049D409528D84D5900EAD265 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		049D409828D8847200EAD265 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		049D409A28D884D600EAD265 /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
+		049D409D28D8869D00EAD265 /* CommentsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVM.swift; sourceTree = "<group>"; };
 		04A75F5F286ADA3D003C7756 /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		04A75F60286ADA3D003C7756 /* SearchCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCategoryModel.swift; sourceTree = "<group>"; };
 		04A75F64286ADA5E003C7756 /* SearchCategoryVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCategoryVM.swift; sourceTree = "<group>"; };
@@ -947,6 +957,32 @@
 			path = Tracking;
 			sourceTree = "<group>";
 		};
+		049D409228D8407900EAD265 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				049D409328D840B600EAD265 /* SessionCommentsViewController.swift */,
+				049D409528D84D5900EAD265 /* CommentTableViewCell.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		049D409728D8845F00EAD265 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				049D409828D8847200EAD265 /* CommentModel.swift */,
+				049D409A28D884D600EAD265 /* CommentsModel.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		049D409C28D8865500EAD265 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				049D409D28D8869D00EAD265 /* CommentsVM.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		04A75F5E286ADA3D003C7756 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,6 +1121,7 @@
 		F317A178222D730B00CBD760 /* SessionPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				049D409228D8407900EAD265 /* Comments */,
 				04D0B4B92872C55400BEBED7 /* DetailedSessionPlayer */,
 				F3715CE92242EF2600B7A465 /* PlayerBar */,
 				F317A179222D732500CBD760 /* SessionPlayerViewController.swift */,
@@ -1681,6 +1718,7 @@
 		F3DC8E152223DC4700C7DEC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				049D409728D8845F00EAD265 /* Comments */,
 				04C594C728967BF5000B41C8 /* Series */,
 				04A75F5E286ADA3D003C7756 /* Search */,
 				04677F4527C3933700493142 /* Categories */,
@@ -1701,6 +1739,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				049D409C28D8865500EAD265 /* Comments */,
 				04CEB94928C9F84700C42B76 /* OnBoarding */,
 				04C594CC28968EC0000B41C8 /* Series */,
 				04A75F63286ADA5E003C7756 /* Search */,
@@ -2368,6 +2407,8 @@
 				F3DC8E7C222699FC00C7DEC4 /* SessionModel.swift in Sources */,
 				04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */,
 				F334416824793A9100FA3234 /* SessionRateViewController.swift in Sources */,
+				049D409428D840B600EAD265 /* SessionCommentsViewController.swift in Sources */,
+				049D409E28D8869D00EAD265 /* CommentsVM.swift in Sources */,
 				F317A173222D147000CBD760 /* BackgroundAudioVM.swift in Sources */,
 				0456D1B927EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift in Sources */,
 				04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */,
@@ -2504,6 +2545,7 @@
 				F35FD52B223541FD00B3CFC5 /* GoalsSelectedView.swift in Sources */,
 				F3ECD0B6256128D30048DBD8 /* HomeTableFeelingCell.swift in Sources */,
 				F3DE73C32237BE500052B18C /* LogoutVM.swift in Sources */,
+				049D409628D84D5900EAD265 /* CommentTableViewCell.swift in Sources */,
 				F3DE73CB2237F73C0052B18C /* ForgetPasswordVM.swift in Sources */,
 				F3580BE7249CF38B00EBE1C1 /* MPMediaItem+AudioPlayerManager.swift in Sources */,
 				F3AF0F97223960A000E29615 /* GoalsIdsModel.swift in Sources */,
@@ -2527,6 +2569,7 @@
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
 				04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
+				049D409B28D884D600EAD265 /* CommentsModel.swift in Sources */,
 				04CEB94428C9D4E700C42B76 /* OnboardingLanguageViewController.swift in Sources */,
 				F3DC423F2584B43E00BF18A7 /* OnboardingViewController.swift in Sources */,
 				049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */,
@@ -2561,6 +2604,7 @@
 				F3DC8E602224991400C7DEC4 /* MainTabBarView.swift in Sources */,
 				F3DC8EAD2228341600C7DEC4 /* MoreCell.swift in Sources */,
 				F3ECD0C025612B8E0048DBD8 /* HomeFeelingSelectionView.swift in Sources */,
+				049D409928D8847200EAD265 /* CommentModel.swift in Sources */,
 				F320223A223F166200CCC33A /* ModelInitializable.swift in Sources */,
 				F3DC8E52222487EE00C7DEC4 /* MySoulViewController.swift in Sources */,
 				F3CA028E2231B955008165C2 /* MembershipFormVM.swift in Sources */,

@@ -43,6 +43,8 @@ protocol SessionService {
     func getSeriesSessions(seriesId: String, completion: @escaping (_ series: SeriesModel?, _ error: CustomError?) -> Void)
     
     func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
+    
+    func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void)
 }
 
 class SessionServiceFactory {
@@ -239,4 +241,18 @@ class APISessionService: SessionService {
         }
     }
 
+    func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void) {
+        let url = Api.sessionCommentsListUrl.replacingOccurrences(of: "{id}", with: sessionId)
+        print("url: \(url)")
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil, completion: {
+            (data, error) in
+            print("data: \(data), error: \(error)")
+            var commentsModel: CommentsModel?
+            if let data = data{
+                commentsModel = CommentsModel(data: data)
+                print("commentsModel: \(commentsModel?.list.count)")
+            }
+            completion(commentsModel, error)
+        })
+    }
 }
