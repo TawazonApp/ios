@@ -85,7 +85,7 @@ class HandleErrorViewController: BaseViewController {
 
 extension MessageView {
     public func configureTheme(backgroundColor: UIColor, foregroundColor: UIColor, buttonBackgroundColor: UIColor, iconImage: UIImage?, iconText: String?, titleFont: UIFont, bodyFont: UIFont, buttonFont: UIFont) {
-        configureTheme(backgroundColor: backgroundColor, foregroundColor: foregroundColor, buttonBackgroundColor: buttonBackgroundColor, iconImage: iconImage, iconText: iconText)
+//        configureTheme(backgroundColor: backgroundColor, foregroundColor: foregroundColor, buttonBackgroundColor: buttonBackgroundColor, iconImage: iconImage, iconText: iconText)
         titleLabel?.font = titleFont
         bodyLabel?.font = bodyFont
         button?.titleLabel?.font = buttonFont

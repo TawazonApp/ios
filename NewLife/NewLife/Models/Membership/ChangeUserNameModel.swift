@@ -9,9 +9,10 @@
 import Foundation
 
 struct ChangeUserNameModel: Codable, ModelInitializable {
-    let name: String
+    let name: String?
+    let displayName: String?
     
     enum CodingKeys: String, CodingKey {
-        case name
+        case name, displayName
     }
 }

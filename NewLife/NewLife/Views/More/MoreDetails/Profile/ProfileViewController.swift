@@ -136,6 +136,9 @@ class ProfileViewController: MoreDetailsViewController {
         case .changeUserName:
             openChangeUserNameViewController()
             break
+        case .changeDisplayName:
+            openChangeDisplayNameViewController()
+            break
         case .changeProfilePicture:
             if profile.profileImageUploading == nil {
                 showEditProfilePictureOptions()
@@ -169,6 +172,15 @@ class ProfileViewController: MoreDetailsViewController {
     
     private func openChangeUserNameViewController() {
         let formData = ProfileEditUserNameFormVM(service: MembershipServiceFactory.service(), name: profile.name)
+        
+        let viewController = ProfileEditFieldViewController.instantiate(formData: formData)
+        viewController.delegate = self
+        self.navigationController?.pushViewController(viewController, animated: true)
+        sendUserChangeNameEvent()
+    }
+    
+    private func openChangeDisplayNameViewController() {
+        let formData = ProfileEditUserDisplayNameFormVM(service: MembershipServiceFactory.service(), name: profile.displayName)
         
         let viewController = ProfileEditFieldViewController.instantiate(formData: formData)
         viewController.delegate = self

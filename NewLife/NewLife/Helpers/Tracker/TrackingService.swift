@@ -63,4 +63,8 @@ protocol TrackingService {
     func sendSetAppLanguage(language: String)
     func sendSetInstallSource(installSource: String)
     func sendCloseInstallSource()
+    func sendOpenCommentsView(sessionId: String, sessionName: String)
+    func sendOpenWriteCommentView(sessionId: String, sessionName: String)
+    func sendSubmitWriteComment(sessionId: String, sessionName: String)
+    func sendCancelSubmitWriteComment(sessionId: String, sessionName: String)
 }

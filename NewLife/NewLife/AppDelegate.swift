@@ -18,7 +18,7 @@ import SwiftyStoreKit
 import AppsFlyerLib
 import AudioToolbox
 import UXCam
-import Branch
+//import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         initializeUXCam()
-        initializeBranchIO(with: launchOptions)
+//        initializeBranchIO(with: launchOptions)
         initializeFirebase()
         initializeFabric()
         initializeAppsFlayer()
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //check for link_click_id
           if url.absoluteString.contains("link_click_id") == true{
-            return Branch.getInstance().application(app, open: url, options: options)
+//            return Branch.getInstance().application(app, open: url, options: options)
           }
         
         _ = application(app, open: openedUrl, sourceApplication: options[.sourceApplication] as? String, annotation: "")
@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
         if ((userActivity.webpageURL?.absoluteString.contains("app.link")) != nil){
-            return Branch.getInstance().continue(userActivity)
+//            return Branch.getInstance().continue(userActivity)
           }
         
         AppsFlyerLib.shared().continue(userActivity, restorationHandler: nil)
@@ -145,18 +145,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UXCam.start(withKey:"am0notpy21t31es")
     }
     
-    private func initializeBranchIO(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
-        // enable pasteboard check
-            Branch.getInstance().checkPasteboardOnInstall()
-            
-        // listener for Branch Deep Link data
-         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
-               guard let data = params as? [String: AnyObject] else { return }
-             if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
-                 self.handleDynamicLink(dynamicLink: branchLink)
-             }
-         }
-    }
+//    private func initializeBranchIO(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
+//        // enable pasteboard check
+//            Branch.getInstance().checkPasteboardOnInstall()
+//
+//        // listener for Branch Deep Link data
+//         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+//               guard let data = params as? [String: AnyObject] else { return }
+//             if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
+//                 self.handleDynamicLink(dynamicLink: branchLink)
+//             }
+//         }
+//    }
     private func initializeFabric() {
         Fabric.with([Crashlytics.self])
     }
@@ -290,7 +290,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         handleNotification(userInfo: userInfo)
-        Branch.getInstance().handlePushNotification(userInfo)
+//        Branch.getInstance().handlePushNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],

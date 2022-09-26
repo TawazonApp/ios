@@ -24,6 +24,7 @@ class SessionCommentsViewController: UIViewController {
         initialize()
         commentsVM = CommentsVM(service: SessionServiceFactory.service())
         fetchData()
+        TrackerManager.shared.sendOpenCommentsView(sessionId: session.id!, sessionName: session.name!)
     }
     
     private func initialize(){
@@ -50,7 +51,6 @@ class SessionCommentsViewController: UIViewController {
             
             if error == nil{
                 self.fillData()
-                print("COUNTING: \(self.commentsVM.comments?.list.count)")
             }
         })
     }
@@ -72,7 +72,7 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.identifier) as! CommentTableViewCell
         cell.comment = commentsVM.comments?.list[indexPath.row]
-        
+        cell.delegate = self
         return cell
     }
     
@@ -80,6 +80,73 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        70
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.commentsTable.frame.width, height: 70))
+        header.backgroundColor = self.view.backgroundColor
+        
+        let writeCommentButton = UIButton(type: .system)
+        writeCommentButton.setTitle("writeCommentButtonTitle".localized, for: .normal)
+        writeCommentButton.setImage(UIImage(named: "CommentsWriteAReview"), for: .normal)
+        writeCommentButton.tintColor = .lightSlateBlueTwo
+        writeCommentButton.titleLabel?.font = .munaBoldFont(ofSize: 18)
+        writeCommentButton.addTarget(self, action: #selector(writeCommentButtonTapped), for: .touchUpInside)
+        header.addSubview(writeCommentButton)
+        
+        writeCommentButton.translatesAutoresizingMaskIntoConstraints = false
+        writeCommentButton.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
+        writeCommentButton.topAnchor.constraint(equalTo: header.topAnchor, constant: 0).isActive = true
+        
+        let writeCommentLabel = UILabel()
+        writeCommentLabel.text = "writeCommentLabelText".localized
+        writeCommentLabel.textColor = .white.withAlphaComponent(0.5)
+        writeCommentLabel.font = .munaFont(ofSize: 15)
+        header.addSubview(writeCommentLabel)
+        
+        writeCommentLabel.translatesAutoresizingMaskIntoConstraints = false
+        header.trailingAnchor.constraint(equalTo: writeCommentLabel.trailingAnchor, constant: 20).isActive = true
+        writeCommentLabel.centerYAnchor.constraint(equalTo: writeCommentButton.centerYAnchor).isActive = true
+        
+        return header
+    }
+    
+    @objc @IBAction func writeCommentButtonTapped(){
+        showWriteCommentViewController()
+    }
+    
+    private func showWriteCommentViewController(comment: CommentModel? = nil){
+        let writeCommentViewController = WriteCommentViewController.instantiate(session: session, comment: comment)
+        writeCommentViewController.delegate = self
+        self.present(writeCommentViewController, animated: true, completion: nil)
+    }
+}
+
+extension SessionCommentsViewController: CommentCellDelegate{
+    func seeMoreTapped(comment: CommentModel) {
+        let alert = UIAlertController(title: "commentRejectionReason".localized, message:comment.rejectionNote , preferredStyle: .alert, blurStyle: .dark)
+         
+        let okAction = UIAlertAction(title: "logoutConfirmAlertCancelButton".localized, style: .cancel) {_ in
+        }
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
+    
+    func editCommentTapped(comment: CommentModel) {
+        showWriteCommentViewController(comment: comment)
+    }
+    
+    
+}
+
+extension SessionCommentsViewController: WriteCommentDelegate{
+    func commentSubmitted() {
+        fetchData()
+    }
+    
     
 }
 

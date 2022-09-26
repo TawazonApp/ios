@@ -83,7 +83,8 @@ struct Api {
     static let rateSession = "\(apiUrl)/sessions/rate/{id}"
     static let sessionInfo = "\(apiUrl)/sessions/info/{id}"
     static let sessionCommentsListUrl = "\(apiUrlV2_1)/items/comments/list/{id}"
-    
+    static let sessionWriteCommentUrl = "\(apiUrlV2_1)/items/comments/create/{id}"
+    static let sessionUpdateCommentUrl = "\(apiUrlV2_1)/items/comments/update/{id}"
     static let searchSession = "\(apiUrlV2)/sessions/search?q={query}"
     static let searchSessionV2_1 = "\(apiUrlV2_1)/sessions/search?q={query}"
      static let addToFavoritesUrl = "\(apiUrl)/favourites/add"

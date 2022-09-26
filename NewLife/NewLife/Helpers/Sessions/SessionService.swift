@@ -45,6 +45,10 @@ protocol SessionService {
     func setSeriesSessionCompleted(seriesId: String, sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
     
     func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void)
+    
+    func addSessionComment(sessionId: String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void)
+    
+    func updateSessionComment(commentId:String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void)
 }
 
 class SessionServiceFactory {
@@ -243,16 +247,31 @@ class APISessionService: SessionService {
 
     func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void) {
         let url = Api.sessionCommentsListUrl.replacingOccurrences(of: "{id}", with: sessionId)
-        print("url: \(url)")
         ConnectionUtils.performGetRequest(url: url.url!, parameters: nil, completion: {
             (data, error) in
-            print("data: \(data), error: \(error)")
             var commentsModel: CommentsModel?
             if let data = data{
                 commentsModel = CommentsModel(data: data)
-                print("commentsModel: \(commentsModel?.list.count)")
             }
             completion(commentsModel, error)
         })
+    }
+    
+    func addSessionComment(sessionId: String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        let url = Api.sessionWriteCommentUrl.replacingOccurrences(of: "{id}", with: sessionId)
+        let paramters = ["content" : content, "rate" : rating] as [String : Any]
+        ConnectionUtils.performPostRequest(url: url.url!, parameters: paramters){ (data, error) in
+            completion(error)
+        }
+    }
+    
+    func updateSessionComment(commentId:String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        let url = Api.sessionUpdateCommentUrl.replacingOccurrences(of: "{id}", with: commentId)
+        print("url: \(url)")
+        
+        let paramters = ["content" : content, "rate" : rating] as [String : Any]
+        ConnectionUtils.performPostRequest(url: url.url!, parameters: paramters){ (data, error) in
+            completion(error)
+        }
     }
 }

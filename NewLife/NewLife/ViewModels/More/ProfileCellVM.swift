@@ -12,6 +12,7 @@ class ProfileCellVM: NSObject {
 
     enum Types: CaseIterable {
         case changeUserName
+        case changeDisplayName
         case changeProfilePicture
         case changePassword
         case changeToPremium
@@ -36,6 +37,10 @@ class ProfileCellVM: NSObject {
         switch type {
         case .changeUserName:
             result.title = "profileChangeUserNameTitle".localized
+            result.imageName = "ProfileUserName"
+            break
+        case .changeDisplayName:
+            result.title = "profileChangeScreenNameTitle".localized
             result.imageName = "ProfileUserName"
             break
         case .changeProfilePicture:

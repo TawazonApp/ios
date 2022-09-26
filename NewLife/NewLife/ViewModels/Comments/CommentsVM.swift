@@ -23,4 +23,18 @@ class CommentsVM: NSObject{
             completion(error)
         })
     }
+    
+    func addComment(session: SessionModel, content: String, rating: Int, completion: @escaping (CustomError?) -> Void){
+        service.addSessionComment(sessionId: session.id, content: content, rating: rating, completion: {
+            (error) in
+            completion(error)
+        })
+    }
+    
+    func updateComment(comment: CommentModel, content: String, rating: Int, completion: @escaping (CustomError?) -> Void){
+        service.updateSessionComment(commentId: comment.id!, content: content, rating: rating, completion: {
+            (error) in
+            completion(error)
+        })
+    }
 }

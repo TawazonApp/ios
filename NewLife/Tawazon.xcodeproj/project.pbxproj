@@ -39,6 +39,7 @@
 		04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4827C39D3F00493142 /* SuperCategoryVM.swift */; };
 		04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */; };
 		046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */; };
+		048C6E4628E061050003C3BC /* WriteCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C6E4528E061050003C3BC /* WriteCommentViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		049D409428D840B600EAD265 /* SessionCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409328D840B600EAD265 /* SessionCommentsViewController.swift */; };
@@ -426,6 +427,7 @@
 		04677F4827C39D3F00493142 /* SuperCategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryVM.swift; sourceTree = "<group>"; };
 		04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryHeaderView.swift; sourceTree = "<group>"; };
 		046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSessionPlayerViewController.swift; sourceTree = "<group>"; };
+		048C6E4528E061050003C3BC /* WriteCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
 		049D409328D840B600EAD265 /* SessionCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommentsViewController.swift; sourceTree = "<group>"; };
@@ -962,6 +964,7 @@
 			children = (
 				049D409328D840B600EAD265 /* SessionCommentsViewController.swift */,
 				049D409528D84D5900EAD265 /* CommentTableViewCell.swift */,
+				048C6E4528E061050003C3BC /* WriteCommentViewController.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -2413,6 +2416,7 @@
 				0456D1B927EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift in Sources */,
 				04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */,
 				F3DE73AB223664270052B18C /* MembershipModel.swift in Sources */,
+				048C6E4628E061050003C3BC /* WriteCommentViewController.swift in Sources */,
 				F3AF0F99223A469B00E29615 /* FileUtils.swift in Sources */,
 				0456D1BB27F19EF800C174C6 /* BasePremiumVM.swift in Sources */,
 				F3DC8E5E22248F7400C7DEC4 /* MainTabBarController.swift in Sources */,
@@ -2877,7 +2881,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2890,7 +2894,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.3.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -2926,7 +2930,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2938,7 +2942,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.3.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

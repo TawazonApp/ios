@@ -33,7 +33,7 @@ class HomeVideoCollectionCell: UICollectionViewCell {
         if videoBackground == nil {
             videoBackground = VideoBackground()
         }
-        try? videoBackground?.play(view: self, videoName: data.videoName, videoType: data.videoType, isMuted: true, darkness: 0, willLoopVideo: true, setAudioSessionAmbient: false, rate: 0.6)
+        try? videoBackground?.play(view: self, videoName: data.videoName, videoType: data.videoType, isMuted: true, darkness: 0, willLoopVideo: true, setAudioSessionAmbient: false)
     }
     
     func pause() {

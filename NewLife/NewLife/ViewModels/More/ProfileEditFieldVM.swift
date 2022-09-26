@@ -59,7 +59,48 @@ class ProfileEditUserNameFormVM: ProfileFieldFormVM {
     override func submit(completion: @escaping (_ error: CustomError?) -> Void) {
         
         if userName.isValid() {
-            let userNameModel = ChangeUserNameModel.init(name: userName.value!)
+            let userNameModel = ChangeUserNameModel.init(name: userName.value!, displayName: nil)
+            
+            service.changeUserName(data: userNameModel) { (userInfo, error) in
+                if let userInfo = userInfo {
+                    UserInfoManager.shared.setUserInfo(userInfo: userInfo)
+                }
+                completion(error)
+            }
+        } else {
+            let error = CustomError(message: "profileEditUserNameErrorMessage".localized, statusCode: nil)
+            completion(error)
+        }
+    }
+}
+
+class ProfileEditUserDisplayNameFormVM: ProfileFieldFormVM {
+    
+    let userDisplsyName: MembershipFormTextFieldCellVM = MembershipFormTextFieldCellVM(type: .displayName)
+    
+    let submitButton: MembershipFormButtonCellVM = MembershipFormButtonCellVM(title: "saveButtonTitle".localized)
+    
+    override var title: String! {
+        return "profileEditDisplayNameTitle".localized
+    }
+    
+    override var subTitle: String! {
+        return ""
+    }
+    
+    override var items: [Any] {
+        return [userDisplsyName, submitButton]
+    }
+    
+    init(service: MembershipService, name: String?) {
+        super.init(service: service)
+        userDisplsyName.value = name
+    }
+    
+    override func submit(completion: @escaping (_ error: CustomError?) -> Void) {
+        
+        if userDisplsyName.isValid() {
+            let userNameModel = ChangeUserNameModel.init(name: nil, displayName: userDisplsyName.value!)
             
             service.changeUserName(data: userNameModel) { (userInfo, error) in
                 if let userInfo = userInfo {

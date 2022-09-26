@@ -17,6 +17,7 @@ class MembershipFormTextFieldCellVM: NSObject {
         case oldPassword
         case registerPassword
         case name
+        case displayName
         case verificationCode
     }
     
@@ -115,6 +116,14 @@ class MembershipFormTextFieldCellVM: NSObject {
             values.iconName = "Name"
             values.keyboardType = .default
             values.placeholder = "nameTextPlaceholder".localized
+            values.regularExpression = ".{2,}"
+            values.isSecure = false
+             textContentType = .name
+            break
+        case .displayName:
+            values.iconName = "Name"
+            values.keyboardType = .default
+            values.placeholder = "displayNameTextPlaceholder".localized
             values.regularExpression = ".{2,}"
             values.isSecure = false
              textContentType = .name

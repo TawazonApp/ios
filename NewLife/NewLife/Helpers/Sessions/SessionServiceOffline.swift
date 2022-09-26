@@ -117,4 +117,10 @@ class SessionServiceOffline: SessionService {
     func getSessionComments(sessionId: String, completion: @escaping (CommentsModel?, CustomError?) -> Void){
         service.getSessionComments(sessionId: sessionId, completion: completion)
     }
+    func addSessionComment(sessionId: String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.addSessionComment(sessionId: sessionId, content: content, rating: rating, completion: completion)
+    }
+    func updateSessionComment(commentId:String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void){
+        service.updateSessionComment(commentId: commentId, content: content, rating: rating, completion: completion)
+    }
 }

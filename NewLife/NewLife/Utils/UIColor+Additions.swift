@@ -136,10 +136,38 @@ extension UIColor {
         return UIColor(red: 143 / 255.0, green: 142 / 255.0, blue: 255 / 255.0, alpha: 1.0)
     }
     
+    class var lightSlateBlueTwo: UIColor {
+        return UIColor(red: 99 / 255.0, green: 116 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+    }
+    
     class var slateBlue: UIColor {
         return UIColor(red: 108 / 255.0, green: 87 / 255.0, blue: 198 / 255.0, alpha: 1.0)
     }
     
+    class var aquamarine: UIColor {
+        return UIColor(red: 99 / 255.0, green: 255 / 255.0, blue: 190 / 255.0, alpha: 1.0)
+    }
+    
+    class var screaminGreen: UIColor{
+        return UIColor(red: 99 / 255.0, green: 255 / 255.0, blue: 137 / 255.0, alpha: 1.0)
+    }
+
+    class var babyBlue: UIColor{
+        return UIColor(red: 99 / 255.0, green: 228 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+    }
+    
+    class var mayaBlueTwo: UIColor{
+        return UIColor(red: 99 / 255.0, green: 155 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+    }
+    
+    class var bittersweet:UIColor{
+        return UIColor(red: 255 / 255.0, green: 99 / 255.0, blue: 99 / 255.0, alpha: 1.0)
+    }
+    
+    class var burntSienna: UIColor{
+        return UIColor(red: 242 / 255.0, green: 97 / 255.0, blue: 98 / 255.0, alpha: 1.0)
+    }
+
     class var facebookColor: UIColor {
         return UIColor(red: 68 / 255.0, green: 105 / 255.0, blue: 176 / 255.0, alpha: 1.0)
     }

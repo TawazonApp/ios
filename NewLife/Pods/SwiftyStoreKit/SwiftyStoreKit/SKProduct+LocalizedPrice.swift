@@ -31,10 +31,6 @@ public extension SKProduct {
         return priceFormatter(locale: priceLocale).string(from: price)
     }
     
-    func getLocalizedPrice(locale: Locale) -> String? {
-        return priceFormatter(locale: locale).string(from: price)
-    }
-    
     private func priceFormatter(locale: Locale) -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.locale = locale

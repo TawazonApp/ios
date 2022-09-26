@@ -59,6 +59,10 @@ class AppsFlyerTrackingService: TrackingService {
         static let setAppLang = "set_app_language"
         static let setInstallSource = "set_install_source"
         static let closeInstallSource = "close_install_source"
+        static let openCommentsView = "open_comments_view"
+        static let openWriteCommentView = "open_write_comment_view"
+        static let submitComment = "submit_comment"
+        static let cancelSubmitComment = "cancel_submit_comment"
     }
     
     func sendUserId(userId: String?) {
@@ -427,6 +431,38 @@ class AppsFlyerTrackingService: TrackingService {
         values["installSource"] = installSource
         
         AppsFlyerLib.shared().logEvent(CustomEvents.setInstallSource, withValues: values)
+    }
+    
+    func sendOpenCommentsView(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.openCommentsView, withValues: values)
+    }
+    
+    func sendOpenWriteCommentView(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.openWriteCommentView, withValues: values)
+    }
+    
+    func sendSubmitWriteComment(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.submitComment, withValues: values)
+    }
+    
+    func sendCancelSubmitWriteComment(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.submitComment, withValues: values)
     }
     
     func sendCloseInstallSource() {

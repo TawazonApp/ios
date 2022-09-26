@@ -89,7 +89,7 @@ public class VideoBackground {
                      darkness: CGFloat = 0,
                      willLoopVideo: Bool = true,
                      setAudioSessionAmbient: Bool = true,
-                     preventsDisplaySleepDuringVideoPlayback: Bool = true, rate: Float = 1) throws {
+                     preventsDisplaySleepDuringVideoPlayback: Bool = true) throws {
         guard let path = Bundle.main.path(forResource: videoName, ofType: videoType) else {
             throw VideoBackgroundError.videoNotFound((name: videoName, type: videoType))
         }
@@ -101,7 +101,7 @@ public class VideoBackground {
             isMuted: isMuted,
             willLoopVideo: willLoopVideo,
             setAudioSessionAmbient: setAudioSessionAmbient,
-            preventsDisplaySleepDuringVideoPlayback: preventsDisplaySleepDuringVideoPlayback, rate: rate
+            preventsDisplaySleepDuringVideoPlayback: preventsDisplaySleepDuringVideoPlayback
         )
     }
 
@@ -127,7 +127,7 @@ public class VideoBackground {
                      isMuted: Bool = true,
                      willLoopVideo: Bool = true,
                      setAudioSessionAmbient: Bool = true,
-                     preventsDisplaySleepDuringVideoPlayback: Bool = true, rate: Float = 1) {
+                     preventsDisplaySleepDuringVideoPlayback: Bool = true) {
         cleanUp()
 
         if setAudioSessionAmbient {
@@ -153,8 +153,7 @@ public class VideoBackground {
         player.actionAtItemEnd = .none
         player.isMuted = isMuted
         player.play()
-        player.rate = rate
-        
+
         playerLayer.frame = view.bounds
         playerLayer.needsDisplayOnBoundsChange = true
         playerLayer.videoGravity = videoGravity

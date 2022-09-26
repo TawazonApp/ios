@@ -303,6 +303,29 @@ class TrackerManager: TrackingService {
             service.sendCloseInstallSource()
         }
     }
+    func sendOpenCommentsView(sessionId: String, sessionName: String) {
+        for service in services {
+            service.sendOpenCommentsView(sessionId: sessionId, sessionName: sessionName)
+        }
+    }
+    
+    func sendOpenWriteCommentView(sessionId: String, sessionName: String) {
+        for service in services {
+            service.sendOpenWriteCommentView(sessionId: sessionId, sessionName: sessionName)
+        }
+    }
+    
+    func sendSubmitWriteComment(sessionId: String, sessionName: String) {
+        for service in services {
+            service.sendSubmitWriteComment(sessionId: sessionId, sessionName: sessionName)
+        }
+    }
+    
+    func sendCancelSubmitWriteComment(sessionId: String, sessionName: String) {
+        for service in services {
+            service.sendCancelSubmitWriteComment(sessionId: sessionId, sessionName: sessionName)
+        }
+    }
     
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {

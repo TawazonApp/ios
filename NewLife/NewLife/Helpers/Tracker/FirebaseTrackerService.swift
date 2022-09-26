@@ -57,6 +57,10 @@ class FirebaseTrackingService: TrackingService {
         static let setAppLang = "set_app_language"
         static let setInstallSource = "set_install_source"
         static let closeInstallSource = "close_install_source"
+        static let openCommentsView = "open_comments_view"
+        static let openWriteCommentView = "open_write_comment_view"
+        static let submitComment = "submit_comment"
+        static let cancelSubmitComment = "cancel_submit_comment"
     }
     
     func sendUserId(userId: String?) {
@@ -374,6 +378,38 @@ class FirebaseTrackingService: TrackingService {
         let values = getBaseEventValues()
         
         Analytics.logEvent(CustomEvents.closeInstallSource, parameters: values)
+    }
+    
+    func sendOpenCommentsView(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        Analytics.logEvent(CustomEvents.openCommentsView, parameters: values)
+    }
+    
+    func sendOpenWriteCommentView(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        Analytics.logEvent(CustomEvents.openWriteCommentView, parameters: values)
+    }
+    
+    func sendSubmitWriteComment(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        Analytics.logEvent(CustomEvents.submitComment, parameters: values)
+    }
+    
+    func sendCancelSubmitWriteComment(sessionId: String, sessionName: String) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        
+        Analytics.logEvent(CustomEvents.submitComment, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {

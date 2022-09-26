@@ -9,7 +9,7 @@
 import Foundation
 
 struct UserInfoModel: Codable, ModelInitializable {
-    let id, name, email: String?
+    let id, name, displayName, email: String?
     let premium: UserPremiumModel?
     var image: String?
     let settings: UserSettings?

@@ -21,6 +21,10 @@ class ProfileVM: NSObject {
         return userInfo?.name
     }
     
+    var displayName: String? {
+        return userInfo?.displayName
+    }
+    
     var email: String? {
         return userInfo?.email
     }
