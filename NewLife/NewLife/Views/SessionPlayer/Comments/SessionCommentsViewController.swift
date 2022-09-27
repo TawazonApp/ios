@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class SessionCommentsViewController: UIViewController {
 
@@ -114,7 +115,7 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     @objc @IBAction func writeCommentButtonTapped(){
-        showWriteCommentViewController()
+        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (UserDefaults.isPremium() ? showWriteCommentViewController() : openPremiumViewController())
     }
     
     private func showWriteCommentViewController(comment: CommentModel? = nil){
@@ -122,6 +123,41 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
         writeCommentViewController.delegate = self
         self.present(writeCommentViewController, animated: true, completion: nil)
     }
+    
+    
+    private func openLoginViewController() {
+        SystemSoundID.play(sound: .Sound1)
+        
+        let viewController = MembershipViewController.instantiate(viewType: .login)
+        
+        let navigationController = NavigationController.init(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .overCurrentContext
+        self.present(navigationController, animated: false, completion: nil)
+    }
+    
+    private func showLoginPermissionAlert() {
+        PermissionAlert.shared.show(type: PermissionAlertView.AlertType.login, animated: true, actionHandler: {
+            PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
+                self?.openLoginViewController()
+            })
+        }, cancelHandler: {
+            PermissionAlert.shared.hide(animated: true)
+        })
+    }
+    
+    
+    private func openPremiumViewController() {
+        guard self.presentedViewController == nil else {
+            return
+        }
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .session)
+        
+        let navigationController = NavigationController.init(rootViewController: viewcontroller)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
 }
 
 extension SessionCommentsViewController: CommentCellDelegate{
