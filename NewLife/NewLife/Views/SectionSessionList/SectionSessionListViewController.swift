@@ -216,11 +216,11 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
             return
         }
         if let sessionModel = session.session {
-            if session.isLock {
-                openPremiumViewController()
-            }else{
+//            if session.isLock {
+//                openPremiumViewController()
+//            }else{
                 playSession(session: sessionModel)
-            }
+//            }
             
         }
     }

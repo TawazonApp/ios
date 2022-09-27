@@ -140,16 +140,16 @@ class PermissionAlertView: UIView, NibInstantiatable {
     private func dataBy(type: AlertType) -> PermissionAlertData {
         switch type {
         case .login:
-            return (backgroundColor: UIColor.veryLightBlue, iconName: "PermissionLoginAlert", title: "PermissionLoginAlertTitle".localized, subTitle: "PermissionLoginAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionLoginAlertActionTitle".localized, cancelTitle: "PermissionLoginAlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
+            return (backgroundColor: UIColor.slateBlue, iconName: "PermissionLoginAlert", title: "PermissionLoginAlertTitle".localized, subTitle: "PermissionLoginAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionLoginAlertActionTitle".localized, cancelTitle: "PermissionLoginAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
             
         case .premium:
-            return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "PermissionPremiumAlertTitle".localized, subTitle: "PermissionPremiumAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionPremiumAlertActionTitle".localized, cancelTitle: "PermissionPremiumAlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
+            return (backgroundColor: UIColor.slateBlue, iconName: "PermissionPremiumAlert", title: "PermissionPremiumAlertTitle".localized, subTitle: "PermissionPremiumAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionPremiumAlertActionTitle".localized, cancelTitle: "PermissionPremiumAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
 
         case .cancelSubscription:
         return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "CancelSubscriptionAlertTitle".localized, subTitle: "CancelSubscriptionAlertBody".localized, bodyActionTitle: "", actionTitle: "CancelSubscriptionAlertActionTitle".localized, cancelTitle: "CancelSubscriptionlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
             
         case .deleteAccount:
-            return (backgroundColor: UIColor.lightSlateBlue, iconName: "PermissionDeleteAccount", title: "DeleteAccountAlertTitle".localized, subTitle: "DeleteAccountAlertBody".localized, bodyActionTitle: "DeleteBodyActionTitle".localized , actionTitle: "DeleteAccountAlertActionTitle".localized, cancelTitle: "DeleteAccountAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
+            return (backgroundColor: UIColor.slateBlue, iconName: "PermissionDeleteAccount", title: "DeleteAccountAlertTitle".localized, subTitle: "DeleteAccountAlertBody".localized, bodyActionTitle: "DeleteBodyActionTitle".localized , actionTitle: "DeleteAccountAlertActionTitle".localized, cancelTitle: "DeleteAccountAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
     }
     }
     

@@ -115,7 +115,7 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     @objc @IBAction func writeCommentButtonTapped(){
-        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (UserDefaults.isPremium() ? showWriteCommentViewController() : openPremiumViewController())
+        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (UserDefaults.isPremium() ? showWriteCommentViewController() : showPremiumConfirmationAlert())
     }
     
     private func showWriteCommentViewController(comment: CommentModel? = nil){
@@ -124,6 +124,17 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
         self.present(writeCommentViewController, animated: true, completion: nil)
     }
     
+    private func showPremiumConfirmationAlert() {
+        
+        PermissionAlert.shared.show(type: PermissionAlertView.AlertType.premium, animated: true, actionHandler: {
+            PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
+                self?.openPremiumViewController()
+            })
+        }, cancelHandler: {
+            PermissionAlert.shared.hide(animated: true)
+        })
+//        PermissionAlert.
+    }
     
     private func openLoginViewController() {
         SystemSoundID.play(sound: .Sound1)

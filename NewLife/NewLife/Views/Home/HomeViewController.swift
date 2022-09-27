@@ -423,11 +423,11 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     }
     
     private func playSession(_ session: HomeSessionVM) {
-        if (session.isLock) {
-            self.openPremiumViewController()
-        } else {
+//        if (session.isLock) {
+//            self.openPremiumViewController()
+//        } else {
             openSessionPlayerViewController(session: session)
-        }
+//        }
         requestNotificationPermission += 1
     }
     

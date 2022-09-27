@@ -179,11 +179,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         DispatchQueue.main.async { [weak self] in
-            if session.isLock {
-                self?.openPremiumViewController()
-            } else {
+//            if session.isLock {
+//                self?.openPremiumViewController()
+//            } else {
                 self?.openSessionPlayerViewController(session: session)
-            }
+//            }
         }
     }
     
