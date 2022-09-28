@@ -111,6 +111,8 @@ class CommentTableViewCell: UITableViewCell {
     private func fillData(){
         if comment?.rating == 0{
             ratingView.isHidden = true
+        }else{
+            ratingView.isHidden = false
         }
         ratingView.value = CGFloat(comment?.rating ?? 0)
         

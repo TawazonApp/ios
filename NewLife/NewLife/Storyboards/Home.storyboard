@@ -3362,6 +3362,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jb9-yr-Gkg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cHo-Zs-xvJ" secondAttribute="trailing" id="0e1-aB-0iE"/>

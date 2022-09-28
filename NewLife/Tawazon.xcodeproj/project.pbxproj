@@ -2103,6 +2103,7 @@
 				F3DC8DD32223D3EC00C7DEC4 /* Resources */,
 				F3E280F4223FB75500066C04 /* ShellScript */,
 				C9D592B8DD1A8511E89566C2 /* [CP] Embed Pods Frameworks */,
+				047F11DC28E30F3C0096E20E /* FirebaseCrashlytics Symbols uploader */,
 			);
 			buildRules = (
 			);
@@ -2293,6 +2294,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		047F11DC28E30F3C0096E20E /* FirebaseCrashlytics Symbols uploader */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "FirebaseCrashlytics Symbols uploader";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Symbols Directory\"\necho \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n#Firebase\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/NewLife/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
+		};
 		226673194EB0978D93396EBF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2881,7 +2901,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2930,7 +2950,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

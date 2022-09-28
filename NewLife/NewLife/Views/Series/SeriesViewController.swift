@@ -332,8 +332,10 @@ extension SeriesViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let session = seriesVM.sessions?[indexPath.row - 1]{
-            togglePlaySession(session)
+        if (indexPath.row != 0){
+            if let session = seriesVM.sessions?[indexPath.row - 1]{
+                togglePlaySession(session)
+            }
         }
         
     }

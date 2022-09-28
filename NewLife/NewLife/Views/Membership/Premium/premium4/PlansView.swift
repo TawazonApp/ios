@@ -17,8 +17,9 @@ class PlansView: UIView {
         didSet {
             if let plansCount = plans?.count, plansCount > 0{
                 plans!.sort(by: { $0.priority < $1.priority })
+                reloadData()
             }
-            reloadData()
+            
         }
     }
     
@@ -46,6 +47,7 @@ class PlansView: UIView {
         plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         selectedPlan = 1
         plans?[selectedPlan].isSelected = true
+        
     }
 }
 extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

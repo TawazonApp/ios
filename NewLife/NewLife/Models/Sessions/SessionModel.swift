@@ -62,6 +62,14 @@ struct SessionModel: Codable {
         return free.boolValue()
     }
     
+    func isCompleted() -> Bool {
+        return completed ?? false
+    }
+    
+    func isLocked() -> Bool {
+        return locked ?? false
+    }
+    
 }
 
 struct AudioSourceModel: Codable {

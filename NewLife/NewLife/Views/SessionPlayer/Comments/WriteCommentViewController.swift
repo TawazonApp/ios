@@ -24,6 +24,7 @@ class WriteCommentViewController: UIViewController {
     var commentsVM : CommentsVM!
     var commentModel: CommentModel!
     var delegate: WriteCommentDelegate!
+    var rateViewModel = SessionRateVM(service: SessionServiceFactory.service())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,7 @@ class WriteCommentViewController: UIViewController {
         ratingView.value = 5
         ratingView.filledStarImage = #imageLiteral(resourceName: "FillRateStar.pdf")
         ratingView.emptyStarImage = #imageLiteral(resourceName: "EmptyRateStar.pdf")
+        ratingView.addTarget(self, action: #selector(rateSession), for: .valueChanged)
         ratingKeyboardView.addSubview(ratingView)
         ratingView.translatesAutoresizingMaskIntoConstraints = false
         ratingKeyboardView.trailingAnchor.constraint(equalTo: ratingView.trailingAnchor, constant: 20).isActive = true
@@ -115,6 +117,20 @@ class WriteCommentViewController: UIViewController {
                 self.delegate.commentSubmitted()
                 self.dismiss(animated: true)
             })
+        }
+    }
+    
+    @objc func rateSession(_ sender:  Any){
+        guard let sessionId = session.id else{
+            return
+        }
+        rateViewModel.rateSession(sessionId: sessionId, rate: Int(ratingView.value)) {
+            (error) in
+            if error == nil {
+                print("Session Rated: \(sessionId)")
+                self.delegate.commentSubmitted()
+                UserDefaults.sessionRated(sessionId: sessionId)
+            }
         }
     }
 }

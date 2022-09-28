@@ -76,8 +76,8 @@ extension Sessions {
         self.isFavorite = sessionModel.isFavorite()
         self.descriptionString = sessionModel.descriptionString
         self.playBackgroundSound = sessionModel.playBackgroundSound
-        self.completed = sessionModel.completed ?? false
-        self.locked = sessionModel.locked ?? false
+        self.completed = sessionModel.isCompleted()
+        self.locked = sessionModel.isLocked()
         self.type = sessionModel.type
         
     }
