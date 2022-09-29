@@ -115,7 +115,7 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     @objc @IBAction func writeCommentButtonTapped(){
-        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (UserDefaults.isPremium() ? showWriteCommentViewController() : showPremiumConfirmationAlert())
+        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (session.isLock ? (UserDefaults.isPremium() ? showWriteCommentViewController() : showPremiumConfirmationAlert()) : showWriteCommentViewController())
     }
     
     private func showWriteCommentViewController(comment: CommentModel? = nil){
