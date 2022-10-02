@@ -40,6 +40,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startPlayerLoadingIfNeeded()
         startGuidedTapping()
     }
     

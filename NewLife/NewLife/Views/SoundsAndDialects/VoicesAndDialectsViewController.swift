@@ -24,7 +24,7 @@ class VoicesAndDialectsViewController: HandleErrorViewController {
     var session: SessionVM!
     var selectedVoice: Int = NSNotFound
     var selectedDialect: Int = NSNotFound
-//    var appLanguages = [Language.english, Language.arabic]
+    var appLanguages = [Language.english, Language.arabic]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +88,7 @@ class VoicesAndDialectsViewController: HandleErrorViewController {
 
 extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -97,6 +97,8 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
             return "voice".localized
         case 1:
             return "dialect".localized
+        case 2:
+            return "interface".localized
         default:
             return ""
         }
@@ -108,6 +110,8 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
             return session.audioSources?.count ?? 0
         case 1:
             return session.audioSources?[selectedVoice].dialects.count ?? 0
+        case 2:
+            return appLanguages.count
         default:
             return 0
         }
@@ -130,6 +134,11 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         case 1:
             cell.titleLabel.text = session.audioSources?[selectedVoice].dialects[indexPath.row].title
             if indexPath.row == selectedDialect {
+                cell.setSelectedStyle(selected: true)
+            }
+        case 2:
+            cell.titleLabel.text = appLanguages[indexPath.row].getLanguageString()
+            if Language.language == appLanguages[indexPath.row] {
                 cell.setSelectedStyle(selected: true)
             }
         default: break
@@ -181,7 +190,14 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
                 
                 self.dismiss(animated: true)
             }
-                
+               
+        case 2:
+            if indexPath.row == 0 {
+                delegate?.changeInterfaceLanguage(language: .english)
+            }else{
+                delegate?.changeInterfaceLanguage(language: .arabic)
+            }
+            self.dismiss(animated: true)
         default:
             break
             

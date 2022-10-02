@@ -75,6 +75,7 @@ class CommentTableViewCell: UITableViewCell {
         
         commentDateLabel.font = .munaFont(ofSize: 12)
         commentDateLabel.textColor = .white.withAlphaComponent(0.56)
+        commentDateLabel.isHidden = true
         
         commentBodyLabel.font = .munaFont(ofSize: 18)
         commentBodyLabel.textColor = .white
