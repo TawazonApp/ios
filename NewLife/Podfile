@@ -2,26 +2,27 @@
 platform :ios, '10.0'
 
 target 'Tawazon' do
-    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-    use_frameworks!
-    
-    pod 'Alamofire'
-    pod 'AlamofireImage'
-    pod 'SwiftVideoBackground'
-    pod 'lottie-ios'
-    pod 'SwiftMessages'
-    pod 'FBSDKLoginKit'
-   # pod 'AudioPlayerManager'
-    pod 'Firebase/Core', '~> 7.6.0'
-    pod 'Firebase/Messaging', '~> 7.6.0'
-    pod 'Firebase/DynamicLinks', '~> 7.6.0'
-    pod 'Firebase/Crashlytics', '~> 7.6.0'
-    pod 'Firebase/RemoteConfig'
-    pod 'SwiftyStoreKit'
-    pod 'NVActivityIndicatorView'
-    pod 'AppsFlyerFramework'
-#    pod 'Branch', :git => 'https://github.com/BranchMetrics/ios-branch-deep-linking.git'
-    pod 'UXCam'
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  pod 'SwiftVideoBackground'
+  pod 'lottie-ios'
+  pod 'SwiftMessages'
+  pod 'FBSDKLoginKit'
+  # pod 'AudioPlayerManager'
+  pod 'Firebase/Core', '~> 7.6.0'
+  pod 'Firebase/Messaging', '~> 7.6.0'
+  pod 'Firebase/DynamicLinks', '~> 7.6.0'
+  pod 'Firebase/Crashlytics', '~> 7.6.0'
+  pod 'Firebase/RemoteConfig'
+  pod 'SwiftyStoreKit'
+  pod 'NVActivityIndicatorView'
+  pod 'AppsFlyerFramework'
+  #    pod 'Branch', :git => 'https://github.com/BranchMetrics/ios-branch-deep-linking.git'
+  pod 'UXCam'
+end
     target 'TawazonTests' do
         inherit! :search_paths
         # Pods for testing
@@ -32,4 +33,12 @@ target 'Tawazon' do
         # Pods for testing
     end
     
-end
+    target 'TawazonPNServiceExt' do
+        # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+        use_frameworks!
+    
+        pod 'Firebase/Messaging', '~> 7.6.0'
+        
+        end
+    
+

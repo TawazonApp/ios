@@ -39,6 +39,9 @@
 		04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4827C39D3F00493142 /* SuperCategoryVM.swift */; };
 		04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */; };
 		046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */; };
+		047F11E428E97DFA0096E20E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F11E328E97DFA0096E20E /* NotificationService.swift */; };
+		047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		047F11FF28E986E50096E20E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047F11FE28E986E50096E20E /* GoogleService-Info.plist */; };
 		048C6E4628E061050003C3BC /* WriteCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C6E4528E061050003C3BC /* WriteCommentViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
@@ -78,9 +81,10 @@
 		04FBEBC028B254F600D9EBCF /* GuidedTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBEBBF28B254F600D9EBCF /* GuidedTourView.swift */; };
 		04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBEBC128B25C9D00D9EBCF /* GuidedTourView.xib */; };
 		04FBEBC428B37DA800D9EBCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBEBC328B37DA800D9EBCF /* InfoView.swift */; };
-		48D6347B4BA6A6AB9DE5D990 /* Pods_TawazonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */; };
+		3F5D1A0D274E00F2857E16C7 /* Pods_TawazonPNServiceExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */; };
+		5725B00D5227E077FC209E23 /* libPods-TawazonUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */; };
+		610D7DF9639FE05033A0A5B6 /* libPods-TawazonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */; };
 		ABF0A3D50F7F86CFDCDBB632 /* Pods_Tawazon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */; };
-		E698D13D51968D272F083B97 /* Pods_TawazonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */; };
 		F302169922465CB5000A0DF1 /* AnonymousUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F302169822465CB5000A0DF1 /* AnonymousUserVM.swift */; };
 		F31658012359DD3D0049605A /* TrackerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31658002359DD3D0049605A /* TrackerManager.swift */; };
 		F31658032359DD660049605A /* AppsFlyerTrackerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31658022359DD660049605A /* AppsFlyerTrackerService.swift */; };
@@ -378,6 +382,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		047F11E628E97DFA0096E20E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3DC8DCD2223D3EC00C7DEC4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 047F11E028E97DFA0096E20E;
+			remoteInfo = TawazonPNServiceExt;
+		};
 		F3DC8DED2223D3ED00C7DEC4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F3DC8DCD2223D3EC00C7DEC4 /* Project object */;
@@ -393,6 +404,20 @@
 			remoteInfo = NewLife;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		047F11EC28E97DFA0096E20E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
@@ -427,6 +452,11 @@
 		04677F4827C39D3F00493142 /* SuperCategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryVM.swift; sourceTree = "<group>"; };
 		04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryHeaderView.swift; sourceTree = "<group>"; };
 		046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSessionPlayerViewController.swift; sourceTree = "<group>"; };
+		047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TawazonPNServiceExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		047F11E328E97DFA0096E20E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		047F11E528E97DFA0096E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		047F11FE28E986E50096E20E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		047F120428E98AE50096E20E /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		048C6E4528E061050003C3BC /* WriteCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
@@ -468,13 +498,16 @@
 		04FBEBC328B37DA800D9EBCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		07264B016C315C4C6734C8AC /* Pods-TawazonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.release.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.release.xcconfig"; sourceTree = "<group>"; };
 		0926BFEBF363F061FB9AD9E3 /* Pods-Tawazon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.release.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.release.xcconfig"; sourceTree = "<group>"; };
+		1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TawazonUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A48A122791C8950461EC351 /* Pods-TawazonPNServiceExt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonPNServiceExt.debug.xcconfig"; path = "Target Support Files/Pods-TawazonPNServiceExt/Pods-TawazonPNServiceExt.debug.xcconfig"; sourceTree = "<group>"; };
+		30C19848669654B8814E3B3F /* Pods-TawazonPNServiceExt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonPNServiceExt.release.xcconfig"; path = "Target Support Files/Pods-TawazonPNServiceExt/Pods-TawazonPNServiceExt.release.xcconfig"; sourceTree = "<group>"; };
+		3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TawazonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tawazon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		736B37DA1BE9B874FBB0C2FE /* Pods-TawazonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonUITests.release.xcconfig"; path = "Target Support Files/Pods-TawazonUITests/Pods-TawazonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		85C97E0D8AED48088BB039D5 /* Pods-Tawazon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.debug.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F62099499F5B17E084FB34 /* Pods-TawazonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.debug.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C913CED291DEAD538685E036 /* Pods-TawazonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonUITests.debug.xcconfig"; path = "Target Support Files/Pods-TawazonUITests/Pods-TawazonUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonPNServiceExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F302169822465CB5000A0DF1 /* AnonymousUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousUserVM.swift; sourceTree = "<group>"; };
 		F31658002359DD3D0049605A /* TrackerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerManager.swift; sourceTree = "<group>"; };
 		F31658022359DD660049605A /* AppsFlyerTrackerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerTrackerService.swift; sourceTree = "<group>"; };
@@ -782,6 +815,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		047F11DE28E97DFA0096E20E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F5D1A0D274E00F2857E16C7 /* Pods_TawazonPNServiceExt.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3DC8DD22223D3EC00C7DEC4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -800,7 +841,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48D6347B4BA6A6AB9DE5D990 /* Pods_TawazonTests.framework in Frameworks */,
+				610D7DF9639FE05033A0A5B6 /* libPods-TawazonTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,7 +849,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E698D13D51968D272F083B97 /* Pods_TawazonUITests.framework in Frameworks */,
+				5725B00D5227E077FC209E23 /* libPods-TawazonUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +992,16 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		047F11E228E97DFA0096E20E /* TawazonPNServiceExt */ = {
+			isa = PBXGroup;
+			children = (
+				047F11E328E97DFA0096E20E /* NotificationService.swift */,
+				047F11E528E97DFA0096E20E /* Info.plist */,
+				047F11FE28E986E50096E20E /* GoogleService-Info.plist */,
+			);
+			path = TawazonPNServiceExt;
+			sourceTree = "<group>";
+		};
 		049D350327A9C3A700304EF4 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,13 +1136,15 @@
 		0F028AE4DE4DEA0C329798C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				047F120428E98AE50096E20E /* FirebaseMessaging.framework */,
 				F3653FB324A67C7C00E62FC4 /* AuthenticationServices.framework */,
 				F38161A823202A6A00BA925F /* iAd.framework */,
 				F38161A623202A5A00BA925F /* AdSupport.framework */,
 				F3E281062240023700066C04 /* StoreKit.framework */,
 				42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */,
-				AAB13B2460660B6988B969F2 /* Pods_TawazonTests.framework */,
-				E826B61C808F43EC3D81EFFD /* Pods_TawazonUITests.framework */,
+				CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */,
+				3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */,
+				1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1105,6 +1158,8 @@
 				07264B016C315C4C6734C8AC /* Pods-TawazonTests.release.xcconfig */,
 				C913CED291DEAD538685E036 /* Pods-TawazonUITests.debug.xcconfig */,
 				736B37DA1BE9B874FBB0C2FE /* Pods-TawazonUITests.release.xcconfig */,
+				2A48A122791C8950461EC351 /* Pods-TawazonPNServiceExt.debug.xcconfig */,
+				30C19848669654B8814E3B3F /* Pods-TawazonPNServiceExt.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1613,6 +1668,7 @@
 				F3DC8DD72223D3EC00C7DEC4 /* NewLife */,
 				F3DC8DEF2223D3ED00C7DEC4 /* NewLifeTests */,
 				F3DC8DFA2223D3ED00C7DEC4 /* NewLifeUITests */,
+				047F11E228E97DFA0096E20E /* TawazonPNServiceExt */,
 				F3DC8DD62223D3EC00C7DEC4 /* Products */,
 				0F028AE4DE4DEA0C329798C0 /* Frameworks */,
 				ED773C674D8956CBEED4E2A6 /* Pods */,
@@ -1625,6 +1681,7 @@
 				F3DC8DD52223D3EC00C7DEC4 /* Tawazon.app */,
 				F3DC8DEC2223D3ED00C7DEC4 /* TawazonTests.xctest */,
 				F3DC8DF72223D3ED00C7DEC4 /* TawazonUITests.xctest */,
+				047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2093,6 +2150,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		047F11E028E97DFA0096E20E /* TawazonPNServiceExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 047F11E928E97DFA0096E20E /* Build configuration list for PBXNativeTarget "TawazonPNServiceExt" */;
+			buildPhases = (
+				44604BC5047CF13C6027047B /* [CP] Check Pods Manifest.lock */,
+				047F11DD28E97DFA0096E20E /* Sources */,
+				047F11DE28E97DFA0096E20E /* Frameworks */,
+				047F11DF28E97DFA0096E20E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TawazonPNServiceExt;
+			productName = TawazonPNServiceExt;
+			productReference = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F3DC8DD42223D3EC00C7DEC4 /* Tawazon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3DC8E002223D3ED00C7DEC4 /* Build configuration list for PBXNativeTarget "Tawazon" */;
@@ -2104,10 +2179,12 @@
 				F3E280F4223FB75500066C04 /* ShellScript */,
 				C9D592B8DD1A8511E89566C2 /* [CP] Embed Pods Frameworks */,
 				047F11DC28E30F3C0096E20E /* FirebaseCrashlytics Symbols uploader */,
+				047F11EC28E97DFA0096E20E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				047F11E728E97DFA0096E20E /* PBXTargetDependency */,
 			);
 			name = Tawazon;
 			productName = NewLife;
@@ -2158,10 +2235,13 @@
 		F3DC8DCD2223D3EC00C7DEC4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Inceptiontech;
 				TargetAttributes = {
+					047F11E028E97DFA0096E20E = {
+						CreatedOnToolsVersion = 14.0;
+					};
 					F3DC8DD42223D3EC00C7DEC4 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
@@ -2206,11 +2286,20 @@
 				F3DC8DD42223D3EC00C7DEC4 /* Tawazon */,
 				F3DC8DEB2223D3ED00C7DEC4 /* TawazonTests */,
 				F3DC8DF62223D3ED00C7DEC4 /* TawazonUITests */,
+				047F11E028E97DFA0096E20E /* TawazonPNServiceExt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		047F11DF28E97DFA0096E20E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047F11FF28E986E50096E20E /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3DC8DD32223D3EC00C7DEC4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2335,6 +2424,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		44604BC5047CF13C6027047B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TawazonPNServiceExt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		948E6B3D6811E95A9EE71422 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2416,6 +2527,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		047F11DD28E97DFA0096E20E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				047F11E428E97DFA0096E20E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3DC8DD12223D3EC00C7DEC4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2740,6 +2859,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		047F11E728E97DFA0096E20E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 047F11E028E97DFA0096E20E /* TawazonPNServiceExt */;
+			targetProxy = 047F11E628E97DFA0096E20E /* PBXContainerItemProxy */;
+		};
 		F3DC8DEE2223D3ED00C7DEC4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F3DC8DD42223D3EC00C7DEC4 /* Tawazon */;
@@ -2774,6 +2898,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		047F11EA28E97DFA0096E20E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A48A122791C8950461EC351 /* Pods-TawazonPNServiceExt.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SPU3Q5WZAL;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TawazonPNServiceExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TawazonPNServiceExt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Inceptiontech. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.newlife.apps.newlife.TawazonPNServiceExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		047F11EB28E97DFA0096E20E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30C19848669654B8814E3B3F /* Pods-TawazonPNServiceExt.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SPU3Q5WZAL;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TawazonPNServiceExt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TawazonPNServiceExt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Inceptiontech. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.newlife.apps.newlife.TawazonPNServiceExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F3DC8DFE2223D3ED00C7DEC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2896,12 +3080,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85C97E0D8AED48088BB039D5 /* Pods-Tawazon.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2945,12 +3130,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0926BFEBF363F061FB9AD9E3 /* Pods-Tawazon.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3074,6 +3260,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		047F11E928E97DFA0096E20E /* Build configuration list for PBXNativeTarget "TawazonPNServiceExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				047F11EA28E97DFA0096E20E /* Debug */,
+				047F11EB28E97DFA0096E20E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F3DC8DD02223D3EC00C7DEC4 /* Build configuration list for PBXProject "Tawazon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

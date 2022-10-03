@@ -187,7 +187,12 @@ class MembershipViewController: HandleErrorViewController {
             openGoalsViewController()
         } else {
             openMainViewController()
+            self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
         }
+    }
+    
+    @objc private func showSessionPlayerBar() {
+        NotificationCenter.default.post(name: NSNotification.Name.showSessionPlayerBar, object: nil)
     }
     
     private func switchButtonAttributeText() -> NSMutableAttributedString {
