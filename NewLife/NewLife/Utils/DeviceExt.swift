@@ -117,6 +117,7 @@ struct UserDefaultsKeys {
     static let firstGuidedSearch = "AppFirstGuidedSearchKey"
     static let firstGuidedSession = "AppFirstGuidedSessionKey"
     static let firstGuidedSessionDialectsButton = "AppFirstGuidedSessionDialectsButtonKey"
+    static let nicknameChanged = "UserChangedNickname"
 }
 
 extension UserDefaults {
@@ -262,6 +263,15 @@ extension UserDefaults {
     
     class func appSessionDialectButtonGuided() {
         UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.firstGuidedSessionDialectsButton)
+    }
+    
+    class func notifyUserChangeNickname() -> Bool {
+        let value = UserDefaults.standard.value(forKey: UserDefaultsKeys.nicknameChanged)
+        return (value == nil)
+    }
+    
+    class func nicknameChanged() {
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKeys.nicknameChanged)
     }
     
     class func isFirstDiscountOffer(id: String) -> Bool {

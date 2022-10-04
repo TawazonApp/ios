@@ -53,6 +53,7 @@ class PermissionAlertView: UIView, NibInstantiatable {
         case premium
         case cancelSubscription
         case deleteAccount
+        case changeNickname
     }
     
     typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
@@ -146,10 +147,13 @@ class PermissionAlertView: UIView, NibInstantiatable {
             return (backgroundColor: UIColor.slateBlue, iconName: "PermissionPremiumAlert", title: "PermissionPremiumAlertTitle".localized, subTitle: "PermissionPremiumAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionPremiumAlertActionTitle".localized, cancelTitle: "PermissionPremiumAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
 
         case .cancelSubscription:
-        return (backgroundColor: UIColor.lightPink, iconName: "PermissionPremiumAlert", title: "CancelSubscriptionAlertTitle".localized, subTitle: "CancelSubscriptionAlertBody".localized, bodyActionTitle: "", actionTitle: "CancelSubscriptionAlertActionTitle".localized, cancelTitle: "CancelSubscriptionlertCancelTitle".localized, contentColor: .black, actionTitleColor: .black)
+        return (backgroundColor: UIColor.slateBlue, iconName: "PermissionPremiumAlert", title: "CancelSubscriptionAlertTitle".localized, subTitle: "CancelSubscriptionAlertBody".localized, bodyActionTitle: "", actionTitle: "CancelSubscriptionAlertActionTitle".localized, cancelTitle: "CancelSubscriptionlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
             
         case .deleteAccount:
             return (backgroundColor: UIColor.slateBlue, iconName: "PermissionDeleteAccount", title: "DeleteAccountAlertTitle".localized, subTitle: "DeleteAccountAlertBody".localized, bodyActionTitle: "DeleteBodyActionTitle".localized , actionTitle: "DeleteAccountAlertActionTitle".localized, cancelTitle: "DeleteAccountAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
+            
+        case .changeNickname:
+            return (backgroundColor: UIColor.slateBlue, iconName: "ProfileUserName", title: "PermissionChangeNicknameAlertTitle".localized, subTitle: "PermissionChangeNicknameAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionChangeNicknameAlertActionTitle".localized, cancelTitle: "PermissionChangeNicknameAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
     }
     }
     

@@ -115,7 +115,10 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     @objc @IBAction func writeCommentButtonTapped(){
-        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : (session.isLock ? (UserDefaults.isPremium() ? showWriteCommentViewController() : showPremiumConfirmationAlert()) : showWriteCommentViewController())
+        UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() :
+        UserDefaults.notifyUserChangeNickname() ? showChangeNicknameAlert() :
+        (session.isLock ? (UserDefaults.isPremium() ? showWriteCommentViewController() :
+                            showPremiumConfirmationAlert()) : showWriteCommentViewController())
     }
     
     private func showWriteCommentViewController(comment: CommentModel? = nil){
@@ -156,6 +159,27 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
         })
     }
     
+    private func showChangeNicknameAlert() {
+        PermissionAlert.shared.show(type: PermissionAlertView.AlertType.changeNickname, animated: true, actionHandler: {
+            PermissionAlert.shared.hide(animated: true, completion: { [weak self] in
+                self?.openProfileViewController()
+                UserDefaults.nicknameChanged()
+            })
+        }, cancelHandler: {
+            UserDefaults.nicknameChanged()
+            PermissionAlert.shared.hide(animated: true)
+        })
+    }
+    
+    
+    private func openProfileViewController()  {
+        SystemSoundID.play(sound: .Sound1)
+        let viewController = ProfileViewController.instantiate()
+        let navigationController = NavigationController.init(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
+    }
     
     private func openPremiumViewController() {
         guard self.presentedViewController == nil else {

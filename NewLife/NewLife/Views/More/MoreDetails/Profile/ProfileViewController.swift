@@ -15,6 +15,7 @@ class ProfileViewController: MoreDetailsViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var accountTypeLabel: PaddingLabel!
+    @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -52,6 +53,12 @@ class ProfileViewController: MoreDetailsViewController {
         accountTypeLabel.font = UIFont.kacstPen(ofSize: 13)
         accountTypeLabel.layer.cornerRadius = 10
         accountTypeLabel.layer.masksToBounds = true
+        
+        noteLabel.font = .munaFont(ofSize: 14)
+        noteLabel.textColor = .white
+        noteLabel.numberOfLines = 0
+        noteLabel.lineBreakMode = .byWordWrapping
+        noteLabel.text = "ProfileNoteLabelText".localized
         
         separatorView.backgroundColor = UIColor.white.withAlphaComponent(0.10)
     }

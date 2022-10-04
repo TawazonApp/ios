@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="MoreViewController" id="EbN-fw-upR" customClass="MoreViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RA1-Od-x29">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVo-x6-YI7">
@@ -229,7 +229,7 @@
             <objects>
                 <viewController storyboardIdentifier="PrivacyViewController" id="OwN-Ph-0dI" customClass="PrivacyViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KyU-qe-gdT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6eN-0M-ePs">
@@ -319,7 +319,7 @@
             <objects>
                 <viewController storyboardIdentifier="OurStoryViewController" id="gIr-4X-JYW" customClass="OurStoryViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sQS-To-6u6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Qj-OL-fih">
@@ -569,7 +569,7 @@
             <objects>
                 <viewController storyboardIdentifier="DownloadedLibraryViewController" id="8GE-0S-Pr7" customClass="DownloadedLibraryViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XYl-Mi-WFO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AVw-zk-4Cd">
@@ -748,7 +748,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="R8W-gc-prJ" customClass="ProfileViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ATD-UF-hzq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ce-IZ-Z1p">
@@ -822,6 +822,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVO-2n-iug">
+                                        <rect key="frame" x="187" y="190" width="319" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggq-6k-8A7">
                                         <rect key="frame" x="0.0" y="232" width="375" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -833,7 +839,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ATb-ru-Wja" firstAttribute="top" secondItem="8Kr-pC-pK8" secondAttribute="bottom" constant="20" id="00d-54-Sl1"/>
-                                    <constraint firstItem="ggq-6k-8A7" firstAttribute="top" secondItem="ATb-ru-Wja" secondAttribute="bottom" constant="40" id="JaS-rj-z7W"/>
+                                    <constraint firstItem="RVO-2n-iug" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ATb-ru-Wja" secondAttribute="bottom" constant="15" id="4aB-eM-Apa"/>
+                                    <constraint firstAttribute="trailing" secondItem="RVO-2n-iug" secondAttribute="trailing" constant="28" id="DQ3-Jq-RiT"/>
+                                    <constraint firstItem="ggq-6k-8A7" firstAttribute="top" secondItem="RVO-2n-iug" secondAttribute="bottom" constant="13" id="GRN-EH-y2U"/>
                                     <constraint firstItem="ggq-6k-8A7" firstAttribute="leading" secondItem="Jcd-nB-78a" secondAttribute="leading" id="Kao-8Q-8d5"/>
                                     <constraint firstItem="8Kr-pC-pK8" firstAttribute="leading" secondItem="Jcd-nB-78a" secondAttribute="leading" constant="28" id="Lf5-cA-dGx"/>
                                     <constraint firstItem="ObN-my-oe1" firstAttribute="top" secondItem="Jcd-nB-78a" secondAttribute="top" id="Sch-Mb-fNk"/>
@@ -841,6 +849,7 @@
                                     <constraint firstAttribute="trailing" secondItem="oTY-cs-xy9" secondAttribute="trailing" constant="28" id="W3I-L9-58r"/>
                                     <constraint firstAttribute="trailing" secondItem="ggq-6k-8A7" secondAttribute="trailing" id="XRR-61-Mm1"/>
                                     <constraint firstItem="oTY-cs-xy9" firstAttribute="top" secondItem="ObN-my-oe1" secondAttribute="bottom" constant="8" id="fXz-ub-INq"/>
+                                    <constraint firstItem="RVO-2n-iug" firstAttribute="leading" secondItem="Jcd-nB-78a" secondAttribute="leading" constant="28" id="gsn-fi-fHI"/>
                                     <constraint firstAttribute="trailing" secondItem="8Kr-pC-pK8" secondAttribute="trailing" constant="28" id="iB0-XL-2Nb"/>
                                     <constraint firstItem="ObN-my-oe1" firstAttribute="centerX" secondItem="Jcd-nB-78a" secondAttribute="centerX" id="mQi-ya-POa"/>
                                     <constraint firstAttribute="bottom" secondItem="ggq-6k-8A7" secondAttribute="bottom" id="n5z-RR-yox"/>
@@ -920,6 +929,7 @@
                             <constraint firstItem="Jcd-vM-Jw7" firstAttribute="top" secondItem="nha-Wc-kqD" secondAttribute="top" constant="12" id="h3a-Zo-sVR"/>
                             <constraint firstItem="3Ce-IZ-Z1p" firstAttribute="leading" secondItem="ATD-UF-hzq" secondAttribute="leading" id="m3N-aD-Ycd"/>
                             <constraint firstItem="Jcd-vM-Jw7" firstAttribute="leading" secondItem="nha-Wc-kqD" secondAttribute="leading" id="pPd-pY-iXv"/>
+                            <constraint firstItem="YcU-sV-Z5t" firstAttribute="height" secondItem="ATD-UF-hzq" secondAttribute="height" multiplier="0.5" id="qKO-wq-pGX"/>
                             <constraint firstAttribute="bottom" secondItem="3Ce-IZ-Z1p" secondAttribute="bottom" id="wCa-vf-48J"/>
                             <constraint firstItem="YcU-sV-Z5t" firstAttribute="leading" secondItem="nha-Wc-kqD" secondAttribute="leading" id="zUb-MC-K18"/>
                         </constraints>
@@ -929,6 +939,7 @@
                         <outlet property="backButton" destination="M2R-3c-NfL" id="4ig-Lp-rom"/>
                         <outlet property="backgroundImageView" destination="3Ce-IZ-Z1p" id="sHd-bB-6h8"/>
                         <outlet property="imageView" destination="ObN-my-oe1" id="CBM-yC-Nlg"/>
+                        <outlet property="noteLabel" destination="RVO-2n-iug" id="Mcz-7G-Z0Y"/>
                         <outlet property="separatorView" destination="ggq-6k-8A7" id="pQg-bk-Fzk"/>
                         <outlet property="tableView" destination="YcU-sV-Z5t" id="ZJ3-Wg-SAk"/>
                         <outlet property="titleLabel" destination="agJ-QE-jFK" id="368-S2-vyf"/>
@@ -945,7 +956,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileEditFieldViewController" id="iAL-hZ-Lh2" customClass="ProfileEditFieldViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TIv-RM-lcI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgA-bx-yYb">
