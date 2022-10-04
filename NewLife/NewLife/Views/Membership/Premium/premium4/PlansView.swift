@@ -47,7 +47,6 @@ class PlansView: UIView {
         plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         selectedPlan = 1
         plans?[selectedPlan].isSelected = true
-        
     }
 }
 extension PlansView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

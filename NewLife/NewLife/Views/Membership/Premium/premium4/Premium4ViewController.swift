@@ -53,11 +53,15 @@ class Premium4ViewController: BasePremiumViewController {
         LoadingHud.shared.show(animated: true)
         
         data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
-            self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
-            
-            self.features = self.data.premiumDetails?.premiumPage.featureItems
-            self.noteLabel.text = self.data.premiumDetails?.premiumPage.content
-            
+            if error == nil{
+                self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
+                
+                self.features = self.data.premiumDetails?.premiumPage.featureItems
+                self.noteLabel.text = self.data.premiumDetails?.premiumPage.content
+                return
+            }
+            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
+            LoadingHud.shared.hide(animated: true)
         })
     }
     private func setData(){
@@ -65,7 +69,12 @@ class Premium4ViewController: BasePremiumViewController {
     }
     private func fetchPlans(){
         data.fetchPremiumPurchaseProducts(completion: { (error) in
-            self.plans = self.data.plansArray
+            if error == nil{
+                self.plans = self.data.plansArray
+                return
+            }
+            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
+            LoadingHud.shared.hide(animated: true)
         })
     }
     private func initialize() {

@@ -82,8 +82,8 @@
 		04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FBEBC128B25C9D00D9EBCF /* GuidedTourView.xib */; };
 		04FBEBC428B37DA800D9EBCF /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBEBC328B37DA800D9EBCF /* InfoView.swift */; };
 		3F5D1A0D274E00F2857E16C7 /* Pods_TawazonPNServiceExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */; };
-		5725B00D5227E077FC209E23 /* libPods-TawazonUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */; };
-		610D7DF9639FE05033A0A5B6 /* libPods-TawazonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */; };
+		53C0ECB2F41426432F422802 /* Pods_TawazonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C925FB94E2BB7AA44EAA0F /* Pods_TawazonTests.framework */; };
+		9F941E1FEC1BEAA399CB7623 /* Pods_TawazonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F633E58CA0232819CF5ADA /* Pods_TawazonUITests.framework */; };
 		ABF0A3D50F7F86CFDCDBB632 /* Pods_Tawazon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */; };
 		F302169922465CB5000A0DF1 /* AnonymousUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F302169822465CB5000A0DF1 /* AnonymousUserVM.swift */; };
 		F31658012359DD3D0049605A /* TrackerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31658002359DD3D0049605A /* TrackerManager.swift */; };
@@ -498,16 +498,16 @@
 		04FBEBC328B37DA800D9EBCF /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		07264B016C315C4C6734C8AC /* Pods-TawazonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.release.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.release.xcconfig"; sourceTree = "<group>"; };
 		0926BFEBF363F061FB9AD9E3 /* Pods-Tawazon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.release.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.release.xcconfig"; sourceTree = "<group>"; };
-		1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TawazonUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A48A122791C8950461EC351 /* Pods-TawazonPNServiceExt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonPNServiceExt.debug.xcconfig"; path = "Target Support Files/Pods-TawazonPNServiceExt/Pods-TawazonPNServiceExt.debug.xcconfig"; sourceTree = "<group>"; };
 		30C19848669654B8814E3B3F /* Pods-TawazonPNServiceExt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonPNServiceExt.release.xcconfig"; path = "Target Support Files/Pods-TawazonPNServiceExt/Pods-TawazonPNServiceExt.release.xcconfig"; sourceTree = "<group>"; };
-		3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TawazonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tawazon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C925FB94E2BB7AA44EAA0F /* Pods_TawazonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		736B37DA1BE9B874FBB0C2FE /* Pods-TawazonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonUITests.release.xcconfig"; path = "Target Support Files/Pods-TawazonUITests/Pods-TawazonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		85C97E0D8AED48088BB039D5 /* Pods-Tawazon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tawazon.debug.xcconfig"; path = "Target Support Files/Pods-Tawazon/Pods-Tawazon.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F62099499F5B17E084FB34 /* Pods-TawazonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonTests.debug.xcconfig"; path = "Target Support Files/Pods-TawazonTests/Pods-TawazonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C913CED291DEAD538685E036 /* Pods-TawazonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawazonUITests.debug.xcconfig"; path = "Target Support Files/Pods-TawazonUITests/Pods-TawazonUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonPNServiceExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F633E58CA0232819CF5ADA /* Pods_TawazonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawazonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F302169822465CB5000A0DF1 /* AnonymousUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnonymousUserVM.swift; sourceTree = "<group>"; };
 		F31658002359DD3D0049605A /* TrackerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerManager.swift; sourceTree = "<group>"; };
 		F31658022359DD660049605A /* AppsFlyerTrackerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFlyerTrackerService.swift; sourceTree = "<group>"; };
@@ -841,7 +841,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				610D7DF9639FE05033A0A5B6 /* libPods-TawazonTests.a in Frameworks */,
+				53C0ECB2F41426432F422802 /* Pods_TawazonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,7 +849,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5725B00D5227E077FC209E23 /* libPods-TawazonUITests.a in Frameworks */,
+				9F941E1FEC1BEAA399CB7623 /* Pods_TawazonUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,8 +1143,8 @@
 				F3E281062240023700066C04 /* StoreKit.framework */,
 				42D4E76684B8628C89C69AD5 /* Pods_Tawazon.framework */,
 				CA1F70DCCA6D2981603EFE2C /* Pods_TawazonPNServiceExt.framework */,
-				3B7E82D6A2E32364EB9C18A0 /* libPods-TawazonTests.a */,
-				1F01D77DD337270FFD64C8E7 /* libPods-TawazonUITests.a */,
+				48C925FB94E2BB7AA44EAA0F /* Pods_TawazonTests.framework */,
+				D0F633E58CA0232819CF5ADA /* Pods_TawazonUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3086,7 +3086,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3136,7 +3136,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
