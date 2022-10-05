@@ -153,7 +153,7 @@ class PermissionAlertView: UIView, NibInstantiatable {
             return (backgroundColor: UIColor.slateBlue, iconName: "PermissionDeleteAccount", title: "DeleteAccountAlertTitle".localized, subTitle: "DeleteAccountAlertBody".localized, bodyActionTitle: "DeleteBodyActionTitle".localized , actionTitle: "DeleteAccountAlertActionTitle".localized, cancelTitle: "DeleteAccountAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
             
         case .changeNickname:
-            return (backgroundColor: UIColor.slateBlue, iconName: "ProfileUserName", title: "PermissionChangeNicknameAlertTitle".localized, subTitle: "PermissionChangeNicknameAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionChangeNicknameAlertActionTitle".localized, cancelTitle: "PermissionChangeNicknameAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
+            return (backgroundColor: UIColor.slateBlue, iconName: "ProfileNickname", title: "PermissionChangeNicknameAlertTitle".localized, subTitle: "PermissionChangeNicknameAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionChangeNicknameAlertActionTitle".localized, cancelTitle: "PermissionChangeNicknameAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
     }
     }
     

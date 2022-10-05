@@ -31,7 +31,7 @@ struct Api {
     static let deleteAccount = "\(apiUrlV2)/auth/delete"
     static let userInfoUrl = "\(apiUrlV2)/auth/info"
     static let changePasswordUrl = "\(apiUrl)/auth/update-password"
-    static let changeUserNameUrl = "\(apiUrl)/auth/info/update"
+    static let changeUserNameUrl = "\(apiUrlV2)/auth/info/update"
     static let registerDeviceUrl = "\(apiUrl)/device/register"
     static let notificationStatusUrl = "\(apiUrl)/device/status/update"
     

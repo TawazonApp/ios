@@ -52,7 +52,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         buildVideosArray()
         fetchHomeSections()
         updateBackgroundSoundStyle()
-        
+        reduceVoulme(volume: 0.1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,6 +145,10 @@ class HomeViewController: SoundEffectsPresenterViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    private func reduceVoulme(volume: Double) {
+        BackgroundAudioManager.shared.volume = volume
     }
     
     private func initialize() {

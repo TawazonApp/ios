@@ -41,7 +41,7 @@ class ProfileCellVM: NSObject {
             break
         case .changeDisplayName:
             result.title = "profileChangeScreenNameTitle".localized
-            result.imageName = "ProfileUserName"
+            result.imageName = "ProfileNickname"
             break
         case .changeProfilePicture:
             result.title = "profileChangeProfilePictureTitle".localized

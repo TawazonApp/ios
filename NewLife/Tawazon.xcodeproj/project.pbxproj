@@ -15,6 +15,7 @@
 		041D1352288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D1351288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift */; };
 		041D82C228438BE200DF6928 /* VoicesAndDialectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */; };
 		041D82CC284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */; };
+		041EC78528ED7F3D00D379F8 /* ProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041EC78428ED7F3D00D379F8 /* ProgressSlider.swift */; };
 		0422055F27E892AE0018BA31 /* Muna.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0422055E27E892AE0018BA31 /* Muna.ttc */; };
 		0422056327E9C2300018BA31 /* PlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056227E9C2300018BA31 /* PlansView.swift */; };
 		0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */; };
@@ -428,6 +429,7 @@
 		041D1351288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSessionTableViewCell.swift; sourceTree = "<group>"; };
 		041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsViewController.swift; sourceTree = "<group>"; };
 		041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsTableViewCell.swift; sourceTree = "<group>"; };
+		041EC78428ED7F3D00D379F8 /* ProgressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSlider.swift; sourceTree = "<group>"; };
 		0422055E27E892AE0018BA31 /* Muna.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Muna.ttc; sourceTree = "<group>"; };
 		0422056227E9C2300018BA31 /* PlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansView.swift; sourceTree = "<group>"; };
 		0422056427E9E1B80018BA31 /* GeneralPremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPremiumViewController.swift; sourceTree = "<group>"; };
@@ -1965,6 +1967,7 @@
 				F3E2811722417FCE00066C04 /* AnimatedCheckButton.swift */,
 				F3921CE622495357002A12EC /* LoadingHudView.swift */,
 				F334416924793CFA00FA3234 /* CircularButton.swift */,
+				041EC78428ED7F3D00D379F8 /* ProgressSlider.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2757,6 +2760,7 @@
 				04C548B627ABC807001D3C0F /* SectionData.swift in Sources */,
 				04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */,
 				F3C73B18223D3EB60026B8E1 /* HomeModel.swift in Sources */,
+				041EC78528ED7F3D00D379F8 /* ProgressSlider.swift in Sources */,
 				F3B16AF4222E9600002B0406 /* OurStoryActionView.swift in Sources */,
 				043FCB36280582F800F25FA4 /* BaseBannerView.swift in Sources */,
 				F317A177222D180000CBD760 /* SoundEffectsCollectionCell.swift in Sources */,
@@ -3086,7 +3090,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3136,7 +3140,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

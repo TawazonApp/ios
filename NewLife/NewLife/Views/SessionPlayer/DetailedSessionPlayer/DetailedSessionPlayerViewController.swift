@@ -74,11 +74,6 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
 
         progressSlider.tintColor = .white
         progressSlider.value = 0
-        progressSlider.setThumbImage(UIImage(named: "ProgressTracker"), for: .normal)
-        if #available(iOS 14.0, *) {
-            progressSlider.setMaximumTrackImage(UIImage(named: "ProgressSliderTracker"), for: .normal)
-        }
-        
         
         initializeBottomStackButtons()
     }
@@ -270,17 +265,4 @@ extension UIButton {
         }
     }
 }
-public class ProgressSlider : UISlider
-{
-    func addBlurEffect(style: UIBlurEffect.Style = .regular) {
-        let blurEffect = UIBlurEffect(style: style)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.isUserInteractionEnabled = false
-        blurView.backgroundColor = .clear
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        blurView.layer.masksToBounds = true
-        self.insertSubview(blurView, at: 0)
-        
-    }
-}
+

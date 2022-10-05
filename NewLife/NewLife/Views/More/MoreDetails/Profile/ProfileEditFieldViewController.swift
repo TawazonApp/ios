@@ -135,7 +135,7 @@ class ProfileEditFieldViewController: HandleErrorViewController {
 extension ProfileEditFieldViewController: ProfileEditFieldFormViewDelegate {
     
     func submit() {
-        if formData is ProfileEditUserNameFormVM {
+        if formData is ProfileEditUserNameFormVM || formData is ProfileEditUserDisplayNameFormVM {
             delegate?.userInfoChanged()
         }
         dimiss()
