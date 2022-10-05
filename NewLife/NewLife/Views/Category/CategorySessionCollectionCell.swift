@@ -16,6 +16,7 @@ class CategorySessionCollectionCell: UICollectionViewCell {
     @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var languageImageView: UIImageView!
     
     var session: CategorySessionVM! {
         didSet {
@@ -43,6 +44,8 @@ class CategorySessionCollectionCell: UICollectionViewCell {
         durationLabel.font = UIFont.lbc(ofSize: 14)
         durationLabel.textColor = UIColor.white
         overlayView.applyGradientColor(colors: [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(0.56).cgColor], startPoint: GradientPoint.top, endPoint: GradientPoint.bottom)
+        
+        languageImageView.contentMode = .center
     }
     
     private func fillData() {
@@ -56,5 +59,15 @@ class CategorySessionCollectionCell: UICollectionViewCell {
         durationLabel.text = session.durationString
         
         lockImageView.isHidden = !session.isLock
+        
+        if(session?.session?.audioSources.count ?? 0 > 1){
+            languageImageView.image = UIImage(named: "SessionArEn")
+        }else{
+            if session?.session?.audioSources[0].code.lowercased() == "ar"{
+                languageImageView.image = UIImage(named: "SessionAr")
+            }else{
+                languageImageView.image = UIImage(named: "SessionEn")
+            }
+        }
     }
 }

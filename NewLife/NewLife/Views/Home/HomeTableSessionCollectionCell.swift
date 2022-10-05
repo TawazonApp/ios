@@ -15,6 +15,7 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
     @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var languageImageView: UIImageView!
     
     var session: HomeSessionVM? {
         didSet {
@@ -41,6 +42,9 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         
         durationLabel.font = UIFont.lbc(ofSize: 14)
         durationLabel.textColor = UIColor.white
+        durationLabel.isHidden = true
+        
+        languageImageView.contentMode = .center
     }
     
     private func fillData() {
@@ -66,5 +70,14 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         durationLabel.text = session?.durationString
         
         lockImageView.isHidden = !(session?.isLock ?? false)
+        if(session?.audioSources?.count ?? 0 > 1){
+            languageImageView.image = UIImage(named: "SessionArEn")
+        }else{
+            if session?.audioSources?[0].code.lowercased() == "ar"{
+                languageImageView.image = UIImage(named: "SessionAr")
+            }else{
+                languageImageView.image = UIImage(named: "SessionEn")
+            }
+        }
     }
 }
