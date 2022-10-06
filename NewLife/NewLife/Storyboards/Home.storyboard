@@ -183,6 +183,23 @@
                                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h2S-ed-s60">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="300" height="68"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                            <subviews>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwu-50-hiT">
+                                                                                                    <rect key="frame" x="16" y="23.5" width="268" height="20.5"/>
+                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                                    <nil key="textColor"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mrv-53-Qjz">
+                                                                                                    <rect key="frame" x="30" y="-30.5" width="240" height="128"/>
+                                                                                                </imageView>
+                                                                                            </subviews>
+                                                                                            <constraints>
+                                                                                                <constraint firstItem="vwu-50-hiT" firstAttribute="leading" secondItem="h2S-ed-s60" secondAttribute="leading" constant="16" id="1Uf-dJ-ndR"/>
+                                                                                                <constraint firstItem="Mrv-53-Qjz" firstAttribute="centerY" secondItem="h2S-ed-s60" secondAttribute="centerY" id="4PG-QX-r4U"/>
+                                                                                                <constraint firstItem="Mrv-53-Qjz" firstAttribute="leading" secondItem="vwu-50-hiT" secondAttribute="trailing" constant="5" id="d2i-tC-V41"/>
+                                                                                                <constraint firstItem="vwu-50-hiT" firstAttribute="centerY" secondItem="h2S-ed-s60" secondAttribute="centerY" id="euX-Xk-DM3"/>
+                                                                                            </constraints>
                                                                                         </view>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="68" id="70B-in-S9K"/>
@@ -196,12 +213,6 @@
                                                                                             <constraint firstAttribute="width" constant="14" id="krQ-gJ-PKk"/>
                                                                                         </constraints>
                                                                                     </imageView>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwu-50-hiT">
-                                                                                        <rect key="frame" x="16" y="59.5" width="268" height="20.5"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                        <nil key="textColor"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yst-x1-tmK">
                                                                                         <rect key="frame" x="16" y="84" width="41.5" height="16"/>
                                                                                         <constraints>
@@ -213,19 +224,17 @@
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="vwu-50-hiT" secondAttribute="trailing" constant="16" id="517-hd-LC3"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="z1i-Qj-DeQ" secondAttribute="trailing" constant="16" id="AkR-Ra-7Dk"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="KEV-5n-Hk2" secondAttribute="bottom" id="B2y-ay-Ycd"/>
+                                                                                    <constraint firstItem="Mrv-53-Qjz" firstAttribute="centerX" secondItem="z1i-Qj-DeQ" secondAttribute="centerX" id="GPi-6M-NR5"/>
                                                                                     <constraint firstItem="wnG-cM-8yb" firstAttribute="leading" secondItem="p8u-cJ-75w" secondAttribute="leading" id="Gdd-Va-4eX"/>
                                                                                     <constraint firstItem="wnG-cM-8yb" firstAttribute="top" secondItem="p8u-cJ-75w" secondAttribute="top" id="OPh-mp-zXe"/>
                                                                                     <constraint firstItem="KEV-5n-Hk2" firstAttribute="leading" secondItem="p8u-cJ-75w" secondAttribute="leading" id="WhB-y3-lQz"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="yst-x1-tmK" secondAttribute="bottom" constant="16" id="XmR-zA-AvO"/>
                                                                                     <constraint firstItem="z1i-Qj-DeQ" firstAttribute="top" secondItem="p8u-cJ-75w" secondAttribute="top" constant="16" id="Y0X-rM-F9j"/>
                                                                                     <constraint firstItem="yst-x1-tmK" firstAttribute="leading" secondItem="p8u-cJ-75w" secondAttribute="leading" constant="16" id="ZK5-es-kJE"/>
-                                                                                    <constraint firstItem="vwu-50-hiT" firstAttribute="leading" secondItem="p8u-cJ-75w" secondAttribute="leading" constant="16" id="cVt-xi-5OK"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="wnG-cM-8yb" secondAttribute="bottom" id="dSa-k2-FI0"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="KEV-5n-Hk2" secondAttribute="trailing" id="dbd-om-rpn"/>
-                                                                                    <constraint firstItem="yst-x1-tmK" firstAttribute="top" secondItem="vwu-50-hiT" secondAttribute="bottom" constant="4" id="nmk-kS-7Np"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="wnG-cM-8yb" secondAttribute="trailing" id="zWs-iu-Nb5"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
@@ -234,6 +243,7 @@
                                                                                 <outlet property="blurView" destination="KEV-5n-Hk2" id="5ki-M8-EdI"/>
                                                                                 <outlet property="durationLabel" destination="yst-x1-tmK" id="E5V-34-DHN"/>
                                                                                 <outlet property="imageView" destination="wnG-cM-8yb" id="kFd-ak-UE4"/>
+                                                                                <outlet property="languageImageView" destination="Mrv-53-Qjz" id="RKZ-VN-IlR"/>
                                                                                 <outlet property="lockImageView" destination="z1i-Qj-DeQ" id="v9r-gR-bVf"/>
                                                                                 <outlet property="nameLabel" destination="vwu-50-hiT" id="jFs-uF-g6i"/>
                                                                             </connections>
@@ -1352,21 +1362,14 @@
                                                                         <constraint firstAttribute="width" constant="16" id="tBt-gm-WX8"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jap-TT-DI0">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="دخول لجميع التأمُّلات ومحتوى تطبيق توازُن" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jap-TT-DI0">
                                                                     <rect key="frame" x="28" y="0.0" width="313" height="0.0"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="II4-1o-C1l"/>
                                                                     </constraints>
-                                                                    <attributedString key="attributedText">
-                                                                        <fragment content="دخول لجميع التأمُّلات ومحتوى تطبيق توازُن">
-                                                                            <attributes>
-                                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" metaFont="system"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
+                                                                    <fontDescription key="fontDescription" name=".SFArabic-Regular" family=".SF Arabic" pointSize="13"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -1390,20 +1393,13 @@
                                                                         <constraint firstAttribute="height" constant="16" id="cOe-jb-Hqb"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVJ-ve-S5l">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="ساعد طفلك ايضا على حل مشاكل النوم" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVJ-ve-S5l">
                                                                     <rect key="frame" x="28" y="0.0" width="313" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="dz8-by-Y6E"/>
                                                                     </constraints>
-                                                                    <attributedString key="attributedText">
-                                                                        <fragment content="ساعد طفلك ايضا على حل مشاكل النوم">
-                                                                            <attributes>
-                                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" metaFont="system"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
+                                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -1427,20 +1423,13 @@
                                                                         <constraint firstAttribute="height" constant="16" id="6hD-0V-PHh"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-Al-Rvb">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="تمتع بتأمّلات وقصص نوم جديدة اسبوعياً" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-Al-Rvb">
                                                                     <rect key="frame" x="28" y="0.0" width="313" height="19"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ub8-nb-13Z"/>
                                                                     </constraints>
-                                                                    <attributedString key="attributedText">
-                                                                        <fragment content="تمتع بتأمّلات وقصص نوم جديدة اسبوعياً">
-                                                                            <attributes>
-                                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" metaFont="system"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
+                                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>

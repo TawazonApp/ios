@@ -39,6 +39,7 @@ class PremiumDiscountCell: UITableViewCell {
         super.awakeFromNib()
         contentView.backgroundColor = UIColor.white
         backgroundColor = UIColor.white
+        titleLabel.text = "limitedTimeLabel".localized
     }
     
     private func populateData() {
