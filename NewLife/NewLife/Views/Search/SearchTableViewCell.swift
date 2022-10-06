@@ -14,6 +14,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var premiumIcon: UIImageView!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var languageImageView: UIImageView!
     
     var session: HomeSessionVM! {
         didSet {
@@ -48,6 +49,8 @@ class SearchTableViewCell: UITableViewCell {
         durationLabel.textColor = .white
         durationLabel.layer.opacity = 0.6
         
+        languageImageView.contentMode = .center
+        
     }
     
     func fillData()  {
@@ -62,6 +65,16 @@ class SearchTableViewCell: UITableViewCell {
         
         premiumIcon.image = nil
         premiumIcon.image = session.isLock ? UIImage(named: "SessionLock") : nil
+       
+        if(session?.audioSources?.count ?? 0 > 1){
+            languageImageView.image = UIImage(named: "SessionArEn")
+        }else{
+            if session?.audioSources?[0].code.lowercased() == "ar"{
+                languageImageView.image = UIImage(named: "SessionAr")
+            }else{
+                languageImageView.image = UIImage(named: "SessionEn")
+            }
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

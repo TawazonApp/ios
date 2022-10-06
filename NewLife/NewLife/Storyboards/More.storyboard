@@ -822,7 +822,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVO-2n-iug">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVO-2n-iug">
                                         <rect key="frame" x="187" y="190" width="319" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -838,8 +838,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ATb-ru-Wja" firstAttribute="top" secondItem="8Kr-pC-pK8" secondAttribute="bottom" constant="20" id="00d-54-Sl1"/>
-                                    <constraint firstItem="RVO-2n-iug" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ATb-ru-Wja" secondAttribute="bottom" constant="15" id="4aB-eM-Apa"/>
+                                    <constraint firstItem="ATb-ru-Wja" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8Kr-pC-pK8" secondAttribute="bottom" constant="10" id="00d-54-Sl1"/>
+                                    <constraint firstItem="RVO-2n-iug" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ATb-ru-Wja" secondAttribute="bottom" constant="10" id="4aB-eM-Apa"/>
                                     <constraint firstAttribute="trailing" secondItem="RVO-2n-iug" secondAttribute="trailing" constant="28" id="DQ3-Jq-RiT"/>
                                     <constraint firstItem="ggq-6k-8A7" firstAttribute="top" secondItem="RVO-2n-iug" secondAttribute="bottom" constant="13" id="GRN-EH-y2U"/>
                                     <constraint firstItem="ggq-6k-8A7" firstAttribute="leading" secondItem="Jcd-nB-78a" secondAttribute="leading" id="Kao-8Q-8d5"/>
