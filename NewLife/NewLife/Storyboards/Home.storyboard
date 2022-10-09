@@ -2133,7 +2133,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-Uw-Q1S">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i1v-7r-u0C">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2378,7 +2378,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qg-pU-lG3">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O9D-Cm-PXL">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2809,7 +2809,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-6a-DzZ">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="52T-9L-ILE">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
