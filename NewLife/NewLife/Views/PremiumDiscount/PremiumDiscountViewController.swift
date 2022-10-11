@@ -47,7 +47,7 @@ class PremiumDiscountViewController: HandleErrorViewController {
             priceLabel.text = ""
             return
         }
-//        discount = 1 - discount
+        discount = 1 - discount
         let price = (Float(truncating: product.price) / discount)
         let discountPrice = product.price
         let discountPriceString = getPriceString(price: discountPrice, locale: product.priceLocale)
