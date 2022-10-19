@@ -11,6 +11,7 @@ import UIKit
 class HomeTableSessionCollectionCell: UICollectionViewCell {
         
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var overlayView: GradientView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -34,6 +35,9 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.duskTwo
+        
+        overlayView.applyGradientColor(colors: [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(0.56).cgColor], startPoint: GradientPoint.top, endPoint: GradientPoint.bottom)
+        
         lockImageView.contentMode = .center
         lockImageView.image = #imageLiteral(resourceName: "SessionLock.pdf")
         

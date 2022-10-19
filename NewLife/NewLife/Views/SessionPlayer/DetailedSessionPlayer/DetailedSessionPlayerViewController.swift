@@ -122,13 +122,6 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     private func startGuidedTapping(){
-        /*
-         - first open
-         1. session with button >> all steps
-         2. session without button >> all steps except button step
-         - other open
-         1. session with button >> button step only
-         */
         let tourView = GuidedTourView(frame: self.view.frame)
         tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
         tourView.screenName = "Session"

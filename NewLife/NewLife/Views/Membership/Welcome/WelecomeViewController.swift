@@ -41,14 +41,14 @@ class WelecomeViewController: HandleErrorViewController {
         
         if UserDefaults.isFirstOpenedInstallSources() && !UserDefaults.isFirstOpened() {
             print("viewWillAppear")
-            self.showOnboardingInstallSourcesViewController()
+//            self.showOnboardingInstallSourcesViewController()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(showOnboardingInstallSourcesViewController), name: NSNotification.Name.showOnboardingInstallSources
-            , object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showOnboardingInstallSourcesViewController), name: NSNotification.Name.showOnboardingInstallSources
+//            , object: nil)
         
         
         if UserDefaults.isFirstOpened() {
@@ -266,7 +266,7 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     private func openGoalsViewController() {
-        let viewController = GoalsViewController.instantiate(sourceView: .welcome)
+        let viewController = GoalsListViewController.instantiate()
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: false, completion: nil)
     }

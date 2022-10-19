@@ -331,6 +331,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
 extension SuperSessionPlayerViewController: PlayerControlsViewDelegate {
     
     func backwardButtonTapped() {
+        print("backwardButtonTapped")
         guard AudioPlayerManager.shared.canRewind() else {
             return
         }
@@ -344,7 +345,7 @@ extension SuperSessionPlayerViewController: PlayerControlsViewDelegate {
     }
     
     func forwardButtonTapped() {
-        
+        print("forwardButtonTapped")
         if let currentTimeInSeconds = AudioPlayerManager.shared.currentTrack?.currentTimeInSeconds() {
             let newTime = currentTimeInSeconds + 10
             let seekTime = CMTimeMake(value: Int64(newTime), timescale: 1)
@@ -446,7 +447,7 @@ extension SuperSessionPlayerViewController{
          NotificationCenter.default.post(name: NSNotification.Name.updatePlayerProgress, object: nil)
     }
     
-    private func showAndHideLoadingIndicator(track: AudioTrack?) {
+    func showAndHideLoadingIndicator(track: AudioTrack?) {
         if track != nil && track!.currentTimeInSeconds() == 0 && AudioPlayerManager.shared.isPlaying() {
             startPlayerLoadingIfNeeded()
         } else {
@@ -465,6 +466,7 @@ extension SuperSessionPlayerViewController{
         playButton.isEnabled = false
         controlsView.alpha = 0.5
         controlsView.isUserInteractionEnabled = false
+        print("startPlayerLoadingIfNeeded")
     }
     
     private func stopPlayerLoading() {
@@ -476,6 +478,7 @@ extension SuperSessionPlayerViewController{
         playButton.isEnabled = true
         controlsView.alpha = 1.0
         controlsView.isUserInteractionEnabled = true
+        print("stopPlayerLoading")
     }
     
     private func sendPlaySessionEvent(id: String, name: String) {

@@ -57,6 +57,7 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
     
     private func reloadData() {
         titleLabel.text = data?.title
+        moreButton.isHidden = data?.sessions.count ?? 0 > 1 ? false : true
         iconImageView.image = nil
         if let imageUrl = data?.iconUrl?.url {
             iconImageView.af.setImage(withURL: imageUrl)
@@ -79,14 +80,14 @@ class HomeTableHorizontalSectionCell: UITableViewCell {
     }
     private func calculateCollectionHeight() {
         let style =  data?.style ?? .largeList
-        let availableWidth = frame.width - (2 * collectionCellSpace)
+        let availableWidth = UIScreen.main.bounds.size.width - (2 * collectionCellSpace)
         if style == .largeList {
             collectionCellWidth = availableWidth / 1.1
             collectionCellHeight = collectionCellWidth * 1.1
             
         } else {
             collectionCellWidth = availableWidth / 1.4
-            collectionCellHeight = collectionCellWidth * 1.25
+            collectionCellHeight = collectionCellWidth * 0.9
         }
         if (data?.sessions.count ?? 0) <= 1 {
             collectionCellWidth = availableWidth - 5
@@ -112,14 +113,14 @@ extension HomeTableHorizontalSectionCell: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionCellHeight < collectionView.frame.size.height {
+//        if collectionCellHeight < collectionView.frame.size.height {
             return CGSize(width: collectionCellWidth, height: collectionCellHeight)
-        }
-        return CGSize(width: collectionCellWidth, height: 116)
+//        }
+//        return CGSize(width: collectionCellWidth, height: 116)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return collectionCellSpace
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

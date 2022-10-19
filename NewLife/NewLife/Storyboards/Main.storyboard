@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,25 +27,25 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4x-gF-5vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8cd-E8-jsy" customClass="MainTabBarView" customModule="Tawazon" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tEZ-Mq-6Mw">
-                            <rect key="frame" x="8" y="0.0" width="359" height="74"/>
+                            <rect key="frame" x="8" y="0.0" width="359" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjE-Gw-rZm" customClass="MainTabBarItemView" customModule="Tawazon" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="72" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e73-T9-4O3" customClass="GradientImageView" customModule="Tawazon" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="0.0" width="48" height="48"/>
+                                            <rect key="frame" x="15" y="0.0" width="42" height="42"/>
                                             <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="48" id="C1A-l2-jFd"/>
-                                                <constraint firstAttribute="height" constant="48" id="hId-7V-W24"/>
+                                                <constraint firstAttribute="width" constant="42" id="C1A-l2-jFd"/>
+                                                <constraint firstAttribute="height" constant="42" id="hId-7V-W24"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewL-eH-o86">
-                                            <rect key="frame" x="0.0" y="48" width="72" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="43" width="72" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                                     <constraints>
                                         <constraint firstItem="ewL-eH-o86" firstAttribute="leading" secondItem="tjE-Gw-rZm" secondAttribute="leading" id="5LJ-Dl-CVe"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ewL-eH-o86" secondAttribute="bottom" id="73J-ie-9uS"/>
-                                        <constraint firstItem="ewL-eH-o86" firstAttribute="top" secondItem="e73-T9-4O3" secondAttribute="bottom" id="Gol-dE-zJL"/>
+                                        <constraint firstItem="ewL-eH-o86" firstAttribute="top" secondItem="e73-T9-4O3" secondAttribute="bottom" constant="1" id="Gol-dE-zJL"/>
                                         <constraint firstAttribute="trailing" secondItem="ewL-eH-o86" secondAttribute="trailing" id="O2a-f2-c2d"/>
                                         <constraint firstItem="e73-T9-4O3" firstAttribute="top" secondItem="tjE-Gw-rZm" secondAttribute="top" id="ePu-tB-hjh"/>
                                         <constraint firstItem="e73-T9-4O3" firstAttribute="centerX" secondItem="tjE-Gw-rZm" secondAttribute="centerX" id="rlf-p1-fYr"/>
@@ -66,18 +66,18 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-qu-eL2" customClass="MainTabBarItemView" customModule="Tawazon" customModuleProvider="target">
-                                    <rect key="frame" x="72" y="0.0" width="71.5" height="74"/>
+                                    <rect key="frame" x="72" y="0.0" width="71.5" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ua8-pt-TxF" customClass="GradientImageView" customModule="Tawazon" customModuleProvider="target">
-                                            <rect key="frame" x="11.5" y="0.0" width="48" height="48"/>
+                                            <rect key="frame" x="14.5" y="0.0" width="42" height="42"/>
                                             <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="DgZ-O0-Hp9"/>
-                                                <constraint firstAttribute="width" constant="48" id="uil-PA-y4W"/>
+                                                <constraint firstAttribute="height" constant="42" id="DgZ-O0-Hp9"/>
+                                                <constraint firstAttribute="width" constant="42" id="uil-PA-y4W"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4Y-PM-q1X">
-                                            <rect key="frame" x="0.0" y="48" width="71.5" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="43" width="71.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -88,7 +88,7 @@
                                         <constraint firstAttribute="trailing" secondItem="u4Y-PM-q1X" secondAttribute="trailing" id="1m3-Wy-tf0"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u4Y-PM-q1X" secondAttribute="bottom" id="ALD-8i-wjb"/>
                                         <constraint firstItem="ua8-pt-TxF" firstAttribute="top" secondItem="Z7g-qu-eL2" secondAttribute="top" id="AxG-9z-bfH"/>
-                                        <constraint firstItem="u4Y-PM-q1X" firstAttribute="top" secondItem="ua8-pt-TxF" secondAttribute="bottom" id="CFo-hl-NZG"/>
+                                        <constraint firstItem="u4Y-PM-q1X" firstAttribute="top" secondItem="ua8-pt-TxF" secondAttribute="bottom" constant="1" id="CFo-hl-NZG"/>
                                         <constraint firstItem="ua8-pt-TxF" firstAttribute="centerX" secondItem="Z7g-qu-eL2" secondAttribute="centerX" id="FFe-EH-1aO"/>
                                         <constraint firstItem="u4Y-PM-q1X" firstAttribute="leading" secondItem="Z7g-qu-eL2" secondAttribute="leading" id="TCR-ob-tV0"/>
                                     </constraints>
@@ -98,17 +98,17 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBh-LZ-S2X" customClass="MainTabBarItemView" customModule="Tawazon" customModuleProvider="target">
-                                    <rect key="frame" x="143.5" y="0.0" width="72" height="74"/>
+                                    <rect key="frame" x="143.5" y="0.0" width="72" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ilB-lE-hZh" customClass="GradientImageView" customModule="Tawazon" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="0.0" width="48" height="48"/>
+                                            <rect key="frame" x="15" y="0.0" width="42" height="42"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="PzA-91-uRr"/>
-                                                <constraint firstAttribute="width" constant="48" id="puh-eA-qBF"/>
+                                                <constraint firstAttribute="height" constant="42" id="PzA-91-uRr"/>
+                                                <constraint firstAttribute="width" constant="42" id="puh-eA-qBF"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKE-ot-DNS">
-                                            <rect key="frame" x="0.0" y="48" width="72" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="43" width="72" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -121,7 +121,7 @@
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SKE-ot-DNS" secondAttribute="bottom" id="M40-7A-8AQ"/>
                                         <constraint firstItem="SKE-ot-DNS" firstAttribute="leading" secondItem="oBh-LZ-S2X" secondAttribute="leading" id="d66-q0-NDT"/>
                                         <constraint firstAttribute="trailing" secondItem="SKE-ot-DNS" secondAttribute="trailing" id="nOh-zC-IOB"/>
-                                        <constraint firstItem="SKE-ot-DNS" firstAttribute="top" secondItem="ilB-lE-hZh" secondAttribute="bottom" id="z3J-in-yLs"/>
+                                        <constraint firstItem="SKE-ot-DNS" firstAttribute="top" secondItem="ilB-lE-hZh" secondAttribute="bottom" constant="1" id="z3J-in-yLs"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="imageView" destination="ilB-lE-hZh" id="aBC-1a-HLf"/>
@@ -129,17 +129,17 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJM-eh-vEP" customClass="MainTabBarItemView" customModule="Tawazon" customModuleProvider="target">
-                                    <rect key="frame" x="215.5" y="0.0" width="71.5" height="74"/>
+                                    <rect key="frame" x="215.5" y="0.0" width="71.5" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QlT-ly-5cZ" customClass="GradientImageView" customModule="Tawazon" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="0.0" width="48" height="48"/>
+                                            <rect key="frame" x="15" y="0.0" width="42" height="42"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="5y5-Ov-vi5"/>
-                                                <constraint firstAttribute="width" constant="48" id="EeK-Rf-q66"/>
+                                                <constraint firstAttribute="height" constant="42" id="5y5-Ov-vi5"/>
+                                                <constraint firstAttribute="width" constant="42" id="EeK-Rf-q66"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkt-ff-Y4W">
-                                            <rect key="frame" x="0.0" y="48" width="71.5" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="43" width="71.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -148,7 +148,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xkt-ff-Y4W" secondAttribute="bottom" id="3j5-oj-rTT"/>
-                                        <constraint firstItem="xkt-ff-Y4W" firstAttribute="top" secondItem="QlT-ly-5cZ" secondAttribute="bottom" id="M9R-3f-obj"/>
+                                        <constraint firstItem="xkt-ff-Y4W" firstAttribute="top" secondItem="QlT-ly-5cZ" secondAttribute="bottom" constant="1" id="M9R-3f-obj"/>
                                         <constraint firstItem="QlT-ly-5cZ" firstAttribute="centerX" secondItem="vJM-eh-vEP" secondAttribute="centerX" id="NhU-Gd-gcj"/>
                                         <constraint firstAttribute="trailing" secondItem="xkt-ff-Y4W" secondAttribute="trailing" id="W3u-bl-Qpm"/>
                                         <constraint firstItem="QlT-ly-5cZ" firstAttribute="top" secondItem="vJM-eh-vEP" secondAttribute="top" id="t6p-eT-auk"/>
@@ -160,17 +160,17 @@
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsP-9I-7LK" customClass="MainTabBarItemView" customModule="Tawazon" customModuleProvider="target">
-                                    <rect key="frame" x="287" y="0.0" width="72" height="74"/>
+                                    <rect key="frame" x="287" y="0.0" width="72" height="60"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qFu-GJ-amk" customClass="GradientImageView" customModule="Tawazon" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="0.0" width="48" height="48"/>
+                                            <rect key="frame" x="15" y="0.0" width="42" height="42"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="ZJL-Ep-RNd"/>
-                                                <constraint firstAttribute="width" constant="48" id="aDF-WT-CDg"/>
+                                                <constraint firstAttribute="height" constant="42" id="ZJL-Ep-RNd"/>
+                                                <constraint firstAttribute="width" constant="42" id="aDF-WT-CDg"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyS-IG-1eA">
-                                            <rect key="frame" x="0.0" y="48" width="72" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="43" width="72" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -180,7 +180,7 @@
                                     <constraints>
                                         <constraint firstItem="qFu-GJ-amk" firstAttribute="top" secondItem="gsP-9I-7LK" secondAttribute="top" id="58u-U4-xEo"/>
                                         <constraint firstItem="qFu-GJ-amk" firstAttribute="centerX" secondItem="gsP-9I-7LK" secondAttribute="centerX" id="9P2-AO-Jaw"/>
-                                        <constraint firstItem="PyS-IG-1eA" firstAttribute="top" secondItem="qFu-GJ-amk" secondAttribute="bottom" id="HGw-Se-7rF"/>
+                                        <constraint firstItem="PyS-IG-1eA" firstAttribute="top" secondItem="qFu-GJ-amk" secondAttribute="bottom" constant="1" id="HGw-Se-7rF"/>
                                         <constraint firstItem="PyS-IG-1eA" firstAttribute="leading" secondItem="gsP-9I-7LK" secondAttribute="leading" id="JG6-n1-2iC"/>
                                         <constraint firstAttribute="trailing" secondItem="PyS-IG-1eA" secondAttribute="trailing" id="O3Y-e0-MMD"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PyS-IG-1eA" secondAttribute="bottom" id="mJr-Vq-vs8"/>

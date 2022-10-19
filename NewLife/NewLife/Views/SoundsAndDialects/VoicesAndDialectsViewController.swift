@@ -137,7 +137,7 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
                 cell.setSelectedStyle(selected: true)
             }
         case 2:
-            cell.titleLabel.text = appLanguages[indexPath.row].getLanguageString()
+            cell.titleLabel.text = appLanguages[indexPath.row].getLanguageString().localized
             if Language.language == appLanguages[indexPath.row] {
                 cell.setSelectedStyle(selected: true)
             }
