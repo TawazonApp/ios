@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 import StoreKit
 import Dispatch
+import SwiftyStoreKit
 
 class Premium4ViewController: BasePremiumViewController {
 
@@ -21,6 +22,7 @@ class Premium4ViewController: BasePremiumViewController {
     @IBOutlet weak var imagesContainer: ImagesContainerView!
     @IBOutlet weak var plansContainer: PlansView!
     @IBOutlet weak var purchaseButton: GradientButton!
+    @IBOutlet weak var restorePurchasesButton: UIButton!
     @IBOutlet weak var promoCodeButton: UIButton!
     @IBOutlet weak var noteLabel: UILabel!
     
@@ -112,6 +114,10 @@ class Premium4ViewController: BasePremiumViewController {
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
+        restorePurchasesButton.setTitle("restorePurchasesButtonTitle".localized, for: .normal)
+        restorePurchasesButton.titleLabel?.font = UIFont.munaFont(ofSize: 13)
+        restorePurchasesButton.tintColor = UIColor.white
+        
         promoCodeButton.setTitle("promoCodeButtonTitle".localized, for: .normal)
         promoCodeButton.titleLabel?.font = UIFont.munaFont(ofSize: 13)
         promoCodeButton.tintColor = UIColor.white
@@ -133,6 +139,29 @@ class Premium4ViewController: BasePremiumViewController {
                 paymentQueue.presentCodeRedemptionSheet()
             }
     }
+    
+//    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
+//        LoadingHud.shared.show(animated: true)
+//        restorePurchase(completion: {
+//            LoadingHud.shared.hide(animated: true)
+//        })
+//    }
+    
+//    private func restorePurchase(completion: @escaping () -> Void) {
+//        if SwiftyStoreKit.localReceiptData != nil {
+//            uploadPurchaseReceipt(price: "", currancy: "", completion: completion)
+//            return
+//        }
+//
+//        SwiftyStoreKit.restorePurchases { [weak self] (results) in
+//            guard SwiftyStoreKit.localReceiptData != nil else {
+//                completion()
+//                return
+//            }
+//            self?.uploadPurchaseReceipt(price: "", currancy: "",completion: completion)
+//        }
+//    }
+    
     @IBAction override func cancelButtonTapped(_ sender: UIButton) {
         super.cancelButtonTapped(sender)
         if nextView == .mainViewController {

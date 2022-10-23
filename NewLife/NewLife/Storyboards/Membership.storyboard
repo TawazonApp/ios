@@ -1917,10 +1917,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1V-pL-ffr" customClass="ImagesContainerView" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="537.66666666666663"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="448"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ghv-Pb-r3o">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="519.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="5z3-AR-9QY">
                                             <size key="itemSize" width="50" height="50"/>
@@ -1930,7 +1930,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="ImagesContainerViewCollectionViewCell" id="Yy6-Ib-Smc" customClass="ImagesContainerViewCollectionViewCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="109.66666666666667" width="300" height="300"/>
+                                                <rect key="frame" x="0.0" y="65" width="300" height="300"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vb9-iv-jcI">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -1981,7 +1981,7 @@
                                         </connections>
                                     </collectionView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ssb-vC-eyq">
-                                        <rect key="frame" x="149.33333333333334" y="508.66666666666663" width="115.66666666666666" height="26"/>
+                                        <rect key="frame" x="149.33333333333334" y="419" width="115.66666666666666" height="26"/>
                                         <connections>
                                             <action selector="pageControlTapped:" destination="g1V-pL-ffr" eventType="valueChanged" id="0qF-c2-IBb"/>
                                         </connections>
@@ -2013,7 +2013,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dp-aM-5KZ" customClass="GradientView" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="215"/>
+                                <rect key="frame" x="0.0" y="44.000000000000014" width="414" height="179.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gBc-Fb-eWR">
                                         <rect key="frame" x="158.33333333333334" y="11.999999999999998" width="97.333333333333343" height="20.333333333333329"/>
@@ -2065,13 +2065,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-52-5oO">
-                                <rect key="frame" x="28" y="753.66666666666663" width="358" height="20.333333333333371"/>
+                                <rect key="frame" x="28" y="734" width="358" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v03-2N-u9q" customClass="GradientButton" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="24" y="786" width="366" height="56"/>
+                                <rect key="frame" x="24" y="734" width="366" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="cEl-NV-bKq"/>
                                 </constraints>
@@ -2081,8 +2081,16 @@
                                     <action selector="purchaseButtonTapped:" destination="bmh-OI-1bh" eventType="touchUpInside" id="Tck-r7-FCP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObC-fS-EE3">
+                                <rect key="frame" x="184" y="800" width="46" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="restorePurchaseButtonTapped:" destination="bmh-OI-1bh" eventType="touchUpInside" id="QNE-xO-LJD"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m13-61-vTF">
-                                <rect key="frame" x="184" y="846" width="46" height="30"/>
+                                <rect key="frame" x="184" y="832" width="46" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -2090,10 +2098,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtv-5U-mkW" customClass="PlansView" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="8" y="591.66666666666663" width="398" height="152"/>
+                                <rect key="frame" x="8" y="502" width="398" height="222"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hYg-ot-Zgw">
-                                        <rect key="frame" x="0.0" y="20.333333333333371" width="398" height="131.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="20.333333333333371" width="398" height="201.66666666666666"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="13" id="7HD-p2-ovi">
                                             <size key="itemSize" width="157" height="104"/>
@@ -2103,7 +2111,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PremiumPlanCollectionViewCell" id="zlv-if-QDU" customClass="PremiumPlanCollectionViewCell" customModule="Tawazon" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="13.666666666666666" width="101" height="104"/>
+                                                <rect key="frame" x="0.0" y="49" width="101" height="104"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="saX-eS-Tqb">
                                                     <rect key="frame" x="0.0" y="0.0" width="101" height="104"/>
@@ -2182,20 +2190,22 @@
                         <viewLayoutGuide key="safeArea" id="sYH-Is-cF2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="m13-61-vTF" firstAttribute="top" secondItem="v03-2N-u9q" secondAttribute="bottom" constant="4" id="0n7-Ff-MwC"/>
-                            <constraint firstItem="v03-2N-u9q" firstAttribute="top" secondItem="mCD-52-5oO" secondAttribute="bottom" constant="12" id="5IO-4B-8s5"/>
+                            <constraint firstItem="m13-61-vTF" firstAttribute="top" secondItem="ObC-fS-EE3" secondAttribute="bottom" constant="2" id="2Xz-df-YNx"/>
                             <constraint firstItem="wtv-5U-mkW" firstAttribute="leading" secondItem="sYH-Is-cF2" secondAttribute="leading" constant="8" id="AJs-Uv-x14"/>
                             <constraint firstItem="m13-61-vTF" firstAttribute="centerX" secondItem="7XB-QA-EwF" secondAttribute="centerX" id="Auz-cW-GxZ"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="mCD-52-5oO" secondAttribute="trailing" constant="28" id="Fv5-JW-Dz8"/>
+                            <constraint firstItem="ObC-fS-EE3" firstAttribute="centerX" secondItem="m13-61-vTF" secondAttribute="centerX" id="OkR-NK-YnZ"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="v03-2N-u9q" secondAttribute="trailing" constant="24" id="Rur-Tx-eDJ"/>
-                            <constraint firstItem="sYH-Is-cF2" firstAttribute="bottom" secondItem="v03-2N-u9q" secondAttribute="bottom" constant="20" id="TAz-2O-ri3"/>
+                            <constraint firstItem="sYH-Is-cF2" firstAttribute="bottom" secondItem="m13-61-vTF" secondAttribute="bottom" id="T0O-8w-o1v"/>
                             <constraint firstItem="sYH-Is-cF2" firstAttribute="trailing" secondItem="wtv-5U-mkW" secondAttribute="trailing" constant="8" id="Ucw-Bf-IQz"/>
                             <constraint firstItem="mCD-52-5oO" firstAttribute="top" secondItem="wtv-5U-mkW" secondAttribute="bottom" constant="10" id="XGd-M8-YBs"/>
                             <constraint firstItem="1dp-aM-5KZ" firstAttribute="height" secondItem="g1V-pL-ffr" secondAttribute="height" multiplier="0.4" id="ZKn-IV-Dfg"/>
                             <constraint firstItem="g1V-pL-ffr" firstAttribute="width" secondItem="7XB-QA-EwF" secondAttribute="width" id="czy-Sa-3qx"/>
-                            <constraint firstItem="g1V-pL-ffr" firstAttribute="height" secondItem="7XB-QA-EwF" secondAttribute="height" multiplier="0.6" id="gJS-3l-yul"/>
+                            <constraint firstItem="ObC-fS-EE3" firstAttribute="top" secondItem="v03-2N-u9q" secondAttribute="bottom" constant="10" id="gCG-Kv-U7f"/>
+                            <constraint firstItem="g1V-pL-ffr" firstAttribute="height" secondItem="7XB-QA-EwF" secondAttribute="height" multiplier="0.5" id="gJS-3l-yul"/>
                             <constraint firstItem="mCD-52-5oO" firstAttribute="leading" secondItem="sYH-Is-cF2" secondAttribute="leading" constant="28" id="gk7-Tb-w0k"/>
                             <constraint firstItem="g1V-pL-ffr" firstAttribute="top" secondItem="sYH-Is-cF2" secondAttribute="top" id="h8Y-gx-AM5"/>
+                            <constraint firstItem="v03-2N-u9q" firstAttribute="top" secondItem="wtv-5U-mkW" secondAttribute="bottom" constant="10" id="lVg-WC-4Sg"/>
                             <constraint firstItem="1dp-aM-5KZ" firstAttribute="leading" secondItem="sYH-Is-cF2" secondAttribute="leading" id="lyJ-es-NHV"/>
                             <constraint firstItem="wtv-5U-mkW" firstAttribute="top" secondItem="g1V-pL-ffr" secondAttribute="bottom" constant="10" id="m4I-2g-LHj"/>
                             <constraint firstItem="1dp-aM-5KZ" firstAttribute="top" secondItem="sYH-Is-cF2" secondAttribute="top" id="oLh-cO-xzV"/>
@@ -2215,6 +2225,7 @@
                         <outlet property="plansContainer" destination="wtv-5U-mkW" id="ejU-sF-F5E"/>
                         <outlet property="promoCodeButton" destination="m13-61-vTF" id="xtc-sI-zgG"/>
                         <outlet property="purchaseButton" destination="v03-2N-u9q" id="ISn-8g-sdt"/>
+                        <outlet property="restorePurchasesButton" destination="ObC-fS-EE3" id="0n6-Q0-Byu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLK-hr-aVj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3080,7 +3091,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kex-vB-ejA">
-                                                    <rect key="frame" x="43.666666666666686" y="3" width="350.33333333333337" height="54"/>
+                                                    <rect key="frame" x="43.666666666666657" y="3" width="350.33333333333337" height="54"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

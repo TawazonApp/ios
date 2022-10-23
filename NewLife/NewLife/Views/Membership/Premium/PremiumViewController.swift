@@ -215,33 +215,33 @@ class PremiumViewController: BasePremiumViewController {
         }
     }
       
-    private func restorePurchase(completion: @escaping () -> Void) {
-        if SwiftyStoreKit.localReceiptData != nil {
-            uploadPurchaseReceipt(price: "", currancy: "", completion: completion)
-            return
-        }
-        
-        SwiftyStoreKit.restorePurchases { [weak self] (results) in
-            guard SwiftyStoreKit.localReceiptData != nil else {
-                completion()
-                return
-            }
-            self?.uploadPurchaseReceipt(price: "", currancy: "",completion: completion)
-        }
-    }
+//    private func restorePurchase(completion: @escaping () -> Void) {
+//        if SwiftyStoreKit.localReceiptData != nil {
+//            uploadPurchaseReceipt(price: "", currancy: "", completion: completion)
+//            return
+//        }
+//        
+//        SwiftyStoreKit.restorePurchases { [weak self] (results) in
+//            guard SwiftyStoreKit.localReceiptData != nil else {
+//                completion()
+//                return
+//            }
+//            self?.uploadPurchaseReceipt(price: "", currancy: "",completion: completion)
+//        }
+//    }
       
-    private func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping () -> Void) {
-          let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        appDelegate.uploadPurchaseReceipt(price: price, currancy: currancy) { (error) in
-              if error == nil {
-                  for transaction in appDelegate.paymentTransactions {
-                      appDelegate.finishTransaction(paymentTransaction: transaction)
-                  }
-                  appDelegate.paymentTransactions.removeAll()
-              }
-              completion()
-          }
-      }
+//    private func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping () -> Void) {
+//          let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//        appDelegate.uploadPurchaseReceipt(price: price, currancy: currancy) { (error) in
+//              if error == nil {
+//                  for transaction in appDelegate.paymentTransactions {
+//                      appDelegate.finishTransaction(paymentTransaction: transaction)
+//                  }
+//                  appDelegate.paymentTransactions.removeAll()
+//              }
+//              completion()
+//          }
+//      }
     
 //    @IBAction func cancelButtonTapped(_ sender: UIButton) {
 //        if nextView == .mainViewController {
@@ -274,12 +274,12 @@ class PremiumViewController: BasePremiumViewController {
                 paymentQueue.presentCodeRedemptionSheet()
             }
     }
-    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
-        LoadingHud.shared.show(animated: true)
-        restorePurchase(completion: {
-            LoadingHud.shared.hide(animated: true)
-        })
-    }
+//    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
+//        LoadingHud.shared.show(animated: true)
+//        restorePurchase(completion: {
+//            LoadingHud.shared.hide(animated: true)
+//        })
+//    }
 
     override func purchaseAction(product: SKProduct?) {
 

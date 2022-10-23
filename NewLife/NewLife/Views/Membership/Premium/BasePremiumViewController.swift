@@ -40,6 +40,15 @@ class BasePremiumViewController: HandleErrorViewController, SKPaymentTransaction
         }
     }
     
+    
+    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
+        LoadingHud.shared.show(animated: true)
+        restorePurchase(completion: {
+            LoadingHud.shared.hide(animated: true)
+        })
+    }
+
+    
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         if nextView == .mainViewController {
             TrackerManager.shared.sendSkipPremiumEvent()
@@ -116,7 +125,7 @@ extension BasePremiumViewController{
         }
     }
     
-    private func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping () -> Void) {
+     func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping () -> Void) {
           let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.uploadPurchaseReceipt(price: price, currancy: currancy) { (error) in
               if error == nil {
@@ -128,6 +137,21 @@ extension BasePremiumViewController{
               completion()
           }
       }
+    
+    func restorePurchase(completion: @escaping () -> Void) {
+        if SwiftyStoreKit.localReceiptData != nil {
+            uploadPurchaseReceipt(price: "", currancy: "", completion: completion)
+            return
+        }
+        
+        SwiftyStoreKit.restorePurchases { [weak self] (results) in
+            guard SwiftyStoreKit.localReceiptData != nil else {
+                completion()
+                return
+            }
+            self?.uploadPurchaseReceipt(price: "", currancy: "",completion: completion)
+        }
+    }
     
     func purchaseErrorMessage(error: SKError) -> String? {
             switch error.code {
