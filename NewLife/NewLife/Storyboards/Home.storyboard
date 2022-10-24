@@ -1444,7 +1444,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cer-mj-jYe">
-                                                            <rect key="frame" x="0.0" y="8" width="341" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="8" width="341" height="16"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscountCheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-0T-C6J">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -1454,7 +1454,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="ساعد طفلك ايضا على حل مشاكل النوم" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVJ-ve-S5l">
-                                                                    <rect key="frame" x="28" y="0.0" width="313" height="20"/>
+                                                                    <rect key="frame" x="28" y="0.0" width="313" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="dz8-by-Y6E"/>
                                                                     </constraints>
@@ -1474,7 +1474,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1K-zA-BOe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="341" height="0.0"/>
+                                                            <rect key="frame" x="0.0" y="-16" width="341" height="16"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscountCheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OAH-5f-iWi">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -1484,7 +1484,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="تمتع بتأمّلات وقصص نوم جديدة اسبوعياً" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-Al-Rvb">
-                                                                    <rect key="frame" x="28" y="0.0" width="313" height="20"/>
+                                                                    <rect key="frame" x="28" y="0.0" width="313" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ub8-nb-13Z"/>
                                                                     </constraints>
@@ -2193,7 +2193,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-Uw-Q1S">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i1v-7r-u0C">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2438,7 +2438,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qg-pU-lG3">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O9D-Cm-PXL">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2656,7 +2656,36 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q1z-93-Z3q">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="116"/>
                                                 </imageView>
-                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-Xa-GsX">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEY-nv-oru" customClass="GradientView" customModule="Tawazon" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="116"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOh-bQ-knC">
+                                                    <rect key="frame" x="0.0" y="48" width="300" height="68"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcj-B4-sIU">
+                                                            <rect key="frame" x="20" y="24" width="245" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DiF-Fi-frC">
+                                                            <rect key="frame" x="270" y="27" width="14" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="DiF-Fi-frC" secondAttribute="height" multiplier="1:1" id="niC-jv-z10"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Pcj-B4-sIU" firstAttribute="leading" secondItem="XOh-bQ-knC" secondAttribute="leading" constant="20" id="2lU-fP-TPF"/>
+                                                        <constraint firstItem="Pcj-B4-sIU" firstAttribute="centerY" secondItem="XOh-bQ-knC" secondAttribute="centerY" id="8Cx-Ff-aXI"/>
+                                                        <constraint firstAttribute="height" constant="68" id="EKP-Ka-dus"/>
+                                                        <constraint firstItem="DiF-Fi-frC" firstAttribute="centerY" secondItem="XOh-bQ-knC" secondAttribute="centerY" id="N3u-HK-Dbe"/>
+                                                        <constraint firstItem="DiF-Fi-frC" firstAttribute="leading" secondItem="Pcj-B4-sIU" secondAttribute="trailing" constant="5" id="cNk-Mj-Bgs"/>
+                                                    </constraints>
+                                                </view>
+                                                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-Xa-GsX">
                                                     <rect key="frame" x="0.0" y="48" width="300" height="68"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JD2-8t-2Hg">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="68"/>
@@ -2707,17 +2736,26 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Q1z-93-Z3q" secondAttribute="trailing" id="1Vd-vb-K3S"/>
                                                 <constraint firstItem="F8T-VF-OVc" firstAttribute="centerX" secondItem="yVq-50-uXa" secondAttribute="centerX" id="4Gs-6t-cJm"/>
+                                                <constraint firstItem="DiF-Fi-frC" firstAttribute="width" secondItem="yVq-50-uXa" secondAttribute="width" id="AqE-z0-3uW"/>
                                                 <constraint firstAttribute="bottom" secondItem="Q1z-93-Z3q" secondAttribute="bottom" id="N6w-gq-1kJ"/>
                                                 <constraint firstItem="Q1z-93-Z3q" firstAttribute="top" secondItem="zy2-Bd-gBr" secondAttribute="top" id="UXF-8S-QCh"/>
                                                 <constraint firstItem="yVq-50-uXa" firstAttribute="top" secondItem="zy2-Bd-gBr" secondAttribute="top" constant="16" id="V4z-SW-yrB"/>
+                                                <constraint firstAttribute="trailing" secondItem="gEY-nv-oru" secondAttribute="trailing" id="Yje-ra-fqc"/>
                                                 <constraint firstItem="F8T-VF-OVc" firstAttribute="width" secondItem="yVq-50-uXa" secondAttribute="width" id="Yr2-P0-ffB"/>
                                                 <constraint firstAttribute="bottom" secondItem="Tyh-Xa-GsX" secondAttribute="bottom" id="ZPl-Xg-dui"/>
                                                 <constraint firstItem="Ufx-zw-PNj" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" constant="16" id="d8C-pb-iGz"/>
                                                 <constraint firstAttribute="trailing" secondItem="yVq-50-uXa" secondAttribute="trailing" constant="16" id="dOr-Lk-TQK"/>
                                                 <constraint firstAttribute="trailing" secondItem="Tyh-Xa-GsX" secondAttribute="trailing" id="e74-MZ-qu8"/>
+                                                <constraint firstItem="gEY-nv-oru" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="fNk-vr-KRf"/>
+                                                <constraint firstAttribute="trailing" secondItem="XOh-bQ-knC" secondAttribute="trailing" id="fOy-7A-bEe"/>
+                                                <constraint firstItem="DiF-Fi-frC" firstAttribute="centerX" secondItem="yVq-50-uXa" secondAttribute="centerX" id="gKb-Ov-UFC"/>
+                                                <constraint firstAttribute="bottom" secondItem="gEY-nv-oru" secondAttribute="bottom" id="lH5-Qf-tgZ"/>
                                                 <constraint firstItem="Tyh-Xa-GsX" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="mHz-jO-ynq"/>
                                                 <constraint firstItem="Q1z-93-Z3q" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="of2-ag-3MJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ufx-zw-PNj" secondAttribute="bottom" constant="16" id="pvh-ZL-Jc1"/>
+                                                <constraint firstItem="gEY-nv-oru" firstAttribute="top" secondItem="zy2-Bd-gBr" secondAttribute="top" id="r8D-LN-xcj"/>
+                                                <constraint firstAttribute="bottom" secondItem="XOh-bQ-knC" secondAttribute="bottom" id="tj4-w6-kiX"/>
+                                                <constraint firstItem="XOh-bQ-knC" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="xbE-4p-G65"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="300" height="116"/>
@@ -2725,9 +2763,10 @@
                                             <outlet property="blurView" destination="Tyh-Xa-GsX" id="4Td-ae-gn3"/>
                                             <outlet property="durationLabel" destination="Ufx-zw-PNj" id="yEz-UU-ZcN"/>
                                             <outlet property="imageView" destination="Q1z-93-Z3q" id="98N-e0-lfS"/>
-                                            <outlet property="languageImageView" destination="F8T-VF-OVc" id="aj1-si-iOA"/>
+                                            <outlet property="languageImageView" destination="DiF-Fi-frC" id="E6O-C0-JlP"/>
                                             <outlet property="lockImageView" destination="yVq-50-uXa" id="6WL-HF-j0Z"/>
-                                            <outlet property="nameLabel" destination="dbv-ta-HPc" id="8mu-bU-Bcb"/>
+                                            <outlet property="nameLabel" destination="Pcj-B4-sIU" id="Hcx-15-ukE"/>
+                                            <outlet property="overlayView" destination="gEY-nv-oru" id="ejC-3V-MYh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2869,7 +2908,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-6a-DzZ">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="52T-9L-ILE">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
