@@ -52,7 +52,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         buildVideosArray()
         fetchHomeSections()
         updateBackgroundSoundStyle()
-        reduceVoulme(volume: 0.1)
+        reduceVoulme(volume: Constants.backgroundMusicLevel)
         setGuidedTourKeys()
     }
     

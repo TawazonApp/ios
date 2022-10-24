@@ -150,13 +150,25 @@ class MembershipViewController: HandleErrorViewController {
     private func userLoggedAction() {
         if let appDelegate =  UIApplication.shared.delegate as? AppDelegate {
             appDelegate.sendFcmToken()
+            setUserSettings()
             openCorrectViewController()
         }
     }
     
+    private func setUserSettings(){
+        var settings = UserSettings(defaultAudioSource: "ar.ps")
+        if Language.language == .english{
+            settings = UserSettings(defaultAudioSource: "en.us")
+        }
+        UserInfoManager.shared.setUserSessionSettings(settings: settings, service: MembershipServiceFactory.service()){ (error) in
+            if let error = error{
+                self.showErrorMessage( message: error.localizedDescription )
+            }
+        }
+    }
     private func openGoalsViewController() {
         self.view.endEditing(true)
-        let viewController = GoalsViewController.instantiate(sourceView: .membership)
+        let viewController = GoalsListViewController.instantiate()
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: false, completion: nil)
     }

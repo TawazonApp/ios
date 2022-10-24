@@ -60,6 +60,7 @@ protocol MembershipService {
     
     func getPremiumDetails(viewId: Int, completion: @escaping (BasePremiumModel?, CustomError?) -> Void)
     
+    func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
 }
 
 class APIMembershipService: MembershipService {
@@ -246,6 +247,12 @@ class APIMembershipService: MembershipService {
             let premiumDetails : BasePremiumModel? = (data != nil) ? BasePremiumModel.init(data: data!) : nil
             completion(premiumDetails, error)
         })
+    }
+    
+    func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
+        ConnectionUtils.performPostRequest(url: Api.userSettings.url!, parameters: try? settings.jsonDictionary()){ (data, error) in
+            completion(error)
+        }
     }
 }
 

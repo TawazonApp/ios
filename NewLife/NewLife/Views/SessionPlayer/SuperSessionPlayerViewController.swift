@@ -62,7 +62,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
         updateButtonStates()
         hideSessionPlayerBar()
         stopBackgroundMusicIfNeeded()
-        reduceVoulme(volume: 0.25)
+        reduceVoulme(volume: Constants.backgroundMusicLevel)
     }
     
     override func viewDidAppear(_ animated: Bool) {

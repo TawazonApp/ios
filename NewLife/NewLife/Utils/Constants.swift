@@ -162,4 +162,5 @@ enum Constants {
     static let appsFlyerDevKey = "FaJiLhP57L5T9KhDcypEmh"
     static let lockFreeDuration: TimeInterval = 0
     static let listenForDuration: TimeInterval = 40
+    static let backgroundMusicLevel: Double = 0.1
 }
