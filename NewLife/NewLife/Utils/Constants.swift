@@ -92,7 +92,7 @@ struct Api {
      static let removeFromFavoritesUrl = "\(apiUrl)/favourites/delete"
     static let removeFromFavoritesUrlV2_1 = "\(apiUrlV2_1)/favourites/delete"
     static let trackSessionUrl = "\(apiUrlV2)/sessions/track"
-    
+    static let sessionInfoDetails = "\(apiUrlV2_1)/sessions/view/{id}"
     static let purchaseReceiptUrl = "\(apiUrl)/subscription/apple/verify"
     static let anonymousToken = "$AnonymousToken"
     

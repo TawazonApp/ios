@@ -25,6 +25,20 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var fullDurationLabel: UILabel!
     @IBOutlet weak var footerControlsStack: UIStackView!
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var authorInfoStack: UIStackView!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var authorNameLabelCollapse: UIImageView!
+    @IBOutlet weak var narratorInfoStack: UIStackView!
+    @IBOutlet weak var narratorLabel: UILabel!
+    @IBOutlet weak var narratorNameLabel: UILabel!
+    @IBOutlet weak var narratorNameLabelCollapse: UIImageView!
+    @IBOutlet weak var photographerInfoStack: UIStackView!
+    @IBOutlet weak var photographerLabel: UILabel!
+    @IBOutlet weak var photographerNameLabel: UILabel!
+    @IBOutlet weak var photographerNameLabelCollapse: UIImageView!
+    @IBOutlet weak var separatorImage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -35,6 +49,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
         }
         initialize()
+        fetchData()
         startPlayerLoadingIfNeeded()
     }
     
@@ -75,7 +90,50 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         progressSlider.tintColor = .white
         progressSlider.value = 0
         
+        separatorImage.image = UIImage(named: "PremiumPurchaseIcon")
+        separatorImage.contentMode = .scaleAspectFit
+        separatorImage.backgroundColor = .clear
+        separatorImage.isHidden = true
+        
+//        authorInfoStack.isHidden = true
+        
+        
+        authorLabel.font = .munaFont(ofSize: 12)
+        authorLabel.textAlignment = .center
+        authorLabel.textColor = .white
+        
+        authorNameLabel.font = .munaBoldFont(ofSize: 18)
+        authorNameLabel.textAlignment = .center
+        authorNameLabel.textColor = .white
+        
+//        narratorInfoStack.isHidden = true
+        
+        narratorLabel.font = .munaFont(ofSize: 12)
+        narratorLabel.textAlignment = .center
+        narratorLabel.textColor = .white
+        
+        narratorNameLabel.font = .munaBoldFont(ofSize: 18)
+        narratorNameLabel.textAlignment = .center
+        narratorNameLabel.textColor = .white
+        
+//        photographerInfoStack.isHidden = true
+        
+        photographerLabel.font = .munaFont(ofSize: 12)
+        photographerLabel.textAlignment = .center
+        photographerLabel.textColor = .white
+        
+        photographerNameLabel.font = .munaBoldFont(ofSize: 18)
+        photographerNameLabel.textAlignment = .center
+        photographerNameLabel.textColor = .white
+        
+        let infoViewTappedGesture = UITapGestureRecognizer(target: self, action: #selector(infoViewTapped))
+        infoView.addGestureRecognizer(infoViewTappedGesture)
+        
         initializeBottomStackButtons()
+    }
+    @objc func infoViewTapped(){
+        guard let session = session else { return }
+        openSessionInfoDetailsViewController(session: session)
     }
     
     private func initializeBottomStackButtons() {
@@ -114,21 +172,78 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             commentsButton.addBlurEffect(style: .dark)
         }
     }
+    private func fetchData(){
+        session?.service.fetchSessionInfoDetails(sessionId: (session?.id)!){ (sessionModel, error) in
+            LoadingHud.shared.hide(animated: true)
+            if let error = error{
+                self.showErrorMessage(message: error.localizedDescription)
+                return
+            }
+            if let sessionModel = sessionModel {
+                SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
+                self.fillData()
+                if let separator = self.separatorImage{
+                    self.separatorImage.isHidden = false
+                }
+                
+                if self.session?.getSessionPreferredVoiceAndDialect().dialect?.author == nil{
+                    if let stack = self.authorInfoStack, let separator = self.separatorImage{
+                        self.authorInfoStack.removeFromSuperview()
+                        self.separatorImage.removeFromSuperview()
+                    }
+                    
+                }
+                if self.session?.getSessionPreferredVoiceAndDialect().dialect?.narrator == nil{
+                    if let stack = self.narratorInfoStack, let separator = self.separatorImage{
+                        self.narratorInfoStack.removeFromSuperview()
+                        self.separatorImage.removeFromSuperview()
+                    }
+                    
+                }
+            }
+        }
+    }
     
     override func fillData() {
         super.fillData()
         fullDurationLabel.text = session?.durationString
-        
+        if let author = session?.getSessionPreferredVoiceAndDialect().dialect?.author{
+            authorNameLabel.text = author.name
+            authorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            authorLabel.text = "sessionAuthorLabel".localized
+        }
+        if let narrator = session?.getSessionPreferredVoiceAndDialect().dialect?.narrator{
+            narratorNameLabel.text = narrator.name
+            narratorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            narratorLabel.text = "sessionNarratorLabel".localized
+        }
+        if let photographer = session?.session?.artist{
+            photographerNameLabel.text = photographer.name
+            photographerNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            photographerLabel.text = "sessionPhotographerLabel".localized
+        }else{
+            photographerInfoStack.isHidden = true
+        }
+        if let author = session?.getSessionPreferredVoiceAndDialect().dialect?.author, let narrator = session?.getSessionPreferredVoiceAndDialect().dialect?.narrator, photographerInfoStack.isHidden , (session?.session?.descriptionString == "" || session?.session?.descriptionString == nil){
+            infoView.isUserInteractionEnabled = false
+        }else{
+            infoView.isUserInteractionEnabled = true
+        }
+    }
+    
+    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        fetchData()
+        return nil
+    }
+    
+    private func openSessionInfoDetailsViewController(session: SessionVM) {
+        let viewcontroller = SessionInfoDetailesViewController.instantiate(session: session)
+        viewcontroller.modalPresentationStyle = .custom
+        viewcontroller.transitioningDelegate = self
+        self.present(viewcontroller, animated: true, completion: nil)
     }
     
     private func startGuidedTapping(){
-        /*
-         - first open
-         1. session with button >> all steps
-         2. session without button >> all steps except button step
-         - other open
-         1. session with button >> button step only
-         */
         let tourView = GuidedTourView(frame: self.view.frame)
         tourView.backgroundColor = .darkBlueGrey.withAlphaComponent(0.62)
         tourView.screenName = "Session"
@@ -249,20 +364,4 @@ extension DetailedSessionPlayerViewController {
     
 }
 
-extension UIButton {
-    func addBlurEffect(style: UIBlurEffect.Style = .regular) {
-        let blurEffect = UIBlurEffect(style: style)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.isUserInteractionEnabled = false
-        blurView.backgroundColor = .clear
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        blurView.layer.masksToBounds = true
-        self.insertSubview(blurView, at: 0)
-        if let imageView = self.imageView{
-            imageView.backgroundColor = .clear
-            self.bringSubviewToFront(imageView)
-        }
-    }
-}
 

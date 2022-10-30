@@ -119,6 +119,7 @@ class SearchViewController: BaseViewController {
         sessionsTableView.backgroundColor = .clear
         sessionsTableView.delegate = self
         sessionsTableView.dataSource = self
+        sessionsTableView.separatorStyle = .none
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

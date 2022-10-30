@@ -62,12 +62,15 @@ class SessionVM: BaseLibrarySessionVM {
         let userPreferredVoice = UserDefaults.selectedVoice()
         let userPreferredDialect = UserDefaults.selectedDialect()
         
-        if userPreferredVoice == nil || userPreferredDialect == nil {
-            return (nil,nil)
+        if userPreferredVoice == nil || userPreferredDialect == nil{
+            return (nil,self.session?.defaultDialect)
         }
         let selectedSessionVoice = self.audioSources?.filter{$0.code == userPreferredVoice}.first
-        let selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.code == userPreferredDialect}.first
-        
+        var selectedSessionDialect = selectedSessionVoice?.dialects.filter{$0.code == userPreferredDialect}.first
+        print("")
+        if selectedSessionDialect == nil{
+            selectedSessionDialect = session?.defaultDialect
+        }
         return (selectedSessionVoice, selectedSessionDialect)
     }
     

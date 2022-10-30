@@ -538,3 +538,20 @@ extension UIImage {
         return UIApplication.isRTL() ? self : self.withHorizontallyFlippedOrientation()
     }
 }
+
+extension UIButton {
+    func addBlurEffect(style: UIBlurEffect.Style = .regular) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.isUserInteractionEnabled = false
+        blurView.backgroundColor = .clear
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        blurView.layer.masksToBounds = true
+        self.insertSubview(blurView, at: 0)
+        if let imageView = self.imageView{
+            imageView.backgroundColor = .clear
+            self.bringSubviewToFront(imageView)
+        }
+    }
+}

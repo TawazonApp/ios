@@ -38,6 +38,8 @@ protocol SessionService {
     
     func fetchSessionInfo(sessionId: String,completion: @escaping (SessionModel?, CustomError?) -> Void)
     
+    func fetchSessionInfoDetails(sessionId: String,completion: @escaping (SessionModel?, CustomError?) -> Void)
+    
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
     
     func getSeriesSessions(seriesId: String, completion: @escaping (_ series: SeriesModel?, _ error: CustomError?) -> Void)
@@ -209,6 +211,19 @@ class APISessionService: SessionService {
     
     func fetchSessionInfo(sessionId: String, completion: @escaping (SessionModel?, CustomError?) -> Void) {
         let url = Api.sessionInfo.replacingOccurrences(of: "{id}", with: sessionId).url!
+        ConnectionUtils.performGetRequest(url: url, parameters: nil) { (data, error) in
+            var sessionInfoModel: SessionInfoModel?
+            if let data = data {
+                sessionInfoModel = SessionInfoModel(data: data)
+            }
+            completion(sessionInfoModel?.session, error)
+        }
+    }
+    
+    
+    func fetchSessionInfoDetails(sessionId: String, completion: @escaping (SessionModel?, CustomError?) -> Void) {
+        let url = Api.sessionInfoDetails.replacingOccurrences(of: "{id}", with: sessionId).url!
+        
         ConnectionUtils.performGetRequest(url: url, parameters: nil) { (data, error) in
             var sessionInfoModel: SessionInfoModel?
             if let data = data {

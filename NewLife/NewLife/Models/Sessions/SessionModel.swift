@@ -15,6 +15,7 @@ struct SessionModel: Codable {
     let descriptionString: String?
     let duration: Int
     let author: String?
+    let artist: Contributor?
     var imageUrl: String?
     var thumbnailUrl: String?
     var audioUrl: String
@@ -30,13 +31,15 @@ struct SessionModel: Codable {
     var completed: Bool?
     var locked: Bool?
     let type: String?
-
+    let defaultDialect: Dialect?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name = "title"
         case descriptionString = "content"
         case duration
         case author
+        case artist
         case free
         case favorite
         case imageUrl = "image"
@@ -52,6 +55,7 @@ struct SessionModel: Codable {
         case completed
         case locked
         case type
+        case defaultDialect = "defaultAudioSource"
     }
     
     func isFavorite() -> Bool {
@@ -87,8 +91,22 @@ struct Dialect: Codable {
     let title, code: String
     let stream, download: String
     let duration: Int
+    let author: Contributor?
+    let narrator: Contributor?
     let hash: String
     
+}
+
+struct Contributor: Codable {
+    let id, name: String?
+    let image, content: String?
+    let jobTitle: String?
+    let country: Country?
+    
+}
+
+struct Country: Codable {
+    let id, title: String?
 }
 extension SessionModel {
     
@@ -99,6 +117,7 @@ extension SessionModel {
         self.descriptionString = session.descriptionString
         self.duration = Int(session.duration)
         self.author = session.author ?? ""
+        self.artist = nil
         self.localImagePath = session.imageFilePath
         self.localAudioPath = session.audioFilePath
         self.localThumbnailPath = session.thumbnailFilePath
@@ -113,6 +132,7 @@ extension SessionModel {
         self.completed = session.completed
         self.locked = session.locked
         self.type = session.type
+        self.defaultDialect = nil
     }
  
     init?(data: Data) {
@@ -145,6 +165,8 @@ extension SessionModel {
         
         author = try container.decodeIfPresent(String.self, forKey: .author)
         
+        artist = try container.decodeIfPresent(Contributor.self, forKey: .artist) ?? nil
+        
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
        
         thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl)
@@ -169,6 +191,8 @@ extension SessionModel {
         
          type = try container.decodeIfPresent(String.self, forKey: .type)
          
+        defaultDialect = try container.decodeIfPresent(Dialect.self, forKey: .defaultDialect)
+        
         localImagePath = nil
         localAudioPath = nil
         localThumbnailPath = nil

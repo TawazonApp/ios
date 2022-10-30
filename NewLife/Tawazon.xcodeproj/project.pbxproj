@@ -60,6 +60,7 @@
 		04BB3270281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB326F281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift */; };
 		04BB3272281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */; };
 		04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */; };
+		04C10C5129055C4B00647566 /* SessionInfoDetailesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C10C5029055C4B00647566 /* SessionInfoDetailesViewController.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CA28967CCF000B41C8 /* SeriesModel.swift */; };
 		04C594CE28968EDA000B41C8 /* SeriesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CD28968EDA000B41C8 /* SeriesVM.swift */; };
@@ -476,6 +477,7 @@
 		04BB326F281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumCenteredSpecialBannerTableViewCell.swift; sourceTree = "<group>"; };
 		04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumFullWidthBannerTableViewCell.swift; sourceTree = "<group>"; };
 		04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerWithHeaderLogoTableViewCell.swift; sourceTree = "<group>"; };
+		04C10C5029055C4B00647566 /* SessionInfoDetailesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoDetailesViewController.swift; sourceTree = "<group>"; };
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04C594CA28967CCF000B41C8 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		04C594CD28968EDA000B41C8 /* SeriesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesVM.swift; sourceTree = "<group>"; };
@@ -1102,6 +1104,7 @@
 			isa = PBXGroup;
 			children = (
 				04D0B4BA2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift */,
+				04C10C5029055C4B00647566 /* SessionInfoDetailesViewController.swift */,
 			);
 			path = DetailedSessionPlayer;
 			sourceTree = "<group>";
@@ -2597,6 +2600,7 @@
 				F3EE48D1222C7B7400274F94 /* SoundEffectsViewController.swift in Sources */,
 				F31D74EC2233C54000156372 /* GoalsViewController.swift in Sources */,
 				F3DC8EAB2228328600C7DEC4 /* MoreVM.swift in Sources */,
+				04C10C5129055C4B00647566 /* SessionInfoDetailesViewController.swift in Sources */,
 				F3DE73BA2236AA900052B18C /* UIWindowTransitions.swift in Sources */,
 				F3580BEB249CF38B00EBE1C1 /* AudioPlayerManager+URL.swift in Sources */,
 				0456D1B727EB272D00C174C6 /* Premium1ViewController.swift in Sources */,
@@ -3103,7 +3107,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.4;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -3152,7 +3157,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

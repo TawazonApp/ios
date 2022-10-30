@@ -109,8 +109,9 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
         subTitleLabel.font = UIFont.munaFont(ofSize: 16, language: .arabic)
         subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.86)
         subTitleLabel.textAlignment = .center
-        subTitleLabel.numberOfLines = 0
-        subTitleLabel.lineBreakMode = .byWordWrapping
+        subTitleLabel.numberOfLines = 2
+        subTitleLabel.lineBreakMode = .byTruncatingTail
+        
         
         overlayView.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
         
@@ -142,9 +143,14 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     }
     
      @objc func fillData() {
-        titleLabel.text = session?.name
+         titleLabel.text = session?.name
          subTitleLabel.text = session?.session?.descriptionString
-        
+         if !(subTitleLabel.text?.isEmptyWithTrim ?? true){
+             DispatchQueue.main.async {
+                 self.subTitleLabel.addTrailing(with: "... ", moreText: "ReadMoreLabel".localized, moreTextFont: .munaBoldFont(ofSize: 16, language: .arabic), moreTextColor: self.self.subTitleLabel.textColor)
+             }
+         }
+         
         backgroundImageView.image = nil
         if let localiImageUrl = session?.localImageUrl {
             backgroundImageView.image = UIImage(contentsOfFile: localiImageUrl.path)
@@ -494,11 +500,7 @@ extension SuperSessionPlayerViewController: VoicesAndDialectsDelegate{
     }
     func changeInterfaceLanguage(language: Language) {
         changeLanguage(language: language)
-        session?.service.fetchSessionInfo(sessionId: (session?.id)!){ (sessionModel, error) in
-            if let sessionModel = sessionModel {
-                SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
-            }
-        }
+        refetchSessionInfo()
         self.perform(#selector(showSessionPlayerBar), with: nil, afterDelay: 4)
         
     }
@@ -510,5 +512,13 @@ extension SuperSessionPlayerViewController: VoicesAndDialectsDelegate{
         Language.language = language
         NotificationCenter.default.post(name: .languageChanged, object: nil)
         (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
+    }
+    
+    private func refetchSessionInfo(){
+        session?.service.fetchSessionInfo(sessionId: (session?.id)!){ (sessionModel, error) in
+            if let sessionModel = sessionModel {
+                SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
+            }
+        }
     }
 }
