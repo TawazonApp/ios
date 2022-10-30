@@ -49,7 +49,7 @@ class MoreViewController: BaseViewController {
         
         let alert = UIAlertController(title: "", message: "changeLanguageAlertTitle".localized, preferredStyle: .actionSheet, blurStyle: .dark)
          
-        let englishAction = UIAlertAction(title: "English", style: .default) { [weak self]  (action) in
+        let englishAction = UIAlertAction(title: "English".localized, style: .default) { [weak self]  (action) in
             self?.changeLanguage(language: .english)
         }
         if Language.language == .english {
@@ -57,7 +57,7 @@ class MoreViewController: BaseViewController {
         }
         alert.addAction(englishAction)
         
-        let arabicAction = UIAlertAction(title: "العربية", style: .default) { [weak self]  (action) in
+        let arabicAction = UIAlertAction(title: "العربية".localized, style: .default) { [weak self]  (action) in
             self?.changeLanguage(language: .arabic)
         }
         if Language.language == .arabic {

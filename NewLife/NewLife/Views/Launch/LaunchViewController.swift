@@ -24,10 +24,13 @@ class LaunchViewController: BaseViewController {
             if UserDefaults.userToken() != nil {
                 self?.openMainViewController()
             } else {
-                self?.openWelcomeViewController()
+                if UserDefaults.isFirstOpened(){
+                    self?.openOnboardingLanguageViewController()
+                }else{
+                    self?.openWelcomeViewController()
+                }
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +60,11 @@ class LaunchViewController: BaseViewController {
     private func openWelcomeViewController() {
         SystemSoundID.play(sound: .Sound3)
         navigationController?.setViewControllers([WelecomeViewController.instantiate()], animated: true)
+    }
+    
+    private func openOnboardingLanguageViewController() {
+        SystemSoundID.play(sound: .Sound3)
+        navigationController?.setViewControllers([OnboardingLanguageViewController.instantiate()], animated: true)
     }
     
     private func preFetchCachingData() {

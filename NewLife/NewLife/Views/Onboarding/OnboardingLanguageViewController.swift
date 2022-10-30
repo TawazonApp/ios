@@ -87,19 +87,26 @@ class OnboardingLanguageViewController: UIViewController {
     private func changeLanguage(language: Language) {
         UserDefaults.appOpened()
         guard language != Language.language else {
-            self.dismiss(animated: true)
-            NotificationCenter.default.post(name: Notification.Name.showOnboardingInstallSources, object: nil)
+            openWelcomeViewController()
+//            NotificationCenter.default.post(name: Notification.Name.showOnboardingInstallSources, object: nil)
             return
         }
         Language.language = language
         NotificationCenter.default.post(name: .languageChanged, object: nil)
         (UIApplication.shared.delegate as? AppDelegate)?.resetApp()
-        self.perform(#selector(showOnboardingInstallSources), with: nil, afterDelay: 3)
+//        self.perform(#selector(showOnboardingInstallSources), with: nil, afterDelay: 3)
         
     }
     
     @objc private func showOnboardingInstallSources() {
         NotificationCenter.default.post(name: Notification.Name.showOnboardingInstallSources, object: nil)
+    }
+    
+    private func openWelcomeViewController() {
+        let viewController = WelecomeViewController.instantiate()
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.navigationController?.pushViewController(viewController, animated: true)
+//        self.present(viewController, animated: false, completion: nil)
     }
 }
 extension OnboardingLanguageViewController{

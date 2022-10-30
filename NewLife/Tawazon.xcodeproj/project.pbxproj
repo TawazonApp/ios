@@ -60,6 +60,8 @@
 		04BB3270281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB326F281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift */; };
 		04BB3272281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */; };
 		04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */; };
+		04C10C4D28FD470600647566 /* GoalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C10C4C28FD470600647566 /* GoalsListViewController.swift */; };
+		04C10C4F28FD49B300647566 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C10C4E28FD49B300647566 /* GoalTableViewCell.swift */; };
 		04C10C5129055C4B00647566 /* SessionInfoDetailesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C10C5029055C4B00647566 /* SessionInfoDetailesViewController.swift */; };
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CA28967CCF000B41C8 /* SeriesModel.swift */; };
@@ -477,6 +479,8 @@
 		04BB326F281017B10007B283 /* HomePremiumCenteredSpecialBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumCenteredSpecialBannerTableViewCell.swift; sourceTree = "<group>"; };
 		04BB3271281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumFullWidthBannerTableViewCell.swift; sourceTree = "<group>"; };
 		04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerWithHeaderLogoTableViewCell.swift; sourceTree = "<group>"; };
+		04C10C4C28FD470600647566 /* GoalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsListViewController.swift; sourceTree = "<group>"; };
+		04C10C4E28FD49B300647566 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		04C10C5029055C4B00647566 /* SessionInfoDetailesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoDetailesViewController.swift; sourceTree = "<group>"; };
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04C594CA28967CCF000B41C8 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
@@ -1205,6 +1209,8 @@
 				F31D74ED2233C62300156372 /* GoalsTitleView.swift */,
 				F35FD52A223541FD00B3CFC5 /* GoalsSelectedView.swift */,
 				F35FD526223526F800B3CFC5 /* GoalCircleView.swift */,
+				04C10C4C28FD470600647566 /* GoalsListViewController.swift */,
+				04C10C4E28FD49B300647566 /* GoalTableViewCell.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -2713,6 +2719,7 @@
 				F3DC8E972226D68900C7DEC4 /* CategoryViewController.swift in Sources */,
 				F3DC8EA12226F16E00C7DEC4 /* CategorySessionVM.swift in Sources */,
 				F3CA028222311373008165C2 /* WelecomeStartView.swift in Sources */,
+				04C10C4D28FD470600647566 /* GoalsListViewController.swift in Sources */,
 				F3DF365D25850FD3004CE028 /* FeelingSessionsView.swift in Sources */,
 				04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */,
 				F3ECD0D2257A40120048DBD8 /* FeelingsListModel.swift in Sources */,
@@ -2726,6 +2733,7 @@
 				0432B7152876CDA8007400B3 /* DeleteVM.swift in Sources */,
 				F3B16AF8222EB474002B0406 /* DownloadedLibraryVM.swift in Sources */,
 				F3273459246EA1310013B19F /* InstagramUtils.swift in Sources */,
+				04C10C4F28FD49B300647566 /* GoalTableViewCell.swift in Sources */,
 				F3DC8E492224474000C7DEC4 /* LaunchSloganView.swift in Sources */,
 				04A75F61286ADA3D003C7756 /* SearchModel.swift in Sources */,
 				F320B19B26209878002EC8B4 /* RamdanPremiumDiscountCell.swift in Sources */,
@@ -3094,7 +3102,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3145,7 +3153,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

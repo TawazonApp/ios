@@ -160,4 +160,14 @@ class UserInfoManager: NSObject {
             completion(types, error)
         }
     }
+    
+    func setUserSessionSettings(settings: UserSettings,service: MembershipService, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.setUserSessionSettings(settings: settings, completion: { (error) in
+            if error == nil {
+                UserDefaults.saveSelectedVoice(code:(settings.defaultAudioSource.components(separatedBy: "."))[0])
+                UserDefaults.saveSelectedDialect(code: settings.defaultAudioSource)
+            }
+            completion(error)
+        })
+    }
 }

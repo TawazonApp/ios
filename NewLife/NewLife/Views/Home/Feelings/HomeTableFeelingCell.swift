@@ -58,6 +58,7 @@ class HomeTableFeelingCell: UITableViewCell {
         feelingSessionsView.isHidden = true
         feelingSelectionView.isHidden = true
         updateHeight()
+        titleLabel.isHidden = true
     }
     
      func fetchAndReloadData() {

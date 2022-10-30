@@ -54,7 +54,7 @@ class MainTabBarController: UITabBarController {
         
         mainTabBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         mainTabBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
-        mainTabBar.heightAnchor.constraint(equalToConstant: 74).isActive = true
+        mainTabBar.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         blurView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
         blurView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
