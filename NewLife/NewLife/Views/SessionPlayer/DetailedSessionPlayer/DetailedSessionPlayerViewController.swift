@@ -182,23 +182,20 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             if let sessionModel = sessionModel {
                 SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: sessionModel)
                 self.fillData()
-                if let separator = self.separatorImage{
+                if self.separatorImage != nil{
                     self.separatorImage.isHidden = false
                 }
-                
                 if self.session?.getSessionPreferredVoiceAndDialect().dialect?.author == nil{
-                    if let stack = self.authorInfoStack, let separator = self.separatorImage{
+                    if self.authorInfoStack != nil && self.separatorImage != nil{
                         self.authorInfoStack.removeFromSuperview()
                         self.separatorImage.removeFromSuperview()
                     }
-                    
                 }
                 if self.session?.getSessionPreferredVoiceAndDialect().dialect?.narrator == nil{
-                    if let stack = self.narratorInfoStack, let separator = self.separatorImage{
+                    if self.narratorInfoStack != nil && self.separatorImage != nil{
                         self.narratorInfoStack.removeFromSuperview()
                         self.separatorImage.removeFromSuperview()
                     }
-                    
                 }
             }
         }
@@ -224,7 +221,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         }else{
             photographerInfoStack.isHidden = true
         }
-        if let author = session?.getSessionPreferredVoiceAndDialect().dialect?.author, let narrator = session?.getSessionPreferredVoiceAndDialect().dialect?.narrator, photographerInfoStack.isHidden , (session?.session?.descriptionString == "" || session?.session?.descriptionString == nil){
+        if session?.getSessionPreferredVoiceAndDialect().dialect?.author != nil && session?.getSessionPreferredVoiceAndDialect().dialect?.narrator != nil && photographerInfoStack.isHidden && (session?.session?.descriptionString == "" || session?.session?.descriptionString == nil){
             infoView.isUserInteractionEnabled = false
         }else{
             infoView.isUserInteractionEnabled = true

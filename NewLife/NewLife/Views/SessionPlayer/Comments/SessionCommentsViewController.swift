@@ -116,7 +116,7 @@ extension SessionCommentsViewController: UITableViewDelegate, UITableViewDataSou
     
     @objc @IBAction func writeCommentButtonTapped(){
         UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() :
-        UserDefaults.notifyUserChangeNickname() ? showChangeNicknameAlert() :
+//        UserDefaults.notifyUserChangeNickname() ? showChangeNicknameAlert() :
         (session.isLock ? (UserDefaults.isPremium() ? showWriteCommentViewController() :
                             showPremiumConfirmationAlert()) : showWriteCommentViewController())
     }
