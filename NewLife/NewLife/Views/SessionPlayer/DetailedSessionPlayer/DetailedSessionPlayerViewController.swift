@@ -26,19 +26,20 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     @IBOutlet weak var fullDurationLabel: UILabel!
     @IBOutlet weak var footerControlsStack: UIStackView!
     @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var authorInfoStack: UIStackView!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var authorNameLabelCollapse: UIImageView!
-    @IBOutlet weak var narratorInfoStack: UIStackView!
-    @IBOutlet weak var narratorLabel: UILabel!
-    @IBOutlet weak var narratorNameLabel: UILabel!
-    @IBOutlet weak var narratorNameLabelCollapse: UIImageView!
+    @IBOutlet weak var contributorsStack: UIStackView!
+    @IBOutlet      var authorInfoStack: UIStackView!
+    @IBOutlet      var authorLabel: UILabel!
+    @IBOutlet      var authorNameLabel: UILabel!
+    @IBOutlet      var authorNameLabelCollapse: UIImageView!
+    @IBOutlet      var narratorInfoStack: UIStackView!
+    @IBOutlet      var narratorLabel: UILabel!
+    @IBOutlet      var narratorNameLabel: UILabel!
+    @IBOutlet      var narratorNameLabelCollapse: UIImageView!
     @IBOutlet weak var photographerInfoStack: UIStackView!
     @IBOutlet weak var photographerLabel: UILabel!
     @IBOutlet weak var photographerNameLabel: UILabel!
     @IBOutlet weak var photographerNameLabelCollapse: UIImageView!
-    @IBOutlet weak var separatorImage: UIImageView!
+    @IBOutlet      var separatorImage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -132,6 +133,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         initializeBottomStackButtons()
     }
     @objc func infoViewTapped(){
+        print("infoViewTapped")
         guard let session = session else { return }
         openSessionInfoDetailsViewController(session: session)
     }
@@ -190,11 +192,32 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
                         self.authorInfoStack.removeFromSuperview()
                         self.separatorImage.removeFromSuperview()
                     }
+                }else{
+                    if !(self.contributorsStack.arrangedSubviews.first?.isEqual(self.authorInfoStack) ?? true){
+                        self.contributorsStack.addArrangedSubview(self.authorInfoStack)
+                        self.contributorsStack.addSubview(self.authorInfoStack)
+                        self.contributorsStack.addArrangedSubview(self.separatorImage)
+                        self.contributorsStack.addSubview(self.separatorImage)
+                    }
                 }
                 if self.session?.getSessionPreferredVoiceAndDialect().dialect?.narrator == nil{
                     if self.narratorInfoStack != nil && self.separatorImage != nil{
                         self.narratorInfoStack.removeFromSuperview()
                         self.separatorImage.removeFromSuperview()
+                    }
+                }else{
+                    if !(self.contributorsStack.arrangedSubviews.last?.isEqual(self.narratorInfoStack) ?? true) {
+                        
+                        self.contributorsStack.addArrangedSubview(self.separatorImage)
+                        self.contributorsStack.addSubview(self.separatorImage)
+                        
+                        self.contributorsStack.addArrangedSubview(self.narratorInfoStack)
+                        self.contributorsStack.addSubview(self.narratorInfoStack)
+                        
+                        self.contributorsStack.spacing = 10
+                        self.contributorsStack.alignment = .fill
+                        self.contributorsStack.distribution = .fillProportionally
+                        self.contributorsStack.layoutSubviews()
                     }
                 }
             }
@@ -206,22 +229,22 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         fullDurationLabel.text = session?.durationString
         if let author = session?.getSessionPreferredVoiceAndDialect().dialect?.author{
             authorNameLabel.text = author.name
-            authorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            authorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")?.flipIfNeeded
             authorLabel.text = "sessionAuthorLabel".localized
         }
         if let narrator = session?.getSessionPreferredVoiceAndDialect().dialect?.narrator{
             narratorNameLabel.text = narrator.name
-            narratorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            narratorNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")?.flipIfNeeded
             narratorLabel.text = "sessionNarratorLabel".localized
         }
         if let photographer = session?.session?.artist{
             photographerNameLabel.text = photographer.name
-            photographerNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")
+            photographerNameLabelCollapse.image = UIImage(named: "SessionDetailsCollapse")?.flipIfNeeded
             photographerLabel.text = "sessionPhotographerLabel".localized
         }else{
             photographerInfoStack.isHidden = true
         }
-        if session?.getSessionPreferredVoiceAndDialect().dialect?.author != nil && session?.getSessionPreferredVoiceAndDialect().dialect?.narrator != nil && photographerInfoStack.isHidden && (session?.session?.descriptionString == "" || session?.session?.descriptionString == nil){
+        if session?.getSessionPreferredVoiceAndDialect().dialect?.author == nil && session?.getSessionPreferredVoiceAndDialect().dialect?.narrator == nil && photographerInfoStack.isHidden && (session?.session?.descriptionString == "" || session?.session?.descriptionString == nil){
             infoView.isUserInteractionEnabled = false
         }else{
             infoView.isUserInteractionEnabled = true
