@@ -28,7 +28,7 @@ class UserInfoManager: NSObject {
     }
     
     func setUserSettings(){
-        let sessionVoiceCode = userInfo?.settings?.defaultAudioSource.components(separatedBy: ".").first ?? ""
+        let sessionVoiceCode = userInfo?.settings?.defaultAudioSource?.components(separatedBy: ".").first ?? ""
         let sessionDialectCode = userInfo?.settings?.defaultAudioSource ?? ""
         
         UserDefaults.saveSelectedVoice(code: sessionVoiceCode)
@@ -164,8 +164,10 @@ class UserInfoManager: NSObject {
     func setUserSessionSettings(settings: UserSettings,service: MembershipService, completion: @escaping (_ error: CustomError?) -> Void) {
         service.setUserSessionSettings(settings: settings, completion: { (error) in
             if error == nil {
-                UserDefaults.saveSelectedVoice(code:(settings.defaultAudioSource.components(separatedBy: "."))[0])
-                UserDefaults.saveSelectedDialect(code: settings.defaultAudioSource)
+                if let defaultAudioSource = settings.defaultAudioSource{
+                    UserDefaults.saveSelectedVoice(code:(defaultAudioSource.components(separatedBy: "."))[0])
+                    UserDefaults.saveSelectedDialect(code: defaultAudioSource)
+                }
             }
             completion(error)
         })

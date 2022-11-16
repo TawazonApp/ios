@@ -99,7 +99,8 @@ class HomeTableFeelingCellVM {
     func getFeelings(completion: @escaping (_ error: CustomError?) -> Void) {
         homeService.getFeelings { [weak self] (feelingsList, error) in
             if let feelingsList = feelingsList {
-                self?.feelings = feelingsList.items.map({ FeelCellModel(id: $0.id, name: $0.title, isSelected: ($0.selected != 0) ) })
+                
+                self?.feelings = feelingsList.items.map({ FeelCellModel(id: $0.id, name: $0.title, subFeelings: $0.subFeelings?.sorted(by: { return $0.priority ?? 0 < $1.priority ?? 0}), isSelected: ($0.selected != 0) ) })
             } else {
                 self?.feelings = []
             }
@@ -112,6 +113,7 @@ class HomeTableFeelingCellVM {
             if error == nil {
                 for feel in self.feelings {
                     feel.isSelected = feelingIds.contains(feel.id)
+                    
                 }
             }
             completion(error)

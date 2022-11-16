@@ -15,4 +15,16 @@ struct FeelingsListModel: Codable, ModelInitializable {
 struct FeelingItem: Codable {
     let id, title: String
     let selected: Int?
+    let subFeelings: [SubFeelingItem]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case selected
+        case subFeelings = "items"
+    }
+}
+struct SubFeelingItem: Codable{
+    let id, title: String
+    let selected: Int?
+    let priority: Int?
 }

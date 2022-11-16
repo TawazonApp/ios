@@ -40,6 +40,8 @@ protocol SessionService {
     
     func fetchSessionInfoDetails(sessionId: String,completion: @escaping (SessionModel?, CustomError?) -> Void)
     
+    func fetchPreparationSessionInfo(sessionId: String, completion: @escaping (SessionModel?, CustomError?) -> Void)
+    
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void)
     
     func getSeriesSessions(seriesId: String, completion: @escaping (_ series: SeriesModel?, _ error: CustomError?) -> Void)
@@ -233,6 +235,17 @@ class APISessionService: SessionService {
         }
     }
     
+    func fetchPreparationSessionInfo(sessionId: String, completion: @escaping (SessionModel?, CustomError?) -> Void) {
+        let url = Api.preparationSessionInfo.replacingOccurrences(of: "{id}", with: sessionId).url!
+        ConnectionUtils.performGetRequest(url: url, parameters: nil) { (data, error) in
+            var sessionInfoModel: SessionInfoModel?
+            if let data = data {
+                sessionInfoModel = SessionInfoModel(data: data)
+            }
+            completion(sessionInfoModel?.session, error)
+        }
+    }
+    
     func setUserSessionSettings(settings: UserSettings, completion: @escaping (_ error: CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.userSettings.url!, parameters: try? settings.jsonDictionary()){ (data, error) in
             completion(error)
@@ -282,7 +295,6 @@ class APISessionService: SessionService {
     
     func updateSessionComment(commentId:String, content:String, rating: Int, completion: @escaping (_ error: CustomError?) -> Void) {
         let url = Api.sessionUpdateCommentUrl.replacingOccurrences(of: "{id}", with: commentId)
-        print("url: \(url)")
         
         let paramters = ["content" : content, "rate" : rating] as [String : Any]
         ConnectionUtils.performPostRequest(url: url.url!, parameters: paramters){ (data, error) in

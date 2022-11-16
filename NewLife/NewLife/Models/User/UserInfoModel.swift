@@ -32,7 +32,11 @@ struct UserPremiumModel: Codable, ModelInitializable {
 }
 
 struct UserSettings: Codable, ModelInitializable {
-    let defaultAudioSource: String
+    let defaultAudioSource: String?
+    let alarms: [Alarm]?
 }
 
-
+struct Alarm: Codable, ModelInitializable{
+    let time: String
+    let days: [Int]
+}

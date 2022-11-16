@@ -216,7 +216,7 @@ extension VoicesAndDialectsViewController: UITableViewDelegate, UITableViewDataS
         UserDefaults.saveSelectedVoice(code: voice)
         UserDefaults.saveSelectedDialect(code: dialect)
         
-        session.service.setUserSessionSettings(settings: UserSettings(defaultAudioSource: dialect)){(error) in
+        session.service.setUserSessionSettings(settings: UserSettings(defaultAudioSource: dialect, alarms: nil)){(error) in
         }
     }
 }

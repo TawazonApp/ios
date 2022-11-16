@@ -12,6 +12,8 @@
 		040F33B827E72965000B1E19 /* ImagesContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B727E72965000B1E19 /* ImagesContainerView.swift */; };
 		040F33BA27E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B927E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift */; };
 		0417042627FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */; };
+		04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04190381290FE8BB00D0840E /* PreparationSessionViewController.swift */; };
+		041903842912649800D0840E /* PreparationSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041903832912649800D0840E /* PreparationSessionPlayerViewController.swift */; };
 		041D1352288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D1351288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift */; };
 		041D82C228438BE200DF6928 /* VoicesAndDialectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */; };
 		041D82CC284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */; };
@@ -40,6 +42,11 @@
 		04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4827C39D3F00493142 /* SuperCategoryVM.swift */; };
 		04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */; };
 		046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */; };
+		047CF29229129F0600BF59AE /* LandingFeelingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF29129129F0600BF59AE /* LandingFeelingsViewController.swift */; };
+		047CF2942913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2932913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift */; };
+		047CF2962913CBB000BF59AE /* FeelingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2952913CBB000BF59AE /* FeelingSlider.swift */; };
+		047CF2992913EBA700BF59AE /* LandingReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2982913EBA700BF59AE /* LandingReminderViewController.swift */; };
+		047CF29B29191A2200BF59AE /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF29A29191A2200BF59AE /* DayView.swift */; };
 		047F11E428E97DFA0096E20E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F11E328E97DFA0096E20E /* NotificationService.swift */; };
 		047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		047F11FF28E986E50096E20E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047F11FE28E986E50096E20E /* GoogleService-Info.plist */; };
@@ -429,6 +436,8 @@
 		040F33B727E72965000B1E19 /* ImagesContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerView.swift; sourceTree = "<group>"; };
 		040F33B927E72E38000B1E19 /* ImagesContainerViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		0417042527FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePremiumBannerTableViewCell.swift; sourceTree = "<group>"; };
+		04190381290FE8BB00D0840E /* PreparationSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationSessionViewController.swift; sourceTree = "<group>"; };
+		041903832912649800D0840E /* PreparationSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationSessionPlayerViewController.swift; sourceTree = "<group>"; };
 		041D1351288FD57C00AE8CFA /* SeriesSessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSessionTableViewCell.swift; sourceTree = "<group>"; };
 		041D82C128438BE200DF6928 /* VoicesAndDialectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsViewController.swift; sourceTree = "<group>"; };
 		041D82CB284619BB00DF6928 /* VoicesAndDialectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicesAndDialectsTableViewCell.swift; sourceTree = "<group>"; };
@@ -457,6 +466,11 @@
 		04677F4827C39D3F00493142 /* SuperCategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryVM.swift; sourceTree = "<group>"; };
 		04677F4D27C4ED0E00493142 /* SuperCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryHeaderView.swift; sourceTree = "<group>"; };
 		046A1EE4287573F000BA26A6 /* SuperSessionPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSessionPlayerViewController.swift; sourceTree = "<group>"; };
+		047CF29129129F0600BF59AE /* LandingFeelingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingFeelingsViewController.swift; sourceTree = "<group>"; };
+		047CF2932913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingFeelingCollectionViewCell.swift; sourceTree = "<group>"; };
+		047CF2952913CBB000BF59AE /* FeelingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingSlider.swift; sourceTree = "<group>"; };
+		047CF2982913EBA700BF59AE /* LandingReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingReminderViewController.swift; sourceTree = "<group>"; };
+		047CF29A29191A2200BF59AE /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TawazonPNServiceExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		047F11E328E97DFA0096E20E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		047F11E528E97DFA0096E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -905,6 +919,15 @@
 			path = Banners;
 			sourceTree = "<group>";
 		};
+		04190380290FE87300D0840E /* PreparationSession */ = {
+			isa = PBXGroup;
+			children = (
+				04190381290FE8BB00D0840E /* PreparationSessionViewController.swift */,
+				041903832912649800D0840E /* PreparationSessionPlayerViewController.swift */,
+			);
+			path = PreparationSession;
+			sourceTree = "<group>";
+		};
 		041D82C028438BB300DF6928 /* SoundsAndDialects */ = {
 			isa = PBXGroup;
 			children = (
@@ -998,6 +1021,25 @@
 				04677F4627C3937400493142 /* SuperCategoryModel.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		047CF29029129EDB00BF59AE /* Feelings */ = {
+			isa = PBXGroup;
+			children = (
+				047CF29129129F0600BF59AE /* LandingFeelingsViewController.swift */,
+				047CF2932913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift */,
+				047CF2952913CBB000BF59AE /* FeelingSlider.swift */,
+			);
+			path = Feelings;
+			sourceTree = "<group>";
+		};
+		047CF2972913EB8500BF59AE /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				047CF2982913EBA700BF59AE /* LandingReminderViewController.swift */,
+				047CF29A29191A2200BF59AE /* DayView.swift */,
+			);
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 		047F11E228E97DFA0096E20E /* TawazonPNServiceExt */ = {
@@ -1620,6 +1662,9 @@
 		F3CA028022310F29008165C2 /* Membership */ = {
 			isa = PBXGroup;
 			children = (
+				047CF2972913EB8500BF59AE /* Reminder */,
+				047CF29029129EDB00BF59AE /* Feelings */,
+				04190380290FE87300D0840E /* PreparationSession */,
 				F3DE73C52237F3240052B18C /* ForgetPassword */,
 				F3CA02842231599B008165C2 /* Login */,
 				F35FD5322235782800B3CFC5 /* Premium */,
@@ -2571,6 +2616,7 @@
 				F3AF0F99223A469B00E29615 /* FileUtils.swift in Sources */,
 				0456D1BB27F19EF800C174C6 /* BasePremiumVM.swift in Sources */,
 				F3DC8E5E22248F7400C7DEC4 /* MainTabBarController.swift in Sources */,
+				047CF2962913CBB000BF59AE /* FeelingSlider.swift in Sources */,
 				F317A185222DEA2B00CBD760 /* PlayerControlsView.swift in Sources */,
 				F32D4A7124829E7400E3FCD6 /* MainTabBarControllerVM.swift in Sources */,
 				F317A17E222DD27500CBD760 /* SessionVM.swift in Sources */,
@@ -2578,6 +2624,7 @@
 				F3921CE722495357002A12EC /* LoadingHudView.swift in Sources */,
 				F31A0310255FF89700C582F8 /* HomeTableCardSectionCell.swift in Sources */,
 				04BB3272281017BB0007B283 /* HomePremiumFullWidthBannerTableViewCell.swift in Sources */,
+				047CF2992913EBA700BF59AE /* LandingReminderViewController.swift in Sources */,
 				F3AF0FA6223A8BB600E29615 /* CategoryModel.swift in Sources */,
 				F3DC8E0F2223D95A00C7DEC4 /* ConnectionUtils.swift in Sources */,
 				F31658072359DD910049605A /* TrackingService.swift in Sources */,
@@ -2638,6 +2685,7 @@
 				F3EC82B92264FF8D00DDEBC0 /* NotificationData.swift in Sources */,
 				F317A187222E004C00CBD760 /* SessionFavoriteButton.swift in Sources */,
 				04677F4727C3937400493142 /* SuperCategoryModel.swift in Sources */,
+				047CF2942913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift in Sources */,
 				046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */,
 				F3B16AF1222E94D1002B0406 /* OurStoryActionsView.swift in Sources */,
 				F35A02DC26208DA600C35016 /* HomeTableView.swift in Sources */,
@@ -2653,12 +2701,14 @@
 				04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */,
 				F34BB45A257A80DD004E417F /* SectionSessions.swift in Sources */,
 				04BB326E281017950007B283 /* HomePremiumGradientBannerTableViewCell.swift in Sources */,
+				041903842912649800D0840E /* PreparationSessionPlayerViewController.swift in Sources */,
 				F3AD859925F675F8003C3A0C /* LanguageExt.swift in Sources */,
 				F3DE73D3223800AB0052B18C /* ResetPasswordModel.swift in Sources */,
 				F31658052359DD7C0049605A /* FirebaseTrackerService.swift in Sources */,
 				F3AF0FAC223AB76100E29615 /* SessionServiceOffline.swift in Sources */,
 				F3DC425A2584C1E000BF18A7 /* OnboardingCollectionCellData.swift in Sources */,
 				F3AF0FB4223B271000E29615 /* FacebookLoginVM.swift in Sources */,
+				047CF29B29191A2200BF59AE /* DayView.swift in Sources */,
 				0432B7172876DFD8007400B3 /* DeleteAccountModel.swift in Sources */,
 				04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */,
 				04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */,
@@ -2745,6 +2795,7 @@
 				F354605F273579BD00068A4D /* SKProductExt.swift in Sources */,
 				F3DC8E4522243AF300C7DEC4 /* GerneralExt.swift in Sources */,
 				F3DE73B722367B1E0052B18C /* ErrorModel.swift in Sources */,
+				047CF29229129F0600BF59AE /* LandingFeelingsViewController.swift in Sources */,
 				F3DC8E9F2226F00900C7DEC4 /* CategorySessionCollectionCell.swift in Sources */,
 				F3715CE22242B96A00B7A465 /* MainPlayerBarView.swift in Sources */,
 				F31A030E255FF88000C582F8 /* HomeTableHorizontalSectionCell.swift in Sources */,
@@ -2755,6 +2806,7 @@
 				F3580BE4249CF38B00EBE1C1 /* MediaPlayerTrack.swift in Sources */,
 				F3B8BFC42587C3D200E2005A /* PremiumDiscountCell.swift in Sources */,
 				F334416D247950F500FA3234 /* ShareButtonView.swift in Sources */,
+				04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */,
 				F3E280F3223F9D8100066C04 /* BaseSessionVM.swift in Sources */,
 				F3B16AFB222EB772002B0406 /* LibrarySessionCollectionCell.swift in Sources */,
 				F3E6F6F9224E7614005A566A /* PermissionAlertView.swift in Sources */,
@@ -3115,7 +3167,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3165,7 +3217,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

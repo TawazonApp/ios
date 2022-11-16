@@ -496,8 +496,8 @@ extension SessionPlayerViewController {
         }
         playButton.alpha = 1.0
         playButton.isEnabled = true
-        controlsView.alpha = 1.0
-        controlsView.isUserInteractionEnabled = true
+        controlsView?.alpha = 1.0
+        controlsView?.isUserInteractionEnabled = true
     }
     
 //    private func sendPlaySessionEvent(id: String, name: String) {

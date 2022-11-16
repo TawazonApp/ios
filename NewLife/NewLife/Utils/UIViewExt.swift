@@ -531,6 +531,56 @@ extension UIView {
         
         return frame
     }
+    
+    static let kLayerNameGradientBorder = "GradientBorderLayer"
+
+    func gradientBorder(width: CGFloat,
+                        colors: [UIColor],
+                        startPoint: GradientPoint,
+                        endPoint: GradientPoint,
+                        corners: UIRectCorner = .allCorners,
+                        andRoundCornersWithRadius cornerRadius: CGFloat = 0) {
+
+        let existingBorder = gradientBorderLayer()
+        let border = existingBorder ?? CAGradientLayer()
+        border.frame = CGRect(x: bounds.origin.x, y: bounds.origin.y,
+                                      width: bounds.size.width + width, height: bounds.size.height + width)
+        border.colors = colors.map { return $0.cgColor }
+        border.startPoint = startPoint.point
+        border.endPoint = endPoint.point
+        border.name = UIView.kLayerNameGradientBorder
+
+        let mask = CAShapeLayer()
+        let maskRect = CGRect(x: bounds.origin.x + width/2, y: bounds.origin.y + width/2,
+                                      width: bounds.size.width - width, height: bounds.size.height - width)
+        mask.path = UIBezierPath(roundedRect: maskRect, byRoundingCorners: corners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
+        mask.fillColor = UIColor.clear.cgColor
+        mask.strokeColor = UIColor.white.cgColor
+        mask.lineWidth = width
+
+        border.mask = mask
+
+        let exists = (existingBorder != nil)
+        if !exists {
+            layer.addSublayer(border)
+        }
+    }
+    
+    private func gradientBorderLayer() -> CAGradientLayer? {
+        let borderLayers = layer.sublayers?.filter { return $0.name == UIView.kLayerNameGradientBorder }
+        if borderLayers?.count ?? 0 > 1 {
+            fatalError()
+        }
+        return borderLayers?.first as? CAGradientLayer
+    }
+    
+    var snapshot: UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        let capturedImage = renderer.image { context in
+            layer.render(in: context.cgContext)
+        }
+        return capturedImage
+    }
 }
 
 extension UIImage {
@@ -554,4 +604,24 @@ extension UIButton {
             self.bringSubviewToFront(imageView)
         }
     }
+}
+extension CALayer {
+    func addGradienBorder(colors:[UIColor],
+                          andRoundCornersWithRadius cornerRadius: CGFloat = 0, width:CGFloat = 1) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame =  CGRect(origin: CGPointZero, size: self.bounds.size)
+        gradientLayer.startPoint = CGPointMake(0.0, 0.5)
+        gradientLayer.endPoint = CGPointMake(1.0, 0.5)
+        gradientLayer.colors = colors.map({$0.cgColor})
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.lineWidth = width
+        shapeLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: cornerRadius).cgPath
+        shapeLayer.fillColor = nil
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        gradientLayer.mask = shapeLayer
+
+        self.addSublayer(gradientLayer)
+    }
+
 }

@@ -14,6 +14,8 @@ enum RCValueKeys: String {
     case homeFeedPremuimPageViewName
     case profilePremuimPageViewName
     case sectionPremuimPageViewName
+    case prepSessionId
+    case meditationReminderString
 }
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
@@ -46,7 +48,7 @@ extension RemoteConfigManager{
     
     func fetchRemoteConfigCloudValues() {
       //FIXME: remove on production
-//      activateDebugMode()
+      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {
@@ -79,7 +81,13 @@ extension RemoteConfigManager{
                 .configValue(forKey: RCValueKeys.premuimOfBannerViewName.rawValue)
               .stringValue ?? "undefined"
             
-
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.prepSessionId.rawValue)
+              .stringValue ?? "undefined"
+            
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.meditationReminderString.rawValue)
+              .jsonValue
 
             
           self?.fetchComplete = true
@@ -102,6 +110,10 @@ extension RemoteConfigManager{
     
     func string(forKey key: RCValueKeys) -> String {
       RemoteConfig.remoteConfig()[key.rawValue].stringValue ?? ""
+    }
+    
+    func json(forKey key: RCValueKeys) -> [String: Any] {
+        RemoteConfig.remoteConfig()[key.rawValue].jsonValue as! [String : Any]
     }
     
     func bool(forKey key: RCValueKeys) -> Bool {

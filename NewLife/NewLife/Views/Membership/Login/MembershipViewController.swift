@@ -156,9 +156,9 @@ class MembershipViewController: HandleErrorViewController {
     }
     
     private func setUserSettings(){
-        var settings = UserSettings(defaultAudioSource: "ar.ps")
+        var settings = UserSettings(defaultAudioSource: "ar.ps", alarms: nil)
         if Language.language == .english{
-            settings = UserSettings(defaultAudioSource: "en.us")
+            settings = UserSettings(defaultAudioSource: "en.us", alarms: nil)
         }
         UserInfoManager.shared.setUserSessionSettings(settings: settings, service: MembershipServiceFactory.service()){ (error) in
             if let error = error{

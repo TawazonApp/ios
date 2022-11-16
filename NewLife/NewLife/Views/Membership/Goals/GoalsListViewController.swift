@@ -85,19 +85,30 @@ class GoalsListViewController: HandleErrorViewController {
             if let error = error {
                 self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
             } else {
+                self?.setUserSettings()
                 self?.submitSuccessed()
             }
         }
     }
     
     private func submitSuccessed() {
-        print("submitSuccessed")
         if UserDefaults.isAnonymousUser() {
             // Save Anonymous Token
-            print("AnonymousUserVM().submit()")
             AnonymousUserVM().submit()
         }
-        openMainViewController()
+        openPreparationSessionViewController()
+    }
+    
+    private func setUserSettings(){
+        var settings = UserSettings(defaultAudioSource: "ar.ps", alarms: nil)
+        if Language.language == .english{
+            settings = UserSettings(defaultAudioSource: "en.us", alarms: nil)
+        }
+        UserInfoManager.shared.setUserSessionSettings(settings: settings, service: MembershipServiceFactory.service()){ (error) in
+            if let error = error{
+                self.showErrorMessage( message: error.localizedDescription )
+            }
+        }
     }
     
     private func openMainViewController() {
@@ -105,7 +116,11 @@ class GoalsListViewController: HandleErrorViewController {
         (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
     }
     
-    
+    private func openPreparationSessionViewController(){
+        let viewController = PreparationSessionViewController.instantiate()
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: false, completion: nil)
+    }
 }
 extension GoalsListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -56,7 +56,7 @@ struct Api {
     static let homeSectionsUrlV2_1 = "\(apiUrlV2_1)/home"
     static let homeSectionsWithBannersUrl = "\(apiUrlV2)/app/home"
     static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
-    static let feelingsListUrl = "\(apiUrlV2)/feelings/list"
+    static let feelingsListUrl = "\(apiUrlV2_1)/feelings/list"
     static let feelingsSessions = "\(apiUrlV2)/feelings/sessions/list"
     static let updateFeelings = "\(apiUrlV2)/feelings/update"
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
@@ -93,6 +93,7 @@ struct Api {
     static let removeFromFavoritesUrlV2_1 = "\(apiUrlV2_1)/favourites/delete"
     static let trackSessionUrl = "\(apiUrlV2)/sessions/track"
     static let sessionInfoDetails = "\(apiUrlV2_1)/sessions/view/{id}"
+    static let preparationSessionInfo = "\(apiUrlV2_1)/sessions/prep/view/{id}"
     static let purchaseReceiptUrl = "\(apiUrl)/subscription/apple/verify"
     static let anonymousToken = "$AnonymousToken"
     

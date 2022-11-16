@@ -63,6 +63,21 @@ class AppsFlyerTrackingService: TrackingService {
         static let openWriteCommentView = "open_write_comment_view"
         static let submitComment = "submit_comment"
         static let cancelSubmitComment = "cancel_submit_comment"
+        static let startPrepFromButton = "startPrep_fromButton"
+        static let startPrepFromImage = "startPrep_fromImage"
+        static let startPrepSkipped = "startPrep_skipped"
+        static let prepSessionBgSound = "prepSession_bgSound"
+        static let prepSessionSkipped = "prepSession_skipped"
+        static let prepSessionProgressTaped = "prepSession_progressTaped"
+        static let prepSessionFinished = "prepSession_finished"
+        static let feelingsMainSelected = "feelings_mainSelected"
+        static let feelingsIntencitySelcted = "feelings_intencitySelcted"
+        static let feelingsLogged = "feelings_logged"
+        static let feelingsSkipped = "feelings_skipped"
+        static let reminderDayTapped = "reminder_dayTapped"
+        static let reminderTimeSelected = "reminder_timeSelected"
+        static let reminderSet = "reminder_set"
+        static let reminderSkipped = "reminder_skipped"
     }
     
     func sendUserId(userId: String?) {
@@ -469,6 +484,112 @@ class AppsFlyerTrackingService: TrackingService {
         let values = getBaseEventValues()
         
         AppsFlyerLib.shared().logEvent(CustomEvents.closeInstallSource, withValues: values)
+    }
+    
+    func sendStartPrepFromButton() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.startPrepFromButton, withValues: values)
+    }
+    
+    func sendStartPrepFromImage() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.startPrepFromImage, withValues: values)
+    }
+    
+    func sendStartPrepSkipped() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.startPrepSkipped, withValues: values)
+    }
+    
+    func sendPrepSessionBGSound(isPlaying: Bool) {
+        var values = getBaseEventValues()
+        values["isPlaying"] = isPlaying
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.prepSessionBgSound, withValues: values)
+    }
+    
+    func sendPrepSessionSkipped(sessionId: String, sessionName: String, time: Int) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        values["time"] = time
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.prepSessionSkipped, withValues: values)
+    }
+    
+    func sendPrepSessionProgressChangeAttempts() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.prepSessionProgressTaped, withValues: values)
+    }
+    
+    func sendPrepSessionFinished(sessionId: String, sessionName: String, time: Int) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        values["time"] = time
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.prepSessionFinished, withValues: values)
+    }
+    
+    func sendFeelingsMainSelected(feelingId: String, feelingName: String) {
+        var values = getBaseEventValues()
+        values["feelingId"] = feelingId
+        values["feelingName"] = feelingName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.feelingsMainSelected, withValues: values)
+    }
+    
+    func sendFeelingsIntencitySelcted(subfeelingId: String, subfeelingName: String) {
+        var values = getBaseEventValues()
+        values["subfeelingId"] = subfeelingId
+        values["subfeelingName"] = subfeelingName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.feelingsIntencitySelcted, withValues: values)
+    }
+    
+    func sendFeelingsLogged(feelingId: String, feelingName: String, subfeelingId: String, subfeelingName: String) {
+        var values = getBaseEventValues()
+        values["feelingId"] = feelingId
+        values["feelingName"] = feelingName
+        values["subfeelingId"] = subfeelingId
+        values["subfeelingName"] = subfeelingName
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.feelingsLogged, withValues: values)
+    }
+    
+    func sendFeelingsSkipped() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.feelingsSkipped, withValues: values)
+    }
+    
+    func sendReminderDayTapped(dayId: String, dayName: String, selected: Bool) {
+        var values = getBaseEventValues()
+        values["dayId"] = dayId
+        values["dayName"] = dayName
+        values["selected"] = selected
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.reminderDayTapped, withValues: values)
+    }
+    
+    func sendReminderTimeSelected(time: String) {
+        var values = getBaseEventValues()
+        values["time"] = time
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.reminderTimeSelected, withValues: values)
+    }
+    
+    func sendReminderSet(dayId: String, dayName: String, time: String) {
+        var values = getBaseEventValues()
+        values["dayId"] = dayId
+        values["dayName"] = dayName
+        values["time"] = time
+        
+        AppsFlyerLib.shared().logEvent(CustomEvents.reminderSet, withValues: values)
+    }
+    
+    func sendReminderSkipped() {
+        let values = getBaseEventValues()
+        AppsFlyerLib.shared().logEvent(CustomEvents.reminderSkipped, withValues: values)
     }
     
     private func getBaseEventValues() -> [AnyHashable : Any] {

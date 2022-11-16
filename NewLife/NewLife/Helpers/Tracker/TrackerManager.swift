@@ -327,6 +327,86 @@ class TrackerManager: TrackingService {
         }
     }
     
+    func sendStartPrepFromButton() {
+        for service in services {
+            service.sendStartPrepFromButton()
+        }
+    }
+    
+    func sendStartPrepFromImage() {
+        for service in services {
+            service.sendStartPrepFromImage()
+        }
+    }
+    
+    func sendStartPrepSkipped() {
+        for service in services {
+            service.sendStartPrepSkipped()
+        }
+    }
+    func sendPrepSessionBGSound(isPlaying: Bool){
+        for service in services {
+            service.sendPrepSessionBGSound(isPlaying: isPlaying)
+        }
+    }
+    func sendPrepSessionSkipped(sessionId: String, sessionName: String, time: Int){
+        for service in services {
+            service.sendPrepSessionSkipped(sessionId: sessionId, sessionName: sessionName, time: time)
+        }
+    }
+    func sendPrepSessionProgressChangeAttempts(){
+        for service in services {
+            service.sendPrepSessionProgressChangeAttempts()
+        }
+    }
+    func sendPrepSessionFinished(sessionId: String, sessionName: String, time: Int){
+        for service in services {
+            service.sendPrepSessionFinished(sessionId: sessionId, sessionName: sessionName, time: time)
+        }
+    }
+    
+    func sendFeelingsMainSelected(feelingId: String, feelingName: String){
+        for service in services {
+            service.sendFeelingsMainSelected(feelingId: feelingId, feelingName: feelingName)
+        }
+    }
+    func sendFeelingsIntencitySelcted(subfeelingId: String, subfeelingName: String){
+        for service in services {
+            service.sendFeelingsIntencitySelcted(subfeelingId: subfeelingId, subfeelingName: subfeelingName)
+        }
+    }
+    func sendFeelingsLogged(feelingId: String, feelingName: String, subfeelingId: String, subfeelingName: String){
+        for service in services {
+            service.sendFeelingsLogged(feelingId: feelingId, feelingName: feelingName, subfeelingId: subfeelingId, subfeelingName: subfeelingName)
+        }
+    }
+    func sendFeelingsSkipped(){
+        for service in services {
+            service.sendFeelingsSkipped()
+        }
+    }
+    
+    func sendReminderDayTapped(dayId: String, dayName: String, selected: Bool){
+        for service in services {
+            service.sendReminderDayTapped(dayId: dayId, dayName: dayName, selected:selected)
+        }
+    }
+    func sendReminderTimeSelected(time: String){
+        for service in services {
+            service.sendReminderTimeSelected(time:time)
+        }
+    }
+    func sendReminderSet(dayId: String, dayName: String, time: String){
+        for service in services {
+            service.sendReminderSet(dayId: dayId, dayName: dayName, time:time)
+        }
+    }
+    func sendReminderSkipped(){
+        for service in services {
+            service.sendReminderSkipped()
+        }
+    }
+    
     //MARK: Server Tracking
     func sendOpenDynamiclinkEvent() {
         let tempCampaigns = UserDefaults.getTempCampaigns()

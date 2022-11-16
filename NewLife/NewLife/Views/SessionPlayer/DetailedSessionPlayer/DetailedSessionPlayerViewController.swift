@@ -61,8 +61,8 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     private func initialize() {
-        favoriteButton.layer.cornerRadius = favoriteButton.frame.height / 2
-        favoriteButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        favoriteButton!.layer.cornerRadius = (favoriteButton?.frame.height ?? 0) / 2
+        favoriteButton!.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         if session?.audioSources?.count ?? 0 == 1 && session?.audioSources?.first?.dialects.count == 1{
             voiceAndDialectsButton.isHidden = true
@@ -133,7 +133,6 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         initializeBottomStackButtons()
     }
     @objc func infoViewTapped(){
-        print("infoViewTapped")
         guard let session = session else { return }
         openSessionInfoDetailsViewController(session: session)
     }
@@ -273,8 +272,8 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             self.view.addSubview(tourView)
             
             sessionPlayerGuidedTourSteps.append(StepInfo(view: self.soundsButton!,position: self.rateButton.respectLanguageFrame(), textInfo: ("sound_effects","helpTextSoundsButton".localized), isBelow: true, isSameHierarchy: true))
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton.respectLanguageFrame(), textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
-            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton.respectLanguageFrame(), textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: true, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.downloadButton!,position: self.downloadButton!.respectLanguageFrame(), textInfo: ("download","helpTextDownloadButton".localized), isBelow: true, isSameHierarchy: true))
+            sessionPlayerGuidedTourSteps.append(StepInfo(view: self.favoriteButton!,position: self.favoriteButton!.respectLanguageFrame(), textInfo: ("favorite","helpTextFavoriteButton".localized), isBelow: true, isSameHierarchy: true))
             if !self.voiceAndDialectsButton.isHidden{
                 sessionPlayerGuidedTourSteps.append(StepInfo(view: self.voiceAndDialectsButton!,position: self.footerControlsStack.frame, textInfo: ("voices_dialects","helpTextVoiceAndDialectsButton".localized), isBelow: false, isSameHierarchy: true))
                 UserDefaults.appSessionDialectButtonGuided()
@@ -354,8 +353,8 @@ extension DetailedSessionPlayerViewController {
         }
         playButton.alpha = 0.5
         playButton.isEnabled = false
-        controlsView.alpha = 0.5
-        controlsView.isUserInteractionEnabled = false
+        controlsView?.alpha = 0.5
+        controlsView?.isUserInteractionEnabled = false
     }
     
     private func stopPlayerLoading() {
@@ -365,8 +364,8 @@ extension DetailedSessionPlayerViewController {
         }
         playButton.alpha = 1.0
         playButton.isEnabled = true
-        controlsView.alpha = 1.0
-        controlsView.isUserInteractionEnabled = true
+        controlsView?.alpha = 1.0
+        controlsView?.isUserInteractionEnabled = true
     }
     
 }

@@ -48,7 +48,7 @@ extension UIApplication {
     class func isUpdateAvailable(callback: @escaping (Bool, String)->Void) {
         let bundleId = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
         
-        ConnectionUtils.performGetRequest(url: "https://itunes.apple.com/lookup?bundleId=\(bundleId)".url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: "https://itunes.apple.com/lookup?bundleId=\(bundleId)&date=\(Date().timeIntervalSince1970)".url!, parameters: nil) { (data, error) in
             if let data = data{
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] , let results = json["results"] as? [[String: Any]], let versionStore = (results.first)?["version"]  as? String, let versionSize = (results.first)?["fileSizeBytes"]  as? String{

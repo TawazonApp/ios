@@ -21,17 +21,17 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     
     
     @IBOutlet weak var voiceAndDialectsButton: GradientButton!
-    @IBOutlet weak var backgroundImageView: ParallaxImageView!
-    @IBOutlet weak var overlayView: GradientView!
-    @IBOutlet weak var downloadButton: DownloadSessionButton!
-    @IBOutlet weak var dismissButton: UIButton!
-    @IBOutlet weak var favoriteButton: SessionFavoriteButton!
+    @IBOutlet weak var backgroundImageView: ParallaxImageView?
+    @IBOutlet weak var overlayView: GradientView?
+    @IBOutlet weak var downloadButton: DownloadSessionButton?
+    @IBOutlet weak var dismissButton: UIButton?
+    @IBOutlet weak var favoriteButton: SessionFavoriteButton?
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var subTitleLabel: UILabel?
     
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var controlsView: PlayerControlsView!
+    @IBOutlet weak var controlsView: PlayerControlsView?
     
     
     weak var delegate: SessionPlayerDelegate?
@@ -70,7 +70,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
         if didAppeared == false {
             let sessionURL = session?.getSessionAudioSource()
             self.playSession(sessoinAudioSource: sessionURL)
-            backgroundImageView.animate()
+            backgroundImageView?.animate()
             didAppeared = true
         }
     }
@@ -90,30 +90,30 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     private func initialize() {
         
         self.view.layer.masksToBounds = true
-        controlsView.delegate = self
-        backgroundImageView.backgroundColor = UIColor.black
+        controlsView?.delegate = self
+        backgroundImageView?.backgroundColor = UIColor.black
         
-        dismissButton.setImage(#imageLiteral(resourceName: "SwipeDismiss.pdf"), for: .normal)
-        dismissButton.tintColor = UIColor.white
+        dismissButton?.setImage(#imageLiteral(resourceName: "SwipeDismiss.pdf"), for: .normal)
+        dismissButton?.tintColor = UIColor.white
         
-        downloadButton.setImage(#imageLiteral(resourceName: "Download.pdf"), for: .normal)
-        downloadButton.tintColor = UIColor.white
-        downloadButton.layer.cornerRadius = downloadButton.frame.height/2
-        downloadButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        downloadButton?.setImage(#imageLiteral(resourceName: "Download.pdf"), for: .normal)
+        downloadButton?.tintColor = UIColor.white
+        downloadButton?.layer.cornerRadius = (downloadButton?.frame.height ?? 0)/2
+        downloadButton?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
-        titleLabel.font = UIFont.lbcBold(ofSize: 28, language: .arabic)
-        titleLabel.textColor = UIColor.white
-        titleLabel.numberOfLines = 0
-        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel?.font = UIFont.lbcBold(ofSize: 28, language: .arabic)
+        titleLabel?.textColor = UIColor.white
+        titleLabel?.numberOfLines = 0
+        titleLabel?.lineBreakMode = .byWordWrapping
         
-        subTitleLabel.font = UIFont.munaFont(ofSize: 16, language: .arabic)
-        subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.86)
-        subTitleLabel.textAlignment = .center
-        subTitleLabel.numberOfLines = 2
-        subTitleLabel.lineBreakMode = .byTruncatingTail
+        subTitleLabel?.font = UIFont.munaFont(ofSize: 16, language: .arabic)
+        subTitleLabel?.textColor = UIColor.white.withAlphaComponent(0.86)
+        subTitleLabel?.textAlignment = .center
+        subTitleLabel?.numberOfLines = 2
+        subTitleLabel?.lineBreakMode = .byTruncatingTail
         
         
-        overlayView.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
+        overlayView?.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
         
         playButton.tintColor = UIColor.white
         
@@ -143,29 +143,29 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     }
     
      @objc func fillData() {
-         titleLabel.text = session?.name
-         subTitleLabel.text = session?.session?.descriptionString
-         if !(subTitleLabel.text?.isEmptyWithTrim ?? true){
+         titleLabel?.text = session?.name
+         subTitleLabel?.text = session?.session?.descriptionString
+         if !(subTitleLabel?.text?.isEmptyWithTrim ?? true){
              DispatchQueue.main.async {
-                 self.subTitleLabel.addTrailing(with: "... ", moreText: "ReadMoreLabel".localized, moreTextFont: .munaBoldFont(ofSize: 16, language: .arabic), moreTextColor: self.self.subTitleLabel.textColor)
+                 self.subTitleLabel?.addTrailing(with: "... ", moreText: "ReadMoreLabel".localized, moreTextFont: .munaBoldFont(ofSize: 16, language: .arabic), moreTextColor: UIColor.white.withAlphaComponent(0.86))
              }
          }
          
-        backgroundImageView.image = nil
+        backgroundImageView?.image = nil
         if let localiImageUrl = session?.localImageUrl {
-            backgroundImageView.image = UIImage(contentsOfFile: localiImageUrl.path)
+            backgroundImageView?.image = UIImage(contentsOfFile: localiImageUrl.path)
         } else if let imageUrl = session?.imageUrl {
-            backgroundImageView.af.setImage(withURL: imageUrl)
+            backgroundImageView?.af.setImage(withURL: imageUrl)
         }
         
-        controlsView.duration = session?.durationString
-        downloadButton.downloadStatus = session?.downloadStatus
+        controlsView?.duration = session?.durationString
+        downloadButton?.downloadStatus = session?.downloadStatus
         initialDownloadStatus = session?.downloadStatus ?? .none
         setFavoriteButtonData()
     }
     
     private func setFavoriteButtonData() {
-        favoriteButton.isFavorite = session?.isFavorite ?? false
+        favoriteButton?.isFavorite = session?.isFavorite ?? false
     }
     
     private func  changeFavoriteStatus(favorite: Bool) {
@@ -183,7 +183,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
     }
     
     @objc private func downloadSessionsProgressChanged(_ notification: Notification) {
-        downloadButton.downloadStatus = session?.downloadStatus
+        downloadButton?.downloadStatus = session?.downloadStatus
         if initialDownloadStatus != session?.downloadStatus &&  session?.downloadStatus == .downloaded {
             initialDownloadStatus = .downloaded
             showSessionDownloadedSuccessMessage()
@@ -447,7 +447,7 @@ extension SuperSessionPlayerViewController{
      @objc func updatePlaybackTime(_ track: AudioTrack?) {
 //        progressView.progress = CGFloat(track?.currentProgress() ?? 0)
         showAndHideLoadingIndicator(track: track)
-        controlsView.duration = track?.displayableTimeLeftString()
+        controlsView?.duration = track?.displayableTimeLeftString()
          NotificationCenter.default.post(name: NSNotification.Name.updatePlayerProgress, object: nil)
     }
     
@@ -468,8 +468,8 @@ extension SuperSessionPlayerViewController{
 //        }
         playButton.alpha = 0.5
         playButton.isEnabled = false
-        controlsView.alpha = 0.5
-        controlsView.isUserInteractionEnabled = false
+        controlsView?.alpha = 0.5
+        controlsView?.isUserInteractionEnabled = false
     }
     
     private func stopPlayerLoading() {
@@ -479,8 +479,8 @@ extension SuperSessionPlayerViewController{
         }
         playButton.alpha = 1.0
         playButton.isEnabled = true
-        controlsView.alpha = 1.0
-        controlsView.isUserInteractionEnabled = true
+        controlsView?.alpha = 1.0
+        controlsView?.isUserInteractionEnabled = true
     }
     
     private func sendPlaySessionEvent(id: String, name: String) {

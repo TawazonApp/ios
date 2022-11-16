@@ -93,6 +93,7 @@ struct Dialect: Codable {
     let duration: Int
     let author: Contributor?
     let narrator: Contributor?
+    let subtitles: [Subtitle]?
     let hash: String
     
 }
@@ -107,6 +108,11 @@ struct Contributor: Codable {
 
 struct Country: Codable {
     let id, title: String?
+}
+
+struct Subtitle: Codable{
+    let start, end: Float
+    let title: String
 }
 extension SessionModel {
     

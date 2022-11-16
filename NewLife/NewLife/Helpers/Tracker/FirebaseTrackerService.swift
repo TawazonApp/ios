@@ -61,6 +61,21 @@ class FirebaseTrackingService: TrackingService {
         static let openWriteCommentView = "open_write_comment_view"
         static let submitComment = "submit_comment"
         static let cancelSubmitComment = "cancel_submit_comment"
+        static let startPrepFromButton = "startPrep_fromButton"
+        static let startPrepFromImage = "startPrep_fromImage"
+        static let startPrepSkipped = "startPrep_skipped"
+        static let prepSessionBgSound = "prepSession_bgSound"
+        static let prepSessionSkipped = "prepSession_skipped"
+        static let prepSessionProgressTaped = "prepSession_progressTaped"
+        static let prepSessionFinished = "prepSession_finished"
+        static let feelingsMainSelected = "feelings_mainSelected"
+        static let feelingsIntencitySelcted = "feelings_intencitySelcted"
+        static let feelingsLogged = "feelings_logged"
+        static let feelingsSkipped = "feelings_skipped"
+        static let reminderDayTapped = "reminder_dayTapped"
+        static let reminderTimeSelected = "reminder_timeSelected"
+        static let reminderSet = "reminder_set"
+        static let reminderSkipped = "reminder_skipped"
     }
     
     func sendUserId(userId: String?) {
@@ -410,6 +425,114 @@ class FirebaseTrackingService: TrackingService {
         values["sessionName"] = sessionName
         
         Analytics.logEvent(CustomEvents.submitComment, parameters: values)
+    }
+    
+    func sendStartPrepFromButton() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.startPrepFromButton, parameters: values)
+    }
+    
+    func sendStartPrepFromImage() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.startPrepFromImage, parameters: values)
+    }
+    
+    func sendStartPrepSkipped() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.startPrepSkipped, parameters: values)
+    }
+    
+    
+    func sendPrepSessionBGSound(isPlaying: Bool) {
+        var values = getBaseEventValues()
+        values["isPlaying"] = isPlaying
+        
+        Analytics.logEvent(CustomEvents.prepSessionBgSound, parameters: values)
+    }
+    
+    func sendPrepSessionSkipped(sessionId: String, sessionName: String, time: Int) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        values["time"] = time
+        
+        Analytics.logEvent(CustomEvents.prepSessionSkipped, parameters: values)
+    }
+    
+    func sendPrepSessionProgressChangeAttempts() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.prepSessionProgressTaped, parameters: values)
+    }
+    
+    func sendPrepSessionFinished(sessionId: String, sessionName: String, time: Int) {
+        var values = getBaseEventValues()
+        values["sessionId"] = sessionId
+        values["sessionName"] = sessionName
+        values["time"] = time
+        
+        Analytics.logEvent(CustomEvents.prepSessionFinished, parameters: values)
+    }
+    
+    
+    func sendFeelingsMainSelected(feelingId: String, feelingName: String) {
+        var values = getBaseEventValues()
+        values["feelingId"] = feelingId
+        values["feelingName"] = feelingName
+        
+        Analytics.logEvent(CustomEvents.feelingsMainSelected, parameters: values)
+    }
+    
+    func sendFeelingsIntencitySelcted(subfeelingId: String, subfeelingName: String) {
+        var values = getBaseEventValues()
+        values["subfeelingId"] = subfeelingId
+        values["subfeelingName"] = subfeelingName
+        
+        Analytics.logEvent(CustomEvents.feelingsIntencitySelcted, parameters: values)
+    }
+    
+    func sendFeelingsLogged(feelingId: String, feelingName: String, subfeelingId: String, subfeelingName: String) {
+        var values = getBaseEventValues()
+        values["feelingId"] = feelingId
+        values["feelingName"] = feelingName
+        values["subfeelingId"] = subfeelingId
+        values["subfeelingName"] = subfeelingName
+        
+        Analytics.logEvent(CustomEvents.feelingsLogged, parameters: values)
+    }
+    
+    func sendFeelingsSkipped() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.feelingsSkipped, parameters: values)
+    }
+    
+    func sendReminderDayTapped(dayId: String, dayName: String, selected: Bool) {
+        var values = getBaseEventValues()
+        values["dayId"] = dayId
+        values["dayName"] = dayName
+        values["selected"] = selected
+        
+        Analytics.logEvent(CustomEvents.reminderDayTapped, parameters: values)
+    }
+    
+    func sendReminderTimeSelected(time: String) {
+        var values = getBaseEventValues()
+        values["time"] = time
+        
+        Analytics.logEvent(CustomEvents.reminderTimeSelected, parameters: values)
+    }
+    
+    func sendReminderSet(dayId: String, dayName: String, time: String) {
+        var values = getBaseEventValues()
+        values["dayId"] = dayId
+        values["dayName"] = dayName
+        values["time"] = time
+        
+        Analytics.logEvent(CustomEvents.reminderSet, parameters: values)
+    }
+    
+    func sendReminderSkipped() {
+        let values = getBaseEventValues()
+        Analytics.logEvent(CustomEvents.reminderSkipped, parameters: values)
     }
     
     private func getBaseEventValues() -> [String : Any] {
