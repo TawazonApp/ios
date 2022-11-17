@@ -51,9 +51,9 @@ class GoalsListViewController: HandleErrorViewController {
         continueButton.layer.masksToBounds = true
         continueButton.tintColor = UIColor.white
         continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
-        continueButton.titleLabel?.font = UIFont.kacstPen(ofSize: 24)
-        continueButton.setTitleWithoutAnimation(title: "goalsContinueButtonTitle".localized)
-        continueButton.isEnabled = false
+        continueButton.setTitle("goalsContinueButtonTitle".localized, for: .normal)
+        continueButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 26)
+        continueButton.isHidden = true
     }
 
     private func fetchAndReload() {
@@ -139,10 +139,10 @@ extension GoalsListViewController: GoalTableViewCellDelegate{
     func selectGoal(goal: GoalVM) {
         let selectedGoals = goals.goals.filter({$0.isSelected}).map({ return $0.id }) as? [String]
         if (selectedGoals?.count ?? 0 > 0){
-            continueButton.isEnabled = true
+            continueButton.isHidden = false
             continueButton.applyGradientColor(colors: [UIColor.black.cgColor, UIColor.black.cgColor], startPoint: .right, endPoint: .left)
         }else{
-            continueButton.isEnabled = false
+            continueButton.isHidden = true
             continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
         }
     }

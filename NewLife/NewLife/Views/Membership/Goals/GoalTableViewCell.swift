@@ -73,7 +73,6 @@ class GoalTableViewCell: UITableViewCell {
                 return
             }
             goal.isSelected.toggle()
-            print("SELECTED: \(goal.name), \(goal.id)")
             self.setSelected(goal.isSelected, animated: true)
             
             delegate?.selectGoal(goal: goal)

@@ -160,7 +160,6 @@ class LocalSessionsManager: NSObject {
          let localAudio = getSessionAudioLocalUrl(id: session.id, userId: userId, fileExtension: remoteAudioUrl.pathExtension)
         
         service.downloadSessionFile(localFileUrl: localAudio.fullUrl, remoteUrl: remoteAudioUrl) { (error) in
-            print("localAudio.path: \(localAudio.path)")
             completion(localAudio.path, error)
         }
     }

@@ -42,7 +42,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
         closeButton.setImage(UIImage(named: "Cancel"), for: .normal)
         closeButton.tintColor = .white
         
-        sessionSubtitleLabel.font = .munaBoldFont(ofSize: 36)
+        sessionSubtitleLabel.font = .munaBoldFont(ofSize: 38)
         sessionSubtitleLabel.textColor = .white
         sessionSubtitleLabel.numberOfLines = 0
         sessionSubtitleLabel.lineBreakMode = .byWordWrapping

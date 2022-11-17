@@ -127,7 +127,6 @@ class WriteCommentViewController: UIViewController {
         rateViewModel.rateSession(sessionId: sessionId, rate: Int(ratingView.value)) {
             (error) in
             if error == nil {
-                print("Session Rated: \(sessionId)")
                 self.delegate.commentSubmitted()
                 UserDefaults.sessionRated(sessionId: sessionId)
             }

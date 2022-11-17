@@ -129,7 +129,6 @@ class Premium4ViewController: BasePremiumViewController {
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        print("plansContainer.selectedPlan: \(plansContainer.selectedPlan), \(data.products[plansContainer.selectedPlan].localizedTitle)")
         purchaseAction(product: data.products[plansContainer.selectedPlan])
     }
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {

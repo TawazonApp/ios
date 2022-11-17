@@ -105,11 +105,13 @@ class LandingReminderViewController: HandleErrorViewController {
         amButton.tintColor = .white
         amButton.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .bottomLeft, endPoint: .topRight, corners: amButtonCorners!, andRoundCornersWithRadius: 15.0)
         amButton.roundCorners(corners: amButtonCorners!, radius: 15.0)
+        amButton.addTarget(self, action: #selector(self.amPmTapped), for: .touchUpInside)
         
         pmButton.setTitle("PM".localized, for: .normal)
         pmButton.backgroundColor = .darkGray.withAlphaComponent(0.26)
         pmButton.tintColor = .white
         pmButton.roundCorners(corners: pmButtonCorners!, radius: 15.0)
+        pmButton.addTarget(self, action: #selector(self.amPmTapped), for: .touchUpInside)
         
         selectedTimeLabel.isHidden = true
         
@@ -137,8 +139,7 @@ class LandingReminderViewController: HandleErrorViewController {
         saveButton.backgroundColor = .white
         saveButton.tintColor = UIColor.mariner
         saveButton.setTitle("landingReminderViewSubmitButtonTitle".localized, for: .normal)
-        saveButton.titleLabel?.font = .munaBoldFont(ofSize: 22)
-        
+        saveButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 26)
         
         weekDaysViews = weekDaysViews.enumerated().map{ (index, weekDayView) in
             weekDayView.layer.cornerRadius = 20
@@ -177,6 +178,10 @@ class LandingReminderViewController: HandleErrorViewController {
         initializeDatePicker()
     }
     
+    @objc private func amPmTapped(){
+        selectedTimeField.sendActions(for: .touchUpInside)
+        selectedTimeField.becomeFirstResponder()
+    }
     private func initializeDatePicker(){
         datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 200))
         datePicker.datePickerMode  = .time
@@ -216,17 +221,23 @@ class LandingReminderViewController: HandleErrorViewController {
         updateAmPmButtonStyle(hours: hours)
     }
     private func updateAmPmButtonStyle(hours: Int){
-        if hours > 12{
+        if hours >= 12{
             
             pmButton.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .bottomLeft, endPoint: .topRight, corners: [pmButtonCorners!], andRoundCornersWithRadius: 15.0)
             
             amButton.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
+            
+            pmButton.backgroundColor = .lightSkyBlue.withAlphaComponent(0.4)
+            amButton.backgroundColor = .darkGray.withAlphaComponent(0.26)
         }
         else{
             
             amButton.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .bottomLeft, endPoint: .topRight, corners: amButtonCorners!, andRoundCornersWithRadius: 15.0)
             
             pmButton.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
+            
+            amButton.backgroundColor = .lightSkyBlue.withAlphaComponent(0.4)
+            pmButton.backgroundColor = .darkGray.withAlphaComponent(0.26)
         }
     }
     private func formateDate(_ date: Date) -> String{
@@ -239,8 +250,9 @@ class LandingReminderViewController: HandleErrorViewController {
     private func weekdayDayNames() -> [String] {
         var weekDays : [String] = []
         calendar.locale = Locale(identifier: Language.languageCode())
+        let firstWeekday = 2
         for dayNumber in 0...6{
-            let dayIndex = ((dayNumber - 1) + (calendar.firstWeekday - 1)) % 7
+            let dayIndex = ((dayNumber - 1) + (firstWeekday - 1)) % 7
             weekDays.append(calendar.weekdaySymbols[dayIndex].localized)
         }
         return weekDays

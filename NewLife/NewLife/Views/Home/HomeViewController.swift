@@ -184,7 +184,6 @@ class HomeViewController: SoundEffectsPresenterViewController {
     
     private func setupTableContentInset() {
         let topInset = backgroundView.frame.origin.y
-        print("topInset: \(topInset)")
         sectionsTableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 120, right: 0)
         sectionsTableView.contentOffset = CGPoint(x: 0, y: -topInset)
     }

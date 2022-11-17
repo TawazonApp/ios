@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class PreparationSessionViewController: HandleErrorViewController {
 
@@ -54,7 +55,7 @@ class PreparationSessionViewController: HandleErrorViewController {
         titleLabel.text = "preparationSessionViewTitle".localized
         
         
-        subtitleLabel.font = .munaBoldFont(ofSize: 18)
+        subtitleLabel.font = .munaBoldFont(ofSize: 20)
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
         subtitleLabel.lineBreakMode = .byWordWrapping
@@ -81,6 +82,7 @@ class PreparationSessionViewController: HandleErrorViewController {
         startButton.gradientBorder(width: 1, colors:  [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .right, endPoint: .left, andRoundCornersWithRadius: 17)
         startButton.setTitle("preparationSessionViewSubmitButtonTitle".localized, for: .normal)
         startButton.setImage(UIImage(named: "PreparationSessionPlay"), for: .normal)
+        startButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 26)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -105,10 +107,20 @@ class PreparationSessionViewController: HandleErrorViewController {
     }
     
     @objc private func openPreparationSessionPlayerViewController(){
+        playMainBackgroundAudio()
         let viewController = PreparationSessionPlayerViewController.instantiate()
         viewController.modalPresentationStyle = .currentContext
         self.show(viewController, sender: self)
 //        self.present(viewController, animated: false, completion: nil)
+    }
+    
+    private func playMainBackgroundAudio() {
+        if UserDefaults.userAppBackgroundSound() ?? true {
+            BackgroundAudioManager.shared.mainBackgroundAudio.play()
+        }else{
+            BackgroundAudioManager.shared.mainBackgroundAudio.stop()
+        }
+        
     }
     
     @objc func sessionImageViewTapped(){

@@ -52,12 +52,10 @@ class PlayerControlsView: UIView {
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        print("@IBAction backwardButtonTapped")
         delegate?.backwardButtonTapped()
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIButton) {
-        print("@IBAction forwardButtonTapped")
         delegate?.forwardButtonTapped()
     }
 }

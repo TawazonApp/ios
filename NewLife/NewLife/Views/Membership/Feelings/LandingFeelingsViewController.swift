@@ -87,7 +87,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
         subFeelingLabel.textAlignment = .center
         subFeelingLabel.text = "landingFeelingViewSubFeelingLabelTitle".localized
         
-        selectedSubFeelingLabel.font = .munaFont(ofSize: 14)
+        selectedSubFeelingLabel.font = .munaFont(ofSize: 18)
         selectedSubFeelingLabel.textColor = .white.withAlphaComponent(0.8)
         selectedSubFeelingLabel.textAlignment = .center
         
@@ -96,7 +96,8 @@ class LandingFeelingsViewController: HandleErrorViewController {
         submitButton.backgroundColor = .white
         submitButton.tintColor = UIColor.mariner
         submitButton.setTitle("landingFeelingViewSubmitButtonTitle".localized, for: .normal)
-        submitButton.isEnabled = false
+        submitButton.isHidden = true
+        submitButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 26)
         
     }
     
@@ -179,7 +180,7 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
         if lastSelectedFeelingIndex >= 0{
             feelings[lastSelectedFeelingIndex].isSelected = false
         }else{
-            submitButton.isEnabled = true
+            submitButton.isHidden = false
         }
         
         feelings[indexPath.item].isSelected = true

@@ -40,7 +40,6 @@ class WelecomeViewController: HandleErrorViewController {
 //        playVideo()
         
         if UserDefaults.isFirstOpenedInstallSources() && !UserDefaults.isFirstOpened() {
-            print("viewWillAppear")
 //            self.showOnboardingInstallSourcesViewController()
         }
     }

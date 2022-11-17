@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "scheduleMediation.png",
+      "filename" : "circles.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "scheduleMediation@2x.png",
+      "filename" : "circles@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "scheduleMediation@3x.png",
+      "filename" : "circles@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
