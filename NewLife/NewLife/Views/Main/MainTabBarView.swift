@@ -27,21 +27,22 @@ class MainTabBarView: UIView {
     var selectedIndex: Int = 0
     
     enum tabBarItemsIds: String {
-        case home = "1"
+        case todayActivity = "1"
+        case home = "2"
 //        case myBody = "2"
-        case music = "2"
+//        case music = "2"
         case meditations = "3"
 //        case mySoul = "4"
         case podcasts = "4"
         case children = "5"
-        static let allCases:[tabBarItemsIds] = [.home, .music, .meditations, .podcasts, .children]
+        static let allCases:[tabBarItemsIds] = [.todayActivity, .home, .meditations, .podcasts, .children]
         
         static func getItemId(forCategory categoryId: String) -> tabBarItemsIds? {
            let categoryId = CategoryIds(rawValue: categoryId)
             
             switch categoryId {
-            case .music:
-                return tabBarItemsIds.music
+//            case .music:
+//                return tabBarItemsIds.music
             case .children:
                 return tabBarItemsIds.children
             case .podcasts:

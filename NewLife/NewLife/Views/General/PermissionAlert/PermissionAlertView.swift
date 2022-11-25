@@ -54,9 +54,10 @@ class PermissionAlertView: UIView, NibInstantiatable {
         case cancelSubscription
         case deleteAccount
         case changeNickname
+        case completeTodayActivityStep
     }
     
-    typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
+    typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String?, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
     
     var actionHandler: (()->Void)? = nil
     var cancelHandler:(()->Void)? = nil
@@ -132,7 +133,9 @@ class PermissionAlertView: UIView, NibInstantiatable {
         actionButton.setTitle(data.actionTitle, for: .normal)
         actionButton.backgroundColor = data.backgroundColor
         actionButton.tintColor = data.actionTitleColor
-        
+        if data.actionTitle == nil {
+            actionButton.removeFromSuperview()
+        }
         cancelButton.setTitle(data.cancelTitle, for: .normal)
         cancelButton.backgroundColor = data.backgroundColor
         cancelButton.tintColor = data.contentColor
@@ -154,9 +157,12 @@ class PermissionAlertView: UIView, NibInstantiatable {
             
         case .changeNickname:
             return (backgroundColor: UIColor.slateBlue, iconName: "ProfileNickname", title: "PermissionChangeNicknameAlertTitle".localized, subTitle: "PermissionChangeNicknameAlertBody".localized, bodyActionTitle: "", actionTitle: "PermissionChangeNicknameAlertActionTitle".localized, cancelTitle: "PermissionChangeNicknameAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
+        
+        case .completeTodayActivityStep:
+            return (backgroundColor: UIColor.slateBlue, iconName: "TodayActivityTab", title: "PermissionCompleteTodayActivityStepAlertTitle".localized, subTitle: "PermissionCompleteTodayActivityStepAlertBody".localized, bodyActionTitle: "", actionTitle: nil , cancelTitle: "PermissionCompleteTodayActivityStepAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
     }
     }
-    
+
     func show(type:PermissionAlertView.AlertType, animated: Bool, actionHandler: (()->Void)?, cancelHandler: (()->Void)?) {
         
         self.translatesAutoresizingMaskIntoConstraints = false

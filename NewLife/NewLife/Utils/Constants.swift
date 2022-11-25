@@ -56,6 +56,8 @@ struct Api {
     static let homeSectionsUrlV2_1 = "\(apiUrlV2_1)/home"
     static let homeSectionsWithBannersUrl = "\(apiUrlV2)/app/home"
     static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
+    static let todaySectionsUrl = "\(apiUrlV2_1)/home/today/sections"
+    static let todayQuoteViewUrl = "\(apiUrlV2_1)/quotes/view/{id}"
     static let feelingsListUrl = "\(apiUrlV2_1)/feelings/list"
     static let feelingsSessions = "\(apiUrlV2)/feelings/sessions/list"
     static let updateFeelings = "\(apiUrlV2)/feelings/update"

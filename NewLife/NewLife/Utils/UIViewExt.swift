@@ -167,6 +167,7 @@ public enum GradientPoint: Int {
     case topRight
     case bottomLeft
     case bottomRight
+    case center
     
     var point: CGPoint {
         switch self {
@@ -178,6 +179,7 @@ public enum GradientPoint: Int {
         case .topRight: return CGPoint(x: 1.0, y: 0.0)
         case .bottomLeft: return CGPoint(x: 0.0, y: 1.0)
         case .bottomRight: return CGPoint(x: 1.0, y: 1.0)
+        case .center: return CGPoint(x: 0.5, y: 0.5)
         }
     }
 }
@@ -581,6 +583,19 @@ extension UIView {
         }
         return capturedImage
     }
+    
+    func createDashedLine(from point1: CGPoint, to point2: CGPoint, color: UIColor, strokeLength: NSNumber, gapLength: NSNumber, width: CGFloat) {
+            let shapeLayer = CAShapeLayer()
+
+            shapeLayer.strokeColor = color.cgColor
+            shapeLayer.lineWidth = width
+            shapeLayer.lineDashPattern = [strokeLength, gapLength]
+
+            let path = CGMutablePath()
+            path.addLines(between: [point1, point2])
+            shapeLayer.path = path
+            layer.addSublayer(shapeLayer)
+        }
 }
 
 extension UIImage {

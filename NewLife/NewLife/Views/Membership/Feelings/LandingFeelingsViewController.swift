@@ -36,6 +36,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
         }
     }
     var lastSelectedFeelingIndex : Int = -1
+    var fromVC: fromViewController? = .landing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,13 +142,20 @@ class LandingFeelingsViewController: HandleErrorViewController {
                     return
                 }
                 TrackerManager.shared.sendFeelingsLogged(feelingId: self.feelings[self.lastSelectedFeelingIndex].id, feelingName: self.feelings[self.lastSelectedFeelingIndex].name, subfeelingId: selectedSubFeeling.id, subfeelingName: selectedSubFeeling.title)
-                
+                if self.fromVC == .todayActivity{
+                    self.dismiss(animated: true)
+                    return
+                }
                 self.openLandingReminderViewController()
             })
         }
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
+        if fromVC == .todayActivity{
+            self.dismiss(animated: true)
+            return
+        }
         TrackerManager.shared.sendFeelingsSkipped()
         openLandingReminderViewController()
     }
@@ -206,11 +214,12 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension LandingFeelingsViewController{
-    class func instantiate(skipped: Bool) -> LandingFeelingsViewController {
+    class func instantiate(skipped: Bool, from:  fromViewController = .landing) -> LandingFeelingsViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: LandingFeelingsViewController.identifier) as! LandingFeelingsViewController
         viewController.modalPresentationStyle = .fullScreen
         viewController.cameFromSkip = skipped
+        viewController.fromVC = from
         return viewController
     }
 }

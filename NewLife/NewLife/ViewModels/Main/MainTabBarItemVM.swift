@@ -35,8 +35,8 @@ class MainTabBarItemVM: NSObject {
         case .home:
             title = "HomeTabTitle".localized
             break
-        case .music:
-            title = "MusicTabTitle".localized
+        case .todayActivity:
+            title = "TodayActivityTabTitle".localized
             break
         case .podcasts:
             title = "PodcastsTabTitle".localized
@@ -62,8 +62,8 @@ class MainTabBarItemVM: NSObject {
         case .home:
             image = "HomeTab"
             break
-        case .music:
-            image = "MusicTab"
+        case .todayActivity:
+            image = "TodayActivityTab"
             break
         case .podcasts:
             image = "PodcastTab"
@@ -89,8 +89,8 @@ class MainTabBarItemVM: NSObject {
         case .home:
             colors = [UIColor.bubblegum, UIColor.lightPurple]
             break
-        case .music:
-            colors = [UIColor.darkishPink, UIColor.salmonTwo]
+        case .todayActivity:
+            colors = [UIColor.lightSlateBlue, UIColor.mauve]
             break
         case .podcasts:
             colors = [UIColor.mayaBlue, UIColor.royalBlue]

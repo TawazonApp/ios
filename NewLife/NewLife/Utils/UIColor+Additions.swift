@@ -72,6 +72,10 @@ extension UIColor {
         return UIColor(red: 156.0 / 255.0, green: 135.0 / 255.0, blue: 231.0 / 255.0, alpha: 1.0)
     }
     
+    class var hanPurple: UIColor {
+        return UIColor(red: 65.0 / 255.0, green: 40.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
     class var bubblegum: UIColor {
         return UIColor(red: 250.0 / 255.0, green: 113.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0)
     }
@@ -243,6 +247,11 @@ extension UIColor {
         return UIColor(red: 220.0 / 255.0, green: 171.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
     }
     
+    class var moodyBlue: UIColor {
+        return UIColor(red: 111.0 / 255.0, green: 107.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0)
+    }
+
+    
     class var palePurple: UIColor {
         return UIColor(red: 161.0 / 255.0, green: 140.0 / 255.0, blue: 209.0 / 255.0, alpha: 1.0)
     }
@@ -265,6 +274,10 @@ extension UIColor {
     
     class var darkIndigo: UIColor {
         return UIColor(red: 33.0 / 255.0, green: 12.0 / 255.0, blue: 78.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var darkIndigoTwo: UIColor {
+        return UIColor(red: 15.0 / 255.0, green: 25.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
     }
     
     class var tolopea: UIColor {
@@ -444,7 +457,10 @@ extension UIColor {
     class var columbiaBlue: UIColor{
         return UIColor(red: 142.0 / 255.0, green: 214.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
-    
+    class var paleCornflowerBlue: UIColor{
+        return UIColor(red: 195.0 / 255.0, green: 169.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
+    }
+
     class var regalBlue: UIColor{
         return UIColor(red: 22.0 / 255.0, green: 39.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
     }

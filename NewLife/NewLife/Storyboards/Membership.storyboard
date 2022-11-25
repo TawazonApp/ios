@@ -3290,7 +3290,7 @@
         <!--Preparation Session Player View Controller-->
         <scene sceneID="18C-NN-Ye2">
             <objects>
-                <viewController storyboardIdentifier="PreparationSessionPlayerViewController" id="ewa-Ne-FJh" customClass="PreparationSessionPlayerViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreparationSessionPlayerViewController" modalTransitionStyle="crossDissolve" id="ewa-Ne-FJh" customClass="PreparationSessionPlayerViewController" customModule="Tawazon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbf-QO-3LF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3346,14 +3346,14 @@
                                     <action selector="soundsButtonTapped:" destination="ewa-Ne-FJh" eventType="touchUpInside" id="1Qi-QH-vUg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcC-lg-8EK">
-                                <rect key="frame" x="28" y="752" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcC-lg-8EK">
+                                <rect key="frame" x="28" y="752" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-1B-JCQ">
-                                <rect key="frame" x="344" y="752" width="42" height="21"/>
+                                <rect key="frame" x="344" y="741.66666666666663" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

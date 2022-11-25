@@ -47,6 +47,19 @@
 		047CF2962913CBB000BF59AE /* FeelingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2952913CBB000BF59AE /* FeelingSlider.swift */; };
 		047CF2992913EBA700BF59AE /* LandingReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2982913EBA700BF59AE /* LandingReminderViewController.swift */; };
 		047CF29B29191A2200BF59AE /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF29A29191A2200BF59AE /* DayView.swift */; };
+		047CF29F292A0C7A00BF59AE /* TodayActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 047CF29E292A0C7A00BF59AE /* TodayActivity.storyboard */; };
+		047CF2A2292A14F900BF59AE /* TodayActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2A1292A14F900BF59AE /* TodayActivityViewController.swift */; };
+		047CF2A4292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2A3292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift */; };
+		047CF2A7292B86FB00BF59AE /* TodaySectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2A6292B86FB00BF59AE /* TodaySectionsModel.swift */; };
+		047CF2AC292B87D300BF59AE /* TodaySectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2AB292B87D300BF59AE /* TodaySectionVM.swift */; };
+		047CF2AE292B87F300BF59AE /* TodayVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2AD292B87F300BF59AE /* TodayVM.swift */; };
+		047CF2B1292B88BB00BF59AE /* TodayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B0292B88BB00BF59AE /* TodayService.swift */; };
+		047CF2B3292B88CE00BF59AE /* TodayServiceCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B2292B88CE00BF59AE /* TodayServiceCache.swift */; };
+		047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B4292B8A6300BF59AE /* TodaySectionModel.swift */; };
+		047CF2B7292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B6292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift */; };
+		047CF2B9292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */; };
+		047CF2BB292CBB7500BF59AE /* QuoteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2BA292CBB7500BF59AE /* QuoteVM.swift */; };
+		047CF2BD292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */; };
 		047F11E428E97DFA0096E20E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F11E328E97DFA0096E20E /* NotificationService.swift */; };
 		047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		047F11FF28E986E50096E20E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047F11FE28E986E50096E20E /* GoogleService-Info.plist */; };
@@ -471,6 +484,19 @@
 		047CF2952913CBB000BF59AE /* FeelingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingSlider.swift; sourceTree = "<group>"; };
 		047CF2982913EBA700BF59AE /* LandingReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingReminderViewController.swift; sourceTree = "<group>"; };
 		047CF29A29191A2200BF59AE /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		047CF29E292A0C7A00BF59AE /* TodayActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodayActivity.storyboard; sourceTree = "<group>"; };
+		047CF2A1292A14F900BF59AE /* TodayActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityViewController.swift; sourceTree = "<group>"; };
+		047CF2A3292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityGeneralTableViewCell.swift; sourceTree = "<group>"; };
+		047CF2A6292B86FB00BF59AE /* TodaySectionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySectionsModel.swift; sourceTree = "<group>"; };
+		047CF2AB292B87D300BF59AE /* TodaySectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySectionVM.swift; sourceTree = "<group>"; };
+		047CF2AD292B87F300BF59AE /* TodayVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVM.swift; sourceTree = "<group>"; };
+		047CF2B0292B88BB00BF59AE /* TodayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayService.swift; sourceTree = "<group>"; };
+		047CF2B2292B88CE00BF59AE /* TodayServiceCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayServiceCache.swift; sourceTree = "<group>"; };
+		047CF2B4292B8A6300BF59AE /* TodaySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySectionModel.swift; sourceTree = "<group>"; };
+		047CF2B6292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityFeelingSessionsTableViewCell.swift; sourceTree = "<group>"; };
+		047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityQuoteTableViewCell.swift; sourceTree = "<group>"; };
+		047CF2BA292CBB7500BF59AE /* QuoteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteVM.swift; sourceTree = "<group>"; };
+		047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionCollectionViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TawazonPNServiceExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		047F11E328E97DFA0096E20E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		047F11E528E97DFA0096E20E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1040,6 +1066,46 @@
 				047CF29A29191A2200BF59AE /* DayView.swift */,
 			);
 			path = Reminder;
+			sourceTree = "<group>";
+		};
+		047CF2A0292A14DF00BF59AE /* TodayActivity */ = {
+			isa = PBXGroup;
+			children = (
+				047CF2A1292A14F900BF59AE /* TodayActivityViewController.swift */,
+				047CF2A3292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift */,
+				047CF2B6292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift */,
+				047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */,
+				047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */,
+			);
+			path = TodayActivity;
+			sourceTree = "<group>";
+		};
+		047CF2A5292B86E800BF59AE /* TodayActivity */ = {
+			isa = PBXGroup;
+			children = (
+				047CF2A6292B86FB00BF59AE /* TodaySectionsModel.swift */,
+				047CF2B4292B8A6300BF59AE /* TodaySectionModel.swift */,
+			);
+			path = TodayActivity;
+			sourceTree = "<group>";
+		};
+		047CF2A8292B876700BF59AE /* TodayActivity */ = {
+			isa = PBXGroup;
+			children = (
+				047CF2AB292B87D300BF59AE /* TodaySectionVM.swift */,
+				047CF2AD292B87F300BF59AE /* TodayVM.swift */,
+				047CF2BA292CBB7500BF59AE /* QuoteVM.swift */,
+			);
+			path = TodayActivity;
+			sourceTree = "<group>";
+		};
+		047CF2AF292B88A300BF59AE /* TodayActivity */ = {
+			isa = PBXGroup;
+			children = (
+				047CF2B0292B88BB00BF59AE /* TodayService.swift */,
+				047CF2B2292B88CE00BF59AE /* TodayServiceCache.swift */,
+			);
+			path = TodayActivity;
 			sourceTree = "<group>";
 		};
 		047F11E228E97DFA0096E20E /* TawazonPNServiceExt */ = {
@@ -1811,6 +1877,7 @@
 		F3DC8E142223DC4100C7DEC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				047CF2A0292A14DF00BF59AE /* TodayActivity */,
 				0432B718288EB6E9007400B3 /* Series */,
 				04EC40C2285748FF006C7AA1 /* Search */,
 				041D82C028438BB300DF6928 /* SoundsAndDialects */,
@@ -1834,6 +1901,7 @@
 		F3DC8E152223DC4700C7DEC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				047CF2A5292B86E800BF59AE /* TodayActivity */,
 				049D409728D8845F00EAD265 /* Comments */,
 				04C594C728967BF5000B41C8 /* Series */,
 				04A75F5E286ADA3D003C7756 /* Search */,
@@ -1855,6 +1923,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				047CF2A8292B876700BF59AE /* TodayActivity */,
 				049D409C28D8865500EAD265 /* Comments */,
 				04CEB94928C9F84700C42B76 /* OnBoarding */,
 				04C594CC28968EC0000B41C8 /* Series */,
@@ -1877,6 +1946,7 @@
 		F3DC8E172223DC6800C7DEC4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				047CF2AF292B88A300BF59AE /* TodayActivity */,
 				040F339C27E0A497000B1E19 /* RemoteConfig */,
 				F3AD859725F675DE003C3A0C /* Language */,
 				F31657FF2359DD280049605A /* Tracker */,
@@ -1900,6 +1970,7 @@
 				F3DC8E1F2223DD1900C7DEC4 /* Categories.storyboard */,
 				F3DC8E212223DD3B00C7DEC4 /* More.storyboard */,
 				F3715CF422439E9500B7A465 /* TEST.storyboard */,
+				047CF29E292A0C7A00BF59AE /* TodayActivity.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -2378,6 +2449,7 @@
 				F369267223295EFC00EA8771 /* TermsAndConditions.rtf in Resources */,
 				F3DC424C2584B8E600BF18A7 /* KohinoorArabicSemibold.ttf in Resources */,
 				F3F0AC8B225294BF00AA4B61 /* HomeVideo1.mp4 in Resources */,
+				047CF29F292A0C7A00BF59AE /* TodayActivity.storyboard in Resources */,
 				F3DC8E1E2223DD0B00C7DEC4 /* Home.storyboard in Resources */,
 				F320B1AE2621C56E002EC8B4 /* RamadanVideo.mp4 in Resources */,
 				F3DC424D2584B8E600BF18A7 /* KohinoorArabicRegular.ttf in Resources */,
@@ -2616,6 +2688,7 @@
 				F3AF0F99223A469B00E29615 /* FileUtils.swift in Sources */,
 				0456D1BB27F19EF800C174C6 /* BasePremiumVM.swift in Sources */,
 				F3DC8E5E22248F7400C7DEC4 /* MainTabBarController.swift in Sources */,
+				047CF2AE292B87F300BF59AE /* TodayVM.swift in Sources */,
 				047CF2962913CBB000BF59AE /* FeelingSlider.swift in Sources */,
 				F317A185222DEA2B00CBD760 /* PlayerControlsView.swift in Sources */,
 				F32D4A7124829E7400E3FCD6 /* MainTabBarControllerVM.swift in Sources */,
@@ -2628,6 +2701,7 @@
 				F3AF0FA6223A8BB600E29615 /* CategoryModel.swift in Sources */,
 				F3DC8E0F2223D95A00C7DEC4 /* ConnectionUtils.swift in Sources */,
 				F31658072359DD910049605A /* TrackingService.swift in Sources */,
+				047CF2BB292CBB7500BF59AE /* QuoteVM.swift in Sources */,
 				04D76CE428ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift in Sources */,
 				F35FD527223526F800B3CFC5 /* GoalCircleView.swift in Sources */,
 				F3715CF722439EE400B7A465 /* TESTViewController.swift in Sources */,
@@ -2647,6 +2721,7 @@
 				F38095FB257A7E2000A28C67 /* SectionSessionListViewController.swift in Sources */,
 				F3E2811A2241B26100066C04 /* MoreAppVersionCell.swift in Sources */,
 				F3715CE42242B9C500B7A465 /* MainPlayerBarProgressView.swift in Sources */,
+				047CF2A2292A14F900BF59AE /* TodayActivityViewController.swift in Sources */,
 				F3580BE5249CF38B00EBE1C1 /* AudioURLTrack.swift in Sources */,
 				04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */,
 				F3DC8E8222269E6300C7DEC4 /* HomeVM.swift in Sources */,
@@ -2678,6 +2753,7 @@
 				F3DE73B22236654C0052B18C /* RegisterModel.swift in Sources */,
 				F3AF0F942239548800E29615 /* HandleErrorViewController.swift in Sources */,
 				F3E28116224143DD00066C04 /* PremiumPurchaseCollectionCell.swift in Sources */,
+				047CF2B1292B88BB00BF59AE /* TodayService.swift in Sources */,
 				F3DC8E732226828000C7DEC4 /* HomeVideosContainerView.swift in Sources */,
 				F3375980255FE48B006EC615 /* HomeBackgroundView.swift in Sources */,
 				F3E281122241361500066C04 /* PremiumPurchaseVM.swift in Sources */,
@@ -2701,6 +2777,7 @@
 				04677F4E27C4ED0E00493142 /* SuperCategoryHeaderView.swift in Sources */,
 				F34BB45A257A80DD004E417F /* SectionSessions.swift in Sources */,
 				04BB326E281017950007B283 /* HomePremiumGradientBannerTableViewCell.swift in Sources */,
+				047CF2B7292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift in Sources */,
 				041903842912649800D0840E /* PreparationSessionPlayerViewController.swift in Sources */,
 				F3AD859925F675F8003C3A0C /* LanguageExt.swift in Sources */,
 				F3DE73D3223800AB0052B18C /* ResetPasswordModel.swift in Sources */,
@@ -2713,6 +2790,7 @@
 				04BB3274281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift in Sources */,
 				04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */,
 				F32717BC24A610D400E3C88C /* AppleLoginModel.swift in Sources */,
+				047CF2BD292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift in Sources */,
 				F3DC8E6B2225B30500C7DEC4 /* HomeSessionView.swift in Sources */,
 				F3CA0286223159C4008165C2 /* MembershipViewController.swift in Sources */,
 				04677F4427C3842500493142 /* CategorySessionsView.swift in Sources */,
@@ -2729,6 +2807,7 @@
 				F3ECD0C525614C3A0048DBD8 /* FeelCellModel.swift in Sources */,
 				F3580BEC249CF38B00EBE1C1 /* Log.swift in Sources */,
 				F3DE73AD223664730052B18C /* UserInfoModel.swift in Sources */,
+				047CF2AC292B87D300BF59AE /* TodaySectionVM.swift in Sources */,
 				F355A9EE255FD32D008B013B /* HomeSectionsModel.swift in Sources */,
 				F35FD53822357D4B00B3CFC5 /* PremiumFeatureCell.swift in Sources */,
 				0417042627FD988D0023FB18 /* HomePremiumBannerTableViewCell.swift in Sources */,
@@ -2806,11 +2885,13 @@
 				F3580BE4249CF38B00EBE1C1 /* MediaPlayerTrack.swift in Sources */,
 				F3B8BFC42587C3D200E2005A /* PremiumDiscountCell.swift in Sources */,
 				F334416D247950F500FA3234 /* ShareButtonView.swift in Sources */,
+				047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */,
 				04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */,
 				F3E280F3223F9D8100066C04 /* BaseSessionVM.swift in Sources */,
 				F3B16AFB222EB772002B0406 /* LibrarySessionCollectionCell.swift in Sources */,
 				F3E6F6F9224E7614005A566A /* PermissionAlertView.swift in Sources */,
 				04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */,
+				047CF2A7292B86FB00BF59AE /* TodaySectionsModel.swift in Sources */,
 				F3DC8E602224991400C7DEC4 /* MainTabBarView.swift in Sources */,
 				F3DC8EAD2228341600C7DEC4 /* MoreCell.swift in Sources */,
 				F3ECD0C025612B8E0048DBD8 /* HomeFeelingSelectionView.swift in Sources */,
@@ -2823,6 +2904,7 @@
 				04677F4027C37FCE00493142 /* SuperCategoryViewController.swift in Sources */,
 				04C548B627ABC807001D3C0F /* SectionData.swift in Sources */,
 				04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */,
+				047CF2B9292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift in Sources */,
 				F3C73B18223D3EB60026B8E1 /* HomeModel.swift in Sources */,
 				041EC78528ED7F3D00D379F8 /* ProgressSlider.swift in Sources */,
 				F3B16AF4222E9600002B0406 /* OurStoryActionView.swift in Sources */,
@@ -2876,6 +2958,8 @@
 				F3DC8E4F222487C900C7DEC4 /* MyBodyViewController.swift in Sources */,
 				F3CA02962231C5A4008165C2 /* MembershipButtonCell.swift in Sources */,
 				0432B71A288EB720007400B3 /* SeriesViewController.swift in Sources */,
+				047CF2A4292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift in Sources */,
+				047CF2B3292B88CE00BF59AE /* TodayServiceCache.swift in Sources */,
 				F3DC8E3D222400A100C7DEC4 /* RandomExt.swift in Sources */,
 				F3E28103223FCEEF00066C04 /* NotificationStatusModel.swift in Sources */,
 				F3DC8E4B2224877300C7DEC4 /* HomeViewController.swift in Sources */,
@@ -3154,7 +3238,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3167,7 +3251,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3205,7 +3289,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3217,7 +3301,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

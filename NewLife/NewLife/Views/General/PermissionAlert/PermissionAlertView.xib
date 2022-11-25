@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -67,32 +67,33 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-Fd-fvI">
                             <rect key="frame" x="0.0" y="203.5" width="335" height="64"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-Eh-Xgp">
-                                    <rect key="frame" x="0.0" y="0.0" width="166.5" height="64"/>
-                                    <state key="normal" title="Button"/>
-                                    <connections>
-                                        <action selector="actionButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Li-pY-vBs"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-Qg-hHS">
-                                    <rect key="frame" x="167.5" y="0.0" width="167.5" height="64"/>
-                                    <state key="normal" title="Button"/>
-                                    <connections>
-                                        <action selector="cancelButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="pZc-dq-NDd"/>
-                                    </connections>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kuf-7i-0f0">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="64"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zh-Eh-Xgp">
+                                            <rect key="frame" x="0.0" y="0.0" width="167" height="64"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="actionButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Li-pY-vBs"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-Qg-hHS">
+                                            <rect key="frame" x="168" y="0.0" width="167" height="64"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="pZc-dq-NDd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="2Zh-Eh-Xgp" secondAttribute="bottom" id="5GW-Z3-pKZ"/>
-                                <constraint firstItem="2Zh-Eh-Xgp" firstAttribute="top" secondItem="AxG-Fd-fvI" secondAttribute="top" id="Bcd-l5-8BW"/>
-                                <constraint firstItem="2Zh-Eh-Xgp" firstAttribute="leading" secondItem="AxG-Fd-fvI" secondAttribute="leading" id="JqS-fu-e3g"/>
-                                <constraint firstItem="jQj-Qg-hHS" firstAttribute="leading" secondItem="2Zh-Eh-Xgp" secondAttribute="trailing" constant="1" id="cNG-sA-9kp"/>
-                                <constraint firstAttribute="bottom" secondItem="jQj-Qg-hHS" secondAttribute="bottom" id="clC-Al-O9M"/>
+                                <constraint firstAttribute="trailing" secondItem="Kuf-7i-0f0" secondAttribute="trailing" id="DXJ-D0-eFs"/>
+                                <constraint firstItem="Kuf-7i-0f0" firstAttribute="top" secondItem="AxG-Fd-fvI" secondAttribute="top" id="crL-a0-Ec5"/>
+                                <constraint firstItem="Kuf-7i-0f0" firstAttribute="leading" secondItem="AxG-Fd-fvI" secondAttribute="leading" id="jvF-gv-1OQ"/>
                                 <constraint firstAttribute="height" constant="64" id="kUh-gv-VnS"/>
-                                <constraint firstAttribute="trailing" secondItem="jQj-Qg-hHS" secondAttribute="trailing" id="lVp-gT-103"/>
-                                <constraint firstItem="2Zh-Eh-Xgp" firstAttribute="width" secondItem="AxG-Fd-fvI" secondAttribute="width" multiplier="0.5" constant="-1" id="rLf-cT-zKM"/>
-                                <constraint firstItem="jQj-Qg-hHS" firstAttribute="top" secondItem="AxG-Fd-fvI" secondAttribute="top" id="saP-f9-zEV"/>
+                                <constraint firstAttribute="bottom" secondItem="Kuf-7i-0f0" secondAttribute="bottom" id="y3L-bf-cCI"/>
                             </constraints>
                         </view>
                     </subviews>

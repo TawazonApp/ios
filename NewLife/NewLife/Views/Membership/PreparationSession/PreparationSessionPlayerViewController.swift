@@ -9,6 +9,11 @@
 import UIKit
 import NVActivityIndicatorView
 
+enum fromViewController: String {
+    case todayActivity
+    case landing
+}
+
 class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
 
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -22,6 +27,8 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     var subtitleStartsAt : Float = -1.0
     var presentedSubtitle: Bool = false
     var called = false
+    var fromVC: fromViewController? = .landing
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -123,6 +130,10 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
             }
             
         }
+        if fromVC == .todayActivity{
+            self.dismiss(animated: true)
+            return
+        }
         openLandingFeelingsViewController(skipped: skipped)
     }
     
@@ -197,10 +208,11 @@ extension PreparationSessionPlayerViewController {
 }
 
 extension PreparationSessionPlayerViewController{
-    class func instantiate() -> PreparationSessionPlayerViewController {
+    class func instantiate(from: fromViewController = .landing) -> PreparationSessionPlayerViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: PreparationSessionPlayerViewController.identifier) as! PreparationSessionPlayerViewController
         viewController.modalPresentationStyle = .fullScreen
+        viewController.fromVC = from
         return viewController
     }
 }
