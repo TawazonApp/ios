@@ -13,11 +13,11 @@ class GoalsListViewController: HandleErrorViewController {
 
     
     @IBOutlet weak var topBannerBackground: UIImageView!
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var sloganLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var goalsTable: UITableView!
-    @IBOutlet weak var continueButton: GradientButton!
+    @IBOutlet      var continueButton: GradientButton!
+    @IBOutlet      var goalsTableToViewConstraint: NSLayoutConstraint!
     
     let goals = GoalsVM(service: MembershipServiceFactory.service())
     
@@ -34,26 +34,24 @@ class GoalsListViewController: HandleErrorViewController {
         topBannerBackground.image = UIImage(named: "OnboardingBackground")
         topBannerBackground.contentMode = .scaleAspectFill
         
-        logoImageView.image = UIImage(named: "LogoWithName")
-        
-        sloganLabel.text = "launchSlogan".localized
-        sloganLabel.font = .lbc(ofSize: 18)
-        sloganLabel.textColor = .white
+        subtitleLabel.text = "goalsViewSubTitle".localized
+        subtitleLabel.font = .kacstPen(ofSize: 16)
+        subtitleLabel.textColor = .white
         
         descriptionLabel.text = "goalsViewTitle".localized
-        descriptionLabel.font = .munaBoldFont(ofSize: 22)
+        descriptionLabel.font = .lbc(ofSize: 24)
         descriptionLabel.textColor = .white
         
         goalsTable.backgroundColor = .clear
         goalsTable.separatorStyle = .none
         
-        continueButton.layer.cornerRadius = 18
+        continueButton.layer.cornerRadius = 20
         continueButton.layer.masksToBounds = true
         continueButton.tintColor = UIColor.white
         continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
-        continueButton.titleLabel?.font = UIFont.kacstPen(ofSize: 24)
-        continueButton.setTitleWithoutAnimation(title: "goalsContinueButtonTitle".localized)
-        continueButton.isEnabled = false
+        continueButton.setTitle("goalsContinueButtonTitle".localized, for: .normal)
+        continueButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 22)
+        self.removeContinueButtonFromView()
     }
 
     private func fetchAndReload() {
@@ -85,19 +83,31 @@ class GoalsListViewController: HandleErrorViewController {
             if let error = error {
                 self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
             } else {
+                self?.setUserSettings()
                 self?.submitSuccessed()
             }
         }
     }
     
     private func submitSuccessed() {
-        print("submitSuccessed")
         if UserDefaults.isAnonymousUser() {
             // Save Anonymous Token
-            print("AnonymousUserVM().submit()")
             AnonymousUserVM().submit()
         }
         openMainViewController()
+//        openPreparationSessionViewController()
+    }
+    
+    private func setUserSettings(){
+        var settings = UserSettings(defaultAudioSource: "ar.ps")
+        if Language.language == .english{
+            settings = UserSettings(defaultAudioSource: "en.us")
+        }
+        UserInfoManager.shared.setUserSessionSettings(settings: settings, service: MembershipServiceFactory.service()){ (error) in
+            if let error = error{
+                self.showErrorMessage( message: error.localizedDescription )
+            }
+        }
     }
     
     private func openMainViewController() {
@@ -105,8 +115,35 @@ class GoalsListViewController: HandleErrorViewController {
         (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
     }
     
+//    private func openPreparationSessionViewController(){
+//        let viewController = PreparationSessionViewController.instantiate()
+//        viewController.modalPresentationStyle = .overCurrentContext
+//        self.present(viewController, animated: false, completion: nil)
+//    }
     
+    private func addContinueButtonToView(){
+        view.addSubview(continueButton)
+        
+        continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53.0).isActive = true
+        view.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor, constant: 53.0).isActive = true
+        continueButton.heightAnchor.constraint(equalToConstant: 56.0).isActive = true
+        view.bottomAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 44.0).isActive = true
+        
+        view.removeConstraint(goalsTableToViewConstraint)
+        continueButton.topAnchor.constraint(equalTo: goalsTable.bottomAnchor, constant: 20).isActive = true
+        view.layoutIfNeeded()
+        view.layoutSubviews()
+    }
+    
+    private func removeContinueButtonFromView(){
+        continueButton.removeFromSuperview()
+        view.addConstraint(goalsTableToViewConstraint)
+        view.layoutIfNeeded()
+        view.layoutSubviews()
+    }
 }
+
 extension GoalsListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.goals.goals.count
@@ -124,10 +161,12 @@ extension GoalsListViewController: GoalTableViewCellDelegate{
     func selectGoal(goal: GoalVM) {
         let selectedGoals = goals.goals.filter({$0.isSelected}).map({ return $0.id }) as? [String]
         if (selectedGoals?.count ?? 0 > 0){
-            continueButton.isEnabled = true
+//            continueButton.isHidden = false
+            self.addContinueButtonToView()
             continueButton.applyGradientColor(colors: [UIColor.black.cgColor, UIColor.black.cgColor], startPoint: .right, endPoint: .left)
         }else{
-            continueButton.isEnabled = false
+//            continueButton.isHidden = true
+            self.removeContinueButtonFromView()
             continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
         }
     }

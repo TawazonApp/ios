@@ -504,6 +504,13 @@ extension UIColor {
         return UIColor(red: 42.0 / 255.0, green: 58.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
     }
 
+    class var lightSkyBlue: UIColor{
+            return UIColor(red: 152.0 / 255.0, green: 171.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        }
+    
+    class var mauve: UIColor {
+            return UIColor(red: 220.0 / 255.0, green: 171.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
+        }
 }
 
 

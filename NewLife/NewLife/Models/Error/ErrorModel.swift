@@ -23,7 +23,11 @@ class CustomError: NSError {
         let code = statusCode ?? CustomError.customErrorCode
         super.init(domain: "", code: code, userInfo: nil)
         self.message = message
-        
+        if code == 13{
+            print("code: \(code)")
+            self.message = "TEST_MESSAGE_13"
+        }
+        print("code: \(code), message: \(message)")
     }
 
     required init?(coder aDecoder: NSCoder) {

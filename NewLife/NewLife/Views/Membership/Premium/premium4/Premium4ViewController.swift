@@ -62,6 +62,8 @@ class Premium4ViewController: BasePremiumViewController {
                 self.noteLabel.text = self.data.premiumDetails?.premiumPage.content
                 return
             }
+            
+            print("error?.localizedDescription: \(error?.localizedDescription), code: \(error?.code)")
             self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
             LoadingHud.shared.hide(animated: true)
         })
