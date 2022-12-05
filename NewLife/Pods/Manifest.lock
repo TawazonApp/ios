@@ -146,10 +146,10 @@ DEPENDENCIES:
   - AlamofireImage
   - AppsFlyerFramework
   - FBSDKLoginKit
-  - Firebase/Core
-  - Firebase/Crashlytics
-  - Firebase/DynamicLinks
-  - Firebase/Messaging
+  - Firebase/Core (~> 7.6.0)
+  - Firebase/Crashlytics (~> 7.6.0)
+  - Firebase/DynamicLinks (~> 7.6.0)
+  - Firebase/Messaging (~> 7.6.0)
   - Firebase/RemoteConfig
   - GoogleUtilities
   - lottie-ios
@@ -218,6 +218,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   UXCam: fb294bf954e708fc308a645ae65bb967cac0760e
 
-PODFILE CHECKSUM: 8fd2b788eda9467406a24f03dfe1ce19807677ce
+PODFILE CHECKSUM: 49110fdc72c7e237eb28656d6b8c9c6ce78db0ff
 
 COCOAPODS: 1.10.1
