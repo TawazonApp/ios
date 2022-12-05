@@ -535,6 +535,14 @@ class FirebaseTrackingService: TrackingService {
         Analytics.logEvent(CustomEvents.reminderSkipped, parameters: values)
     }
     
+    func sendEvent(name: String, payload: [String:Any]?) {
+        var values = getBaseEventValues()
+        if let payload = payload{
+            values.merge(payload){ (current, _) in current }
+        }
+        Analytics.logEvent(name, parameters: values)
+    }
+    
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",

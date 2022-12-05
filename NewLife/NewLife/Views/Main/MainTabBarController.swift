@@ -31,6 +31,7 @@ class MainTabBarController: UITabBarController {
         }
         playMainBackgroundAudio()
         checkAppUpdate()
+        setGuidedTourKeys()
     }
     
     deinit {
@@ -95,6 +96,13 @@ class MainTabBarController: UITabBarController {
                 self.showUpdateAppAlert()
             }
           }
+    }
+    
+    private func setGuidedTourKeys(){
+        UserDefaults.appHomeGuided()
+        UserDefaults.appSessionDialectButtonGuided()
+        UserDefaults.appSessionGuided()
+        UserDefaults.appSearchGuided()
     }
     
     private func showUpdateAppAlert(){

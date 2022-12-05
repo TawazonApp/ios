@@ -83,6 +83,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
     private func setGuidedTourKeys(){
         UserDefaults.appHomeGuided()
         UserDefaults.appSessionDialectButtonGuided()
+        UserDefaults.appSessionGuided()
         UserDefaults.appSearchGuided()
         UserDefaults.appSessionGuided()
     }

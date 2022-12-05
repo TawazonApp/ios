@@ -178,7 +178,7 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         case .userFeelingSessions:
             print("sessionsList")
         case .singleQuote:
-            quoteTapped(quoteId: section?.items?.first?.id ?? "")
+            quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
         case .none:
             print("none")
         }
@@ -192,6 +192,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     private func openPrepSessionPlayerVC(session: SessionModel){
+        var values = ["prepSession_name": session.name,
+                      "prepSession_id" : session.id]
+        TrackerManager.shared.sendEvent(name: "dailyActivity_prepSession_tapped", payload: values)
+        
         SessionPlayerMananger.shared.session = SessionVM(service: SessionServiceFactory.service(), session: session)
         let viewController = PreparationSessionPlayerViewController.instantiate(from: .todayActivity)
         viewController.modalPresentationStyle = .custom
@@ -200,13 +204,18 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     private func openFeelingsVC(){
+        TrackerManager.shared.sendEvent(name: "dailyActivity_feelings_tapped", payload: nil)
+        
         let viewController = LandingFeelingsViewController.instantiate(skipped: false, from: .todayActivity)
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)
     }
     
-    private func quoteTapped(quoteId: String){
+    private func quoteTapped(quoteId: String, quoteName: String){
+        let values = ["quoteName": quoteName, "quoteId": quoteId]
+        TrackerManager.shared.sendEvent(name: "dailyActivity_quoteTapped", payload: values)
+        
         todayVM.setTodayQuoteViewed(quoteId: quoteId){ error in
             self.reloadData()
         }

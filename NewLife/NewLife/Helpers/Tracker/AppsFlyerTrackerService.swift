@@ -592,6 +592,14 @@ class AppsFlyerTrackingService: TrackingService {
         AppsFlyerLib.shared().logEvent(CustomEvents.reminderSkipped, withValues: values)
     }
     
+    func sendEvent(name: String, payload: [String:Any]?) {
+        var values = getBaseEventValues()
+        if let payload = payload{
+            values.merge(payload){ (current, _) in current }
+        }
+        AppsFlyerLib.shared().logEvent(name, withValues: values)
+    }
+    
     private func getBaseEventValues() -> [AnyHashable : Any] {
         return ["idfa": UIApplication.identifierForAdvertising ?? "",
                 "campaignId": UserDefaults.originalCampaignId() ?? "",

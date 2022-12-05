@@ -82,4 +82,5 @@ protocol TrackingService {
     func sendReminderTimeSelected(time: String)
     func sendReminderSet(dayId: String, dayName: String, time: String)
     func sendReminderSkipped()
+    func sendEvent(name: String, payload: [String : Any]?)
 }

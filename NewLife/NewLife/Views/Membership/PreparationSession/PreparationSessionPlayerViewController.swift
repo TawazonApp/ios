@@ -12,6 +12,7 @@ import NVActivityIndicatorView
 enum fromViewController: String {
     case todayActivity
     case landing
+    case other
 }
 
 class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
@@ -32,6 +33,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIApplication.shared.isIdleTimerDisabled = true
         initialize()
         startPlayerLoadingIfNeeded()
         fillData()
@@ -118,15 +120,31 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     @objc private func closePlayer(skipped: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
+        
         if AudioPlayerManager.shared.isPlaying() == true {
             AudioPlayerManager.shared.stop(clearQueue: true)
             SessionPlayerMananger.shared.session = nil
         }
         if let session = session{
             if skipped{
-                TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: Int(AudioPlayerManager.shared.getCurrentTrack()?.currentTimeInSeconds() ?? 0.0))
+                if fromVC == .todayActivity{
+                    let values = ["sessionId": session.id ?? "", "sessionName": session.name ?? "", "time": Int(AudioPlayerManager.shared.getCurrentTrack()?.currentTimeInSeconds() ?? 0.0)] as [String : Any]
+                    TrackerManager.shared.sendEvent(name: "dailyActivity_prepSession_closed", payload: values)
+                    
+                }else{
+                    TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: Int(AudioPlayerManager.shared.getCurrentTrack()?.currentTimeInSeconds() ?? 0.0))
+                }
+                
             }else{
-                TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: session.session?.duration ?? 0)
+                if fromVC == .todayActivity{
+                    let values = ["sessionId": session.id ?? "", "sessionName": session.name ?? "", "time": session.session?.duration ?? 0] as [String : Any]
+                    TrackerManager.shared.sendEvent(name: "dailyActivity_prepSession_finished", payload: values)
+                    
+                }else{
+                    TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: session.session?.duration ?? 0)
+                }
+                
             }
             
         }

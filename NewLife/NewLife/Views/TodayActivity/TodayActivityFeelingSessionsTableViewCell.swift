@@ -196,6 +196,10 @@ extension TodayActivityFeelingSessionsTableViewCell : UICollectionViewDelegate, 
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         cell?.pulsate()
+        
+        let values : [String : Any] = ["sessionName": session.name ?? "", "sessionID": session.session?.id ?? ""]
+        TrackerManager.shared.sendEvent(name: "dailyActivity_feelingSessionPlayed", payload: values)
+        
         if session.session?.type == "series" {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return

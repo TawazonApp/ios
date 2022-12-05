@@ -533,6 +533,14 @@ class UXCamTrackerService: TrackingService {
         UXCam.logEvent(CustomEvents.reminderSkipped, withProperties: values)
     }
     
+    func sendEvent(name: String, payload: [String:Any]?) {
+        var values = getBaseEventValues()
+        if let payload = payload{
+            values.merge(payload){ (current, _) in current }
+        }
+        UXCam.logEvent(name, withProperties: values)
+    }
+    
     private func getBaseEventValues() -> [String : Any] {
         return ["campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",
