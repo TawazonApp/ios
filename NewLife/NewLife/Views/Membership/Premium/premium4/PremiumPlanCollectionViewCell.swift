@@ -44,8 +44,8 @@ class PremiumPlanCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderWidth = isSelected ? 1.5 : 0
         
         planTitlelabel.text = plan.title
-        planPricelabel.text = getPriceString()
-        planTriallabel.text = !(plan.trialDescription?.isEmptyWithTrim ?? true) ? plan.trialDescription : (plan.id != PremiumPurchase.monthly.rawValue ?  plan.price : "")
+        planPricelabel.text = !(plan.trialDescription?.isEmptyWithTrim ?? true) ? plan.trialDescription : (plan.id != PremiumPurchase.monthly.rawValue ?  plan.price : "")
+        planTriallabel.text = getPriceString()
 
         planTitlelabel.backgroundColor = UIColor(plan.color)
         planTriallabel.textColor = UIColor(plan.color)
