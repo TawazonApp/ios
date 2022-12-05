@@ -15,34 +15,42 @@ protocol MainTabBarViewDelegate: class {
 
 class MainTabBarView: UIView {
     
+    @IBOutlet weak var itemsStack: UIStackView!
     @IBOutlet var items : [MainTabBarItemView]!
     
     weak var delegate: MainTabBarViewDelegate?
     
     lazy var dataItems: [MainTabBarItemVM] =  {
-        return  tabBarItemsIds.allCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
+        
+        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool,  dailyActivityEnabled == true{
+            return  tabBarItemsIds.allDailyActivityCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
+        }else{
+            return  tabBarItemsIds.allCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
+        }
+        
     }()
     
     let animationDuration: TimeInterval = 0.75
     var selectedIndex: Int = 0
     
     enum tabBarItemsIds: String {
-        case todayActivity = "1"
-        case home = "2"
+        case todayActivity = "0"
+        case home = "1"
 //        case myBody = "2"
-//        case music = "2"
+        case music = "2"
         case meditations = "3"
 //        case mySoul = "4"
         case podcasts = "4"
         case children = "5"
-        static let allCases:[tabBarItemsIds] = [.todayActivity, .home, .meditations, .podcasts, .children]
+        static let allCases:[tabBarItemsIds] = [.home,.music, .meditations, .podcasts, .children]
+        static let allDailyActivityCases:[tabBarItemsIds] = [.todayActivity, .home, .meditations, .podcasts, .children]
         
         static func getItemId(forCategory categoryId: String) -> tabBarItemsIds? {
            let categoryId = CategoryIds(rawValue: categoryId)
             
             switch categoryId {
-//            case .music:
-//                return tabBarItemsIds.music
+            case .music:
+                return tabBarItemsIds.music
             case .children:
                 return tabBarItemsIds.children
             case .podcasts:

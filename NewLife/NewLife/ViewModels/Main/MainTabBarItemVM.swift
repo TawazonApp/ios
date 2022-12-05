@@ -33,7 +33,11 @@ class MainTabBarItemVM: NSObject {
         
         switch itemId {
         case .home:
-            title = "HomeTabTitle".localized
+            if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+                title = "ExploreTabTitle".localized
+            }else{
+                title = "HomeTabTitle".localized
+            }
             break
         case .todayActivity:
             title = "TodayActivityTabTitle".localized
@@ -47,7 +51,9 @@ class MainTabBarItemVM: NSObject {
         case .meditations:
             title = "MeditationsTabTitle".localized
             break
-            
+        case .music:
+            title = "MusicTabTitle".localized
+            break
         }
         return title
     }
@@ -75,6 +81,9 @@ class MainTabBarItemVM: NSObject {
             image = "MeditationsTab"
             break
             
+        case .music:
+            image = "MusicTab"
+            break
         }
         return image
     }
@@ -102,6 +111,9 @@ class MainTabBarItemVM: NSObject {
             colors = [UIColor.powderPink, UIColor.lighterPurple]
             break
             
+        case .music:
+            colors = [UIColor.darkishPink, UIColor.salmonTwo]
+            break
         }
         return colors
     }

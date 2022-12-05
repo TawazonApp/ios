@@ -64,14 +64,14 @@ class LandingFeelingsViewController: HandleErrorViewController {
         titleLabel.font = .munaBoldFont(ofSize: 36)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.text = cameFromSkip ?  "landingFeelingViewTitleSkipped".localized : "landingFeelingViewTitle".localized
+        titleLabel.text = fromVC == .landing ? (cameFromSkip ?  "landingFeelingViewTitleSkipped".localized : "landingFeelingViewTitle".localized) : "dailyActivityFeelingViewTitle".localized
         
         subtitleLabel.font = .munaFont(ofSize: 14)
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
         subtitleLabel.lineBreakMode = .byWordWrapping
         subtitleLabel.textAlignment = .center
-        subtitleLabel.text = cameFromSkip ? "landingFeelingViewSubtitleSkipped".localized : "landingFeelingViewSubtitle".localized
+        subtitleLabel.text = fromVC == .landing ? (cameFromSkip ? "landingFeelingViewSubtitleSkipped".localized : "landingFeelingViewSubtitle".localized) : "dailyActivityFeelingViewSubtitle".localized
         
         questionLabel.font = .munaBoldFont(ofSize: 22)
         questionLabel.textColor = .white

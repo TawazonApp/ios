@@ -202,6 +202,10 @@ class LandingReminderViewController: HandleErrorViewController {
         selectedTimeField.resignFirstResponder()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+       self.view.endEditing(true)
+    }
+    
     @objc func dateChanged() {
         setDateTextField(from: datePicker.date)
         

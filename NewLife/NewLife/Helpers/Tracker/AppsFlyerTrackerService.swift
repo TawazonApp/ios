@@ -596,6 +596,7 @@ class AppsFlyerTrackingService: TrackingService {
         return ["idfa": UIApplication.identifierForAdvertising ?? "",
                 "campaignId": UserDefaults.originalCampaignId() ?? "",
                 "currentCampaignId": UserDefaults.currentCampaignId() ?? "",
-                "is_premium" : UserDefaults.isPremium()]
+                "is_premium" : UserDefaults.isPremium(),
+                "userSegmentName" : RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["userSegmentName"] as? String ?? ""]
     }
 }

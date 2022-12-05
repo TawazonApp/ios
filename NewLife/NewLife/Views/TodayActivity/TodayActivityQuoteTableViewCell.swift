@@ -65,6 +65,7 @@ class TodayActivityQuoteTableViewCell: UITableViewCell {
         // trackingView
         trackingView.backgroundColor = .clear
         trackingLineView.createDashedLine(from: CGPoint(x: 0, y: 6), to: CGPoint(x: 0, y: trackingLineView.bounds.height), color: UIColor.columbiaBlue, strokeLength: 3, gapLength: 6, width: 1)
+        trackingLineView.backgroundColor = .clear
         
         trackingIndicatorImageView.image = UIImage(named: "TodayActivityStageDone")
         trackingIndicatorImageView.backgroundColor = .clear

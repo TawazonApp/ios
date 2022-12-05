@@ -87,6 +87,7 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
         trackingView.backgroundColor = .clear
         trackingLineView.applyGradientColor(colors: [UIColor.paleCornflowerBlue.cgColor, UIColor.paleCornflowerBlue.cgColor, UIColor.columbiaBlue.cgColor, UIColor.paleCornflowerBlue.withAlphaComponent(0.0).cgColor], startPoint: .top, endPoint: .center)
         trackingLineView.createDashedLine(from: CGPoint(x: 0, y: trackingLineView.bounds.height / 2.0), to: CGPoint(x: 0, y: trackingLineView.bounds.height), color: UIColor.columbiaBlue, strokeLength: 3, gapLength: 6, width: 1)
+        trackingLineView.backgroundColor = .clear
         
         trackingIndicatorImageView.image = UIImage(named: "TodayActivityStageDone")
         trackingIndicatorImageView.backgroundColor = .clear

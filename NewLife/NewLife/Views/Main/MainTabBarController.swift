@@ -367,6 +367,11 @@ extension MainTabBarController {
     class func instantiate() -> MainTabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: MainTabBarController.identifier) as! MainTabBarController
+        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+            viewController.viewControllers?.remove(at: 2)
+        }else{
+            viewController.viewControllers?.remove(at: 0)
+        }
         return viewController
     }
     
