@@ -130,7 +130,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
             if skipped{
                 if fromVC == .todayActivity{
                     let values = ["sessionId": session.id ?? "", "sessionName": session.name ?? "", "time": Int(AudioPlayerManager.shared.getCurrentTrack()?.currentTimeInSeconds() ?? 0.0)] as [String : Any]
-                    TrackerManager.shared.sendEvent(name: "dailyActivity_prepSession_closed", payload: values)
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityPrepSessionClosed, payload: values)
                     
                 }else{
                     TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: Int(AudioPlayerManager.shared.getCurrentTrack()?.currentTimeInSeconds() ?? 0.0))
@@ -139,7 +139,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
             }else{
                 if fromVC == .todayActivity{
                     let values = ["sessionId": session.id ?? "", "sessionName": session.name ?? "", "time": session.session?.duration ?? 0] as [String : Any]
-                    TrackerManager.shared.sendEvent(name: "dailyActivity_prepSession_finished", payload: values)
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityPrepSessionFinished, payload: values)
                     
                 }else{
                     TrackerManager.shared.sendPrepSessionSkipped(sessionId: session.id ?? "", sessionName: session.name ?? "", time: session.session?.duration ?? 0)

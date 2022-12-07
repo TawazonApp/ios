@@ -13,7 +13,18 @@ enum RegistrationMethod: String {
     case email = "Email"
     case anonymous = "Anonymous"
 }
-
+enum GeneralCustomEvents {
+    static let dailyActivityPrepSessionTapped = "dailyActivity_prepSession_tapped"
+    static let dailyActivityPrepSessionClosed = "dailyActivity_prepSession_closed"
+    static let dailyActivityPrepSessionFinished = "dailyActivity_prepSession_finished"
+    static let dailyActivityFeelingsTapped = "dailyActivity_feelings_tapped"
+    static let dailyActivityFeelingsMainSelected = "dailyActivity_feelings_mainSelected"
+    static let dailyActivityFeelingsIntencitySelcted = "dailyActivity_feelings_intencitySelcted"
+    static let dailyActivityFeelingsLogged = "dailyActivity_feelings_logged"
+    static let dailyActivityFeelingsClosed = "dailyActivity_feelings_closed"
+    static let dailyActivityFeelingSessionPlayed = "dailyActivity_feelingSessionPlayed"
+    static let dailyActivityQuoteTapped = "dailyActivity_quoteTapped"
+}
 protocol TrackingService {
     func sendUserId(userId: String?)
     func sendLoginEvent()

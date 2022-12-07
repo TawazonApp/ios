@@ -198,7 +198,7 @@ extension TodayActivityFeelingSessionsTableViewCell : UICollectionViewDelegate, 
         cell?.pulsate()
         
         let values : [String : Any] = ["sessionName": session.name ?? "", "sessionID": session.session?.id ?? ""]
-        TrackerManager.shared.sendEvent(name: "dailyActivity_feelingSessionPlayed", payload: values)
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingSessionPlayed, payload: values)
         
         if session.session?.type == "series" {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)

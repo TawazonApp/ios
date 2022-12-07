@@ -130,7 +130,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
             selectedSubFeelingLabel.text = feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title
             if fromVC == .todayActivity{
                 let values = ["subfeelingId": feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].id ?? "subfeeling_id", "subfeelingName": feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title ?? "subfeeling_title"]
-                TrackerManager.shared.sendEvent(name: "dailyActivity_feelings_intencitySelcted", payload: values)
+                TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsIntencitySelcted, payload: values)
             }else{
                 TrackerManager.shared.sendFeelingsIntencitySelcted(subfeelingId: feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].id ?? "subfeeling_id", subfeelingName: feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title ?? "subfeeling_title")
             }
@@ -149,7 +149,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
                
                 if self.fromVC == .todayActivity{
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "subfeelingId": selectedSubFeeling.id, "subfeelingName": selectedSubFeeling.title]
-                    TrackerManager.shared.sendEvent(name: "dailyActivity_feelings_logged", payload: values)
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsLogged, payload: values)
                     self.dismiss(animated: true)
                 }else{
                     TrackerManager.shared.sendFeelingsLogged(feelingId: self.feelings[self.lastSelectedFeelingIndex].id, feelingName: self.feelings[self.lastSelectedFeelingIndex].name, subfeelingId: selectedSubFeeling.id, subfeelingName: selectedSubFeeling.title)
@@ -162,7 +162,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         if fromVC == .todayActivity{
-            TrackerManager.shared.sendEvent(name: "dailyActivity_feelings_closed", payload: nil)
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsClosed, payload: nil)
             self.dismiss(animated: true)
             return
         }
@@ -208,7 +208,7 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
         initFeelingSlider()
         if fromVC == .todayActivity{
             let values = ["feelingId": feelings[indexPath.item].id, "feelingName": feelings[indexPath.item].name]
-            TrackerManager.shared.sendEvent(name: "dailyActivity_feelings_mainSelected", payload: values)
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsMainSelected, payload: values)
         }else{
             TrackerManager.shared.sendFeelingsMainSelected(feelingId: feelings[indexPath.item].id, feelingName: feelings[indexPath.item].name)
         }
