@@ -58,7 +58,7 @@ class MembershipFormView: UIView {
         
         facbookButton.backgroundColor = UIColor.facebookColor
         facbookButton.tintColor = UIColor.white
-        facbookButton.titleLabel?.font = UIFont.kacstPen(ofSize: 16)
+        facbookButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         facbookButton.layer.cornerRadius = 18
         facbookButton.layer.masksToBounds = true
         facbookButton.setTitle("facebookButtonTitle".localized, for: .normal)
@@ -142,7 +142,7 @@ class MembershipFormView: UIView {
             appleIdButtonHeightConstraint.constant = 56
             appleIdButtonContainer.isHidden = false
             
-            let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
+            let authorizationButton = ASAuthorizationAppleIDButton(type: .continue, style: .white)
             authorizationButton.translatesAutoresizingMaskIntoConstraints = false
             authorizationButton.addTarget(self, action:
                 #selector(appleAuthorizationButtonTapped(_:)), for: .touchUpInside)

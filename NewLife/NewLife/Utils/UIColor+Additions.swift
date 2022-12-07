@@ -177,7 +177,7 @@ extension UIColor {
     }
 
     class var facebookColor: UIColor {
-        return UIColor(red: 68 / 255.0, green: 105 / 255.0, blue: 176 / 255.0, alpha: 1.0)
+        return UIColor(red: 26 / 255.0, green: 118 / 255.0, blue: 242 / 255.0, alpha: 1.0)
     }
     
     class var brightLilac: UIColor {

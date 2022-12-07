@@ -93,9 +93,17 @@
 "privacyPolicyPart2" = " شروط الإستخدام";
 
 "forgetPasswordButtonTitle" = "هل نسيت كلمة المرور؟";
-"facebookButtonTitle" = "الدخول باستخدام فيسبوك";
+"facebookButtonTitle" = "الاستمرار باستخدام Facebook";
 "loginFormTitle" = "أهلا بك من جديد";
 "registerFormTitle" = "إنشاء حساب جديد";
+
+"welcomeViewTitleLabel" = "لتجربة شخصية تلائم احتياجاتك،
+قم بإنشاء حساب خاص بك";
+"welcomeViewRegistartionButton" = "إنشاء حساب عن طريق الإيميل";
+"welcomeViewOthersLabel" = "أو قم بـِ";
+
+"loginButtonPart1" = "لديك بالفعل حساب؟ ";
+"loginButtonPart2" = " قم بتسجيل الدخول";
 
 "loginUsingOtherWayButtonTitle" = "تسجيل دخول بطرق أخرى";
 "loginSubmitButtonTitle" = "تسجيل الدخول";
@@ -473,7 +481,8 @@
 "landingFeelingViewQuestion" = "أخبرنا بماذا تشعر الآن";
 "landingFeelingViewSubmitButtonTitle" = "حفظ ومتابعة";
 "landingFeelingViewSubFeelingLabelTitle" = "أي درجة من %@؟";
-"dailyActivityFeelingViewTitle" = "تسجيل الشعور";"dailyActivityFeelingViewSubtitle" = "يساعدنا تسجيل شعورك على انتقاء التأملات و التمارين المناسبة لك.";
+"dailyActivityFeelingViewTitle" = "تسجيل الشعور";
+"dailyActivityFeelingViewSubtitle" = "يساعدنا تسجيل شعورك على انتقاء التأملات و التمارين المناسبة لك.";
 "landingReminderViewTitle" = "اختر وقتاً للتأمل ";
 "landingReminderViewSubtitle" = "اختر الأيام والوقت المناسب لك للتأمل القادم";
 "landingReminderViewSelectDaysLabel" = "اختيار الأيام";

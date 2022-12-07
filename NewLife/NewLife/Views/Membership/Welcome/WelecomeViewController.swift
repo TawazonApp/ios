@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 import SwiftVideoBackground
 import AudioToolbox
 import AuthenticationServices
@@ -22,6 +23,13 @@ class WelecomeViewController: HandleErrorViewController {
     @IBOutlet weak var appleIdButtonContainer: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var languageButton: UIButton!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var registerationButton: UIButton!
+    @IBOutlet weak var othersLabel: UILabel!
+    @IBOutlet weak var dividerView: GradientView!
+    @IBOutlet weak var facbookButton: UIButton!
+    @IBOutlet weak var skipLoginButton: CircularButton!
     
     var videoBackground: VideoBackground?
     let video: HomeVideoCellVM = HomeVideoCellVM(videoName: "HomeVideo1", videoType: "mp4")
@@ -68,6 +76,46 @@ class WelecomeViewController: HandleErrorViewController {
         self.view.backgroundColor = UIColor.clear
         logoImageView.image = UIImage(named: "LogoWithName")
         
+        titleLabel.font = .munaBoldFont(ofSize: 18)
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.text = "welcomeViewTitleLabel".localized
+        
+        registerationButton.backgroundColor = .white.withAlphaComponent(0.12)
+        registerationButton.tintColor = .white
+        registerationButton.roundCorners(corners: .allCorners, radius: 18)
+        registerationButton.titleLabel?.font = .munaFont(ofSize: 20)
+        registerationButton.setTitle("welcomeViewRegistartionButton".localized, for: .normal)
+        registerationButton.setImage(UIImage(named: "RegistrationLogo"), for: .normal)
+        registerationButton.centerTextAndImage(spacing: 10)
+        
+        othersLabel.font = .munaFont(ofSize: 14)
+        othersLabel.textColor = .white
+        othersLabel.textAlignment = .center
+        othersLabel.backgroundColor = .darkBlueGreyThree
+        othersLabel.text = "welcomeViewOthersLabel".localized
+        
+        dividerView.applyGradientColor(colors: [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.withAlphaComponent(0).cgColor], startPoint: .left, endPoint: .right)
+        dividerView.backgroundColor = .clear
+        dividerView.alpha = 0.2
+        
+        
+        facbookButton.backgroundColor = UIColor.facebookColor
+        facbookButton.tintColor = UIColor.white
+        facbookButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        facbookButton.layer.cornerRadius = 18
+        facbookButton.layer.masksToBounds = true
+        facbookButton.setTitle("facebookButtonTitle".localized, for: .normal)
+        facbookButton.setImage(#imageLiteral(resourceName: "FacebookLogo.pdf"), for: .normal)
+        facbookButton.centerTextAndImage(spacing: 10)
+        
+        skipLoginButton.backgroundColor = .black.withAlphaComponent(0.62)
+        skipLoginButton.setImage(UIImage(named: "Cancel"), for: .normal)
+        skipLoginButton.roundCorners(corners: .allCorners, radius: 24)
+        skipLoginButton.tintColor = .white
+        
         skipButton.backgroundColor = UIColor.clear
         skipButton.tintColor = UIColor.white
         skipButton.setTitle("skipLoginButtonTitle".localized, for: .normal)
@@ -77,14 +125,13 @@ class WelecomeViewController: HandleErrorViewController {
         languageButton.setTitle(
             "welcomeChangeLanguageButtonTitle".localized, for: .normal)
         
-        startView.title = hasAppleLogin ? "loginUsingOtherWayButtonTitle".localized
-            : "loginSubmitButtonTitle".localized
-
+        startView.title = loginButtonAttributeText()
+        
         registerButton.tintColor = UIColor.white
         registerButton.setAttributedTitle(registerButtonAttributeText(), for: .normal)
         registerButton.backgroundColor = UIColor.black.withAlphaComponent(0.72)
         registerButton.layer.cornerRadius = 18
-        registerButton.isHidden = hasAppleLogin
+//        registerButton.isHidden = hasAppleLogin
         
         privacyPolicyButton.tintColor = UIColor.white
         privacyPolicyButton.setAttributedTitle(privacyPolicyAttributeText(), for: .normal)
@@ -125,7 +172,7 @@ class WelecomeViewController: HandleErrorViewController {
         if #available(iOS 13.0, *) {
             appleIdButtonContainer.isHidden = false
             
-            let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
+            let authorizationButton = ASAuthorizationAppleIDButton(type: .continue, style: .white)
             authorizationButton.translatesAutoresizingMaskIntoConstraints = false
             authorizationButton.addTarget(self, action:
                 #selector(appleAuthorizationButtonTapped(_:)), for: .touchUpInside)
@@ -189,6 +236,38 @@ class WelecomeViewController: HandleErrorViewController {
         }
     }
     
+    @IBAction func facebookButtonTapped(_ sender: UIButton) {
+//        delegate?.facebookButtonTapped()
+        facebookLogin()
+    }
+    
+    private func facebookLogin() {
+        
+        let facebook = FacebookLoginVM(service: MembershipServiceFactory.service())
+        
+        facebook.login(fbManager: LoginManager(), viewController: self) { [weak self] (accessToken, error) in
+            
+            if let error = error {
+                self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
+                return
+            }
+            
+            guard let accessToken = accessToken else { return }
+            
+            LoadingHud.shared.show(animated: true)
+            facebook.submit(accessToken: accessToken, completion: { [weak self] (submitError) in
+                if let error = error {
+                    LoadingHud.shared.hide(animated: true)
+                    self?.showErrorMessage(message: error.message ?? "generalErrorMessage".localized)
+                    return
+                }
+                self?.userLoggedAction()
+                LoadingHud.shared.hide(animated: true)
+            })
+            
+        }
+    }
+    
     private func changeLanguage(language: Language) {
         guard language != Language.language else {
             return
@@ -212,6 +291,19 @@ class WelecomeViewController: HandleErrorViewController {
         return attributedString
     }
     
+    private func loginButtonAttributeText() -> NSMutableAttributedString {
+        
+        let loginPart1 = "loginButtonPart1".localized
+        let loginPart2 = "loginButtonPart2".localized
+        let allText = String(format: "%@ %@", loginPart1, loginPart2)
+        
+        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.kacstPen(ofSize: 14), .foregroundColor: UIColor.white.withAlphaComponent(0.64),.kern: 0.0])
+        
+        if let part2Range = allText.range(of: loginPart2) {
+            attributedString.addAttributes([.foregroundColor: UIColor.white], range: part2Range.nsRange(in: allText))
+        }
+        return attributedString
+    }
     
     private func registerButtonAttributeText() -> NSMutableAttributedString {
         

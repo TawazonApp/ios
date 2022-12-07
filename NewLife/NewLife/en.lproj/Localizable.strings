@@ -97,10 +97,18 @@
 "privacyPolicyPart2" = " Terms";
  
 "forgetPasswordButtonTitle" = "Forget Password";
-"facebookButtonTitle" = "Facebook Login";
+"facebookButtonTitle" = "Continue with Facebook";
 "loginFormTitle" = "Welcome back";
 "registerFormTitle" = "Create new account";
- 
+
+"welcomeViewTitleLabel" = "For a personalized experience tailored to your needs,
+Create your own account";
+"welcomeViewRegistartionButton" = "Create an account via email";
+"welcomeViewOthersLabel" = "Or";
+
+"loginButtonPart1" = "Already have an account? ";
+"loginButtonPart2" = "Sign in";
+
 "loginUsingOtherWayButtonTitle" = "More login ways";
 "loginSubmitButtonTitle" = "Log In";
 "registerSubmitButtonTitle" = "Create new account";

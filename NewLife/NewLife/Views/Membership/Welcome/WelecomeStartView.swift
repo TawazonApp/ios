@@ -16,9 +16,9 @@ class WelecomeStartView: UIVisualEffectView {
     
     @IBOutlet weak var titleLabel: UILabel!
     weak var delegate: WelecomeStartViewDelegate?
-    var title: String = "" {
+    var title: NSMutableAttributedString? {
         didSet {
-            titleLabel.text = title
+            titleLabel.attributedText = title
         }
     }
     
@@ -29,6 +29,9 @@ class WelecomeStartView: UIVisualEffectView {
     }
     
     private func initialize() {
+        self.backgroundColor = .clear
+        self.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+        self.layer.borderWidth = 1
         titleLabel.font = UIFont.kacstPen(ofSize: 20)
         titleLabel.textColor = UIColor.white
         self.clipsToBounds = true
