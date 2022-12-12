@@ -152,6 +152,14 @@ extension UIColor {
         return UIColor(red: 108 / 255.0, green: 87 / 255.0, blue: 198 / 255.0, alpha: 1.0)
     }
     
+    class var mediumSlateBlue: UIColor {
+        return UIColor(red: 184 / 255.0, green: 109 / 255.0, blue: 239 / 255.0, alpha: 1.0)
+    }
+    
+    class var mediumSlateBlueTwo: UIColor {
+        return UIColor(red: 139 / 255.0, green: 130 / 255.0, blue: 236 / 255.0, alpha: 1.0)
+    }
+    
     class var aquamarine: UIColor {
         return UIColor(red: 99 / 255.0, green: 255 / 255.0, blue: 190 / 255.0, alpha: 1.0)
     }
@@ -530,6 +538,40 @@ extension UIColor {
     
     class var lightSkyBlue: UIColor{
         return UIColor(red: 152.0 / 255.0, green: 171.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
+    class var ghostWhite: UIColor{
+        return UIColor(red: 247 / 255.0, green: 248 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var ghostWhiteTwo: UIColor{
+        return UIColor(red: 245 / 255.0, green: 245 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+    
+    class var eastSide: UIColor{
+        return UIColor(red: 173.0 / 255.0, green: 155.0 / 255.0, blue: 195.0 / 255.0, alpha: 1.0)
+    }
+
+    class var mediumOrchid: UIColor{
+        return UIColor(red: 160 / 255.0, green: 77 / 255.0, blue: 218 / 255.0, alpha: 1.0)
+    }
+    
+    class var rockBlue: UIColor{
+        return UIColor(red: 147 / 255.0, green: 147 / 255.0, blue: 189 / 255.0, alpha: 1.0)
+    }
+    
+    class var governorBay: UIColor{
+        return UIColor(red: 87 / 255.0, green: 99 / 255.0, blue: 153 / 255.0, alpha: 1.0)
+    }
+
+    class var linkWater: UIColor{
+        return UIColor(red: 201 / 255.0, green: 203 / 255.0, blue: 217 / 255.0, alpha: 1.0)
+    }
+    class var blueHaze: UIColor{
+        return UIColor(red: 194 / 255.0, green: 194 / 255.0, blue: 213 / 255.0, alpha: 1.0)
+    }
+    class var catalinaBlue: UIColor{
+        return UIColor(red: 33 / 255.0, green: 43 / 255.0, blue: 83 / 255.0, alpha: 1.0)
     }
 
 }

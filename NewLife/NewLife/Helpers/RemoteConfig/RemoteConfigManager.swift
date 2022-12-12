@@ -18,12 +18,14 @@ enum RCValueKeys: String {
     case meditationReminderString
     case dailyActivityLockNextStep
     case first_dailyActivityFeatureFlow
+    case premuimPage6DarkTheme
 }
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
     case premiumOne = "Premium1ViewController"
     case premiumFour = "Premium4ViewController"
     case premiumFive = "Premium5ViewController"
+    case premiumSix = "PaywallViewController"
 }
 
 class RemoteConfigManager{
@@ -50,7 +52,7 @@ extension RemoteConfigManager{
     
     func fetchRemoteConfigCloudValues() {
       //FIXME: remove on production
-//      activateDebugMode()
+      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {
@@ -97,6 +99,10 @@ extension RemoteConfigManager{
             
             _ = RemoteConfig.remoteConfig().configValue(forKey: RCValueKeys.first_dailyActivityFeatureFlow.rawValue)
                 .jsonValue
+            
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.premuimPage6DarkTheme.rawValue)
+                .boolValue
             
           self?.fetchComplete = true
           DispatchQueue.main.async {

@@ -42,10 +42,14 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
 
         initialize()
         todayVM = TodayVM(service: TodayServiceCache.shared)
+        print("TodayActivityViewController")
         fetchTodaySections()
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchTodaySections()
+    }
 
     private func initialize(){
         self.view.backgroundColor = .darkIndigoTwo

@@ -1,0 +1,340 @@
+//
+//  PaywallViewController.swift
+//  Tawazon
+//
+//  Created by mac on 07/12/2022.
+//  Copyright © 2022 Inceptiontech. All rights reserved.
+//
+
+import UIKit
+import StoreKit
+import SwiftyStoreKit
+import Dispatch
+
+class PaywallViewController: BasePremiumViewController {
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var headerImageView: UIImageView!
+    @IBOutlet weak var headerImageViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var sectionsStackView: UIStackView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var closeButton: CircularButton!
+    @IBOutlet weak var viewTitleLabel: UILabel!
+    @IBOutlet weak var viewTitleWithBGLabel: PaddingLabel!
+    
+    @IBOutlet weak var subscriptionView: UIView!
+    @IBOutlet weak var subscriptionViewTitleLabel: UILabel!
+    @IBOutlet weak var bestPlanView: GradientView!
+    @IBOutlet weak var bestPlanHeaderLabel: UILabel!
+    @IBOutlet weak var bestPlanTitleLabel: UILabel!
+    @IBOutlet weak var pricesStack: UIStackView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var subPriceLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var subscribeButton: GradientButton!
+    
+    @IBOutlet weak var allPlansButton: UIButton!
+    @IBOutlet weak var dividerView: GradientView!
+    
+    @IBOutlet weak var featuresView: UIView!
+    @IBOutlet weak var featuresViewTitleLabel: UILabel!
+    
+    @IBOutlet weak var premiumPlanLabel: UILabel!
+    @IBOutlet weak var freePlanLabel: UILabel!
+    
+    @IBOutlet weak var featuresTable: UITableView!
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var restorePurchasesButton: UIButton!
+    
+    @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var privacyButton: UIButton!
+    
+    var darkView: Bool?{
+        didSet{
+            initialize()
+        }
+    }
+    
+    var features: [FeatureItem]? {
+        didSet {
+//            imagesContainer.images = features
+            fetchPlans()
+        }
+    }
+    
+    var plans: [PremiumPurchaseCellVM]? {
+        didSet {
+//            plansContainer.plans = plans
+            LoadingHud.shared.hide(animated: true)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
+//        initialize()
+        SKPaymentQueue.default().add(self)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
+            self?.fetchData()
+        }
+        TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
+    }
+    
+
+    private func initialize() {
+        self.view.backgroundColor = darkView! ? .darkIndigoTwo : .ghostWhite
+        
+        scrollView.backgroundColor = .clear
+        
+        headerImageView.image = darkView! ? UIImage(named: "OnboardingBackground") : UIImage(named: "PaywallGradientBg")
+        headerImageView.contentMode = .scaleAspectFill
+        headerImageView.clipsToBounds = false
+        headerImageView.backgroundColor = .clear
+        headerImageViewHeight.constant = darkView! ? 209 : 260
+        
+        sectionsStackView.backgroundColor = .clear
+        
+        headerView.backgroundColor = .clear
+        
+        
+        
+        backgroundImageView.image = UIImage(named: "PaywallBackgroundImage")
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.backgroundColor = .clear
+        backgroundImageView.clipsToBounds = false
+        
+        closeButton.backgroundColor = darkView! ? .black.withAlphaComponent(0.24) : .eastSide.withAlphaComponent(0.09)
+        closeButton.setImage(UIImage(named: "Cancel"), for: .normal)
+        closeButton.roundCorners(corners: .allCorners, radius: 24)
+        closeButton.tintColor = darkView! ? .white : .black
+        
+        viewTitleLabel.font = .munaFont(ofSize: 18)
+        viewTitleLabel.textColor = darkView! ? .white : .darkIndigoTwo
+        viewTitleLabel.text = "paywallTitlePart1".localized
+        viewTitleLabel.textAlignment = .center
+        
+        viewTitleWithBGLabel.font = .munaBoldFont(ofSize: 18)
+        viewTitleWithBGLabel.textColor = .white
+        viewTitleWithBGLabel.text = "paywallTitlePart2".localized
+        viewTitleWithBGLabel.textAlignment = .center
+        viewTitleWithBGLabel.layer.cornerRadius = 5
+        viewTitleWithBGLabel.leftInset = 5
+        viewTitleWithBGLabel.rightInset = 5
+        viewTitleWithBGLabel.applyGradientColor(colors: [UIColor.mediumSlateBlue.cgColor, UIColor.mediumSlateBlueTwo.cgColor], startPoint: .left, endPoint: .right)
+        
+        
+        subscriptionView.backgroundColor = .clear
+        
+        subscriptionViewTitleLabel.font = .munaBoldFont(ofSize: 24)
+        subscriptionViewTitleLabel.textAlignment = .center
+        subscriptionViewTitleLabel.numberOfLines = 0
+        subscriptionViewTitleLabel.lineBreakMode = .byWordWrapping
+        subscriptionViewTitleLabel.textColor =  darkView! ? .white : .darkIndigoTwo
+        subscriptionViewTitleLabel.text = "paywallSubscriptionTitle".localized
+        
+        bestPlanView.layer.cornerRadius = 24
+        bestPlanView.clipsToBounds = true
+        bestPlanView.backgroundColor = darkView! ? .clear : .ghostWhiteTwo
+        
+        
+        bestPlanHeaderLabel.backgroundColor = darkView! ? .governorBay : .mediumPurple
+        bestPlanHeaderLabel.layer.cornerRadius = 16.0
+        bestPlanHeaderLabel.roundCorners(corners: (Language.language == .arabic ? .bottomLeft : .bottomRight) , radius: 16)
+        bestPlanHeaderLabel.textColor = .white
+        bestPlanHeaderLabel.font = .munaBoldFont(ofSize: 18)
+        bestPlanHeaderLabel.text = "paywallBestPlanTitle".localized
+        bestPlanHeaderLabel.textAlignment = .center
+        
+        bestPlanTitleLabel.font = .munaBoldFont(ofSize: 20)
+        bestPlanTitleLabel.textColor = darkView! ? .white : .darkIndigoTwo
+        
+        priceLabel.font = .munaFont(ofSize: 24)
+        priceLabel.textColor = darkView! ? .white : .darkIndigoTwo
+        priceLabel.textAlignment = Language.language == .english ? .right : .left
+        
+        subPriceLabel.font = .munaFont(ofSize: 15)
+        subPriceLabel.textColor = darkView! ? .white.withAlphaComponent(0.56) : .darkIndigoTwo.withAlphaComponent(0.56)
+        subPriceLabel.textAlignment = Language.language == .english ? .left : .right
+        
+        discountLabel.font = .munaBoldFont(ofSize: 15)
+        discountLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
+        discountLabel.isHidden = true
+        
+        subscribeButton.roundCorners(corners: .allCorners, radius: 16)
+        subscribeButton.layer.cornerRadius = 22
+        subscribeButton.applyGradientColor(colors: [UIColor.slateBlue.cgColor, UIColor.deepLilac.cgColor], startPoint: .right, endPoint: .left)
+        subscribeButton.titleLabel?.font = .munaBoldFont(ofSize: 22)
+        subscribeButton.tintColor = .white
+        
+        
+        
+        allPlansButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
+        allPlansButton.tintColor = darkView! ? .lavenderBlue : .slateBlue
+        allPlansButton.setTitle("paywallAllPlansButton".localized, for: .normal)
+        
+        dividerView.backgroundColor = .clear
+        dividerView.applyGradientColor(colors: [UIColor.linkWater.withAlphaComponent(0).cgColor,UIColor.linkWater.cgColor, UIColor.linkWater.cgColor, UIColor.linkWater.withAlphaComponent(0).cgColor], startPoint: .left, endPoint: .right)
+        
+        featuresView.backgroundColor = .clear
+        
+        featuresViewTitleLabel.font = .munaBoldFont(ofSize: 20)
+        featuresViewTitleLabel.textAlignment = .center
+        featuresViewTitleLabel.textColor = darkView! ? .white : .black
+        featuresViewTitleLabel.text = "paywallFeaturesViewTitle".localized
+    
+        premiumPlanLabel.font = .munaBoldFont(ofSize: 17)
+        premiumPlanLabel.textAlignment = .center
+        premiumPlanLabel.numberOfLines = 0
+        premiumPlanLabel.lineBreakMode = .byWordWrapping
+        premiumPlanLabel.textColor = darkView! ? .white : .black
+        premiumPlanLabel.text = "paywallPremiumPlanLabel".localized
+        
+        freePlanLabel.font = .munaBoldFont(ofSize: 17)
+        freePlanLabel.textAlignment = .center
+        freePlanLabel.numberOfLines = 0
+        freePlanLabel.lineBreakMode = .byWordWrapping
+        freePlanLabel.textColor = darkView! ? .white : .black
+        freePlanLabel.text = "paywallFreePlanLabel".localized
+    
+        featuresTable.backgroundColor = .clear
+        featuresTable.allowsSelection = false
+        featuresTable.separatorColor = .linkWater
+    
+        restorePurchasesButton.setAttributedTitle(restorePurchasesButtonAttributeText(), for: .normal)
+        
+        
+
+        noteLabel.font = .munaFont(ofSize: 12)
+        noteLabel.numberOfLines = 0
+        noteLabel.lineBreakMode = .byWordWrapping
+        noteLabel.textColor = darkView! ? .white.withAlphaComponent(0.71) : .darkIndigoTwo.withAlphaComponent(0.71)
+        noteLabel.text = "paywallNoteLabel".localized
+        noteLabel.textAlignment = .center
+        
+        
+        privacyButton.titleLabel?.font = .munaFont(ofSize: 17)
+        privacyButton.tintColor = darkView! ? .lavenderBlue : .slateBlue
+        privacyButton.setTitle("paywallPrivacyButton".localized, for: .normal)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bestPlanView.gradientBorder(width: 1, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+    }
+    private func fetchData(){
+        LoadingHud.shared.show(animated: true)
+        
+        data.getPremiumPageDetails(premiumId: 9, service: MembershipServiceFactory.service(), completion: { (error) in
+            if error == nil{
+                self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
+                
+                self.features = self.data.premiumDetails?.premiumPage.featureItems
+                self.reloadData()
+                return
+            }
+            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
+            LoadingHud.shared.hide(animated: true)
+        })
+    }
+    private func reloadData(){
+        featuresTable.reloadData()
+        tableHeight.constant = CGFloat(72 * (self.features?.count ?? 0))
+        featuresTable.layoutIfNeeded()
+        featuresTable.layoutSubviews()
+    }
+    private func fetchPlans(){
+        data.fetchPremiumPurchaseProducts(completion: { (error) in
+            if error == nil{
+                self.plans = self.data.plansArray
+                self.plans?[0].isSelected = true
+                self.setBestPlanData()
+                return
+            }
+            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
+            LoadingHud.shared.hide(animated: true)
+        })
+    }
+    private func setBestPlanData(){
+        if let bestPlan = plans?.first{
+            bestPlanTitleLabel.text = bestPlan.title
+            priceLabel.text = bestPlan.price + "paywallYearlyString".localized
+            subPriceLabel.text = "(\(bestPlan.monthlyPrice ?? "")\("paywallMonthlyString".localized))"
+        }
+    }
+    
+    private func restorePurchasesButtonAttributeText() -> NSMutableAttributedString {
+        
+        let restorePart1 = "paywallRestoreButtonPart1".localized
+        let restorePart2 = "paywallRestoreButtonPart2".localized
+        let allText = String(format: "%@ %@", restorePart1, restorePart2)
+        let color : UIColor = darkView! ? .lavenderBlue : .slateBlue
+        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.munaFont(ofSize: 17), .foregroundColor: color,.kern: 0.0])
+        
+        if let part2Range = allText.range(of: restorePart2) {
+            attributedString.addAttributes([.font: UIFont.munaBoldFont(ofSize: 20)], range: part2Range.nsRange(in: allText))
+        }
+        return attributedString
+    }
+    
+    @IBAction func purchaseButtonTapped(_ sender: Any) {
+        if let bestPlan = plans?.first{
+            purchaseAction(product: data.products[bestPlan.priority - 1])
+        }
+        
+    }
+    
+    @IBAction func allPlansButtonTapped(_ sender: UIButton) {
+        openPaywallAllPlansViewController()
+    }
+    
+    @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
+        openPrivacyViewController()
+    }
+    
+    private func openPaywallAllPlansViewController()  {
+        let viewController = PaywallAllPlansViewController.instantiate(nextView: .dimiss)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func openPrivacyViewController()  {
+        let viewController = PrivacyViewController.instantiate(viewType: .termsAndConditions)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
+    }
+    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
+        super.cancelButtonTapped(sender)
+        
+    }
+}
+
+extension PaywallViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.features?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PaywallFeaturesTableViewCell.identifier) as! PaywallFeaturesTableViewCell
+        
+        cell.feature = self.features?[indexPath.row]
+        
+        return cell
+    }
+    
+}
+
+
+extension PaywallViewController {
+    
+    class func instantiate(nextView: NextView) -> PaywallViewController {
+        let storyboard = UIStoryboard(name: "Membership", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: PaywallViewController.identifier) as! PaywallViewController
+        viewController.nextView = nextView
+        return viewController
+    }
+}

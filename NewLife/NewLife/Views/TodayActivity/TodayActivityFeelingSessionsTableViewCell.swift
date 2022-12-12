@@ -48,6 +48,11 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
         initialize()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateViewsBorders()
+    }
+    
     private func initialize(){
         self.selectionStyle = .none
         
@@ -57,6 +62,7 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
         // cellView
         cellView.backgroundColor = .gulfBlue.withAlphaComponent(0.4)
         cellView.roundCorners(corners: .allCorners, radius: 24)
+        cellView.layer.cornerRadius = 24
         cellView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 24.0)
         
         cellTitleLabel.font = .munaFont(ofSize: 15)
@@ -92,6 +98,11 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
         trackingIndicatorImageView.image = UIImage(named: "TodayActivityStageDone")
         trackingIndicatorImageView.backgroundColor = .clear
         trackingIndicatorImageView.contentMode = .scaleAspectFill
+    }
+    
+    private func updateViewsBorders(){
+        cellView.layoutIfNeeded()
+        cellView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 24.0)
     }
     
     private func reloadData(){

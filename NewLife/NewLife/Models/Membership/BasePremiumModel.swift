@@ -38,11 +38,15 @@ struct FeatureItem: Codable {
     let id: String
     let image: String?
     let title, content: String
+    let planComp: PlanComp?
 }
-
+struct PlanComp: Codable{
+    let premium, free: Bool
+}
 // MARK: - TypeElement
 struct Plan: Codable {
     let id, title: String
+    let subtitle: String?
     let color: String?
     let enabled: Bool
     let discount: Float?

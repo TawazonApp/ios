@@ -77,7 +77,7 @@ class BasePremiumVM : NSObject{
             
             if plan?.enabled ?? false{
                 let planPriority = Int(plan?.priority ?? "") ?? 0
-                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", color: plan?.color ?? "", price: orgionalPriceString ?? "", monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
+                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", subtitle: plan?.subtitle, color: plan?.color ?? "", price: orgionalPriceString ?? "", monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
                 purchaseItems.append(purchase)
             }
             

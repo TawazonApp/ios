@@ -513,3 +513,22 @@ Tawazon App
 
 "dailyTitleLabel" = "Let's enhance your day";
 "update" = "Change";
+
+
+"paywallTitlePart1" = "Tawazon";
+"paywallTitlePart2" = "Premium";
+"paywallSubscriptionTitle" = "Subscribe now to Tawazon Premium
+And enjoy full access.";
+"paywallBestPlanTitle" = "Best plan";
+"paywallAllPlansButton" = "All plans  ❯";
+"paywallFeaturesViewTitle" = "Why Tawazon Premium? ";
+"paywallPremiumPlanLabel" = "Premium";
+"paywallFreePlanLabel" = "Free";
+"paywallRestoreButtonPart1" = "have a subscription?";
+"paywallRestoreButtonPart2" = "Restore subscription";
+"paywallPrivacyButton" = "Terms of Use and Privacy Policy ❯";
+"paywallNoteLabel" = "The chosen plan will automatically renew at the specified rate after the expiry of the period.
+Unless you cancel the service beforehand.";
+"paywallFeatureTitle" = "Choose your plan";
+"paywallYearlyString" = "/year";
+"paywallMonthlyString" = "/month";

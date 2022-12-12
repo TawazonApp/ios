@@ -31,6 +31,10 @@ class TodayActivityQuoteTableViewCell: UITableViewCell {
         initialize()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateViewsBorders()
+    }
     private func initialize(){
         self.selectionStyle = .none
         
@@ -41,6 +45,7 @@ class TodayActivityQuoteTableViewCell: UITableViewCell {
         cellView.backgroundColor = .clear
         cellView.applyGradientColor(colors: [UIColor.hanPurple.withAlphaComponent(0.4).cgColor, UIColor.lightSlateBlue.withAlphaComponent(0.4).cgColor, UIColor.columbiaBlue.withAlphaComponent(0.4).cgColor], startPoint: .topRight, endPoint: .bottomLeft)
         cellView.roundCorners(corners: .allCorners, radius: 24)
+        cellView.layer.cornerRadius = 24
         cellView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 24.0)
         
         quoteLabel.font = .munaBoldFont(ofSize: 20)
@@ -72,9 +77,14 @@ class TodayActivityQuoteTableViewCell: UITableViewCell {
         trackingIndicatorImageView.contentMode = .scaleAspectFill
     }
 
+    private func updateViewsBorders(){
+        cellView.layoutIfNeeded()
+        cellView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 24.0)
+    }
+    
     private func reloadData(){
         if let quote = section?.items?.first{
-            quoteLabel.text = quote.title
+            quoteLabel.text = quote.content
             autherLabel.text = quote.authorName
         }
         

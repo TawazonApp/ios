@@ -28,6 +28,11 @@ class TodaySessionCollectionViewCell: UICollectionViewCell {
         initialize()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateViewsBorders()
+    }
+    
     private func initialize() {
         self.layer.cornerRadius = 24.0
         
@@ -52,6 +57,11 @@ class TodaySessionCollectionViewCell: UICollectionViewCell {
         durationLabel.textColor = UIColor.white
         
         languageImageView.contentMode = .center
+    }
+    
+    private func updateViewsBorders(){
+        overlayView.layoutIfNeeded()
+        overlayView.applyGradientColor(colors: [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(0.56).cgColor], startPoint: GradientPoint.top, endPoint: GradientPoint.bottom)
     }
     
     private func fillData() {

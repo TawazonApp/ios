@@ -22,7 +22,10 @@ class LandingFeelingCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         initialize()
     }
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        fillData()
+    }
     private func initialize() {
         self.backgroundColor = .clear
         
@@ -46,6 +49,7 @@ class LandingFeelingCollectionViewCell: UICollectionViewCell {
     }
     func setSelectedStyle( _ selected: Bool){
         // if selected style
+        backgroundContentView.layoutIfNeeded()
         if selected{
             backgroundContentView.backgroundColor = .lightSkyBlue.withAlphaComponent(0.4)
             backgroundContentView.gradientBorder(width: 1, colors:  [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 17)

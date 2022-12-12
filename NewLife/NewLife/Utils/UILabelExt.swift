@@ -76,4 +76,7 @@ extension UILabel {
         }
         return self.text!.count
     }
+    
+    
+    
 }

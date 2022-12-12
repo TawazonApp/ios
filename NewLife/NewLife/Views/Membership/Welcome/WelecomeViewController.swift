@@ -86,6 +86,7 @@ class WelecomeViewController: HandleErrorViewController {
         registerationButton.backgroundColor = .white.withAlphaComponent(0.12)
         registerationButton.tintColor = .white
         registerationButton.roundCorners(corners: .allCorners, radius: 18)
+        registerationButton.layer.cornerRadius = 18
         registerationButton.titleLabel?.font = .munaFont(ofSize: 20)
         registerationButton.setTitle("welcomeViewRegistartionButton".localized, for: .normal)
         registerationButton.setImage(UIImage(named: "RegistrationLogo"), for: .normal)

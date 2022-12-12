@@ -47,21 +47,20 @@ class GeneralPremiumViewController: BasePremiumViewController {
         case .banner:
             viewNameString = RemoteConfigManager.shared.string(forKey: .premuimOfBannerViewName)
         }
-         let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
-         switch viewName{
-            case .defaultView:
-                loadDefaultView()
-            
-        case .premiumOne:
-        loadPremium1ViewController()
-            
-            case .premiumFour:
-            loadPremium4ViewController()
-            
-            case .premiumFive:
-                loadPremium5ViewController()
-            
-            case .none:
+        
+        let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
+        switch viewName{
+         case .defaultView:
+             loadDefaultView()
+         case .premiumOne:
+             loadPremium1ViewController()
+         case .premiumFour:
+             loadPremium4ViewController()
+         case .premiumFive:
+             loadPremium5ViewController()
+         case .premiumSix:
+             loadPaywallViewController()
+        case .none:
             loadDefaultView()
         }
     }
@@ -86,7 +85,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
         if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
             loadPremiumPlanDetailsViewController()
         }else{
-            let viewcontroller = Premium4ViewController.instantiate(nextView: .dimiss)
+            let viewcontroller = PaywallViewController.instantiate(nextView: .dimiss)
             self.navigationController!.setViewControllers([viewcontroller], animated: false)
         }
     }
@@ -100,6 +99,15 @@ class GeneralPremiumViewController: BasePremiumViewController {
         }
     }
 
+    private func loadPaywallViewController() {
+        if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
+            loadPremiumPlanDetailsViewController()
+        }else{
+            let viewcontroller = PaywallViewController.instantiate(nextView: .dimiss)
+            self.navigationController!.setViewControllers([viewcontroller], animated: false)
+        }
+    }
+    
     private func loadPremiumPlanDetailsViewController() {
         let viewcontroller = PremiumPlanDetailsViewController.instantiate(nextView: .dimiss)
         self.navigationController!.setViewControllers([viewcontroller], animated: false)
