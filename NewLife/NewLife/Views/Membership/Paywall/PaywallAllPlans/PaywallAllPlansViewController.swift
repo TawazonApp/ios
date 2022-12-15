@@ -33,14 +33,14 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     
     var features: [FeatureItem]? {
         didSet {
-            fetchPlans()
+            LoadingHud.shared.hide(animated: true)
         }
     }
     
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
             plansView.plans = plans
-            LoadingHud.shared.hide(animated: true)
+            self.reloadData()
         }
     }
     
@@ -49,21 +49,16 @@ class PaywallAllPlansViewController: BasePremiumViewController {
 
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
         SKPaymentQueue.default().add(self)
-        
+        fetchData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
-            self?.fetchData()
-        }
-    }
+    
     private func initialize() {
         self.view.backgroundColor = darkView! ? .darkIndigoTwo : .ghostWhite
         
         topView.backgroundColor = .clear
         
-        backgroundImageView.image = darkView! ? UIImage(named: "OnboardingBackground") : UIImage(named: "PaywallGradientBg")
+        backgroundImageView.image = darkView! ? UIImage(named: "PaywallHeaderDark") : UIImage(named: "PaywallGradientBg")
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = false
         backgroundImageView.backgroundColor = .clear
@@ -121,7 +116,8 @@ class PaywallAllPlansViewController: BasePremiumViewController {
                 self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
                 
                 self.features = self.data.premiumDetails?.premiumPage.featureItems
-                self.reloadData()
+                self.plans = self.data.plansArray
+                
                 return
             }
             self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
@@ -130,16 +126,6 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     }
     private func reloadData(){
         featuresTable.reloadData()
-    }
-    private func fetchPlans(){
-        data.fetchPremiumPurchaseProducts(completion: { (error) in
-            if error == nil{
-                self.plans = self.data.plansArray
-                return
-            }
-            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
-            LoadingHud.shared.hide(animated: true)
-        })
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {

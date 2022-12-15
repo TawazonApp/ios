@@ -90,11 +90,24 @@ class PremiumPurchaseVM: NSObject {
                 orgionalPriceString = getPriceString(price: priceDecimal, locale: product.priceLocale)
             }
             
-            let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: product.localizedTitle, color: "", price: orgionalPriceString ?? "", discountPrice: discountPriceString, trialDescription: trialDescription)
+            let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: product.localizedTitle, color: "", price: orgionalPriceString ?? "", savingAmount: 0, discountPrice: discountPriceString, trialDescription: trialDescription)
             purchaseItems.append(purchase)
         }
         purchaseItems.sort(by: { $0.order < $1.order })
         return purchaseItems
+    }
+    
+    private func getPlanSavingAmount(plan: Plan) -> Int{
+        if let monthlyPlanPrice = products.filter({$0.productIdentifier == PremiumPurchase.monthly.rawValue}).first?.price{
+            if let planProduct = self.products.filter({return $0.productIdentifier == plan.id}).first{
+                let planPrice = Double(truncating: planProduct.price)
+                if #available(iOS 11.2, *) {
+                    let savingAmount = 1 - (planPrice / (monthlyPlanPrice as! Double * Double(planProduct.subscriptionPeriod?.numberOfUnits ?? 0)) )
+                    return Int(round(savingAmount * 100))
+                }
+            }
+        }
+        return 0
     }
     
     private func getTrialPeriod(product: SKProduct)-> String? {

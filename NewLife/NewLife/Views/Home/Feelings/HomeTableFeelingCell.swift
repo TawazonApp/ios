@@ -110,7 +110,7 @@ class HomeTableFeelingCell: UITableViewCell {
         }
         feelingSelectionView.isHidden = feelingSelected
         feelingSelectionView.dayTime = viewModel.dayTime
-        feelingSelectionView.feelings = viewModel.feelings
+        feelingSelectionView.subFeelings = viewModel.subfeelings
         self.reloadCollectionView()
         
     }
@@ -146,8 +146,7 @@ class HomeTableFeelingCell: UITableViewCell {
 }
 
 extension HomeTableFeelingCell: HomeFeelingSelectionViewDelegate {
-    func feelingDidChange(_ sender: HomeFeelingSelectionView, feelings: [FeelCellModel]) {
-        let feelingIds = feelings.map({ $0.id })
+    func feelingDidChange(_ sender: HomeFeelingSelectionView, feelingIds: [String]) {
         viewModel.updateFeelings(feelingIds: feelingIds) { [weak self] (error) in
             guard let self = self else { return }
             if let error = error {

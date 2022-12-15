@@ -86,14 +86,17 @@ class TodaySessionCollectionViewCell: UICollectionViewCell {
         durationLabel.text = session?.durationString
         
         lockImageView.isHidden = !(session?.isLock ?? false)
-        if(session?.audioSources?.count ?? 0 > 1){
-            languageImageView.image = UIImage(named: "SessionArEn")
-        }else{
-            if session?.audioSources?[0].code.lowercased() == "ar"{
-                languageImageView.image = UIImage(named: "SessionAr")
+        if session?.session?.type != SessionType.music.rawValue{
+            if(session?.audioSources?.count ?? 0 > 1){
+                languageImageView.image = UIImage(named: "SessionArEn")
             }else{
-                languageImageView.image = UIImage(named: "SessionEn")
+                if session?.audioSources?[0].code.lowercased() == "ar"{
+                    languageImageView.image = UIImage(named: "SessionAr")
+                }else{
+                    languageImageView.image = UIImage(named: "SessionEn")
+                }
             }
         }
+        
     }
 }

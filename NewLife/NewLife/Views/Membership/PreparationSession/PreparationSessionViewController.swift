@@ -27,7 +27,6 @@ class PreparationSessionViewController: HandleErrorViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-print("PreparationSessionViewController")
         initialize()
         fetchData()
     }
@@ -66,8 +65,6 @@ print("PreparationSessionViewController")
         sessionImageView.contentMode = .scaleAspectFill
         sessionImageView.clipsToBounds = true
         sessionImageView.layer.cornerRadius = sessionImageView.frame.width / 2
-        
-        print("sessionImageView.frame.width / 2: \(sessionImageView.frame.width), \(sessionImageView.frame.width / 2)")
         
         sessionImageView.layer.borderColor = UIColor.mediumPurple.cgColor
         sessionImageView.layer.borderWidth = 1

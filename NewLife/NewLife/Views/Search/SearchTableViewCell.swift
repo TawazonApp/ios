@@ -66,15 +66,18 @@ class SearchTableViewCell: UITableViewCell {
         premiumIcon.image = nil
         premiumIcon.image = session.isLock ? UIImage(named: "SessionLock") : nil
        
-        if(session?.audioSources?.count ?? 0 > 1){
-            languageImageView.image = UIImage(named: "SessionArEn")
-        }else{
-            if session?.audioSources?[0].code.lowercased() == "ar"{
-                languageImageView.image = UIImage(named: "SessionAr")
+        if session?.session?.type != SessionType.music.rawValue{
+            if(session?.audioSources?.count ?? 0 > 1){
+                languageImageView.image = UIImage(named: "SessionArEn")
             }else{
-                languageImageView.image = UIImage(named: "SessionEn")
+                if session?.audioSources?[0].code.lowercased() == "ar"{
+                    languageImageView.image = UIImage(named: "SessionAr")
+                }else{
+                    languageImageView.image = UIImage(named: "SessionEn")
+                }
             }
         }
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

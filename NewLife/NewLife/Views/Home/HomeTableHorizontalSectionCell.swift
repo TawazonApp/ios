@@ -136,7 +136,7 @@ extension HomeTableHorizontalSectionCell: UICollectionViewDelegate, UICollection
         generator.impactOccurred()
         cell?.pulsate()
         
-        if session.session?.type == "series" {
+        if session.session?.type == SessionType.series.rawValue {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return
         }

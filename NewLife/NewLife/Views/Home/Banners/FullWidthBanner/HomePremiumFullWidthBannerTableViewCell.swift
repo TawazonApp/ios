@@ -47,24 +47,21 @@ class HomePremiumFullWidthBannerTableViewCell: UITableViewCell {
         for (index, imageView) in backgroundStackImages.enumerated(){
             imageView.contentMode = .scaleAspectFill
             imageView.backgroundColor = .clear
-//            imageView.image = UIImage(named: "HomeBanner4BG\(index)")
         }
         
-        backgroundImage.contentMode = .scaleToFill
+        backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.backgroundColor = .clear
         
         tawazonTitleImage.contentMode = .scaleToFill
         tawazonTitleImage.backgroundColor = .clear
         tawazonTitleImage.image = UIImage(named: "HomeBanner2Logo")
         
-//        titleLabel.text = "homePremiumBanner4Title".localized
         titleLabel.font = .munaBoldFont(ofSize: 28.0)
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.5
         titleLabel.textColor = .white
         
         
-//        subTitleLabel.text = "homePremiumBanner4SubTitle".localized
         subTitleLabel.font = .munaBoldFont(ofSize: 24.0)
         subTitleLabel.textColor = .white
         subTitleLabel.adjustsFontSizeToFitWidth = true
@@ -72,13 +69,11 @@ class HomePremiumFullWidthBannerTableViewCell: UITableViewCell {
 
 
         purchaseButton.backgroundColor = .white
-//        purchaseButton.setTitle("homePremiumBanner4PurchaseButtonTitle".localized, for: .normal)
         purchaseButton.layer.cornerRadius = 6
         purchaseButton.tintColor = .licorice
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         
         moreButton.backgroundColor = .licorice.withAlphaComponent(0.36)
-//        moreButton.setTitle("homePremiumBanner4MoreButtonTitle".localized, for: .normal)
         moreButton.layer.cornerRadius = 6
         moreButton.layer.borderWidth = 1
         moreButton.layer.borderColor = UIColor.white.cgColor

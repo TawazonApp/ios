@@ -34,7 +34,6 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
     
     var sectionVM: TodaySectionVM?{
         didSet{
-            print("didSet")
             reloadData()
         }
     }
@@ -211,7 +210,7 @@ extension TodayActivityFeelingSessionsTableViewCell : UICollectionViewDelegate, 
         let values : [String : Any] = ["sessionName": session.name ?? "", "sessionID": session.session?.id ?? ""]
         TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingSessionPlayed, payload: values)
         
-        if session.session?.type == "series" {
+        if session.session?.type == SessionType.series.rawValue {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return
         }

@@ -20,7 +20,7 @@ class CategorySessionVM: BaseSessionVM {
     }
     
     var durationString: String? {
-        if let duration = session?.duration, session?.type == "series" {
+        if let duration = session?.duration, session?.type == SessionType.series.rawValue {
             return "\(duration) \("seriesDurationText".localized)"
         }
         guard let duration = session?.duration else { return nil }

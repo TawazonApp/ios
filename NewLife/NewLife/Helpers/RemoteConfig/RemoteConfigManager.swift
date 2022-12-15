@@ -25,7 +25,7 @@ enum premuimPageViewNameValues: String{
     case premiumOne = "Premium1ViewController"
     case premiumFour = "Premium4ViewController"
     case premiumFive = "Premium5ViewController"
-    case premiumSix = "PaywallViewController"
+    case paywall = "PaywallViewController"
 }
 
 class RemoteConfigManager{
@@ -52,7 +52,7 @@ extension RemoteConfigManager{
     
     func fetchRemoteConfigCloudValues() {
       //FIXME: remove on production
-      activateDebugMode()
+//      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {

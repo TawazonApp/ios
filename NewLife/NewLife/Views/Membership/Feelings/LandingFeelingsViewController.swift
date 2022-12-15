@@ -98,7 +98,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
         submitButton.tintColor = UIColor.mariner
         submitButton.setTitle("landingFeelingViewSubmitButtonTitle".localized, for: .normal)
         submitButton.isHidden = true
-        submitButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 26)
+        submitButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 24)
         
     }
     

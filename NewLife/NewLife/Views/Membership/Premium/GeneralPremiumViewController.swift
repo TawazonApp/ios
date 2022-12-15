@@ -8,11 +8,17 @@
 
 import UIKit
 
-enum premiumPageIds: Int{
+enum premiumPageIds: Int, CaseIterable{
     case defaultPage = 0
-    case premium1 = 1
-    case premium4 = 3
-    case premium5 = 5
+    case premiumOne = 1
+    case premiumFour = 3
+    case premiumFive = 5
+    case paywall = 9
+    case paywallAllPlans = 11
+    
+    static func fromKey(_ keyString: String) -> premiumPageIds? {
+            return self.allCases.first{ "\($0)" == keyString }
+        }
 }
 class GeneralPremiumViewController: BasePremiumViewController {
     
@@ -58,7 +64,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
              loadPremium4ViewController()
          case .premiumFive:
              loadPremium5ViewController()
-         case .premiumSix:
+         case .paywall:
              loadPaywallViewController()
         case .none:
             loadDefaultView()
@@ -85,7 +91,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
         if UserInfoManager.shared.getUserInfo()?.isPremium() ?? false {
             loadPremiumPlanDetailsViewController()
         }else{
-            let viewcontroller = PaywallViewController.instantiate(nextView: .dimiss)
+            let viewcontroller = Premium4ViewController.instantiate(nextView: .dimiss)
             self.navigationController!.setViewControllers([viewcontroller], animated: false)
         }
     }

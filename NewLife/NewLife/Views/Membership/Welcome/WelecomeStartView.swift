@@ -12,7 +12,7 @@ protocol WelecomeStartViewDelegate: class {
     func startViewTapped()
 }
 
-class WelecomeStartView: UIVisualEffectView {
+class WelecomeStartView: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
     weak var delegate: WelecomeStartViewDelegate?

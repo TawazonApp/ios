@@ -506,7 +506,7 @@
 "paywallTitlePart1" = "توازن";
 "paywallTitlePart2" = "بريميوم";
 "paywallSubscriptionTitle" = "اشترك الآن في توازن بريميوم
-وتمتّع بوصول كامل.";
+وتمتّع بوصول كامل";
 "paywallBestPlanTitle" = "الخطة الأفضل";
 "paywallAllPlansButton" = "جميع الخطط ❯";
 "paywallFeaturesViewTitle" = "لماذا توازن بريميوم؟";
@@ -514,9 +514,13 @@
 "paywallFreePlanLabel" = "مجاني";
 "paywallRestoreButtonPart1" = "لديك اشتراك؟ ";
 "paywallRestoreButtonPart2" = "استعادة الاشتراك";
-"paywallPrivacyButton" = "شروط الاستخدام و سياسة الخصوصية ❯";
+"paywallPrivacyButton" = "سياسة الخصوصية";
+"paywallTermsAndConditionsButton" = "شروط الاستخدام";
 "paywallNoteLabel" = "سيتم تجديد الخطة المختارة تلقائيًا بالسعر المحدد بعد انتهاء الفترة،
 ما لم تقم بإلغاء الخدمة قبل ذلك.";
 "paywallFeatureTitle" = "اختر خطتك";
 "paywallYearlyString" = "/سنة";
 "paywallMonthlyString" = "/شهر";
+"paywallPlansNoteLabel" = "يمكنك الغاء الاشتراك في اي وقت";
+"paywallPromoButton" = "هل لديك كود خصم؟";
+"paywallSavingLabel" = "خصم";

@@ -113,7 +113,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
         subTitleLabel?.lineBreakMode = .byTruncatingTail
         
         
-        overlayView?.applyGradientColor(colors: [UIColor.darkBlueGreyTwo.withAlphaComponent(0.4).cgColor, UIColor.darkFour.withAlphaComponent(0.4).cgColor], startPoint: .top, endPoint: .bottom)
+        overlayView?.applyGradientColor(colors: [UIColor.black.withAlphaComponent(0.3).cgColor, UIColor.black.withAlphaComponent(0.3).cgColor], startPoint: .top, endPoint: .bottom)
         
         playButton.tintColor = UIColor.white
         

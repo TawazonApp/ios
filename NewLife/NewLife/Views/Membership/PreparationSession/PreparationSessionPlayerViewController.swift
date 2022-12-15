@@ -32,7 +32,6 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-print("viewDidLoad PreparationSessionPlayerViewController")
         UIApplication.shared.isIdleTimerDisabled = true
         initialize()
         startPlayerLoadingIfNeeded()
@@ -66,10 +65,6 @@ print("viewDidLoad PreparationSessionPlayerViewController")
         sessionImageView.layer.cornerRadius = Int(sessionImageView.frame.width) % 2 == 0 ? sessionImageView.frame.width / 2 : (sessionImageView.frame.height + 1.0) / 2
         sessionImageView.layer.borderColor = UIColor.mediumPurple.cgColor
         sessionImageView.layer.borderWidth = 1
-        
-        
-        print("sessionImageView.frame.width / 2: \(sessionImageView.frame.width), \(sessionImageView.frame.width / 2), \(sessionImageView.layer.cornerRadius)")
-        print("sessionImageView.frame.height: \(sessionImageView.frame.height)")
         
         progressSlider.tintColor = .white
         progressSlider.value = 0

@@ -58,7 +58,7 @@ class MembershipFormView: UIView {
         
         facbookButton.backgroundColor = UIColor.facebookColor
         facbookButton.tintColor = UIColor.white
-        facbookButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        facbookButton.titleLabel?.font = .munaFont(ofSize: 20)
         facbookButton.layer.cornerRadius = 18
         facbookButton.layer.masksToBounds = true
         facbookButton.setTitle("facebookButtonTitle".localized, for: .normal)
@@ -109,7 +109,7 @@ class MembershipFormView: UIView {
         tableHeightConstraint.constant = tableHeight
         forgetPasswordHeightConstraint.constant = (data is LoginFormVM) ? 30 : 0
         forgetPasswordButton.isHidden = !(data is LoginFormVM)
-        privacyPolicyButton.isHidden = !(data is RegisterFormVM)
+        privacyPolicyButton.isHidden = true
         addAppleIDButton()
         self.layoutIfNeeded()
         

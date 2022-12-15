@@ -27,6 +27,9 @@ class PaywallViewController: BasePremiumViewController {
     
     @IBOutlet weak var subscriptionView: UIView!
     @IBOutlet weak var subscriptionViewTitleLabel: UILabel!
+    
+    @IBOutlet weak var promoButton: UIButton!
+    
     @IBOutlet weak var bestPlanView: GradientView!
     @IBOutlet weak var bestPlanHeaderLabel: UILabel!
     @IBOutlet weak var bestPlanTitleLabel: UILabel!
@@ -36,6 +39,7 @@ class PaywallViewController: BasePremiumViewController {
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var subscribeButton: GradientButton!
     
+    @IBOutlet weak var plansNoteLabel: UILabel!
     @IBOutlet weak var allPlansButton: UIButton!
     @IBOutlet weak var dividerView: GradientView!
     
@@ -51,7 +55,10 @@ class PaywallViewController: BasePremiumViewController {
     @IBOutlet weak var restorePurchasesButton: UIButton!
     
     @IBOutlet weak var noteLabel: UILabel!
+    
     @IBOutlet weak var privacyButton: UIButton!
+    @IBOutlet weak var pointView: UIView!
+    @IBOutlet weak var termsAndConditionsButton: UIButton!
     
     var darkView: Bool?{
         didSet{
@@ -61,15 +68,14 @@ class PaywallViewController: BasePremiumViewController {
     
     var features: [FeatureItem]? {
         didSet {
-//            imagesContainer.images = features
-            fetchPlans()
+            LoadingHud.shared.hide(animated: true)
         }
     }
     
     var plans: [PremiumPurchaseCellVM]? {
         didSet {
-//            plansContainer.plans = plans
-            LoadingHud.shared.hide(animated: true)
+            setBestPlanData()
+            self.reloadData()
         }
     }
     
@@ -79,9 +85,7 @@ class PaywallViewController: BasePremiumViewController {
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
 //        initialize()
         SKPaymentQueue.default().add(self)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
-            self?.fetchData()
-        }
+        fetchData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -91,7 +95,7 @@ class PaywallViewController: BasePremiumViewController {
         
         scrollView.backgroundColor = .clear
         
-        headerImageView.image = darkView! ? UIImage(named: "OnboardingBackground") : UIImage(named: "PaywallGradientBg")
+        headerImageView.image = darkView! ? UIImage(named: "PaywallHeaderDark") : UIImage(named: "PaywallGradientBg")
         headerImageView.contentMode = .scaleAspectFill
         headerImageView.clipsToBounds = false
         headerImageView.backgroundColor = .clear
@@ -137,6 +141,12 @@ class PaywallViewController: BasePremiumViewController {
         subscriptionViewTitleLabel.textColor =  darkView! ? .white : .darkIndigoTwo
         subscriptionViewTitleLabel.text = "paywallSubscriptionTitle".localized
         
+        promoButton.backgroundColor = darkView! ? .white.withAlphaComponent(0.08) : .white
+        promoButton.layer.cornerRadius = 20
+        promoButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
+        promoButton.tintColor = darkView! ? .white.withAlphaComponent(0.32) : .darkIndigoTwo.withAlphaComponent(0.4)
+        promoButton.setTitle("paywallPromoButton".localized, for: .normal)
+        
         bestPlanView.layer.cornerRadius = 24
         bestPlanView.clipsToBounds = true
         bestPlanView.backgroundColor = darkView! ? .clear : .ghostWhiteTwo
@@ -163,7 +173,6 @@ class PaywallViewController: BasePremiumViewController {
         
         discountLabel.font = .munaBoldFont(ofSize: 15)
         discountLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
-        discountLabel.isHidden = true
         
         subscribeButton.roundCorners(corners: .allCorners, radius: 16)
         subscribeButton.layer.cornerRadius = 22
@@ -171,7 +180,12 @@ class PaywallViewController: BasePremiumViewController {
         subscribeButton.titleLabel?.font = .munaBoldFont(ofSize: 22)
         subscribeButton.tintColor = .white
         
-        
+        plansNoteLabel.font = .munaFont(ofSize: 12)
+        plansNoteLabel.numberOfLines = 0
+        plansNoteLabel.lineBreakMode = .byWordWrapping
+        plansNoteLabel.textColor = darkView! ? .white.withAlphaComponent(0.71) : .darkIndigoTwo.withAlphaComponent(0.71)
+        plansNoteLabel.text = "paywallPlansNoteLabel".localized
+        plansNoteLabel.textAlignment = .center
         
         allPlansButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
         allPlansButton.tintColor = darkView! ? .lavenderBlue : .slateBlue
@@ -217,9 +231,16 @@ class PaywallViewController: BasePremiumViewController {
         noteLabel.textAlignment = .center
         
         
-        privacyButton.titleLabel?.font = .munaFont(ofSize: 17)
-        privacyButton.tintColor = darkView! ? .lavenderBlue : .slateBlue
+        privacyButton.titleLabel?.font = .munaFont(ofSize: 14)
+        privacyButton.tintColor = darkView! ? .white : .darkIndigoTwo
         privacyButton.setTitle("paywallPrivacyButton".localized, for: .normal)
+        
+        pointView.layer.cornerRadius = 2
+        pointView.backgroundColor = .gainsboro.withAlphaComponent(0.3)
+        
+        termsAndConditionsButton.titleLabel?.font = .munaFont(ofSize: 14)
+        termsAndConditionsButton.tintColor = darkView! ? .white : .darkIndigoTwo
+        termsAndConditionsButton.setTitle("paywallTermsAndConditionsButton".localized, for: .normal)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -227,13 +248,13 @@ class PaywallViewController: BasePremiumViewController {
     }
     private func fetchData(){
         LoadingHud.shared.show(animated: true)
-        
+
         data.getPremiumPageDetails(premiumId: 9, service: MembershipServiceFactory.service(), completion: { (error) in
             if error == nil{
                 self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
-                
+
                 self.features = self.data.premiumDetails?.premiumPage.featureItems
-                self.reloadData()
+                self.plans = self.data.plansArray
                 return
             }
             self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
@@ -246,23 +267,20 @@ class PaywallViewController: BasePremiumViewController {
         featuresTable.layoutIfNeeded()
         featuresTable.layoutSubviews()
     }
-    private func fetchPlans(){
-        data.fetchPremiumPurchaseProducts(completion: { (error) in
-            if error == nil{
-                self.plans = self.data.plansArray
-                self.plans?[0].isSelected = true
-                self.setBestPlanData()
-                return
-            }
-            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
-            LoadingHud.shared.hide(animated: true)
-        })
-    }
+    
     private func setBestPlanData(){
         if let bestPlan = plans?.first{
+            bestPlan.isSelected = true
             bestPlanTitleLabel.text = bestPlan.title
-            priceLabel.text = bestPlan.price + "paywallYearlyString".localized
+            priceLabel.text = bestPlan.price
             subPriceLabel.text = "(\(bestPlan.monthlyPrice ?? "")\("paywallMonthlyString".localized))"
+            if bestPlan.savingAmount > 0{
+                if Language.language == .english{
+                    discountLabel.text = "\("paywallSavingLabel".localized) \(bestPlan.savingAmount ?? 0)%"
+                }else{
+                    discountLabel.attributedText = discountLabelAttributeText(plan: bestPlan)
+                }
+            }
         }
     }
     
@@ -280,6 +298,27 @@ class PaywallViewController: BasePremiumViewController {
         return attributedString
     }
     
+    private func discountLabelAttributeText(plan: PremiumPurchaseCellVM) -> NSMutableAttributedString {
+        
+        let discountPart1 = "paywallSavingLabel".localized
+        let savingAmountPart2 = "\(plan.savingAmount ?? 0)%"
+        let allText = String(format: "%@ %@", discountPart1, savingAmountPart2)
+        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.munaFont(ofSize: 15),.kern: 0.0])
+        
+        if let part2Range = allText.range(of: savingAmountPart2) {
+            attributedString.addAttributes([.font: UIFont.munaBoldFont(ofSize: 15, language: .english)], range: part2Range.nsRange(in: allText))
+        }
+        return attributedString
+    }
+    
+    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
+    }
+    
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         if let bestPlan = plans?.first{
             purchaseAction(product: data.products[bestPlan.priority - 1])
@@ -292,7 +331,11 @@ class PaywallViewController: BasePremiumViewController {
     }
     
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
-        openPrivacyViewController()
+        openPrivacyViewController(type: .privacyPolicy)
+    }
+    
+    @IBAction func termsAndConditionsButtonTapped(_ sender: UIButton) {
+        openPrivacyViewController(type: .termsAndConditions)
     }
     
     private func openPaywallAllPlansViewController()  {
@@ -300,8 +343,8 @@ class PaywallViewController: BasePremiumViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    private func openPrivacyViewController()  {
-        let viewController = PrivacyViewController.instantiate(viewType: .termsAndConditions)
+    private func openPrivacyViewController(type: PrivacyViewController.ViewType)  {
+        let viewController = PrivacyViewController.instantiate(viewType: type)
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)

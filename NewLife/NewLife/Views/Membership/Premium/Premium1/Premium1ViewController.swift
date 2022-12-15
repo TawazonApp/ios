@@ -36,17 +36,14 @@ class Premium1ViewController: BasePremiumViewController {
         super.viewDidLoad()
 
         initialize()
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
-            self?.fetchData()
-        }
+        fetchData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
     private func fetchData(){
         LoadingHud.shared.show(animated: true)
         
-        data.getPremiumPageDetails(premiumId: premiumPageIds.premium1.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+        data.getPremiumPageDetails(premiumId: premiumPageIds.premiumOne.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             
             LoadingHud.shared.hide(animated: true)
 

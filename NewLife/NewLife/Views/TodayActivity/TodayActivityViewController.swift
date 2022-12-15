@@ -20,29 +20,12 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
     
     lazy var todayVM: TodayVM = TodayVM(service: TodayServiceCache.shared)
     
-    var sections : [[String:Any]] = [
-        [
-            "type" : "prepSession",
-            "title" : "الجلسة التحضيرية اليومية",
-            "name":"التنفس وتأمل الضوء",
-            "duration" : "2:00",
-            "image" : "https://tawazonapp.com/assets/tawazon-icons/pngs/preSession.png"
-        ],
-        [
-            "type" : "feelings",
-            "title" : "أخبرنا كيف تشعر اليوم؟",
-            "name": "سجّل مزاجك",
-            "duration" : "",
-            "image" : "https://tawazonapp.com/assets/tawazon-icons/pngs/mood.png"
-        ]
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initialize()
+        reduceVoulme(volume: Constants.backgroundMusicLevel)
         todayVM = TodayVM(service: TodayServiceCache.shared)
-        print("TodayActivityViewController")
         fetchTodaySections()
     }
     
@@ -83,6 +66,10 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
         dailyActivitySectionsTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 128, right: 0)
     }
     
+    private func reduceVoulme(volume: Double) {
+        BackgroundAudioManager.shared.volume = volume
+    }
+    
     private func getGreetingsText() -> String{
         let hour = Calendar.current.component(.hour, from: Date())
 
@@ -106,7 +93,6 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
             if let error = error {
                 self?.showErrorMessage(message: error.localizedDescription)
             }
-            print("TODAYVM: \(self?.todayVM.sections?[2].completed)")
         }
     }
     

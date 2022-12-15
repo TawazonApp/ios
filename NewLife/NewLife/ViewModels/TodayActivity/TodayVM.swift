@@ -24,6 +24,8 @@ class TodayVM: NSObject {
     }
     private (set) var sections: [TodaySectionVM]?
     
+    var lastSelectedFeelingId: String?
+    
     var isRamadan: Bool {
         let isRamadan =  UserInfoManager.shared.subscription?.types.items.first?.discountCampaign?.isRamadan
         return isRamadan ?? false
@@ -39,16 +41,16 @@ class TodayVM: NSObject {
             return
         }
 
+        let feelingSection = sections.filter{
+            return $0.style == .feelingSelection
+        }
+        if let selectedFeeling = feelingSection.first?.items.first{
+            if selectedFeeling.id == lastSelectedFeelingId{
+                return
+            }
+            lastSelectedFeelingId = selectedFeeling.id
+        }
         self.sections = sections.map({ TodaySectionVM(section: $0) })
-//        
-//        let feelingSection = sections.filter{
-//            return $0.style == .feelingSelection
-//        }
-//        if feelingSection.first?.sessions.count ?? 0 == 0{
-//            let feelingSectionModel : TodaySectionModel = sections[1]
-//            self.sections?.insert(TodaySectionVM(id: UUID().uuidString, title: feelingSectionModel.title_2, subTitle: feelingSectionModel.subtitle_2, content: feelingSectionModel.content_2, iconUrl: feelingSectionModel.image, sessions: [], style: .feelingSelectionSessions, buttonLabel: feelingSectionModel.buttonLabel, moreLabel: feelingSectionModel.moreLabel), at: 2)
-//        }
-        
     }
 }
 

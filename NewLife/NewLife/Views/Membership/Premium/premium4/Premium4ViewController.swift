@@ -29,7 +29,8 @@ class Premium4ViewController: BasePremiumViewController {
     var features: [FeatureItem]? {
         didSet {
             imagesContainer.images = features
-            fetchPlans()
+//            fetchPlans()
+            self.plans = data.plansArray
         }
     }
     
@@ -45,20 +46,19 @@ class Premium4ViewController: BasePremiumViewController {
         
         initialize()
         SKPaymentQueue.default().add(self)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) { [weak self] in
-            self?.fetchData()
-        }
+        fetchData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
     private func fetchData(){
         LoadingHud.shared.show(animated: true)
         
-        data.getPremiumPageDetails(premiumId: premiumPageIds.premium4.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
+        data.getPremiumPageDetails(premiumId: premiumPageIds.premiumFour.rawValue, service: MembershipServiceFactory.service(), completion: { (error) in
             if error == nil{
                 self.purchaseButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
                 
                 self.features = self.data.premiumDetails?.premiumPage.featureItems
+                self.plans = self.data.plansArray
                 self.noteLabel.text = self.data.premiumDetails?.premiumPage.content
                 return
             }
@@ -66,19 +66,7 @@ class Premium4ViewController: BasePremiumViewController {
             LoadingHud.shared.hide(animated: true)
         })
     }
-    private func setData(){
-        
-    }
-    private func fetchPlans(){
-        data.fetchPremiumPurchaseProducts(completion: { (error) in
-            if error == nil{
-                self.plans = self.data.plansArray
-                return
-            }
-            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
-            LoadingHud.shared.hide(animated: true)
-        })
-    }
+    
     private func initialize() {
         imagesContainer.delegate = self
         view.clearLabels()

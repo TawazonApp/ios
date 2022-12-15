@@ -12,11 +12,13 @@ class FeelCellModel {
     let name: String
     let id: String
     var isSelected = false
+    let priority: Int
     var subFeelings: [SubFeelingItem]?
     
-    init(id: String, name: String, subFeelings: [SubFeelingItem]?, isSelected: Bool = false) {
+    init(id: String, name: String, priority: Int, subFeelings: [SubFeelingItem]?, isSelected: Bool = false) {
         self.name = name
         self.id = id
+        self.priority = priority
         self.subFeelings = subFeelings
         self.isSelected = isSelected
     }

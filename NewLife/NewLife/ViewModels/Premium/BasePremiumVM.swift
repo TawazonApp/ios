@@ -31,8 +31,9 @@ class BasePremiumVM : NSObject{
             self.premiumDetails = data
             self.fetchPremiumPurchaseProducts(completion: {(error) in
                 print("error: \(error)")
+                completion(error)
             })
-            completion(error)
+            
         })
     }
     
@@ -77,7 +78,7 @@ class BasePremiumVM : NSObject{
             
             if plan?.enabled ?? false{
                 let planPriority = Int(plan?.priority ?? "") ?? 0
-                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", subtitle: plan?.subtitle, color: plan?.color ?? "", price: orgionalPriceString ?? "", monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
+                let purchase = PremiumPurchaseCellVM(id: product.productIdentifier,title: plan?.title ?? "", subtitle: plan?.subtitle, color: plan?.color ?? "", price: orgionalPriceString ?? "", savingAmount: getPlanSavingAmount(plan: plan!), monthlyPrice: monthlyPriceString, discountPrice: discountPriceString, trialDescription: trialDescription, priority: planPriority)
                 purchaseItems.append(purchase)
             }
             
@@ -88,7 +89,22 @@ class BasePremiumVM : NSObject{
         }
         return purchaseItems
     }
-    
+    private func getPlanSavingAmount(plan: Plan) -> Int{
+        if let monthlyPlanPrice = products.filter({$0.productIdentifier == PremiumPurchase.monthly.rawValue}).first?.price{
+            if let planProduct = self.products.filter({return $0.productIdentifier == plan.id}).first{
+                let planPrice = Double(truncating: planProduct.price)
+                if #available(iOS 11.2, *) {
+                    var savingAmount = 0.0
+                    savingAmount = 1 - (planPrice / (monthlyPlanPrice as! Double * Double(planProduct.subscriptionPeriod?.numberOfUnits ?? 0)) )
+                    if planProduct.subscriptionPeriod?.unit == SKProduct.PeriodUnit.year{
+                        savingAmount = 1 - (planPrice / (monthlyPlanPrice as! Double * Double(12 * (planProduct.subscriptionPeriod?.numberOfUnits ?? 0) )) )
+                    }
+                    return Int(round(savingAmount * 100))
+                }
+            }
+        }
+        return 0
+    }
     private func getTrialPeriod(product: SKProduct)-> String? {
         var trialDescription: String? = nil
         if #available(iOS 11.2, *),

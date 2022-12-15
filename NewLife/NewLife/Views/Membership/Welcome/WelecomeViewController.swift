@@ -17,7 +17,7 @@ class WelecomeViewController: HandleErrorViewController {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var startView: WelecomeStartView!
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     @IBOutlet weak var appleIdButtonContainer: UIView!
@@ -105,7 +105,7 @@ class WelecomeViewController: HandleErrorViewController {
         
         facbookButton.backgroundColor = UIColor.facebookColor
         facbookButton.tintColor = UIColor.white
-        facbookButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        facbookButton.titleLabel?.font = .munaFont(ofSize: 20)
         facbookButton.layer.cornerRadius = 18
         facbookButton.layer.masksToBounds = true
         facbookButton.setTitle("facebookButtonTitle".localized, for: .normal)
@@ -126,7 +126,11 @@ class WelecomeViewController: HandleErrorViewController {
         languageButton.setTitle(
             "welcomeChangeLanguageButtonTitle".localized, for: .normal)
         
-        startView.title = loginButtonAttributeText()
+        startButton.setAttributedTitle(loginButtonAttributeText(), for: .normal)
+        startButton.layer.cornerRadius = 18
+        startButton.backgroundColor = .clear
+        startButton.layer.borderWidth = 1
+        startButton.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
         
         registerButton.tintColor = UIColor.white
         registerButton.setAttributedTitle(registerButtonAttributeText(), for: .normal)
@@ -137,7 +141,7 @@ class WelecomeViewController: HandleErrorViewController {
         privacyPolicyButton.tintColor = UIColor.white
         privacyPolicyButton.setAttributedTitle(privacyPolicyAttributeText(), for: .normal)
         
-        startView.delegate = self
+//        startView.delegate = self
         addAppleIDButton()
         
         backgroundImageView.image = UIImage(named: "OnboardingBackground")
@@ -242,6 +246,10 @@ class WelecomeViewController: HandleErrorViewController {
         facebookLogin()
     }
     
+    @IBAction func startButtonTapped(_ sender: UIButton) {
+        openLoginViewController()
+    }
+    
     private func facebookLogin() {
         
         let facebook = FacebookLoginVM(service: MembershipServiceFactory.service())
@@ -298,7 +306,7 @@ class WelecomeViewController: HandleErrorViewController {
         let loginPart2 = "loginButtonPart2".localized
         let allText = String(format: "%@ %@", loginPart1, loginPart2)
         
-        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.kacstPen(ofSize: 14), .foregroundColor: UIColor.white.withAlphaComponent(0.64),.kern: 0.0])
+        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.munaFont(ofSize: 18), .foregroundColor: UIColor.white.withAlphaComponent(0.64),.kern: 0.0])
         
         if let part2Range = allText.range(of: loginPart2) {
             attributedString.addAttributes([.foregroundColor: UIColor.white], range: part2Range.nsRange(in: allText))

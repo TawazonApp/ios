@@ -573,7 +573,10 @@ extension UIColor {
     class var catalinaBlue: UIColor{
         return UIColor(red: 33 / 255.0, green: 43 / 255.0, blue: 83 / 255.0, alpha: 1.0)
     }
-
+    class var gainsboro: UIColor{
+        return UIColor(red: 216 / 255.0, green: 216 / 255.0, blue: 216 / 255.0, alpha: 1.0)
+    }
+    
 }
 
 

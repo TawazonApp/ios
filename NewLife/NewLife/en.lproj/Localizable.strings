@@ -526,9 +526,13 @@ And enjoy full access.";
 "paywallFreePlanLabel" = "Free";
 "paywallRestoreButtonPart1" = "have a subscription?";
 "paywallRestoreButtonPart2" = "Restore subscription";
-"paywallPrivacyButton" = "Terms of Use and Privacy Policy ❯";
+"paywallPrivacyButton" = "Privacy Policy";
+"paywallTermsAndConditionsButton" = "Terms and Conditions";
 "paywallNoteLabel" = "The chosen plan will automatically renew at the specified rate after the expiry of the period.
 Unless you cancel the service beforehand.";
 "paywallFeatureTitle" = "Choose your plan";
 "paywallYearlyString" = "/year";
 "paywallMonthlyString" = "/month";
+"paywallPlansNoteLabel" = "You can unsubscribe at any time";
+"paywallPromoButton" = "Do you have a Promo Code?";
+"paywallSavingLabel" = "Discount";

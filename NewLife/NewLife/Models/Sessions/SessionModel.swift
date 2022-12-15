@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum SessionType: String {
+    case music = "music"
+    case series = "series"
+    case meditation = "meditation"
+}
 struct SessionModel: Codable {
     
     let id: String

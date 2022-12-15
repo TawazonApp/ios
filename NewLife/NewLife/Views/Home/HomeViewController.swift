@@ -304,81 +304,133 @@ class HomeViewController: SoundEffectsPresenterViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+            return home.sections?.count ?? 0
+        }
         return (home.sections?.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell!
-        if home.sections?.count ?? 0 == 0{
-            if indexPath.row == 0 {
-                let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableFeelingCell.identifier) as! HomeTableFeelingCell
-                sectionCell.tableView = tableView
+        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+            let section = home.sections?[indexPath.row]
+            if section?.style == .card {
+                let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableCardSectionCell.identifier) as! HomeTableCardSectionCell
                 sectionCell.delegate = self
-                sectionCell.fetchAndReloadData()
+                sectionCell.data = section
                 cell = sectionCell
             }
-        }else{
-            if indexPath.row == 1 {
-                let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableFeelingCell.identifier) as! HomeTableFeelingCell
-                sectionCell.tableView = tableView
-                sectionCell.delegate = self
-                sectionCell.fetchAndReloadData()
-                cell = sectionCell
-                
-            } else {
-                var section = home.sections?[0]
-                if indexPath.row != 0
-                {
-                    section = home.sections?[indexPath.row - 1]
-                }
-                if section?.style == .card {
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableCardSectionCell.identifier) as! HomeTableCardSectionCell
-                    sectionCell.delegate = self
+            else if section?.style == .banner{
+                if section?.bannerType == .banner1{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerTableViewCell.identifier) as! HomePremiumBannerTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
                     sectionCell.data = section
                     cell = sectionCell
                 }
-                else if section?.style == .banner{
-                    if section?.bannerType == .banner1{
-                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerTableViewCell.identifier) as! HomePremiumBannerTableViewCell
-                        sectionCell.bannerContainerView.viewDelegate = self
-                        sectionCell.data = section
-                        cell = sectionCell
-                    }
-                    else if section?.bannerType ==  .banner2{
-                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumGradientBannerTableViewCell.identifier) as! HomePremiumGradientBannerTableViewCell
-                        sectionCell.bannerContainerView.viewDelegate = self
-                        sectionCell.data = section
-                        cell = sectionCell
-                    }
-                    else if section?.bannerType ==  .banner3{
-                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumCenteredSpecialBannerTableViewCell.identifier) as! HomePremiumCenteredSpecialBannerTableViewCell
-                        sectionCell.bannerContainerView.viewDelegate = self
-                        sectionCell.data = section
-                        cell = sectionCell
-                    }
-                    else if section?.bannerType ==  .banner4{
-                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerWithHeaderLogoTableViewCell.identifier) as! HomePremiumBannerWithHeaderLogoTableViewCell
-                        sectionCell.bannerContainerView.viewDelegate = self
-                        sectionCell.data = section
-                        cell = sectionCell
-                    }
-                    else if section?.bannerType ==  .banner5{
-                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumFullWidthBannerTableViewCell.identifier) as! HomePremiumFullWidthBannerTableViewCell
-                        sectionCell.bannerContainerView.viewDelegate = self
-                        sectionCell.data = section
-                        cell = sectionCell
-                    }
+                else if section?.bannerType ==  .banner2{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumGradientBannerTableViewCell.identifier) as! HomePremiumGradientBannerTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
+                    cell = sectionCell
                 }
-                else {
-                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
+                else if section?.bannerType ==  .banner3{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumCenteredSpecialBannerTableViewCell.identifier) as! HomePremiumCenteredSpecialBannerTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
+                    cell = sectionCell
+                }
+                else if section?.bannerType ==  .banner4{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerWithHeaderLogoTableViewCell.identifier) as! HomePremiumBannerWithHeaderLogoTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
+                    cell = sectionCell
+                }
+                else if section?.bannerType ==  .banner5{
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumFullWidthBannerTableViewCell.identifier) as! HomePremiumFullWidthBannerTableViewCell
+                    sectionCell.bannerContainerView.viewDelegate = self
+                    sectionCell.data = section
+                    cell = sectionCell
+                }
+            }
+            else {
+                let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
+                sectionCell.delegate = self
+                           sectionCell.data = section
+                           cell = sectionCell
+            }
+        }else{
+            if home.sections?.count ?? 0 == 0{
+                if indexPath.row == 0 {
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableFeelingCell.identifier) as! HomeTableFeelingCell
+                    sectionCell.tableView = tableView
                     sectionCell.delegate = self
-                               sectionCell.data = section
-                               cell = sectionCell
+                    sectionCell.fetchAndReloadData()
+                    cell = sectionCell
                 }
-               
+            }else{
+                if indexPath.row == 1 {
+                    let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableFeelingCell.identifier) as! HomeTableFeelingCell
+                    sectionCell.tableView = tableView
+                    sectionCell.delegate = self
+                    sectionCell.fetchAndReloadData()
+                    cell = sectionCell
+                    
+                } else {
+                    var section = home.sections?[0]
+                    if indexPath.row != 0
+                    {
+                        section = home.sections?[indexPath.row - 1]
+                    }
+                    if section?.style == .card {
+                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableCardSectionCell.identifier) as! HomeTableCardSectionCell
+                        sectionCell.delegate = self
+                        sectionCell.data = section
+                        cell = sectionCell
+                    }
+                    else if section?.style == .banner{
+                        if section?.bannerType == .banner1{
+                            let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerTableViewCell.identifier) as! HomePremiumBannerTableViewCell
+                            sectionCell.bannerContainerView.viewDelegate = self
+                            sectionCell.data = section
+                            cell = sectionCell
+                        }
+                        else if section?.bannerType ==  .banner2{
+                            let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumGradientBannerTableViewCell.identifier) as! HomePremiumGradientBannerTableViewCell
+                            sectionCell.bannerContainerView.viewDelegate = self
+                            sectionCell.data = section
+                            cell = sectionCell
+                        }
+                        else if section?.bannerType ==  .banner3{
+                            let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumCenteredSpecialBannerTableViewCell.identifier) as! HomePremiumCenteredSpecialBannerTableViewCell
+                            sectionCell.bannerContainerView.viewDelegate = self
+                            sectionCell.data = section
+                            cell = sectionCell
+                        }
+                        else if section?.bannerType ==  .banner4{
+                            let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumBannerWithHeaderLogoTableViewCell.identifier) as! HomePremiumBannerWithHeaderLogoTableViewCell
+                            sectionCell.bannerContainerView.viewDelegate = self
+                            sectionCell.data = section
+                            cell = sectionCell
+                        }
+                        else if section?.bannerType ==  .banner5{
+                            let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomePremiumFullWidthBannerTableViewCell.identifier) as! HomePremiumFullWidthBannerTableViewCell
+                            sectionCell.bannerContainerView.viewDelegate = self
+                            sectionCell.data = section
+                            cell = sectionCell
+                        }
+                    }
+                    else {
+                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
+                        sectionCell.delegate = self
+                                   sectionCell.data = section
+                                   cell = sectionCell
+                    }
+                   
+                }
             }
         }
+        
         cell.layer.masksToBounds = false
         cell.selectionStyle = .none
         return cell
@@ -389,41 +441,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 1 {
-            if indexPath.row != 0, let section = home.sections?[indexPath.row - 1] {
+        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+            if let section = home.sections?[indexPath.row] {
                 if section.clickable == true {
                     openPremiumPage(fromBanner: true)
                 }
             }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0{
-            let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20))
-            let viewModel = HomeTableFeelingCellVM(homeService: HomeServiceCache.shared)
-            let greetingsLabel = UILabel()
-            greetingsLabel.textColor = UIColor.white
-            let dayTime = viewModel.dayTime
-            let title = dayTime.title
-            let userName = viewModel.userName
-            let text = "\(title) \(userName)"
-            let boldFont = UIFont.lbcBold(ofSize: 17)
-            let attributedString = NSMutableAttributedString(string: text, attributes: [.font : UIFont.lbc(ofSize: 17)])
-            if !userName.isEmpty {
-                let range = NSString(string: text).range(of: userName)
-                attributedString.addAttributes([.font : boldFont], range: range)
+        }else{
+            if indexPath.row != 1 {
+                if indexPath.row != 0, let section = home.sections?[indexPath.row - 1] {
+                    if section.clickable == true {
+                        openPremiumPage(fromBanner: true)
+                    }
+                }
             }
-            greetingsLabel.attributedText = attributedString
-            headerView.addSubview(greetingsLabel)
-            greetingsLabel.translatesAutoresizingMaskIntoConstraints = false
-            greetingsLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20).isActive = true
-            
-            headerView.backgroundColor = .clear
-            return headerView
         }
-        return nil
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

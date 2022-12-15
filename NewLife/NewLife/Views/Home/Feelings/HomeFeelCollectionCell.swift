@@ -11,7 +11,7 @@ import UIKit
 class HomeFeelCollectionCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
-    var data: FeelCellModel? {
+    var data: SubfeelingCellModel? {
         didSet {
             populateData()
         }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HomeFeelingSelectionViewDelegate: class {
-    func feelingDidChange(_ sender: HomeFeelingSelectionView, feelings: [FeelCellModel])
+    func feelingDidChange(_ sender: HomeFeelingSelectionView, feelingIds: [String])
 }
 
 class HomeFeelingSelectionView: GradientView {
@@ -26,10 +26,15 @@ class HomeFeelingSelectionView: GradientView {
 
     var feelings: [FeelCellModel] = [] {
         didSet {
-            reloadData()
+//            reloadData()
         }
     }
     
+    var subFeelings: [SubfeelingCellModel] = []{
+        didSet{
+            reloadData()
+        }
+    }
     var selectedIndex: Int = -1
     
     override func awakeFromNib() {
@@ -69,8 +74,10 @@ class HomeFeelingSelectionView: GradientView {
     
     @objc private func feelingsDidChange() {
         //FIXME after return feeling reponde
-        let feelings = self.feelings.filter({ $0.isSelected }) 
-        delegate?.feelingDidChange(self, feelings: feelings)
+        if let selectedSubfeeling = self.subFeelings.filter({ $0.isSelected }).first{
+            delegate?.feelingDidChange(self, feelingIds: [selectedSubfeeling.id])
+        }
+        
     }
 }
 
@@ -81,12 +88,12 @@ extension HomeFeelingSelectionView: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return feelings.count
+        return subFeelings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFeelCollectionCell.identifier, for: indexPath) as! HomeFeelCollectionCell
-        cell.data = feelings[safe: indexPath.item]
+        cell.data = subFeelings[safe: indexPath.item]
         cell.isSelected = (cell.data?.isSelected ?? false)
         return cell
     }
@@ -110,7 +117,7 @@ extension HomeFeelingSelectionView: UICollectionViewDelegate, UICollectionViewDa
         if selectedIndex != indexPath.item {
             let previousIndex = selectedIndex
             let previousCell = collectionView.cellForItem(at: IndexPath(item: previousIndex, section: 0)) as? HomeFeelCollectionCell
-            feelings[safe: previousIndex]?.isSelected = false
+            subFeelings[safe: previousIndex]?.isSelected = false
             previousCell?.updateStyle()
         }
         

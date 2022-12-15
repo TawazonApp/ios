@@ -61,7 +61,7 @@ extension CategorySessionsView: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         DispatchQueue.main.async { [weak self] in
-            if session.session?.type == "series" {
+            if session.session?.type == SessionType.series.rawValue {
                 self?.delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
                 return
             }

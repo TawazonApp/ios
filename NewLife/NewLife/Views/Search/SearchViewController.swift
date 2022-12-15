@@ -242,7 +242,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         if session?.session != nil {
-            if session?.session?.type == "series" {
+            if session?.session?.type == SessionType.series.rawValue {
                 openSeriesView(seriesId: session!.session!.id, session: session!.session!)
             }else{
                 playSession(session!)

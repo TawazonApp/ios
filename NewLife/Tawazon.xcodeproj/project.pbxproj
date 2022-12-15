@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04090AB42948A9BC000413A4 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AB32948A9BC000413A4 /* StartView.swift */; };
+		04090AB629491475000413A4 /* SubfeelingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AB529491475000413A4 /* SubfeelingCellModel.swift */; };
 		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */; };
 		040F33B827E72965000B1E19 /* ImagesContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B727E72965000B1E19 /* ImagesContainerView.swift */; };
@@ -448,6 +450,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04090AB32948A9BC000413A4 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		04090AB529491475000413A4 /* SubfeelingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubfeelingCellModel.swift; sourceTree = "<group>"; };
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumViewController.swift; sourceTree = "<group>"; };
 		040F33B727E72965000B1E19 /* ImagesContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerView.swift; sourceTree = "<group>"; };
@@ -1688,6 +1692,7 @@
 				F3ECD0BA2561298E0048DBD8 /* HomeTableFeelingCellVM.swift */,
 				F3ECD0C425614C3A0048DBD8 /* FeelCellModel.swift */,
 				F34BB45E257A8282004E417F /* SectionSessionsVM.swift */,
+				04090AB529491475000413A4 /* SubfeelingCellModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1773,6 +1778,7 @@
 			children = (
 				F3CA027E22310F25008165C2 /* WelecomeViewController.swift */,
 				F3CA028122311373008165C2 /* WelecomeStartView.swift */,
+				04090AB32948A9BC000413A4 /* StartView.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -2700,6 +2706,7 @@
 				04CEB94F28C9FB7200C42B76 /* InstallSourcesModel.swift in Sources */,
 				04D0B4BB2872C57700BEBED7 /* DetailedSessionPlayerViewController.swift in Sources */,
 				F3DC8E292223E47200C7DEC4 /* UIViewExt.swift in Sources */,
+				04090AB629491475000413A4 /* SubfeelingCellModel.swift in Sources */,
 				F3DC8E392223F3D000C7DEC4 /* LaunchView.swift in Sources */,
 				0456D1BD27F1B7E000C174C6 /* BasePremiumModel.swift in Sources */,
 				F3DC8E7C222699FC00C7DEC4 /* SessionModel.swift in Sources */,
@@ -2946,6 +2953,7 @@
 				F375B25E24796528000829E1 /* StarReview.swift in Sources */,
 				F3DE73BC2236C5F20052B18C /* ProfileCell.swift in Sources */,
 				F3DE73C12237B3810052B18C /* ProfileCellVM.swift in Sources */,
+				04090AB42948A9BC000413A4 /* StartView.swift in Sources */,
 				F3C73B1C223D4C370026B8E1 /* HomeSessionVM.swift in Sources */,
 				F3CA02902231BAA3008165C2 /* MembershipFormTextFieldCellVM.swift in Sources */,
 				F3DC8E6D2225B83C00C7DEC4 /* HomeAnimateLineView.swift in Sources */,
@@ -3270,7 +3278,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3321,7 +3329,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
