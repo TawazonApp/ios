@@ -60,12 +60,12 @@ class TodayActivityQuoteTableViewCell: UITableViewCell {
         startQuoteImageView.contentMode = .scaleAspectFill
         startQuoteImageView.clipsToBounds = true
         startQuoteImageView.backgroundColor = .clear
-        startQuoteImageView.image = UIImage(named:"DailyActivityQuoteStart")
+        startQuoteImageView.image = UIImage(named:"DailyActivityQuoteStart")?.flipIfNeeded
         
         endQuoteImageView.contentMode = .scaleAspectFill
         endQuoteImageView.clipsToBounds = true
         endQuoteImageView.backgroundColor = .clear
-        endQuoteImageView.image = UIImage(named:"DailyActivityQuoteStart")
+        endQuoteImageView.image = UIImage(named:"DailyActivityQuoteEnd")?.flipIfNeeded
         
         // trackingView
         trackingView.backgroundColor = .clear

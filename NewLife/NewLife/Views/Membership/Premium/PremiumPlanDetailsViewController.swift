@@ -57,12 +57,17 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
         headerImage.image = UIImage(named: "PremiumPlanDetailsHeader")
         
         logoImage.image = UIImage(named: "TawazonLogoGlyph")
+        
         headerTitlePart1.font = .munaBoldFont(ofSize: 24.0)
         headerTitlePart1.textColor = .white
+        headerTitlePart1.textAlignment = .center
         headerTitlePart1.text = "premiumPlanDetailsTitlePart1".localized
         
         headerTitlePart2.font = .munaFont(ofSize: 18.0)
         headerTitlePart2.textColor = .white
+        headerTitlePart2.textAlignment = .center
+        headerTitlePart2.numberOfLines = 0
+        headerTitlePart2.lineBreakMode = .byWordWrapping
         headerTitlePart2.text = "premiumPlanDetailsTitlePart2".localized
         
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
