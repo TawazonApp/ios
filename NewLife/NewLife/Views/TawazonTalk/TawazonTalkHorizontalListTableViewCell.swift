@@ -25,7 +25,7 @@ class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
     }
     var delegate: TawazonTalkTableHorizontalSectionCellDelegate?
     private var collectionCellSpace: CGFloat = 17
-    private var collectionCellWidth: CGFloat = 10
+    private var collectionCellWidth: CGFloat = 160
     private var collectionCellHeight: CGFloat = 216
     
     override func awakeFromNib() {
@@ -34,10 +34,6 @@ class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
         initialize()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        calculateCollectionHeight()
-    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -64,9 +60,7 @@ class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
         
         DispatchQueue.main.async { [weak self] in
             self?.sessionsCollection.reloadData()
-            self?.sessionsCollection.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
         }
-        
     }
     
     private func calculateCollectionHeight() {
@@ -78,7 +72,7 @@ class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
             collectionCellWidth = availableWidth - 20
             collectionCellHeight = 210
         }
-        sessionsCollectionHeightConstraint.constant = collectionCellHeight + (sessionsCollection.contentInset.top + sessionsCollection.contentInset.bottom + 10) + (2 * collectionCellSpace)
+        sessionsCollectionHeightConstraint.constant = collectionCellHeight
         sessionsCollection.layoutIfNeeded()
     }
 }
@@ -109,10 +103,6 @@ extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICo
         guard let session = data?.sessions[safe: indexPath.item] else {
             return
         }
-        let cell = collectionView.cellForItem(at: indexPath)
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-//        cell?.pulsate()
         
         if session.session?.type == SessionType.series.rawValue {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)

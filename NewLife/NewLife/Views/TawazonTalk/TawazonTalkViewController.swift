@@ -132,6 +132,10 @@ extension TawazonTalkViewController: UITableViewDelegate, UITableViewDataSource{
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
 extension TawazonTalkViewController: TawazonTalkTableHorizontalSectionCellDelegate{
