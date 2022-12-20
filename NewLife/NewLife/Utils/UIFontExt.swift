@@ -74,5 +74,12 @@ extension UIFont {
         }
         return UIFont.init(name: "SFProRounded-Bold", size: ofSize + englishSizeOffset)!
     }
+    
+    class func munaBlackFont(ofSize: CGFloat, language: Language = Language.language)-> UIFont {
+        if language == .arabic {
+            return UIFont.init(name: "MunaBlack", size: ofSize)!
+        }
+        return UIFont.init(name: "SFProRounded-Bold", size: ofSize + englishSizeOffset)!
+    }
 }
 

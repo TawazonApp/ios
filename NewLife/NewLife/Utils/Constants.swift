@@ -64,6 +64,9 @@ struct Api {
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
     static let sectionSessionsV2_1 = "\(apiUrlV2_1)/sections/sessions/list/{id}"
     
+    //TawazonTalk
+    static let tawazonTalkViewUrl = "\(apiUrlV2_1)/tawazon-talk/view/{id}"
+    
     //Series
     static let seriesList = "\(apiUrlV2)/meditations/series/list"
 

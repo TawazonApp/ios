@@ -37,6 +37,7 @@ enum TodaySectionStyle: String, Codable {
     case feelingSelection
     case userFeelingSessions
     case singleQuote
+    case tawazonTalk
 }
 
 struct QuoteModel: Codable, ModelInitializable{

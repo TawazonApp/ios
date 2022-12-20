@@ -168,7 +168,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         case .userFeelingSessions:
             print("sessionsList")
         case .singleQuote:
-            quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
+//            quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
+            openTawazonTalkVC()
+        case .tawazonTalk:
+            print("tawazonTalk")
         case .none:
             print("none")
         }
@@ -209,6 +212,15 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         todayVM.setTodayQuoteViewed(quoteId: quoteId){ error in
             self.reloadData()
         }
+    }
+    
+    private func openTawazonTalkVC(){
+//        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
+        
+        let viewController = TawazonTalkViewController.instantiate()
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 extension TodayActivityViewController: TodaySessionsCellDelegate{

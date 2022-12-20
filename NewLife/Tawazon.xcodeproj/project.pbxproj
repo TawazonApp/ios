@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		04090AB42948A9BC000413A4 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AB32948A9BC000413A4 /* StartView.swift */; };
 		04090AB629491475000413A4 /* SubfeelingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AB529491475000413A4 /* SubfeelingCellModel.swift */; };
+		04090AB9294F0880000413A4 /* TawazonTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AB8294F0880000413A4 /* TawazonTalkViewController.swift */; };
+		04090ABB294F28D3000413A4 /* TawazonTalkHorizontalListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ABA294F28D3000413A4 /* TawazonTalkHorizontalListTableViewCell.swift */; };
+		04090ABD294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ABC294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift */; };
+		04090AC0294F3525000413A4 /* TawazonTalkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ABF294F3525000413A4 /* TawazonTalkModel.swift */; };
+		04090AC3294F37AA000413A4 /* TawazonTalkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AC2294F37AA000413A4 /* TawazonTalkVM.swift */; };
+		04090AC5294F38E4000413A4 /* TawazonTalkSectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AC4294F38E4000413A4 /* TawazonTalkSectionVM.swift */; };
+		04090AC7294F41D2000413A4 /* TawazonTalkMainSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AC6294F41D2000413A4 /* TawazonTalkMainSessionView.swift */; };
+		04090ACD29506B9C000413A4 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACC29506B9C000413A4 /* TriangleView.swift */; };
+		04090AD229506CA0000413A4 /* TawazonTalkTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */; };
+		04090AD329506CA0000413A4 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD129506CA0000413A4 /* image.png */; };
+		04090AD529507781000413A4 /* BlurredTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AD429507781000413A4 /* BlurredTriangleView.swift */; };
 		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */; };
 		040F33B827E72965000B1E19 /* ImagesContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B727E72965000B1E19 /* ImagesContainerView.swift */; };
@@ -452,6 +463,17 @@
 /* Begin PBXFileReference section */
 		04090AB32948A9BC000413A4 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		04090AB529491475000413A4 /* SubfeelingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubfeelingCellModel.swift; sourceTree = "<group>"; };
+		04090AB8294F0880000413A4 /* TawazonTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkViewController.swift; sourceTree = "<group>"; };
+		04090ABA294F28D3000413A4 /* TawazonTalkHorizontalListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkHorizontalListTableViewCell.swift; sourceTree = "<group>"; };
+		04090ABC294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkSessionCollectionViewCell.swift; sourceTree = "<group>"; };
+		04090ABF294F3525000413A4 /* TawazonTalkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkModel.swift; sourceTree = "<group>"; };
+		04090AC2294F37AA000413A4 /* TawazonTalkVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkVM.swift; sourceTree = "<group>"; };
+		04090AC4294F38E4000413A4 /* TawazonTalkSectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkSectionVM.swift; sourceTree = "<group>"; };
+		04090AC6294F41D2000413A4 /* TawazonTalkMainSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawazonTalkMainSessionView.swift; sourceTree = "<group>"; };
+		04090ACC29506B9C000413A4 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
+		04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TawazonTalkTriangle.swift; sourceTree = "<group>"; };
+		04090AD129506CA0000413A4 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		04090AD429507781000413A4 /* BlurredTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredTriangleView.swift; sourceTree = "<group>"; };
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumViewController.swift; sourceTree = "<group>"; };
 		040F33B727E72965000B1E19 /* ImagesContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerView.swift; sourceTree = "<group>"; };
@@ -922,6 +944,54 @@
 				04BB3273281017CA0007B283 /* HomePremiumBannerWithHeaderLogoTableViewCell.swift */,
 			);
 			path = BannerWithHeaderLogo;
+			sourceTree = "<group>";
+		};
+		04090AB7294F0857000413A4 /* TawazonTalk */ = {
+			isa = PBXGroup;
+			children = (
+				04090ACE29506CA0000413A4 /* TawazonTalkTriangle */,
+				04090AB8294F0880000413A4 /* TawazonTalkViewController.swift */,
+				04090ABA294F28D3000413A4 /* TawazonTalkHorizontalListTableViewCell.swift */,
+				04090ABC294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift */,
+				04090AC6294F41D2000413A4 /* TawazonTalkMainSessionView.swift */,
+				04090ACC29506B9C000413A4 /* TriangleView.swift */,
+				04090AD429507781000413A4 /* BlurredTriangleView.swift */,
+			);
+			path = TawazonTalk;
+			sourceTree = "<group>";
+		};
+		04090ABE294F34ED000413A4 /* TawazonTalk */ = {
+			isa = PBXGroup;
+			children = (
+				04090ABF294F3525000413A4 /* TawazonTalkModel.swift */,
+			);
+			path = TawazonTalk;
+			sourceTree = "<group>";
+		};
+		04090AC1294F3792000413A4 /* TawazonTalk */ = {
+			isa = PBXGroup;
+			children = (
+				04090AC2294F37AA000413A4 /* TawazonTalkVM.swift */,
+				04090AC4294F38E4000413A4 /* TawazonTalkSectionVM.swift */,
+			);
+			path = TawazonTalk;
+			sourceTree = "<group>";
+		};
+		04090ACE29506CA0000413A4 /* TawazonTalkTriangle */ = {
+			isa = PBXGroup;
+			children = (
+				04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */,
+				04090AD029506CA0000413A4 /* images */,
+			);
+			path = TawazonTalkTriangle;
+			sourceTree = "<group>";
+		};
+		04090AD029506CA0000413A4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				04090AD129506CA0000413A4 /* image.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		040F339C27E0A497000B1E19 /* RemoteConfig */ = {
@@ -1911,6 +1981,7 @@
 		F3DC8E142223DC4100C7DEC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04090AB7294F0857000413A4 /* TawazonTalk */,
 				047CF2A0292A14DF00BF59AE /* TodayActivity */,
 				0432B718288EB6E9007400B3 /* Series */,
 				04EC40C2285748FF006C7AA1 /* Search */,
@@ -1935,6 +2006,7 @@
 		F3DC8E152223DC4700C7DEC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04090ABE294F34ED000413A4 /* TawazonTalk */,
 				047CF2A5292B86E800BF59AE /* TodayActivity */,
 				049D409728D8845F00EAD265 /* Comments */,
 				04C594C728967BF5000B41C8 /* Series */,
@@ -1957,6 +2029,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04090AC1294F3792000413A4 /* TawazonTalk */,
 				047CF2A8292B876700BF59AE /* TodayActivity */,
 				049D409C28D8865500EAD265 /* Comments */,
 				04CEB94928C9F84700C42B76 /* OnBoarding */,
@@ -2525,6 +2598,7 @@
 				F3DC424B2584B8E600BF18A7 /* KohinoorArabicBold.ttf in Resources */,
 				F3DC8E1A2223DCE700C7DEC4 /* Membership.storyboard in Resources */,
 				F34B99A92610CD7D00E571D0 /* SF-Pro-Rounded-Bold.otf in Resources */,
+				04090AD329506CA0000413A4 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2709,6 +2783,7 @@
 				04090AB629491475000413A4 /* SubfeelingCellModel.swift in Sources */,
 				F3DC8E392223F3D000C7DEC4 /* LaunchView.swift in Sources */,
 				0456D1BD27F1B7E000C174C6 /* BasePremiumModel.swift in Sources */,
+				04090AB9294F0880000413A4 /* TawazonTalkViewController.swift in Sources */,
 				F3DC8E7C222699FC00C7DEC4 /* SessionModel.swift in Sources */,
 				04677F4927C39D3F00493142 /* SuperCategoryVM.swift in Sources */,
 				F334416824793A9100FA3234 /* SessionRateViewController.swift in Sources */,
@@ -2783,6 +2858,7 @@
 				F31658012359DD3D0049605A /* TrackerManager.swift in Sources */,
 				04D1BA6B28039FCB006A358A /* PremiumPlanCollectionViewCell.swift in Sources */,
 				F31A031425601BC100C582F8 /* HomeTableCardSessionView.swift in Sources */,
+				04090AC3294F37AA000413A4 /* TawazonTalkVM.swift in Sources */,
 				F317A17C222D736400CBD760 /* ParallaxImageView.swift in Sources */,
 				F3DE73B22236654C0052B18C /* RegisterModel.swift in Sources */,
 				F3AF0F942239548800E29615 /* HandleErrorViewController.swift in Sources */,
@@ -2815,6 +2891,8 @@
 				047CF2B7292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift in Sources */,
 				041903842912649800D0840E /* PreparationSessionPlayerViewController.swift in Sources */,
 				F3AD859925F675F8003C3A0C /* LanguageExt.swift in Sources */,
+				04090AC7294F41D2000413A4 /* TawazonTalkMainSessionView.swift in Sources */,
+				04090ACD29506B9C000413A4 /* TriangleView.swift in Sources */,
 				F3DE73D3223800AB0052B18C /* ResetPasswordModel.swift in Sources */,
 				F31658052359DD7C0049605A /* FirebaseTrackerService.swift in Sources */,
 				F3AF0FAC223AB76100E29615 /* SessionServiceOffline.swift in Sources */,
@@ -2872,6 +2950,7 @@
 				F3580BE7249CF38B00EBE1C1 /* MPMediaItem+AudioPlayerManager.swift in Sources */,
 				F3AF0F97223960A000E29615 /* GoalsIdsModel.swift in Sources */,
 				F3B16AF6222EB42D002B0406 /* LibrarySessionVM.swift in Sources */,
+				04090AC5294F38E4000413A4 /* TawazonTalkSectionVM.swift in Sources */,
 				04E24E3D2940AB8500A3549E /* PaywallViewController.swift in Sources */,
 				F3580BE6249CF38B00EBE1C1 /* AudioTrack.swift in Sources */,
 				F3DC8E9D2226E27100C7DEC4 /* CategoryVM.swift in Sources */,
@@ -2940,6 +3019,8 @@
 				F3CA028E2231B955008165C2 /* MembershipFormVM.swift in Sources */,
 				F3AF0FB2223B107A00E29615 /* Sessions+CoreDataProperties.swift in Sources */,
 				F3DC8E5B22248E9500C7DEC4 /* NavigationController.swift in Sources */,
+				04090AC0294F3525000413A4 /* TawazonTalkModel.swift in Sources */,
+				04090ABB294F28D3000413A4 /* TawazonTalkHorizontalListTableViewCell.swift in Sources */,
 				04677F4027C37FCE00493142 /* SuperCategoryViewController.swift in Sources */,
 				04C548B627ABC807001D3C0F /* SectionData.swift in Sources */,
 				04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */,
@@ -2955,6 +3036,7 @@
 				F3DE73C12237B3810052B18C /* ProfileCellVM.swift in Sources */,
 				04090AB42948A9BC000413A4 /* StartView.swift in Sources */,
 				F3C73B1C223D4C370026B8E1 /* HomeSessionVM.swift in Sources */,
+				04090AD529507781000413A4 /* BlurredTriangleView.swift in Sources */,
 				F3CA02902231BAA3008165C2 /* MembershipFormTextFieldCellVM.swift in Sources */,
 				F3DC8E6D2225B83C00C7DEC4 /* HomeAnimateLineView.swift in Sources */,
 				F34E257B224F5051007CA6E2 /* PremiumOnTimePurchaseSummaryView.swift in Sources */,
@@ -3005,6 +3087,7 @@
 				F3DC8E4B2224877300C7DEC4 /* HomeViewController.swift in Sources */,
 				049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */,
 				F3AF0FB1223B107A00E29615 /* Sessions+CoreDataClass.swift in Sources */,
+				04090ABD294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift in Sources */,
 				F3B16AEC222E7B13002B0406 /* PrivacyViewController.swift in Sources */,
 				04A75F67286ADA5E003C7756 /* SearchVM.swift in Sources */,
 				F3ECD0BB2561298E0048DBD8 /* HomeTableFeelingCellVM.swift in Sources */,
@@ -3023,6 +3106,7 @@
 				F3AD859F25F67638003C3A0C /* L102Localizer.swift in Sources */,
 				F35FD5222235234600B3CFC5 /* GoalVM.swift in Sources */,
 				F3DC8E3B2223F59B00C7DEC4 /* LaunchGlowLightsView.swift in Sources */,
+				04090AD229506CA0000413A4 /* TawazonTalkTriangle.swift in Sources */,
 				04A75F69286CE71F003C7756 /* SearchCategoryCollectionViewCell.swift in Sources */,
 				F317A182222DDC3100CBD760 /* CircularProgressBar.swift in Sources */,
 				F3CA028822316ABB008165C2 /* MembershipFormView.swift in Sources */,

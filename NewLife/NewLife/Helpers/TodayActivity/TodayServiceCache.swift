@@ -9,6 +9,7 @@
 import Foundation
 
 class TodayServiceCache: TodayService {
+    
    
     var service: TodayService
         
@@ -91,13 +92,10 @@ class TodayServiceCache: TodayService {
             completion(error)
         }
     }
-//    func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-//        service.getSectionSessions(sectionId: sectionId,type: type, page: page, pageSize: pageSize, completion: completion)
-//    }
-//    
-//    func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void) {
-//        service.trackSessionDidEnd(sessionId: sessionId, duration: duration, completion: completion)
-//    }
+
+    func getTawazonTalkView(id: String, completion: @escaping (TawazonTalkModel?, CustomError?) -> Void) {
+        service.getTawazonTalkView(id: id, completion: completion)
+    }
     
     func resetCache() {
         lastCachedData = nil

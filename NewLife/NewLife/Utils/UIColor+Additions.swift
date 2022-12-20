@@ -577,6 +577,9 @@ extension UIColor {
         return UIColor(red: 216 / 255.0, green: 216 / 255.0, blue: 216 / 255.0, alpha: 1.0)
     }
     
+    class var chambray: UIColor{
+        return UIColor(red: 63 / 255.0, green: 94 / 255.0, blue: 123 / 255.0, alpha: 1.0)
+    }
 }
 
 

@@ -18,10 +18,8 @@ protocol TodayService {
     func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void)
     
     func setQuoteViewed(quoteId: String, completion: @escaping (_ error: CustomError?) -> Void)
+    func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void)
     
-//    func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void)
-    
-//    func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
 }
 
 class TodayServiceFactory {
@@ -78,29 +76,17 @@ class APITodayService: TodayService {
             completion(error)
         }
     }
-    
-//    func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-//        var urlString = Api.sectionSessionsV2_1.replacingOccurrences(of: "{id}", with: sectionId)
-//        urlString = "\(urlString)?page=\(page)&limit=\(pageSize)"
-//        if type == .subCategory {
-//            urlString = Api.subCategorySectionSessionsListUrl.replacingOccurrences(of: "{categoryID}", with: sectionId)
-//        }
-//        ConnectionUtils.performGetRequest(url: urlString.url!, parameters: nil) { (data, error) in
-//            var model: SectionSessions?
-//            if let data = data {
-//                model = SectionSessions(data: data)
-//            }
-//            completion(model, error)
-//        }
-//    }
-    
-//    func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void) {
-//        let parameters = ["sessionId": sessionId, "duration": duration] as [String : Any]
-//        ConnectionUtils.performPostRequest(url: Api.trackSessionUrl.url!, parameters: parameters) { (data, error) in
-//            completion(error)
-//        }
-//    }
-
+    func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void) {
+        let url = Api.tawazonTalkViewUrl.replacingOccurrences(of: "{id}", with: id)
+        print("url: \(url)")
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil){(data, error) in
+            var tawazonTalkModel: TawazonTalkModel?
+            if let data = data{
+                tawazonTalkModel = TawazonTalkModel(data: data)
+            }
+            completion(tawazonTalkModel, error)
+        }
+    }
 }
 
 
