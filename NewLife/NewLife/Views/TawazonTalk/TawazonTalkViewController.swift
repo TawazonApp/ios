@@ -24,10 +24,13 @@ class TawazonTalkViewController: HandleErrorViewController {
     
     var tawazonTalkVM: TawazonTalkVM = TawazonTalkVM(service: TodayServiceCache.shared)
     
+    var playerBar: MainPlayerBarView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialize()
+        initializeNotification()
         fetchData()
     }
 
@@ -59,7 +62,17 @@ class TawazonTalkViewController: HandleErrorViewController {
         talkItemsTable.backgroundColor = .clear
         talkItemsTable.contentInset = UIEdgeInsets(top: mainTalkSessionView.frame.height / 2, left: 0, bottom: 0, right: 0)
         
+        
     }
+    
+    private func initializeNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showSessionPlayerBar(_:)), name: NSNotification.Name.showSessionPlayerBar
+            , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(hideSessionPlayerBar(_:)), name: NSNotification.Name.hideSessionPlayerBar
+            , object: nil)
+    }
+    
     private func fetchData(){
         tawazonTalkVM.getTawazonTalkDetails(Id: "7600"){ error in
             if let error = error{
@@ -90,6 +103,7 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         mainTalkSessionView.session = tawazonTalkVM.mainItem
         mainTalkSessionView.color = tawazonTalkVM.paletteColor
+        mainTalkSessionView.delegate = self
         talkItemsTable.reloadData()
     }
     @IBAction func shareButtonTapped(_ sender: UIButton) {
@@ -113,12 +127,6 @@ class TawazonTalkViewController: HandleErrorViewController {
         self.dismiss(animated: true)
     }
     
-    @IBAction func PlayButtonTapped(_ sender: UIButton) {
-        if let sessionModel = tawazonTalkVM.mainItem{
-            let session = HomeSessionVM(session: sessionModel)
-            openSessionPlayerViewController(session: session)
-        }
-    }
 }
 
 extension TawazonTalkViewController: UITableViewDelegate, UITableViewDataSource{
@@ -167,6 +175,85 @@ extension TawazonTalkViewController: SessionPlayerDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
             SessionRateViewController.show(session: session, from: self, force: false)
         }
+    }
+}
+
+extension TawazonTalkViewController: MainSessionViewDelegate {
+    func playSession(session: SessionModel) {
+        let sessionVM = HomeSessionVM(session: session)
+        openSessionPlayerViewController(session: sessionVM)
+    }
+}
+
+extension TawazonTalkViewController {
+    @objc func showSessionPlayerBar(_ notification: Notification) {
+        showSessionPlayerBar()
+    }
+    
+    @objc func hideSessionPlayerBar(_ notification: Notification) {
+        let reloadView = notification.object as? Bool ?? true
+        hideSessionPlayerBar()
+        if let session = notification.object as? SessionVM {
+            SessionRateViewController.show(session: session, from: self, force: false)
+        }
+    }
+    
+    func showSessionPlayerBar() {
+        guard AudioPlayerManager.shared.isPlaying() else {
+            return
+        }
+        addPlayerBarIfNeeded()
+        playerBar?.playSession()
+    }
+    
+    func hideSessionPlayerBar() {
+        playerBar?.removeFromSuperview()
+        playerBar = nil
+    }
+    
+    private func addPlayerBarIfNeeded() {
+        guard playerBar == nil else {
+            return
+        }
+        playerBar = MainPlayerBarView.fromNib()
+        playerBar?.delegate = self
+        playerBar!.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(playerBar!)
+        
+        playerBar!.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        playerBar!.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        playerBar!.heightAnchor.constraint(equalToConstant: 74).isActive = true
+        var safeBottomAnchor: NSLayoutYAxisAnchor  = view.bottomAnchor
+        if #available(iOS 11.0, *) {
+            safeBottomAnchor = self.view.safeAreaLayoutGuide.bottomAnchor
+        }
+        playerBar!.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -16).isActive = true
+        
+    }
+}
+
+extension TawazonTalkViewController:  MainPlayerBarViewDelegate {
+    
+    func playerTapped() {
+        guard let sessionModel = SessionPlayerMananger.shared.session?.session else { return }
+        let sessionVM = HomeSessionVM(session: sessionModel)
+        openSessionPlayerViewController(session: sessionVM)
+    }
+    
+    func openPremiumView(_ sender: MainPlayerBarView) {
+        openPremiumViewController()
+    }
+    private func openPremiumViewController() {
+        guard self.presentedViewController == nil else {
+            return
+        }
+        let viewcontroller = GeneralPremiumViewController.instantiate(nextView: .dimiss, fromView: .section)
+        
+        let navigationController = NavigationController.init(rootViewController: viewcontroller)
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        viewcontroller.transitioningDelegate = self
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 

@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+protocol MainSessionViewDelegate: class {
+    func playSession(session: SessionModel)
+}
 class TawazonTalkMainSessionView: UIView{
     @IBOutlet weak var mainTalkSessionBGImageView: UIImageView!
     @IBOutlet weak var mainTalkSessionTriangleView: TriangleView!
@@ -20,6 +23,8 @@ class TawazonTalkMainSessionView: UIView{
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var playButton: CircularButton!
     
+    var delegate: MainSessionViewDelegate?
+    
     var session: SessionModel?{
         didSet{
             setData()
@@ -27,7 +32,7 @@ class TawazonTalkMainSessionView: UIView{
     }
     var color: String?{
         didSet{
-            playButton.backgroundColor = UIColor(hex6: UInt32(String((color?.characters.dropFirst(1))!), radix: 16) ?? 111111)
+            playButton.backgroundColor = UIColor(hex6: UInt32(String((color?.dropFirst(1))!), radix: 16) ?? 111111)
         }
     }
     
@@ -38,14 +43,12 @@ class TawazonTalkMainSessionView: UIView{
     override func layoutSubviews() {
         super.layoutSubviews()
         mainTalkSessionBGImageView.draw(mainTalkSessionBGImageView.frame)
-//        TawazonTalkTriangle.drawCanvas1(frame: mainTalkSessionBGImageView.frame)
     }
     private func initialize(){
         mainTalkSessionBGImageView.backgroundColor = .clear
         mainTalkSessionBGImageView.contentMode = .scaleToFill
         mainTalkSessionBGImageView.isHidden = true
         
-//        mainTalkSessionTriangleView.blurEffect(style: .dark)
         mainTalkSessionTriangleBlurView.mask = mainTalkSessionTriangleView
         if #available(iOS 13.0, *) {
             mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
@@ -95,10 +98,15 @@ class TawazonTalkMainSessionView: UIView{
                 loadingIndicator.stopAnimating()
                 loadingIndicator.removeFromSuperview()
             })
-            
         }
-        
         authorNameLabel.text = session?.artist?.name
+        
+    }
+    
+    @IBAction func playButtonTapped(_ sender: UIButton){
+        if let session = session{
+            delegate?.playSession(session: session)
+        }
         
     }
 }
