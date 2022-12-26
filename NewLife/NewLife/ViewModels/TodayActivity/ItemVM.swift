@@ -7,19 +7,19 @@
 //
 
 import Foundation
-class QuoteVM {
+class ItemVM {
     var id: String
     var title: String?
     var image: String?
     var content: String?
     var authorName: String?
     
-    init(quote: QuoteModel) {
-        self.id = quote.id
-        self.title = quote.title
-        self.image = quote.image
-        self.content = quote.content
-        self.authorName = quote.authorName
+    init(item: ItemModel) {
+        self.id = item.id
+        self.title = item.title
+        self.image = item.image
+        self.content = item.content
+        self.authorName = item.authorName
     }
     
     init(id: String, title: String?, image: String?, content: String?, authorName: String?) {

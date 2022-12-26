@@ -10,7 +10,8 @@ import UIKit
 
 class TawazonTalkViewController: HandleErrorViewController {
 
-    
+    @IBOutlet weak var talkScrollView: UIScrollView!
+    @IBOutlet weak var talkView: UIView!
     @IBOutlet weak var talkBackgroundImage: UIImageView!
     @IBOutlet weak var backButton: CircularButton!
     @IBOutlet weak var shareButton: CircularButton!
@@ -19,6 +20,7 @@ class TawazonTalkViewController: HandleErrorViewController {
     
     @IBOutlet weak var talkLogoImageView: UIImageView!
     @IBOutlet weak var mainTalkSessionView: TawazonTalkMainSessionView!
+    @IBOutlet weak var talkItemsTableHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var talkItemsTable: UITableView!
     
@@ -51,17 +53,12 @@ class TawazonTalkViewController: HandleErrorViewController {
         backgroundColorView.applyGradientColor(colors: [UIColor.mariner.cgColor, UIColor.chambray.cgColor, UIColor.cyprus.cgColor], startPoint: .top, endPoint: .bottom)
         
         talkLogoImageView.contentMode = .center
+        talkLogoImageView.clipsToBounds = false
         talkLogoImageView.backgroundColor = .clear
         talkLogoImageView.image = Language.language == .english ? UIImage(named: "TawazonTalkLogoEn") : UIImage(named: "TawazonTalkLogoAr")
         
-        mainTalkSessionView.backgroundColor = .clear
-        mainTalkSessionView.layer.cornerRadius = 32
-        mainTalkSessionView.clipsToBounds = true
-        
-        
         talkItemsTable.backgroundColor = .clear
         talkItemsTable.contentInset = UIEdgeInsets(top: mainTalkSessionView.frame.height / 2, left: 0, bottom: 0, right: 0)
-        
         
     }
     
@@ -100,10 +97,17 @@ class TawazonTalkViewController: HandleErrorViewController {
             })
             
         }
-        
-        mainTalkSessionView.session = tawazonTalkVM.mainItem
-        mainTalkSessionView.color = tawazonTalkVM.paletteColor
+        mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
+
+        let newTableHeight = (320.0 * Double((tawazonTalkVM.sections?.count ?? 1))) + 199.67
+        talkItemsTableHeightConstraint.constant = CGFloat(newTableHeight)
+        talkScrollView.contentSize = CGSize(width: talkScrollView.contentSize.width, height: talkView.frame.height)
+
+        talkItemsTable.layoutIfNeeded()
+        talkView.layoutIfNeeded()
+        talkScrollView.layoutIfNeeded()
+        mainTalkSessionView.layoutIfNeeded()
         talkItemsTable.reloadData()
     }
     @IBAction func shareButtonTapped(_ sender: UIButton) {
@@ -138,6 +142,9 @@ extension TawazonTalkViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: TawazonTalkHorizontalListTableViewCell.identifier) as! TawazonTalkHorizontalListTableViewCell
         cell.data = tawazonTalkVM.sections?[indexPath.row]
         cell.delegate = self
+        if indexPath.row == (tawazonTalkVM.sections?.count ?? 0) - 1{
+            cell.deviderView.isHidden = true
+        }
         return cell
     }
     

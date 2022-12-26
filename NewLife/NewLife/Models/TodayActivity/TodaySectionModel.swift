@@ -15,7 +15,7 @@ struct TodaySectionModel: Codable, ModelInitializable {
     let style: TodaySectionStyle
     let bannerType: HomeBannerStyle?
     let clickable: Bool?
-    let items: [QuoteModel]
+    let items: [ItemModel]
     let completed: Bool?
     
     
@@ -40,7 +40,7 @@ enum TodaySectionStyle: String, Codable {
     case tawazonTalk
 }
 
-struct QuoteModel: Codable, ModelInitializable{
+struct ItemModel: Codable, ModelInitializable{
     let id: String
     let title, image, content, authorName: String?
 }

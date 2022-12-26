@@ -19,7 +19,7 @@
 		04090ACD29506B9C000413A4 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACC29506B9C000413A4 /* TriangleView.swift */; };
 		04090AD229506CA0000413A4 /* TawazonTalkTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */; };
 		04090AD329506CA0000413A4 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD129506CA0000413A4 /* image.png */; };
-		04090AD529507781000413A4 /* BlurredTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AD429507781000413A4 /* BlurredTriangleView.swift */; };
+		04090AD729546296000413A4 /* HomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD629546296000413A4 /* HomeVideo.mp4 */; };
 		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */; };
 		040F33B827E72965000B1E19 /* ImagesContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B727E72965000B1E19 /* ImagesContainerView.swift */; };
@@ -71,7 +71,7 @@
 		047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B4292B8A6300BF59AE /* TodaySectionModel.swift */; };
 		047CF2B7292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B6292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift */; };
 		047CF2B9292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */; };
-		047CF2BB292CBB7500BF59AE /* QuoteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2BA292CBB7500BF59AE /* QuoteVM.swift */; };
+		047CF2BB292CBB7500BF59AE /* ItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2BA292CBB7500BF59AE /* ItemVM.swift */; };
 		047CF2BD292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */; };
 		047F11E428E97DFA0096E20E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F11E328E97DFA0096E20E /* NotificationService.swift */; };
 		047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -473,7 +473,7 @@
 		04090ACC29506B9C000413A4 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TawazonTalkTriangle.swift; sourceTree = "<group>"; };
 		04090AD129506CA0000413A4 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		04090AD429507781000413A4 /* BlurredTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredTriangleView.swift; sourceTree = "<group>"; };
+		04090AD629546296000413A4 /* HomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo.mp4; sourceTree = "<group>"; };
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumViewController.swift; sourceTree = "<group>"; };
 		040F33B727E72965000B1E19 /* ImagesContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerView.swift; sourceTree = "<group>"; };
@@ -525,7 +525,7 @@
 		047CF2B4292B8A6300BF59AE /* TodaySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySectionModel.swift; sourceTree = "<group>"; };
 		047CF2B6292B9EFD00BF59AE /* TodayActivityFeelingSessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityFeelingSessionsTableViewCell.swift; sourceTree = "<group>"; };
 		047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityQuoteTableViewCell.swift; sourceTree = "<group>"; };
-		047CF2BA292CBB7500BF59AE /* QuoteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteVM.swift; sourceTree = "<group>"; };
+		047CF2BA292CBB7500BF59AE /* ItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVM.swift; sourceTree = "<group>"; };
 		047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionCollectionViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TawazonPNServiceExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		047F11E328E97DFA0096E20E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -955,7 +955,6 @@
 				04090ABC294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift */,
 				04090AC6294F41D2000413A4 /* TawazonTalkMainSessionView.swift */,
 				04090ACC29506B9C000413A4 /* TriangleView.swift */,
-				04090AD429507781000413A4 /* BlurredTriangleView.swift */,
 			);
 			path = TawazonTalk;
 			sourceTree = "<group>";
@@ -1176,7 +1175,7 @@
 			children = (
 				047CF2AB292B87D300BF59AE /* TodaySectionVM.swift */,
 				047CF2AD292B87F300BF59AE /* TodayVM.swift */,
-				047CF2BA292CBB7500BF59AE /* QuoteVM.swift */,
+				047CF2BA292CBB7500BF59AE /* ItemVM.swift */,
 			);
 			path = TodayActivity;
 			sourceTree = "<group>";
@@ -1569,6 +1568,7 @@
 			isa = PBXGroup;
 			children = (
 				F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */,
+				04090AD629546296000413A4 /* HomeVideo.mp4 */,
 				04E24E492947350F00A3549E /* HomeVideo3.mp4 */,
 				04E24E4B2947352300A3549E /* NatureTrees.mp4 */,
 			);
@@ -2554,6 +2554,7 @@
 				F38BB89522CD2D89008FDB4E /* SeaWaves.wav in Resources */,
 				F34B99E22610CF6F00E571D0 /* SF-Pro-Text-Semibold.otf in Resources */,
 				F369267223295EFC00EA8771 /* TermsAndConditions.rtf in Resources */,
+				04090AD729546296000413A4 /* HomeVideo.mp4 in Resources */,
 				F3DC424C2584B8E600BF18A7 /* KohinoorArabicSemibold.ttf in Resources */,
 				047CF29F292A0C7A00BF59AE /* TodayActivity.storyboard in Resources */,
 				F3DC8E1E2223DD0B00C7DEC4 /* Home.storyboard in Resources */,
@@ -2810,7 +2811,7 @@
 				F3AF0FA6223A8BB600E29615 /* CategoryModel.swift in Sources */,
 				F3DC8E0F2223D95A00C7DEC4 /* ConnectionUtils.swift in Sources */,
 				F31658072359DD910049605A /* TrackingService.swift in Sources */,
-				047CF2BB292CBB7500BF59AE /* QuoteVM.swift in Sources */,
+				047CF2BB292CBB7500BF59AE /* ItemVM.swift in Sources */,
 				04D76CE428ACC5450020BAFA /* SeriesSessionHeaderTableViewCell.swift in Sources */,
 				F35FD527223526F800B3CFC5 /* GoalCircleView.swift in Sources */,
 				F3715CF722439EE400B7A465 /* TESTViewController.swift in Sources */,
@@ -3036,7 +3037,6 @@
 				F3DE73C12237B3810052B18C /* ProfileCellVM.swift in Sources */,
 				04090AB42948A9BC000413A4 /* StartView.swift in Sources */,
 				F3C73B1C223D4C370026B8E1 /* HomeSessionVM.swift in Sources */,
-				04090AD529507781000413A4 /* BlurredTriangleView.swift in Sources */,
 				F3CA02902231BAA3008165C2 /* MembershipFormTextFieldCellVM.swift in Sources */,
 				F3DC8E6D2225B83C00C7DEC4 /* HomeAnimateLineView.swift in Sources */,
 				F34E257B224F5051007CA6E2 /* PremiumOnTimePurchaseSummaryView.swift in Sources */,

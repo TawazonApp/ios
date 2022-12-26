@@ -14,6 +14,9 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sessionTitleLabel: UILabel!
     @IBOutlet weak var sessionDurationLabel: UILabel!
     
+    @IBOutlet weak var lockImageView: UIImageView!
+    @IBOutlet weak var languageImageView: UIImageView!
+    
     var session: HomeSessionVM? {
         didSet {
             fillData()
@@ -41,6 +44,13 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         sessionDurationLabel.textColor = .white.withAlphaComponent(0.72)
 //        sessionDurationLabel should have attributed text for num and text
         
+        lockImageView.contentMode = .center
+        lockImageView.clipsToBounds = false
+        lockImageView.image = #imageLiteral(resourceName: "SessionLock.pdf")
+        
+        languageImageView.contentMode = .center
+        languageImageView.clipsToBounds = false
+        
     }
     
     private func fillData(){
@@ -63,5 +73,18 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         
         sessionTitleLabel.text = session?.name
         sessionDurationLabel.text = session?.durationString
+        
+        lockImageView.isHidden = !(session?.isLock ?? false)
+        if session?.session?.type != SessionType.music.rawValue{
+            if(session?.audioSources?.count ?? 0 > 1){
+                languageImageView.image = UIImage(named: "SessionArEn")
+            }else{
+                if session?.audioSources?[0].code.lowercased() == "ar"{
+                    languageImageView.image = UIImage(named: "SessionAr")
+                }else{
+                    languageImageView.image = UIImage(named: "SessionEn")
+                }
+            }
+        }
     }
 }

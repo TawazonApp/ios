@@ -13,7 +13,6 @@ protocol MainSessionViewDelegate: class {
     func playSession(session: SessionModel)
 }
 class TawazonTalkMainSessionView: UIView{
-    @IBOutlet weak var mainTalkSessionBGImageView: UIImageView!
     @IBOutlet weak var mainTalkSessionTriangleView: TriangleView!
     @IBOutlet weak var mainTalkSessionTriangleBlurView: UIVisualEffectView!
     @IBOutlet weak var mainSessionTitleLabel: UILabel!
@@ -21,18 +20,13 @@ class TawazonTalkMainSessionView: UIView{
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var playButton: CircularButton!
+    @IBOutlet weak var playButton: GradientButton!
     
     var delegate: MainSessionViewDelegate?
     
-    var session: SessionModel?{
+    var tawazonTalkVM: TawazonTalkVM?{
         didSet{
             setData()
-        }
-    }
-    var color: String?{
-        didSet{
-            playButton.backgroundColor = UIColor(hex6: UInt32(String((color?.dropFirst(1))!), radix: 16) ?? 111111)
         }
     }
     
@@ -40,22 +34,10 @@ class TawazonTalkMainSessionView: UIView{
         super.awakeFromNib()
         initialize()
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        mainTalkSessionBGImageView.draw(mainTalkSessionBGImageView.frame)
-    }
+    
     private func initialize(){
-        mainTalkSessionBGImageView.backgroundColor = .clear
-        mainTalkSessionBGImageView.contentMode = .scaleToFill
-        mainTalkSessionBGImageView.isHidden = true
-        
-        mainTalkSessionTriangleBlurView.mask = mainTalkSessionTriangleView
-        if #available(iOS 13.0, *) {
-            mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
-        } else {
-            // Fallback on earlier versions
-            mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .dark)
-        }
+        self.backgroundColor = .clear
+        self.layer.cornerRadius = 32
         
         mainSessionTitleLabel.font = .munaBoldFont(ofSize: 28)
         mainSessionTitleLabel.textColor = .white
@@ -77,12 +59,26 @@ class TawazonTalkMainSessionView: UIView{
         authorNameLabel.textColor = .white
         
         playButton.setImage(UIImage(named: "PreparationSessionPlay"), for: .normal)
+        playButton.imageView?.contentMode = .scaleAspectFill
         playButton.tintColor = .white
-        playButton.backgroundColor = UIColor(hex6: 683434)
+        playButton.layer.cornerRadius = playButton.frame.height/2
+        playButton.applyGradientColor(colors: [UIColor.cyprus.cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .right, endPoint: .left)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        mainTalkSessionTriangleBlurView.mask = mainTalkSessionTriangleView
+        if #available(iOS 13.0, *) {
+            mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+            mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .dark)
+        }
+    }
+    
     private func setData() {
-        mainSessionTitleLabel.text = session?.name
-        mainSessionSubtitleLabel.text = session?.descriptionString
+        mainSessionTitleLabel.text = tawazonTalkVM?.title
+        mainSessionSubtitleLabel.text = tawazonTalkVM?.content
         
         authorImageView.image = nil
         let loadingIndicator = UIActivityIndicatorView(style: .white)
@@ -93,18 +89,18 @@ class TawazonTalkMainSessionView: UIView{
         loadingIndicator.center = authorImageView.center
         loadingIndicator.startAnimating()
         
-        if let imageUrl = session?.imageUrl?.url {
+        if let imageUrl = tawazonTalkVM?.author?.image?.url {
             authorImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
                 loadingIndicator.stopAnimating()
                 loadingIndicator.removeFromSuperview()
             })
         }
-        authorNameLabel.text = session?.artist?.name
-        
+        authorNameLabel.text = tawazonTalkVM?.author?.name
+        playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((tawazonTalkVM?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((tawazonTalkVM?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .bottomLeft, endPoint: .topRight)
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton){
-        if let session = session{
+        if let session = tawazonTalkVM?.mainItem{
             delegate?.playSession(session: session)
         }
         

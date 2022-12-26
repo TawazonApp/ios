@@ -220,9 +220,10 @@ class HomeViewController: SoundEffectsPresenterViewController {
     }
     
     private func buildVideosArray() {
+        let video = HomeVideoCellVM(videoName: "HomeVideo", videoType: "mp4")
         let video1 = HomeVideoCellVM(videoName: "HomeVideo3", videoType: "mp4")
         let video2 = HomeVideoCellVM(videoName: "NatureTrees", videoType: "mp4")
-        var items = [video1, video2]
+        var items = [video, video1, video2]
         if home.isRamadan {
             let ramadanVideo = HomeVideoCellVM(videoName: "RamadanVideo", videoType: "mp4")
             items.insert(ramadanVideo, at: 0)

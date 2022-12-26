@@ -22,7 +22,7 @@ class TodaySectionVM {
     var buttonLabel: String?
     var moreLabel: String?
     var imageUrl: String?
-    var items: [QuoteVM]?
+    var items: [ItemVM]?
     var completed: Bool?
     
     init(section: TodaySectionModel) {
@@ -39,12 +39,12 @@ class TodaySectionVM {
         buttonLabel = section.buttonLabel
         moreLabel = section.moreLabel
         imageUrl = section.image
-        items = section.items.map({ QuoteVM(quote: $0)})
+        items = section.items.map({ ItemVM(item: $0)})
         completed = section.completed
         titleCompletedState = section.title_2
     }
     
-    init(id: String, title: String, title_2: String, subTitle: String?, content: String?, iconUrl: String?, sessions: [SessionModel], style: TodaySectionStyle, buttonLabel: String?, moreLabel: String?, imageUrl: String? = "", items: [QuoteModel], completed: Bool?) {
+    init(id: String, title: String, title_2: String, subTitle: String?, content: String?, iconUrl: String?, sessions: [SessionModel], style: TodaySectionStyle, buttonLabel: String?, moreLabel: String?, imageUrl: String? = "", items: [ItemModel], completed: Bool?) {
         self.id = id
         self.title = title
         self.subTitle = subTitle
@@ -56,7 +56,7 @@ class TodaySectionVM {
         self.buttonLabel = buttonLabel
         self.moreLabel = moreLabel
         self.imageUrl = imageUrl
-        self.items = items.map({QuoteVM(quote: $0)})
+        self.items = items.map({ItemVM(item: $0)})
         self.completed = completed
         self.titleCompletedState = title_2
     }

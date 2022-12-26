@@ -14,6 +14,7 @@ class HomeSectionVM {
     var subTitle: String?
     var iconUrl: String?
     var sessions: [HomeSessionVM]
+    var items: [ItemVM]
     var style: HomeSectionStyle
     var bannerType: HomeBannerStyle?
     var clickable: Bool?
@@ -28,6 +29,7 @@ class HomeSectionVM {
         self.subTitle = section.subtitle
         self.iconUrl = section.icon
         self.sessions = section.sessions.map({ HomeSessionVM(session: $0) })
+        self.items = section.items.map({ ItemVM(item: $0) })
         style = section.style ?? .list
         bannerType = section.bannerType
         clickable = section.clickable
@@ -37,12 +39,13 @@ class HomeSectionVM {
         imageUrl = section.image
     }
     
-    init(id: String, title: String, subTitle: String?, iconUrl: String?, sessions: [SessionModel], style: HomeSectionStyle, buttonLabel: String?, moreLabel: String?, imageUrl: String? = "") {
+    init(id: String, title: String, subTitle: String?, iconUrl: String?, sessions: [SessionModel], items: [ItemModel], style: HomeSectionStyle, buttonLabel: String?, moreLabel: String?, imageUrl: String? = "") {
         self.id = id
         self.title = title
         self.subTitle = subTitle
         self.iconUrl = iconUrl
         self.sessions = sessions.map({ HomeSessionVM(session: $0) })
+        self.items = items.map({ ItemVM(item: $0) })
         self.style = style
         self.categoryId = nil
         self.buttonLabel = buttonLabel

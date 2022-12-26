@@ -47,6 +47,7 @@ class TawazonTalkVM{
                 self.thumbnail = model.thumbnail
                 self.content = model.content
                 self.paletteColor = model.paletteColor
+                self.author = model.author
                 self.mainItem = model.mainItem
                 self.tawazonTalkSections = model.sections
             }
