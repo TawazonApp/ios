@@ -15,7 +15,7 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
+//    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var languageImageView: UIImageView!
     
     var session: HomeSessionVM? {
@@ -44,9 +44,9 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         nameLabel.font = UIFont.lbcBold(ofSize: 16)
         nameLabel.textColor = UIColor.white
         
-        durationLabel.font = UIFont.lbc(ofSize: 14)
-        durationLabel.textColor = UIColor.white
-        durationLabel.isHidden = true
+//        durationLabel.font = UIFont.lbc(ofSize: 14)
+//        durationLabel.textColor = UIColor.white
+//        durationLabel.isHidden = true
         
         languageImageView.contentMode = .center
     }
@@ -71,7 +71,7 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         }
         
         nameLabel.text = session?.name
-        durationLabel.text = session?.durationString
+//        durationLabel.text = session?.durationString
         
         lockImageView.isHidden = !(session?.isLock ?? false)
         if session?.session?.type != SessionType.music.rawValue{

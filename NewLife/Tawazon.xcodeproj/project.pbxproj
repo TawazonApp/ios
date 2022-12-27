@@ -19,7 +19,9 @@
 		04090ACD29506B9C000413A4 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACC29506B9C000413A4 /* TriangleView.swift */; };
 		04090AD229506CA0000413A4 /* TawazonTalkTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */; };
 		04090AD329506CA0000413A4 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD129506CA0000413A4 /* image.png */; };
-		04090AD729546296000413A4 /* HomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD629546296000413A4 /* HomeVideo.mp4 */; };
+		04090AD929599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AD829599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift */; };
+		04090ADB29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ADA29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift */; };
+		04090B1B295AC991000413A4 /* HomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04090B1A295AC991000413A4 /* HomeVideo.mp4 */; };
 		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */; };
 		040F33B827E72965000B1E19 /* ImagesContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B727E72965000B1E19 /* ImagesContainerView.swift */; };
@@ -473,7 +475,9 @@
 		04090ACC29506B9C000413A4 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		04090ACF29506CA0000413A4 /* TawazonTalkTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TawazonTalkTriangle.swift; sourceTree = "<group>"; };
 		04090AD129506CA0000413A4 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		04090AD629546296000413A4 /* HomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo.mp4; sourceTree = "<group>"; };
+		04090AD829599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableTawazonTalkSectionCell.swift; sourceTree = "<group>"; };
+		04090ADA29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableTawazonTalkItemCollectionCell.swift; sourceTree = "<group>"; };
+		04090B1A295AC991000413A4 /* HomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo.mp4; sourceTree = "<group>"; };
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumViewController.swift; sourceTree = "<group>"; };
 		040F33B727E72965000B1E19 /* ImagesContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerView.swift; sourceTree = "<group>"; };
@@ -1568,7 +1572,7 @@
 			isa = PBXGroup;
 			children = (
 				F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */,
-				04090AD629546296000413A4 /* HomeVideo.mp4 */,
+				04090B1A295AC991000413A4 /* HomeVideo.mp4 */,
 				04E24E492947350F00A3549E /* HomeVideo3.mp4 */,
 				04E24E4B2947352300A3549E /* NatureTrees.mp4 */,
 			);
@@ -2148,6 +2152,8 @@
 				F31A031325601BC100C582F8 /* HomeTableCardSessionView.swift */,
 				0417042927FD98EF0023FB18 /* Banners */,
 				F35A02DB26208DA600C35016 /* HomeTableView.swift */,
+				04090AD829599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift */,
+				04090ADA29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2554,7 +2560,6 @@
 				F38BB89522CD2D89008FDB4E /* SeaWaves.wav in Resources */,
 				F34B99E22610CF6F00E571D0 /* SF-Pro-Text-Semibold.otf in Resources */,
 				F369267223295EFC00EA8771 /* TermsAndConditions.rtf in Resources */,
-				04090AD729546296000413A4 /* HomeVideo.mp4 in Resources */,
 				F3DC424C2584B8E600BF18A7 /* KohinoorArabicSemibold.ttf in Resources */,
 				047CF29F292A0C7A00BF59AE /* TodayActivity.storyboard in Resources */,
 				F3DC8E1E2223DD0B00C7DEC4 /* Home.storyboard in Resources */,
@@ -2579,6 +2584,7 @@
 				04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */,
 				F369267323295EFC00EA8771 /* PrivacyPolicy.rtf in Resources */,
 				F3DC8E202223DD1900C7DEC4 /* Categories.storyboard in Resources */,
+				04090B1B295AC991000413A4 /* HomeVideo.mp4 in Resources */,
 				F3DC8E2D2223E50A00C7DEC4 /* KacstPen.ttf in Resources */,
 				F34B99D02610CD8D00E571D0 /* SF-Pro-Text-Black.otf in Resources */,
 				F3921CE322494EE4002A12EC /* MonthlyMeditation.json in Resources */,
@@ -2790,6 +2796,7 @@
 				F334416824793A9100FA3234 /* SessionRateViewController.swift in Sources */,
 				049D409428D840B600EAD265 /* SessionCommentsViewController.swift in Sources */,
 				049D409E28D8869D00EAD265 /* CommentsVM.swift in Sources */,
+				04090AD929599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift in Sources */,
 				F317A173222D147000CBD760 /* BackgroundAudioVM.swift in Sources */,
 				0456D1B927EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift in Sources */,
 				04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */,
@@ -3003,6 +3010,7 @@
 				F3DC8E132223DB1000C7DEC4 /* DeviceExt.swift in Sources */,
 				F3580BE4249CF38B00EBE1C1 /* MediaPlayerTrack.swift in Sources */,
 				F3B8BFC42587C3D200E2005A /* PremiumDiscountCell.swift in Sources */,
+				04090ADB29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift in Sources */,
 				F334416D247950F500FA3234 /* ShareButtonView.swift in Sources */,
 				047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */,
 				04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */,

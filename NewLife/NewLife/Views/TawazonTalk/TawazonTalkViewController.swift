@@ -25,6 +25,12 @@ class TawazonTalkViewController: HandleErrorViewController {
     @IBOutlet weak var talkItemsTable: UITableView!
     
     var tawazonTalkVM: TawazonTalkVM = TawazonTalkVM(service: TodayServiceCache.shared)
+    var talkId: String?{
+        didSet{
+            print("didSet")
+            fetchData()
+        }
+    }
     
     var playerBar: MainPlayerBarView?
     
@@ -33,7 +39,7 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         initialize()
         initializeNotification()
-        fetchData()
+//        fetchData()
     }
 
     private func initialize(){
@@ -71,12 +77,16 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func fetchData(){
-        tawazonTalkVM.getTawazonTalkDetails(Id: "7600"){ error in
-            if let error = error{
-                self.showErrorMessage(message: error.localizedDescription)
-                return
+        print("talkId: \(talkId)")
+        if let talkId = talkId{
+            tawazonTalkVM.getTawazonTalkDetails(Id: talkId){ error in
+                print("DONE")
+                if let error = error{
+                    self.showErrorMessage(message: error.localizedDescription)
+                    return
+                }
+                self.fillData()
             }
-            self.fillData()
         }
     }
     
@@ -266,9 +276,10 @@ extension TawazonTalkViewController:  MainPlayerBarViewDelegate {
 
 extension TawazonTalkViewController {
     
-    class func instantiate() -> TawazonTalkViewController {
+    class func instantiate(talkId: String) -> TawazonTalkViewController {
         let storyboard = UIStoryboard(name: "TodayActivity", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: TawazonTalkViewController.identifier) as! TawazonTalkViewController
+        viewController.talkId = talkId
         return viewController
     }
 }

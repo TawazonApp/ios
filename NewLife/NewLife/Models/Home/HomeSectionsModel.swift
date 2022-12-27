@@ -19,6 +19,7 @@ enum HomeSectionStyle: String, Codable {
     case largeList
     case banner
     case verticalList
+    case talkList
 }
 
 enum HomeBannerStyle: String, Codable  {

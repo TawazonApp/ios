@@ -14,6 +14,7 @@ struct Api {
     static let apiUrl = "\(baseUrl)/api/v1"
     static let apiUrlV2 = "\(baseUrl)/api/v2"
     static let apiUrlV2_1 = "\(baseUrl)/api/v2.1"
+    static let apiUrlV2_2 = "\(baseUrl)/api/v2.2"
     static let authorization = "$2y$08$SUh5WUM4STdKZmtYOHh5duA2bPXmyg7BmzxORifly3mDit6oU4Y1y"
     
     //Tracking
@@ -56,6 +57,7 @@ struct Api {
     static let homeSectionsUrlV2_1 = "\(apiUrlV2_1)/home"
     static let homeSectionsWithBannersUrl = "\(apiUrlV2)/app/home"
     static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
+    static let homeSectionsWithBannersUrlV2_2 = "\(apiUrlV2_2)/app/home"
     static let todaySectionsUrl = "\(apiUrlV2_1)/home/today/sections"
     static let todayQuoteViewUrl = "\(apiUrlV2_1)/quotes/view/{id}"
     static let feelingsListUrl = "\(apiUrlV2_1)/feelings/list"

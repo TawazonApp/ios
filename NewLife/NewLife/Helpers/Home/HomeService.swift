@@ -33,7 +33,7 @@ class APIHomeService: HomeService {
 
     
     func fetchHomeSections(completion: @escaping (_ sections: HomeSectionsModel?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrlV2_1.url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrlV2_2.url!, parameters: nil) { (data, error) in
             
             var model: HomeSectionsModel?
             if let data = data {

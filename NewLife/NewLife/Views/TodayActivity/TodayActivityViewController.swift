@@ -217,7 +217,7 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
     private func openTawazonTalkVC(){
 //        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
         
-        let viewController = TawazonTalkViewController.instantiate()
+        let viewController = TawazonTalkViewController.instantiate(talkId: "7600")
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)

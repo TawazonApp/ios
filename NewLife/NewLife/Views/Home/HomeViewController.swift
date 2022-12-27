@@ -354,6 +354,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     cell = sectionCell
                 }
             }
+            else if section?.style == .talkList{
+                let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableTawazonTalkSectionCell.identifier) as! HomeTableTawazonTalkSectionCell
+                sectionCell.delegate = self
+                           sectionCell.data = section
+                           cell = sectionCell
+            }
             else {
                 let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
                 sectionCell.delegate = self
@@ -421,6 +427,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                             cell = sectionCell
                         }
                     }
+                    else if section?.style == .talkList{
+                        let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableTawazonTalkSectionCell.identifier) as! HomeTableTawazonTalkSectionCell
+                        sectionCell.delegate = self
+                                   sectionCell.data = section
+                                   cell = sectionCell
+                    }
                     else {
                         let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableHorizontalSectionCell.identifier) as! HomeTableHorizontalSectionCell
                         sectionCell.delegate = self
@@ -486,8 +498,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontalSectionCellDelegate, HomeTableCardSectionCellDelegate {
-   
+extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontalSectionCellDelegate, HomeTableCardSectionCellDelegate, HomeTableTawazonTalkSectionCellDelegate {
+    func openTalkView(_ sender: HomeTableTawazonTalkSectionCell, item: ItemVM) {
+        openTawazonTalkVC(item: item)
+    }
+    
+    func sectionTapped(_ sender: HomeTableTawazonTalkSectionCell, section: HomeSectionVM?) {
+        guard let section = section else {
+            return
+        }
+        openSectionView(section)
+    }
+    
+    private func openTawazonTalkVC(item: ItemVM){
+//        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
+        
+        let viewController = TawazonTalkViewController.instantiate(talkId: item.id)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
     func openSeriesView(seriesId: String, session: SessionModel) {
         let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
         self.navigationController?.pushViewController(viewController, animated: true)
