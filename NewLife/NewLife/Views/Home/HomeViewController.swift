@@ -54,13 +54,8 @@ class HomeViewController: SoundEffectsPresenterViewController {
         updateBackgroundSoundStyle()
         reduceVoulme(volume: Constants.backgroundMusicLevel)
         setGuidedTourKeys()
-        openNewFeatureViewcontroller()
     }
     
-    private func openNewFeatureViewcontroller(){
-        let viewcontroller = NewFeatureAnnouncementViewController.instatiate()
-        self.present(viewcontroller, animated: true)
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         requestNotificationPermission += 1
@@ -247,8 +242,21 @@ class HomeViewController: SoundEffectsPresenterViewController {
     
     private func reloadData() {
         sectionsTableView.reloadData()
+        openNewFeatureViewcontrollerIfNeeded()
     }
     
+    
+    private func openNewFeatureViewcontrollerIfNeeded(){
+        if let page = home.pages?[0]{
+            if page.showPopup {
+               let viewcontroller = NewFeatureAnnouncementViewController.instatiate(data: page)
+               viewcontroller.modalPresentationStyle = .custom
+               viewcontroller.transitioningDelegate = self
+               viewcontroller.delegate = self
+               self.present(viewcontroller, animated: true, completion: nil)
+            }
+        }
+    }
     
     private func updateBackgroundSoundStyle() {
         let image = (BackgroundAudioManager.shared.mainBackgroundAudio.playingStatus == .playing) ?  UIImage(named: "BackgroundMusicOn") :  UIImage(named: "BackgroundMusicOff")
@@ -306,7 +314,19 @@ class HomeViewController: SoundEffectsPresenterViewController {
         })
     }
 }
-
+extension HomeViewController: NewFeatureAnnouncementDelegate{
+    func submitButtonTapped(feature: PremiumPage) {
+        if let sectionIndex = home.sections?.firstIndex(where: {$0.type == feature.sectionType}){
+            if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
+                sectionsTableView.scrollToRow(at: IndexPath(row: sectionIndex, section: 0), at: .middle, animated: true)
+            }else{
+                sectionsTableView.scrollToRow(at: IndexPath(row: sectionIndex + 1, section: 0), at: .middle, animated: true)
+            }
+        }
+        
+        
+    }
+}
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

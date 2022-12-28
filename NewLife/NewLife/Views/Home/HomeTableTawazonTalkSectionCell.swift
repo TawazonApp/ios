@@ -57,7 +57,6 @@ class HomeTableTawazonTalkSectionCell: UITableViewCell {
     }
     
     private func reloadData() {
-        print("data.Items: \(data?.items.count)")
         calculateCollectionHeight()
         DispatchQueue.main.async { [weak self] in
             self?.itemsCollection.reloadData()
@@ -89,15 +88,12 @@ class HomeTableTawazonTalkSectionCell: UITableViewCell {
 
 extension HomeTableTawazonTalkSectionCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("HomeTableTawazonTalkItemCollectionCell: \(data?.items.count)")
         return data?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTableTawazonTalkItemCollectionCell.identifier, for: indexPath) as! HomeTableTawazonTalkItemCollectionCell
-        print("items")
         cell.item = data?.items[safe: indexPath.item]
-        print("CELL")
         return cell
     }
     

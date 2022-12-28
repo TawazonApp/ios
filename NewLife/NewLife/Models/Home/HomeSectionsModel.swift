@@ -11,6 +11,7 @@ import Foundation
 struct HomeSectionsModel: Codable, ModelInitializable {
     let status: Bool
     let sections: [HomeSectionModel]
+    let pages: [PremiumPage]?
 }
 
 enum HomeSectionStyle: String, Codable {
@@ -38,6 +39,7 @@ struct HomeSectionModel: Codable, ModelInitializable {
     let sessions: [SessionModel]
     let items: [ItemModel]
     let style: HomeSectionStyle?
+    let type: Int
     let bannerType: HomeBannerStyle?
     let clickable: Bool?
     
@@ -48,6 +50,7 @@ struct HomeSectionModel: Codable, ModelInitializable {
         case sessions
         case items
         case style
+        case type
         case bannerType
         case buttonLabel = "button_label"
         case moreLabel = "more_label"

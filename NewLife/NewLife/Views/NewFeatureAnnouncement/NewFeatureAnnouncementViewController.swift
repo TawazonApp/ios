@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewFeatureAnnouncementDelegate: class {
+    func submitButtonTapped(feature: PremiumPage)
+}
+
 class NewFeatureAnnouncementViewController: UIViewController {
 
     @IBOutlet weak var backgroundView: GradientView!
@@ -22,10 +26,17 @@ class NewFeatureAnnouncementViewController: UIViewController {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    
+    var data: PremiumPage?
+    
+    var delegate: NewFeatureAnnouncementDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initialize()
+        fillData()
+        
     }
     
 
@@ -51,8 +62,8 @@ class NewFeatureAnnouncementViewController: UIViewController {
         featureImageView.contentMode  = .scaleAspectFill
         
         featureLogo.image = Language.language == .english ? UIImage(named: "TawazonTalkLogoEn") : UIImage(named: "TawazonTalkLogoAr")
-        featureLogo.contentMode = .center
-        featureLogo.clipsToBounds = false
+        featureLogo.contentMode = .scaleAspectFit
+        featureLogo.clipsToBounds = true
         
         featureTitle.font = .munaBlackFont(ofSize: 20)
         featureTitle.textColor = .white
@@ -73,12 +84,67 @@ class NewFeatureAnnouncementViewController: UIViewController {
         submitButton.titleLabel?.font = .munaBoldFont(ofSize: 22)
     }
 
+    private func fillData(){
+        guard let data = data else{
+            return
+        }
+        
+        newLabel.text = data.title
+        
+        featureImageView.image = nil
+        let loadingIndicator = UIActivityIndicatorView(style: .white)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        featureImageView.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: featureImageView.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: featureImageView.centerYAnchor).isActive = true
+        loadingIndicator.center = featureImageView.center
+        loadingIndicator.startAnimating()
+        
+        if let imageUrl = data.image?.url {
+            featureImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+            })
+        }
+        
+        featureTitle.text = data.featureTitle
+        contentLabel.text = data.content
+        noteLabel.text = data.subtitle
+        
+        submitButton.setTitle(data.continueLabel, for: .normal)
+        
+    }
+    
+    
+    @IBAction func closeButtonTapped(_ sender: UIButton){
+        submitInteract()
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: UIButton){
+        if let feature = data{
+            delegate?.submitButtonTapped(feature: feature)
+            submitInteract()
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
+    private func submitInteract(){
+        if let featureId = data?.id{
+            HomeServiceFactory.service().submitNewFeatureInteract(featureId: featureId){
+                error in
+            }
+        }
+        
+    }
 }
 
 extension NewFeatureAnnouncementViewController{
-    class func instatiate() -> NewFeatureAnnouncementViewController{
+    class func instatiate(data: PremiumPage) -> NewFeatureAnnouncementViewController{
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: NewFeatureAnnouncementViewController.identifier) as! NewFeatureAnnouncementViewController
+        viewController.data = data
         return viewController
     }
 }

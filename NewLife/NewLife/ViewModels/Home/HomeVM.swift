@@ -17,6 +17,8 @@ class HomeVM: NSObject {
         }
     }
     
+    var pages: [PremiumPage]?
+    
     private (set) var sections: [HomeSectionVM]?
     
     var isRamadan: Bool {
@@ -43,6 +45,7 @@ extension HomeVM {
     func getHomeSections(completion: @escaping (CustomError?) -> Void) {
         service.fetchHomeSections { [weak self] (sections, error) in
             self?.homeSections = sections?.sections
+            self?.pages = sections?.pages
             completion(error)
         }
     }

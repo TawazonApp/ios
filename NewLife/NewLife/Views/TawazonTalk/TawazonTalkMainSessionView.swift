@@ -32,7 +32,6 @@ class TawazonTalkMainSessionView: UIView{
     
     var talkItem: ItemVM?{
         didSet{
-            print("didSet")
             initializeValues()
         }
     }

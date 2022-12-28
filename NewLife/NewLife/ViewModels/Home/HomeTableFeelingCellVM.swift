@@ -93,7 +93,7 @@ class HomeTableFeelingCellVM {
                 let feelingsString = feelingsSessions.feelings?.compactMap({ $0.title }).joined(separator: "، ")
                 let title = "homeFeelingSubtitle".localized.replacingOccurrences(of: "{feel}", with: feelingsString ?? "")
                 //FIXME: need backend to sent the related tawazon talk for feeling
-                self?.sessionsSection = HomeSectionVM(id: "0", title: title, subTitle: nil, iconUrl: nil, sessions: feelingsSessions.items, items: [], style: .largeList, buttonLabel: "", moreLabel: "")
+                self?.sessionsSection = HomeSectionVM(id: "0", title: title, subTitle: nil, iconUrl: nil, sessions: feelingsSessions.items, items: [], style: .largeList, type: 0, buttonLabel: "", moreLabel: "")
             }
             completion(error)
         }

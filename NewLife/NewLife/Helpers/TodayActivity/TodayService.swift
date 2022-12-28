@@ -78,7 +78,6 @@ class APITodayService: TodayService {
     }
     func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void) {
         let url = Api.tawazonTalkViewUrl.replacingOccurrences(of: "{id}", with: id)
-        print("url: \(url)")
         ConnectionUtils.performGetRequest(url: url.url!, parameters: nil){(data, error) in
             var tawazonTalkModel: TawazonTalkModel?
             if let data = data{

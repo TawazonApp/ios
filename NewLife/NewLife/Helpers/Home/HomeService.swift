@@ -20,6 +20,8 @@ protocol HomeService {
     func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void)
     
     func trackSessionDidEnd(sessionId: String, duration: TimeInterval, completion: @escaping (_ error: CustomError?) -> Void)
+    
+    func submitNewFeatureInteract(featureId: String, completion: @escaping(_ error: CustomError?) -> Void)
 }
 
 class HomeServiceFactory {
@@ -92,6 +94,12 @@ class APIHomeService: HomeService {
         }
     }
 
+    func submitNewFeatureInteract(featureId: String, completion: @escaping(_ error: CustomError?) -> Void){
+        var url = Api.newFeatureInteract.replacingOccurrences(of: "{id}", with: featureId)
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil){ (data, error) in
+            completion(error)
+        }
+    }
 }
 
 

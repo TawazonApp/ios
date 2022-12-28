@@ -32,14 +32,8 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchTodaySections()
-        openNewFeatureViewcontroller()
     }
 
-    private func openNewFeatureViewcontroller(){
-        let viewcontroller = NewFeatureAnnouncementViewController.instatiate()
-        self.present(viewcontroller, animated: true)
-    }
-    
     private func initialize(){
         self.view.backgroundColor = .darkIndigoTwo
         
@@ -174,8 +168,7 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         case .userFeelingSessions:
             print("sessionsList")
         case .singleQuote:
-//            quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
-            openTawazonTalkVC()
+            quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
         case .tawazonTalk:
             print("tawazonTalk")
         case .none:

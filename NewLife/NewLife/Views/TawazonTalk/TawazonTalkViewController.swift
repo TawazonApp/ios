@@ -27,7 +27,6 @@ class TawazonTalkViewController: HandleErrorViewController {
     var tawazonTalkVM: TawazonTalkVM = TawazonTalkVM(service: TodayServiceCache.shared)
     var talkItem: ItemVM?{
         didSet{
-            print("didSet")
             fetchData()
         }
     }
@@ -96,10 +95,8 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func fetchData(){
-        print("talkId: \(talkItem?.id)")
         if let talkId = talkItem?.id{
             tawazonTalkVM.getTawazonTalkDetails(Id: talkId){ error in
-                print("DONE")
                 if let error = error{
                     self.showErrorMessage(message: error.localizedDescription)
                     return

@@ -9,6 +9,8 @@
 import Foundation
 
 class HomeServiceCache: HomeService {
+    
+    
    
     var service: HomeService
         
@@ -91,6 +93,9 @@ class HomeServiceCache: HomeService {
         service.trackSessionDidEnd(sessionId: sessionId, duration: duration, completion: completion)
     }
     
+    func submitNewFeatureInteract(featureId: String, completion: @escaping (CustomError?) -> Void) {
+        service.submitNewFeatureInteract(featureId: featureId, completion: completion)
+    }
     func resetCache() {
         lastCachedData = nil
         feelingSessions = nil

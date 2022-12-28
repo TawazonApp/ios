@@ -22,13 +22,11 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
     
     var item: ItemVM? {
         didSet {
-            print("didSet")
             fillData()
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("awakeFromNib")
         initialize()
     }
     
@@ -76,7 +74,6 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
     }
     
     private func fillData() {
-        print("fillData: \(item?.title)")
         itemImageView.image = nil
         let loadingIndicator = UIActivityIndicatorView(style: .white)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
