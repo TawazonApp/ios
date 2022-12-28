@@ -37,7 +37,7 @@ class SearchTableViewCell: UITableViewCell {
         iconImage.layer.cornerRadius = 20
         iconImage.layer.masksToBounds = true
         iconImage.clipsToBounds = true
-        iconImage.contentMode = .center
+        iconImage.contentMode = .scaleAspectFill
         iconImage.backgroundColor = .clear
         
         titleLabel.font = .lbcBold(ofSize: 16.0)

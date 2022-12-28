@@ -42,5 +42,8 @@ enum TodaySectionStyle: String, Codable {
 
 struct ItemModel: Codable, ModelInitializable{
     let id: String
-    let title, image, content, authorName: String?
+    let title, image, thumbnail, content, authorName: String?
+    let paletteColor: String?
+    let author: Contributor?
+    let mainItem: SessionModel?
 }

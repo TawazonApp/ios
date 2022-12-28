@@ -30,6 +30,13 @@ class TawazonTalkMainSessionView: UIView{
         }
     }
     
+    var talkItem: ItemVM?{
+        didSet{
+            print("didSet")
+            initializeValues()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -63,6 +70,22 @@ class TawazonTalkMainSessionView: UIView{
         playButton.tintColor = .white
         playButton.layer.cornerRadius = playButton.frame.height/2
         playButton.applyGradientColor(colors: [UIColor.cyprus.cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .right, endPoint: .left)
+        
+        
+    }
+    
+    private func initializeValues() {
+        mainSessionTitleLabel.text = talkItem?.title
+        mainSessionSubtitleLabel.text = talkItem?.content
+        
+        authorImageView.image = nil
+        
+        if let imageUrl = talkItem?.author?.image?.url {
+            authorImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+            })
+        }
+        authorNameLabel.text = talkItem?.author?.name
+        playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((talkItem?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((talkItem?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .bottomLeft, endPoint: .topRight)
     }
     
     override func layoutSubviews() {

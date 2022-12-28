@@ -32,8 +32,14 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchTodaySections()
+        openNewFeatureViewcontroller()
     }
 
+    private func openNewFeatureViewcontroller(){
+        let viewcontroller = NewFeatureAnnouncementViewController.instatiate()
+        self.present(viewcontroller, animated: true)
+    }
+    
     private func initialize(){
         self.view.backgroundColor = .darkIndigoTwo
         
@@ -217,10 +223,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
     private func openTawazonTalkVC(){
 //        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
         
-        let viewController = TawazonTalkViewController.instantiate(talkId: "7600")
-        viewController.modalPresentationStyle = .custom
-        viewController.transitioningDelegate = self
-        self.present(viewController, animated: true, completion: nil)
+//        let viewController = TawazonTalkViewController.instantiate(talkItem: "7600")
+//        viewController.modalPresentationStyle = .custom
+//        viewController.transitioningDelegate = self
+//        self.present(viewController, animated: true, completion: nil)
     }
 }
 extension TodayActivityViewController: TodaySessionsCellDelegate{

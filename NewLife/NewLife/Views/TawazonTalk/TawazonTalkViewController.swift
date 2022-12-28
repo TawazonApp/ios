@@ -25,7 +25,7 @@ class TawazonTalkViewController: HandleErrorViewController {
     @IBOutlet weak var talkItemsTable: UITableView!
     
     var tawazonTalkVM: TawazonTalkVM = TawazonTalkVM(service: TodayServiceCache.shared)
-    var talkId: String?{
+    var talkItem: ItemVM?{
         didSet{
             print("didSet")
             fetchData()
@@ -65,9 +65,28 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         talkItemsTable.backgroundColor = .clear
         talkItemsTable.contentInset = UIEdgeInsets(top: mainTalkSessionView.frame.height / 2, left: 0, bottom: 0, right: 0)
-        
+        initializeValues()
     }
-    
+    private func initializeValues(){
+        talkBackgroundImage.image = nil
+        let loadingIndicator = UIActivityIndicatorView(style: .white)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        talkBackgroundImage.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: talkBackgroundImage.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: talkBackgroundImage.centerYAnchor).isActive = true
+        loadingIndicator.center = talkBackgroundImage.center
+        loadingIndicator.startAnimating()
+
+        if let imageUrl = talkItem?.image?.url {
+            talkBackgroundImage.af.setImage(withURL: imageUrl, completion:  { (_) in
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+            })
+
+        }
+        mainTalkSessionView.talkItem = talkItem
+        mainTalkSessionView.delegate = self
+    }
     private func initializeNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showSessionPlayerBar(_:)), name: NSNotification.Name.showSessionPlayerBar
             , object: nil)
@@ -77,8 +96,8 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func fetchData(){
-        print("talkId: \(talkId)")
-        if let talkId = talkId{
+        print("talkId: \(talkItem?.id)")
+        if let talkId = talkItem?.id{
             tawazonTalkVM.getTawazonTalkDetails(Id: talkId){ error in
                 print("DONE")
                 if let error = error{
@@ -91,22 +110,22 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func fillData(){
-        talkBackgroundImage.image = nil
-        let loadingIndicator = UIActivityIndicatorView(style: .white)
-        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        talkBackgroundImage.addSubview(loadingIndicator)
-        loadingIndicator.centerXAnchor.constraint(equalTo: talkBackgroundImage.centerXAnchor).isActive = true
-        loadingIndicator.centerYAnchor.constraint(equalTo: talkBackgroundImage.centerYAnchor).isActive = true
-        loadingIndicator.center = talkBackgroundImage.center
-        loadingIndicator.startAnimating()
-        
-        if let imageUrl = tawazonTalkVM.image?.url {
-            talkBackgroundImage.af.setImage(withURL: imageUrl, completion:  { (_) in
-                loadingIndicator.stopAnimating()
-                loadingIndicator.removeFromSuperview()
-            })
-            
-        }
+//        talkBackgroundImage.image = nil
+//        let loadingIndicator = UIActivityIndicatorView(style: .white)
+//        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        talkBackgroundImage.addSubview(loadingIndicator)
+//        loadingIndicator.centerXAnchor.constraint(equalTo: talkBackgroundImage.centerXAnchor).isActive = true
+//        loadingIndicator.centerYAnchor.constraint(equalTo: talkBackgroundImage.centerYAnchor).isActive = true
+//        loadingIndicator.center = talkBackgroundImage.center
+//        loadingIndicator.startAnimating()
+//
+//        if let imageUrl = tawazonTalkVM.image?.url {
+//            talkBackgroundImage.af.setImage(withURL: imageUrl, completion:  { (_) in
+//                loadingIndicator.stopAnimating()
+//                loadingIndicator.removeFromSuperview()
+//            })
+//
+//        }
         mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
 
@@ -276,10 +295,10 @@ extension TawazonTalkViewController:  MainPlayerBarViewDelegate {
 
 extension TawazonTalkViewController {
     
-    class func instantiate(talkId: String) -> TawazonTalkViewController {
+    class func instantiate(talkItem: ItemVM) -> TawazonTalkViewController {
         let storyboard = UIStoryboard(name: "TodayActivity", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: TawazonTalkViewController.identifier) as! TawazonTalkViewController
-        viewController.talkId = talkId
+        viewController.talkItem = talkItem
         return viewController
     }
 }

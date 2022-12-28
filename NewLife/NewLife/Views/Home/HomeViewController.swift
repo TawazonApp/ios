@@ -54,8 +54,13 @@ class HomeViewController: SoundEffectsPresenterViewController {
         updateBackgroundSoundStyle()
         reduceVoulme(volume: Constants.backgroundMusicLevel)
         setGuidedTourKeys()
+        openNewFeatureViewcontroller()
     }
     
+    private func openNewFeatureViewcontroller(){
+        let viewcontroller = NewFeatureAnnouncementViewController.instatiate()
+        self.present(viewcontroller, animated: true)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         requestNotificationPermission += 1
@@ -513,7 +518,7 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     private func openTawazonTalkVC(item: ItemVM){
 //        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
         
-        let viewController = TawazonTalkViewController.instantiate(talkId: item.id)
+        let viewController = TawazonTalkViewController.instantiate(talkItem: item)
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)
