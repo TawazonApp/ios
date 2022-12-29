@@ -68,8 +68,7 @@ class TawazonTalkMainSessionView: UIView{
         playButton.imageView?.contentMode = .scaleAspectFill
         playButton.tintColor = .white
         playButton.layer.cornerRadius = playButton.frame.height/2
-        playButton.applyGradientColor(colors: [UIColor.cyprus.cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .right, endPoint: .left)
-        
+        playButton.applyGradientColor(colors: [UIColor.jellyBean.cgColor, UIColor.jellyBean.cgColor, UIColor.gainsboro.cgColor], startPoint: .right, endPoint: .left)
         
     }
     
@@ -84,11 +83,17 @@ class TawazonTalkMainSessionView: UIView{
             })
         }
         authorNameLabel.text = talkItem?.author?.name
-        playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((talkItem?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((talkItem?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .bottomLeft, endPoint: .topRight)
+        if let colorHex = talkItem?.paletteColor{
+            playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: .bottomLeft, endPoint: .topRight)
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        customLayoutSubviews()
+    }
+    
+    private func customLayoutSubviews(){
         mainTalkSessionTriangleBlurView.mask = mainTalkSessionTriangleView
         if #available(iOS 13.0, *) {
             mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
@@ -96,8 +101,9 @@ class TawazonTalkMainSessionView: UIView{
             // Fallback on earlier versions
             mainTalkSessionTriangleBlurView.effect = UIBlurEffect(style: .dark)
         }
+        playButton.layoutIfNeeded()
+        playButton.layer.cornerRadius = playButton.frame.height/2
     }
-    
     private func setData() {
         mainSessionTitleLabel.text = tawazonTalkVM?.title
         mainSessionSubtitleLabel.text = tawazonTalkVM?.content
@@ -118,7 +124,10 @@ class TawazonTalkMainSessionView: UIView{
             })
         }
         authorNameLabel.text = tawazonTalkVM?.author?.name
-        playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((tawazonTalkVM?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((tawazonTalkVM?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .bottomLeft, endPoint: .topRight)
+//        if let colorHex = tawazonTalkVM?.paletteColor{
+//            playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: .bottomLeft, endPoint: .topRight)
+//        }
+        
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton){

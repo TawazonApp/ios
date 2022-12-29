@@ -38,8 +38,16 @@ class NewFeatureAnnouncementViewController: UIViewController {
         fillData()
         
     }
-    
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        customLayoutSubviews()
+    }
+
+    private func customLayoutSubviews(){
+        backgroundView.layoutIfNeeded()
+        backgroundView.gradientBorder(width: 0.5, colors: [.white.withAlphaComponent(0.59), .white.withAlphaComponent(0)], startPoint: .topRight, endPoint: .bottomLeft, andRoundCornersWithRadius: 24)
+    }
     private func initialize(){
         view.backgroundColor = .cyprus.withAlphaComponent(0.72)
         
@@ -48,6 +56,11 @@ class NewFeatureAnnouncementViewController: UIViewController {
         backgroundView.clipsToBounds = true
         backgroundView.gradientBorder(width: 0.5, colors: [.white.withAlphaComponent(0.59), .white.withAlphaComponent(0)], startPoint: .topRight, endPoint: .bottomLeft, andRoundCornersWithRadius: 24)
         
+        if #available(iOS 13.0, *) {
+            blurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
+        } else {
+            // Fallback on earlier versions
+        }
         gradientBlurView.applyGradientColor(colors: [UIColor.heliotropeTwo.withAlphaComponent(0.2).cgColor, UIColor.white.withAlphaComponent(0.2).cgColor, UIColor.white.withAlphaComponent(0.2).cgColor], startPoint: .topRight, endPoint: .bottomLeft)
         
         closeButton.setImage(UIImage(named: "Cancel"), for: .normal)

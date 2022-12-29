@@ -62,6 +62,7 @@ class TodayActivityFeelingSessionsTableViewCell: UITableViewCell {
         cellView.backgroundColor = .gulfBlue.withAlphaComponent(0.4)
         cellView.roundCorners(corners: .allCorners, radius: 24)
         cellView.layer.cornerRadius = 24
+        cellView.clipsToBounds = true
         cellView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .left, endPoint: .right, andRoundCornersWithRadius: 24.0)
         
         cellTitleLabel.font = .munaFont(ofSize: 15)

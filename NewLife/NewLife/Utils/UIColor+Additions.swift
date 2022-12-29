@@ -586,6 +586,10 @@ extension UIColor {
     class var chambray: UIColor{
         return UIColor(red: 63 / 255.0, green: 94 / 255.0, blue: 123 / 255.0, alpha: 1.0)
     }
+    class var jellyBean: UIColor{
+        return UIColor(red: 68 / 255.0, green: 122 / 255.0, blue: 149 / 255.0, alpha: 1.0)
+    }
+
 }
 
 

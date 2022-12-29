@@ -248,7 +248,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
     
     private func openNewFeatureViewcontrollerIfNeeded(){
         if let page = home.pages?[0]{
-            if page.showPopup {
+            if page.showPopup ?? false {
                let viewcontroller = NewFeatureAnnouncementViewController.instatiate(data: page)
                viewcontroller.modalPresentationStyle = .custom
                viewcontroller.transitioningDelegate = self
@@ -316,15 +316,13 @@ class HomeViewController: SoundEffectsPresenterViewController {
 }
 extension HomeViewController: NewFeatureAnnouncementDelegate{
     func submitButtonTapped(feature: PremiumPage) {
-        if let sectionIndex = home.sections?.firstIndex(where: {$0.type == feature.sectionType}){
+        if let sectionIndex = home.sections?.firstIndex(where: {$0.id == feature.action?.entityId}){
             if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
                 sectionsTableView.scrollToRow(at: IndexPath(row: sectionIndex, section: 0), at: .middle, animated: true)
             }else{
                 sectionsTableView.scrollToRow(at: IndexPath(row: sectionIndex + 1, section: 0), at: .middle, animated: true)
             }
         }
-        
-        
     }
 }
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -593,6 +591,7 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     }
     
     private func openSectionView(_ section: HomeSectionVM) {
+        print("categoryId: \(section.categoryId)")
         if let categoryId = section.categoryId,
            let tabBarId = MainTabBarView.tabBarItemsIds.getItemId(forCategory: categoryId) {
             (tabBarController as? MainTabBarController)?.openCategory(categoryId: tabBarId.rawValue)

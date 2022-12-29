@@ -47,7 +47,7 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         
         gradientView.layer.cornerRadius = 32
         gradientView.clipsToBounds = true
-        gradientView.applyGradientColor(colors: [UIColor.cyprus.cgColor, UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: .left, endPoint: .right)
+        gradientView.applyGradientColor(colors: [UIColor.jellyBean.cgColor,UIColor.jellyBean.cgColor, UIColor.gainsboro.cgColor], startPoint: Language.language == .arabic ? .right : .left, endPoint: Language.language == .arabic ? .left : .right)
         
         itemImageViewMask.image = UIImage(named: "TawazonTalkItemMask")
         itemImageViewMask.contentMode = .scaleAspectFill
@@ -60,7 +60,7 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         frameComponent2.contentMode = .scaleAspectFill
         
         itemImageView.contentMode = .scaleAspectFill
-        itemImageView.backgroundColor = .yellow
+        itemImageView.backgroundColor = .clear
 //        itemImageView.isHidden = true
         
         itemTitleLabel.font = UIFont.munaBoldFont(ofSize: 24)
@@ -88,7 +88,7 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
                 loadingIndicator.stopAnimating()
                 loadingIndicator.removeFromSuperview()
                 self.customLayout()
-                self.itemImageView.backgroundColor = .yellow
+                self.itemImageView.backgroundColor = .clear
             })
             
         }
@@ -96,7 +96,9 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         itemTitleLabel.text = item?.title
         itemContentLabel.text = item?.content
         
-        gradientView.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((item?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((item?.paletteColor?.dropFirst(1))!)), radix: 16) ?? 111111).cgColor,  UIColor(hex6: UInt32(String(("#D9D9D9".dropFirst(1))), radix: 16) ?? 000000).cgColor], startPoint: Language.language == .arabic ? .right : .left, endPoint: Language.language == .arabic ? .left : .right)
+        if let colorHex = item?.paletteColor{
+            gradientView.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: Language.language == .arabic ? .right : .left, endPoint: Language.language == .arabic ? .left : .right)
+        }
         
 //        lockImageView.isHidden = !(session?.isLock ?? false)
 //        if session?.session?.type != SessionType.music.rawValue{

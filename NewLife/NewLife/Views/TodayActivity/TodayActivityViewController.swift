@@ -133,6 +133,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityQuoteTableViewCell.identifier) as! TodayActivityQuoteTableViewCell
             sectionCell.section = todayVM.sections?[indexPath.row]
             cell = sectionCell
+        }else if todayVM.sections?[indexPath.row].style == .singleTalk{
+            let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityTawazonTalkTableViewCell.identifier) as! TodayActivityTawazonTalkTableViewCell
+            sectionCell.section = todayVM.sections?[indexPath.row]
+            cell = sectionCell
         }else{
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityGeneralTableViewCell.identifier) as! TodayActivityGeneralTableViewCell
             sectionCell.section = todayVM.sections?[indexPath.row]
@@ -169,8 +173,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
             print("sessionsList")
         case .singleQuote:
             quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
-        case .tawazonTalk:
-            print("tawazonTalk")
+        case .singleTalk:
+            if let item = section?.items?.first{
+                openTawazonTalkVC(item: item)
+            }
         case .none:
             print("none")
         }
@@ -213,13 +219,12 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    private func openTawazonTalkVC(){
-//        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
+    private func openTawazonTalkVC(item: ItemVM){
         
-//        let viewController = TawazonTalkViewController.instantiate(talkItem: "7600")
-//        viewController.modalPresentationStyle = .custom
-//        viewController.transitioningDelegate = self
-//        self.present(viewController, animated: true, completion: nil)
+        let viewController = TawazonTalkViewController.instantiate(talkItem: item)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 extension TodayActivityViewController: TodaySessionsCellDelegate{

@@ -26,9 +26,9 @@ struct PremiumPage: Codable {
     let title, subtitle, content, continueLabel: String
     let featureItems: [FeatureItem]
     let type: String?
-    let showPopup: Bool
+    let showPopup: Bool?
     let featureTitle: String?
-    let sectionType: Int
+    let action: Action?
 
     enum CodingKeys: String, CodingKey {
         case id, image, title, subtitle, content
@@ -37,10 +37,14 @@ struct PremiumPage: Codable {
         case type
         case showPopup
         case featureTitle
-        case sectionType
+        case action
     }
 }
-
+// MARK: - Action
+struct Action: Codable {
+    let type: String?
+    let entityId: String?
+}
 // MARK: - Item
 struct FeatureItem: Codable {
     let id: String

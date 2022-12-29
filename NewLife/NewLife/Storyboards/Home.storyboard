@@ -2870,15 +2870,6 @@
                                                         <constraint firstAttribute="width" constant="14" id="Ukm-cw-QDg"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufx-zw-PNj">
-                                                    <rect key="frame" x="16" y="84" width="41.5" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="1sG-pE-jeN"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Q1z-93-Z3q" secondAttribute="trailing" id="1Vd-vb-K3S"/>
@@ -2890,7 +2881,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="gEY-nv-oru" secondAttribute="trailing" id="Yje-ra-fqc"/>
                                                 <constraint firstItem="F8T-VF-OVc" firstAttribute="width" secondItem="yVq-50-uXa" secondAttribute="width" id="Yr2-P0-ffB"/>
                                                 <constraint firstAttribute="bottom" secondItem="Tyh-Xa-GsX" secondAttribute="bottom" id="ZPl-Xg-dui"/>
-                                                <constraint firstItem="Ufx-zw-PNj" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" constant="16" id="d8C-pb-iGz"/>
                                                 <constraint firstAttribute="trailing" secondItem="yVq-50-uXa" secondAttribute="trailing" constant="16" id="dOr-Lk-TQK"/>
                                                 <constraint firstAttribute="trailing" secondItem="Tyh-Xa-GsX" secondAttribute="trailing" id="e74-MZ-qu8"/>
                                                 <constraint firstItem="gEY-nv-oru" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="fNk-vr-KRf"/>
@@ -2899,7 +2889,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="gEY-nv-oru" secondAttribute="bottom" id="lH5-Qf-tgZ"/>
                                                 <constraint firstItem="Tyh-Xa-GsX" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="mHz-jO-ynq"/>
                                                 <constraint firstItem="Q1z-93-Z3q" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="of2-ag-3MJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ufx-zw-PNj" secondAttribute="bottom" constant="16" id="pvh-ZL-Jc1"/>
                                                 <constraint firstItem="gEY-nv-oru" firstAttribute="top" secondItem="zy2-Bd-gBr" secondAttribute="top" id="r8D-LN-xcj"/>
                                                 <constraint firstAttribute="bottom" secondItem="XOh-bQ-knC" secondAttribute="bottom" id="tj4-w6-kiX"/>
                                                 <constraint firstItem="XOh-bQ-knC" firstAttribute="leading" secondItem="zy2-Bd-gBr" secondAttribute="leading" id="xbE-4p-G65"/>
@@ -2908,7 +2897,6 @@
                                         <size key="customSize" width="300" height="116"/>
                                         <connections>
                                             <outlet property="blurView" destination="Tyh-Xa-GsX" id="4Td-ae-gn3"/>
-                                            <outlet property="durationLabel" destination="Ufx-zw-PNj" id="yEz-UU-ZcN"/>
                                             <outlet property="imageView" destination="Q1z-93-Z3q" id="98N-e0-lfS"/>
                                             <outlet property="languageImageView" destination="DiF-Fi-frC" id="E6O-C0-JlP"/>
                                             <outlet property="lockImageView" destination="yVq-50-uXa" id="6WL-HF-j0Z"/>

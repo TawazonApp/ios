@@ -75,6 +75,7 @@ class HomeTableTawazonTalkSectionCell: UITableViewCell {
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
+        print("SECTION: \(data?.id)")
         delegate?.sectionTapped(self, section: data)
     }
     
