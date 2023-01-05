@@ -35,7 +35,7 @@ class APIHomeService: HomeService {
 
     
     func fetchHomeSections(completion: @escaping (_ sections: HomeSectionsModel?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrlV2_2.url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.homeSectionsWithBannersUrlV2_3.url!, parameters: nil) { (data, error) in
             
             var model: HomeSectionsModel?
             if let data = data {
@@ -46,7 +46,7 @@ class APIHomeService: HomeService {
     }
     
     func getFeelingSessions(completion: @escaping (_ section: FeelingsSessions?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.feelingsSessions.url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.feelingsSessionsV2_3.url!, parameters: nil) { (data, error) in
             var model: FeelingsSessions?
             if let data = data {
                 model = FeelingsSessions(data: data)
@@ -73,7 +73,7 @@ class APIHomeService: HomeService {
     }
     
     func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void) {
-        var urlString = Api.sectionSessionsV2_1.replacingOccurrences(of: "{id}", with: sectionId)
+        var urlString = Api.sectionSessionsV2_3.replacingOccurrences(of: "{id}", with: sectionId)
         urlString = "\(urlString)?page=\(page)&limit=\(pageSize)"
         if type == .subCategory {
             urlString = Api.subCategorySectionSessionsListUrl.replacingOccurrences(of: "{categoryID}", with: sectionId)

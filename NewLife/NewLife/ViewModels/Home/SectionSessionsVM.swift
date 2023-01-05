@@ -11,9 +11,11 @@ import Foundation
 class SectionSessionsVM {
     
     var sessions: [HomeSessionVM] = []
+    var items: [ItemVM] = []
     private let homeService: HomeService
     var name: String
     var id: String
+    var type: Int?
     
     var pageSize: Int = 20
     var pagingData = (page: 1, processing: false, hasMore: true)
@@ -38,6 +40,7 @@ class SectionSessionsVM {
         homeService.getSectionSessions(sectionId: self.id, type: type, page: page, pageSize: pageSize) { [weak self] (section, error) in
             self?.sessions = section?.items.map({ HomeSessionVM(session: $0 )}) ?? []
             self?.name = section?.section.name ?? ""
+            self?.type = section?.section.type
             self?.pagingData.hasMore = section?.pagination.hasMore ?? false
             self?.pagingData.page = section?.pagination.currentPage ?? 1
             self?.pagingData.processing = false

@@ -55,7 +55,7 @@ class SearchTableViewCell: UITableViewCell {
     
     func fillData()  {
         titleLabel.text = session.name
-        durationLabel.text = session.durationString
+        durationLabel.text = session?.session?.type != SessionType.talk.rawValue ? session.durationString : ""
         iconImage.image = nil
         if let imageUrl = session.imageUrl?.url {
             iconImage.af.setImage(withURL: imageUrl)
@@ -64,12 +64,16 @@ class SearchTableViewCell: UITableViewCell {
         }
         
         premiumIcon.image = nil
-        premiumIcon.image = session.isLock ? UIImage(named: "SessionLock") : nil
-       
+        if session?.session?.type != SessionType.talk.rawValue {
+            premiumIcon.image = session.isLock ? UIImage(named: "SessionLock") : nil
+        }
         if session?.session?.type != SessionType.music.rawValue{
             if(session?.audioSources?.count ?? 0 > 1){
                 languageImageView.image = UIImage(named: "SessionArEn")
-            }else{
+            }else if (session?.audioSources?.count ?? 0 == 0){
+                languageImageView.image = UIImage(named: "SessionAr")
+            }
+            else{
                 if session?.audioSources?[0].code.lowercased() == "ar"{
                     languageImageView.image = UIImage(named: "SessionAr")
                 }else{

@@ -77,7 +77,6 @@ class TawazonTalkMainSessionView: UIView{
         mainSessionSubtitleLabel.text = talkItem?.content
         
         authorImageView.image = nil
-        
         if let imageUrl = talkItem?.author?.image?.url {
             authorImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
             })
@@ -104,29 +103,20 @@ class TawazonTalkMainSessionView: UIView{
         playButton.layoutIfNeeded()
         playButton.layer.cornerRadius = playButton.frame.height/2
     }
+    
     private func setData() {
-        mainSessionTitleLabel.text = tawazonTalkVM?.title
-        mainSessionSubtitleLabel.text = tawazonTalkVM?.content
+//        mainSessionTitleLabel.text = tawazonTalkVM?.title
+//        mainSessionSubtitleLabel.text = tawazonTalkVM?.content
         
         authorImageView.image = nil
-        let loadingIndicator = UIActivityIndicatorView(style: .white)
-        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        authorImageView.addSubview(loadingIndicator)
-        loadingIndicator.centerXAnchor.constraint(equalTo: authorImageView.centerXAnchor).isActive = true
-        loadingIndicator.centerYAnchor.constraint(equalTo: authorImageView.centerYAnchor).isActive = true
-        loadingIndicator.center = authorImageView.center
-        loadingIndicator.startAnimating()
-        
         if let imageUrl = tawazonTalkVM?.author?.image?.url {
             authorImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
-                loadingIndicator.stopAnimating()
-                loadingIndicator.removeFromSuperview()
             })
         }
         authorNameLabel.text = tawazonTalkVM?.author?.name
-//        if let colorHex = tawazonTalkVM?.paletteColor{
-//            playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: .bottomLeft, endPoint: .topRight)
-//        }
+        if let colorHex = tawazonTalkVM?.paletteColor{
+            playButton.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: .bottomLeft, endPoint: .topRight)
+        }
         
     }
     

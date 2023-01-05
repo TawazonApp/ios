@@ -244,6 +244,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         if session?.session != nil {
             if session?.session?.type == SessionType.series.rawValue {
                 openSeriesView(seriesId: session!.session!.id, session: session!.session!)
+            }else if session?.session?.type == SessionType.talk.rawValue {
+                if let sessionModel = session?.session{
+                    let item = ItemVM(id: sessionModel.id, title: sessionModel.name, image: sessionModel.imageUrl, thumbnail: sessionModel.thumbnailUrl, content: sessionModel.descriptionString, authorName: sessionModel.author, paletteColor: nil, author: nil, mainItem: nil)
+                    openTawazonTalkVC(item: item)
+                }
             }else{
                 playSession(session!)
             }
@@ -341,6 +346,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         let viewController = SeriesViewController.instantiate(seriesId: seriesId, seriesSession: session)
         self.present(viewController, animated: true)
     }
+    
+    private func openTawazonTalkVC(item: ItemVM){
+//        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
+        
+        let viewController = TawazonTalkViewController.instantiate(talkItem: item)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
 }
 extension SearchViewController: SessionPlayerDelegate {
     func sessionStoped(_ session: SessionVM) {

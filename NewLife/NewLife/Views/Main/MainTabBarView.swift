@@ -43,7 +43,7 @@ class MainTabBarView: UIView {
         case podcasts = "4"
         case children = "5"
         static let allCases:[tabBarItemsIds] = [.home,.music, .meditations, .podcasts, .children]
-        static let allDailyActivityCases:[tabBarItemsIds] = [.todayActivity, .home, .meditations, .podcasts, .children]
+        static let allDailyActivityCases:[tabBarItemsIds] = [.home, .todayActivity, .meditations, .podcasts, .children]
         
         static func getItemId(forCategory categoryId: String) -> tabBarItemsIds? {
            let categoryId = CategoryIds(rawValue: categoryId)

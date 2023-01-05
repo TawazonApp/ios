@@ -12,6 +12,7 @@ enum SessionType: String {
     case music = "music"
     case series = "series"
     case meditation = "meditation"
+    case talk = "tawazonTalk"
 }
 struct SessionModel: Codable {
     

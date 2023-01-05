@@ -44,7 +44,7 @@ class APITodayService: TodayService {
     }
     
     func getFeelingSessions(completion: @escaping (_ section: FeelingsSessions?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.feelingsSessions.url!, parameters: nil) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.feelingsSessionsV2_3.url!, parameters: nil) { (data, error) in
             var model: FeelingsSessions?
             if let data = data {
                 model = FeelingsSessions(data: data)

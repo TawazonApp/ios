@@ -18,12 +18,12 @@
                     </tabBar>
                     <connections>
                         <outlet property="mainTabBar" destination="8cd-E8-jsy" id="ujc-wF-xW8"/>
-                        <segue destination="BaG-iC-Jan" kind="relationship" relationship="viewControllers" id="hJP-mo-psZ"/>
-                        <segue destination="pCu-fK-lhk" kind="relationship" relationship="viewControllers" id="Qfh-Fr-Hre"/>
-                        <segue destination="LHc-VX-ypB" kind="relationship" relationship="viewControllers" id="CME-yz-ikU"/>
-                        <segue destination="C3Y-BC-9Kw" kind="relationship" relationship="viewControllers" id="BMR-cb-YbG"/>
-                        <segue destination="ROH-sQ-8a8" kind="relationship" relationship="viewControllers" id="rkR-mg-pxf"/>
-                        <segue destination="lqa-cJ-Dhb" kind="relationship" relationship="viewControllers" id="vbg-aV-z7w"/>
+                        <segue destination="pCu-fK-lhk" kind="relationship" relationship="viewControllers" id="fYM-JM-IvQ"/>
+                        <segue destination="BaG-iC-Jan" kind="relationship" relationship="viewControllers" id="R1C-j9-LaY"/>
+                        <segue destination="LHc-VX-ypB" kind="relationship" relationship="viewControllers" id="9tL-gc-OTH"/>
+                        <segue destination="C3Y-BC-9Kw" kind="relationship" relationship="viewControllers" id="mRW-EW-DRF"/>
+                        <segue destination="ROH-sQ-8a8" kind="relationship" relationship="viewControllers" id="ynu-CR-vvG"/>
+                        <segue destination="lqa-cJ-Dhb" kind="relationship" relationship="viewControllers" id="VQe-Sl-pPz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4x-gF-5vg" userLabel="First Responder" sceneMemberID="firstResponder"/>

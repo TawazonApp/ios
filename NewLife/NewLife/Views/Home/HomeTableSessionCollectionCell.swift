@@ -40,6 +40,7 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         
         lockImageView.contentMode = .center
         lockImageView.image = #imageLiteral(resourceName: "SessionLock.pdf")
+        lockImageView.isHidden = true
         
         nameLabel.font = UIFont.lbcBold(ofSize: 16)
         nameLabel.textColor = UIColor.white
@@ -72,12 +73,16 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         
         nameLabel.text = session?.name
 //        durationLabel.text = session?.durationString
-        
-        lockImageView.isHidden = !(session?.isLock ?? false)
+        if session?.session?.type != SessionType.talk.rawValue {
+            lockImageView.isHidden = !(session?.isLock ?? false)
+        }
         if session?.session?.type != SessionType.music.rawValue{
             if(session?.audioSources?.count ?? 0 > 1){
                 languageImageView.image = UIImage(named: "SessionArEn")
-            }else{
+            }else if (session?.audioSources?.count == 0){
+                languageImageView.image = UIImage(named: "SessionAr")
+            }
+            else{
                 if session?.audioSources?[0].code.lowercased() == "ar"{
                     languageImageView.image = UIImage(named: "SessionAr")
                 }else{

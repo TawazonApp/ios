@@ -591,7 +591,6 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     }
     
     private func openSectionView(_ section: HomeSectionVM) {
-        print("categoryId: \(section.categoryId)")
         if let categoryId = section.categoryId,
            let tabBarId = MainTabBarView.tabBarItemsIds.getItemId(forCategory: categoryId) {
             (tabBarController as? MainTabBarController)?.openCategory(categoryId: tabBarId.rawValue)

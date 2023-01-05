@@ -378,7 +378,7 @@ extension MainTabBarController {
         if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
             viewController.viewControllers?.remove(at: 2)
         }else{
-            viewController.viewControllers?.remove(at: 0)
+            viewController.viewControllers?.remove(at: 1)
         }
         return viewController
     }

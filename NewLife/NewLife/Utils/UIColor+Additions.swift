@@ -402,6 +402,10 @@ extension UIColor {
         return UIColor(red: 16.0 / 255.0, green: 39.0 / 255.0, blue: 91.0 / 255.0, alpha: 1.0)
     }
     
+    class var midnightBlueTwo: UIColor {
+        return UIColor(red: 17 / 255.0, green: 25 / 255.0, blue: 66 / 255.0, alpha: 1.0)
+    }
+    
     class var dusk: UIColor {
         return UIColor(red: 62.0 / 255.0, green: 60.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
     }
@@ -590,6 +594,9 @@ extension UIColor {
         return UIColor(red: 68 / 255.0, green: 122 / 255.0, blue: 149 / 255.0, alpha: 1.0)
     }
 
+    class var paua: UIColor{
+        return UIColor(red: 35 / 255.0, green: 43 / 255.0, blue: 80 / 255.0, alpha: 1.0)
+    }
 }
 
 

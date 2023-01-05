@@ -64,7 +64,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         favoriteButton!.layer.cornerRadius = (favoriteButton?.frame.height ?? 0) / 2
         favoriteButton!.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
-        if session?.audioSources?.count ?? 0 == 1 && session?.audioSources?.first?.dialects.count == 1{
+        if session?.session?.type == SessionType.music.rawValue{
             voiceAndDialectsButton.isHidden = true
             footerControlsStack.removeArrangedSubview(voiceAndDialectsButton)
         }

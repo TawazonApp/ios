@@ -84,6 +84,7 @@ class TawazonTalkViewController: HandleErrorViewController {
 
         }
         mainTalkSessionView.talkItem = talkItem
+//        mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
     }
     private func initializeNotification() {

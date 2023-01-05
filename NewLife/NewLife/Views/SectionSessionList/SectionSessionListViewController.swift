@@ -215,6 +215,13 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
             openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return
         }
+        if session.session?.type == SessionType.talk.rawValue {
+            if let sessionModel = session.session{
+                let item = ItemVM(id: sessionModel.id, title: sessionModel.name, image: sessionModel.imageUrl, thumbnail: sessionModel.thumbnailUrl, content: sessionModel.descriptionString, authorName: sessionModel.author, paletteColor: nil, author: nil, mainItem: nil)
+                openTawazonTalkVC(item: item)
+            }
+            return
+        }
         if let sessionModel = session.session {
 //            if session.isLock {
 //                openPremiumViewController()
@@ -223,6 +230,15 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
 //            }
             
         }
+    }
+    
+    private func openTawazonTalkVC(item: ItemVM){
+//        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsTapped, payload: nil)
+        
+        let viewController = TawazonTalkViewController.instantiate(talkItem: item)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
     }
     
     func openSeriesView(seriesId: String, session: SessionModel) {

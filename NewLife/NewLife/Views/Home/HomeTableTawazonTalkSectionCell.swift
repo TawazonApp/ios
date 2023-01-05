@@ -44,13 +44,16 @@ class HomeTableTawazonTalkSectionCell: UITableViewCell {
         sectionTitleLabel.textColor = UIColor.white
         sectionTitleLabel.text = "TawazonTalkHomeSectionTitle".localized
         sectionTitleLabel.isUserInteractionEnabled = true
-        let titleLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(moreButtonTapped(_:)))
+        sectionTitleLabel.isEnabled = true
+        let titleLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(openMore))
         sectionTitleLabel.addGestureRecognizer(titleLabelTapGesture)
         
         sectionLogoImage.contentMode = .scaleAspectFit
         sectionLogoImage.image = Language.language == .english ? UIImage(named: "TawazonTalkLogoEn") : UIImage(named: "TawazonTalkLogoAr")
         sectionLogoImage.isUserInteractionEnabled = true
-        sectionLogoImage.addGestureRecognizer(titleLabelTapGesture)
+        let logoImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(openMore))
+        sectionLogoImage.addGestureRecognizer(logoImageTapGesture)
+        sectionLogoImage.backgroundColor = .clear
         
         itemsCollection.backgroundColor = .clear
         
@@ -75,10 +78,12 @@ class HomeTableTawazonTalkSectionCell: UITableViewCell {
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
-        print("SECTION: \(data?.id)")
         delegate?.sectionTapped(self, section: data)
     }
     
+    @objc private func openMore(){
+        delegate?.sectionTapped(self, section: data)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

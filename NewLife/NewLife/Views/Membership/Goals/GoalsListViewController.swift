@@ -12,12 +12,17 @@ import AudioToolbox
 class GoalsListViewController: HandleErrorViewController {
 
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topBannerBackground: UIImageView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var goalsTable: UITableView!
+    @IBOutlet weak var continueButtonView: UIView!
     @IBOutlet      var continueButton: GradientButton!
-    @IBOutlet      var goalsTableToViewConstraint: NSLayoutConstraint!
+    @IBOutlet      var skipButton: UIButton!
+//    @IBOutlet      var goalsTableToViewConstraint: NSLayoutConstraint!
+    @IBOutlet      var goalsTableHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentView: UIView!
     
     let goals = GoalsVM(service: MembershipServiceFactory.service())
     
@@ -26,13 +31,30 @@ class GoalsListViewController: HandleErrorViewController {
         initialize()
         fetchAndReload()
     }
-    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        view.layoutIfNeeded()
+//        view.subviews.forEach(){
+//            subView in
+//            subView.layoutIfNeeded()
+//        }
+//        scrollView.layoutIfNeeded()
+//    }
 
     private func initialize(){
-        self.view.backgroundColor = .darkBlueGreyThree
+        self.view.backgroundColor = .midnightBlueTwo
         
-        topBannerBackground.image = UIImage(named: "OnboardingBackground")
+        skipButton.layer.cornerRadius = skipButton.frame.height/2
+        skipButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        skipButton.tintColor = UIColor.white
+        skipButton.setImage(#imageLiteral(resourceName: "Cancel.pdf"), for: .normal)
+        
+        contentView.backgroundColor = .clear
+        
+        topBannerBackground.image = UIImage(named: "GoalsHeader")
         topBannerBackground.contentMode = .scaleAspectFill
+        topBannerBackground.backgroundColor = .clear
+        topBannerBackground.clipsToBounds = false
         
         subtitleLabel.text = "goalsViewSubTitle".localized
         subtitleLabel.font = .kacstPen(ofSize: 16)
@@ -45,15 +67,23 @@ class GoalsListViewController: HandleErrorViewController {
         goalsTable.backgroundColor = .clear
         goalsTable.separatorStyle = .none
         
+        continueButtonView.backgroundColor = .paua
+        continueButtonView.isHidden = true
+        
         continueButton.layer.cornerRadius = 20
         continueButton.layer.masksToBounds = true
         continueButton.tintColor = UIColor.white
         continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
         continueButton.setTitle("goalsContinueButtonTitle".localized, for: .normal)
         continueButton.titleLabel?.font = UIFont.munaBoldFont(ofSize: 22)
-        self.removeContinueButtonFromView()
+//        continueButton.isHidden = true
+//        self.removeContinueButtonFromView()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     private func fetchAndReload() {
         
         goals.fetchGoals { [weak self] (error) in
@@ -70,10 +100,16 @@ class GoalsListViewController: HandleErrorViewController {
     
     private func reloadData() {
         goalsTable.reloadData()
+        goalsTableHeightConstraint.constant = goalsTableHeightConstraint.constant < CGFloat(self.goals.goals.count * 68) ? CGFloat(self.goals.goals.count * 68) : goalsTableHeightConstraint.constant
     }
     
     @IBAction func continueButtonTapped(_ sender: UIButton) {
         submitSelectedGoals()
+    }
+    
+    @IBAction func skipButtonTapped(_ sender: UIButton) {
+        setUserSettings()
+        submitSuccessed()
     }
     
     private func submitSelectedGoals() {
@@ -123,28 +159,6 @@ class GoalsListViewController: HandleErrorViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: false, completion: nil)
     }
-    
-    private func addContinueButtonToView(){
-        view.addSubview(continueButton)
-        
-        continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53.0).isActive = true
-        view.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor, constant: 53.0).isActive = true
-        continueButton.heightAnchor.constraint(equalToConstant: 56.0).isActive = true
-        view.bottomAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 44.0).isActive = true
-        
-        view.removeConstraint(goalsTableToViewConstraint)
-        continueButton.topAnchor.constraint(equalTo: goalsTable.bottomAnchor, constant: 20).isActive = true
-        view.layoutIfNeeded()
-        view.layoutSubviews()
-    }
-    
-    private func removeContinueButtonFromView(){
-        continueButton.removeFromSuperview()
-        view.addConstraint(goalsTableToViewConstraint)
-        view.layoutIfNeeded()
-        view.layoutSubviews()
-    }
 }
 
 extension GoalsListViewController: UITableViewDelegate, UITableViewDataSource{
@@ -164,12 +178,10 @@ extension GoalsListViewController: GoalTableViewCellDelegate{
     func selectGoal(goal: GoalVM) {
         let selectedGoals = goals.goals.filter({$0.isSelected}).map({ return $0.id }) as? [String]
         if (selectedGoals?.count ?? 0 > 0){
-//            continueButton.isHidden = false
-            self.addContinueButtonToView()
+            continueButtonView.isHidden = false
             continueButton.applyGradientColor(colors: [UIColor.black.cgColor, UIColor.black.cgColor], startPoint: .right, endPoint: .left)
         }else{
-//            continueButton.isHidden = true
-            self.removeContinueButtonFromView()
+            continueButtonView.isHidden = true
             continueButton.applyGradientColor(colors: [UIColor.gray.cgColor, UIColor.white.withAlphaComponent(0.5).cgColor], startPoint: .right, endPoint: .left)
         }
     }

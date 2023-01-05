@@ -111,7 +111,12 @@ class MembershipViewController: HandleErrorViewController {
     private func animateWhenDidLoad() {
         
         UIView.animate(withDuration: loadAnimationDuration) { [weak self] in
-            self?.blurView.effect = UIBlurEffect(style: .dark)
+            if #available(iOS 13.0, *) {
+                self?.blurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
+            } else {
+                // Fallback on earlier versions
+                self?.blurView.effect = UIBlurEffect(style: .dark)
+            }
             self?.view.alpha = 1.0
         }
     }
@@ -131,7 +136,12 @@ class MembershipViewController: HandleErrorViewController {
         self.view.endEditing(true)
         
         UIView.animate(withDuration: loadAnimationDuration, animations: { [weak self] in
-            self?.blurView.effect = UIBlurEffect(style: .dark)
+            if #available(iOS 13.0, *) {
+                self?.blurView.effect = UIBlurEffect(style: .systemThinMaterialDark)
+            } else {
+                // Fallback on earlier versions
+                self?.blurView.effect = UIBlurEffect(style: .dark)
+            }
             self?.view.alpha = 0.0
         }) { [weak self] (finish) in
             self?.dismiss(animated: false, completion: nil)

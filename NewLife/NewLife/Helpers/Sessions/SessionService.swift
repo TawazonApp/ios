@@ -66,7 +66,7 @@ class APISessionService: SessionService {
     
     func fetchSearchResults(page: Int, pageSize: Int, query: String? = "", completion: @escaping (SearchModel?, CustomError?) -> Void) {
         
-        let url = Api.searchSessionV2_1.replacingOccurrences(of: "{query}", with: query ?? "").url!
+        let url = Api.searchSessionV2_3.replacingOccurrences(of: "{query}", with: query ?? "").url!
         let param = ["page": page, "limit": pageSize]
         ConnectionUtils.performGetRequest(url: url, parameters: param){
             (data, error) in
@@ -106,7 +106,7 @@ class APISessionService: SessionService {
     
      func fetchSubCategorySessions(subCategoryId: String, page: Int, pageSize: Int, completion: @escaping (SubCategoryModel?, CustomError?) -> Void) {
         
-        let url = Api.subCategorySessionsListUrlV2_1.replacingOccurrences(of: "{id}", with: subCategoryId).url!
+        let url = Api.subCategorySessionsListUrlV2_3.replacingOccurrences(of: "{id}", with: subCategoryId).url!
         
         ConnectionUtils.performGetRequest(url: url, parameters: ["page": page, "limit": pageSize]) { (data, error) in
             var subCategoryModel: SubCategoryModel?
@@ -119,7 +119,7 @@ class APISessionService: SessionService {
 
     func fetchDownloadedSessions(page: Int, pageSize: Int, completion: @escaping (SessionsModel?, CustomError?) -> Void) {
         
-        ConnectionUtils.performGetRequest(url: Api.sessionsDownloadListUrl.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.sessionsDownloadListUrlV2_3.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
             
             var sessionsModel: SessionsModel?
             if let data = data {
@@ -131,7 +131,7 @@ class APISessionService: SessionService {
     }
     func fetchFavoriteSessions(page: Int, pageSize: Int, completion: @escaping (SessionFavoritesModel?, CustomError?) -> Void) {
         
-        ConnectionUtils.performGetRequest(url: Api.sessionsFavoriteListUrlV2_1.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
+        ConnectionUtils.performGetRequest(url: Api.sessionsFavoriteListUrlV2_3.url!, parameters: ["page": page, "limit": pageSize]) { (data, error) in
 
             var sessionFavoritesModel: SessionFavoritesModel?
             if let data = data {
@@ -152,7 +152,7 @@ class APISessionService: SessionService {
     
     func addToDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void) {
        
-        let url = Api.addSessionToDownloadUrl.replacingOccurrences(of: "{id}", with: sessionId).url!
+        let url = Api.addSessionToDownloadUrlV2_3.replacingOccurrences(of: "{id}", with: sessionId).url!
         ConnectionUtils.performPostRequest(url: url, parameters: nil) { (data, error) in
             completion(error)
         }
@@ -160,7 +160,7 @@ class APISessionService: SessionService {
     
     func removeFromDownloadList(sessionId: String, completion: @escaping (CustomError?) -> Void) {
        
-        let url = Api.removeSessionToDownloadUrl.replacingOccurrences(of: "{id}", with: sessionId).url!
+        let url = Api.removeSessionToDownloadUrlV2_3.replacingOccurrences(of: "{id}", with: sessionId).url!
         ConnectionUtils.performPostRequest(url: url, parameters: nil) { (data, error) in
             completion(error)
         }
@@ -175,7 +175,7 @@ class APISessionService: SessionService {
         
         let favoriteList = ["favorites": favoriteIds]
         
-        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrlV2_1.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
+        ConnectionUtils.performPostRequest(url: Api.addToFavoritesUrlV2_3.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
@@ -190,7 +190,7 @@ class APISessionService: SessionService {
         let favoriteList = ["favorites": favoriteIds]
         
         
-        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrlV2_1.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
+        ConnectionUtils.performPostRequest(url: Api.removeFromFavoritesUrlV2_3.url!, parameters: try? favoriteList.jsonDictionary()) { (data, error) in
             completion(error)
         }
     }
