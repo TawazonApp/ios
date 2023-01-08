@@ -11,11 +11,12 @@ protocol TawazonTalkTableHorizontalSectionCellDelegate: class {
     func playSession(_ sender: TawazonTalkHorizontalListTableViewCell, session: HomeSessionVM)
     func sectionTapped(_ sender: TawazonTalkHorizontalListTableViewCell, section: HomeSectionVM?)
     func openSeriesView(seriesId: String, session: SessionModel)
+    func updateCollectionHieght()
 }
 class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var sessionsCollection: UICollectionView!
+    @IBOutlet weak var sessionsCollection: SelfSizingCollectionView!
     @IBOutlet weak var deviderView: UIView!
     @IBOutlet weak var sessionsCollectionHeightConstraint: NSLayoutConstraint!
     var data: TawazonTalkSectionVM? {
@@ -56,25 +57,13 @@ class TawazonTalkHorizontalListTableViewCell: UITableViewCell {
     
     private func reloadData(){
         titleLabel.text = data?.title
-        self.calculateCollectionHeight()
         
         DispatchQueue.main.async { [weak self] in
             self?.sessionsCollection.reloadData()
+            self?.delegate?.updateCollectionHieght()
         }
     }
     
-    private func calculateCollectionHeight() {
-        let availableWidth = UIScreen.main.bounds.size.width - (2 * collectionCellSpace)
-        
-        collectionCellWidth = 160
-        
-        if (data?.sessions.count ?? 0) <= 1 {
-            collectionCellWidth = availableWidth - 20
-            collectionCellHeight = 210
-        }
-        sessionsCollectionHeightConstraint.constant = collectionCellHeight
-        sessionsCollection.layoutIfNeeded()
-    }
 }
 extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,8 +77,33 @@ extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: collectionCellWidth, height: collectionCellHeight)
-    }
+        return size(for: indexPath)
+        }
+
+        private func size(for indexPath: IndexPath) -> CGSize {
+            // load cell from Xib
+            let cell = sessionsCollection.dequeueReusableCell(withReuseIdentifier: TawazonTalkSessionCollectionViewCell.identifier, for: indexPath) as! TawazonTalkSessionCollectionViewCell
+
+            // configure cell with data in it
+            cell.session = data?.sessions[safe: indexPath.item]
+
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+
+            // width that you want
+            let width = collectionCellWidth
+            let height: CGFloat = 0
+
+            let targetSize = CGSize(width: width, height: height)
+
+            // get size with width that you want and automatic height
+            let size = cell.contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .defaultHigh, verticalFittingPriority: .fittingSizeLevel)
+//            size = CGSize(width: size.width, height: CGFloat(size.height + 28))
+            // if you want height and width both to be dynamic use below
+            // let size = cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+            print("size: \(size)")
+            return size
+        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return collectionCellSpace

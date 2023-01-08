@@ -42,8 +42,8 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         itemImageView.mask = itemImageViewMask
     }
     private func initialize() {
-        self.layer.cornerRadius = 32
-        self.layer.masksToBounds = true
+//        self.layer.cornerRadius = 32
+//        self.layer.masksToBounds = true
         
         gradientView.layer.cornerRadius = 32
         gradientView.clipsToBounds = true
@@ -65,6 +65,8 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         
         itemTitleLabel.font = UIFont.munaBoldFont(ofSize: 24)
         itemTitleLabel.textColor = UIColor.white
+        itemTitleLabel.numberOfLines = 0
+        itemTitleLabel.lineBreakMode = .byWordWrapping
         
         itemContentLabel.font = UIFont.munaFont(ofSize: 16)
         itemContentLabel.textColor = UIColor.white

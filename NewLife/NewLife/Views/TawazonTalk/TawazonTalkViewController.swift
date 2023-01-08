@@ -38,7 +38,6 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         initialize()
         initializeNotification()
-//        fetchData()
     }
 
     private func initialize(){
@@ -84,7 +83,6 @@ class TawazonTalkViewController: HandleErrorViewController {
 
         }
         mainTalkSessionView.talkItem = talkItem
-//        mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
     }
     private func initializeNotification() {
@@ -126,10 +124,6 @@ class TawazonTalkViewController: HandleErrorViewController {
 //        }
         mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
-
-        let newTableHeight = (320.0 * Double((tawazonTalkVM.sections?.count ?? 1))) + 199.67
-        talkItemsTableHeightConstraint.constant = CGFloat(newTableHeight)
-        talkScrollView.contentSize = CGSize(width: talkScrollView.contentSize.width, height: talkView.frame.height)
 
         talkItemsTable.layoutIfNeeded()
         talkView.layoutIfNeeded()
@@ -181,6 +175,21 @@ extension TawazonTalkViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension TawazonTalkViewController: TawazonTalkTableHorizontalSectionCellDelegate{
+    func updateCollectionHieght() {
+        talkItemsTable.beginUpdates()
+        
+        var totalSessions = 0
+        tawazonTalkVM.sections?.forEach(){
+            section in
+            totalSessions += section.sessions.count
+        }
+        let newTableHeight = (320.0 * Double(totalSessions / 2).rounded(.up)) + (totalSessions % 2 == 0 ? 100 : 320)
+        talkItemsTableHeightConstraint.constant = CGFloat(newTableHeight)
+        talkScrollView.contentSize = CGSize(width: talkScrollView.contentSize.width, height: talkView.frame.height)
+        
+        talkItemsTable.endUpdates()
+    }
+    
     func playSession(_ sender: TawazonTalkHorizontalListTableViewCell, session: HomeSessionVM) {
         openSessionPlayerViewController(session: session)
     }
@@ -225,7 +234,6 @@ extension TawazonTalkViewController {
     }
     
     @objc func hideSessionPlayerBar(_ notification: Notification) {
-        let reloadView = notification.object as? Bool ?? true
         hideSessionPlayerBar()
         if let session = notification.object as? SessionVM {
             SessionRateViewController.show(session: session, from: self, force: false)
@@ -300,3 +308,4 @@ extension TawazonTalkViewController {
         return viewController
     }
 }
+

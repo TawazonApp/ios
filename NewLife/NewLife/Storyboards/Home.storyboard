@@ -1298,20 +1298,14 @@
                                                                             <constraint firstAttribute="bottom" secondItem="SCM-rX-zCh" secondAttribute="bottom" id="ymQ-GD-wga"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-ha-cFA">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-ha-cFA">
                                                                         <rect key="frame" x="0.0" y="168" width="280" height="28"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="28" id="nJZ-Db-h2P"/>
-                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3e-l3-dqm">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3e-l3-dqm">
                                                                         <rect key="frame" x="0.0" y="200" width="280" height="40"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="40" id="5ge-D6-CWx"/>
-                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1323,6 +1317,7 @@
                                                                     <constraint firstItem="zFJ-fm-HhP" firstAttribute="top" secondItem="ubI-2f-Wgc" secondAttribute="top" id="4hC-h1-twi"/>
                                                                     <constraint firstItem="Vg6-ha-cFA" firstAttribute="leading" secondItem="ubI-2f-Wgc" secondAttribute="leading" id="Enf-VV-hZD"/>
                                                                     <constraint firstItem="y3e-l3-dqm" firstAttribute="leading" secondItem="ubI-2f-Wgc" secondAttribute="leading" id="Ia1-As-fAX"/>
+                                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="y3e-l3-dqm" secondAttribute="bottom" id="LyO-bc-Auf"/>
                                                                     <constraint firstAttribute="trailing" secondItem="zFJ-fm-HhP" secondAttribute="trailing" id="csM-0U-TG9"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Vg6-ha-cFA" secondAttribute="trailing" id="drQ-l4-K3K"/>
                                                                     <constraint firstItem="Vg6-ha-cFA" firstAttribute="top" secondItem="zFJ-fm-HhP" secondAttribute="bottom" constant="8" id="kxL-1B-abT"/>

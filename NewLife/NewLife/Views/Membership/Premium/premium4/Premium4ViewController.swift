@@ -98,7 +98,6 @@ class Premium4ViewController: BasePremiumViewController {
         
         purchaseButton.layer.cornerRadius = 20
         purchaseButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
-        purchaseButton.setTitle("premium4PurchaseButtonTitle".localized, for: .normal)
         purchaseButton.tintColor = .white
         purchaseButton.titleLabel?.font  = UIFont.munaBoldFont(ofSize: 20)
         

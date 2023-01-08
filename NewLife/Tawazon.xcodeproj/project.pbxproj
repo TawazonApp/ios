@@ -120,10 +120,9 @@
 		04E24E442945FF5500A3549E /* PaywallPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E24E432945FF5500A3549E /* PaywallPlansView.swift */; };
 		04E24E462946004600A3549E /* PaywallPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E24E452946004600A3549E /* PaywallPlanTableViewCell.swift */; };
 		04E24E482947337100A3549E /* MainBackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04E24E472947337100A3549E /* MainBackgroundMusic.mp3 */; };
-		04E24E4A2947350F00A3549E /* HomeVideo3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04E24E492947350F00A3549E /* HomeVideo3.mp4 */; };
-		04E24E4C2947352300A3549E /* NatureTrees.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04E24E4B2947352300A3549E /* NatureTrees.mp4 */; };
 		04EC40C428574945006C7AA1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C328574945006C7AA1 /* SearchViewController.swift */; };
 		04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */; };
+		04F2ABDA296AAEBB0034A6A2 /* SelfSizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2ABD9296AAEBB0034A6A2 /* SelfSizingCollectionView.swift */; };
 		04F800A227CF7A60000880E2 /* TopTabBarItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */; };
 		04F800A527CF7BC2000880E2 /* TopTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A427CF7BC2000880E2 /* TopTabBarView.swift */; };
 		04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800A627CF9127000880E2 /* TopTabBarItemView.swift */; };
@@ -580,10 +579,9 @@
 		04E24E432945FF5500A3549E /* PaywallPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPlansView.swift; sourceTree = "<group>"; };
 		04E24E452946004600A3549E /* PaywallPlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallPlanTableViewCell.swift; sourceTree = "<group>"; };
 		04E24E472947337100A3549E /* MainBackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MainBackgroundMusic.mp3; sourceTree = "<group>"; };
-		04E24E492947350F00A3549E /* HomeVideo3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo3.mp4; sourceTree = "<group>"; };
-		04E24E4B2947352300A3549E /* NatureTrees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = NatureTrees.mp4; sourceTree = "<group>"; };
 		04EC40C328574945006C7AA1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04EC40C528588CDF006C7AA1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		04F2ABD9296AAEBB0034A6A2 /* SelfSizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingCollectionView.swift; sourceTree = "<group>"; };
 		04F800A127CF7A60000880E2 /* TopTabBarItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemVM.swift; sourceTree = "<group>"; };
 		04F800A427CF7BC2000880E2 /* TopTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarView.swift; sourceTree = "<group>"; };
 		04F800A627CF9127000880E2 /* TopTabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBarItemView.swift; sourceTree = "<group>"; };
@@ -963,6 +961,7 @@
 				04090ABC294F2DEE000413A4 /* TawazonTalkSessionCollectionViewCell.swift */,
 				04090AC6294F41D2000413A4 /* TawazonTalkMainSessionView.swift */,
 				04090ACC29506B9C000413A4 /* TriangleView.swift */,
+				04F2ABD9296AAEBB0034A6A2 /* SelfSizingCollectionView.swift */,
 			);
 			path = TawazonTalk;
 			sourceTree = "<group>";
@@ -1593,8 +1592,6 @@
 			children = (
 				F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */,
 				04090B1A295AC991000413A4 /* HomeVideo.mp4 */,
-				04E24E492947350F00A3549E /* HomeVideo3.mp4 */,
-				04E24E4B2947352300A3549E /* NatureTrees.mp4 */,
 			);
 			path = HomeBackgroundVideos;
 			sourceTree = "<group>";
@@ -2575,7 +2572,6 @@
 				F34B99AD2610CD7D00E571D0 /* SF-Pro-Rounded-Light.otf in Resources */,
 				F34B99C32610CD8D00E571D0 /* SF-Pro-Text-Regular.otf in Resources */,
 				F34B99E72610CF9100E571D0 /* SF-Pro-Rounded-Semibold.otf in Resources */,
-				04E24E4C2947352300A3549E /* NatureTrees.mp4 in Resources */,
 				F34B99CA2610CD8D00E571D0 /* SF-Pro-Text-Light.otf in Resources */,
 				F34B99A82610CD7D00E571D0 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				F3E6F6FC224E7FAA005A566A /* PermissionAlertView.xib in Resources */,
@@ -2602,7 +2598,6 @@
 				F3921CE122494ECE002A12EC /* BodyMeditation.json in Resources */,
 				F3C73B03223CF9730026B8E1 /* CancelLoginSignup.wav in Resources */,
 				F3DC8DE62223D3ED00C7DEC4 /* LaunchScreen.storyboard in Resources */,
-				04E24E4A2947350F00A3549E /* HomeVideo3.mp4 in Resources */,
 				04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */,
 				F369267323295EFC00EA8771 /* PrivacyPolicy.rtf in Resources */,
 				F3DC8E202223DD1900C7DEC4 /* Categories.storyboard in Resources */,
@@ -3002,6 +2997,7 @@
 				04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */,
 				F3ECD0D2257A40120048DBD8 /* FeelingsListModel.swift in Sources */,
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
+				04F2ABDA296AAEBB0034A6A2 /* SelfSizingCollectionView.swift in Sources */,
 				04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
 				049D409B28D884D600EAD265 /* CommentsModel.swift in Sources */,
@@ -3394,7 +3390,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3445,7 +3441,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

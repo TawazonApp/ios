@@ -35,10 +35,13 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         
         sessionImage.layer.cornerRadius = 24
         sessionImage.contentMode = .scaleAspectFill
+        sessionImage.clipsToBounds = true
         sessionImage.backgroundColor = .clear
         
         sessionTitleLabel.font = .munaBlackFont(ofSize: 17)
         sessionTitleLabel.textColor = .white
+        sessionTitleLabel.numberOfLines = 0
+        sessionTitleLabel.lineBreakMode = .byWordWrapping
         
         sessionDurationLabel.font = .kacstPen(ofSize: 14)
         sessionDurationLabel.textColor = .white.withAlphaComponent(0.72)
