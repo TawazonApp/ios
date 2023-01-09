@@ -38,6 +38,9 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         initialize()
         initializeNotification()
+        if AudioPlayerManager.shared.isPlaying() {
+            self.showSessionPlayerBar()
+        }
     }
 
     private func initialize(){
