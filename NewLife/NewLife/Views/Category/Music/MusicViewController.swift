@@ -20,4 +20,14 @@ class MusicViewController: SuperCategoryViewController {
     
 }
 
+extension MusicViewController {
+    
+    class func instantiate() -> MusicViewController {
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: MusicViewController.identifier) as! MusicViewController
+        return viewController
+    }
+    
+}
 

@@ -29,13 +29,27 @@ class MoreViewController: BaseViewController {
         sendOpenMoreEvent()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupTableContentInset()
+    }
+    
+    private func setupTableContentInset() {
+        tableView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 80, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -44)
+    }
+    
     private func initialize() {
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
         cancelButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         cancelButton.tintColor = UIColor.white
         cancelButton.setImage(#imageLiteral(resourceName: "Cancel.pdf"), for: .normal)
+        cancelButton.isHidden = true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
     private func reloadData() {
         tableView.reloadData()
     }

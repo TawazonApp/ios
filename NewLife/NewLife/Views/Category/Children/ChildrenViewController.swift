@@ -21,3 +21,13 @@ class ChildrenViewController: SuperCategoryViewController {
         return .default
     }
 }
+extension ChildrenViewController {
+    
+    class func instantiate() -> ChildrenViewController {
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: ChildrenViewController.identifier) as! ChildrenViewController
+        return viewController
+    }
+    
+}

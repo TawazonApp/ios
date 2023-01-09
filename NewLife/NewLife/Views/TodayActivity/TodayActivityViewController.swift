@@ -47,6 +47,7 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
         moreButton.tintColor = UIColor.white
         moreButton.layer.cornerRadius = moreButton.frame.height/2
         moreButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        moreButton.isHidden = true
         
         greetingsLabel.font = .munaFont(ofSize: 18)
         greetingsLabel.textColor = .white

@@ -42,7 +42,7 @@ struct HomeSectionModel: Codable, ModelInitializable {
     let type: Int
     let bannerType: HomeBannerStyle?
     let clickable: Bool?
-    
+    let action: Action?
     
     enum CodingKeys: String, CodingKey {
         case id, title, subtitle, icon, image
@@ -55,5 +55,6 @@ struct HomeSectionModel: Codable, ModelInitializable {
         case buttonLabel = "button_label"
         case moreLabel = "more_label"
         case clickable
+        case action
     }
 }

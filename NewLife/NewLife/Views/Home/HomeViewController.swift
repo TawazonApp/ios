@@ -591,14 +591,28 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
     }
     
     private func openSectionView(_ section: HomeSectionVM) {
-        if let categoryId = section.categoryId,
-           let tabBarId = MainTabBarView.tabBarItemsIds.getItemId(forCategory: categoryId) {
-            (tabBarController as? MainTabBarController)?.openCategory(categoryId: tabBarId.rawValue)
-            return
-        } else {
-            let sectionViewController =  SectionSessionListViewController.instantiate(id: section.id, name: section.title, type: .homeSection)
-            self.navigationController?.pushViewController(sectionViewController, animated: true)
-            
+        var viewController: UIViewController?
+        if let actionType = section.action?.type{
+            switch actionType{
+            case "openMusic":
+                print("openMusic")
+                viewController = MusicViewController.instantiate()
+                
+                break
+            case "openPodcast":
+                print("openPodcast")
+                viewController = PodcastsViewController.instantiate()
+                break
+            case "openChildren":
+                print("openChildren")
+                viewController = ChildrenViewController.instantiate()
+                break
+            default:
+                print("default")
+                viewController =  SectionSessionListViewController.instantiate(id: section.id, name: section.title, type: .homeSection)
+                break
+            }
+            self.navigationController?.pushViewController(viewController!, animated: true)
         }
     }
     

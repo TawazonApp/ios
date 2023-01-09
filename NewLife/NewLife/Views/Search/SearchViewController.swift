@@ -12,7 +12,6 @@ import CoreAudio
 
 class SearchViewController: BaseViewController {
 
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var dividerImage: UIImageView!
     @IBOutlet weak var sessionsTableView: UITableView!
@@ -52,6 +51,14 @@ class SearchViewController: BaseViewController {
         sendOpenSearchEvent()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupTableContentInset()
+    }
+    private func setupTableContentInset() {
+        sessionsTableView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 80, right: 0)
+        sessionsTableView.contentOffset = CGPoint(x: 0, y: -44)
+    }
 
     private func sendOpenSearchEvent(){
         TrackerManager.shared.sendOpenSearchEvent()
@@ -71,10 +78,6 @@ class SearchViewController: BaseViewController {
         view.addGestureRecognizer(tapOnScreen)
         
         mostListenedView.backgroundColor = .clear
-        
-        closeButton.setTitle("close".localized, for: .normal)
-        closeButton.titleLabel?.font = .lbc(ofSize: 15.0)
-        closeButton.tintColor = .white
         
         searchBar.backgroundColor = .black.withAlphaComponent(0.32)
         searchBar.layer.cornerRadius = 24
@@ -189,9 +192,6 @@ class SearchViewController: BaseViewController {
         
         noResultView.isHidden = !noResult
         categoriesCollection.isHidden = noResult
-    }
-    @IBAction func closeButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
     }
     
     @objc func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -310,6 +310,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         return 24.0
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if tableView.numberOfSections - 1 == section{
+            return nil
+        }
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.sessionsTableView.frame.width, height: 1))
         
         if categoriesDataAvailable() {
@@ -332,6 +335,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         return footerView
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if tableView.numberOfSections  - 1 == section{
+            return 0
+        }
         return 10
     }
     private func playSession(_ session: HomeSessionVM) {

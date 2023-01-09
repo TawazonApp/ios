@@ -683,7 +683,6 @@
                                     <constraint firstAttribute="width" constant="48" id="QBa-Ua-egO"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="searchButtonTapped:" destination="qE0-uw-LUe" eventType="touchUpInside" id="wpP-Ie-ZUv"/>
                                 </connections>
@@ -1400,7 +1399,6 @@
                                     <constraint firstAttribute="height" constant="48" id="kKX-FA-2pF"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="searchButtonTapped:" destination="DX7-kM-w1S" eventType="touchUpInside" id="9Zf-l6-975"/>
                                 </connections>
@@ -2130,7 +2128,6 @@
                                     <constraint firstAttribute="height" constant="48" id="F6s-cG-QV6"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="searchButtonTapped:" destination="NcI-LQ-SzC" eventType="touchUpInside" id="3NC-wC-Uyg"/>
                                 </connections>
@@ -3008,22 +3005,9 @@
                                     <action selector="soundsButtonTapped:" destination="YQ8-Ds-UNa" eventType="touchUpInside" id="lL5-3s-wXH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dht-8i-t0L">
-                                <rect key="frame" x="28" y="48" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="82g-3O-sev"/>
-                                    <constraint firstAttribute="height" constant="48" id="g0V-3c-4Ci"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="searchButtonTapped:" destination="YQ8-Ds-UNa" eventType="touchUpInside" id="Nxy-bd-f0n"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="P3B-DR-aTW"/>
                         <constraints>
-                            <constraint firstItem="dht-8i-t0L" firstAttribute="centerY" secondItem="u8A-3b-lDf" secondAttribute="centerY" id="2Uq-bU-TxY"/>
                             <constraint firstAttribute="bottom" secondItem="kvw-vs-CLB" secondAttribute="bottom" id="41d-M5-fbb"/>
                             <constraint firstItem="sPy-SZ-gjk" firstAttribute="height" secondItem="d1I-kM-tWH" secondAttribute="height" multiplier="1:4" id="4aZ-pG-Xug"/>
                             <constraint firstItem="0kC-vB-Dxz" firstAttribute="top" secondItem="1sn-ll-IIQ" secondAttribute="bottom" id="4fQ-Nt-beH"/>
@@ -3044,7 +3028,6 @@
                             <constraint firstItem="YJl-Ka-JM0" firstAttribute="centerY" secondItem="u8A-3b-lDf" secondAttribute="centerY" id="gH2-U2-h6O"/>
                             <constraint firstItem="P3B-DR-aTW" firstAttribute="trailing" secondItem="u8A-3b-lDf" secondAttribute="trailing" constant="28" id="hdk-up-BMD"/>
                             <constraint firstAttribute="bottom" secondItem="sPy-SZ-gjk" secondAttribute="bottom" id="lp4-MF-qIl"/>
-                            <constraint firstItem="dht-8i-t0L" firstAttribute="leading" secondItem="P3B-DR-aTW" secondAttribute="leading" constant="28" id="nxB-cc-uKy"/>
                             <constraint firstItem="1sn-ll-IIQ" firstAttribute="top" secondItem="d1I-kM-tWH" secondAttribute="top" id="rA6-k1-YPx"/>
                             <constraint firstItem="1sn-ll-IIQ" firstAttribute="leading" secondItem="P3B-DR-aTW" secondAttribute="leading" id="tgT-Mh-LgE"/>
                             <constraint firstItem="cHC-zW-xj9" firstAttribute="bottom" secondItem="d1I-kM-tWH" secondAttribute="bottom" id="u39-Jf-SJO"/>
@@ -3057,7 +3040,6 @@
                         <outlet property="bottomOverlayView" destination="sPy-SZ-gjk" id="2Vr-Uk-YCb"/>
                         <outlet property="contentView" destination="cHC-zW-xj9" id="fTW-fu-bbu"/>
                         <outlet property="headerView" destination="1sn-ll-IIQ" id="o0L-OM-X8f"/>
-                        <outlet property="searchButton" destination="dht-8i-t0L" id="PFv-Hu-1aq"/>
                         <outlet property="sectionsView" destination="rUR-zw-VmS" id="8na-6y-wY0"/>
                         <outlet property="sessionsView" destination="Nqs-uX-k8o" id="8W5-3E-eku"/>
                         <outlet property="soundsButton" destination="u8A-3b-lDf" id="fSe-2U-TEk"/>
@@ -3769,24 +3751,15 @@
                                 <rect key="frame" x="28" y="48" width="358" height="55"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" layoutMarginsFollowReadableWidth="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="y2V-0l-YlC">
-                                        <rect key="frame" x="0.0" y="0.0" width="268.5" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="55"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="OTn-xb-m2R" id="8vx-ap-mfM"/>
                                         </connections>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEm-F7-JYt">
-                                        <rect key="frame" x="280.5" y="0.0" width="77.5" height="55"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                        <connections>
-                                            <action selector="closeButtonTapped:" destination="OTn-xb-m2R" eventType="touchUpInside" id="02L-hv-L2f"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="bXc-Zd-pIJ"/>
-                                    <constraint firstItem="y2V-0l-YlC" firstAttribute="width" secondItem="4SS-ql-lB4" secondAttribute="width" multiplier="0.75" id="xwt-03-cwJ"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPA-im-zAC">
@@ -3891,7 +3864,7 @@
                                                     <constraint firstAttribute="height" constant="46" id="vym-nW-lEG"/>
                                                 </constraints>
                                             </imageView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="122" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QbW-3O-67Y">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="122" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QbW-3O-67Y">
                                                 <rect key="frame" x="0.0" y="306" width="414" height="471"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
@@ -4005,7 +3978,6 @@
                     </view>
                     <connections>
                         <outlet property="categoriesCollection" destination="7N9-ap-WrD" id="YTv-Qj-jpg"/>
-                        <outlet property="closeButton" destination="oEm-F7-JYt" id="OS4-4S-xST"/>
                         <outlet property="dividerImage" destination="2Fm-gn-uPe" id="1Sg-xp-Dd5"/>
                         <outlet property="mostListenedView" destination="OPA-im-zAC" id="Tl5-xz-gIi"/>
                         <outlet property="noResultImage" destination="qFs-Pv-kyq" id="biI-eZ-wDC"/>

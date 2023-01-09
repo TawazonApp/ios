@@ -382,7 +382,6 @@ extension MainTabBarController {
         }
         return viewController
     }
-    
 }
 
 extension MainTabBarController: SessionPlayerDelegate {

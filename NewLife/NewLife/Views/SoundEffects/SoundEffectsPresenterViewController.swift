@@ -33,7 +33,7 @@ class SoundEffectsPresenterViewController: HandleErrorViewController {
             searchButton.tintColor = UIColor.white
             searchButton.layer.cornerRadius = searchButton.frame.height/2
             searchButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            searchButton.setImage(UIImage(named: "Search"), for: .normal)
+            searchButton.setImage(UIImage(named: "Cancel"), for: .normal)
         }
         
     }
@@ -56,7 +56,9 @@ class SoundEffectsPresenterViewController: HandleErrorViewController {
     }
     
     @IBAction func searchButtonTapped(_ sender: SoundEffectsButton) {
-        openSearchViewController()
+//        openSearchViewController()
+        print("BACK")
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func openSearchViewController(){

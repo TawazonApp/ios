@@ -23,6 +23,7 @@ class HomeSectionVM {
     var buttonLabel: String?
     var moreLabel: String?
     var imageUrl: String?
+    var action: Action?
     
     init(section: HomeSectionModel) {
         self.id = section.id
@@ -39,6 +40,7 @@ class HomeSectionVM {
         buttonLabel = section.buttonLabel
         moreLabel = section.moreLabel
         imageUrl = section.image
+        action = section.action
     }
     
     init(id: String, title: String, subTitle: String?, iconUrl: String?, sessions: [SessionModel], items: [ItemModel], style: HomeSectionStyle, type: Int, buttonLabel: String?, moreLabel: String?, imageUrl: String? = "") {

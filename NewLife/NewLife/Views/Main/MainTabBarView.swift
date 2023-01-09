@@ -36,14 +36,12 @@ class MainTabBarView: UIView {
     enum tabBarItemsIds: String {
         case todayActivity = "0"
         case home = "1"
-//        case myBody = "2"
         case music = "2"
         case meditations = "3"
-//        case mySoul = "4"
-        case podcasts = "4"
-        case children = "5"
-        static let allCases:[tabBarItemsIds] = [.home,.music, .meditations, .podcasts, .children]
-        static let allDailyActivityCases:[tabBarItemsIds] = [.home, .todayActivity, .meditations, .podcasts, .children]
+        case search = "4"
+        case profile = "5"
+        static let allCases:[tabBarItemsIds] = [.home,.music, .meditations, .search, .profile]
+        static let allDailyActivityCases:[tabBarItemsIds] = [.home, .todayActivity, .meditations, .search, .profile]
         
         static func getItemId(forCategory categoryId: String) -> tabBarItemsIds? {
            let categoryId = CategoryIds(rawValue: categoryId)
@@ -52,9 +50,9 @@ class MainTabBarView: UIView {
             case .music:
                 return tabBarItemsIds.music
             case .children:
-                return tabBarItemsIds.children
+                return tabBarItemsIds.profile
             case .podcasts:
-                return tabBarItemsIds.podcasts
+                return tabBarItemsIds.search
             case .meditations:
                 return tabBarItemsIds.meditations
             default:

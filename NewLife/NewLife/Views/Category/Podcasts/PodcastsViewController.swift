@@ -21,3 +21,13 @@ class PodcastsViewController: SuperCategoryViewController {
 }
 
 
+extension PodcastsViewController {
+    
+    class func instantiate() -> PodcastsViewController {
+        
+        let storyboard = UIStoryboard(name: "Categories", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: PodcastsViewController.identifier) as! PodcastsViewController
+        return viewController
+    }
+    
+}
