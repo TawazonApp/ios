@@ -488,7 +488,9 @@ Tawazon App
 "landingFeelingViewSubtitleSkipped" = "An important step on your journey to better your mental health";
 "landingFeelingViewQuestion" = "Tell us how you feel";
 "landingFeelingViewSubmitButtonTitle" = "Save and Continue";
-"landingFeelingViewSubFeelingLabelTitle" = "How %@?";
+"landingFeelingViewSubFeelingLabelTitle" = "How much %@?";
+"landingFeelingMaxIntensityLabel" = "a lot";
+"landingFeelingMinIntensityLabel" = "a little";
 "dailyActivityFeelingViewTitle" = "Log your feeling";
 "dailyActivityFeelingViewSubtitle" = "Knowing how you feel helps us choose the right meditations and exercises for you.";
 "landingReminderViewTitle" = "Set a time to meditate";

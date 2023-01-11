@@ -12,6 +12,7 @@ class LandingFeelingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var backgroundContentView: UIView!
     @IBOutlet weak var feelingTitle: UILabel!
+    @IBOutlet weak var feelingIcon: UIImageView!
     
     var feeling: FeelCellModel?{
         didSet{
@@ -37,16 +38,25 @@ class LandingFeelingCollectionViewCell: UICollectionViewCell {
         
         feelingTitle.font = .munaFont(ofSize: 22)
         feelingTitle.textColor = .white
-        feelingTitle.textAlignment = .center
-        feelingTitle.lineBreakMode = .byWordWrapping
-        feelingTitle.numberOfLines = 0
+//        feelingTitle.textAlignment = .center
+//        feelingTitle.lineBreakMode = .byWordWrapping
+//        feelingTitle.numberOfLines = 0
         
+        feelingIcon.backgroundColor = .clear
+        feelingIcon.contentMode = .scaleAspectFill
     }
     
     private func fillData(){
         feelingTitle.text = feeling?.name
         setSelectedStyle(feeling?.isSelected ?? false)
+        
+        feelingIcon.image = nil
+        if let imageUrl = feeling?.icon?.url {
+            feelingIcon.af.setImage(withURL: imageUrl, completion:  { (_) in
+            })
+        }
     }
+    
     func setSelectedStyle( _ selected: Bool){
         // if selected style
         backgroundContentView.layoutIfNeeded()

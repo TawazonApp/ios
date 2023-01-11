@@ -140,14 +140,14 @@ class HomeTableFeelingCell: UITableViewCell {
         viewModel.unselectFeelings()
         viewModel.sessionsSection = nil
         self.reloadData()
-        viewModel.updateFeelings(feelingIds: []) { (_) in
+        viewModel.updateFeelings(feelingIds: [], intensity: 0) { (_) in
         }
     }
 }
 
 extension HomeTableFeelingCell: HomeFeelingSelectionViewDelegate {
     func feelingDidChange(_ sender: HomeFeelingSelectionView, feelingIds: [String]) {
-        viewModel.updateFeelings(feelingIds: feelingIds) { [weak self] (error) in
+        viewModel.updateFeelings(feelingIds: feelingIds, intensity: 0) { [weak self] (error) in
             guard let self = self else { return }
             if let error = error {
                 self.delegate?.showErrorMessage(self, message: error.localizedDescription)

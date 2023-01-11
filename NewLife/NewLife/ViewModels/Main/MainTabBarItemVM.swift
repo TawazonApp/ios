@@ -33,11 +33,7 @@ class MainTabBarItemVM: NSObject {
         
         switch itemId {
         case .home:
-            if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool, dailyActivityEnabled == true{
-                title = "ExploreTabTitle".localized
-            }else{
-                title = "HomeTabTitle".localized
-            }
+            title = "ExploreTabTitle".localized
             break
         case .todayActivity:
             title = "TodayActivityTabTitle".localized

@@ -21,13 +21,7 @@ class MainTabBarView: UIView {
     weak var delegate: MainTabBarViewDelegate?
     
     lazy var dataItems: [MainTabBarItemVM] =  {
-        
-        if let dailyActivityEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["dailyActivity"] as? Bool,  dailyActivityEnabled == true{
-            return  tabBarItemsIds.allDailyActivityCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
-        }else{
-            return  tabBarItemsIds.allCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
-        }
-        
+        return  tabBarItemsIds.allDailyActivityCases.map({ return MainTabBarItemVM(id: $0.rawValue ) })
     }()
     
     let animationDuration: TimeInterval = 0.75

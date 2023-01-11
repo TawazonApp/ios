@@ -15,7 +15,7 @@ protocol HomeService {
     
     func getFeelings(completion: @escaping (_ section: FeelingsListModel?, _ error: CustomError?) -> Void)
     
-    func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void)
+    func updateFeelings(feelingIds: [String], intensity: Int, completion: @escaping (_ error: CustomError?) -> Void)
     
     func getSectionSessions(sectionId: String, type: SectionData.SectionType, page: Int, pageSize: Int, completion: @escaping (_ section: SectionSessions?, _ error: CustomError?) -> Void)
     
@@ -65,8 +65,8 @@ class APIHomeService: HomeService {
         }
     }
     
-    func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void) {
-        let parameters = ["feelings": feelingIds]
+    func updateFeelings(feelingIds: [String], intensity: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        let parameters = ["feelings": feelingIds, "intensity": intensity] as! [String : Any]
         ConnectionUtils.performPostRequest(url: Api.updateFeelings.url!, parameters: parameters) { (data, error) in
             completion(error)
         }

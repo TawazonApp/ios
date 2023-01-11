@@ -76,8 +76,8 @@ class HomeServiceCache: HomeService {
         }
     }
     
-    func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void) {
-        service.updateFeelings(feelingIds: feelingIds) { [weak self] (error) in
+    func updateFeelings(feelingIds: [String], intensity: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.updateFeelings(feelingIds: feelingIds, intensity: intensity) { [weak self] (error) in
             if error == nil {
                 self?.resetCache()
             }

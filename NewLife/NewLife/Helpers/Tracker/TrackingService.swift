@@ -24,6 +24,11 @@ enum GeneralCustomEvents {
     static let dailyActivityFeelingsClosed = "dailyActivity_feelings_closed"
     static let dailyActivityFeelingSessionPlayed = "dailyActivity_feelingSessionPlayed"
     static let dailyActivityQuoteTapped = "dailyActivity_quoteTapped"
+    static let feelingsLogged = "feelings_logged"
+    static let newFeaturePopupClosed = "tawazonTalk_popup_close"
+    static let newFeaturePopupAction = "tawazonTalk_popup_action"
+    static let tawazonTalkOpened = "tawazonTalk_open_talk"
+    static let tawazonTalkPlaySession = "tawazonTalk_PlaySession"
 }
 protocol TrackingService {
     func sendUserId(userId: String?)

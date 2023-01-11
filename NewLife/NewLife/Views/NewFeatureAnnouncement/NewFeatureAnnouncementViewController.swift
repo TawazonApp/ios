@@ -90,6 +90,8 @@ class NewFeatureAnnouncementViewController: UIViewController {
         noteLabel.font = .munaBoldFont(ofSize: 13)
         noteLabel.textColor = .white
         noteLabel.textAlignment = .center
+        noteLabel.numberOfLines = 0
+        noteLabel.lineBreakMode = .byWordWrapping
         
         submitButton.backgroundColor = .black.withAlphaComponent(0.36)
         submitButton.layer.cornerRadius = 22
@@ -131,6 +133,9 @@ class NewFeatureAnnouncementViewController: UIViewController {
     
     @IBAction func closeButtonTapped(_ sender: UIButton){
         submitInteract()
+        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.newFeaturePopupClosed, payload: nil)
+        
         self.dismiss(animated: true)
     }
     
@@ -140,7 +145,7 @@ class NewFeatureAnnouncementViewController: UIViewController {
             submitInteract()
             self.dismiss(animated: true)
         }
-        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.newFeaturePopupAction, payload: nil)
     }
     
     private func submitInteract(){

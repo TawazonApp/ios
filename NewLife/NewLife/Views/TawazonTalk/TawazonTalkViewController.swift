@@ -41,6 +41,7 @@ class TawazonTalkViewController: HandleErrorViewController {
         if AudioPlayerManager.shared.isPlaying() {
             self.showSessionPlayerBar()
         }
+        
     }
 
     private func initialize(){
@@ -87,6 +88,10 @@ class TawazonTalkViewController: HandleErrorViewController {
         }
         mainTalkSessionView.talkItem = talkItem
         mainTalkSessionView.delegate = self
+        if let talkItem = talkItem{
+            let values = ["talkTitle": talkItem.title ?? "", "talkId": talkItem.id] as [String : Any]
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkOpened, payload: values)
+        }
     }
     private func initializeNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showSessionPlayerBar(_:)), name: NSNotification.Name.showSessionPlayerBar
@@ -209,6 +214,10 @@ extension TawazonTalkViewController: TawazonTalkTableHorizontalSectionCellDelega
     
     private func openSessionPlayerViewController(session: HomeSessionVM) {
         guard let sessionModel = session.session else { return }
+        
+        let values = ["sessionTitle": sessionModel.name, "sessionId": sessionModel.id] as [String : Any]
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkPlaySession, payload: values)
+        
         let viewcontroller = DetailedSessionPlayerViewController.instantiate(session: SessionVM(service: SessionServiceFactory.service(), session: sessionModel), delegate: self)
         viewcontroller.modalPresentationStyle = .custom
         viewcontroller.transitioningDelegate = self

@@ -480,6 +480,8 @@
 "landingFeelingViewQuestion" = "أخبرنا بماذا تشعر الآن";
 "landingFeelingViewSubmitButtonTitle" = "حفظ ومتابعة";
 "landingFeelingViewSubFeelingLabelTitle" = "أي درجة من %@؟";
+"landingFeelingMaxIntensityLabel" = "كثيــــر";
+"landingFeelingMinIntensityLabel" = "قليــــل";
 "dailyActivityFeelingViewTitle" = "تسجيل الشعور";
 "dailyActivityFeelingViewSubtitle" = "يساعدنا تسجيل شعورك على انتقاء التأملات و التمارين المناسبة لك.";
 "landingReminderViewTitle" = "اختر وقتاً للتأمل ";

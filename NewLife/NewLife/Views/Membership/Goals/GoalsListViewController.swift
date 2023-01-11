@@ -130,11 +130,7 @@ class GoalsListViewController: HandleErrorViewController {
             // Save Anonymous Token
             AnonymousUserVM().submit()
         }
-        if let firstActionEnabled = RemoteConfigManager.shared.json(forKey: .first_dailyActivityFeatureFlow)["firstAction"] as? Bool, firstActionEnabled{
-            openPreparationSessionViewController()
-        }else{
-            openMainViewController()
-        }
+        openPreparationSessionViewController()
     }
     
     private func setUserSettings(){

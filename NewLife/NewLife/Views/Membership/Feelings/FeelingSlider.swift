@@ -29,6 +29,9 @@ class FeelingSlider: UISlider {
         configureTrackLayer()
         configureTrackLayerBorder()
         addTarget(self, action: #selector(valueChanged(_:)), for: .valueChanged)
+        if(UIApplication.shared.userInterfaceLayoutDirection == UIUserInterfaceLayoutDirection.rightToLeft){
+            self.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+        }
     }
     
     private func clear() {

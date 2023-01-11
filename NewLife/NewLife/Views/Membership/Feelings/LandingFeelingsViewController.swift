@@ -18,7 +18,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var feelingsCollection: UICollectionView!
+    @IBOutlet weak var feelingsCollection: SelfSizingCollectionView!
     
     @IBOutlet weak var subFeelingsView: UIView!
     @IBOutlet weak var subFeelingLabel: UILabel!
@@ -26,6 +26,9 @@ class LandingFeelingsViewController: HandleErrorViewController {
     
     @IBOutlet weak var selectedSubFeelingLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var maxIntensityLabel: UILabel!
+    @IBOutlet weak var minIntensityLabel: UILabel!
     
     private  var viewModel = HomeTableFeelingCellVM(homeService: HomeServiceCache.shared)
     
@@ -91,6 +94,15 @@ class LandingFeelingsViewController: HandleErrorViewController {
         selectedSubFeelingLabel.font = .munaFont(ofSize: 18)
         selectedSubFeelingLabel.textColor = .white.withAlphaComponent(0.8)
         selectedSubFeelingLabel.textAlignment = .center
+        selectedSubFeelingLabel.isHidden = true
+        
+        maxIntensityLabel.font = .munaFont(ofSize: 14)
+        maxIntensityLabel.textColor = .white.withAlphaComponent(0.8)
+        maxIntensityLabel.text = "landingFeelingMaxIntensityLabel".localized
+        
+        minIntensityLabel.font = .munaFont(ofSize: 14)
+        minIntensityLabel.textColor = .white.withAlphaComponent(0.8)
+        minIntensityLabel.text = "landingFeelingMinIntensityLabel".localized
         
         submitButton.tintColor = .white
         submitButton.layer.cornerRadius = 20
@@ -110,6 +122,11 @@ class LandingFeelingsViewController: HandleErrorViewController {
                return
            }
            self.feelings = self.viewModel.feelings
+           for (index, feeling) in self.feelings.enumerated(){
+               if feeling.isSelected{
+                   self.lastSelectedFeelingIndex = index
+               }
+           }
        }
    }
     
@@ -125,9 +142,8 @@ class LandingFeelingsViewController: HandleErrorViewController {
         let step: Float = 1
         let roundedValue = round(feelingSlider.value / step) * step
         feelingSlider.value = roundedValue
-        
         if lastSelectedFeelingIndex >= 0{
-            selectedSubFeelingLabel.text = feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title
+//            selectedSubFeelingLabel.text = feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title
             if fromVC == .todayActivity{
                 let values = ["subfeelingId": feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].id ?? "subfeeling_id", "subfeelingName": feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title ?? "subfeeling_title"]
                 TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsIntencitySelcted, payload: values)
@@ -140,24 +156,24 @@ class LandingFeelingsViewController: HandleErrorViewController {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
-        if let selectedSubFeeling = feelings[lastSelectedFeelingIndex].subFeelings?[Int(subFeelingsSlider.value - 1)]{
-            viewModel.updateFeelings(feelingIds: [selectedSubFeeling.id], completion: {(error) in
+            viewModel.updateFeelings(feelingIds: [feelings[lastSelectedFeelingIndex].id], intensity: Int(subFeelingsSlider.value), completion: {(error) in
                 if let error = error{
                     self.showErrorMessage(message: error.message ?? "")
                     return
                 }
                
                 if self.fromVC == .todayActivity{
-                    let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "subfeelingId": selectedSubFeeling.id, "subfeelingName": selectedSubFeeling.title]
+                    let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsLogged, payload: values)
                     self.dismiss(animated: true)
                 }else{
-                    TrackerManager.shared.sendFeelingsLogged(feelingId: self.feelings[self.lastSelectedFeelingIndex].id, feelingName: self.feelings[self.lastSelectedFeelingIndex].name, subfeelingId: selectedSubFeeling.id, subfeelingName: selectedSubFeeling.title)
+                    let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.feelingsLogged, payload: values)
+                    self.dismiss(animated: true)
                     self.openLandingReminderViewController()
                 }
                 
             })
-        }
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
@@ -179,7 +195,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
 
 extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return feelings.count > 5 ? 6 : 0
+        return feelings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -197,10 +213,9 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
         cell.setSelectedStyle(true)
         if lastSelectedFeelingIndex >= 0{
             feelings[lastSelectedFeelingIndex].isSelected = false
-        }else{
-            submitButton.isHidden = false
         }
         
+        submitButton.isHidden = false
         feelings[indexPath.item].isSelected = true
         lastSelectedFeelingIndex = indexPath.item
         collectionView.reloadData()
@@ -218,13 +233,13 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
         let selectedFeeling = feelings[lastSelectedFeelingIndex]
         subFeelingsView.isHidden = false
         subFeelingLabel.text = String(format: "landingFeelingViewSubFeelingLabelTitle".localized, selectedFeeling.name)
-        subFeelingsSlider.maximumValue = Float(selectedFeeling.subFeelings?.count ?? 1)
-        subFeelingsSlider.minimumValue = 1.0
-        
-        subFeelingsSlider.setValue((selectedFeeling.subFeelings?.count ?? 0) % 2 == 0 ? round(Float((selectedFeeling.subFeelings?.count ?? 0) / 2)) : round(Float(((selectedFeeling.subFeelings?.count ?? 0) + 1) / 2)), animated: false)
-        subFeelingsSlider.sendActions(for: .valueChanged)
-        
-        selectedSubFeelingLabel.text = selectedFeeling.subFeelings?[Int(subFeelingsSlider.value - 1)].title
+        if let intensity = selectedFeeling.intensity{
+            subFeelingsSlider.maximumValue = Float(intensity.max)
+            subFeelingsSlider.minimumValue = Float(intensity.min)
+            subFeelingsSlider.setValue(intensity.max % 2 == 0 ? Float(intensity.max / 2) : Float((intensity.max + 1) / 2), animated: false)
+            subFeelingsSlider.sendActions(for: .valueChanged)
+        }
+//        selectedSubFeelingLabel.text = "\(subFeelingsSlider.value - 1)"
     }
 }
 

@@ -102,8 +102,7 @@ class HomeTableFeelingCellVM {
     func getFeelings(completion: @escaping (_ error: CustomError?) -> Void) {
         homeService.getFeelings { [weak self] (feelingsList, error) in
             if let feelingsList = feelingsList {
-                
-                self?.feelings = feelingsList.items.map({ FeelCellModel(id: $0.id, name: $0.title, priority: $0.priority, subFeelings: $0.subFeelings?.sorted(by: { return $0.priority < $1.priority}), isSelected: ($0.selected != 0) ) })
+                self?.feelings = feelingsList.items.map({ FeelCellModel(id: $0.id, name: $0.title, priority: $0.priority, subFeelings: $0.subFeelings?.sorted(by: { return $0.priority < $1.priority}), isSelected: ($0.selected != 0), intensity: $0.intensity, icon: $0.icon) })
                 self?.feelings.sorted(by: { return $0.priority < $1.priority}).forEach{
                     if let subfeelingItems = $0.subFeelings{
                         self?.subfeelings.append(contentsOf: subfeelingItems.map({SubfeelingCellModel(id: $0.id, name: $0.title, isSelected: ($0.selected != 0), priority: $0.priority)}))
@@ -117,12 +116,11 @@ class HomeTableFeelingCellVM {
         }
     }
     
-    func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void) {
-        homeService.updateFeelings(feelingIds: feelingIds) { (error) in
+    func updateFeelings(feelingIds: [String], intensity: Int, completion: @escaping (_ error: CustomError?) -> Void) {
+        homeService.updateFeelings(feelingIds: feelingIds, intensity: intensity) { (error) in
             if error == nil {
                 for feel in self.feelings {
                     feel.isSelected = feelingIds.contains(feel.id)
-                    
                 }
             }
             completion(error)

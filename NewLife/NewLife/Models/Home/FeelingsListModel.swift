@@ -17,16 +17,23 @@ struct FeelingItem: Codable {
     let selected: Int?
     let subFeelings: [SubFeelingItem]?
     let priority: Int
+    let intensity: Intensity?
+    let icon: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title
         case selected
         case priority
         case subFeelings = "items"
+        case intensity
+        case icon
     }
 }
 struct SubFeelingItem: Codable{
     let id, title: String
     var selected: Int?
     let priority: Int
+}
+struct Intensity: Codable {
+    let min, max, step: Int
 }

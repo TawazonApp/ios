@@ -61,9 +61,9 @@ struct Api {
     static let homeSectionsWithBannersUrlV2_3 = "\(apiUrlV2_3)/app/home"
     static let todaySectionsUrl = "\(apiUrlV2_3)/home/today/sections"
     static let todayQuoteViewUrl = "\(apiUrlV2_1)/quotes/view/{id}"
-    static let feelingsListUrl = "\(apiUrlV2_1)/feelings/list"
+    static let feelingsListUrl = "\(apiUrlV2_2)/feelings/list"
     static let feelingsSessionsV2_3 = "\(apiUrlV2_3)/feelings/sessions/list"
-    static let updateFeelings = "\(apiUrlV2)/feelings/update"
+    static let updateFeelings = "\(apiUrlV2_2)/feelings/update"
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3 = "\(apiUrlV2_3)/sections/sessions/list/{id}"
     
