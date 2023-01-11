@@ -158,10 +158,10 @@ class MoreViewController: BaseViewController {
             return
         }
         
-        if cellData.type == MoreCellVM.MoreCellType.guidedTour {
-            startGuidedTour()
-            return
-        }
+//        if cellData.type == MoreCellVM.MoreCellType.guidedTour {
+//            startGuidedTour()
+//            return
+//        }
     }
     
     
