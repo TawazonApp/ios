@@ -167,6 +167,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsLogged, payload: values)
                     self.dismiss(animated: true)
                 }else{
+                    print("else")
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.feelingsLogged, payload: values)
                     self.dismiss(animated: true)
@@ -244,7 +245,7 @@ extension LandingFeelingsViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension LandingFeelingsViewController{
-    class func instantiate(skipped: Bool, from:  fromViewController = .landing) -> LandingFeelingsViewController {
+    class func instantiate(skipped: Bool, from: fromViewController = .landing) -> LandingFeelingsViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: LandingFeelingsViewController.identifier) as! LandingFeelingsViewController
         viewController.modalPresentationStyle = .fullScreen

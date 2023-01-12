@@ -68,10 +68,10 @@ class MainTabBarItemVM: NSObject {
             image = "TodayActivityTab"
             break
         case .search:
-            image = "Search"
+            image = "SearchTab"
             break
         case .profile:
-            image = "More"
+            image = "MoreTab"
             break
         case .meditations:
             image = "MeditationsTab"

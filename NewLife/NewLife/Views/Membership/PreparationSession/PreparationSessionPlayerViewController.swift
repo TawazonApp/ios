@@ -111,11 +111,10 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
         closePlayer(skipped: true)
     }
     
-    private func openLandingFeelingsViewController(skipped: Bool){
-        let viewController = LandingFeelingsViewController.instantiate(skipped: skipped)
+    private func openLandingFeelingsViewController(skipped: Bool, from: fromViewController){
+        let viewController = LandingFeelingsViewController.instantiate(skipped: skipped, from: from)
         viewController.modalPresentationStyle = .currentContext
         self.show(viewController, sender: self)
-//        self.present(viewController, animated: false, completion: nil)
     }
     
     @objc private func closePlayer(skipped: Bool) {
@@ -151,7 +150,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
             self.dismiss(animated: true)
             return
         }
-        openLandingFeelingsViewController(skipped: skipped)
+        openLandingFeelingsViewController(skipped: skipped, from: fromVC!)
     }
     
     @IBAction func sliderTapped(_ sender: Any) {

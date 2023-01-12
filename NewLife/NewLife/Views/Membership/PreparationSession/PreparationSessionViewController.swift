@@ -103,12 +103,11 @@ class PreparationSessionViewController: HandleErrorViewController {
         let viewController = LandingFeelingsViewController.instantiate(skipped: true)
         viewController.modalPresentationStyle = .currentContext
         self.show(viewController, sender: self)
-//        self.present(viewController, animated: false, completion: nil)
     }
     
     @objc private func openPreparationSessionPlayerViewController(){
         playMainBackgroundAudio()
-        let viewController = PreparationSessionPlayerViewController.instantiate()
+        let viewController = PreparationSessionPlayerViewController.instantiate(from: .landing)
         viewController.modalPresentationStyle = .currentContext
         self.show(viewController, sender: self)
 //        self.present(viewController, animated: false, completion: nil)
