@@ -170,7 +170,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
                     print("else")
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.feelingsLogged, payload: values)
-                    self.dismiss(animated: true)
+//                    self.dismiss(animated: true)
                     self.openLandingReminderViewController()
                 }
                 

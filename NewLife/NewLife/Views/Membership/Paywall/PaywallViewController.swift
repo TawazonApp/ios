@@ -60,6 +60,8 @@ class PaywallViewController: BasePremiumViewController {
     @IBOutlet weak var pointView: UIView!
     @IBOutlet weak var termsAndConditionsButton: UIButton!
     
+    var allPlansData = BasePremiumVM()
+    
     var darkView: Bool?{
         didSet{
             initialize()
@@ -85,7 +87,8 @@ class PaywallViewController: BasePremiumViewController {
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
 //        initialize()
         SKPaymentQueue.default().add(self)
-        fetchData()
+//        fetchData()
+        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -245,6 +248,7 @@ class PaywallViewController: BasePremiumViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         bestPlanView.gradientBorder(width: 1, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+        fetchAllPlansData()
     }
     private func fetchData(){
         LoadingHud.shared.show(animated: true)
@@ -261,6 +265,27 @@ class PaywallViewController: BasePremiumViewController {
             LoadingHud.shared.hide(animated: true)
         })
     }
+    
+    private func fillData(){
+        print("fillData()")
+        let sharedData = BasePremiumVM.shared
+        self.subscribeButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
+
+        self.features = sharedData.premiumDetails?.premiumPage.featureItems
+        self.plans = sharedData.plansArray
+    }
+    
+    private func fetchAllPlansData(){
+        if allPlansData.plansArray.count == 0{
+            allPlansData.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
+                if error == nil{
+                    print("allPlansData: \(self.allPlansData.plansArray.count)")
+                    return
+                }
+            })
+        }
+    }
+    
     private func reloadData(){
         featuresTable.reloadData()
         tableHeight.constant = CGFloat(72 * (self.features?.count ?? 0))
@@ -321,13 +346,14 @@ class PaywallViewController: BasePremiumViewController {
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         if let bestPlan = plans?.first{
-            purchaseAction(product: data.products[bestPlan.priority - 1])
+            print("BasePremiumVM.shared.products[bestPlan.priority - 1]: \(BasePremiumVM.shared.products[bestPlan.priority - 1].productIdentifier)")
+            purchaseAction(product: BasePremiumVM.shared.products[bestPlan.priority - 1])
         }
         
     }
     
     @IBAction func allPlansButtonTapped(_ sender: UIButton) {
-        openPaywallAllPlansViewController()
+        openPaywallAllPlansViewController(data: allPlansData)
     }
     
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
@@ -338,8 +364,8 @@ class PaywallViewController: BasePremiumViewController {
         openPrivacyViewController(type: .termsAndConditions)
     }
     
-    private func openPaywallAllPlansViewController()  {
-        let viewController = PaywallAllPlansViewController.instantiate(nextView: .dimiss)
+    private func openPaywallAllPlansViewController(data: BasePremiumVM)  {
+        let viewController = PaywallAllPlansViewController.instantiate(nextView: .dimiss, data: data)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -54,6 +54,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
         updateBackgroundSoundStyle()
         reduceVoulme(volume: Constants.backgroundMusicLevel)
         setGuidedTourKeys()
+        preLoadPremiumPageData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -311,6 +312,35 @@ class HomeViewController: SoundEffectsPresenterViewController {
         let viewController = PremiumDiscountViewController.instantiate(product: product, offerInfo: offerInfo)
         navigationController?.present(viewController, animated: true, completion: {
             
+        })
+    }
+    
+    private func preLoadPremiumPageData(){
+        print("preLoadPremiumPageData")
+        let viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
+        print("viewNameString: \(viewNameString)")
+        let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
+        var premiumId = 0
+        switch viewName{
+         case .defaultView:
+            premiumId = premiumPageIds.defaultPage.rawValue
+         case .premiumOne:
+            premiumId = premiumPageIds.premiumOne.rawValue
+         case .premiumFour:
+            premiumId = premiumPageIds.premiumFour.rawValue
+         case .premiumFive:
+            premiumId = premiumPageIds.premiumFive.rawValue
+         case .paywall:
+            premiumId = premiumPageIds.paywall.rawValue
+        case .none:
+            premiumId = premiumPageIds.defaultPage.rawValue
+        }
+        BasePremiumVM.shared.getPremiumPageDetails(premiumId: premiumId, service: MembershipServiceFactory.service(), completion: { (error) in
+            if error == nil{
+                print("SHARED: \(BasePremiumVM.shared.premiumDetails?.premiumPage)")
+                print("SHARED: \(BasePremiumVM.shared.plansArray.count)")
+                return
+            }
         })
     }
 }

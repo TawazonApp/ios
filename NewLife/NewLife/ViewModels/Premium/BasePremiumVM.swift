@@ -12,6 +12,7 @@ import SwiftyStoreKit
 
 class BasePremiumVM : NSObject{
     
+    static let shared: BasePremiumVM = BasePremiumVM()
     var premiumDetails: BasePremiumModel?{
         didSet{
         }

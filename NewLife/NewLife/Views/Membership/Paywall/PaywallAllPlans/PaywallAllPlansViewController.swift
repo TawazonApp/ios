@@ -28,6 +28,7 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     var darkView: Bool?{
         didSet{
             initialize()
+            fillData()
         }
     }
     
@@ -43,16 +44,22 @@ class PaywallAllPlansViewController: BasePremiumViewController {
             self.reloadData()
         }
     }
-    
+    override var data: BasePremiumVM{
+        didSet{
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
         SKPaymentQueue.default().add(self)
-        fetchData()
+//        fetchData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     private func initialize() {
         self.view.backgroundColor = darkView! ? .darkIndigoTwo : .ghostWhite
         
@@ -88,11 +95,11 @@ class PaywallAllPlansViewController: BasePremiumViewController {
         featuresTitle.textColor = darkView! ? .white : .slateBlue
         featuresTitle.text = "paywallFeatureTitle".localized
         featuresTitle.textAlignment = .center
-        featuresTable.separatorStyle = .none
         
+        featuresTable.separatorStyle = .none
         featuresTable.backgroundColor = .clear
         featuresTable.allowsSelection = false
-        featuresTable.isScrollEnabled = false
+        featuresTable.isScrollEnabled = true
     
         noteLabel.font = .munaFont(ofSize: 12)
         noteLabel.numberOfLines = 0
@@ -124,6 +131,19 @@ class PaywallAllPlansViewController: BasePremiumViewController {
             LoadingHud.shared.hide(animated: true)
         })
     }
+    
+    private func fillData(){
+        if let premiumDetails = data.premiumDetails{
+            self.subscribeButton.setTitle(premiumDetails.premiumPage.continueLabel, for: .normal)
+            
+            self.features = premiumDetails.premiumPage.featureItems
+            self.plans = self.data.plansArray
+        }else{
+            fetchData()
+        }
+        
+    }
+    
     private func reloadData(){
         featuresTable.reloadData()
     }
@@ -157,16 +177,20 @@ extension PaywallAllPlansViewController: UITableViewDelegate, UITableViewDataSou
         
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
 }
 
 
 extension PaywallAllPlansViewController {
     
-    class func instantiate(nextView: NextView) -> PaywallAllPlansViewController {
+    class func instantiate(nextView: NextView, data: BasePremiumVM) -> PaywallAllPlansViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: PaywallAllPlansViewController.identifier) as! PaywallAllPlansViewController
         viewController.nextView = nextView
+        viewController.data = data
         return viewController
     }
 }

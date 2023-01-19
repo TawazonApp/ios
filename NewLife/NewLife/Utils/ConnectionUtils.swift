@@ -115,6 +115,7 @@ class ConnectionUtils: NSObject {
         if let token = UserDefaults.userToken(), token != Api.anonymousToken {
              headers["token"] = token
         }
+        print("HEADER: \(headers)")
         return headers
     }
 }

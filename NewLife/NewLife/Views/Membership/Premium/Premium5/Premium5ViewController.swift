@@ -49,7 +49,8 @@ class Premium5ViewController: BasePremiumViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        fetchData()
+//        fetchData()
+        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     private func fetchData(){
@@ -62,6 +63,15 @@ class Premium5ViewController: BasePremiumViewController {
             self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
             
         })
+    }
+    
+    private func fillData(){
+        print("fillData()")
+        let sharedData = BasePremiumVM.shared
+        if sharedData.premiumDetails?.premiumPage.featureItems.count ?? 0 > 0 {
+            self.features = sharedData.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})
+        }
+        self.noteLabel.text = sharedData.premiumDetails?.premiumPage.continueLabel
     }
     
     private func initialize(){
@@ -159,8 +169,8 @@ class Premium5ViewController: BasePremiumViewController {
         purchaseButton.setTitle(data.premiumDetails?.premiumPage.continueLabel, for: .normal)
     }
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        let selectedPlan = data.plansArray.filter({$0.isSelected}).first
-        let selectedProduct = data.products.filter({$0.productIdentifier == selectedPlan?.id}).first
+        let selectedPlan = BasePremiumVM.shared.plansArray.filter({$0.isSelected}).first
+        let selectedProduct = BasePremiumVM.shared.products.filter({$0.productIdentifier == selectedPlan?.id}).first
         
         purchaseAction(product: selectedProduct)
     }

@@ -100,7 +100,7 @@ class PreparationSessionViewController: HandleErrorViewController {
     }
     
     private func openLandingFeelingsViewController(){
-        let viewController = LandingFeelingsViewController.instantiate(skipped: true)
+        let viewController = LandingFeelingsViewController.instantiate(skipped: true, from: .landing)
         viewController.modalPresentationStyle = .currentContext
         self.show(viewController, sender: self)
     }

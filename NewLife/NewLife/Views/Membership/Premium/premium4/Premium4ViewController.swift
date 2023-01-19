@@ -46,7 +46,8 @@ class Premium4ViewController: BasePremiumViewController {
         
         initialize()
         SKPaymentQueue.default().add(self)
-        fetchData()
+//        fetchData()
+        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -65,6 +66,16 @@ class Premium4ViewController: BasePremiumViewController {
             self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
             LoadingHud.shared.hide(animated: true)
         })
+    }
+    
+    private func fillData(){
+        print("fillData()")
+        let sharedData = BasePremiumVM.shared
+        self.purchaseButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
+        
+        self.features = sharedData.premiumDetails?.premiumPage.featureItems
+        self.plans = sharedData.plansArray
+        self.noteLabel.text = sharedData.premiumDetails?.premiumPage.content
     }
     
     private func initialize() {
@@ -116,7 +127,7 @@ class Premium4ViewController: BasePremiumViewController {
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        purchaseAction(product: data.products[plansContainer.selectedPlan])
+        purchaseAction(product: BasePremiumVM.shared.products[plansContainer.selectedPlan])
     }
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
         // open offerCode sheet

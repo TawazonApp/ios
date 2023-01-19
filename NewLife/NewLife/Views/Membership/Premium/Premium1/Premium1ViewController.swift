@@ -36,7 +36,8 @@ class Premium1ViewController: BasePremiumViewController {
         super.viewDidLoad()
 
         initialize()
-        fetchData()
+//        fetchData()
+        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -50,6 +51,13 @@ class Premium1ViewController: BasePremiumViewController {
             self.features = self.data.premiumDetails?.premiumPage.featureItems
             self.noteLabel.text = self.data.premiumDetails?.premiumPage.continueLabel
         })
+    }
+    
+    private func fillData(){
+        print("fillData()")
+        let sharedData = BasePremiumVM.shared
+        self.features = sharedData.premiumDetails?.premiumPage.featureItems
+        self.noteLabel.text = sharedData.premiumDetails?.premiumPage.continueLabel
     }
     
     private func initialize(){

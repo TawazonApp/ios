@@ -85,7 +85,7 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         loadingIndicator.center = itemImageView.center
         loadingIndicator.startAnimating()
         
-        if let imageUrl = item?.image?.url {
+        if let imageUrl = item?.thumbnail?.url {
             itemImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
                 loadingIndicator.stopAnimating()
                 loadingIndicator.removeFromSuperview()

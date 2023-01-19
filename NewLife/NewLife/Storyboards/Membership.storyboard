@@ -2964,8 +2964,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ro8-vx-Cis">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="340.33333333333331"/>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Ro8-vx-Cis">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="358.33333333333331"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ec-86-A4v">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
@@ -3007,8 +3007,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-UI-xnI">
-                                        <rect key="frame" x="0.0" y="132.66666666666669" width="414" height="207.66666666666669"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-UI-xnI">
+                                        <rect key="frame" x="0.0" y="126.66666666666667" width="414" height="231.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="yR1-8y-ICd">
@@ -3031,7 +3031,7 @@
                                     <constraint firstItem="nIc-jX-O7T" firstAttribute="centerY" secondItem="PcL-vS-C1N" secondAttribute="centerY" id="9qZ-iC-4WO"/>
                                     <constraint firstAttribute="bottom" secondItem="hAL-UI-xnI" secondAttribute="bottom" id="Bb5-BM-9iw"/>
                                     <constraint firstItem="1ek-b8-MsY" firstAttribute="centerX" secondItem="Ro8-vx-Cis" secondAttribute="centerX" id="CQU-lz-ctz"/>
-                                    <constraint firstItem="hAL-UI-xnI" firstAttribute="top" secondItem="1ek-b8-MsY" secondAttribute="bottom" constant="16" id="FXa-Xp-6mn"/>
+                                    <constraint firstItem="hAL-UI-xnI" firstAttribute="top" secondItem="1ek-b8-MsY" secondAttribute="bottom" constant="10" id="FXa-Xp-6mn"/>
                                     <constraint firstItem="nIc-jX-O7T" firstAttribute="centerX" secondItem="Ro8-vx-Cis" secondAttribute="centerX" id="L4e-Q3-foH"/>
                                     <constraint firstItem="hAL-UI-xnI" firstAttribute="leading" secondItem="Ro8-vx-Cis" secondAttribute="leading" id="Oip-qe-cma"/>
                                     <constraint firstItem="7Ec-86-A4v" firstAttribute="top" secondItem="Ro8-vx-Cis" secondAttribute="top" id="WdI-cR-wOA"/>
@@ -3044,7 +3044,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-3l-oAp" customClass="PaywallPlansView" customModule="Tawazon" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="360.33333333333337" width="414" height="376.33333333333337"/>
+                                <rect key="frame" x="0.0" y="378.33333333333337" width="414" height="376.33333333333337"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-N0-pyu">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="376.33333333333331"/>
@@ -3183,7 +3183,7 @@
                             <constraint firstItem="8VZ-eo-AoL" firstAttribute="trailing" secondItem="JSw-Co-hoF" secondAttribute="trailing" constant="24" id="bIl-7l-7ZO"/>
                             <constraint firstItem="cUH-3l-oAp" firstAttribute="leading" secondItem="8VZ-eo-AoL" secondAttribute="leading" id="joR-yX-a6c"/>
                             <constraint firstItem="JSw-Co-hoF" firstAttribute="leading" secondItem="8VZ-eo-AoL" secondAttribute="leading" constant="24" id="nUv-jB-gLP"/>
-                            <constraint firstItem="Ro8-vx-Cis" firstAttribute="height" secondItem="mIO-ok-EvW" secondAttribute="height" multiplier="0.38" id="yG9-7W-BTc"/>
+                            <constraint firstItem="Ro8-vx-Cis" firstAttribute="height" secondItem="mIO-ok-EvW" secondAttribute="height" multiplier="0.4" priority="250" id="yG9-7W-BTc"/>
                             <constraint firstItem="Ro8-vx-Cis" firstAttribute="leading" secondItem="8VZ-eo-AoL" secondAttribute="leading" id="yKR-6z-BVI"/>
                         </constraints>
                     </view>

@@ -63,7 +63,12 @@ class BasePremiumViewController: HandleErrorViewController, SKPaymentTransaction
             selectedPlan = product
             performPurchase(purchaseId: purchaseId, product: product)
         } else {
-            goToNextViewController()
+            if let item = BasePremiumVM.shared.plansArray.filter({ $0.isSelected}).first, let purchaseId = PremiumPurchase(rawValue: item.id!) {
+                selectedPlan = product
+                performPurchase(purchaseId: purchaseId, product: product)
+            }else{
+                goToNextViewController()
+            }
         }
     }
     
