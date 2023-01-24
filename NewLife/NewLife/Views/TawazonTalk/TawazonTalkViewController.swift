@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LabelSwitch
 
 class TawazonTalkViewController: HandleErrorViewController {
 
@@ -16,6 +17,9 @@ class TawazonTalkViewController: HandleErrorViewController {
     @IBOutlet weak var backButton: CircularButton!
     @IBOutlet weak var shareButton: CircularButton!
     
+    @IBOutlet weak var comingSoonLabel: PaddingLabel!
+    
+    @IBOutlet weak var notifySwitchContainer: UIView!
     @IBOutlet weak var backgroundColorView: GradientView!
     
     @IBOutlet weak var talkLogoImageView: UIImageView!
@@ -44,6 +48,15 @@ class TawazonTalkViewController: HandleErrorViewController {
         
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        comingSoonLabel.layoutIfNeeded()
+        comingSoonLabel.roundCorners(corners: .allCorners, radius: 15)
+        notifySwitchContainer.layoutIfNeeded()
+        
+    }
+    
     private func initialize(){
         self.view.backgroundColor = .cyprus
         
@@ -57,6 +70,7 @@ class TawazonTalkViewController: HandleErrorViewController {
         backButton.tintColor = .white
         
         shareButton.setImage(#imageLiteral(resourceName: "ShareSession.pdf"), for: .normal)
+        shareButton.isHidden = true
         
         backgroundColorView.applyGradientColor(colors: [UIColor.mariner.cgColor, UIColor.chambray.cgColor, UIColor.cyprus.cgColor], startPoint: .top, endPoint: .bottom)
         
@@ -67,8 +81,57 @@ class TawazonTalkViewController: HandleErrorViewController {
         
         talkItemsTable.backgroundColor = .clear
         talkItemsTable.contentInset = UIEdgeInsets(top: mainTalkSessionView.frame.height / 2, left: 0, bottom: 0, right: 0)
+        
+        comingSoonLabel.backgroundColor = .black.withAlphaComponent(0.47)
+        comingSoonLabel.font = .munaBoldFont(ofSize: 16)
+        comingSoonLabel.textColor = .white
+        comingSoonLabel.textAlignment = .center
+        comingSoonLabel.leftInset = 10
+        comingSoonLabel.rightInset = 10
+        comingSoonLabel.text = "comingSoonLabel".localized
+        comingSoonLabel.layer.cornerRadius = 15
+        comingSoonLabel.roundCorners(corners: .allCorners, radius: 15)
+        comingSoonLabel.isHidden = true
+        
+        notifySwitchContainer.backgroundColor = .clear
+        notifySwitchContainer.isHidden = true
+        
+        addCustomSwitch()
         initializeValues()
     }
+    
+    private func addCustomSwitch(){
+        print("CGPoint(x: notifySwitchContainer.bounds.midX, y: notifySwitchContainer.bounds.midY): \(CGPoint(x: notifySwitchContainer.bounds.midX, y: notifySwitchContainer.bounds.midY))")
+        let ls2 = Language.language == .arabic ? LabelSwitchConfig(text: "notifyMe".localized,
+                                    textColor: .white.withAlphaComponent(0.7),
+                                   font: .munaFont(ofSize: 15),
+                                    backgroundColor: UIColor.black.withAlphaComponent(0.5))
+        :
+        LabelSwitchConfig(text: "notifyMeOn".localized,
+                                    textColor: .white.withAlphaComponent(0.7),
+                                   font: .munaFont(ofSize: 15),
+                                    backgroundColor: UIColor.quartz.withAlphaComponent(0.6))
+        
+        let rs2 = Language.language == .arabic ? LabelSwitchConfig(text: "notifyMeOn".localized,
+                                    textColor: .white.withAlphaComponent(0.7),
+                                   font: .munaFont(ofSize: 15),
+                                    backgroundColor: UIColor.quartz.withAlphaComponent(0.6))
+        :
+        LabelSwitchConfig(text: "notifyMe".localized,
+                                    textColor: .white.withAlphaComponent(0.7),
+                                   font: .munaFont(ofSize: 15),
+                                    backgroundColor: UIColor.black.withAlphaComponent(0.5))
+        
+        notifySwitchContainer.layoutIfNeeded()
+        
+        let notifyMeLabelSwitch = LabelSwitch(center: CGPoint(x: notifySwitchContainer.bounds.midX, y: notifySwitchContainer.bounds.midY), leftConfig: ls2, rightConfig: rs2, minimumSize: CGSize(width: 90, height: 30), defaultState: Language.language == .arabic ? .R : .L)
+        notifyMeLabelSwitch.delegate = self
+        notifyMeLabelSwitch.fullSizeTapEnabled = true
+        notifyMeLabelSwitch.circleColor = UIColor(patternImage: UIImage(named: "NotifyMeOff")!)
+        self.notifySwitchContainer.addSubview(notifyMeLabelSwitch)
+        notifyMeLabelSwitch.layoutIfNeeded()
+    }
+    
     private func initializeValues(){
         talkBackgroundImage.image = nil
         let loadingIndicator = UIActivityIndicatorView(style: .white)
@@ -130,6 +193,20 @@ class TawazonTalkViewController: HandleErrorViewController {
 //            })
 //
 //        }
+        
+        if let comingSoonData = tawazonTalkVM.comingSoon{
+            comingSoonLabel.isHidden = false
+            if RemoteConfigManager.shared.bool(forKey: .showNotifyMeButton){
+                notifySwitchContainer.isHidden = false
+            }
+            
+            shareButton.isHidden = true
+        }else{
+            comingSoonLabel.isHidden = true
+            notifySwitchContainer.isHidden = true
+            shareButton.isHidden = false
+        }
+        
         mainTalkSessionView.tawazonTalkVM = tawazonTalkVM
         mainTalkSessionView.delegate = self
 
@@ -308,6 +385,15 @@ extension TawazonTalkViewController:  MainPlayerBarViewDelegate {
         navigationController.transitioningDelegate = self
         viewcontroller.transitioningDelegate = self
         self.present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension TawazonTalkViewController: LabelSwitchDelegate {
+    func switchChangToState(sender: LabelSwitch) {
+        switch sender.curState {
+        case .L: sender.circleColor = Language.language == .arabic ? UIColor(patternImage: UIImage(named: "NotifyMeOn")!) : UIColor(patternImage: UIImage(named: "NotifyMeOff")!)
+        case .R: sender.circleColor = Language.language == .arabic ? UIColor(patternImage: UIImage(named: "NotifyMeOff")!) : UIColor(patternImage: UIImage(named: "NotifyMeOn")!)
+        }
     }
 }
 

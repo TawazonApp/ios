@@ -22,6 +22,7 @@ target 'Tawazon' do
     pod 'AppsFlyerFramework'
     #    pod 'Branch', :git => 'https://github.com/BranchMetrics/ios-branch-deep-linking.git'
     pod 'UXCam'
+    pod 'LabelSwitch'
     
     target 'TawazonTests' do
         inherit! :search_paths

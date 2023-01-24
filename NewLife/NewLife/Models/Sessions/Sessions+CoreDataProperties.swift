@@ -31,6 +31,7 @@ extension Sessions {
     @NSManaged public var audioSource: String?
     @NSManaged public var imageUrl: String?
     @NSManaged public var thumbnailUrl: String?
+    @NSManaged public var thumbnailLockedUrl: String?
     @NSManaged public var shareLink: String?
     
     @NSManaged public var playBackgroundSound: Bool
@@ -66,6 +67,7 @@ extension Sessions {
         self.audioUrl = sessionModel.audioUrl
         self.audioSource = sessionModel.audioSource
         self.thumbnailUrl = sessionModel.thumbnailUrl
+        self.thumbnailLockedUrl = sessionModel.thumbnailLockedUrl
         
         self.imageFilePath = sessionModel.localImagePath
         self.audioFilePath = sessionModel.localAudioPath

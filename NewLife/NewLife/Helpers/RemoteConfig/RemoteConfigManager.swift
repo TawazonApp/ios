@@ -19,6 +19,7 @@ enum RCValueKeys: String {
     case dailyActivityLockNextStep
     case first_dailyActivityFeatureFlow
     case premuimPage6DarkTheme
+    case showNotifyMeButton
 }
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
@@ -52,7 +53,7 @@ extension RemoteConfigManager{
     
     func fetchRemoteConfigCloudValues() {
       //FIXME: remove on production
-//      activateDebugMode()
+      activateDebugMode()
 
       RemoteConfig.remoteConfig().fetch { [weak self] _, error in
         if let error = error {
@@ -102,6 +103,10 @@ extension RemoteConfigManager{
             
             _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.premuimPage6DarkTheme.rawValue)
+                .boolValue
+            
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.showNotifyMeButton.rawValue)
                 .boolValue
             
           self?.fetchComplete = true

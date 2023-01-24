@@ -24,6 +24,7 @@ struct SessionModel: Codable {
     let artist: Contributor?
     var imageUrl: String?
     var thumbnailUrl: String?
+    var thumbnailLockedUrl: String?
     var audioUrl: String
     var audioSource: String
     let free: Int
@@ -38,6 +39,7 @@ struct SessionModel: Codable {
     var locked: Bool?
     let type: String?
     let defaultDialect: Dialect?
+    let comingSoon: ComingSoonModel?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -50,6 +52,7 @@ struct SessionModel: Codable {
         case favorite
         case imageUrl = "image"
         case thumbnailUrl = "thumbnail"
+        case thumbnailLockedUrl = "thumbnailLocked"
         case audioUrl = "audio"
         case audioSource = "audioSource"
         case localThumbnailPath
@@ -62,6 +65,7 @@ struct SessionModel: Codable {
         case locked
         case type
         case defaultDialect = "defaultAudioSource"
+        case comingSoon
     }
     
     func isFavorite() -> Bool {
@@ -137,6 +141,7 @@ extension SessionModel {
         self.favorite = session.isFavorite.intValue()
         self.imageUrl = session.imageUrl
         self.thumbnailUrl = session.thumbnailUrl
+        self.thumbnailLockedUrl = session.thumbnailLockedUrl
         self.audioUrl = session.audioUrl ?? ""
         self.audioSource = session.audioSource ?? ""
         self.playBackgroundSound = session.playBackgroundSound
@@ -145,6 +150,7 @@ extension SessionModel {
         self.locked = session.locked
         self.type = session.type
         self.defaultDialect = nil
+        self.comingSoon = nil
     }
  
     init?(data: Data) {
@@ -183,6 +189,8 @@ extension SessionModel {
        
         thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl)
         
+        thumbnailLockedUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailLockedUrl)
+        
         audioUrl = try container.decodeIfPresent(String.self, forKey: .audioUrl) ?? ""
         
         audioSource = try container.decodeIfPresent(String.self, forKey: .audioSource) ?? ""
@@ -205,6 +213,7 @@ extension SessionModel {
          
         defaultDialect = try container.decodeIfPresent(Dialect.self, forKey: .defaultDialect)
         
+        comingSoon = try container.decodeIfPresent(ComingSoonModel.self, forKey: .comingSoon) ?? nil
         localImagePath = nil
         localAudioPath = nil
         localThumbnailPath = nil

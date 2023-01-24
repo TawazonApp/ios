@@ -15,6 +15,7 @@ class TawazonTalkVM{
     var title, image, thumbnail, content, paletteColor: String?
     var author: Contributor?
     var mainItem: SessionModel?
+    var comingSoon: ComingSoonModel?
     var tawazonTalkSections: [TawazonTalkSection]?{
         didSet{
             fillSections()
@@ -48,6 +49,7 @@ class TawazonTalkVM{
                 self.content = model.content
                 self.paletteColor = model.paletteColor
                 self.author = model.author
+                self.comingSoon = model.comingSoon
                 self.mainItem = model.mainItem
                 self.tawazonTalkSections = model.sections
             }

@@ -124,6 +124,7 @@ PODS:
     - GoogleUtilities/MethodSwizzler
   - GoogleUtilities/UserDefaults (7.2.2):
     - GoogleUtilities/Logger
+  - LabelSwitch (0.1.7)
   - lottie-ios (3.1.8)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
@@ -152,6 +153,7 @@ DEPENDENCIES:
   - Firebase/Messaging (~> 7.6.0)
   - Firebase/RemoteConfig
   - GoogleUtilities
+  - LabelSwitch
   - lottie-ios
   - NVActivityIndicatorView
   - SwiftMessages
@@ -180,6 +182,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - LabelSwitch
     - lottie-ios
     - nanopb
     - NVActivityIndicatorView
@@ -209,6 +212,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: c542a2feaac9ab98fd074e8f1a02c3585bbfbd47
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
+  LabelSwitch: 97b19eb5e11b27854559374357375134d40c744f
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
@@ -218,6 +222,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   UXCam: fb294bf954e708fc308a645ae65bb967cac0760e
 
-PODFILE CHECKSUM: 49110fdc72c7e237eb28656d6b8c9c6ce78db0ff
+PODFILE CHECKSUM: de785a8ef9b50649a4f8da1eb5e1dd2752ce42a9
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

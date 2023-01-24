@@ -13,6 +13,7 @@ struct TawazonTalkModel: Codable, ModelInitializable{
     let author: Contributor?
     let mainItem: SessionModel
     let sections: [TawazonTalkSection]?
+    let comingSoon: ComingSoonModel?
 }
 
 struct TawazonTalkSection: Codable, ModelInitializable {

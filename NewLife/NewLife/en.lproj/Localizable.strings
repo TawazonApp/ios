@@ -545,3 +545,6 @@ Unless you cancel the service beforehand.";
 "TawazonTalkHomeSectionTitle" = "Tawazon";
 "newText" = "New";
 "TawazonTalkTodaySectionTitle" = "Tawazon Talk";
+"comingSoonLabel" = "Coming Soon";
+"notifyMe" = "Notify Me";
+"notifyMeOn" = "Subscribed!";

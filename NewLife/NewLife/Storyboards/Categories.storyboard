@@ -456,6 +456,15 @@
                                                                                             <constraint firstAttribute="height" constant="14" id="nvN-No-Uz9"/>
                                                                                         </constraints>
                                                                                     </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6x-gP-AQW" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="42" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="sQ0-PW-z6T"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="313-jX-oju" secondAttribute="trailing" constant="16" id="0Wa-eb-nlT"/>
@@ -473,6 +482,8 @@
                                                                                     <constraint firstAttribute="bottom" secondItem="Fva-0t-jX5" secondAttribute="bottom" id="p0t-bI-HLL"/>
                                                                                     <constraint firstItem="u7a-M7-jGR" firstAttribute="centerX" secondItem="Fva-0t-jX5" secondAttribute="centerX" id="rp8-h8-0WH"/>
                                                                                     <constraint firstItem="u7a-M7-jGR" firstAttribute="centerY" secondItem="Fva-0t-jX5" secondAttribute="centerY" id="vDH-Eg-HTD"/>
+                                                                                    <constraint firstItem="A6x-gP-AQW" firstAttribute="leading" secondItem="RU7-oz-z4u" secondAttribute="leading" constant="17" id="xOp-Tm-xYI"/>
+                                                                                    <constraint firstItem="A6x-gP-AQW" firstAttribute="top" secondItem="RU7-oz-z4u" secondAttribute="top" constant="17" id="zdc-md-Zld"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
                                                                             <size key="customSize" width="300" height="116"/>
@@ -481,6 +492,7 @@
                                                                                 <outlet property="imageView" destination="Fva-0t-jX5" id="jeR-Je-5zA"/>
                                                                                 <outlet property="languageImageView" destination="bPx-n5-zRC" id="gwA-i4-AK4"/>
                                                                                 <outlet property="lockImageView" destination="313-jX-oju" id="4lV-PU-7IY"/>
+                                                                                <outlet property="lockLabel" destination="A6x-gP-AQW" id="10u-YI-MXE"/>
                                                                                 <outlet property="nameLabel" destination="n7b-ic-iQb" id="PSn-VT-z37"/>
                                                                                 <outlet property="overlayView" destination="u7a-M7-jGR" id="FUe-50-Kxj"/>
                                                                             </connections>
@@ -1182,6 +1194,15 @@
                                                                                             <constraint firstAttribute="width" constant="14" id="a7j-yA-kya"/>
                                                                                         </constraints>
                                                                                     </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lay-Sc-pLq" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="42" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="t8f-lp-Jzy"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="bottom" secondItem="txZ-e9-S1w" secondAttribute="bottom" id="2cD-gI-PXz"/>
@@ -1194,11 +1215,13 @@
                                                                                     <constraint firstItem="E1v-We-KJu" firstAttribute="height" secondItem="txZ-e9-S1w" secondAttribute="height" id="PVa-ID-I1h"/>
                                                                                     <constraint firstItem="Psz-aP-dNg" firstAttribute="centerX" secondItem="uL6-vy-LFq" secondAttribute="centerX" id="Yxh-2b-k1M"/>
                                                                                     <constraint firstItem="txZ-e9-S1w" firstAttribute="top" secondItem="dNZ-sY-klg" secondAttribute="top" id="eFq-5B-eWM"/>
+                                                                                    <constraint firstItem="lay-Sc-pLq" firstAttribute="leading" secondItem="dNZ-sY-klg" secondAttribute="leading" constant="17" id="fBa-Ms-m4L"/>
                                                                                     <constraint firstItem="uL6-vy-LFq" firstAttribute="top" secondItem="dNZ-sY-klg" secondAttribute="top" constant="16" id="fyg-SS-3hp"/>
                                                                                     <constraint firstItem="E1v-We-KJu" firstAttribute="width" secondItem="txZ-e9-S1w" secondAttribute="width" id="gcW-j9-QZr"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="zoh-ee-yp4" secondAttribute="bottom" id="jdb-KW-agK"/>
                                                                                     <constraint firstItem="txZ-e9-S1w" firstAttribute="leading" secondItem="dNZ-sY-klg" secondAttribute="leading" id="mXB-Qr-CTd"/>
                                                                                     <constraint firstItem="E1v-We-KJu" firstAttribute="centerY" secondItem="txZ-e9-S1w" secondAttribute="centerY" id="mfH-MM-fGJ"/>
+                                                                                    <constraint firstItem="lay-Sc-pLq" firstAttribute="top" secondItem="dNZ-sY-klg" secondAttribute="top" constant="17" id="wEJ-5q-QKR"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
                                                                             <size key="customSize" width="300" height="116"/>
@@ -1207,6 +1230,7 @@
                                                                                 <outlet property="imageView" destination="txZ-e9-S1w" id="Znd-ZS-Qou"/>
                                                                                 <outlet property="languageImageView" destination="Psz-aP-dNg" id="X91-3z-mcM"/>
                                                                                 <outlet property="lockImageView" destination="uL6-vy-LFq" id="dJ9-vT-mkg"/>
+                                                                                <outlet property="lockLabel" destination="lay-Sc-pLq" id="Rgd-cD-Byi"/>
                                                                                 <outlet property="nameLabel" destination="5rI-eC-ZaG" id="8qN-Go-sKg"/>
                                                                                 <outlet property="overlayView" destination="E1v-We-KJu" id="QAb-6o-OSt"/>
                                                                             </connections>
@@ -1905,6 +1929,15 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0O-qy-KVQ" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="42" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="CxV-qd-acV"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstItem="OZb-Pd-Ovf" firstAttribute="leading" secondItem="Vfm-ak-W2l" secondAttribute="leading" constant="16" id="B02-Yv-qfd"/>
@@ -1918,6 +1951,8 @@
                                                                                     <constraint firstAttribute="trailing" secondItem="9iQ-ez-y8s" secondAttribute="trailing" id="kVm-Bo-81U"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="tT1-Ub-Umr" secondAttribute="trailing" constant="16" id="p59-2r-zh2"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="9iQ-ez-y8s" secondAttribute="bottom" id="rk3-Mx-BhP"/>
+                                                                                    <constraint firstItem="q0O-qy-KVQ" firstAttribute="leading" secondItem="Vfm-ak-W2l" secondAttribute="leading" constant="17" id="sEx-13-hXv"/>
+                                                                                    <constraint firstItem="q0O-qy-KVQ" firstAttribute="top" secondItem="Vfm-ak-W2l" secondAttribute="top" constant="17" id="sY3-ge-5yR"/>
                                                                                     <constraint firstItem="9iQ-ez-y8s" firstAttribute="leading" secondItem="Vfm-ak-W2l" secondAttribute="leading" id="skt-ck-Tsp"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
@@ -1926,6 +1961,7 @@
                                                                                 <outlet property="blurView" destination="9iQ-ez-y8s" id="61J-ii-djx"/>
                                                                                 <outlet property="imageView" destination="DXx-lP-ubd" id="A5s-dh-aAH"/>
                                                                                 <outlet property="lockImageView" destination="tT1-Ub-Umr" id="5TD-dS-bgW"/>
+                                                                                <outlet property="lockLabel" destination="q0O-qy-KVQ" id="A54-Rs-YNZ"/>
                                                                                 <outlet property="nameLabel" destination="OZb-Pd-Ovf" id="35U-Uq-d2d"/>
                                                                                 <outlet property="overlayView" destination="nN0-lq-Xv9" id="Yhu-3x-nT3"/>
                                                                             </connections>
@@ -2613,8 +2649,18 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LA4-5X-Myx" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="41.5" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="MhF-Bj-pfJ"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
+                                                                                    <constraint firstItem="LA4-5X-Myx" firstAttribute="leading" secondItem="D27-1S-1z2" secondAttribute="leading" constant="17" id="3dX-2S-B2N"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="AMP-oH-mf4" secondAttribute="trailing" id="9uC-PU-xLb"/>
                                                                                     <constraint firstItem="Uxn-z5-295" firstAttribute="top" secondItem="D27-1S-1z2" secondAttribute="top" constant="16" id="EBP-zN-vjQ"/>
                                                                                     <constraint firstItem="YZa-gA-xwI" firstAttribute="leading" secondItem="D27-1S-1z2" secondAttribute="leading" id="Fm6-Kp-r7C"/>
@@ -2626,6 +2672,7 @@
                                                                                     <constraint firstItem="iVf-GC-XsF" firstAttribute="centerX" secondItem="AMP-oH-mf4" secondAttribute="centerX" id="Tbo-Ak-WW7"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="Lje-0p-G44" secondAttribute="trailing" constant="16" id="ZMn-yl-Dgb"/>
                                                                                     <constraint firstItem="Lje-0p-G44" firstAttribute="leading" secondItem="D27-1S-1z2" secondAttribute="leading" constant="16" id="bug-eX-J6R"/>
+                                                                                    <constraint firstItem="LA4-5X-Myx" firstAttribute="top" secondItem="D27-1S-1z2" secondAttribute="top" constant="17" id="bxu-Jn-ZmR"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="YZa-gA-xwI" secondAttribute="trailing" id="e0X-sn-8qr"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="Lje-0p-G44" secondAttribute="bottom" constant="36" id="eGM-AQ-qnb"/>
                                                                                     <constraint firstItem="iVf-GC-XsF" firstAttribute="width" secondItem="AMP-oH-mf4" secondAttribute="width" id="lHX-ol-JqD"/>
@@ -2638,6 +2685,7 @@
                                                                                 <outlet property="blurView" destination="YZa-gA-xwI" id="Ftw-vG-JuR"/>
                                                                                 <outlet property="imageView" destination="AMP-oH-mf4" id="pD2-Bb-7OM"/>
                                                                                 <outlet property="lockImageView" destination="Uxn-z5-295" id="83V-3D-Mig"/>
+                                                                                <outlet property="lockLabel" destination="LA4-5X-Myx" id="PQT-tT-63b"/>
                                                                                 <outlet property="nameLabel" destination="Lje-0p-G44" id="ExL-B1-PIN"/>
                                                                                 <outlet property="overlayView" destination="iVf-GC-XsF" id="YOP-qz-Xo5"/>
                                                                             </connections>
@@ -3473,6 +3521,15 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKu-YX-Ku6" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="42" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="J1T-ls-gcz"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="Wt5-tj-TdR" secondAttribute="trailing" id="09B-dz-ljK"/>
@@ -3481,6 +3538,7 @@
                                                                                     <constraint firstItem="Pkd-eb-WVX" firstAttribute="width" secondItem="ZXP-rm-3yp" secondAttribute="width" id="4xw-eP-q8Q"/>
                                                                                     <constraint firstItem="Pkd-eb-WVX" firstAttribute="centerX" secondItem="ZXP-rm-3yp" secondAttribute="centerX" id="9sr-ba-uhK"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="ZXP-rm-3yp" secondAttribute="trailing" id="AI5-O1-n7a"/>
+                                                                                    <constraint firstItem="iKu-YX-Ku6" firstAttribute="leading" secondItem="3Hv-gw-5sk" secondAttribute="leading" constant="17" id="Am0-8s-sn3"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="ZXP-rm-3yp" secondAttribute="bottom" id="IZ7-D7-Pm0"/>
                                                                                     <constraint firstItem="ZXP-rm-3yp" firstAttribute="leading" secondItem="3Hv-gw-5sk" secondAttribute="leading" id="LPH-sa-ewl"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="Wt5-tj-TdR" secondAttribute="bottom" id="LZz-cS-Ydy"/>
@@ -3491,6 +3549,7 @@
                                                                                     <constraint firstAttribute="bottom" secondItem="kc2-au-IjF" secondAttribute="bottom" constant="36" id="dhn-En-LdR"/>
                                                                                     <constraint firstItem="Pkd-eb-WVX" firstAttribute="centerY" secondItem="ZXP-rm-3yp" secondAttribute="centerY" id="ffz-FE-LSE"/>
                                                                                     <constraint firstItem="ZXP-rm-3yp" firstAttribute="top" secondItem="3Hv-gw-5sk" secondAttribute="top" id="x3d-Ea-DUI"/>
+                                                                                    <constraint firstItem="iKu-YX-Ku6" firstAttribute="top" secondItem="3Hv-gw-5sk" secondAttribute="top" constant="17" id="xB0-MI-S1g"/>
                                                                                 </constraints>
                                                                             </collectionViewCellContentView>
                                                                             <size key="customSize" width="300" height="116"/>
@@ -3498,6 +3557,7 @@
                                                                                 <outlet property="blurView" destination="Wt5-tj-TdR" id="sBy-YW-hi6"/>
                                                                                 <outlet property="imageView" destination="ZXP-rm-3yp" id="XNv-Fv-2gF"/>
                                                                                 <outlet property="lockImageView" destination="3rN-hi-B7v" id="QKc-Oa-Fpz"/>
+                                                                                <outlet property="lockLabel" destination="iKu-YX-Ku6" id="YbL-S4-26o"/>
                                                                                 <outlet property="nameLabel" destination="kc2-au-IjF" id="wW1-Jm-TOZ"/>
                                                                                 <outlet property="overlayView" destination="Pkd-eb-WVX" id="eFs-gh-7Gd"/>
                                                                             </connections>
@@ -4414,6 +4474,15 @@
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1G-Tb-iho" customClass="PaddingLabel" customModule="Tawazon" customModuleProvider="target">
+                                                                                        <rect key="frame" x="17" y="17" width="42" height="28"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="28" id="Mtm-jq-Tr2"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstItem="Uwz-Tu-V0K" firstAttribute="top" secondItem="bVV-AI-Rkl" secondAttribute="top" constant="16" id="2VR-Ma-GmK"/>
@@ -4422,7 +4491,9 @@
                                                                                     <constraint firstAttribute="bottom" secondItem="QUf-lK-3t6" secondAttribute="bottom" constant="36" id="AZ7-Dr-jUj"/>
                                                                                     <constraint firstItem="AmD-ZA-SOW" firstAttribute="centerX" secondItem="Hch-6x-ou4" secondAttribute="centerX" id="EJ4-t2-Ad0"/>
                                                                                     <constraint firstItem="Wvs-Ys-oWL" firstAttribute="leading" secondItem="bVV-AI-Rkl" secondAttribute="leading" id="EdL-G4-rfH"/>
+                                                                                    <constraint firstItem="h1G-Tb-iho" firstAttribute="leading" secondItem="bVV-AI-Rkl" secondAttribute="leading" constant="17" id="IAd-aT-0OJ"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="Wvs-Ys-oWL" secondAttribute="trailing" id="KmB-bg-cm9"/>
+                                                                                    <constraint firstItem="h1G-Tb-iho" firstAttribute="top" secondItem="bVV-AI-Rkl" secondAttribute="top" constant="17" id="LjV-Xg-6e2"/>
                                                                                     <constraint firstItem="Hch-6x-ou4" firstAttribute="top" secondItem="bVV-AI-Rkl" secondAttribute="top" id="Map-zt-FBN"/>
                                                                                     <constraint firstItem="AmD-ZA-SOW" firstAttribute="height" secondItem="Hch-6x-ou4" secondAttribute="height" id="OcR-vB-rJi"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="Uwz-Tu-V0K" secondAttribute="trailing" constant="16" id="Paq-mH-Kzl"/>
@@ -4439,6 +4510,7 @@
                                                                                 <outlet property="blurView" destination="Wvs-Ys-oWL" id="gyh-IG-wPC"/>
                                                                                 <outlet property="imageView" destination="Hch-6x-ou4" id="udV-oH-hSN"/>
                                                                                 <outlet property="lockImageView" destination="Uwz-Tu-V0K" id="rpi-Ad-LqD"/>
+                                                                                <outlet property="lockLabel" destination="h1G-Tb-iho" id="bAC-Wo-PNs"/>
                                                                                 <outlet property="nameLabel" destination="QUf-lK-3t6" id="rc4-tF-UWP"/>
                                                                                 <outlet property="overlayView" destination="AmD-ZA-SOW" id="mJd-nk-xJ2"/>
                                                                             </connections>

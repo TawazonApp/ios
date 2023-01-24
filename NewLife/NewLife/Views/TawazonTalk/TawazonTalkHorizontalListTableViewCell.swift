@@ -122,7 +122,10 @@ extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICo
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return
         }
-        delegate?.playSession(self, session: session)
+        if !(session.session?.locked ?? false){
+            delegate?.playSession(self, session: session)
+        }
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

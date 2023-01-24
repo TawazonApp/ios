@@ -400,6 +400,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         else if section?.style == .talkList{
+            section?.items.sort(by: {return $0.comingSoon?.timestamp ?? 0 < $1.comingSoon?.timestamp ?? 0})
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: HomeTableTawazonTalkSectionCell.identifier) as! HomeTableTawazonTalkSectionCell
             sectionCell.delegate = self
                        sectionCell.data = section

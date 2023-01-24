@@ -18,7 +18,7 @@ class TawazonTalkMainSessionView: UIView{
     @IBOutlet weak var mainSessionTitleLabel: UILabel!
     @IBOutlet weak var mainSessionSubtitleLabel: UILabel!
     @IBOutlet weak var authorImageView: UIImageView!
-    @IBOutlet weak var authorLabel: UILabel!
+//    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var playButton: GradientButton!
     
@@ -57,9 +57,9 @@ class TawazonTalkMainSessionView: UIView{
         authorImageView.backgroundColor = .clear
         authorImageView.contentMode = .scaleAspectFill
         
-        authorLabel.font = .munaFont(ofSize: 16)
-        authorLabel.textColor = .white.withAlphaComponent(0.86)
-        authorLabel.text = "TawazonTalkAuthorLabel".localized
+//        authorLabel.font = .munaFont(ofSize: 16)
+//        authorLabel.textColor = .white.withAlphaComponent(0.86)
+//        authorLabel.text = "TawazonTalkAuthorLabel".localized
         
         authorNameLabel.font = .munaBoldFont(ofSize: 20)
         authorNameLabel.textColor = .white

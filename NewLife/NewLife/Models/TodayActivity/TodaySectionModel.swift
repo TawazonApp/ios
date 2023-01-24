@@ -46,4 +46,12 @@ struct ItemModel: Codable, ModelInitializable{
     let paletteColor: String?
     let author: Contributor?
     let mainItem: SessionModel?
+    let thumbnailLocked: String?
+    let comingSoon: ComingSoonModel?
+    let locked: Bool?
+}
+
+struct ComingSoonModel: Codable, ModelInitializable{
+    let title, date: String?
+    let timestamp: Int? 
 }

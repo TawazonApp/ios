@@ -36,6 +36,8 @@ class SessionShareViewController: SessionInfoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        let values = ["item_name": session.name ?? "", "item_id": session.id ?? ""] as [String : Any]
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.itemShare, payload: values)
     }
     
     private func initialize() {

@@ -99,6 +99,9 @@ extension HomeTableTawazonTalkSectionCell: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTableTawazonTalkItemCollectionCell.identifier, for: indexPath) as! HomeTableTawazonTalkItemCollectionCell
+        
+        let firstItem = data?.items.first(where: {return $0.comingSoon != nil})
+        cell.showDate = data?.items[safe: indexPath.item]?.id == firstItem?.id ? true : false
         cell.item = data?.items[safe: indexPath.item]
         return cell
     }

@@ -16,6 +16,9 @@ class ItemVM {
     var paletteColor: String?
     var author: Contributor?
     var mainItem: SessionModel?
+    var thumbnailLocked: String?
+    var comingSoon: ComingSoonModel?
+    var locked: Bool?
     
     init(item: ItemModel) {
         self.id = item.id
@@ -26,9 +29,12 @@ class ItemVM {
         self.authorName = item.authorName
         self.paletteColor = item.paletteColor
         self.author = item.author
+        self.thumbnailLocked = item.thumbnailLocked
+        self.comingSoon = item.comingSoon
+        self.locked = item.locked
     }
     
-    init(id: String, title: String?, image: String?, thumbnail: String?, content: String?, authorName: String?, paletteColor: String?, author: Contributor?, mainItem: SessionModel?) {
+    init(id: String, title: String?, image: String?, thumbnail: String?, content: String?, authorName: String?, paletteColor: String?, author: Contributor?, mainItem: SessionModel?, thumbnailLocked: String?, comingSoon: ComingSoonModel?, locked: Bool?) {
         self.id = id
         self.title = title
         self.image = image
@@ -38,5 +44,8 @@ class ItemVM {
         self.paletteColor = paletteColor
         self.author = author
         self.mainItem = mainItem
+        self.thumbnailLocked = thumbnailLocked
+        self.comingSoon = comingSoon
+        self.locked = locked
     }
 }

@@ -17,6 +17,7 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 //    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var languageImageView: UIImageView!
+    @IBOutlet weak var lockLabel: PaddingLabel!
     
     var session: HomeSessionVM? {
         didSet {
@@ -28,7 +29,19 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         initialize()
     }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        customLayout()
+    }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        lockLabel.isHidden = true
+    }
+    private func customLayout(){
+        lockLabel.layoutIfNeeded()
+        lockLabel.roundCorners(corners: .allCorners, radius: 15)
+    }
     private func initialize() {
         self.layer.cornerRadius = 32
         self.layer.masksToBounds = true
@@ -50,10 +63,19 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
 //        durationLabel.isHidden = true
         
         languageImageView.contentMode = .center
+        
+        lockLabel.backgroundColor = .black.withAlphaComponent(0.47)
+        lockLabel.font = .munaBoldFont(ofSize: 16)
+        lockLabel.textColor = .white
+        lockLabel.textAlignment = .center
+        lockLabel.leftInset = 10
+        lockLabel.rightInset = 10
+        lockLabel.text = "comingSoonLabel".localized
+        lockLabel.layer.cornerRadius = 5
+        lockLabel.isHidden = true
     }
     
     private func fillData() {
-        
         imageView.image = nil
         let loadingIndicator = UIActivityIndicatorView(style: .white)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +97,24 @@ class HomeTableSessionCollectionCell: UICollectionViewCell {
 //        durationLabel.text = session?.durationString
         if session?.session?.type != SessionType.talk.rawValue {
             lockImageView.isHidden = !(session?.isLock ?? false)
+        }else{
+            if let comingSoonData = session?.session?.comingSoon{
+                lockLabel.isHidden = false
+                if let imageUrl = session?.session?.thumbnailLockedUrl?.url {
+                    imageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+                        loadingIndicator.stopAnimating()
+                        loadingIndicator.removeFromSuperview()
+                    })
+                }
+            }else{
+                if let imageUrl = session?.imageUrl?.url {
+                    imageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+                        loadingIndicator.stopAnimating()
+                        loadingIndicator.removeFromSuperview()
+                    })
+                    
+                }
+            }
         }
         if session?.session?.type != SessionType.music.rawValue{
             if(session?.audioSources?.count ?? 0 > 1){

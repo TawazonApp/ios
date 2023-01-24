@@ -259,6 +259,9 @@ extension UIColor {
         return UIColor(red: 111.0 / 255.0, green: 107.0 / 255.0, blue: 192.0 / 255.0, alpha: 1.0)
     }
 
+    class var quartz: UIColor {
+        return UIColor(red: 206 / 255.0, green: 203 / 255.0, blue: 241 / 255.0, alpha: 1.0)
+    }
     
     class var palePurple: UIColor {
         return UIColor(red: 161.0 / 255.0, green: 140.0 / 255.0, blue: 209.0 / 255.0, alpha: 1.0)

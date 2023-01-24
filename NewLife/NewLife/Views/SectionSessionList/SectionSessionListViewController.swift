@@ -217,7 +217,7 @@ extension SectionSessionListViewController: UICollectionViewDelegate, UICollecti
         }
         if session.session?.type == SessionType.talk.rawValue {
             if let sessionModel = session.session{
-                let item = ItemVM(id: sessionModel.id, title: sessionModel.name, image: sessionModel.imageUrl, thumbnail: sessionModel.thumbnailUrl, content: sessionModel.descriptionString, authorName: sessionModel.author, paletteColor: nil, author: nil, mainItem: nil)
+                let item = ItemVM(id: sessionModel.id, title: sessionModel.name, image: sessionModel.imageUrl, thumbnail: sessionModel.thumbnailUrl, content: sessionModel.descriptionString, authorName: sessionModel.author, paletteColor: nil, author: nil, mainItem: nil, thumbnailLocked: nil, comingSoon: nil, locked: nil)
                 openTawazonTalkVC(item: item)
             }
             return

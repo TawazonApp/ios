@@ -13,6 +13,7 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var itemTitleLabel: UILabel!
     @IBOutlet weak var itemContentLabel: UILabel!
+    @IBOutlet weak var lockLabel: PaddingLabel!
     
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var frameComponent1: UIImageView!
@@ -25,6 +26,9 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
             fillData()
         }
     }
+    
+    var showDate: Bool = false
+
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
@@ -35,11 +39,19 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         customLayout()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        lockLabel.isHidden = true
+    }
+    
     private func customLayout(){
         itemImageViewMask.layoutIfNeeded()
         itemImageView.layoutIfNeeded()
         itemImageViewMask.frame = itemImageView.bounds
         itemImageView.mask = itemImageViewMask
+        
+        lockLabel.layoutIfNeeded()
+        lockLabel.roundCorners(corners: .allCorners, radius: 15)
     }
     private func initialize() {
 //        self.layer.cornerRadius = 32
@@ -73,6 +85,15 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         itemContentLabel.numberOfLines = 0
         itemContentLabel.lineBreakMode = .byWordWrapping
         
+        lockLabel.backgroundColor = .black.withAlphaComponent(0.47)
+        lockLabel.font = .munaBoldFont(ofSize: 16)
+        lockLabel.textColor = .white
+        lockLabel.textAlignment = .center
+        lockLabel.leftInset = 10
+        lockLabel.rightInset = 10
+        lockLabel.text = "comingSoonLabel".localized
+        lockLabel.layer.cornerRadius = 5
+        lockLabel.isHidden = true
     }
     
     private func fillData() {
@@ -85,19 +106,48 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
         loadingIndicator.center = itemImageView.center
         loadingIndicator.startAnimating()
         
-        if let imageUrl = item?.thumbnail?.url {
-            itemImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
-                loadingIndicator.stopAnimating()
-                loadingIndicator.removeFromSuperview()
-                self.customLayout()
-                self.itemImageView.backgroundColor = .clear
-            })
-            
-        }
+        
         
         itemTitleLabel.text = item?.title
         itemContentLabel.text = item?.content
-        
+        if let comingSoonData = item?.comingSoon{
+            lockLabel.isHidden = false
+            if showDate{
+                if let dateStamp = item?.comingSoon?.timestamp {
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateStamp))
+                    let dateFormatter = DateFormatter()
+//                    dateFormatter.timeStyle = DateFormatter.Style.none //Set time style
+                    dateFormatter.dateStyle = DateFormatter.Style.short //Set date style
+                    dateFormatter.dateFormat = "dd MMM"
+                    dateFormatter.locale = .current
+                    dateFormatter.timeZone = .current
+                    let localDate = dateFormatter.string(from: date)
+                    lockLabel.attributedText = comingSoonLabelAttributeText(dateString: localDate)
+                }
+                
+            }
+            if let imageUrl = item?.thumbnailLocked?.url {
+                itemImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+                    loadingIndicator.stopAnimating()
+                    loadingIndicator.removeFromSuperview()
+                    self.customLayout()
+                    self.itemImageView.backgroundColor = .clear
+                })
+                
+            }
+            
+        }else{
+            if let imageUrl = item?.thumbnail?.url {
+                itemImageView.af.setImage(withURL: imageUrl, completion:  { (_) in
+                    loadingIndicator.stopAnimating()
+                    loadingIndicator.removeFromSuperview()
+                    self.customLayout()
+                    self.itemImageView.backgroundColor = .clear
+                })
+                
+            }
+            
+        }
         if let colorHex = item?.paletteColor{
             gradientView.applyGradientColor(colors: [UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor(hex6: UInt32(String(((colorHex.dropFirst(1)))), radix: 16) ?? 111111).cgColor, UIColor.gainsboro.cgColor], startPoint: Language.language == .arabic ? .right : .left, endPoint: Language.language == .arabic ? .left : .right)
         }
@@ -114,5 +164,18 @@ class HomeTableTawazonTalkItemCollectionCell: UICollectionViewCell {
 //                }
 //            }
 //        }
+    }
+    private func comingSoonLabelAttributeText(dateString: String) -> NSMutableAttributedString {
+        
+        let part1 = "comingSoonLabel".localized
+        let part2 = dateString
+        let allText = String(format: "%@ %@", part1, part2)
+        
+        let attributedString = NSMutableAttributedString(string: allText, attributes: [.font: UIFont.munaBoldFont(ofSize: 16)])
+        
+        if let part2Range = allText.range(of: part2) {
+            attributedString.addAttributes([.font: UIFont.munaBoldFont(ofSize: 16, language: .english)], range: part2Range.nsRange(in: allText))
+        }
+        return attributedString
     }
 }

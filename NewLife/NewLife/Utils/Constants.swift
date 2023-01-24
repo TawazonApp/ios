@@ -16,6 +16,7 @@ struct Api {
     static let apiUrlV2_1 = "\(baseUrl)/api/v2.1"
     static let apiUrlV2_2 = "\(baseUrl)/api/v2.2"
     static let apiUrlV2_3 = "\(baseUrl)/api/v2.3"
+    static let apiUrlV2_3_1 = "\(baseUrl)/api/v2.3.1"
     static let authorization = "$2y$08$SUh5WUM4STdKZmtYOHh5duA2bPXmyg7BmzxORifly3mDit6oU4Y1y"
     
     //Tracking
@@ -59,6 +60,7 @@ struct Api {
     static let homeSectionsWithBannersUrl = "\(apiUrlV2)/app/home"
     static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
     static let homeSectionsWithBannersUrlV2_3 = "\(apiUrlV2_3)/app/home"
+    static let homeSectionsWithBannersUrlV2_3_1 = "\(apiUrlV2_3_1)/app/home"
     static let todaySectionsUrl = "\(apiUrlV2_3)/home/today/sections"
     static let todayQuoteViewUrl = "\(apiUrlV2_1)/quotes/view/{id}"
     static let feelingsListUrl = "\(apiUrlV2_2)/feelings/list"
@@ -66,6 +68,7 @@ struct Api {
     static let updateFeelings = "\(apiUrlV2_2)/feelings/update"
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3 = "\(apiUrlV2_3)/sections/sessions/list/{id}"
+    static let sectionSessionsV2_3_1 = "\(apiUrlV2_3_1)/sections/sessions/list/{id}"
     
     //NewFeature
     static let newFeatureInteract = "\(apiUrlV2)/app-pages/interact/{id}"

@@ -17,6 +17,7 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lockImageView: UIImageView!
     @IBOutlet weak var languageImageView: UIImageView!
     
+    @IBOutlet weak var comingSoonLockImageView: UIImageView!
     var session: HomeSessionVM? {
         didSet {
             fillData()
@@ -54,6 +55,11 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         languageImageView.contentMode = .center
         languageImageView.clipsToBounds = false
         
+        comingSoonLockImageView.backgroundColor = .black.withAlphaComponent(0.47)
+        comingSoonLockImageView.image = UIImage(named: "ComingSoonLock")
+        comingSoonLockImageView.layer.cornerRadius = 27
+        comingSoonLockImageView.contentMode = .center
+        comingSoonLockImageView.isHidden = true
     }
     
     private func fillData(){
@@ -87,6 +93,25 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
                 }else{
                     languageImageView.image = UIImage(named: "SessionEn")
                 }
+            }
+        }
+        
+        if let comingSoonData = session?.session?.locked, comingSoonData{
+            comingSoonLockImageView.isHidden = false
+            print("session?.session?.thumbnailLockedUrl?: \(session?.session?.thumbnailUrl)")
+            if let imageUrl = session?.session?.thumbnailLockedUrl?.url {
+                sessionImage.af.setImage(withURL: imageUrl, completion:  { (_) in
+                    loadingIndicator.stopAnimating()
+                    loadingIndicator.removeFromSuperview()
+                })
+            }
+        }else{
+            if let imageUrl = session?.imageUrl?.url {
+                sessionImage.af.setImage(withURL: imageUrl, completion:  { (_) in
+                    loadingIndicator.stopAnimating()
+                    loadingIndicator.removeFromSuperview()
+                })
+                
             }
         }
     }

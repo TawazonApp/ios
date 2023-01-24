@@ -29,6 +29,8 @@ enum GeneralCustomEvents {
     static let newFeaturePopupAction = "tawazonTalk_popup_action"
     static let tawazonTalkOpened = "tawazonTalk_open_talk"
     static let tawazonTalkPlaySession = "tawazonTalk_PlaySession"
+    static let subscribeToTalk = "subscribe_to_talk"
+    static let itemShare = "item_share"
 }
 protocol TrackingService {
     func sendUserId(userId: String?)
