@@ -391,8 +391,28 @@ extension TawazonTalkViewController:  MainPlayerBarViewDelegate {
 extension TawazonTalkViewController: LabelSwitchDelegate {
     func switchChangToState(sender: LabelSwitch) {
         switch sender.curState {
-        case .L: sender.circleColor = Language.language == .arabic ? UIColor(patternImage: UIImage(named: "NotifyMeOn")!) : UIColor(patternImage: UIImage(named: "NotifyMeOff")!)
-        case .R: sender.circleColor = Language.language == .arabic ? UIColor(patternImage: UIImage(named: "NotifyMeOff")!) : UIColor(patternImage: UIImage(named: "NotifyMeOn")!)
+        case .L:
+            if Language.language == .arabic{
+            sender.circleColor =  UIColor(patternImage: UIImage(named: "NotifyMeOn")!)
+                if let talkItem = talkItem{
+                    let values = ["talk_name": talkItem.title ?? "", "talk_id": talkItem.id] as [String : Any]
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.subscribeToTalk, payload: values)
+                }
+            }else{
+                sender.circleColor =  UIColor(patternImage: UIImage(named: "NotifyMeOff")!)
+            }
+            break
+        case .R:
+            if Language.language == .arabic{
+                sender.circleColor = UIColor(patternImage: UIImage(named: "NotifyMeOff")!)
+            }else{
+                sender.circleColor = UIColor(patternImage: UIImage(named: "NotifyMeOn")!)
+                if let talkItem = talkItem{
+                    let values = ["talk_name": talkItem.title ?? "", "talk_id": talkItem.id] as [String : Any]
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.subscribeToTalk, payload: values)
+                }
+            }
+            
         }
     }
 }

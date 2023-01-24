@@ -56,8 +56,8 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         languageImageView.clipsToBounds = false
         
         comingSoonLockImageView.backgroundColor = .black.withAlphaComponent(0.47)
-        comingSoonLockImageView.image = UIImage(named: "ComingSoonLock")
-        comingSoonLockImageView.layer.cornerRadius = 27
+        comingSoonLockImageView.image = Language.language == .arabic ? UIImage(named: "ComingSoonIconAr") : UIImage(named: "ComingSoonIconEn")
+        comingSoonLockImageView.layer.cornerRadius = 10
         comingSoonLockImageView.contentMode = .center
         comingSoonLockImageView.isHidden = true
     }
