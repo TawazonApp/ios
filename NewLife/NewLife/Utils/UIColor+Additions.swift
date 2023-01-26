@@ -393,6 +393,17 @@ extension UIColor {
         return UIColor(red: 189.0 / 255.0, green: 164.0 / 255.0, blue: 231.0 / 255.0, alpha: 1.0)
     }
     
+    class var deYork: UIColor {
+        return UIColor(red: 134 / 255.0, green: 198 / 255.0, blue: 148 / 255.0, alpha: 1.0)
+    }
+
+    class var barleyWhite: UIColor {
+        return UIColor(red: 248 / 255.0, green: 237 / 255.0, blue: 177 / 255.0, alpha: 1.0)
+    }
+    
+    class var cranberry: UIColor {
+        return UIColor(red: 220 / 255, green: 84 / 255, blue: 136 / 255, alpha: 1)
+    }
     class var lightGold: UIColor {
         return UIColor(red: 1.0, green: 213.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     }

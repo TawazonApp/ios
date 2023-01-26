@@ -548,3 +548,19 @@ Unless you cancel the service beforehand.";
 "comingSoonLabel" = "Coming Soon";
 "notifyMe" = "Notify Me";
 "notifyMeOn" = "Subscribed!";
+
+
+"moodTrackerViewTitle" = "Statistics Panel";
+"moodTrackerViewSubTitle" = "Mood chart";
+"moodTrakerWeek" = "7 Days";
+"moodTrakerMonth" = "Month";
+"moodTraker3Months" = "3 M";
+"moodTraker6Months" = "6 M";
+"moodTrakerYear" = "Year";
+"moodTrakerAll" = "All";
+"moodTrackerStatisticsViewTitleLabel" = "Activity stats";
+"MoodTrackerCompletedSessionTitleLabel" = "Completed Sessions";
+"MoodTrackerTawazonMinutesTitleLabel" = "Tawazon Minutes";
+"MoodTrackerUserActivityTitleLabel" = "Streak";
+"moodTrakerAccumulative" = "Accumulative";
+"moodTrakerSubtractive" = "Subtractive";

@@ -103,6 +103,9 @@
 		04C548B627ABC807001D3C0F /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C548B527ABC807001D3C0F /* SectionData.swift */; };
 		04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CA28967CCF000B41C8 /* SeriesModel.swift */; };
 		04C594CE28968EDA000B41C8 /* SeriesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C594CD28968EDA000B41C8 /* SeriesVM.swift */; };
+		04CE961C29814C3E00A1B042 /* MoodTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */; };
+		04CE961E2981535000A1B042 /* ChartDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961D2981535000A1B042 /* ChartDataView.swift */; };
+		04CE962029827A4400A1B042 /* RoundedSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961F29827A4400A1B042 /* RoundedSegmentedControl.swift */; };
 		04CEB94428C9D4E700C42B76 /* OnboardingLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */; };
 		04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */; };
 		04CEB94828C9F7A500C42B76 /* InstallSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */; };
@@ -562,6 +565,9 @@
 		04C548B527ABC807001D3C0F /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		04C594CA28967CCF000B41C8 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		04C594CD28968EDA000B41C8 /* SeriesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesVM.swift; sourceTree = "<group>"; };
+		04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerViewController.swift; sourceTree = "<group>"; };
+		04CE961D2981535000A1B042 /* ChartDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataView.swift; sourceTree = "<group>"; };
+		04CE961F29827A4400A1B042 /* RoundedSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSegmentedControl.swift; sourceTree = "<group>"; };
 		04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLanguageViewController.swift; sourceTree = "<group>"; };
 		04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstallSourcesViewController.swift; sourceTree = "<group>"; };
 		04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourceModel.swift; sourceTree = "<group>"; };
@@ -1307,6 +1313,15 @@
 			path = Series;
 			sourceTree = "<group>";
 		};
+		04CE961A2981355600A1B042 /* MoodTracker */ = {
+			isa = PBXGroup;
+			children = (
+				04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */,
+				04CE961D2981535000A1B042 /* ChartDataView.swift */,
+			);
+			path = MoodTracker;
+			sourceTree = "<group>";
+		};
 		04CEB94928C9F84700C42B76 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -2002,6 +2017,7 @@
 		F3DC8E142223DC4100C7DEC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04CE961A2981355600A1B042 /* MoodTracker */,
 				04090B1E295B082E000413A4 /* NewFeatureAnnouncement */,
 				04090AB7294F0857000413A4 /* TawazonTalk */,
 				047CF2A0292A14DF00BF59AE /* TodayActivity */,
@@ -2225,6 +2241,7 @@
 				F3921CE622495357002A12EC /* LoadingHudView.swift */,
 				F334416924793CFA00FA3234 /* CircularButton.swift */,
 				041EC78428ED7F3D00D379F8 /* ProgressSlider.swift */,
+				04CE961F29827A4400A1B042 /* RoundedSegmentedControl.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2938,6 +2955,7 @@
 				F3715CE62242E57400B7A465 /* SessionPlayerMananger.swift in Sources */,
 				F35FD52D2235743100B3CFC5 /* GoalsVM.swift in Sources */,
 				F35FD53A22357D6F00B3CFC5 /* LottieView.swift in Sources */,
+				04CE961C29814C3E00A1B042 /* MoodTrackerViewController.swift in Sources */,
 				F3C73B13223D15E60026B8E1 /* SoundEffectsVolumeView.swift in Sources */,
 				F3DC8E4722243E9B00C7DEC4 /* LaunchLogoImageView.swift in Sources */,
 				F32021D7223EAAEC00CCC33A /* ProfileEditFieldViewController.swift in Sources */,
@@ -2977,6 +2995,7 @@
 				F3B16AF6222EB42D002B0406 /* LibrarySessionVM.swift in Sources */,
 				04090AC5294F38E4000413A4 /* TawazonTalkSectionVM.swift in Sources */,
 				04E24E3D2940AB8500A3549E /* PaywallViewController.swift in Sources */,
+				04CE961E2981535000A1B042 /* ChartDataView.swift in Sources */,
 				F3580BE6249CF38B00EBE1C1 /* AudioTrack.swift in Sources */,
 				F3DC8E9D2226E27100C7DEC4 /* CategoryVM.swift in Sources */,
 				04A685F8295C5AC700FCFB5D /* TodayActivityTawazonTalkTableViewCell.swift in Sources */,
@@ -3023,6 +3042,7 @@
 				047CF29229129F0600BF59AE /* LandingFeelingsViewController.swift in Sources */,
 				F3DC8E9F2226F00900C7DEC4 /* CategorySessionCollectionCell.swift in Sources */,
 				F3715CE22242B96A00B7A465 /* MainPlayerBarView.swift in Sources */,
+				04CE962029827A4400A1B042 /* RoundedSegmentedControl.swift in Sources */,
 				F31A030E255FF88000C582F8 /* HomeTableHorizontalSectionCell.swift in Sources */,
 				F3DC8DD92223D3EC00C7DEC4 /* AppDelegate.swift in Sources */,
 				F3AF0FB6223B2C5100E29615 /* FacebookLoginModel.swift in Sources */,
@@ -3390,7 +3410,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3403,7 +3423,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3441,7 +3461,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3453,7 +3473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

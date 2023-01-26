@@ -536,3 +536,19 @@
 "comingSoonLabel" = "قريباً";
 "notifyMe" = "أبلغني!";
 "notifyMeOn" = "تم الاشتراك!";
+
+
+"moodTrackerViewTitle" = "لوحة الإحصائيات";
+"moodTrackerViewSubTitle" = "مخطط المزاج";
+"moodTrakerWeek" = "٧ أيام";
+"moodTrakerMonth" = "شهر";
+"moodTraker3Months" = "٣ أشهر";
+"moodTraker6Months" = "٦ أشهر";
+"moodTrakerYear" = "سنة";
+"moodTrakerAll" = "الكل";
+"moodTrackerStatisticsViewTitleLabel" = "احصائيات النشاط";
+"MoodTrackerCompletedSessionTitleLabel" = "الجلسات المكتملة";
+"MoodTrackerTawazonMinutesTitleLabel" = "دقائق التوازن";
+"MoodTrackerUserActivityTitleLabel" = "وجودك المتتالي";
+"moodTrakerAccumulative" = "تراكمي";
+"moodTrakerSubtractive" = "منفصل";
