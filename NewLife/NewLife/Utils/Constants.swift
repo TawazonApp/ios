@@ -69,6 +69,7 @@ struct Api {
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3 = "\(apiUrlV2_3)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3_1 = "\(apiUrlV2_3_1)/sections/sessions/list/{id}"
+    static let moodTrackerUrl = "\(apiUrlV2)/stats/mood-chart?from={from}"
     
     //NewFeature
     static let newFeatureInteract = "\(apiUrlV2)/app-pages/interact/{id}"

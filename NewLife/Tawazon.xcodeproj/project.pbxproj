@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -106,6 +106,10 @@
 		04CE961C29814C3E00A1B042 /* MoodTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */; };
 		04CE961E2981535000A1B042 /* ChartDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961D2981535000A1B042 /* ChartDataView.swift */; };
 		04CE962029827A4400A1B042 /* RoundedSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE961F29827A4400A1B042 /* RoundedSegmentedControl.swift */; };
+		04CE96222986795F00A1B042 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE96212986795F00A1B042 /* DateValueFormatter.swift */; };
+		04CE962A29891AD900A1B042 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 04CE962929891AD900A1B042 /* Charts */; };
+		04CE962D298926EA00A1B042 /* MoodTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE962C298926EA00A1B042 /* MoodTrackerModel.swift */; };
+		04CE962F29892C7F00A1B042 /* MoodTrackerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE962E29892C7E00A1B042 /* MoodTrackerVM.swift */; };
 		04CEB94428C9D4E700C42B76 /* OnboardingLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */; };
 		04CEB94628C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */; };
 		04CEB94828C9F7A500C42B76 /* InstallSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */; };
@@ -568,6 +572,9 @@
 		04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerViewController.swift; sourceTree = "<group>"; };
 		04CE961D2981535000A1B042 /* ChartDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataView.swift; sourceTree = "<group>"; };
 		04CE961F29827A4400A1B042 /* RoundedSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSegmentedControl.swift; sourceTree = "<group>"; };
+		04CE96212986795F00A1B042 /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		04CE962C298926EA00A1B042 /* MoodTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerModel.swift; sourceTree = "<group>"; };
+		04CE962E29892C7E00A1B042 /* MoodTrackerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerVM.swift; sourceTree = "<group>"; };
 		04CEB94328C9D4E700C42B76 /* OnboardingLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLanguageViewController.swift; sourceTree = "<group>"; };
 		04CEB94528C9EE5F00C42B76 /* OnboardingInstallSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInstallSourcesViewController.swift; sourceTree = "<group>"; };
 		04CEB94728C9F7A500C42B76 /* InstallSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallSourceModel.swift; sourceTree = "<group>"; };
@@ -924,6 +931,7 @@
 				F38161A923202A6A00BA925F /* iAd.framework in Frameworks */,
 				F3653FB424A67C7C00E62FC4 /* AuthenticationServices.framework in Frameworks */,
 				F38161A723202A5A00BA925F /* AdSupport.framework in Frameworks */,
+				04CE962A29891AD900A1B042 /* Charts in Frameworks */,
 				F3E280F8223FB95700066C04 /* Crashlytics.framework in Frameworks */,
 				F3E280F7223FB95700066C04 /* Fabric.framework in Frameworks */,
 				F3E281072240023800066C04 /* StoreKit.framework in Frameworks */,
@@ -1318,6 +1326,14 @@
 			children = (
 				04CE961B29814C3E00A1B042 /* MoodTrackerViewController.swift */,
 				04CE961D2981535000A1B042 /* ChartDataView.swift */,
+			);
+			path = MoodTracker;
+			sourceTree = "<group>";
+		};
+		04CE962B298926C700A1B042 /* MoodTracker */ = {
+			isa = PBXGroup;
+			children = (
+				04CE962C298926EA00A1B042 /* MoodTrackerModel.swift */,
 			);
 			path = MoodTracker;
 			sourceTree = "<group>";
@@ -2044,6 +2060,7 @@
 		F3DC8E152223DC4700C7DEC4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04CE962B298926C700A1B042 /* MoodTracker */,
 				04A685F4295C3A4300FCFB5D /* NewFeature */,
 				04090ABE294F34ED000413A4 /* TawazonTalk */,
 				047CF2A5292B86E800BF59AE /* TodayActivity */,
@@ -2085,6 +2102,7 @@
 				F3DE73C42237E8500052B18C /* Goals */,
 				F3DE73BD2237A9D40052B18C /* More */,
 				F3DE73B322366C080052B18C /* Membership */,
+				04CE962E29892C7E00A1B042 /* MoodTrackerVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2229,6 +2247,7 @@
 		F3DC8E5922248E6B00C7DEC4 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				04CE96212986795F00A1B042 /* DateValueFormatter.swift */,
 				04FBEBB828B2546F00D9EBCF /* GuidedTour */,
 				F3E6F6FA224E7F92005A566A /* PermissionAlert */,
 				F3715CF622439EE400B7A465 /* TESTViewController.swift */,
@@ -2464,6 +2483,9 @@
 				047F11E728E97DFA0096E20E /* PBXTargetDependency */,
 			);
 			name = Tawazon;
+			packageProductDependencies = (
+				04CE962929891AD900A1B042 /* Charts */,
+			);
 			productName = NewLife;
 			productReference = F3DC8DD52223D3EC00C7DEC4 /* Tawazon.app */;
 			productType = "com.apple.product-type.application";
@@ -2556,6 +2578,9 @@
 				ar,
 			);
 			mainGroup = F3DC8DCC2223D3EC00C7DEC4;
+			packageReferences = (
+				04CE962829891AD900A1B042 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = F3DC8DD62223D3EC00C7DEC4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3058,6 +3083,7 @@
 				F3B16AFB222EB772002B0406 /* LibrarySessionCollectionCell.swift in Sources */,
 				F3E6F6F9224E7614005A566A /* PermissionAlertView.swift in Sources */,
 				04D1BA6928018D93006A358A /* PremiumPlanDetailsViewController.swift in Sources */,
+				04CE962D298926EA00A1B042 /* MoodTrackerModel.swift in Sources */,
 				047CF2A7292B86FB00BF59AE /* TodaySectionsModel.swift in Sources */,
 				F3DC8E602224991400C7DEC4 /* MainTabBarView.swift in Sources */,
 				F3DC8EAD2228341600C7DEC4 /* MoreCell.swift in Sources */,
@@ -3127,9 +3153,11 @@
 				F32D4A7524840B4A00E3FCD6 /* StoreExt.swift in Sources */,
 				F3DC8E4F222487C900C7DEC4 /* MyBodyViewController.swift in Sources */,
 				F3CA02962231C5A4008165C2 /* MembershipButtonCell.swift in Sources */,
+				04CE962F29892C7F00A1B042 /* MoodTrackerVM.swift in Sources */,
 				0432B71A288EB720007400B3 /* SeriesViewController.swift in Sources */,
 				047CF2A4292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift in Sources */,
 				047CF2B3292B88CE00BF59AE /* TodayServiceCache.swift in Sources */,
+				04CE96222986795F00A1B042 /* DateValueFormatter.swift in Sources */,
 				F3DC8E3D222400A100C7DEC4 /* RandomExt.swift in Sources */,
 				F3E28103223FCEEF00066C04 /* NotificationStatusModel.swift in Sources */,
 				F3DC8E4B2224877300C7DEC4 /* HomeViewController.swift in Sources */,
@@ -3418,7 +3446,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = NewLife/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3468,7 +3496,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = NewLife/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3631,6 +3659,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		04CE962829891AD900A1B042 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		04CE962929891AD900A1B042 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04CE962829891AD900A1B042 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F3DC8DDF2223D3EC00C7DEC4 /* NewLife.xcdatamodeld */ = {

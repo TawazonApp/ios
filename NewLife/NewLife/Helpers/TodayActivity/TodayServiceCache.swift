@@ -117,4 +117,9 @@ class TodayServiceCache: TodayService {
     private func getTodayString(fromDate date: Date) -> String {
        return DateFormatter.todayDate.string(from: date)
     }
+    
+    func getMoodTrackerData(from: String, completion: @escaping (MoodTrackerModel?, CustomError?) -> Void) {
+        service.getMoodTrackerData(from: from, completion: completion)
+    }
+    
 }

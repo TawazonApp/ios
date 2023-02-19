@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoodTrackerViewController: UIViewController {
+class MoodTrackerViewController: HandleErrorViewController {
 
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var backButton: UIButton!
@@ -33,11 +33,13 @@ class MoodTrackerViewController: UIViewController {
     @IBOutlet weak var userActivityTitleLabel: UILabel!
     @IBOutlet weak var userActivityValueLabel: UILabel!
     
+    var moodTrackerVM: MoodTrackerVM = MoodTrackerVM(service: TodayServiceFactory.service())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialize()
+        fetchMoodTrackerData(from: "")
     }
     
 
@@ -125,6 +127,42 @@ class MoodTrackerViewController: UIViewController {
             attributedString.addAttributes([.font: UIFont.munaFont(ofSize: 28, language: .english)], range: part1Range.nsRange(in: allText))
         }
         return attributedString
+    }
+    
+    private func fetchMoodTrackerData(from: String) {
+        print("fetchMoodTrackerData")
+        moodTrackerVM.getMoodTrackerData(from: from) { [weak self] (error) in
+            if let error = error {
+                self?.showErrorMessage(message: error.localizedDescription)
+            }
+            if from == ""{
+                self?.dateSegment.removeAllSegments()
+                if let ranges = self?.moodTrackerVM.MoodTrackerData?.ranges{
+                    print("ranges: \(ranges.count)")
+                    for (index, range) in ranges.enumerated(){
+                        self?.dateSegment.insertSegment(withTitle: range.title, at: index, animated: false)
+                    }
+                }
+                self?.dateSegment.selectedSegmentIndex = 0
+            }
+            
+            self?.chartDataView.moodTrackerVM = self?.moodTrackerVM
+            
+        }
+    }
+    
+    
+    
+    @IBAction func dateChanged(_ sender: Any) {
+        if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{
+            fetchMoodTrackerData(from: range.from ?? "")
+            if range.id == 200{
+                self.chartDataView.dataTypeSegment.isHidden = false
+            }else{
+                self.chartDataView.dataTypeSegment.isHidden = true
+            }
+        }
+        
     }
 }
 

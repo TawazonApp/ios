@@ -20,6 +20,7 @@ protocol TodayService {
     func setQuoteViewed(quoteId: String, completion: @escaping (_ error: CustomError?) -> Void)
     func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void)
     
+    func getMoodTrackerData(from: String, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void)
 }
 
 class TodayServiceFactory {
@@ -76,6 +77,7 @@ class APITodayService: TodayService {
             completion(error)
         }
     }
+    
     func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void) {
         let url = Api.tawazonTalkViewUrl.replacingOccurrences(of: "{id}", with: id)
         ConnectionUtils.performGetRequest(url: url.url!, parameters: nil){(data, error) in
@@ -84,6 +86,18 @@ class APITodayService: TodayService {
                 tawazonTalkModel = TawazonTalkModel(data: data)
             }
             completion(tawazonTalkModel, error)
+        }
+    }
+    
+    func getMoodTrackerData(from: String, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void) {
+        let url = Api.moodTrackerUrl.replacingOccurrences(of: "{from}", with: from)
+        print("url: \(url)")
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil) { (data, error) in
+            var model: MoodTrackerModel?
+            if let data = data {
+                model = MoodTrackerModel(data: data)
+            }
+            completion(model, error)
         }
     }
 }
