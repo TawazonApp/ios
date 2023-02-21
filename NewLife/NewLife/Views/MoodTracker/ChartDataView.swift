@@ -52,9 +52,11 @@ class ChartDataView: UIView, ChartViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         dataTypeSegment.layoutIfNeeded()
         dataTypeSegment.roundCorners(corners: .allCorners, radius: 14)
-//        dataTypeSegment.layer.cornerRadius = 14
+        
+        chartView.roundCorners(corners: .allCorners, radius: 16)
     }
     
     private func initialize(){
@@ -421,35 +423,38 @@ class newRender : LineChartRenderer{
                 rect.size.width = circleDiameter
                 rect.size.height = circleDiameter
 
-                if let url = (e.data as! String).url{
-//                    let imageView = UIImageView(frame: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-//                    imageView.af.setImage(withURL: url)
-//                    imageView.backgroundColor = .red
-                
-//                    URLSession.shared.dataTask(with: url) { (data, response, error) in
-//                      // Error handling...
-//                      guard let imageData = data else { return }
-//                        print("data: \(data)")
-//
-//                      DispatchQueue.main.async {
-//                          if let image = UIImage(data: imageData){
-//                              print("image")
-//                              image.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-//                          }
-//                      }
-//                    }.resume()
-                          
+                if let iconUrlString = (e.data as? String) {
+                    if let url = iconUrlString.url{
+    //                    let imageView = UIImageView(frame: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
+    //                    imageView.af.setImage(withURL: url)
+    //                    imageView.backgroundColor = .red
                     
-                    do {
-                          let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
-                          let image = UIImage(data: imgData as Data)
-//                            DispatchQueue.main.async() { () -> Void in
-                                image?.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-//                       }
-                    } catch {
+    //                    URLSession.shared.dataTask(with: url) { (data, response, error) in
+    //                      // Error handling...
+    //                      guard let imageData = data else { return }
+    //                        print("data: \(data)")
+    //
+    //                      DispatchQueue.main.async {
+    //                          if let image = UIImage(data: imageData){
+    //                              print("image")
+    //                              image.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
+    //                          }
+    //                      }
+    //                    }.resume()
+                              
+                        
+                        do {
+                              let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
+                              let image = UIImage(data: imgData as Data)
+    //                            DispatchQueue.main.async() { () -> Void in
+                                    image?.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
+    //                       }
+                        } catch {
 
+                        }
                     }
                 }
+                
                 
                 
                 if drawTransparentCircleHole

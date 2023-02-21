@@ -12,8 +12,8 @@ class MoreCellVM: NSObject {
     
     enum MoreCellType: CaseIterable {
         case userProfile
-        case moodStats
         case login
+        case moodStats
         case downloadedLibrary
         case favorites
         case premium

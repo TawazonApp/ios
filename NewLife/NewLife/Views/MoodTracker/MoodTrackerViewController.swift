@@ -53,7 +53,8 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         headerImageView.contentMode = .scaleAspectFill
         
         backButton.backgroundColor = .black.withAlphaComponent(0.41)
-        backButton.setImage(UIImage(named: "Cancel"), for: .normal)
+        let backImage = isModal() ?  #imageLiteral(resourceName: "Cancel.pdf") : #imageLiteral(resourceName: "BackArrow.pdf").flipIfNeeded
+        backButton.setImage(backImage, for: .normal)
         backButton.tintColor = .white
         backButton.roundCorners(corners: .allCorners, radius: backButton.frame.height / 2)
         
