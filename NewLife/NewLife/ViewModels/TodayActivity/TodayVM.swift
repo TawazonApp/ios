@@ -26,11 +26,6 @@ class TodayVM: NSObject {
     
     var lastSelectedFeelingId: String?
     
-    var isRamadan: Bool {
-        let isRamadan =  UserInfoManager.shared.subscription?.types.items.first?.discountCampaign?.isRamadan
-        return isRamadan ?? false
-    }
-    
     init(service: TodayService) {
         self.service = service
     }

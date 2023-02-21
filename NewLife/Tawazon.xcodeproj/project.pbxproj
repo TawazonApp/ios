@@ -49,6 +49,9 @@
 		0456D1B927EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456D1B827EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift */; };
 		0456D1BB27F19EF800C174C6 /* BasePremiumVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456D1BA27F19EF800C174C6 /* BasePremiumVM.swift */; };
 		0456D1BD27F1B7E000C174C6 /* BasePremiumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456D1BC27F1B7E000C174C6 /* BasePremiumModel.swift */; };
+		045E5E5829A24D4F005ADDA6 /* MoodTrackerStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E5E5729A24D4F005ADDA6 /* MoodTrackerStatsModel.swift */; };
+		045E5E5B29A24DD6005ADDA6 /* MoodTrackerStatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E5E5A29A24DD6005ADDA6 /* MoodTrackerStatsVM.swift */; };
+		045E5E5D29A3818B005ADDA6 /* TodayActivityMoodStatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E5E5C29A3818B005ADDA6 /* TodayActivityMoodStatisticsTableViewCell.swift */; };
 		04677F3A27C276FC00493142 /* PodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3927C276FC00493142 /* PodcastsViewController.swift */; };
 		04677F3D27C2772B00493142 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3C27C2772B00493142 /* MusicViewController.swift */; };
 		04677F4027C37FCE00493142 /* SuperCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F3F27C37FCE00493142 /* SuperCategoryViewController.swift */; };
@@ -513,6 +516,9 @@
 		0456D1B827EB2C1400C174C6 /* Premium1FeaturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Premium1FeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		0456D1BA27F19EF800C174C6 /* BasePremiumVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumVM.swift; sourceTree = "<group>"; };
 		0456D1BC27F1B7E000C174C6 /* BasePremiumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumModel.swift; sourceTree = "<group>"; };
+		045E5E5729A24D4F005ADDA6 /* MoodTrackerStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerStatsModel.swift; sourceTree = "<group>"; };
+		045E5E5A29A24DD6005ADDA6 /* MoodTrackerStatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerStatsVM.swift; sourceTree = "<group>"; };
+		045E5E5C29A3818B005ADDA6 /* TodayActivityMoodStatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActivityMoodStatisticsTableViewCell.swift; sourceTree = "<group>"; };
 		04677F3927C276FC00493142 /* PodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsViewController.swift; sourceTree = "<group>"; };
 		04677F3C27C2772B00493142 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		04677F3F27C37FCE00493142 /* SuperCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoryViewController.swift; sourceTree = "<group>"; };
@@ -1124,6 +1130,15 @@
 			path = Premium1;
 			sourceTree = "<group>";
 		};
+		045E5E5929A24DB6005ADDA6 /* MoodTracker */ = {
+			isa = PBXGroup;
+			children = (
+				04CE962E29892C7E00A1B042 /* MoodTrackerVM.swift */,
+				045E5E5A29A24DD6005ADDA6 /* MoodTrackerStatsVM.swift */,
+			);
+			path = MoodTracker;
+			sourceTree = "<group>";
+		};
 		04677F3827C276DC00493142 /* Podcasts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1187,6 +1202,7 @@
 				047CF2B8292BADAA00BF59AE /* TodayActivityQuoteTableViewCell.swift */,
 				047CF2BC292E1C8400BF59AE /* TodaySessionCollectionViewCell.swift */,
 				04A685F7295C5AC700FCFB5D /* TodayActivityTawazonTalkTableViewCell.swift */,
+				045E5E5C29A3818B005ADDA6 /* TodayActivityMoodStatisticsTableViewCell.swift */,
 			);
 			path = TodayActivity;
 			sourceTree = "<group>";
@@ -1334,6 +1350,7 @@
 			isa = PBXGroup;
 			children = (
 				04CE962C298926EA00A1B042 /* MoodTrackerModel.swift */,
+				045E5E5729A24D4F005ADDA6 /* MoodTrackerStatsModel.swift */,
 			);
 			path = MoodTracker;
 			sourceTree = "<group>";
@@ -2085,6 +2102,7 @@
 		F3DC8E162223DC4F00C7DEC4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				045E5E5929A24DB6005ADDA6 /* MoodTracker */,
 				04090AC1294F3792000413A4 /* TawazonTalk */,
 				047CF2A8292B876700BF59AE /* TodayActivity */,
 				049D409C28D8865500EAD265 /* Comments */,
@@ -2102,7 +2120,6 @@
 				F3DE73C42237E8500052B18C /* Goals */,
 				F3DE73BD2237A9D40052B18C /* More */,
 				F3DE73B322366C080052B18C /* Membership */,
-				04CE962E29892C7E00A1B042 /* MoodTrackerVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2937,6 +2954,7 @@
 				040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */,
 				F3EC82B92264FF8D00DDEBC0 /* NotificationData.swift in Sources */,
 				F317A187222E004C00CBD760 /* SessionFavoriteButton.swift in Sources */,
+				045E5E5B29A24DD6005ADDA6 /* MoodTrackerStatsVM.swift in Sources */,
 				04677F4727C3937400493142 /* SuperCategoryModel.swift in Sources */,
 				047CF2942913BC1F00BF59AE /* LandingFeelingCollectionViewCell.swift in Sources */,
 				046A1EE5287573F000BA26A6 /* SuperSessionPlayerViewController.swift in Sources */,
@@ -3041,6 +3059,7 @@
 				04F800A727CF9127000880E2 /* TopTabBarItemView.swift in Sources */,
 				F3ECD0D2257A40120048DBD8 /* FeelingsListModel.swift in Sources */,
 				F3DC8E62222535C700C7DEC4 /* MainTabBarItemView.swift in Sources */,
+				045E5E5829A24D4F005ADDA6 /* MoodTrackerStatsModel.swift in Sources */,
 				04F2ABDA296AAEBB0034A6A2 /* SelfSizingCollectionView.swift in Sources */,
 				04C594CB28967CCF000B41C8 /* SeriesModel.swift in Sources */,
 				F3DE73CD2237F7620052B18C /* ForgetPasswordFormVM.swift in Sources */,
@@ -3058,6 +3077,7 @@
 				04E24E442945FF5500A3549E /* PaywallPlansView.swift in Sources */,
 				F3DC8E552224880800C7DEC4 /* ChildrenViewController.swift in Sources */,
 				0422056527E9E1B90018BA31 /* GeneralPremiumViewController.swift in Sources */,
+				045E5E5D29A3818B005ADDA6 /* TodayActivityMoodStatisticsTableViewCell.swift in Sources */,
 				F3DC8EA7222805F700C7DEC4 /* AnimationExt.swift in Sources */,
 				04EC40C628588CDF006C7AA1 /* SearchTableViewCell.swift in Sources */,
 				04CEB95128C9FE7F00C42B76 /* InstallSourceTableViewCell.swift in Sources */,

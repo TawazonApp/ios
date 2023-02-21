@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MoodTrackerViewController: HandleErrorViewController {
-
+class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegate {
+    
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -35,11 +35,14 @@ class MoodTrackerViewController: HandleErrorViewController {
     
     var moodTrackerVM: MoodTrackerVM = MoodTrackerVM(service: TodayServiceFactory.service())
     
+    var moodTrackerStatsVM: MoodTrackerStatsVM = MoodTrackerStatsVM(service: TodayServiceFactory.service())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialize()
-        fetchMoodTrackerData(from: "")
+        fetchMoodTrackerData(from: "", type: 1)
+        fetchMoodTrackerStatsData()
     }
     
 
@@ -79,6 +82,7 @@ class MoodTrackerViewController: HandleErrorViewController {
         dateSegment.setTitleTextAttributes(titleTextAttributes, for: .selected)
         
         chartDataView.backgroundColor = .clear
+        chartDataView.delegate = self
         
         statisticsView.backgroundColor = .clear
         
@@ -117,6 +121,14 @@ class MoodTrackerViewController: HandleErrorViewController {
         userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "5", part2: "يوم")
     }
 
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        if isModal() {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+             self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     private func statisticsValueLabelAttributeText(part1: String, part2: String) -> NSMutableAttributedString {
         
         let allText = String(format: "%@ %@", part1, part2)
@@ -129,40 +141,59 @@ class MoodTrackerViewController: HandleErrorViewController {
         return attributedString
     }
     
-    private func fetchMoodTrackerData(from: String) {
-        print("fetchMoodTrackerData")
-        moodTrackerVM.getMoodTrackerData(from: from) { [weak self] (error) in
+    private func fetchMoodTrackerData(from: String, type: Int) {
+        moodTrackerVM.getMoodTrackerData(from: from, type: type) { [weak self] (error) in
             if let error = error {
                 self?.showErrorMessage(message: error.localizedDescription)
             }
             if from == ""{
                 self?.dateSegment.removeAllSegments()
                 if let ranges = self?.moodTrackerVM.MoodTrackerData?.ranges{
-                    print("ranges: \(ranges.count)")
                     for (index, range) in ranges.enumerated(){
                         self?.dateSegment.insertSegment(withTitle: range.title, at: index, animated: false)
                     }
                 }
                 self?.dateSegment.selectedSegmentIndex = 0
             }
-            
             self?.chartDataView.moodTrackerVM = self?.moodTrackerVM
             
         }
     }
     
-    
-    
+    private func fetchMoodTrackerStatsData() {
+        moodTrackerStatsVM.getMoodTrackerStatsData() { [weak self] (error) in
+            if let error = error {
+                self?.showErrorMessage(message: error.localizedDescription)
+            }
+            self?.setStatsData()
+        }
+    }
+    private func setStatsData(){
+        completedSessionValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.completedSessions ?? 0)", part2: "completedSessionValueLabel".localized)
+        tawazonMinutesValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.tawazonMinutes ?? 0)", part2: "tawazonMinutesValueLabel".localized)
+        userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.activeDays ?? 0)", part2: "userActivityValueLabel".localized)
+    }
     @IBAction func dateChanged(_ sender: Any) {
         if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{
-            fetchMoodTrackerData(from: range.from ?? "")
+            
             if range.id == 200{
                 self.chartDataView.dataTypeSegment.isHidden = false
+                fetchMoodTrackerData(from: range.from ?? "", type: 1)
             }else{
                 self.chartDataView.dataTypeSegment.isHidden = true
+                if range.id == 100{
+                    fetchMoodTrackerData(from: range.from ?? "", type: 1)
+                }else{
+                    fetchMoodTrackerData(from: range.from ?? "", type: 2)
+                }
             }
         }
-        
+    }
+    
+    func dataTypeChanged(type: Int) {
+        if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{
+            fetchMoodTrackerData(from: range.from ?? "", type: type)
+        }
     }
 }
 

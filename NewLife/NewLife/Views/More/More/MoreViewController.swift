@@ -138,6 +138,11 @@ class MoreViewController: BaseViewController {
             return
         }
         
+        if cellData.type == MoreCellVM.MoreCellType.moodStats {
+            openMoodStatsViewController()
+            return
+        }
+        
         if cellData.type == MoreCellVM.MoreCellType.lanaguge {
             showLanguageAlert()
             return
@@ -198,6 +203,12 @@ class MoreViewController: BaseViewController {
     private func openProfileViewController()  {
         SystemSoundID.play(sound: .Sound1)
         let viewController = ProfileViewController.instantiate()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func openMoodStatsViewController()  {
+        SystemSoundID.play(sound: .Sound1)
+        let viewController = MoodTrackerViewController.instantiate()
         navigationController?.pushViewController(viewController, animated: true)
     }
     

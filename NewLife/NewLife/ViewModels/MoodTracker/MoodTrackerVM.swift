@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 class MoodTrackerVM: NSObject {
@@ -20,8 +19,8 @@ class MoodTrackerVM: NSObject {
         self.service = service
     }
     
-    func getMoodTrackerData(from: String, completion: @escaping (CustomError?) -> Void) {
-        service.getMoodTrackerData(from: from) { [weak self] (data, error) in
+    func getMoodTrackerData(from: String, type: Int, completion: @escaping (CustomError?) -> Void) {
+        service.getMoodTrackerData(from: from, type: type) { [weak self] (data, error) in
             self?.MoodTrackerData = data
             completion(error)
         }

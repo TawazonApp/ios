@@ -12,6 +12,7 @@ class MoreCellVM: NSObject {
     
     enum MoreCellType: CaseIterable {
         case userProfile
+        case moodStats
         case login
         case downloadedLibrary
         case favorites
@@ -85,6 +86,9 @@ extension MoreCellVM {
             break
 //        case .guidedTour:
 //            name = "MoreGuidedTour"
+        case .moodStats:
+            name = "MoreCharts"
+            break
         }
         return name
     }
@@ -131,6 +135,9 @@ extension MoreCellVM {
             
 //        case .guidedTour:
 //            title = "moreGuidedTourTitle".localized
+        case .moodStats:
+            title = "MoreMoodStatsTitle".localized
+            break
         }
         return title
     }
@@ -176,6 +183,9 @@ extension MoreCellVM {
             
 //        case .guidedTour:
 //            subTitle = "moreGuidedTourSubTitle".localized
+        case .moodStats:
+            subTitle = "MoreMoodStatsSubTitle".localized
+            break
         }
         return subTitle
     }

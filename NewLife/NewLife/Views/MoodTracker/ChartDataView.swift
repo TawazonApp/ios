@@ -9,6 +9,10 @@
 import UIKit
 import Charts
 
+protocol ChartDataViewDelegate: class {
+    func dataTypeChanged(type: Int)
+}
+
 class ChartDataView: UIView, ChartViewDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dataTypeSegment: RoundedSegmentedControl!
@@ -24,6 +28,8 @@ class ChartDataView: UIView, ChartViewDelegate {
     @IBOutlet weak var selectedFeelingImageView: UIImageView!
     @IBOutlet weak var selectedFeelingTitleLabel: UILabel!
     @IBOutlet weak var selectedFeelingDateLabel: UILabel!
+    
+    var delegate: ChartDataViewDelegate?
     
     var moodTrackerVM: MoodTrackerVM?{
         didSet{
@@ -60,8 +66,8 @@ class ChartDataView: UIView, ChartViewDelegate {
         dataTypeSegment.layer.masksToBounds = true
         dataTypeSegment.roundCorners(corners: .allCorners, radius: 14)
         dataTypeSegment.segmentImage = UIImage(color: .chambray)
-        dataTypeSegment.setTitle("moodTrakerAccumulative".localized, forSegmentAt: 0)
-        dataTypeSegment.setTitle("moodTrakerSubtractive".localized, forSegmentAt: 1)
+        dataTypeSegment.setTitle("moodTrakerSubtractive".localized, forSegmentAt: 0)
+        dataTypeSegment.setTitle("moodTrakerAccumulative".localized, forSegmentAt: 1)
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, .font: UIFont.munaBoldFont(ofSize: 16)]
         dataTypeSegment.setTitleTextAttributes(titleTextAttributes, for: .normal)
         dataTypeSegment.setTitleTextAttributes(titleTextAttributes, for: .selected)
@@ -80,6 +86,8 @@ class ChartDataView: UIView, ChartViewDelegate {
         verticalGradientView.roundCorners(corners: .allCorners, radius: 2)
         
         lineChartView.backgroundColor = .clear
+        lineChartView.isUserInteractionEnabled = false
+        
         for feelLabel in feelingsLabel{
             feelLabel.font = .munaFont(ofSize: 14)
             feelLabel.textColor = .white.withAlphaComponent(0.8)
@@ -191,10 +199,40 @@ class ChartDataView: UIView, ChartViewDelegate {
      func updateChartData() {
          dateLabel.text = moodTrackerVM?.MoodTrackerData?.title
          selectedFeelingDetailsView.isHidden = true
-         
+         if chartData?.count ?? 0 >= 12{
+             bottomDividerView.isHidden = true
+         }else{
+             bottomDividerView.isHidden = false
+         }
          let xAxis = lineChartView.xAxis
-         xAxis.setLabelCount(chartData?.count ?? 0 < 10 ? 8 : 5, force: true)
-         xAxis.granularity = chartData?.count ?? 0 < 10 ? 86400 : (86400 * 7)
+         if (chartData?.count ?? 0 < 5){ // 3Months
+             xAxis.setLabelCount(5, force: true)
+             xAxis.granularity = 86400 * 7
+             xAxis.labelRotationAngle = 0
+         }else if (chartData?.count ?? 0 < 10){ // 7Days
+             xAxis.setLabelCount(8, force: true)
+             xAxis.granularity = 86400
+             xAxis.labelRotationAngle = 0
+         }else if (chartData?.count ?? 0 < 13){ // 1Year
+             xAxis.setLabelCount(13, force: true)
+             xAxis.granularity = 2629743
+             xAxis.labelRotationAngle = 90
+         }else if (chartData?.count ?? 0 < 25){ // 6Months
+             xAxis.setLabelCount(24, force: true)
+             xAxis.granularity = 86400 * 7
+             xAxis.labelRotationAngle = 90
+         }else{ // 1Month
+             if dataTypeSegment.selectedSegmentIndex == 1{ // accumulative
+                 xAxis.setLabelCount(5, force: true)
+                 xAxis.granularity = 86400 * 7
+                 xAxis.labelRotationAngle = 0
+             }else{ // subtractive
+                 xAxis.setLabelCount(32, force: true)
+                 xAxis.granularity = 86400
+                 xAxis.labelRotationAngle = 90
+             }
+             
+         }
          print("granularity: \(chartData?.count ?? 0 < 10 ? 86400 : (86400 * 7))")
          
          self.setDataCount()
@@ -204,16 +242,29 @@ class ChartDataView: UIView, ChartViewDelegate {
         var chartValues : [ChartDataEntry] = []
         if let chartPoints = chartData{
             for (index, point) in chartPoints.enumerated(){
-                
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "YYYY-MM-dd"
+            
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "YYYY-MM-dd"
                 let datePoint = dateFormatter.date(from: point.dateValue ?? "")
-                chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.intensity ?? 1)), data: chartPoints.count < 10 ? point.feeling?.icon : ""))
-                if index < 7{
-                    print("x: \(datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: \(Double(abs(point.intensity ?? 1)))")
+                
+                if (chartData?.count ?? 0 < 5){ // 3Months
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                }else if (chartData?.count ?? 0 < 10){ // 7Days
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.intensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                     feelingsLabel[index].text = point.feeling?.title
+                }else if (chartData?.count ?? 0 < 13){ // 1Year
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                }else if (chartData?.count ?? 0 < 25){ // 6Months
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                }else{ // 1Month
+                    if dataTypeSegment.selectedSegmentIndex == 1{ // accumulative
+                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    }else{// subtractive
+                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.intensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    }
                 }
-                if chartPoints.count < 10{
+                
+                if chartPoints.count > 5 && chartPoints.count < 10{
                     feelingLabelsStackView.isHidden = false
                 }else{
                     feelingLabelsStackView.isHidden = true
@@ -233,7 +284,7 @@ class ChartDataView: UIView, ChartViewDelegate {
         set1.fillAlpha = 0.26
         set1.fillColor = UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)
         set1.highlightColor = .chambray
-        if chartValues.count < 10{
+        if chartValues.count > 5 && chartValues.count < 10{ // 7Days
             set1.circleRadius = 6
             set1.setCircleColor(UIColor(red: 33/255, green: 43/255, blue: 83/255, alpha: 1))
             set1.drawCirclesEnabled = true
@@ -241,7 +292,8 @@ class ChartDataView: UIView, ChartViewDelegate {
             set1.circleHoleColor = .white
             set1.circleHoleRadius = 3
             set1.drawIconsEnabled = true
-        }else{
+            
+        }else{ // otherRanges
             set1.mode = .cubicBezier
             set1.drawCirclesEnabled = false
             set1.drawCircleHoleEnabled = false
@@ -254,6 +306,10 @@ class ChartDataView: UIView, ChartViewDelegate {
         data.setValueFont(.systemFont(ofSize: 9, weight: .light))
         
         lineChartView.data = data
+    }
+    
+    @IBAction func dateChanged(_ sender: Any) {
+        delegate?.dataTypeChanged(type: dataTypeSegment.selectedSegmentIndex + 1)
     }
 }
 

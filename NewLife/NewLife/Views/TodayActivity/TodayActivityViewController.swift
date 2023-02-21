@@ -134,6 +134,10 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityQuoteTableViewCell.identifier) as! TodayActivityQuoteTableViewCell
             sectionCell.section = todayVM.sections?[indexPath.row]
             cell = sectionCell
+        }else if todayVM.sections?[indexPath.row].style == .static1{
+            let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityMoodStatisticsTableViewCell.identifier) as! TodayActivityMoodStatisticsTableViewCell
+            sectionCell.section = todayVM.sections?[indexPath.row]
+            cell = sectionCell
         }else if todayVM.sections?[indexPath.row].style == .singleTalk{
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: TodayActivityTawazonTalkTableViewCell.identifier) as! TodayActivityTawazonTalkTableViewCell
             sectionCell.section = todayVM.sections?[indexPath.row]
@@ -172,6 +176,9 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
             openFeelingsVC()
         case .userFeelingSessions:
             print("sessionsList")
+        case .static1:
+            print("static1")
+            openMoodTrackerVC()
         case .singleQuote:
             quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
         case .singleTalk:
@@ -223,6 +230,13 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
     private func openTawazonTalkVC(item: ItemVM){
         
         let viewController = TawazonTalkViewController.instantiate(talkItem: item)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    private func openMoodTrackerVC(){
+        let viewController = MoodTrackerViewController.instantiate()
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)

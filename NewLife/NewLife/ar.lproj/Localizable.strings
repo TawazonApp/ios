@@ -32,6 +32,7 @@
 "MeditationsSummaryText" = "لا يدرك قيمة الحياة إلا مكافح مزاحم، يرى في غروب الشمس زوال يوم من عُمره";
 
 "MoreUserProfileTitle" = "الملف الشخصي والحساب";
+"MoreMoodStatsTitle" = "مخطط المزاج والنشاط";
 "MoreDownloadLibraryTitle" = "مكتبة التحميلات ";
 "MoreFavoritesTitle" = "المفضّلة ";
 "MorePremiumTitle" = "تَوازُن بريميوم";
@@ -44,6 +45,7 @@
 "moreGuidedTourTitle" = "إرشادات";
 
 "MoreUserProfileSubTitle" = "ملفك الشخصي واعدادات حسابك";
+"MoreMoodStatsSubTitle" = "تابع تقدم نشاطك في توازن";
 "MoreDownloadLibrarySubTitle" = "المحاضرات التي تستطيع تشغليها دون الحاجة إلى انترنت";
 "MoreFavoritesSubTitle" = "المحاضرات التي قمت بتفضيلها";
 "MorePremiumSubTitle" = "خطة الاشتراك المدفوعة الخاصة بك";
@@ -552,3 +554,6 @@
 "MoodTrackerUserActivityTitleLabel" = "وجودك المتتالي";
 "moodTrakerAccumulative" = "تراكمي";
 "moodTrakerSubtractive" = "منفصل";
+"completedSessionValueLabel" = "جلسة";
+"tawazonMinutesValueLabel" = "دقيقة";
+"userActivityValueLabel" = "يوم";

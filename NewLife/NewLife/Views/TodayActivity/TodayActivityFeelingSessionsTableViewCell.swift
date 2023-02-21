@@ -216,13 +216,7 @@ extension TodayActivityFeelingSessionsTableViewCell : UICollectionViewDelegate, 
             return
         }
         delegate?.playSession(self, session: session)
+        trackingIndicatorImageView.image = UIImage(named: "TodayActivityStageDone")
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let rtlHidden = scrollView.contentOffset.x > scrollView.frame.width || scrollView.contentSize.width < (scrollView.frame.width * 1.5)
-//
-//        let ltlHidden = scrollView.contentOffset.x < scrollView.frame.width || scrollView.contentSize.width < (scrollView.frame.width * 1.5)
-//        
-////        moreButton.isHidden = UIApplication.isRTL() ? rtlHidden : ltlHidden
-//    }
 }

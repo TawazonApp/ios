@@ -17,6 +17,7 @@ struct Api {
     static let apiUrlV2_2 = "\(baseUrl)/api/v2.2"
     static let apiUrlV2_3 = "\(baseUrl)/api/v2.3"
     static let apiUrlV2_3_1 = "\(baseUrl)/api/v2.3.1"
+    static let apiUrlV2_3_2 = "\(baseUrl)/api/v2.3.2"
     static let authorization = "$2y$08$SUh5WUM4STdKZmtYOHh5duA2bPXmyg7BmzxORifly3mDit6oU4Y1y"
     
     //Tracking
@@ -61,7 +62,7 @@ struct Api {
     static let homeSectionsWithBannersUrlV2_1 = "\(apiUrlV2_1)/app/home"
     static let homeSectionsWithBannersUrlV2_3 = "\(apiUrlV2_3)/app/home"
     static let homeSectionsWithBannersUrlV2_3_1 = "\(apiUrlV2_3_1)/app/home"
-    static let todaySectionsUrl = "\(apiUrlV2_3)/home/today/sections"
+    static let todaySectionsUrl = "\(apiUrlV2_3_2)/home/today/sections"
     static let todayQuoteViewUrl = "\(apiUrlV2_1)/quotes/view/{id}"
     static let feelingsListUrl = "\(apiUrlV2_2)/feelings/list"
     static let feelingsSessionsV2_3 = "\(apiUrlV2_3)/feelings/sessions/list"
@@ -69,7 +70,8 @@ struct Api {
     static let sectionSessions = "\(apiUrlV2)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3 = "\(apiUrlV2_3)/sections/sessions/list/{id}"
     static let sectionSessionsV2_3_1 = "\(apiUrlV2_3_1)/sections/sessions/list/{id}"
-    static let moodTrackerUrl = "\(apiUrlV2)/stats/mood-chart?from={from}"
+    static let moodTrackerUrl = "\(apiUrlV2)/stats/mood-chart?from={from}&type={type}"
+    static let modeTrackerStatsUrl = "\(apiUrlV2)/stats/activity"
     
     //NewFeature
     static let newFeatureInteract = "\(apiUrlV2)/app-pages/interact/{id}"
@@ -102,9 +104,9 @@ struct Api {
     static let sessionUpdateCommentUrl = "\(apiUrlV2_1)/items/comments/update/{id}"
     static let searchSession = "\(apiUrlV2)/sessions/search?q={query}"
     static let searchSessionV2_3 = "\(apiUrlV2_3)/sessions/search?q={query}"
-     static let addToFavoritesUrl = "\(apiUrl)/favourites/add"
+    static let addToFavoritesUrl = "\(apiUrl)/favourites/add"
     static let addToFavoritesUrlV2_3 = "\(apiUrlV2_3)/favourites/add"
-     static let removeFromFavoritesUrl = "\(apiUrl)/favourites/delete"
+    static let removeFromFavoritesUrl = "\(apiUrl)/favourites/delete"
     static let removeFromFavoritesUrlV2_3 = "\(apiUrlV2_3)/favourites/delete"
     static let trackSessionUrl = "\(apiUrlV2)/sessions/track"
     static let sessionInfoDetails = "\(apiUrlV2_1)/sessions/view/{id}"

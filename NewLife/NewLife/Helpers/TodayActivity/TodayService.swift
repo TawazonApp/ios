@@ -18,9 +18,12 @@ protocol TodayService {
     func updateFeelings(feelingIds: [String], completion: @escaping (_ error: CustomError?) -> Void)
     
     func setQuoteViewed(quoteId: String, completion: @escaping (_ error: CustomError?) -> Void)
+    
     func getTawazonTalkView(id: String, completion: @escaping(_ model: TawazonTalkModel? ,_ error: CustomError?)-> Void)
     
-    func getMoodTrackerData(from: String, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void)
+    func getMoodTrackerData(from: String, type: Int, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void)
+    
+    func getMoodTrackerStatsData(completion: @escaping (_ moodTrackerStatsData: MoodTrackerStatsModel?, _ error: CustomError?) -> Void)
 }
 
 class TodayServiceFactory {
@@ -89,13 +92,24 @@ class APITodayService: TodayService {
         }
     }
     
-    func getMoodTrackerData(from: String, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void) {
-        let url = Api.moodTrackerUrl.replacingOccurrences(of: "{from}", with: from)
+    func getMoodTrackerData(from: String, type: Int, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void) {
+        let url = (Api.moodTrackerUrl.replacingOccurrences(of: "{from}", with: from)).replacingOccurrences(of: "{type}", with: "\(type)")
         print("url: \(url)")
         ConnectionUtils.performGetRequest(url: url.url!, parameters: nil) { (data, error) in
             var model: MoodTrackerModel?
             if let data = data {
                 model = MoodTrackerModel(data: data)
+            }
+            completion(model, error)
+        }
+    }
+    
+    func getMoodTrackerStatsData(completion: @escaping (_ moodTrackerStatsData: MoodTrackerStatsModel?, _ error: CustomError?) -> Void){
+        let url = Api.modeTrackerStatsUrl
+        ConnectionUtils.performGetRequest(url: url.url!, parameters: nil) { (data, error) in
+            var model: MoodTrackerStatsModel?
+            if let data = data {
+                model = MoodTrackerStatsModel(data: data)
             }
             completion(model, error)
         }

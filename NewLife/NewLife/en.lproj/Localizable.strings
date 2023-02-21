@@ -35,6 +35,7 @@
 "MeditationsSummaryText" = "No one realizes the value of life but a struggling fighter who sees the passing of a day in the sunset.";
  
 "MoreUserProfileTitle" = "Profile and account";
+"MoreMoodStatsTitle" = "Mood and activity chart";
 "MoreDownloadLibraryTitle" = "Downloads";
 "MoreFavoritesTitle" = "Favorites";
 "MorePremiumTitle" = "Tawazon Premium";
@@ -47,6 +48,7 @@
 "moreGuidedTourTitle" = "Start tutorial";
  
 "MoreUserProfileSubTitle" = "Profile and account settings";
+"MoreMoodStatsSubTitle" = "Keep track of your activity progress in Tawazon";
 "MoreDownloadLibrarySubTitle" = "Session that you can run without the need for Internet";
 "MoreFavoritesSubTitle" = "Your favorite sessions";
 "MorePremiumSubTitle" = "Your subscription plan";
@@ -564,3 +566,6 @@ Unless you cancel the service beforehand.";
 "MoodTrackerUserActivityTitleLabel" = "Streak";
 "moodTrakerAccumulative" = "Accumulative";
 "moodTrakerSubtractive" = "Subtractive";
+"completedSessionValueLabel" = "Session";
+"tawazonMinutesValueLabel" = "Minute";
+"userActivityValueLabel" = "Day";
