@@ -20,6 +20,7 @@ class ChartDataView: UIView, ChartViewDelegate {
     @IBOutlet weak var feelingLabelsStackView: UIStackView!
     @IBOutlet var feelingsLabel: [UILabel]!
     @IBOutlet weak var upperDividerView: UIView!
+    @IBOutlet weak var middleDividerView: UIView!
     @IBOutlet weak var verticalDividerView: UIView!
     @IBOutlet weak var bottomDividerView: UIView!
     @IBOutlet weak var verticalGradientView: GradientView!
@@ -39,6 +40,7 @@ class ChartDataView: UIView, ChartViewDelegate {
     
     var chartData: [ChartData]?{
         didSet{
+            print("UPDATED")
             print("chartData: \(chartData?[0].intensity)")
             updateChartData()
         }
@@ -48,6 +50,7 @@ class ChartDataView: UIView, ChartViewDelegate {
         super.awakeFromNib()
         initialize()
         updateChartData()
+        intializeChart()
     }
     
     override func layoutSubviews() {
@@ -79,6 +82,8 @@ class ChartDataView: UIView, ChartViewDelegate {
         chartView.roundCorners(corners: .allCorners, radius: 16)
         
         upperDividerView.backgroundColor = .chambray
+        
+        middleDividerView.backgroundColor = .chambray.withAlphaComponent(0.5)
         
         verticalDividerView.backgroundColor = .chambray
         
@@ -157,9 +162,9 @@ class ChartDataView: UIView, ChartViewDelegate {
 //        leftAxis.labelPosition = .insideChart
 //        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
 //        leftAxis.drawGridLinesEnabled = true
-//        leftAxis.granularityEnabled = true
-        leftAxis.axisMinimum = 1
-        leftAxis.axisMaximum = 5
+        leftAxis.granularityEnabled = true
+        leftAxis.axisMinimum = -1
+        leftAxis.axisMaximum = 1
 //        leftAxis.yOffset = 0
 //        leftAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
 
@@ -201,18 +206,32 @@ class ChartDataView: UIView, ChartViewDelegate {
      func updateChartData() {
          dateLabel.text = moodTrackerVM?.MoodTrackerData?.title
          selectedFeelingDetailsView.isHidden = true
+         let maxValue = (chartData?.sorted(by: {
+             return $0.intensity ?? 0 > $1.intensity ?? 0
+         }).first?.intensity ?? 0) + 2
+         var minValue = chartData?.sorted(by: {
+             return $0.intensity ?? 0 < $1.intensity ?? 0
+         }).first?.intensity
+         
+         
+         print("maxValue: \(maxValue), minValue: \(minValue)")
          if chartData?.count ?? 0 >= 12{
              bottomDividerView.isHidden = true
          }else{
              bottomDividerView.isHidden = false
          }
+         
          let xAxis = lineChartView.xAxis
+         let leftAxis = lineChartView.leftAxis
+         leftAxis.axisMinimum = minValue ?? 0
+         leftAxis.axisMaximum = maxValue ?? 0
+         
          if (chartData?.count ?? 0 < 5){ // 3Months
              xAxis.setLabelCount(5, force: true)
              xAxis.granularity = 86400 * 7
              xAxis.labelRotationAngle = 0
          }else if (chartData?.count ?? 0 < 10){ // 7Days
-             xAxis.setLabelCount(8, force: true)
+             xAxis.setLabelCount(7, force: true)
              xAxis.granularity = 86400
              xAxis.labelRotationAngle = 0
          }else if (chartData?.count ?? 0 < 13){ // 1Year
@@ -250,19 +269,19 @@ class ChartDataView: UIView, ChartViewDelegate {
                 let datePoint = dateFormatter.date(from: point.dateValue ?? "")
                 
                 if (chartData?.count ?? 0 < 5){ // 3Months
-                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                 }else if (chartData?.count ?? 0 < 10){ // 7Days
-                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.intensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.intensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                     feelingsLabel[index].text = point.feeling?.title
                 }else if (chartData?.count ?? 0 < 13){ // 1Year
-                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                 }else if (chartData?.count ?? 0 < 25){ // 6Months
-                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                 }else{ // 1Month
                     if dataTypeSegment.selectedSegmentIndex == 1{ // accumulative
-                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.cumulativeIntensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                     }else{// subtractive
-                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(abs(point.intensity ?? 1)) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                        chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.intensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                     }
                 }
                 
@@ -325,6 +344,7 @@ class newRender : LineChartRenderer{
     
     private func drawIcons(context: CGContext)
     {
+        print("drawIcons")
         guard
             let dataProvider = dataProvider,
             let lineData = dataProvider.lineData
@@ -425,30 +445,32 @@ class newRender : LineChartRenderer{
 
                 if let iconUrlString = (e.data as? String) {
                     if let url = iconUrlString.url{
-    //                    let imageView = UIImageView(frame: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-    //                    imageView.af.setImage(withURL: url)
-    //                    imageView.backgroundColor = .red
-                    
-    //                    URLSession.shared.dataTask(with: url) { (data, response, error) in
-    //                      // Error handling...
-    //                      guard let imageData = data else { return }
-    //                        print("data: \(data)")
-    //
-    //                      DispatchQueue.main.async {
-    //                          if let image = UIImage(data: imageData){
-    //                              print("image")
-    //                              image.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-    //                          }
-    //                      }
-    //                    }.resume()
-                              
+//                        let imageView = UIImageView(frame: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
+//                        print("imageView")
+//                        imageView.af.setImage(withURL: url)
+//                        imageView.backgroundColor = .red
                         
+//                        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//                          // Error handling...
+//                          guard let imageData = data else { return }
+//                            print("data: \(data)")
+//
+////                          DispatchQueue.main.async {
+//                              if let image = UIImage(data: imageData){
+//                                  print("image")
+//                                  image.draw(in: CGRect(x: pt.x - 14, y: pt.y - 30, width: 28, height: 28))
+//                                  print("AFTER")
+//                              }
+////                          }
+//                        }.resume()
+                              
+                              
                         do {
                               let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
                               let image = UIImage(data: imgData as Data)
-    //                            DispatchQueue.main.async() { () -> Void in
-                                    image?.draw(in: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-    //                       }
+//                                DispatchQueue.main.async() { () -> Void in
+                                    image?.draw(in: CGRect(x: pt.x - 14, y: pt.y - 30, width: 28, height: 28))
+//                           }
                         } catch {
 
                         }

@@ -996,6 +996,13 @@
                                                     <constraint firstAttribute="height" constant="1" id="ZaT-ME-8pt"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsR-j4-U6x">
+                                                <rect key="frame" x="21" y="161.66666666666669" width="353" height="1"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="r9o-Ko-VP3"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWi-JX-Orm">
                                                 <rect key="frame" x="20" y="0.0" width="1" height="324.33333333333331"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1017,12 +1024,14 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NsR-j4-U6x" secondAttribute="trailing" id="301-K0-juk"/>
                                             <constraint firstItem="RWi-JX-Orm" firstAttribute="leading" secondItem="RwH-9I-rIT" secondAttribute="trailing" constant="8" symbolic="YES" id="9i6-qA-S8X"/>
                                             <constraint firstItem="RwH-9I-rIT" firstAttribute="leading" secondItem="4ig-42-ind" secondAttribute="leading" constant="8" id="Aeh-vm-Cra"/>
                                             <constraint firstItem="mA7-aK-S73" firstAttribute="leading" secondItem="RWi-JX-Orm" secondAttribute="leading" id="AkL-Ze-FmF"/>
                                             <constraint firstAttribute="trailing" secondItem="664-fF-m2S" secondAttribute="trailing" id="Bg2-wx-5Eg"/>
                                             <constraint firstAttribute="trailing" secondItem="aUG-l9-3nd" secondAttribute="trailing" id="Fqb-Cz-QyL"/>
                                             <constraint firstItem="RwH-9I-rIT" firstAttribute="top" secondItem="4ig-42-ind" secondAttribute="top" constant="56" id="GY2-oC-PoH"/>
+                                            <constraint firstItem="NsR-j4-U6x" firstAttribute="leading" secondItem="RWi-JX-Orm" secondAttribute="trailing" id="Gjg-36-OOi"/>
                                             <constraint firstItem="aUG-l9-3nd" firstAttribute="top" secondItem="X9T-s0-Eh0" secondAttribute="bottom" constant="4" id="Gk9-2v-TKY"/>
                                             <constraint firstAttribute="bottom" secondItem="RwH-9I-rIT" secondAttribute="bottom" constant="56" id="L5S-4Z-fzb"/>
                                             <constraint firstAttribute="bottom" secondItem="664-fF-m2S" secondAttribute="bottom" constant="36" id="Lox-VF-mWz"/>
@@ -1034,6 +1043,7 @@
                                             <constraint firstItem="aUG-l9-3nd" firstAttribute="top" secondItem="0t1-xY-eTg" secondAttribute="bottom" id="bVb-MQ-1bd"/>
                                             <constraint firstItem="664-fF-m2S" firstAttribute="top" secondItem="aUG-l9-3nd" secondAttribute="bottom" id="cg9-bi-xLF"/>
                                             <constraint firstAttribute="trailing" secondItem="mA7-aK-S73" secondAttribute="trailing" id="dF5-fK-6Li"/>
+                                            <constraint firstItem="NsR-j4-U6x" firstAttribute="centerY" secondItem="4ig-42-ind" secondAttribute="centerY" id="enw-3C-zE3"/>
                                             <constraint firstAttribute="bottom" secondItem="RWi-JX-Orm" secondAttribute="bottom" id="mfZ-67-FIk"/>
                                             <constraint firstItem="0t1-xY-eTg" firstAttribute="top" secondItem="4ig-42-ind" secondAttribute="top" id="pVG-Jd-wjA"/>
                                             <constraint firstAttribute="trailing" secondItem="0t1-xY-eTg" secondAttribute="trailing" constant="10" id="pfi-TT-WC1"/>
@@ -1061,6 +1071,7 @@
                                     <outlet property="dateLabel" destination="QjU-bg-OCR" id="92v-Rx-ODZ"/>
                                     <outlet property="feelingLabelsStackView" destination="0t1-xY-eTg" id="diS-pM-zIy"/>
                                     <outlet property="lineChartView" destination="664-fF-m2S" id="dEY-Gq-FOU"/>
+                                    <outlet property="middleDividerView" destination="NsR-j4-U6x" id="TeQ-im-3zs"/>
                                     <outlet property="selectedFeelingDateLabel" destination="5Fr-jS-nAk" id="trS-C0-PeH"/>
                                     <outlet property="selectedFeelingDetailsView" destination="X9T-s0-Eh0" id="Baw-3W-CHY"/>
                                     <outlet property="selectedFeelingImageView" destination="b6g-TD-cO5" id="7eY-cf-In9"/>

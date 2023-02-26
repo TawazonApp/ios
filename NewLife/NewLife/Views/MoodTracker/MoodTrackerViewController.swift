@@ -170,6 +170,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         }
     }
     private func setStatsData(){
+        print("setStatsData")
         completedSessionValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.completedSessions ?? 0)", part2: "completedSessionValueLabel".localized)
         tawazonMinutesValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.tawazonMinutes ?? 0)", part2: "tawazonMinutesValueLabel".localized)
         userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.activeDays ?? 0)", part2: "userActivityValueLabel".localized)
