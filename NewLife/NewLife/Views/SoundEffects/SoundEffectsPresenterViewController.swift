@@ -56,8 +56,6 @@ class SoundEffectsPresenterViewController: HandleErrorViewController {
     }
     
     @IBAction func searchButtonTapped(_ sender: SoundEffectsButton) {
-//        openSearchViewController()
-        print("BACK")
         self.navigationController?.popViewController(animated: true)
     }
     

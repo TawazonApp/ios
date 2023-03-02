@@ -54,7 +54,6 @@ class Premium1ViewController: BasePremiumViewController {
     }
     
     private func fillData(){
-        print("fillData()")
         let sharedData = BasePremiumVM.shared
         self.features = sharedData.premiumDetails?.premiumPage.featureItems
         self.noteLabel.text = sharedData.premiumDetails?.premiumPage.continueLabel

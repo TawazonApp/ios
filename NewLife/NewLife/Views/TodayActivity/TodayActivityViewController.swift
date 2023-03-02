@@ -177,7 +177,6 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         case .userFeelingSessions:
             print("sessionsList")
         case .static1:
-            print("static1")
             openMoodTrackerVC()
         case .singleQuote:
             quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")

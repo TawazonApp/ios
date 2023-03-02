@@ -316,9 +316,7 @@ class HomeViewController: SoundEffectsPresenterViewController {
     }
     
     private func preLoadPremiumPageData(){
-        print("preLoadPremiumPageData")
         let viewNameString = RemoteConfigManager.shared.string(forKey: .premuimPageViewName)
-        print("viewNameString: \(viewNameString)")
         let viewName = premuimPageViewNameValues.init(rawValue: viewNameString)
         var premiumId = 0
         switch viewName{
@@ -337,8 +335,6 @@ class HomeViewController: SoundEffectsPresenterViewController {
         }
         BasePremiumVM.shared.getPremiumPageDetails(premiumId: premiumId, service: MembershipServiceFactory.service(), completion: { (error) in
             if error == nil{
-                print("SHARED: \(BasePremiumVM.shared.premiumDetails?.premiumPage)")
-                print("SHARED: \(BasePremiumVM.shared.plansArray.count)")
                 return
             }
         })
@@ -531,20 +527,16 @@ extension HomeViewController:  HomeTableFeelingCellDelegate, HomeTableHorizontal
         if let actionType = section.action?.type{
             switch actionType{
             case "openMusic":
-                print("openMusic")
                 viewController = MusicViewController.instantiate()
                 
                 break
             case "openPodcast":
-                print("openPodcast")
                 viewController = PodcastsViewController.instantiate()
                 break
             case "openChildren":
-                print("openChildren")
                 viewController = ChildrenViewController.instantiate()
                 break
             default:
-                print("default")
                 viewController =  SectionSessionListViewController.instantiate(id: section.id, name: section.title, type: .homeSection)
                 break
             }

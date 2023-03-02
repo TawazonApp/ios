@@ -25,7 +25,6 @@ class ConnectionUtils: NSObject {
             let result = getData(from: response)
             completion(result.data, result.error)
         }
-        
     }
     
     class func performPostRequest(url:URL, parameters: Parameters?, completion: @escaping (Data?, CustomError?) -> ()) {
@@ -115,7 +114,7 @@ class ConnectionUtils: NSObject {
         if let token = UserDefaults.userToken(), token != Api.anonymousToken {
              headers["token"] = token
         }
-        print("HEADER: \(headers)")
+        
         return headers
     }
 }

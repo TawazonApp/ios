@@ -94,7 +94,7 @@ class APITodayService: TodayService {
     
     func getMoodTrackerData(from: String, type: Int, completion: @escaping (_ moodTrackerData: MoodTrackerModel?, _ error: CustomError?) -> Void) {
         let url = (Api.moodTrackerUrl.replacingOccurrences(of: "{from}", with: from)).replacingOccurrences(of: "{type}", with: "\(type)")
-        print("url: \(url)")
+        
         ConnectionUtils.performGetRequest(url: url.url!, parameters: nil) { (data, error) in
             var model: MoodTrackerModel?
             if let data = data {

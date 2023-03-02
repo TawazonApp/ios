@@ -150,13 +150,17 @@ class LandingFeelingsViewController: HandleErrorViewController {
             }else{
                 TrackerManager.shared.sendFeelingsIntencitySelcted(subfeelingId: feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].id ?? "subfeeling_id", subfeelingName: feelings[lastSelectedFeelingIndex ].subFeelings?[Int(roundedValue - 1)].title ?? "subfeeling_title")
             }
-            
         }
-        
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
-            viewModel.updateFeelings(feelingIds: [feelings[lastSelectedFeelingIndex].id], intensity: Int(subFeelingsSlider.value), completion: {(error) in
+        var intensity = 0
+        if(UIApplication.shared.userInterfaceLayoutDirection == UIUserInterfaceLayoutDirection.rightToLeft){
+            intensity = (Int(subFeelingsSlider.maximumValue) + 1) - Int(subFeelingsSlider.value)
+        }else{
+            intensity = Int(subFeelingsSlider.value)
+        }
+            viewModel.updateFeelings(feelingIds: [feelings[lastSelectedFeelingIndex].id], intensity: intensity, completion: {(error) in
                 if let error = error{
                     self.showErrorMessage(message: error.message ?? "")
                     return
@@ -167,10 +171,8 @@ class LandingFeelingsViewController: HandleErrorViewController {
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsLogged, payload: values)
                     self.dismiss(animated: true)
                 }else{
-                    print("else")
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.feelingsLogged, payload: values)
-//                    self.dismiss(animated: true)
                     self.openLandingReminderViewController()
                 }
                 

@@ -267,7 +267,6 @@ class PaywallViewController: BasePremiumViewController {
     }
     
     private func fillData(){
-        print("fillData()")
         let sharedData = BasePremiumVM.shared
         self.subscribeButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
 
@@ -279,7 +278,6 @@ class PaywallViewController: BasePremiumViewController {
         if allPlansData.plansArray.count == 0{
             allPlansData.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
                 if error == nil{
-                    print("allPlansData: \(self.allPlansData.plansArray.count)")
                     return
                 }
             })
@@ -346,7 +344,6 @@ class PaywallViewController: BasePremiumViewController {
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
         if let bestPlan = plans?.first{
-            print("BasePremiumVM.shared.products[bestPlan.priority - 1]: \(BasePremiumVM.shared.products[bestPlan.priority - 1].productIdentifier)")
             purchaseAction(product: BasePremiumVM.shared.products[bestPlan.priority - 1])
         }
         

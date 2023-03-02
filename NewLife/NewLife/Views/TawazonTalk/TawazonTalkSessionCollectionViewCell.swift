@@ -98,7 +98,6 @@ class TawazonTalkSessionCollectionViewCell: UICollectionViewCell {
         
         if let comingSoonData = session?.session?.locked, comingSoonData{
             comingSoonLockImageView.isHidden = false
-            print("session?.session?.thumbnailLockedUrl?: \(session?.session?.thumbnailUrl)")
             if let imageUrl = session?.session?.thumbnailLockedUrl?.url {
                 sessionImage.af.setImage(withURL: imageUrl, completion:  { (_) in
                     loadingIndicator.stopAnimating()

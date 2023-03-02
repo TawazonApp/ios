@@ -24,11 +24,13 @@ class ChartDataView: UIView, ChartViewDelegate {
     @IBOutlet weak var verticalDividerView: UIView!
     @IBOutlet weak var bottomDividerView: UIView!
     @IBOutlet weak var verticalGradientView: GradientView!
+    @IBOutlet weak var verticalGradientViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var selectedFeelingDetailsView: UIView!
     @IBOutlet weak var selectedFeelingImageView: UIImageView!
     @IBOutlet weak var selectedFeelingTitleLabel: UILabel!
     @IBOutlet weak var selectedFeelingDateLabel: UILabel!
+    
     
     var delegate: ChartDataViewDelegate?
     
@@ -40,8 +42,6 @@ class ChartDataView: UIView, ChartViewDelegate {
     
     var chartData: [ChartData]?{
         didSet{
-            print("UPDATED")
-            print("chartData: \(chartData?[0].intensity)")
             updateChartData()
         }
     }
@@ -49,12 +49,14 @@ class ChartDataView: UIView, ChartViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         initialize()
-        updateChartData()
         intializeChart()
+        updateChartData()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        verticalGradientView.roundCorners(corners: .allCorners, radius: 2)
         
         dataTypeSegment.layoutIfNeeded()
         dataTypeSegment.roundCorners(corners: .allCorners, radius: 14)
@@ -65,7 +67,6 @@ class ChartDataView: UIView, ChartViewDelegate {
     private func initialize(){
         dateLabel.font = .munaBoldFont(ofSize: 20)
         dateLabel.textColor = .white.withAlphaComponent(0.5)
-        dateLabel.text = "ديسمبر"
         
         dataTypeSegment.backgroundColor = .catalinaBlue
         dataTypeSegment.layer.masksToBounds = true
@@ -159,15 +160,23 @@ class ChartDataView: UIView, ChartViewDelegate {
         xAxis.valueFormatter = DateValueFormatter()
         
         let leftAxis = lineChartView.leftAxis
-//        leftAxis.labelPosition = .insideChart
-//        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
-//        leftAxis.drawGridLinesEnabled = true
+        leftAxis.labelPosition = .insideChart
+        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
+        leftAxis.drawGridLinesEnabled = true
         leftAxis.granularityEnabled = true
         leftAxis.axisMinimum = -1
         leftAxis.axisMaximum = 1
 //        leftAxis.yOffset = 0
 //        leftAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
 
+        let rightAxis = lineChartView.rightAxis
+        rightAxis.labelPosition = .insideChart
+        rightAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
+        rightAxis.drawGridLinesEnabled = true
+        rightAxis.granularityEnabled = true
+        rightAxis.axisMinimum = -1
+        rightAxis.axisMaximum = 1
+        
         lineChartView.leftAxis.enabled = false
         lineChartView.rightAxis.enabled = false
         
@@ -178,7 +187,6 @@ class ChartDataView: UIView, ChartViewDelegate {
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print("entry: \(entry)")
         let timeResult = entry.x
         let date = Date(timeIntervalSince1970: timeResult)
         let dateFormatter = DateFormatter()
@@ -190,7 +198,6 @@ class ChartDataView: UIView, ChartViewDelegate {
             let point = chartPoints.filter({
                 return $0.intensity == pointIntensity && $0.dateValue == pointDate
             }).first
-            print("selectedPoint: \(point)")
             if chartPoints.count > 10{
                 if let feelingIconUrl = point?.feeling?.icon?.url{
                     selectedFeelingImageView.af.setImage(withURL: feelingIconUrl)
@@ -206,15 +213,30 @@ class ChartDataView: UIView, ChartViewDelegate {
      func updateChartData() {
          dateLabel.text = moodTrackerVM?.MoodTrackerData?.title
          selectedFeelingDetailsView.isHidden = true
+         
+         
          let maxValue = (chartData?.sorted(by: {
              return $0.intensity ?? 0 > $1.intensity ?? 0
          }).first?.intensity ?? 0) + 2
-         var minValue = chartData?.sorted(by: {
+         
+         let minValue = chartData?.sorted(by: {
              return $0.intensity ?? 0 < $1.intensity ?? 0
-         }).first?.intensity
+         }).first?.intensity ?? 0
+          ////////////////
+         let maxAccumulativeValue = (chartData?.sorted(by: {
+             return $0.cumulativeIntensity ?? 0 > $1.cumulativeIntensity ?? 0
+         }).first?.cumulativeIntensity ?? 0)
+         
+         let minAccumulativeValue = chartData?.sorted(by: {
+             return $0.cumulativeIntensity ?? 0 < $1.cumulativeIntensity ?? 0
+         }).first?.cumulativeIntensity ?? 0
          
          
-         print("maxValue: \(maxValue), minValue: \(minValue)")
+         let scaleIntensityValue = abs(maxValue) > abs(minValue) ? maxValue : minValue
+         
+         let scaleCumulativeIntensityValue = abs(maxAccumulativeValue) > abs(minAccumulativeValue) ? maxAccumulativeValue : minAccumulativeValue
+         
+         
          if chartData?.count ?? 0 >= 12{
              bottomDividerView.isHidden = true
          }else{
@@ -223,38 +245,85 @@ class ChartDataView: UIView, ChartViewDelegate {
          
          let xAxis = lineChartView.xAxis
          let leftAxis = lineChartView.leftAxis
-         leftAxis.axisMinimum = minValue ?? 0
-         leftAxis.axisMaximum = maxValue ?? 0
+         let rightAxis = lineChartView.rightAxis
+         
+         
          
          if (chartData?.count ?? 0 < 5){ // 3Months
              xAxis.setLabelCount(5, force: true)
              xAxis.granularity = 86400 * 7
              xAxis.labelRotationAngle = 0
+             
+             leftAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             leftAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
+             
+             
+             rightAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             rightAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
          }else if (chartData?.count ?? 0 < 10){ // 7Days
              xAxis.setLabelCount(7, force: true)
              xAxis.granularity = 86400
              xAxis.labelRotationAngle = 0
+             
+             leftAxis.axisMinimum = scaleIntensityValue > 0 ? -1 * (scaleIntensityValue + 5) : (scaleIntensityValue - 5)
+             leftAxis.axisMaximum = scaleIntensityValue > 0 ? (scaleIntensityValue + 5) : -1 * (scaleIntensityValue - 5)
+             
+             
+             rightAxis.axisMinimum = scaleIntensityValue > 0 ? -1 * (scaleIntensityValue + 5) : (scaleIntensityValue - 5)
+             rightAxis.axisMaximum = scaleIntensityValue > 0 ? (scaleIntensityValue + 5) : -1 * (scaleIntensityValue - 5)
+             
          }else if (chartData?.count ?? 0 < 13){ // 1Year
              xAxis.setLabelCount(13, force: true)
              xAxis.granularity = 2629743
              xAxis.labelRotationAngle = 90
+             
+             
+             leftAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             leftAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
+             
+             
+             rightAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             rightAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
          }else if (chartData?.count ?? 0 < 25){ // 6Months
              xAxis.setLabelCount(24, force: true)
              xAxis.granularity = 86400 * 7
              xAxis.labelRotationAngle = 90
+             
+             
+             leftAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             leftAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
+             
+             
+             rightAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+             rightAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
          }else{ // 1Month
              if dataTypeSegment.selectedSegmentIndex == 1{ // accumulative
                  xAxis.setLabelCount(5, force: true)
                  xAxis.granularity = 86400 * 7
                  xAxis.labelRotationAngle = 0
+                 
+                 leftAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+                 leftAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
+                 
+                 
+                 rightAxis.axisMinimum = scaleCumulativeIntensityValue > 0 ? -1 * (scaleCumulativeIntensityValue + 5) : (scaleCumulativeIntensityValue - 5)
+                 rightAxis.axisMaximum = scaleCumulativeIntensityValue > 0 ? (scaleCumulativeIntensityValue + 5) : -1 * (scaleCumulativeIntensityValue - 5)
              }else{ // subtractive
                  xAxis.setLabelCount(32, force: true)
                  xAxis.granularity = 86400
                  xAxis.labelRotationAngle = 90
+                 
+                 
+                 leftAxis.axisMinimum = scaleIntensityValue > 0 ? -1 * (scaleIntensityValue + 5) : (scaleIntensityValue - 5)
+                 leftAxis.axisMaximum = scaleIntensityValue > 0 ? (scaleIntensityValue + 5) : -1 * (scaleIntensityValue - 5)
+                 
+                 
+                 rightAxis.axisMinimum = scaleIntensityValue > 0 ? -1 * (scaleIntensityValue + 5) : (scaleIntensityValue - 5)
+                 rightAxis.axisMaximum = scaleIntensityValue > 0 ? (scaleIntensityValue + 5) : -1 * (scaleIntensityValue - 5)
+                 
              }
              
          }
-         print("granularity: \(chartData?.count ?? 0 < 10 ? 86400 : (86400 * 7))")
          
          self.setDataCount()
     }
@@ -270,20 +339,31 @@ class ChartDataView: UIView, ChartViewDelegate {
                 
                 if (chartData?.count ?? 0 < 5){ // 3Months
                     chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    verticalGradientViewBottomConstraint.constant = 76
                 }else if (chartData?.count ?? 0 < 10){ // 7Days
                     chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.intensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
                     feelingsLabel[index].text = point.feeling?.title
+                    verticalGradientViewBottomConstraint.constant = 56
+                    self.verticalGradientView.bottomAnchor.constraint(equalTo: self.chartView.bottomAnchor, constant: 56).isActive = true
                 }else if (chartData?.count ?? 0 < 13){ // 1Year
                     chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    verticalGradientViewBottomConstraint.constant = 76
                 }else if (chartData?.count ?? 0 < 25){ // 6Months
                     chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                    verticalGradientViewBottomConstraint.constant = 76
                 }else{ // 1Month
                     if dataTypeSegment.selectedSegmentIndex == 1{ // accumulative
                         chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.cumulativeIntensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                        verticalGradientViewBottomConstraint.constant = 56
+                        self.verticalGradientView.bottomAnchor.constraint(equalTo: self.chartView.bottomAnchor, constant: 56).isActive = true
                     }else{// subtractive
                         chartValues.append(ChartDataEntry(x: (datePoint?.timeIntervalSince1970 ?? TimeInterval()), y: Double(point.intensity ?? 1) , data: chartPoints.count < 10 ? point.feeling?.icon : ""))
+                        verticalGradientViewBottomConstraint.constant = 76
                     }
                 }
+                
+                self.layoutIfNeeded()
+                self.layoutSubviews()
                 
                 if chartPoints.count > 5 && chartPoints.count < 10{
                     feelingLabelsStackView.isHidden = false
@@ -292,7 +372,7 @@ class ChartDataView: UIView, ChartViewDelegate {
                 }
             }
         }
-        print("chartValues.count: \(chartValues.count)")
+        
         let set1 = LineChartDataSet(entries: chartValues, label: "DataSet 1")
         set1.axisDependency = .right
         set1.setColor(UIColor(red: 167/255, green: 159/255, blue: 224/255, alpha: 1))
@@ -344,7 +424,6 @@ class newRender : LineChartRenderer{
     
     private func drawIcons(context: CGContext)
     {
-        print("drawIcons")
         guard
             let dataProvider = dataProvider,
             let lineData = dataProvider.lineData
@@ -445,26 +524,7 @@ class newRender : LineChartRenderer{
 
                 if let iconUrlString = (e.data as? String) {
                     if let url = iconUrlString.url{
-//                        let imageView = UIImageView(frame: CGRect(x: pt.x - 14, y: pt.y + 10, width: 28, height: 28))
-//                        print("imageView")
-//                        imageView.af.setImage(withURL: url)
-//                        imageView.backgroundColor = .red
-                        
-//                        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//                          // Error handling...
-//                          guard let imageData = data else { return }
-//                            print("data: \(data)")
-//
-////                          DispatchQueue.main.async {
-//                              if let image = UIImage(data: imageData){
-//                                  print("image")
-//                                  image.draw(in: CGRect(x: pt.x - 14, y: pt.y - 30, width: 28, height: 28))
-//                                  print("AFTER")
-//                              }
-////                          }
-//                        }.resume()
-                              
-                              
+ 
                         do {
                               let imgData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
                               let image = UIImage(data: imgData as Data)

@@ -69,7 +69,6 @@ class Premium4ViewController: BasePremiumViewController {
     }
     
     private func fillData(){
-        print("fillData()")
         let sharedData = BasePremiumVM.shared
         self.purchaseButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
         

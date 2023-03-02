@@ -98,10 +98,6 @@ extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICo
 
             // get size with width that you want and automatic height
             let size = cell.contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .defaultHigh, verticalFittingPriority: .fittingSizeLevel)
-//            size = CGSize(width: size.width, height: CGFloat(size.height + 28))
-            // if you want height and width both to be dynamic use below
-            // let size = cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-            print("size: \(size)")
             return size
         }
     

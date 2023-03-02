@@ -32,6 +32,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
     @IBOutlet weak var userActivityImageView: UIImageView!
     @IBOutlet weak var userActivityTitleLabel: UILabel!
     @IBOutlet weak var userActivityValueLabel: UILabel!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     var moodTrackerVM: MoodTrackerVM = MoodTrackerVM(service: TodayServiceFactory.service())
     
@@ -45,6 +46,11 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         fetchMoodTrackerStatsData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        backButton.roundCorners(corners: .allCorners, radius: backButton.frame.height / 2)
+    }
 
     private func initialize(){
         view.backgroundColor = .midnightBlueTwo
@@ -99,7 +105,6 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         completedSessionTitleLabel.text = "MoodTrackerCompletedSessionTitleLabel".localized
         
         completedSessionValueLabel.textColor = .lavenderBlue
-        completedSessionValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "16", part2: "جلسة")
         
         tawazonMinutesImageView.contentMode = .scaleAspectFill
         tawazonMinutesImageView.image = UIImage(named: "MoodTrackerTawazonMinutes")
@@ -109,7 +114,6 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         tawazonMinutesTitleLabel.text = "MoodTrackerTawazonMinutesTitleLabel".localized
         
         tawazonMinutesValueLabel.textColor = .lavenderBlue
-        tawazonMinutesValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "40", part2: "دقيقة")
         
         userActivityImageView.contentMode = .scaleAspectFill
         userActivityImageView.image = UIImage(named: "MoodTrackerUserActivity")
@@ -119,7 +123,9 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         userActivityTitleLabel.text = "MoodTrackerUserActivityTitleLabel".localized
         
         userActivityValueLabel.textColor = .lavenderBlue
-        userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "5", part2: "يوم")
+        
+        loader.hidesWhenStopped = true
+        loader.stopAnimating()
     }
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -143,6 +149,8 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
     }
     
     private func fetchMoodTrackerData(from: String, type: Int) {
+        self.chartDataView.moodTrackerVM = nil
+        loader.startAnimating()
         moodTrackerVM.getMoodTrackerData(from: from, type: type) { [weak self] (error) in
             if let error = error {
                 self?.showErrorMessage(message: error.localizedDescription)
@@ -157,7 +165,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
                 self?.dateSegment.selectedSegmentIndex = 0
             }
             self?.chartDataView.moodTrackerVM = self?.moodTrackerVM
-            
+            self?.loader.stopAnimating()
         }
     }
     
@@ -170,10 +178,9 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         }
     }
     private func setStatsData(){
-        print("setStatsData")
         completedSessionValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.completedSessions ?? 0)", part2: "completedSessionValueLabel".localized)
         tawazonMinutesValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.tawazonMinutes ?? 0)", part2: "tawazonMinutesValueLabel".localized)
-        userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.activeDays ?? 0)", part2: "userActivityValueLabel".localized)
+        userActivityValueLabel.attributedText = statisticsValueLabelAttributeText(part1: "\(moodTrackerStatsVM.MoodTrackerStatsData?.consecutivePresence ?? 0)", part2: "userActivityValueLabel".localized)
     }
     @IBAction func dateChanged(_ sender: Any) {
         if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{

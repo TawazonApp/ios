@@ -66,7 +66,6 @@ class Premium5ViewController: BasePremiumViewController {
     }
     
     private func fillData(){
-        print("fillData()")
         let sharedData = BasePremiumVM.shared
         if sharedData.premiumDetails?.premiumPage.featureItems.count ?? 0 > 0 {
             self.features = sharedData.premiumDetails?.premiumPage.featureItems.sorted(by: {$0.id < $1.id})

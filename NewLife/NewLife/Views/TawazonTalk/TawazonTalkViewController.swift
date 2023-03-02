@@ -101,7 +101,6 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func addCustomSwitch(){
-        print("CGPoint(x: notifySwitchContainer.bounds.midX, y: notifySwitchContainer.bounds.midY): \(CGPoint(x: notifySwitchContainer.bounds.midX, y: notifySwitchContainer.bounds.midY))")
         let ls2 = Language.language == .arabic ? LabelSwitchConfig(text: "notifyMe".localized,
                                     textColor: .white.withAlphaComponent(0.7),
                                    font: .munaFont(ofSize: 15),
