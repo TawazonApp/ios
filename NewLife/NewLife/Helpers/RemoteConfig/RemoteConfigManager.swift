@@ -46,6 +46,12 @@ extension RemoteConfigManager{
     func loadDefaultValues() {
       let appDefaults: [String: Any?] = [
         RCValueKeys.premuimPageViewName.rawValue: "PremiumViewController",
+        RCValueKeys.prepSessionId.rawValue : "5615",
+        RCValueKeys.meditationReminderString.rawValue: ["en":["title":"✨ Time to meditate ✨","subtitle":"","body":"Breathe in. Breathe out. 💨 Start your meditation"],"ar":["title":"✨ حان وقت التأمّل ✨","subtitle":"","body":"شهيــق... زفيـــر... 💨 فلنبدأ تأمّلنا لهذا اليوم"]],
+        RCValueKeys.dailyActivityLockNextStep.rawValue: false,
+        RCValueKeys.first_dailyActivityFeatureFlow.rawValue: ["userSegmentName":"noFirstAction-noDailyActivity","firstAction":0,"dailyActivity":0],
+        RCValueKeys.premuimPage6DarkTheme.rawValue: false,
+        RCValueKeys.showNotifyMeButton.rawValue: false,
       ]
       
       RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
