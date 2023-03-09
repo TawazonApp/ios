@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import SwiftyStoreKit
 import Dispatch
+import Adapty
 
 class PaywallViewController: BasePremiumViewController {
 
@@ -88,7 +89,8 @@ class PaywallViewController: BasePremiumViewController {
 //        initialize()
         SKPaymentQueue.default().add(self)
 //        fetchData()
-        fillData()
+        adaptyGetPaywallDetails()
+//        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -245,10 +247,38 @@ class PaywallViewController: BasePremiumViewController {
         termsAndConditionsButton.tintColor = darkView! ? .white : .darkIndigoTwo
         termsAndConditionsButton.setTitle("paywallTermsAndConditionsButton".localized, for: .normal)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         bestPlanView.gradientBorder(width: 1, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
         fetchAllPlansData()
+    }
+    
+    private func adaptyGetPaywallDetails(){
+        Adapty.getPaywall("Premium6", locale: "en") { result in
+            switch result {
+            case let .success(paywall):
+                    // the requested paywall
+                print("paywall: \(paywall)")
+                Adapty.getPaywallProducts(paywall: paywall) { result in
+                    switch result {
+                    case let .success(products):
+                        // the requested products array
+                        print("products: \(products)")
+                        break
+                    case let .failure(error):
+                        // handle the error
+                        print("error: \(error)")
+                        break
+                    }
+                }
+                break
+            case let .failure(error):
+                    // handle the error
+                print("getPaywall Error: \(error)")
+                break
+            }
+        }
     }
     private func fetchData(){
         LoadingHud.shared.show(animated: true)

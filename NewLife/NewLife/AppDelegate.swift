@@ -19,6 +19,7 @@ import AppsFlyerLib
 import AudioToolbox
 import UXCam
 //import Branch
+import Adapty
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         initialViewContoller()
         setupIAP()
+        setupAdapty()
         sendCampaignIds()
         DispatchQueue.main.async { [weak self] in
             self?.setupAudioPlayerManager()
@@ -55,7 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserInfoManager.shared.restCache()
         initialViewContoller()
     }
-    
+    func setupAdapty(){
+        Adapty.activate("public_live_AS7KD9t9.ciVkDU1ixZhkyWIXRVhq")
+    }
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppsFlyerLib.shared().start()
         if UserDefaults.userAppBackgroundSound() == nil {

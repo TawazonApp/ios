@@ -1,4 +1,5 @@
 PODS:
+  - Adapty (2.4.1)
   - Alamofire (5.2.0)
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
@@ -143,6 +144,7 @@ PODS:
   - UXCam (3.3.9)
 
 DEPENDENCIES:
+  - Adapty (~> 2.4.1)
   - Alamofire
   - AlamofireImage
   - AppsFlyerFramework
@@ -163,6 +165,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Adapty
     - Alamofire
     - AlamofireImage
     - AppsFlyerFramework
@@ -193,6 +196,7 @@ SPEC REPOS:
     - UXCam
 
 SPEC CHECKSUMS:
+  Adapty: a36a08ca7fe6a7f1081b181f741fa6720c21d21c
   Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   AppsFlyerFramework: 2303994c0bda3afa48eba93680ab5fe48f46cd94
@@ -222,6 +226,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   UXCam: fb294bf954e708fc308a645ae65bb967cac0760e
 
-PODFILE CHECKSUM: 5418a3ddb79d113c753ccc0d38870db2f2ca941a
+PODFILE CHECKSUM: 94803ae45002aeda370b6a5c13d0e3f7c828b25a
 
 COCOAPODS: 1.11.3

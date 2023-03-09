@@ -24,6 +24,7 @@ target 'Tawazon' do
     pod 'UXCam'
     pod 'LabelSwitch'
 #    pod 'Charts'
+    pod 'Adapty', '~> 2.4.1'
     
     target 'TawazonTests' do
         inherit! :search_paths
