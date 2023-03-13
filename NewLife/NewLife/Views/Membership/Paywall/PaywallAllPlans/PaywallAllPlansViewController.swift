@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 import SwiftyStoreKit
 import Dispatch
+import Adapty
 
 class PaywallAllPlansViewController: BasePremiumViewController {
 
@@ -28,10 +29,19 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     var darkView: Bool?{
         didSet{
             initialize()
-            fillData()
+//            fillData()
         }
     }
-    
+    var paywall: AdaptyPaywall?{
+        didSet{
+            fillPaywallData()
+        }
+    }
+    var products: [AdaptyPaywallProduct]?{
+        didSet{
+            
+        }
+    }
     var features: [FeatureItem]? {
         didSet {
             LoadingHud.shared.hide(animated: true)
@@ -54,6 +64,8 @@ class PaywallAllPlansViewController: BasePremiumViewController {
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
         SKPaymentQueue.default().add(self)
 //        fetchData()
+        
+        adaptyGetPaywallDetails()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -115,6 +127,45 @@ class PaywallAllPlansViewController: BasePremiumViewController {
         subscribeButton.tintColor = .white
     }
     
+    private func adaptyGetPaywallDetails(){
+        Adapty.getPaywall("Premium6", locale: "en") { result in
+            switch result {
+            case let .success(paywall):
+                    // the requested paywall
+                print("paywall: \(paywall)")
+                self.paywall = paywall
+                Adapty.getPaywallProducts(paywall: paywall) { result in
+                    switch result {
+                    case let .success(products):
+                        // the requested products array
+                        print("products: \(products)")
+                        self.products = products
+                        break
+                    case let .failure(error):
+                        // handle the error
+                        print("error: \(error)")
+                        break
+                    }
+                }
+                break
+            case let .failure(error):
+                    // handle the error
+                print("getPaywall Error: \(error)")
+                break
+            }
+        }
+    }
+    private func fillPaywallData(){
+        if let paywall = self.paywall{
+            self.subscribeButton.setTitle((paywall.remoteConfig?["page"] as? [String:Any])?["continueLabel"] as? String, for: .normal)
+            
+//            self.features = premiumDetails.premiumPage.featureItems
+//            self.plans = self.data.plansArray
+        }else{
+            fetchData()
+        }
+        
+    }
     private func fetchData(){
         LoadingHud.shared.show(animated: true)
         
@@ -149,7 +200,21 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     }
     
     @IBAction func purchaseButtonTapped(_ sender: Any) {
-        purchaseAction(product: data.products[plansView.selectedPlan])
+        print("purchaseButtonTapped")
+//        purchaseAction(product: data.products[plansView.selectedPlan])
+        if let product = products?.first{
+            print("product: \(product)")
+            Adapty.makePurchase(product: product) { result in
+                switch result {
+                case let .success(profile):
+                    // successful purchase
+                    print("profile: \(profile)")
+                case let .failure(error):
+                    // handle the error
+                    print("error: \(error.description)")
+                }
+            }
+        }
     }
     
     @IBAction override func cancelButtonTapped(_ sender: UIButton) {

@@ -9,8 +9,8 @@
 import Foundation
 
 struct Api {
-    static let baseUrl = "https://api.tawazonapp.com"
-    //static let baseUrl = "https://api.dev.tawazonapp.com"
+//    static let baseUrl = "https://api.tawazonapp.com"
+    static let baseUrl = "https://api.dev.tawazonapp.com"
     static let apiUrl = "\(baseUrl)/api/v1"
     static let apiUrlV2 = "\(baseUrl)/api/v2"
     static let apiUrlV2_1 = "\(baseUrl)/api/v2.1"
