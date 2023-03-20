@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeAppsFlayer()
         initializeFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         initialViewContoller()
-        setupIAP()
+//        setupIAP()
         setupAdapty()
         sendCampaignIds()
         DispatchQueue.main.async { [weak self] in
@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func setupAdapty(){
         Adapty.activate("public_live_AS7KD9t9.ciVkDU1ixZhkyWIXRVhq")
+        Adapty.delegate = self
     }
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppsFlyerLib.shared().start()
@@ -215,6 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initialViewContoller() {
+        print("initialViewContoller")
         preFetchCachingData()
         let launchViewController = LaunchViewController.instantiate()
         navigationController = NavigationController.init(rootViewController: launchViewController)
@@ -453,6 +455,7 @@ extension AppDelegate {
     func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping (CustomError?) -> Void) {
         UserInfoManager.shared.uploadPurchaseReceipt(service: MembershipServiceFactory.service(), price: price, currency: currancy, completion: { (error) in
             if error == nil {
+                print("uploadPurchaseReceipt")
                 for transaction in self.paymentTransactions {
                     self.finishTransaction(paymentTransaction: transaction)
                 }
@@ -521,5 +524,26 @@ extension AppDelegate: DeepLinkDelegate {
             NSLog("[AFSDK] This is a direct deep link")
         }
         
+    }
+}
+extension AppDelegate: AdaptyDelegate{
+    func didLoadLatestProfile(_ profile: AdaptyProfile) {
+        print("didLoadLatestProfile")
+        // handle any changes to subscription state
+        // call get profile
+        Adapty.getProfile { result in
+            if let profile = try? result.get(),
+                   profile.accessLevels["premium"]?.isActive ?? false {
+                // grant access to premium features
+                UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service(), price: "price", currency: "currancy", completion: { (error) in
+                    if error == nil {
+                        print("verifyAdaptyUser")
+                        
+                    }
+                })
+            }else{
+                print("NOT PREMIUM")
+            }
+        }
     }
 }

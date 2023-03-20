@@ -52,7 +52,6 @@ class PaywallPlansView: UIView {
 //        plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         
     }
-
 }
 extension PaywallPlansView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

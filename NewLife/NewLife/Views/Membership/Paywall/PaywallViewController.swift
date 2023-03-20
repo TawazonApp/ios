@@ -10,8 +10,9 @@ import UIKit
 import StoreKit
 import SwiftyStoreKit
 import Dispatch
+import Adapty
 
-class PaywallViewController: BasePremiumViewController {
+class PaywallViewController: BaseAdaptyPaywallViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -81,15 +82,19 @@ class PaywallViewController: BasePremiumViewController {
         }
     }
     
+//    var paywallVM = AdaptyPaywallVM()
+    
+//    var products: [AdaptyPaywallProduct]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
 //        initialize()
-        SKPaymentQueue.default().add(self)
+//        SKPaymentQueue.default().add(self)
 //        fetchData()
-        
-        fillData()
+        adaptyGetPaywallDetails()
+//        fillData()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -250,41 +255,33 @@ class PaywallViewController: BasePremiumViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         bestPlanView.gradientBorder(width: 1, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
-        fetchAllPlansData()
     }
     
-    
-    private func fetchData(){
+    private func adaptyGetPaywallDetails(){
         LoadingHud.shared.show(animated: true)
-
-        data.getPremiumPageDetails(premiumId: 9, service: MembershipServiceFactory.service(), completion: { (error) in
+        paywallVM.fetchPaywallDetails(id: "Premium6BestPlan"){
+            error in
+            LoadingHud.shared.hide(animated: true)
             if error == nil{
-                self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
-
-                self.features = self.data.premiumDetails?.premiumPage.featureItems
-                self.plans = self.data.plansArray
+                self.fillPaywallData()
                 return
             }
-            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
-            LoadingHud.shared.hide(animated: true)
-        })
+            self.showErrorMessage(message: error?.localizedDescription ?? "generalErrorMessage".localized)
+        }
     }
     
-    private func fillData(){
-        let sharedData = BasePremiumVM.shared
-        self.subscribeButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
+    private func fillPaywallData(){
+        if let data = paywallVM.paywall{
+            self.subscribeButton.setTitle((data.remoteConfig?["page"] as? [String:Any])?["continueLabel"] as? String, for: .normal)
 
-        self.features = sharedData.premiumDetails?.premiumPage.featureItems
-        self.plans = sharedData.plansArray
-    }
-    
-    private func fetchAllPlansData(){
-        if allPlansData.plansArray.count == 0{
-            allPlansData.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
-                if error == nil{
-                    return
-                }
-            })
+            self.features = self.paywallVM.paywallDetails?.premiumPage.featureItems
+            self.plans = self.paywallVM.plansArray
+            
+            if let adaptyProducts = paywallVM.products?.map({
+                return $0.product
+            }){
+                self.products = adaptyProducts
+            }
         }
     }
     
@@ -339,18 +336,7 @@ class PaywallViewController: BasePremiumViewController {
     }
     
     @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
-        // open offerCode sheet
-        let paymentQueue = SKPaymentQueue.default()
-            if #available(iOS 14.0, *) {
-                paymentQueue.presentCodeRedemptionSheet()
-            }
-    }
-    
-    @IBAction func purchaseButtonTapped(_ sender: Any) {
-        if let bestPlan = plans?.first{
-            purchaseAction(product: BasePremiumVM.shared.products[bestPlan.priority - 1])
-        }
-        
+        Adapty.presentCodeRedemptionSheet()
     }
     
     @IBAction func allPlansButtonTapped(_ sender: UIButton) {

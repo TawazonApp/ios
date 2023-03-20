@@ -64,7 +64,7 @@ class GeneralPremiumViewController: BasePremiumViewController {
              case .premiumOne:
                  loadPremium1ViewController()
              case .premiumFour:
-                 loadPremium4ViewController()
+                loadPaywallViewController()
              case .premiumFive:
                  loadPremium5ViewController()
              case .paywall:

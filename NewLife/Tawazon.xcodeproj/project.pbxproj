@@ -83,6 +83,9 @@
 		047F11E828E97DFA0096E20E /* TawazonPNServiceExt.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 047F11E128E97DFA0096E20E /* TawazonPNServiceExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		047F11FF28E986E50096E20E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047F11FE28E986E50096E20E /* GoogleService-Info.plist */; };
 		048C6E4628E061050003C3BC /* WriteCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C6E4528E061050003C3BC /* WriteCommentViewController.swift */; };
+		0494389729C0702E006F3184 /* AdaptyPaywallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389629C0702E006F3184 /* AdaptyPaywallVM.swift */; };
+		0494389A29C09D2D006F3184 /* BaseAdaptyPaywallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389929C09D2D006F3184 /* BaseAdaptyPaywallModel.swift */; };
+		0494389D29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
 		049D409428D840B600EAD265 /* SessionCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D409328D840B600EAD265 /* SessionCommentsViewController.swift */; };
@@ -552,6 +555,9 @@
 		047F11FE28E986E50096E20E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		047F120428E98AE50096E20E /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		048C6E4528E061050003C3BC /* WriteCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentViewController.swift; sourceTree = "<group>"; };
+		0494389629C0702E006F3184 /* AdaptyPaywallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptyPaywallVM.swift; sourceTree = "<group>"; };
+		0494389929C09D2D006F3184 /* BaseAdaptyPaywallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdaptyPaywallModel.swift; sourceTree = "<group>"; };
+		0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdaptyPaywallViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
 		049D409328D840B600EAD265 /* SessionCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommentsViewController.swift; sourceTree = "<group>"; };
@@ -1245,6 +1251,30 @@
 			path = TawazonPNServiceExt;
 			sourceTree = "<group>";
 		};
+		0494389529C06FEC006F3184 /* Adapty */ = {
+			isa = PBXGroup;
+			children = (
+				0494389629C0702E006F3184 /* AdaptyPaywallVM.swift */,
+			);
+			path = Adapty;
+			sourceTree = "<group>";
+		};
+		0494389829C09D08006F3184 /* Adapty */ = {
+			isa = PBXGroup;
+			children = (
+				0494389929C09D2D006F3184 /* BaseAdaptyPaywallModel.swift */,
+			);
+			path = Adapty;
+			sourceTree = "<group>";
+		};
+		0494389B29C713D1006F3184 /* Adapty */ = {
+			isa = PBXGroup;
+			children = (
+				0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */,
+			);
+			path = Adapty;
+			sourceTree = "<group>";
+		};
 		049D350327A9C3A700304EF4 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1886,6 +1916,7 @@
 		F3C73B22223D56E00026B8E1 /* Premium */ = {
 			isa = PBXGroup;
 			children = (
+				0494389529C06FEC006F3184 /* Adapty */,
 				F35FD53522357A4500B3CFC5 /* PremiumFeatureCellVM.swift */,
 				F3E2810B22412FFC00066C04 /* PremiumFeaturesVM.swift */,
 				F3E281112241361500066C04 /* PremiumPurchaseVM.swift */,
@@ -1899,6 +1930,7 @@
 		F3CA028022310F29008165C2 /* Membership */ = {
 			isa = PBXGroup;
 			children = (
+				0494389B29C713D1006F3184 /* Adapty */,
 				04E24E3B2940AA4200A3549E /* Paywall */,
 				047CF2972913EB8500BF59AE /* Reminder */,
 				047CF29029129EDB00BF59AE /* Feelings */,
@@ -2324,6 +2356,7 @@
 		F3DE73AE223665220052B18C /* Membership */ = {
 			isa = PBXGroup;
 			children = (
+				0494389829C09D08006F3184 /* Adapty */,
 				F3DE73AA223664270052B18C /* MembershipModel.swift */,
 				F3DE73AF2236653D0052B18C /* LoginModel.swift */,
 				F3DE73B12236654C0052B18C /* RegisterModel.swift */,
@@ -2948,6 +2981,7 @@
 				F3AF0F942239548800E29615 /* HandleErrorViewController.swift in Sources */,
 				F3E28116224143DD00066C04 /* PremiumPurchaseCollectionCell.swift in Sources */,
 				047CF2B1292B88BB00BF59AE /* TodayService.swift in Sources */,
+				0494389729C0702E006F3184 /* AdaptyPaywallVM.swift in Sources */,
 				F3DC8E732226828000C7DEC4 /* HomeVideosContainerView.swift in Sources */,
 				F3375980255FE48B006EC615 /* HomeBackgroundView.swift in Sources */,
 				F3E281122241361500066C04 /* PremiumPurchaseVM.swift in Sources */,
@@ -3096,6 +3130,7 @@
 				F3580BE4249CF38B00EBE1C1 /* MediaPlayerTrack.swift in Sources */,
 				F3B8BFC42587C3D200E2005A /* PremiumDiscountCell.swift in Sources */,
 				04090ADB29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift in Sources */,
+				0494389D29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift in Sources */,
 				F334416D247950F500FA3234 /* ShareButtonView.swift in Sources */,
 				047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */,
 				04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */,
@@ -3175,6 +3210,7 @@
 				F3CA02962231C5A4008165C2 /* MembershipButtonCell.swift in Sources */,
 				04CE962F29892C7F00A1B042 /* MoodTrackerVM.swift in Sources */,
 				0432B71A288EB720007400B3 /* SeriesViewController.swift in Sources */,
+				0494389A29C09D2D006F3184 /* BaseAdaptyPaywallModel.swift in Sources */,
 				047CF2A4292A152E00BF59AE /* TodayActivityGeneralTableViewCell.swift in Sources */,
 				047CF2B3292B88CE00BF59AE /* TodayServiceCache.swift in Sources */,
 				04CE96222986795F00A1B042 /* DateValueFormatter.swift in Sources */,

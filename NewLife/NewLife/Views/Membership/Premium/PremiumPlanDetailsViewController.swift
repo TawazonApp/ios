@@ -96,6 +96,9 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
         
         planPriceLabel.textColor = .lightSlateBlue
         planPriceLabel.font = UIFont.munaFont(ofSize: 24.0)
+        planPriceLabel.numberOfLines = 0
+        planPriceLabel.lineBreakMode = .byWordWrapping
+        planPriceLabel.textAlignment = .center
         
         planTrialLabel.font = UIFont.munaFont(ofSize: 14.0)
         planTrialLabel.textColor = .lightSlateBlue

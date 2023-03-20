@@ -32,11 +32,11 @@ class PaywallPlanTableViewCell: UITableViewCell {
         }
     }
     
-    var product : AdaptyPaywallProduct!{
-        didSet{
-            setAdaptyData()
-        }
-    }
+//    var productData : (isSelected: Bool, product: AdaptyPaywallProduct)!{
+//        didSet{
+//            setAdaptyData()
+//        }
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -123,43 +123,44 @@ class PaywallPlanTableViewCell: UITableViewCell {
     }
     
     private func setAdaptyData(){
-        planHeaderLabel.layoutIfNeeded()
-        planHeaderLabel.roundCorners(corners: (Language.language == .arabic ? .bottomLeft : .bottomRight) , radius: 16)
-        planView.layoutIfNeeded()
-        planView.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
-        if darkView ?? false{
-            if plan.isSelected{
-                planView.gradientBorder(width: 2, colors: [.mayaBlue, .lavenderBlue, .white.withAlphaComponent(0.2)], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
-            }else{
-                planView.gradientBorder(width: 1, colors: [.mayaBlue.withAlphaComponent(0.5), .lavenderBlue.withAlphaComponent(0.5), .white.withAlphaComponent(0.2)], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
-            }
-        }
-        else{
-            if plan.isSelected{
-                planView.gradientBorder(width: 2, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
-            }
-            planView.layer.borderWidth = isSelected ? 0 : 1
-            planView.layer.borderColor = UIColor.blueHaze.cgColor
-        }
+//        planHeaderLabel.layoutIfNeeded()
+//        planHeaderLabel.roundCorners(corners: (Language.language == .arabic ? .bottomLeft : .bottomRight) , radius: 16)
+//        planView.layoutIfNeeded()
+//        planView.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
+//        if darkView ?? false{
+//            if productData.isSelected{
+//                planView.gradientBorder(width: 2, colors: [.mayaBlue, .lavenderBlue, .white.withAlphaComponent(0.2)], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+//            }else{
+//                planView.gradientBorder(width: 1, colors: [.mayaBlue.withAlphaComponent(0.5), .lavenderBlue.withAlphaComponent(0.5), .white.withAlphaComponent(0.2)], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+//            }
+//        }
+//        else{
+//            if productData.isSelected{
+//                planView.gradientBorder(width: 2, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+//            }
+//            planView.layer.borderWidth = isSelected ? 0 : 1
+//            planView.layer.borderColor = UIColor.blueHaze.cgColor
+//        }
         
         
-        if let subtitle = plan.subtitle{
-            planHeaderLabel.text = subtitle
-            planHeaderLabel.isHidden = false
-        }else{
-            planHeaderLabel.isHidden = true
-        }
+//        if let subtitle = plan.subtitle{
+//            planHeaderLabel.text = subtitle
+//            planHeaderLabel.isHidden = false
+//        }else{
+//            planHeaderLabel.isHidden = true
+//        }
 
-        planTitleLabel.text = plan.title
-        priceLabel.text = plan.price
-        subPriceLabel.text = plan.id == PremiumPurchase.monthly.rawValue ? "" : "(\(plan.monthlyPrice ?? "")\("paywallMonthlyString".localized))"
-        if plan.savingAmount > 0{
-            if Language.language == .english{
-                discountLabel.text = "\("paywallSavingLabel".localized) \(plan.savingAmount ?? 0)%"
-            }else{
-                discountLabel.attributedText = discountLabelAttributeText(plan: plan)
-            }
-        }
+//        planTitleLabel.text = productData.product.localizedTitle
+//
+//        priceLabel.text = productData.product.localizedPrice
+//        subPriceLabel.text = plan.id == PremiumPurchase.monthly.rawValue ? "" : "(\(plan.monthlyPrice ?? "")\("paywallMonthlyString".localized))"
+//        if plan.savingAmount > 0{
+//            if Language.language == .english{
+//                discountLabel.text = "\("paywallSavingLabel".localized) \(plan.savingAmount ?? 0)%"
+//            }else{
+//                discountLabel.attributedText = discountLabelAttributeText(plan: plan)
+//            }
+//        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

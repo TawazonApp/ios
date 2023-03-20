@@ -129,6 +129,27 @@ class UserInfoManager: NSObject {
         }
     }
     
+    func verifyAdaptyUser(service: MembershipService, price: String, currency: String, completion: @escaping (CustomError?) -> Void) {
+//        guard let receiptData = SwiftyStoreKit.localReceiptData else {
+//            return
+//        }
+//        registerAppsflyer()
+//        let receiptString = receiptData.base64EncodedString(options: [])
+//
+//        service.uploadPurchaseReceipt(receiptString: receiptString, price: price, currency: currency) { [weak self] (error) in
+//            if error == nil {
+//                //TO make sure user info updated afte upload receipt
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+//                    self?.fetchUserInfo(service: service, completion: { (fetchError) in
+//                        completion(error)
+//                    })
+//                })
+//            } else {
+//                completion(error)
+//            }
+//        }
+    }
+    
     func registerAppsflyer() {
         guard UserDefaults.userToken() != nil else {
             return

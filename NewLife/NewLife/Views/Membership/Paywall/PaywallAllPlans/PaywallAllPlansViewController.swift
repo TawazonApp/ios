@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import StoreKit
-import SwiftyStoreKit
-import Dispatch
 import Adapty
 
-class PaywallAllPlansViewController: BasePremiumViewController {
+class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
 
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -32,19 +29,17 @@ class PaywallAllPlansViewController: BasePremiumViewController {
 //            fillData()
         }
     }
-    var paywall: AdaptyPaywall?{
-        didSet{
-            fillPaywallData()
-        }
-    }
-    var products: [AdaptyPaywallProduct]?{
-        didSet{
-            
-        }
-    }
+//    var paywallVM = AdaptyPaywallVM()
+//
+//    var products: [AdaptyPaywallProduct]?{
+//        didSet{
+//
+//        }
+//    }
     var features: [FeatureItem]? {
         didSet {
             LoadingHud.shared.hide(animated: true)
+            self.reloadData()
         }
     }
     
@@ -54,15 +49,13 @@ class PaywallAllPlansViewController: BasePremiumViewController {
             self.reloadData()
         }
     }
-    override var data: BasePremiumVM{
-        didSet{
-        }
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        LoadingHud.shared.show(animated: true)
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
-        SKPaymentQueue.default().add(self)
+//        SKPaymentQueue.default().add(self)
 //        fetchData()
         
         adaptyGetPaywallDetails()
@@ -128,93 +121,34 @@ class PaywallAllPlansViewController: BasePremiumViewController {
     }
     
     private func adaptyGetPaywallDetails(){
-        Adapty.getPaywall("Premium6", locale: "en") { result in
-            switch result {
-            case let .success(paywall):
-                    // the requested paywall
-                print("paywall: \(paywall)")
-                self.paywall = paywall
-                Adapty.getPaywallProducts(paywall: paywall) { result in
-                    switch result {
-                    case let .success(products):
-                        // the requested products array
-                        print("products: \(products)")
-                        self.products = products
-                        break
-                    case let .failure(error):
-                        // handle the error
-                        print("error: \(error)")
-                        break
-                    }
-                }
-                break
-            case let .failure(error):
-                    // handle the error
-                print("getPaywall Error: \(error)")
-                break
+        
+        paywallVM.fetchPaywallDetails(id: "Premium6"){
+            error in
+            LoadingHud.shared.hide(animated: true)
+            if error == nil{
+                self.fillPaywallData()
+                return
             }
+            self.showErrorMessage(message: error?.localizedDescription ?? "generalErrorMessage".localized)
         }
     }
     private func fillPaywallData(){
-        if let paywall = self.paywall{
-            self.subscribeButton.setTitle((paywall.remoteConfig?["page"] as? [String:Any])?["continueLabel"] as? String, for: .normal)
-            
-//            self.features = premiumDetails.premiumPage.featureItems
-//            self.plans = self.data.plansArray
-        }else{
-            fetchData()
-        }
-        
-    }
-    private func fetchData(){
-        LoadingHud.shared.show(animated: true)
-        
-        data.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
-            if error == nil{
-                self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
-                
-                self.features = self.data.premiumDetails?.premiumPage.featureItems
-                self.plans = self.data.plansArray
-                
-                return
+        if let data = paywallVM.paywall{
+            self.subscribeButton.setTitle((data.remoteConfig?["page"] as? [String:Any])?["continueLabel"] as? String, for: .normal)
+            if let adaptyProducts = paywallVM.products?.map({
+                return $0.product
+            }){
+                self.products = adaptyProducts
             }
-            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
-            LoadingHud.shared.hide(animated: true)
-        })
-    }
-    
-    private func fillData(){
-        if let premiumDetails = data.premiumDetails{
-            self.subscribeButton.setTitle(premiumDetails.premiumPage.continueLabel, for: .normal)
             
-            self.features = premiumDetails.premiumPage.featureItems
-            self.plans = self.data.plansArray
-        }else{
-            fetchData()
+                self.features = self.paywallVM.paywallDetails?.premiumPage.featureItems
+                self.plans = self.paywallVM.plansArray
+//            self.plansView.data = paywallVM
         }
-        
     }
     
     private func reloadData(){
         featuresTable.reloadData()
-    }
-    
-    @IBAction func purchaseButtonTapped(_ sender: Any) {
-        print("purchaseButtonTapped")
-//        purchaseAction(product: data.products[plansView.selectedPlan])
-        if let product = products?.first{
-            print("product: \(product)")
-            Adapty.makePurchase(product: product) { result in
-                switch result {
-                case let .success(profile):
-                    // successful purchase
-                    print("profile: \(profile)")
-                case let .failure(error):
-                    // handle the error
-                    print("error: \(error.description)")
-                }
-            }
-        }
     }
     
     @IBAction override func cancelButtonTapped(_ sender: UIButton) {
@@ -255,7 +189,6 @@ extension PaywallAllPlansViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: PaywallAllPlansViewController.identifier) as! PaywallAllPlansViewController
         viewController.nextView = nextView
-        viewController.data = data
         return viewController
     }
 }
