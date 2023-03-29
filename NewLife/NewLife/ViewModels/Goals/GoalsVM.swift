@@ -87,6 +87,7 @@ class GoalsVM: NSObject {
     private func sendSetGoalEvent() {
         for goal in goals.filter({$0.isSelected}) {
             TrackerManager.shared.sendSetGoalEvent(id: goal.id, name: goal.name)
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.goalsScreenSubmit, payload: [goal.id : goal.name])
         }
     }
 }

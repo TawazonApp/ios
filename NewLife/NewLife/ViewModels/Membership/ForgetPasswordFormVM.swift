@@ -28,7 +28,7 @@ class ForgetPasswordFormVM: ForgetPasswordVM {
     
     
     override func submit(completion: @escaping (_ email: String?, _ error: CustomError?) -> Void) {
-        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.forgetPasswordScreenSubmit, payload: nil)
         if emailTextField.isValid() {
             
             let forgetModel = ForgetPasswordModel.init(email: emailTextField.value!)

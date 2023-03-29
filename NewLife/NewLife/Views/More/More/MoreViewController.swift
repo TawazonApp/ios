@@ -26,6 +26,7 @@ class MoreViewController: BaseViewController {
         super.viewDidLoad()
         moreData = MoreVM()
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.myAccountScreenLoad, payload: nil)
         sendOpenMoreEvent()
     }
     
@@ -139,6 +140,7 @@ class MoreViewController: BaseViewController {
         }
         
         if cellData.type == MoreCellVM.MoreCellType.moodStats {
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.myAccountScreenMoodTracker, payload: nil)
             openMoodStatsViewController()
             return
         }
@@ -159,6 +161,7 @@ class MoreViewController: BaseViewController {
         }
         
         if cellData.type == MoreCellVM.MoreCellType.premium {
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.myAccountScreenPremium, payload: nil)
             openPremiumViewController()
             return
         }

@@ -36,7 +36,7 @@ class ResetPasswordFormVM: ForgetPasswordVM {
     }
     
     override func submit(completion: @escaping (_ email: String?, _ error: CustomError?) -> Void) {
-        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.resetPasswordScreenSubmit, payload: nil)
         if emailTextField.isValid() && verificationCodeTextField.isValid() && passwordTextField.isValid() {
             
             let forgetModel = ResetPasswordModel.init(email: emailTextField.value!, password: passwordTextField.value!, confirmPassword: passwordTextField.value!, passwordToken: verificationCodeTextField.value!)

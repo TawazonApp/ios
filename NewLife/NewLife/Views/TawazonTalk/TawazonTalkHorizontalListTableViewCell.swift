@@ -113,7 +113,7 @@ extension TawazonTalkHorizontalListTableViewCell: UICollectionViewDelegate, UICo
         guard let session = data?.sessions[safe: indexPath.item] else {
             return
         }
-        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkScreenPlayItem, payload: ["sessionId" : session.session?.id ?? "", "sessionName" : session.name ?? "", "sessionType" : session.session?.type ?? ""])
         if session.session?.type == SessionType.series.rawValue {
             delegate?.openSeriesView(seriesId: session.session?.id ?? "", session: session.session!)
             return

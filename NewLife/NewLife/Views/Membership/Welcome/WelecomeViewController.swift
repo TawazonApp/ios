@@ -45,6 +45,7 @@ class WelecomeViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.openMembershipScreen, payload: nil)
 //        playVideo()
         
         if UserDefaults.isFirstOpenedInstallSources() && !UserDefaults.isFirstOpened() {
@@ -194,10 +195,12 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     @IBAction func skipButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenSkip, payload: nil)
         openGoalsViewController()
     }
     
     @IBAction func registerButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenRegistration, payload: nil)
         openRegisterViewController()
     }
     
@@ -231,6 +234,8 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     @objc func appleAuthorizationButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenPlatform, payload: ["platform":"apple"])
+        
         if #available(iOS 13.0, *) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
@@ -243,6 +248,7 @@ class WelecomeViewController: HandleErrorViewController {
     
     @IBAction func facebookButtonTapped(_ sender: UIButton) {
 //        delegate?.facebookButtonTapped()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenFacebook, payload: nil)
         facebookLogin()
     }
     
@@ -348,6 +354,8 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     private func openLoginViewController() {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenLogin, payload: nil)
+        
         SystemSoundID.play(sound: .Sound1)
         
         let viewController = MembershipViewController.instantiate(viewType: .login)
@@ -372,6 +380,8 @@ class WelecomeViewController: HandleErrorViewController {
     }
     
     private func openPrivacyViewController()  {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.membershipScreenTerms, payload: nil)
+        
         let viewController = PrivacyViewController.instantiate(viewType: .termsAndConditions)
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self

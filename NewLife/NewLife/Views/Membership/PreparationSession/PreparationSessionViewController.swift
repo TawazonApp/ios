@@ -28,6 +28,7 @@ class PreparationSessionViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.prepSessionScreenLoad, payload: nil)
         fetchData()
     }
     
@@ -91,6 +92,7 @@ class PreparationSessionViewController: HandleErrorViewController {
     }
     @IBAction func skipButtonTapped(_ sender: UIButton) {
         TrackerManager.shared.sendStartPrepSkipped()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.prepSessionSkip, payload: nil)
         openLandingFeelingsViewController()
     }
     
@@ -99,6 +101,8 @@ class PreparationSessionViewController: HandleErrorViewController {
         if let sessionModel = SessionPlayerMananger.shared.session {
             openPreparationSessionPlayerViewController()
         }
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.prepSessionScreenPlayButton, payload: nil)
+        openPreparationSessionPlayerViewController()
     }
     
     private func openLandingFeelingsViewController(){
@@ -126,6 +130,7 @@ class PreparationSessionViewController: HandleErrorViewController {
     
     @objc func sessionImageViewTapped(){
         TrackerManager.shared.sendStartPrepFromButton()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.prepSessionScreenPlayImage, payload: nil)
         openPreparationSessionPlayerViewController()
     }
     private func fetchData(){

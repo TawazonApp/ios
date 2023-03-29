@@ -42,6 +42,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
         super.viewDidLoad()
         
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.moodTrackerScreenLoad, payload: ["prevScreen" : isModal() ? "daily" : "myAccount"])
         fetchMoodTrackerData(from: "", type: 1)
         fetchMoodTrackerStatsData()
     }
@@ -129,6 +130,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
     }
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.moodTrackerScreenSkip, payload: nil)
         if isModal() {
             self.dismiss(animated: true, completion: nil)
         } else {
@@ -184,7 +186,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
     }
     @IBAction func dateChanged(_ sender: Any) {
         if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{
-            
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.moodTrackerScreenDate, payload: ["dateId" : range.id, "dateTitle" : range.title])
             if range.id == 200{
                 self.chartDataView.dataTypeSegment.isHidden = false
                 fetchMoodTrackerData(from: range.from ?? "", type: 1)
@@ -200,6 +202,7 @@ class MoodTrackerViewController: HandleErrorViewController, ChartDataViewDelegat
     }
     
     func dataTypeChanged(type: Int) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.moodTrackerScreenDate, payload: ["typeName" : type == 1 ? "subtractive" : "accumulative"])
         if let range = self.moodTrackerVM.MoodTrackerData?.ranges?[dateSegment.selectedSegmentIndex]{
             fetchMoodTrackerData(from: range.from ?? "", type: type)
         }

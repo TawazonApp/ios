@@ -29,6 +29,7 @@ class GoalsListViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.goalsScreenLoad, payload: nil)
         fetchAndReload()
     }
 //    override func viewDidLayoutSubviews() {

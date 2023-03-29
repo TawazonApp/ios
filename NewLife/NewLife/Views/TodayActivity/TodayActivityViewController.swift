@@ -24,6 +24,7 @@ class TodayActivityViewController: SoundEffectsPresenterViewController {
         super.viewDidLoad()
 
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenLoad, payload: nil)
         reduceVoulme(volume: Constants.backgroundMusicLevel)
         todayVM = TodayVM(service: TodayServiceCache.shared)
         fetchTodaySections()
@@ -169,18 +170,23 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         let section = todayVM.sections?[indexPath.row]
         switch section?.style {
         case .prepSession:
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenPrepSession, payload: nil)
             if let sessionModel = section?.sessions.first?.session{
                 openPrepSessionPlayerVC(session: sessionModel)
             }
         case .feelingSelection:
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenFeelings, payload: nil)
             openFeelingsVC()
         case .userFeelingSessions:
             break
         case .static1:
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenMoodTracker, payload: nil)
             openMoodTrackerVC()
         case .singleQuote:
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenQuote, payload: nil)
             quoteTapped(quoteId: section?.items?.first?.id ?? "", quoteName: section?.items?.first?.title ?? "")
         case .singleTalk:
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyScreenTalk, payload: nil)
             if let item = section?.items?.first{
                 openTawazonTalkVC(item: item)
             }

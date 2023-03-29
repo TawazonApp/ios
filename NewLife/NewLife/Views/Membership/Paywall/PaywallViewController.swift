@@ -98,6 +98,7 @@ class PaywallViewController:GeneralBasePaywallViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenLoad, payload: nil)
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
         useAdaptySDK = RemoteConfigManager.shared.bool(forKey: .useAdaptySDK)
 
@@ -361,16 +362,36 @@ class PaywallViewController:GeneralBasePaywallViewController {
         }
         return attributedString
     }
+    
+    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenDiscountCode, payload: nil)
+        // open offerCode sheet
+        let paymentQueue = SKPaymentQueue.default()
+            if #available(iOS 14.0, *) {
+                paymentQueue.presentCodeRedemptionSheet()
+            }
+    }
+    
+    @IBAction func purchaseButtonTapped(_ sender: Any) {
+        if let bestPlan = plans?.first{
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenBestPlan, payload: ["planId" : bestPlan.id, "planName" : bestPlan.title])
+            purchaseAction(product: BasePremiumVM.shared.products[bestPlan.priority - 1])
+        }
+        
+    }
  
     @IBAction func allPlansButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenAllPlans, payload: nil)
         openPaywallAllPlansViewController(data: allPlansData)
     }
     
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenPolicy, payload: nil)
         openPrivacyViewController(type: .privacyPolicy)
     }
     
     @IBAction func termsAndConditionsButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenTerms, payload: nil)
         openPrivacyViewController(type: .termsAndConditions)
     }
     
@@ -384,6 +405,17 @@ class PaywallViewController:GeneralBasePaywallViewController {
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)
+    }
+    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenSkip, payload: nil)
+        super.cancelButtonTapped(sender)
+        
+    }
+    
+    override func restorePurchaseButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenRestore, payload: nil)
+        super.restorePurchaseButtonTapped(sender)
     }
 }
 

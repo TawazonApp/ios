@@ -26,6 +26,7 @@ class LoginFormVM: MembershipFormVM {
     
     
     override func submit(completion: @escaping (_ error: CustomError?) -> Void) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.loginScreenSubmit, payload: nil)
         
         if emailTextField.isValid() && passwordTextField.isValid() {
             let loginModel = LoginModel.init(email: emailTextField.value!, password: passwordTextField.value!)

@@ -32,7 +32,7 @@ class MembershipFormView: UIView {
     @IBOutlet weak var appleIdButtonHeightConstraint: NSLayoutConstraint!
 
     weak var delegate: MembershipFormViewDelegate?
-    
+    var viewType: MembershipViewController.ViewType! = .login
     let cellHeight: CGFloat = (UIScreen.main.bounds.height <= 568.0) ? 50 : 60
     
     var data: MembershipFormVM! {
@@ -157,6 +157,7 @@ class MembershipFormView: UIView {
     }
     
     @objc func appleAuthorizationButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: viewType == .register ? GeneralCustomEvents.registrationScreenPlatform : GeneralCustomEvents.loginScreenPlatform, payload: ["platform" : "apple"])
         if #available(iOS 13.0, *) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()

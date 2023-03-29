@@ -337,6 +337,7 @@ class SuperSessionPlayerViewController: SoundEffectsPresenterViewController {
 extension SuperSessionPlayerViewController: PlayerControlsViewDelegate {
     
     func backwardButtonTapped() {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenBackward, payload: nil)
         guard AudioPlayerManager.shared.canRewind() else {
             return
         }
@@ -350,6 +351,7 @@ extension SuperSessionPlayerViewController: PlayerControlsViewDelegate {
     }
     
     func forwardButtonTapped() {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenForward, payload: nil)
         if let currentTimeInSeconds = AudioPlayerManager.shared.currentTrack?.currentTimeInSeconds() {
             let newTime = currentTimeInSeconds + 10
             let seekTime = CMTimeMake(value: Int64(newTime), timescale: 1)

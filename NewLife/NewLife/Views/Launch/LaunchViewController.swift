@@ -17,6 +17,7 @@ class LaunchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.TwFirstOpen, payload: nil)
         preFetchCachingData()
         sendCampaignIds()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) { [weak self] in

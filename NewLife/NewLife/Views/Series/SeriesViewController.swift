@@ -148,7 +148,7 @@ class SeriesViewController: UIViewController {
         seriesProgressLabel.attributedText = seriesProgressText
         
         
-        seriesProgressView.progress = CGFloat(seriesVM.details?.completedItemsCount ?? 0) / CGFloat(seriesVM.details!.numberOfSessions)
+        seriesProgressView.progress = CGFloat(seriesVM.details?.completedItemsCount ?? 0) / CGFloat(seriesVM.details?.numberOfSessions ?? 1)
         
         footerTitleString = seriesVM.details?.footerTitle ?? footerTitleString
         footerSubtitleString = seriesVM.details?.footerSubtitle ?? footerSubtitleString

@@ -45,6 +45,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
         super.viewDidLoad()
 
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingFeelingsScreenLoad, payload: nil)
         fetchAndReloadData()
     }
     
@@ -169,10 +170,12 @@ class LandingFeelingsViewController: HandleErrorViewController {
                 if self.fromVC == .todayActivity{
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyActivityFeelingsLogged, payload: values)
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.dailyFeelingsScreenSubmit, payload: values)
                     self.dismiss(animated: true)
                 }else{
                     let values = ["feelingId": self.feelings[self.lastSelectedFeelingIndex].id, "feelingName": self.feelings[self.lastSelectedFeelingIndex].name, "intensity": self.subFeelingsSlider.value]
                     TrackerManager.shared.sendEvent(name: GeneralCustomEvents.feelingsLogged, payload: values)
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingFeelingsScreenSubmit, payload: values)
                     self.openLandingReminderViewController()
                 }
                 
@@ -186,6 +189,7 @@ class LandingFeelingsViewController: HandleErrorViewController {
             return
         }
         TrackerManager.shared.sendFeelingsSkipped()
+        TrackerManager.shared.sendEvent(name: fromVC == .landing ? GeneralCustomEvents.landingFeelingsScreenSkip : GeneralCustomEvents.dailyFeelingsScreenSkip, payload: nil)
         openLandingReminderViewController()
     }
     

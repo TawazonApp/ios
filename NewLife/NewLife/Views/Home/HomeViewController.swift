@@ -47,6 +47,11 @@ class HomeViewController: SoundEffectsPresenterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        if UserDefaults.isFirstHomeOpened(){
+            UserDefaults.appHomeOpened()
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.homeScreenFirstOpen, payload: nil)
+        }
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.homeScreenLoad, payload: nil)
         initializeNotification()
         home = HomeVM(service: HomeServiceCache.shared)
         buildVideosArray()
@@ -275,8 +280,13 @@ class HomeViewController: SoundEffectsPresenterViewController {
         }
         updateBackgroundSoundStyle()
         requestNotificationPermission += 1
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.homeScreenMute, payload: nil)
     }
 
+    override func soundsButtonTapped(_ sender: SoundEffectsButton) {
+        super.soundsButtonTapped(sender)
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.homeScreenBgMusic, payload: nil)
+    }
     private func openMoreViewController() {
         SystemSoundID.play(sound: .Sound2)
         let viewcontroller = MoreViewController.instantiate()

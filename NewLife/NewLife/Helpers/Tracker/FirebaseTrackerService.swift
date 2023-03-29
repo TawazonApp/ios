@@ -9,74 +9,74 @@
 import UIKit
 import Firebase
 
+enum CustomEvents {
+    static let startSubscription = "purchase_process_success" // when a user successfully subscribed
+    static let unsbscribeTapped = "tap_unsubscribe" // unsubscribe button tapped
+    static let tapCancelSubscription = "cancel_payment_process" // when a user cancel subscribtion process
+    static let setGoal = "set_goal" // user's selected goals
+    static let tapCategory = "tap_category" // not used any more
+    static let tapSubCategory = "tap_sub_category" // NU
+    static let playSoundEffect = "play_sound_effect" // taping sound effects
+    static let playSession = "play_session" // on start playing session
+    static let downloadSession = "download_session" // on download session locally
+    static let likeSession = "like_session" // on adding session to favorites
+    static let sessionListenForPreiod = "session_listen_for_period" // on listening
+    static let openMore = "open_more" // on open my account screen
+    static let openUserProfile = "open_user_profile" // on open user profile screen
+    static let userChangeName = "user_change_name" // on change user name
+    static let userChangePhoto = "user_change_photo" // on change user photo
+    static let userChangePassword = "user_change_password" // on change password
+    static let openDownloadedLibrary = "open_downloaded_library" // on open downloads
+    static let openSectionSessionList = "af_section_session_list"
+    static let openPremium = "open_premium_view" // on open premium screen
+    static let closePremium = "close_premium_view" // on tap close premium view
+    static let skipPremium = "skip_premium" // on tap close premium view button that appeared before home view
+    static let tapProduct = "tap_product" // on user plan selection in old premium and premium 4
+    static let startPaymentProcess = "start_payment_process" // called on payment queue
+    static let FailToPurchase = "purchase_process_fail" // on fail purchase process
+    static let notificationStatusChanged = "notification_status_changed" // on toggle notification switch in moreVC
+    static let openSupport = "open_support" // on tap support button in moreVC
+    static let openOurStory = "open_our_story" // on tap our story button in moreVC
+    static let openPrivacyPolicy = "open_privacy_policy" // on load privacy policy screen
+    static let openTermsOfUse = "open_terms_of_use" // on load terms and conditions view
+    static let successlogout = "success_logout" // on logout successfully
+    static let cancellogout = "cancel_logout" // on cancel logout
+    static let rateApp = "rate_app" // on tap rate button in our story screen
+    static let shareApp = "share_app" // on tap share button in our story screen
+    static let openVoicesAndDialects = "open_voices_and_dialects" // on load voices and dialects
+    static let changeVoicesAndDialects = "change_voices_and_dialects" // on change voices and dialects
+    static let openSearch = "open_search_view" // on load search screen
+    static let searchFor = "search_for" // on write search text
+    static let playSessionFromSearch = "play_session_from_search" // on play session from search screen
+    static let openSeries = "open_series" // on load series screen
+    static let startGuidedTour = "guided_tour_started"
+    static let closeGuidedTour = "guided_tour_closed"
+    static let restartGuidedTour = "tap_restart_tutorial"
+    static let setAppLang = "set_app_language" // NU
+    static let setInstallSource = "set_install_source"
+    static let closeInstallSource = "close_install_source"
+    static let openCommentsView = "open_comments_view" // on load comments screen
+    static let openWriteCommentView = "open_write_comment_view" // on load write comments screen
+    static let submitComment = "submit_comment" // on submit comment
+    static let cancelSubmitComment = "cancel_submit_comment" // on tap cancel write comment
+    static let startPrepFromButton = "startPrep_fromButton" // on tap play prep session from prep session screen
+    static let startPrepFromImage = "startPrep_fromImage" // on tap image prep session from prep session screen
+    static let startPrepSkipped = "startPrep_skipped" // on tap (x) button from prep session screen
+    static let prepSessionBgSound = "prepSession_bgSound" // on tap bg music button from prep session player screen
+    static let prepSessionSkipped = "prepSession_skipped" // on tap (x) button from prep session player screen
+    static let prepSessionProgressTaped = "prepSession_progressTaped" // on tap progress tracker of prep session player
+    static let prepSessionFinished = "prepSession_finished" // on finish prep session
+    static let feelingsMainSelected = "feelings_mainSelected" // on select feeling
+    static let feelingsIntencitySelcted = "feelings_intencitySelcted" // on change feeling intensity
+    static let feelingsLogged = "feelings_logged" // on submit feeling
+    static let feelingsSkipped = "feelings_skipped" // on tap (x) button in feeling screen
+    static let reminderDayTapped = "reminder_dayTapped" // on tap day in reminder screen
+    static let reminderTimeSelected = "reminder_timeSelected" // on tap time in reminder screen
+    static let reminderSet = "reminder_set"// on submit button tapped in reminder screen
+    static let reminderSkipped = "reminder_skipped"// on (x) button tapped in reminder screen
+}
+
 class FirebaseTrackingService: TrackingService {
-    
-    
-    enum CustomEvents {
-        static let startSubscription = "purchase_process_success"
-        static let unsbscribeTapped = "tap_unsubscribe"
-        static let tapCancelSubscription = "cancel_payment_process"
-        static let setGoal = "set_goal"
-        static let tapCategory = "tap_category"
-        static let tapSubCategory = "tap_sub_category"
-        static let playSoundEffect = "play_sound_effect"
-        static let playSession = "play_session"
-        static let downloadSession = "download_session"
-        static let likeSession = "like_session"
-        static let sessionListenForPreiod = "session_listen_for_period"
-        static let openMore = "open_more"
-        static let openUserProfile = "open_user_profile"
-        static let userChangeName = "user_change_name"
-        static let userChangePhoto = "user_change_photo"
-        static let userChangePassword = "user_change_password"
-        static let openDownloadedLibrary = "open_downloaded_library"
-        static let openPremium = "open_premium_view"
-        static let closePremium = "close_premium_view"
-        static let skipPremium = "skip_premium"
-        static let tapProduct = "tap_product"
-        static let startPaymentProcess = "start_payment_process"
-        static let FailToPurchase = "purchase_process_fail"
-        static let notificationStatusChanged = "notification_status_changed"
-        static let openSupport = "open_support"
-        static let openOurStory = "open_our_story"
-        static let openPrivacyPolicy = "open_privacy_policy"
-        static let openTermsOfUse = "open_terms_of_use"
-        static let successlogout = "success_logout"
-        static let cancellogout = "cancel_logout"
-        static let rateApp = "rate_app"
-        static let shareApp = "share_app"
-        static let openVoicesAndDialects = "open_voices_and_dialects"
-        static let changeVoicesAndDialects = "change_voices_and_dialects"
-        static let openSearch = "open_search_view"
-        static let searchFor = "search_for"
-        static let playSessionFromSearch = "play_session_from_search"
-        static let openSeries = "open_series"
-        static let startGuidedTour = "guided_tour_started"
-        static let closeGuidedTour = "guided_tour_closed"
-        static let restartGuidedTour = "tap_restart_tutorial"
-        static let setAppLang = "set_app_language"
-        static let setInstallSource = "set_install_source"
-        static let closeInstallSource = "close_install_source"
-        static let openCommentsView = "open_comments_view"
-        static let openWriteCommentView = "open_write_comment_view"
-        static let submitComment = "submit_comment"
-        static let cancelSubmitComment = "cancel_submit_comment"
-        static let startPrepFromButton = "startPrep_fromButton"
-        static let startPrepFromImage = "startPrep_fromImage"
-        static let startPrepSkipped = "startPrep_skipped"
-        static let prepSessionBgSound = "prepSession_bgSound"
-        static let prepSessionSkipped = "prepSession_skipped"
-        static let prepSessionProgressTaped = "prepSession_progressTaped"
-        static let prepSessionFinished = "prepSession_finished"
-        static let feelingsMainSelected = "feelings_mainSelected"
-        static let feelingsIntencitySelcted = "feelings_intencitySelcted"
-        static let feelingsLogged = "feelings_logged"
-        static let feelingsSkipped = "feelings_skipped"
-        static let reminderDayTapped = "reminder_dayTapped"
-        static let reminderTimeSelected = "reminder_timeSelected"
-        static let reminderSet = "reminder_set"
-        static let reminderSkipped = "reminder_skipped"
-    }
     
     func sendUserId(userId: String?) {
         Analytics.setUserID(userId)

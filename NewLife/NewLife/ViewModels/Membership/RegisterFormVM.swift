@@ -27,6 +27,7 @@ class RegisterFormVM: MembershipFormVM {
     }
     
     override func submit(completion: @escaping (_ error: CustomError?) -> Void) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.registrationScreenSubmit, payload: nil)
         
         if nameTextField.isValid() && emailTextField.isValid() && passwordTextField.isValid() {
             let registerModel = RegisterModel.init(name: nameTextField.value!, email: emailTextField.value!, password: passwordTextField.value!, confirmPassword: passwordTextField.value!)

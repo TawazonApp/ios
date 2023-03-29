@@ -24,6 +24,7 @@ class ForgetPasswordViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: viewType == .forgetPassword ? GeneralCustomEvents.forgetPasswordScreenLoad : GeneralCustomEvents.resetPasswordScreenLoad, payload: nil)
         initializeNotificationCenter()
         reloadFormView(email: nil)
     }
@@ -89,6 +90,7 @@ class ForgetPasswordViewController: HandleErrorViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: viewType == .forgetPassword ? GeneralCustomEvents.forgetPasswordScreenBack : GeneralCustomEvents.resetPasswordScreenBack, payload: nil)
         dimiss()
     }
     

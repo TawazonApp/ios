@@ -30,6 +30,7 @@ class MembershipViewController: HandleErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        TrackerManager.shared.sendEvent(name: viewType == .register ? GeneralCustomEvents.registrationScreenLoad : GeneralCustomEvents.loginScreenLoad, payload: nil)
         initializeNotificationCenter()
         reloadFormView()
     }
@@ -124,6 +125,7 @@ class MembershipViewController: HandleErrorViewController {
     private func reloadFormView() {
         let service = MembershipServiceFactory.service()
         formView.data = (viewType == .login) ? LoginFormVM(service: service) : RegisterFormVM(service: service)
+        formView.viewType = viewType
     }
     
     private func switchViewType () {
@@ -149,11 +151,13 @@ class MembershipViewController: HandleErrorViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: viewType == .register ? GeneralCustomEvents.registrationScreenBack : GeneralCustomEvents.loginScreenBack, payload: nil)
         SystemSoundID.play(sound: .Sound2)
         dimiss()
     }
     
     @IBAction func switchButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: viewType == .register ? GeneralCustomEvents.registrationScreenLogin : GeneralCustomEvents.loginScreenRegistration, payload: nil)
         switchViewType()
     }
     
@@ -285,6 +289,7 @@ extension MembershipViewController: MembershipFormViewDelegate {
     }
     
     func facebookButtonTapped() {
+        TrackerManager.shared.sendEvent(name: viewType == .register ? GeneralCustomEvents.registrationScreenFacebook : GeneralCustomEvents.loginScreenFacebook, payload: nil)
         facebookLogin()
     }
     
@@ -293,6 +298,7 @@ extension MembershipViewController: MembershipFormViewDelegate {
     }
     
     func forgetPasswordTapped() {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.loginScreenForgetPassword, payload: nil)
         openForgetPasswordViewController()
     }
     

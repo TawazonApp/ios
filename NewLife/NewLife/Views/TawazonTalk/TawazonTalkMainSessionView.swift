@@ -122,6 +122,7 @@ class TawazonTalkMainSessionView: UIView{
     
     @IBAction func playButtonTapped(_ sender: UIButton){
         if let session = tawazonTalkVM?.mainItem{
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkScreenPlay, payload: nil)
             delegate?.playSession(session: session)
         }
         

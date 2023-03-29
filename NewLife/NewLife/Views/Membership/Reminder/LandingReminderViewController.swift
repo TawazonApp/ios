@@ -50,7 +50,7 @@ class LandingReminderViewController: HandleErrorViewController {
         amButtonCorners  = Language.language == .english ? leftCorners : rightCorners
         
         initialize()
-        
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingReminderScreenLoad, payload: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -325,6 +325,7 @@ class LandingReminderViewController: HandleErrorViewController {
             let weekdaysReminder = self.weekDaysViews.filter({return $0.selected})
             self.calendar.locale = .autoupdatingCurrent
             let selectedDate = self.datePicker.date
+            print("selectedDate: \(selectedDate)")
             self.scheduleReminderFor(date: selectedDate)
         }
     }
@@ -361,6 +362,7 @@ class LandingReminderViewController: HandleErrorViewController {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "hh:mm a"
                 TrackerManager.shared.sendReminderSet(dayId: String(weekday.dayIndex ?? 0), dayName: weekday.name, time: formatter.string(from: date))
+                TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingReminderSubmit, payload: ["dayId": String(weekday.dayIndex ?? 0), "dayName": weekday.name, "time": formatter.string(from: date)])
             })
        }
         let formatter = DateFormatter()
@@ -388,6 +390,7 @@ class LandingReminderViewController: HandleErrorViewController {
     
     @IBAction func closeButtonTapped(_ sender: Any) {
         TrackerManager.shared.sendReminderSkipped()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingReminderSkip, payload: nil)
         openMainViewController()
     }
     

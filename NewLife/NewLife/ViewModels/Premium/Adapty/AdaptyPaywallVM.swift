@@ -130,10 +130,17 @@ class AdaptyPaywallVM: NSObject{
         Adapty.makePurchase(product: product) { result in
             switch result {
             case let .success(profile):
+                TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenSuccessProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName])
                 UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service()){
                 }
                 completion(profile, nil, nil)
             case let .failure(error):
+                if error.adaptyErrorCode == .paymentCancelled{
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenCancelProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : error.adaptyErrorCode])
+                }else{
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenFailProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : error.adaptyErrorCode])
+                }
+                
                 completion(nil, error, self.errorHandling(error: error))
             }
         }
@@ -144,9 +151,11 @@ class AdaptyPaywallVM: NSObject{
             switch result {
                 case let .success(profile):
                 UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service()){
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenSuccessRestoreProcess, payload: ["planId" : profile.accessLevels["premium"]?.vendorProductId ?? ""])
                 }
                 completion(profile, nil, nil)
                 case let .failure(error):
+                TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenFailRestoreProcess, payload: ["errorMessage" : error.adaptyErrorCode])
                 completion(nil, error, self.errorHandling(error: error))
             }
         }

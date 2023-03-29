@@ -41,6 +41,7 @@ class TawazonTalkViewController: HandleErrorViewController {
         super.viewDidLoad()
         
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkScreenLoad, payload: ["talkId" : talkItem?.id ?? "", "talkName" : talkItem?.title ?? ""])
         initializeNotification()
         if AudioPlayerManager.shared.isPlaying() {
             self.showSessionPlayerBar()
@@ -220,6 +221,8 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     private func showShareSessionView() {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkScreenShare, payload: ["talkId" : talkItem?.id ?? "", "talkName" : talkItem?.title ?? ""])
+        
         guard let session = tawazonTalkVM.mainItem else {
             return
         }
@@ -233,9 +236,9 @@ class TawazonTalkViewController: HandleErrorViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.tawazonTalkScreenBack, payload: nil)
         self.dismiss(animated: true)
     }
-    
 }
 
 extension TawazonTalkViewController: UITableViewDelegate, UITableViewDataSource{

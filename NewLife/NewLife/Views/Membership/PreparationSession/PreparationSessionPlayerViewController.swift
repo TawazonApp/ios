@@ -34,6 +34,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         initialize()
+        TrackerManager.shared.sendEvent(name: fromVC == .landing ? GeneralCustomEvents.prepSessionPlayerScreenLoad : GeneralCustomEvents.dailyPrepSessionPlayerScreenLoad, payload: ["sessionId" : session?.id ?? "", "sessionName": session?.name ?? ""])
         startPlayerLoadingIfNeeded()
         fillData()
     }
@@ -108,6 +109,7 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
+        TrackerManager.shared.sendEvent(name: fromVC == .landing ? GeneralCustomEvents.prepSessionPlayerScreenSkip : GeneralCustomEvents.dailyPrepSessionPlayerScreenSkip, payload: nil)
         closePlayer(skipped: true)
     }
     
@@ -156,7 +158,15 @@ class PreparationSessionPlayerViewController: SuperSessionPlayerViewController {
     @IBAction func sliderTapped(_ sender: Any) {
         TrackerManager.shared.sendPrepSessionProgressChangeAttempts()
     }
+    override func playButtonTapped(_ sender: UIButton) {
+        super.playButtonTapped(sender)
+        TrackerManager.shared.sendEvent(name: fromVC == .landing ? GeneralCustomEvents.prepSessionPlayerScreenPlay : GeneralCustomEvents.dailyPrepSessionPlayerScreenPlay, payload: nil)
+    }
     
+    override func soundsButtonTapped(_ sender: SoundEffectsButton) {
+        super.soundsButtonTapped(sender)
+        TrackerManager.shared.sendEvent(name: fromVC == .landing ? GeneralCustomEvents.prepSessionPlayerScreenBgMusic : GeneralCustomEvents.dailyPrepSessionPlayerScreenBgMusic, payload: nil)
+    }
 }
 
 

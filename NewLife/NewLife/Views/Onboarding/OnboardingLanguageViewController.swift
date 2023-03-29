@@ -23,8 +23,8 @@ class OnboardingLanguageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         initialize()
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.openLanguageScreen, payload: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -85,6 +85,8 @@ class OnboardingLanguageViewController: UIViewController {
     }
     
     private func changeLanguage(language: Language) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.firstOpenSetAppLanguage, payload: ["language": language.rawValue])
+        
         UserDefaults.appOpened()
         guard language != Language.language else {
             openWelcomeViewController()

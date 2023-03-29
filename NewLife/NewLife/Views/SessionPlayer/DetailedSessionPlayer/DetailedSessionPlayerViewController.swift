@@ -50,6 +50,10 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
         }
         initialize()
+        if let session = session{
+            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenLoad, payload: ["sessionId" : session.id ?? "", "sessionName" : session.name ?? "", "sessionType" : session.session?.type ?? ""])
+        }
+        
         fetchData()
         startPlayerLoadingIfNeeded()
     }
@@ -132,7 +136,9 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         
         initializeBottomStackButtons()
     }
+   
     @objc func infoViewTapped(){
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenDetails, payload: nil)
         guard let session = session else { return }
         openSessionInfoDetailsViewController(session: session)
     }
@@ -316,6 +322,7 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
     }
     
     @IBAction func commentsButtonTapped(_ sender: Any) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenComments, payload: nil)
         showCommentsViewController()
     }
     
@@ -325,6 +332,39 @@ class DetailedSessionPlayerViewController: SuperSessionPlayerViewController {
         }
         let CommentsViewController = SessionCommentsViewController.instantiate(session: session)
         self.present(CommentsViewController, animated: true, completion: nil)
+    }
+    
+    override func soundsButtonTapped(_ sender: SoundEffectsButton) {
+        super.soundsButtonTapped(sender)
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenBgMusic, payload: nil)
+    }
+    override func dismissButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenHide, payload: nil)
+        super.dismissButtonTapped(sender)
+    }
+    override func downloadButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenDownload, payload: ["sessionId" : session?.id ?? "", "sessionName" : session?.name ?? "", "sessionType" : session?.session?.type ?? ""])
+        super.downloadButtonTapped(sender)
+    }
+    override func favoriteButtonTapped(_ sender: SessionFavoriteButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenFavorite, payload: ["sessionId" : session?.id ?? "", "sessionName" : session?.name ?? "", "sessionType" : session?.session?.type ?? ""])
+        super.favoriteButtonTapped(sender)
+    }
+    override func playButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenPlay, payload: nil)
+        super.playButtonTapped(sender)
+    }
+    override func voicesAndDialectsButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenDialects, payload: nil)
+        super.voicesAndDialectsButtonTapped(sender)
+    }
+    override func rateButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenRate, payload: nil)
+        super.rateButtonTapped(sender)
+    }
+    override func shareButtonTapped(_ sender: UIButton) {
+        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.sessionPlayerScreenShare, payload: nil)
+        super.shareButtonTapped(sender)
     }
 }
 
