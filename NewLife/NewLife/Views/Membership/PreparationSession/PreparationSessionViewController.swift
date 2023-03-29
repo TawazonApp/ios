@@ -96,7 +96,9 @@ class PreparationSessionViewController: HandleErrorViewController {
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
         TrackerManager.shared.sendStartPrepFromButton()
-        openPreparationSessionPlayerViewController()
+        if let sessionModel = SessionPlayerMananger.shared.session {
+            openPreparationSessionPlayerViewController()
+        }
     }
     
     private func openLandingFeelingsViewController(){

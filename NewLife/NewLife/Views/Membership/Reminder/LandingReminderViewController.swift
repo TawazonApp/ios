@@ -336,10 +336,13 @@ class LandingReminderViewController: HandleErrorViewController {
             localeContent =  RemoteConfigManager.shared.json(forKey: .meditationReminderString)["ar"] as? [String: Any]
         }
         let content = UNMutableNotificationContent()
-        content.title = localeContent?["title"] as! String
-        content.sound = .default
-        content.subtitle = localeContent?["subtitle"] as! String
-        content.body = localeContent?["body"] as! String
+        if let localeContent = localeContent{
+            content.title = localeContent["title"] as! String
+            content.sound = .default
+            content.subtitle = localeContent["subtitle"] as! String
+            content.body = localeContent["body"] as! String
+        }
+        
         
         let weekdaysReminder = self.weekDaysViews.filter({return $0.selected})
         for weekday in weekdaysReminder {
