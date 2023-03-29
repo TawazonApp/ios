@@ -96,15 +96,15 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
         
         planPriceLabel.textColor = .lightSlateBlue
         planPriceLabel.font = UIFont.munaFont(ofSize: 24.0)
-        planPriceLabel.numberOfLines = 0
-        planPriceLabel.lineBreakMode = .byWordWrapping
-        planPriceLabel.textAlignment = .center
         
         planTrialLabel.font = UIFont.munaFont(ofSize: 14.0)
         planTrialLabel.textColor = .lightSlateBlue
         
         planEndSubscribtionDateLabel.textColor = .magnolia
         planEndSubscribtionDateLabel.font = UIFont.munaFont(ofSize: 18.0)
+        planEndSubscribtionDateLabel.numberOfLines = 0
+        planEndSubscribtionDateLabel.lineBreakMode = .byWordWrapping
+        planEndSubscribtionDateLabel.textAlignment = .center
         
         cancelSubscribtionButton.layer.cornerRadius = 20
         cancelSubscribtionButton.applyGradientColor(colors: [UIColor.irisTwo.cgColor, UIColor.deepLilac.cgColor], startPoint: .left, endPoint: .right)
@@ -139,9 +139,9 @@ class PremiumPlanDetailsViewController: BasePremiumViewController {
     
     private func setData(){
         planTitleLabel.text = purchaseData?.title
-        planPriceLabel.text = purchaseData?.descriptionString
+        planPriceLabel.text = purchaseData?.expireString
         planTrialLabel.text = purchaseData?.subTitle
-        planEndSubscribtionDateLabel.text = purchaseData?.expireString
+        planEndSubscribtionDateLabel.text = purchaseData?.descriptionString
         
     }
     

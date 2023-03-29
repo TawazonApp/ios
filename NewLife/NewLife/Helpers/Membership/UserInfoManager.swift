@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyStoreKit
 import AppsFlyerLib
+import Adapty
 
 class UserInfoManager: NSObject {
     
@@ -25,6 +26,7 @@ class UserInfoManager: NSObject {
         if let userInfo = userInfo {
             UserDefaults.saveUser(user: userInfo)
         }
+        identifyAdaptyUser(userId: userInfo?.id)
     }
     
     func setUserSettings(){
@@ -52,11 +54,33 @@ class UserInfoManager: NSObject {
         return goals
     }
     
+    func identifyAdaptyUser(userId : String?){
+        if let userId = userInfo?.id{
+            Adapty.identify(userId) { error in
+                if error == nil {
+                    // successful identify
+                }
+            }
+        }else{
+            Adapty.identify(UIDevice.deviceID) { error in
+                if error == nil {
+                    // successful identify
+                }
+            }
+        }
+    }
+    
     func reset() {
         setUserInfo(userInfo: nil)
         setGoals(goals: nil)
         UserDefaults.resetUserSelectGoals()
         UserDefaults.resetUser()
+        Adapty.logout { error in
+            if error == nil {
+                // successful logout
+                self.identifyAdaptyUser(userId: nil)
+            }
+        }
     }
     
     func restCache() {
@@ -99,8 +123,8 @@ class UserInfoManager: NSObject {
         }
     }
     
-    func fetchUserInfo(service: MembershipService, completion: @escaping (_ error: CustomError?) -> Void) {
-        service.fetchUserInfo(completion: { [weak self](userInfo, error) in
+    func fetchUserInfo(premium: Bool? = nil, service: MembershipService, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.fetchUserInfo(premium: premium, completion: { [weak self](userInfo, error) in
             if error == nil {
                 self?.setUserInfo(userInfo: userInfo)
             }
@@ -129,25 +153,17 @@ class UserInfoManager: NSObject {
         }
     }
     
-    func verifyAdaptyUser(service: MembershipService, price: String, currency: String, completion: @escaping (CustomError?) -> Void) {
-//        guard let receiptData = SwiftyStoreKit.localReceiptData else {
-//            return
-//        }
-//        registerAppsflyer()
-//        let receiptString = receiptData.base64EncodedString(options: [])
-//
-//        service.uploadPurchaseReceipt(receiptString: receiptString, price: price, currency: currency) { [weak self] (error) in
-//            if error == nil {
-//                //TO make sure user info updated afte upload receipt
-//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-//                    self?.fetchUserInfo(service: service, completion: { (fetchError) in
-//                        completion(error)
-//                    })
-//                })
-//            } else {
-//                completion(error)
-//            }
-//        }
+    func verifyAdaptyUser(service: MembershipService, completion: @escaping () -> Void) {
+        // call API
+        let profileId = userInfo?.id ?? UIDevice.deviceID
+        service.adaptyVerifySubscription(profileId: profileId, completion: {error in
+            //TO make sure user info updated afte verification
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                UserInfoManager.shared.fetchUserInfo(premium: true, service: service) { (fetchError) in
+                }
+                completion()
+            })
+        })
     }
     
     func registerAppsflyer() {

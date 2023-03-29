@@ -11,8 +11,9 @@ import StoreKit
 import SwiftyStoreKit
 import Dispatch
 import Adapty
+import AudioToolbox
 
-class PaywallViewController: BaseAdaptyPaywallViewController {
+class PaywallViewController:GeneralBasePaywallViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -69,32 +70,37 @@ class PaywallViewController: BaseAdaptyPaywallViewController {
         }
     }
     
+    override var useAdaptySDK: Bool?{
+        didSet{
+            if useAdaptySDK ?? false{ // use adapty RC
+                adaptyGetPaywallDetails()
+            }else{
+                SKPaymentQueue.default().add(self)
+                sharedData = BasePremiumVM.shared
+                fillData()
+            }
+        }
+    }
+    
     var features: [FeatureItem]? {
         didSet {
             LoadingHud.shared.hide(animated: true)
         }
     }
     
-    var plans: [PremiumPurchaseCellVM]? {
+    override var plans: [PremiumPurchaseCellVM]? {
         didSet {
             setBestPlanData()
             self.reloadData()
         }
     }
     
-//    var paywallVM = AdaptyPaywallVM()
-    
-//    var products: [AdaptyPaywallProduct]?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
-//        initialize()
-//        SKPaymentQueue.default().add(self)
-//        fetchData()
-        adaptyGetPaywallDetails()
-//        fillData()
+        useAdaptySDK = RemoteConfigManager.shared.bool(forKey: .useAdaptySDK)
+
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
     
@@ -255,7 +261,18 @@ class PaywallViewController: BaseAdaptyPaywallViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         bestPlanView.gradientBorder(width: 1, colors: [.royalBlue, .mediumOrchid, .rockBlue], startPoint: .topLeft, endPoint: .bottomRight, andRoundCornersWithRadius: 24)
+        fetchAllPlansData()
     }
+    
+    private func fetchAllPlansData(){
+            if allPlansData.plansArray.count == 0{
+                allPlansData.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
+                    if error == nil{
+                        return
+                    }
+                })
+            }
+        }
     
     private func adaptyGetPaywallDetails(){
         LoadingHud.shared.show(animated: true)
@@ -283,6 +300,16 @@ class PaywallViewController: BaseAdaptyPaywallViewController {
                 self.products = adaptyProducts
             }
         }
+    }
+    
+    private func fillData(){
+        if let sharedData = sharedData{
+            self.subscribeButton.setTitle(sharedData.premiumDetails?.premiumPage.continueLabel, for: .normal)
+
+            self.features = sharedData.premiumDetails?.premiumPage.featureItems
+            self.plans = sharedData.plansArray
+        }
+            
     }
     
     private func reloadData(){
@@ -334,11 +361,7 @@ class PaywallViewController: BaseAdaptyPaywallViewController {
         }
         return attributedString
     }
-    
-    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
-        Adapty.presentCodeRedemptionSheet()
-    }
-    
+ 
     @IBAction func allPlansButtonTapped(_ sender: UIButton) {
         openPaywallAllPlansViewController(data: allPlansData)
     }
@@ -361,11 +384,6 @@ class PaywallViewController: BaseAdaptyPaywallViewController {
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         self.present(viewController, animated: true, completion: nil)
-    }
-    @IBAction override func cancelButtonTapped(_ sender: UIButton) {
-        TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
-        super.cancelButtonTapped(sender)
-        
     }
 }
 

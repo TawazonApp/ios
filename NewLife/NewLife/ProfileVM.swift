@@ -74,8 +74,8 @@ class ProfileVM: NSObject {
         }
     }
     
-    private func fetchUserInfo(completion: @escaping (_ error: CustomError?) -> Void) {
-        service.fetchUserInfo { [weak self] (userModel, error) in
+    private func fetchUserInfo(premium: Bool? = nil, completion: @escaping (_ error: CustomError?) -> Void) {
+        service.fetchUserInfo(premium: premium) { [weak self] (userModel, error) in
             if error == nil {
                 self?.userInfo = userModel
                 UserInfoManager.shared.setUserInfo(userInfo: userModel)

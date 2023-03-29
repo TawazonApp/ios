@@ -39,15 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeAppsFlayer()
         initializeFacebook(application, didFinishLaunchingWithOptions: launchOptions)
         initialViewContoller()
-//        setupIAP()
-        setupAdapty()
         sendCampaignIds()
         DispatchQueue.main.async { [weak self] in
             self?.setupAudioPlayerManager()
         }
-       
         UserInfoManager.shared.registerAppsflyer()
         initializeRemoteConfig()
+        
+        let useAdaptySDK = RemoteConfigManager.shared.bool(forKey: .useAdaptySDK)
+        if useAdaptySDK{
+            setupAdapty()
+        }else{
+            setupIAP()
+        }
+        
         return true
     }
     func initializeRemoteConfig(){
@@ -58,7 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initialViewContoller()
     }
     func setupAdapty(){
-        Adapty.activate("public_live_AS7KD9t9.ciVkDU1ixZhkyWIXRVhq")
+        if let userId = UserInfoManager.shared.getUserInfo()?.id{
+            Adapty.activate("public_live_AS7KD9t9.ciVkDU1ixZhkyWIXRVhq", customerUserId: userId)
+        }else{
+            Adapty.activate("public_live_AS7KD9t9.ciVkDU1ixZhkyWIXRVhq", customerUserId: UIDevice.deviceID)
+        }
+        
         Adapty.delegate = self
     }
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -149,19 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UXCam.optIntoSchematicRecordings()
         UXCam.start(withKey:"am0notpy21t31es")
     }
-    
-//    private func initializeBranchIO(with launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
-//        // enable pasteboard check
-//            Branch.getInstance().checkPasteboardOnInstall()
-//
-//        // listener for Branch Deep Link data
-//         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
-//               guard let data = params as? [String: AnyObject] else { return }
-//             if let url = data["~referring_link"] as? String, let branchLink = URL(string: url){
-//                 self.handleDynamicLink(dynamicLink: branchLink)
-//             }
-//         }
-//    }
+  
     private func initializeFabric() {
         Fabric.with([Crashlytics.self])
     }
@@ -216,7 +214,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initialViewContoller() {
-        print("initialViewContoller")
         preFetchCachingData()
         let launchViewController = LaunchViewController.instantiate()
         navigationController = NavigationController.init(rootViewController: launchViewController)
@@ -455,7 +452,6 @@ extension AppDelegate {
     func uploadPurchaseReceipt(price: String, currancy: String, completion: @escaping (CustomError?) -> Void) {
         UserInfoManager.shared.uploadPurchaseReceipt(service: MembershipServiceFactory.service(), price: price, currency: currancy, completion: { (error) in
             if error == nil {
-                print("uploadPurchaseReceipt")
                 for transaction in self.paymentTransactions {
                     self.finishTransaction(paymentTransaction: transaction)
                 }
@@ -528,21 +524,19 @@ extension AppDelegate: DeepLinkDelegate {
 }
 extension AppDelegate: AdaptyDelegate{
     func didLoadLatestProfile(_ profile: AdaptyProfile) {
-        print("didLoadLatestProfile")
         // handle any changes to subscription state
         // call get profile
         Adapty.getProfile { result in
             if let profile = try? result.get(),
                    profile.accessLevels["premium"]?.isActive ?? false {
                 // grant access to premium features
-                UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service(), price: "price", currency: "currancy", completion: { (error) in
-                    if error == nil {
-                        print("verifyAdaptyUser")
-                        
-                    }
-                })
+                UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service()) {
+                }
             }else{
-                print("NOT PREMIUM")
+                UserInfoManager.shared.fetchUserInfo(
+
+                    service: MembershipServiceFactory.service()) { (fetchError) in
+                }
             }
         }
     }

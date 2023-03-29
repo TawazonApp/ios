@@ -26,40 +26,40 @@ class BaseAdaptyPaywallViewController: HandleErrorViewController {
 
     private func goToNextViewController() {
         if nextView == .mainViewController {
-            openMainViewController()
         } else {
             SystemSoundID.play(sound: .Sound1)
             dismiss(animated: true, completion: nil)
         }
     }
+
+    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
+        LoadingHud.shared.show(animated: true)
+        self.restorePurchases()
+    }
     
-    @IBAction func purchaseButtonTapped(_ sender: Any) {
-        if let product = products?.first{
+    func purchaseAction(product: AdaptyPaywallProduct?){
+        if let product = product{
             LoadingHud.shared.show(animated: true)
             paywallVM.makePurchase(product: product){
-                (profile, error) in
+                (profile, error, errorMessage) in
                 LoadingHud.shared.hide(animated: true)
                 if error != nil{
                     let errorDescription = self.paywallVM.errorHandling(error: error!)
-                    self.showErrorMessage(message: errorDescription)
+                    self.showErrorMessage(message: errorDescription ?? "generalErrorMessage".localized)
                     return
                 }
                 self.goToNextViewController()
             }
         }
-    }
-    
-    @IBAction func restorePurchaseButtonTapped(_ sender: UIButton) {
-        LoadingHud.shared.show(animated: true)
-        self.restorePurchases()
+        
     }
     func restorePurchases() {
         paywallVM.restorePurchases(){
-            (profile, error) in
+            (profile, error, errorMessage) in
             LoadingHud.shared.hide(animated: true)
             if error != nil{
                 let errorDescription = self.paywallVM.errorHandling(error: error!)
-                self.showErrorMessage(message: errorDescription)
+                self.showErrorMessage(message: errorDescription ?? "generalErrorMessage".localized)
                 return
             }
             self.goToNextViewController()
@@ -71,14 +71,8 @@ class BaseAdaptyPaywallViewController: HandleErrorViewController {
         
         if nextView == .mainViewController {
             TrackerManager.shared.sendSkipPremiumEvent()
-            openMainViewController()
         } else {
             dismiss(animated: true, completion: nil)
         }
-    }
-    
-    func openMainViewController() {
-        SystemSoundID.play(sound: .LaunchToHome)
-        (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
     }
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 struct Api {
-//    static let baseUrl = "https://api.tawazonapp.com"
-    static let baseUrl = "https://api.dev.tawazonapp.com"
+    static let baseUrl = "https://api.tawazonapp.com"
+//    static let baseUrl = "https://api.dev.tawazonapp.com"
     static let apiUrl = "\(baseUrl)/api/v1"
     static let apiUrlV2 = "\(baseUrl)/api/v2"
     static let apiUrlV2_1 = "\(baseUrl)/api/v2.1"
@@ -112,6 +112,7 @@ struct Api {
     static let sessionInfoDetails = "\(apiUrlV2_1)/sessions/view/{id}"
     static let preparationSessionInfo = "\(apiUrlV2_1)/sessions/prep/view/{id}"
     static let purchaseReceiptUrl = "\(apiUrl)/subscription/apple/verify"
+    static let validateAdaptyPurcahse = "\(apiUrlV2)/subscriptions/adapty/verify"
     static let anonymousToken = "$AnonymousToken"
     
     static let registerAppsflyer = "\(apiUrl)/appsflyer/register"

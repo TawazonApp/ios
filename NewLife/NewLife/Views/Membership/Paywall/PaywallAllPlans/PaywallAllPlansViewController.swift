@@ -8,8 +8,9 @@
 
 import UIKit
 import Adapty
+import StoreKit
 
-class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
+class PaywallAllPlansViewController: GeneralBasePaywallViewController {
 
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -26,16 +27,23 @@ class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
     var darkView: Bool?{
         didSet{
             initialize()
-//            fillData()
         }
     }
-//    var paywallVM = AdaptyPaywallVM()
-//
-//    var products: [AdaptyPaywallProduct]?{
-//        didSet{
-//
-//        }
-//    }
+    
+    override var useAdaptySDK: Bool?{
+        didSet{
+            if useAdaptySDK ?? false{ // use adapty RC
+                adaptyGetPaywallDetails()
+            }else{
+                SKPaymentQueue.default().add(self)
+                sharedData = BasePremiumVM.shared
+                fillData()
+            }
+        }
+    }
+    
+    var data = BasePremiumVM()
+    
     var features: [FeatureItem]? {
         didSet {
             LoadingHud.shared.hide(animated: true)
@@ -43,7 +51,7 @@ class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
         }
     }
     
-    var plans: [PremiumPurchaseCellVM]? {
+    override var plans: [PremiumPurchaseCellVM]? {
         didSet {
             plansView.plans = plans
             self.reloadData()
@@ -55,16 +63,16 @@ class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
 
         LoadingHud.shared.show(animated: true)
         darkView = RemoteConfigManager.shared.bool(forKey: .premuimPage6DarkTheme)
-//        SKPaymentQueue.default().add(self)
-//        fetchData()
+        useAdaptySDK = RemoteConfigManager.shared.bool(forKey: .useAdaptySDK)
         
-        adaptyGetPaywallDetails()
         TrackerManager.shared.sendOpenPremiumEvent(viewName: Self.identifier)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
+    
     private func initialize() {
         self.view.backgroundColor = darkView! ? .darkIndigoTwo : .ghostWhite
         
@@ -143,8 +151,36 @@ class PaywallAllPlansViewController: BaseAdaptyPaywallViewController {
             
                 self.features = self.paywallVM.paywallDetails?.premiumPage.featureItems
                 self.plans = self.paywallVM.plansArray
-//            self.plansView.data = paywallVM
         }
+    }
+    
+    private func fillData(){
+            if let premiumDetails = data.premiumDetails{
+                self.subscribeButton.setTitle(premiumDetails.premiumPage.continueLabel, for: .normal)
+                
+                self.features = premiumDetails.premiumPage.featureItems
+                self.plans = data.plansArray
+            }else{
+                fetchData()
+            }
+        
+    }
+    
+    private func fetchData(){
+        LoadingHud.shared.show(animated: true)
+        
+        data.getPremiumPageDetails(premiumId: 11, service: MembershipServiceFactory.service(), completion: { (error) in
+            if error == nil{
+                self.subscribeButton.setTitle(self.data.premiumDetails?.premiumPage.continueLabel, for: .normal)
+                
+                self.features = self.data.premiumDetails?.premiumPage.featureItems
+                self.plans = self.data.plansArray
+                
+                return
+            }
+            self.showErrorMessage( message: error?.localizedDescription ?? "generalErrorMessage".localized)
+            LoadingHud.shared.hide(animated: true)
+        })
     }
     
     private func reloadData(){

@@ -21,11 +21,11 @@ class PermissionAlert: NSObject {
     private var alertView: PermissionAlertView?
     private override init() {}
     
-    func show(type: PermissionAlertView.AlertType ,animated: Bool, delegate: ProfileDeleteAccountDelegate? = nil, actionHandler: (()->Void)?, cancelHandler: (()->Void)?) {
+    func show(type: PermissionAlertView.AlertType ,animated: Bool, delegate: ProfileDeleteAccountDelegate? = nil, actionHandler: (()->Void)?, cancelHandler: (()->Void)?, typeData: PermissionAlertData? = nil) {
         if alertView == nil {
             alertView = PermissionAlertView.fromNib()
             alertView?.delegate = delegate
-            alertView!.show(type: type, animated: animated, actionHandler: actionHandler, cancelHandler: cancelHandler)
+            alertView!.show(type: type, animated: animated, actionHandler: actionHandler, cancelHandler: cancelHandler, typeData: typeData)
         }
     }
     
@@ -44,6 +44,7 @@ class PermissionAlert: NSObject {
     
 }
 
+typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String?, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
 
 class PermissionAlertView: UIView, NibInstantiatable {
     
@@ -55,9 +56,9 @@ class PermissionAlertView: UIView, NibInstantiatable {
         case deleteAccount
         case changeNickname
         case completeTodayActivityStep
+        case generalMessage
     }
     
-    typealias PermissionAlertData = (backgroundColor: UIColor, iconName: String?, title: String?, subTitle: String?, bodyActionTitle: String?, actionTitle: String?, cancelTitle: String, contentColor: UIColor? , actionTitleColor: UIColor?)
     
     var actionHandler: (()->Void)? = nil
     var cancelHandler:(()->Void)? = nil
@@ -94,6 +95,8 @@ class PermissionAlertView: UIView, NibInstantiatable {
         
         titleLabel.font = .munaBoldFont(ofSize: 20, language: .arabic)
         titleLabel.tintColor = UIColor.charcoalGrey
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
         
         subTitleLabel.font = UIFont.munaFont(ofSize: 15, language: .arabic)
         subTitleLabel.tintColor = UIColor.charcoalGrey
@@ -109,8 +112,8 @@ class PermissionAlertView: UIView, NibInstantiatable {
         
     }
     
-    func updateStyle(type: AlertType) {
-        let data = dataBy(type: type)
+    func updateStyle(type: AlertType, typeData: PermissionAlertData? = nil) {
+        let data = typeData != nil ? typeData! : dataBy(type: type)
         contentView.backgroundColor = data.backgroundColor
         actionsView.backgroundColor = UIColor.clear
         
@@ -160,16 +163,18 @@ class PermissionAlertView: UIView, NibInstantiatable {
         
         case .completeTodayActivityStep:
             return (backgroundColor: UIColor.slateBlue, iconName: "TodayActivityTab", title: "PermissionCompleteTodayActivityStepAlertTitle".localized, subTitle: "PermissionCompleteTodayActivityStepAlertBody".localized, bodyActionTitle: "", actionTitle: nil , cancelTitle: "PermissionCompleteTodayActivityStepAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
-    }
+        case .generalMessage:
+            return (backgroundColor: UIColor.slateBlue, iconName: "", title: "".localized, subTitle: "".localized, bodyActionTitle: "", actionTitle: nil , cancelTitle: "PermissionCompleteTodayActivityStepAlertCancelTitle".localized, contentColor: .white, actionTitleColor: .roseBud)
+        }
     }
 
-    func show(type:PermissionAlertView.AlertType, animated: Bool, actionHandler: (()->Void)?, cancelHandler: (()->Void)?) {
+    func show(type:PermissionAlertView.AlertType, animated: Bool, actionHandler: (()->Void)?, cancelHandler: (()->Void)?, typeData: PermissionAlertData? = nil) {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         guard let keyWindow = UIApplication.shared.keyWindow else { return }
         
         self.restorationIdentifier = restorationIdentifier
-        updateStyle(type: type)
+        updateStyle(type: type, typeData: typeData)
         keyWindow.addSubview(self)
         
         // Add constraints for `containerView`.

@@ -20,6 +20,7 @@ enum RCValueKeys: String {
     case first_dailyActivityFeatureFlow
     case premuimPage6DarkTheme
     case showNotifyMeButton
+    case useAdaptySDK
 }
 enum premuimPageViewNameValues: String{
     case defaultView = "PremiumViewController"
@@ -46,6 +47,7 @@ extension RemoteConfigManager{
     func loadDefaultValues() {
       let appDefaults: [String: Any?] = [
         RCValueKeys.premuimPageViewName.rawValue: "PremiumViewController",
+        RCValueKeys.useAdaptySDK.rawValue: true,
       ]
       
       RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
@@ -107,6 +109,10 @@ extension RemoteConfigManager{
             
             _ = RemoteConfig.remoteConfig()
                 .configValue(forKey: RCValueKeys.showNotifyMeButton.rawValue)
+                .boolValue
+            
+            _ = RemoteConfig.remoteConfig()
+                .configValue(forKey: RCValueKeys.useAdaptySDK.rawValue)
                 .boolValue
             
           self?.fetchComplete = true

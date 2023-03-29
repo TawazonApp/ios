@@ -26,10 +26,10 @@
                                         <constraint firstAttribute="width" constant="48" id="Qtt-z9-R0H"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRG-3o-pUy">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRG-3o-pUy">
                                     <rect key="frame" x="24" y="84" width="287" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="28" id="tK4-r8-8jB"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="tK4-r8-8jB"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>

@@ -175,7 +175,7 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
         case .feelingSelection:
             openFeelingsVC()
         case .userFeelingSessions:
-            print("sessionsList")
+            break
         case .static1:
             openMoodTrackerVC()
         case .singleQuote:
@@ -185,7 +185,7 @@ extension TodayActivityViewController: UITableViewDelegate, UITableViewDataSourc
                 openTawazonTalkVC(item: item)
             }
         case .none:
-            print("none")
+            break
         }
     }
     

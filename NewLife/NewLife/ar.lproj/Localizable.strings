@@ -557,3 +557,22 @@
 "completedSessionValueLabel" = "جلسة";
 "tawazonMinutesValueLabel" = "دقيقة";
 "userActivityValueLabel" = "يوم";
+
+
+
+"paymentNotAllowed" = "الدفع غير مسموح به على جهاز الايفون الخاص بك. إذا كنت ترغب في إجراء عملية شراء ، اسمح بالدفع من إعدادات الجهاز.";
+"clientInvalid" = "معرف متجرك غير مصرح به لإجراء عمليات شراء.";
+"unknown" = "حدث خطأ غير معروف ، يرجى المحاولة مرة أخرى.";
+"paymentInvalid" = "لم يتم التحقق من الدفع الخاص بك. حاول مرة اخرى.";
+"storeProductNotAvailable" = "لم يعد الاشتراك الذي تحاول شراءه متاحًا.";
+"cloudServicePermissionDenied" = "نحتاج إلى أذونات لمعالجة الدفع ، يرجى تحديث الأذونات.";
+"cloudServiceNetworkConnectionFailed" = "فشل الدفع بسبب مشكلة في الاتصال الخاص بك. يرجى التأكد من اتصالك بالإنترنت وحاول مرة أخرى.";
+"cloudServiceRevoked" = "نحتاج إلى أذونات لمعالجة الدفع ، يرجى تحديث الأذونات.";
+"privacyAcknowledgementRequired" = "ما زلت لم تقبل سياسة خصوصية Apple وبالتالي لا يمكنك إجراء عمليات شراء حتى الآن. افتح تطبيق متجر التطبيقات لقراءة سياسة الخصوصية وقبولها قبل محاولة الشراء.";
+"unauthorizedRequestData" = "الاشتراك الذي تحاول شراءه غير متوفر.";
+"invalidOfferIdentifier" = "الاشتراك الذي تحاول شراءه غير متوفر.";
+"invalidSignature" = "لم يتم التحقق من الدفع الخاص بك. حاول مرة اخرى.";
+"missingOfferParams" = "الاشتراك الذي تحاول شراءه غير متوفر.";
+"invalidOfferPrice" = "الاشتراك الذي تحاول شراءه غير متوفر.";
+"noProductIDsFound" = "الاشتراك الذي تحاول شراءه غير متوفر.";
+"productRequestFailed" = "الاشتراك الذي تحاول شراءه غير متوفر.";

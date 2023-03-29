@@ -165,7 +165,7 @@ Create your own account";
 "threeMonthsPurchaseSubTitle" = "/ 3 Months";
 "threeMonthsPurchaseDescription" = "The selected plan will be automatically renewed within the specified price after the trial period ends, unless you cancel the service before that.";
  
-"yearlyPurchaseTitle" = "Yearly Subscription";
+"yearlyPurchaseTitle" = "Yearly";
 "yearlyPurchaseSubTitle" = "/ year";
 "yearlyPurchaseDescription" = "The selected plan will be automatically renewed within the specified price after the trial period ends, unless you cancel the service before that.";
  
@@ -569,3 +569,22 @@ Unless you cancel the service beforehand.";
 "completedSessionValueLabel" = "Session";
 "tawazonMinutesValueLabel" = "Minute";
 "userActivityValueLabel" = "Day";
+
+
+
+"paymentNotAllowed" = "Payment is not allowed on your iPhone. If you'd like to make a purchase, allow payments from the device settings.";
+"clientInvalid" = "Your store ID is not authorized to make purchases.";
+"unknown" = "Unknown error occured, please try again.";
+"paymentInvalid" = "Your payment was unverified. Please try again.";
+"storeProductNotAvailable" = "The subscription you are trying to purchase is no longer available.";
+"cloudServicePermissionDenied" = "We need Cloud Permissions to process the payment, please update the permissions.";
+"cloudServiceNetworkConnectionFailed" = "Payment failed due to an issue with your connection. Please make sure you are connected to the internet and try again.";
+"cloudServiceRevoked" = "We need Cloud Permissions to process the payment, please update the permissions.";
+"privacyAcknowledgementRequired" = "You still have not accepted Apple's Privacy Policy and therefore cannot make purchases yet. Open the Appstore app to read and accept the privacy policy before you try to purchase.";
+"unauthorizedRequestData" = "The subscription you are trying to purchase is not available.";
+"invalidOfferIdentifier" = "The subscription you are trying to purchase is not available.";
+"invalidSignature" = "Your payment was unverified. Please try again.";
+"missingOfferParams" = "The subscription you are trying to purchase is not available.";
+"invalidOfferPrice" = "The subscription you are trying to purchase is not available.";
+"noProductIDsFound" = "The subscription you are trying to purchase is not available.";
+"productRequestFailed" = "The subscription you are trying to purchase is not available.";

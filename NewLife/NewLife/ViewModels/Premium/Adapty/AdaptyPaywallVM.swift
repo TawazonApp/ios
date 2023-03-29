@@ -30,7 +30,6 @@ class AdaptyPaywallVM: NSObject{
             switch result {
             case let .success(paywall):
                 self.paywall = paywall
-                let jsonEncoder = JSONEncoder()
                 self.paywallDetails = BaseAdaptyPaywallModel.init(paywall.remoteConfigString ?? "")
                 Adapty.getPaywallProducts(paywall: paywall) { result in
                     switch result {
@@ -127,137 +126,112 @@ class AdaptyPaywallVM: NSObject{
         return formatter.string(from: price) ?? ""
     }
     
-    func makePurchase(product: AdaptyPaywallProduct, completion: @escaping (AdaptyProfile?, AdaptyError?) -> Void) {
+    func makePurchase(product: AdaptyPaywallProduct, completion: @escaping (AdaptyProfile?, AdaptyError?, String?) -> Void) {
         Adapty.makePurchase(product: product) { result in
             switch result {
             case let .success(profile):
-                completion(profile, nil)
+                UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service()){
+                }
+                completion(profile, nil, nil)
             case let .failure(error):
-                completion(nil, error)
+                completion(nil, error, self.errorHandling(error: error))
             }
         }
     }
     
-    func restorePurchases(completion: @escaping (AdaptyProfile?, AdaptyError?) -> Void) {
-        Adapty.restorePurchases { [weak self] result in
+    func restorePurchases(completion: @escaping (AdaptyProfile?, AdaptyError?, String?) -> Void) {
+        Adapty.restorePurchases { result in
             switch result {
                 case let .success(profile):
-                completion(profile, nil)
+                UserInfoManager.shared.verifyAdaptyUser(service: MembershipServiceFactory.service()){
+                }
+                completion(profile, nil, nil)
                 case let .failure(error):
-                completion(nil, error)
+                completion(nil, error, self.errorHandling(error: error))
             }
         }
     }
-    func errorHandling(error: AdaptyError) -> String {
-        var errorMessage: String = ""
+    
+    func redeemPromoCode(){
+        Adapty.presentCodeRedemptionSheet()
+    }
+    
+    func errorHandling(error: AdaptyError) -> String? {
+        var errorMessage: String?
         switch error.adaptyErrorCode{
         case .paymentCancelled:
-            print("User cancelled the request, etc.")
-            errorMessage = "User cancelled the request, etc."
+            errorMessage = nil
         case .paymentNotAllowed:
-            print("This device is not allowed to make the payment.")
-            errorMessage = "This device is not allowed to make the payment."
+            errorMessage = "paymentNotAllowed".localized
         case .clientInvalid:
-            print("Client is not allowed to make a request, etc.")
-            errorMessage = "Client is not allowed to make a request, etc."
+            errorMessage = "clientInvalid".localized
         case .unknown:
-            print("unknown")
-            errorMessage = "unknown"
+            errorMessage = "unknown".localized
         case .paymentInvalid:
-            print("Invalid purchase identifier, etc.")
-            errorMessage = "Invalid purchase identifier, etc."
+            errorMessage = "paymentInvalid".localized
         case .storeProductNotAvailable:
-            print("Product is not available in the current storefront.")
-            errorMessage = "Product is not available in the current storefront."
+            errorMessage = "storeProductNotAvailable".localized
         case .cloudServicePermissionDenied:
-            print("User has not allowed access to cloud service information.")
-            errorMessage = "User has not allowed access to cloud service information."
+            errorMessage = "cloudServicePermissionDenied".localized
         case .cloudServiceNetworkConnectionFailed:
-            print("The device could not connect to the network.")
-            errorMessage = "The device could not connect to the network."
+            errorMessage = "cloudServiceNetworkConnectionFailed".localized
         case .cloudServiceRevoked:
-            print("User has revoked permission to use this cloud service.")
-            errorMessage = "User has revoked permission to use this cloud service."
+            errorMessage = "cloudServiceRevoked".localized
         case .privacyAcknowledgementRequired:
-            print("The user needs to acknowledge Apple’s privacy policy.")
-            errorMessage = "The user needs to acknowledge Apple’s privacy policy."
+            errorMessage = "privacyAcknowledgementRequired".localized
         case .unauthorizedRequestData:
-            print("The app is attempting to use SKPayment’s requestData property, but does not have the appropriate entitlement.")
-            errorMessage = "The app is attempting to use SKPayment’s requestData property, but does not have the appropriate entitlement."
+            errorMessage = "unauthorizedRequestData".localized
         case .invalidOfferIdentifier:
-            print("The specified subscription offer identifier is not valid.")
-            errorMessage = "The specified subscription offer identifier is not valid."
+            errorMessage = "invalidOfferIdentifier".localized
         case .invalidSignature:
-            print("The cryptographic signature provided is not valid.")
-            errorMessage = "The cryptographic signature provided is not valid."
+            errorMessage = "invalidSignature".localized
         case .missingOfferParams:
-            print("One or more parameters from SKPaymentDiscount is missing.")
-            errorMessage = "One or more parameters from SKPaymentDiscount is missing."
+            errorMessage = "missingOfferParams".localized
         case .invalidOfferPrice:
-            print("invalidOfferPrice")
-            errorMessage = "invalidOfferPrice"
+            errorMessage = "invalidOfferPrice".localized
         case .noProductIDsFound:
-            print("noProductIDsFound")
-            errorMessage = "noProductIDsFound"
+            errorMessage = "noProductIDsFound".localized
         case .productRequestFailed:
-            print("productRequestFailed")
-            errorMessage = "productRequestFailed"
+            errorMessage = "productRequestFailed".localized
+        
+        
         case .cantMakePayments:
-            print("In-App Purchases are not allowed on this device.")
             errorMessage = "In-App Purchases are not allowed on this device."
         case .noPurchasesToRestore:
-            print("noPurchasesToRestore")
-            errorMessage = "noPurchasesToRestore"
+            errorMessage = "No Purchases To Restore"
         case .cantReadReceipt:
-            print("cantReadReceipt")
             errorMessage = "cantReadReceipt"
         case .productPurchaseFailed:
-            print("productPurchaseFailed")
             errorMessage = "productPurchaseFailed"
         case .refreshReceiptFailed:
-            print("refreshReceiptFailed")
             errorMessage = "refreshReceiptFailed"
         case .receiveRestoredTransactionsFailed:
-            print("receiveRestoredTransactionsFailed")
             errorMessage = "receiveRestoredTransactionsFailed"
         case .notActivated:
-            print("Adapty SDK is not activated.")
             errorMessage = "Adapty SDK is not activated."
         case .badRequest:
-            print("badRequest")
             errorMessage = "badRequest"
         case .serverError:
-            print("serverError")
             errorMessage = "serverError"
         case .networkFailed:
-            print("networkFailed")
             errorMessage = "networkFailed"
         case .decodingFailed:
-            print("decodingFailed")
             errorMessage = "decodingFailed"
         case .encodingFailed:
-            print("encodingFailed")
             errorMessage = "encodingFailed"
         case .analyticsDisabled:
-            print("analyticsDisabled")
             errorMessage = "analyticsDisabled"
         case .wrongParam:
-            print("Wrong parameter was passed.")
             errorMessage = "Wrong parameter was passed."
         case .activateOnceError:
-            print("It is not possible to call .activate method more than once.")
             errorMessage = "It is not possible to call .activate method more than once."
         case .profileWasChanged:
-            print("The user profile was changed during the operation.")
             errorMessage = "The user profile was changed during the operation."
         case .unsupportedData:
-            print("unsupportedData")
             errorMessage = "unsupportedData"
         case .persistingDataError:
-            print("persistingDataError")
             errorMessage = "persistingDataError"
         case .operationInterrupted:
-            print("operationInterrupted")
             errorMessage = "operationInterrupted"
         }
         return errorMessage

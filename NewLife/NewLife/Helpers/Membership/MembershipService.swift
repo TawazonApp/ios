@@ -22,7 +22,7 @@ protocol MembershipService {
     
     func deleteAccount(completion: @escaping (DeleteAccountModel?, CustomError?) -> Void)
     
-    func fetchUserInfo(completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void)
+    func fetchUserInfo(premium: Bool?, completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void)
     
     func uploadProfileImage(image: UIImage, completion: @escaping (_ error: CustomError?) -> Void)
     
@@ -51,6 +51,8 @@ protocol MembershipService {
     func notificationStatus(completion: @escaping (_ notification: NotificationStatusModel?, CustomError?) -> Void)
     
     func uploadPurchaseReceipt(receiptString: String, price: String, currency: String, completion: @escaping (CustomError?) -> Void)
+    
+    func adaptyVerifySubscription(profileId: String, completion: @escaping (CustomError?) -> Void)
     
     func registerAppsflyer(id: String, advertisingId: String, completion: @escaping (CustomError?) -> Void)
     
@@ -126,8 +128,9 @@ class APIMembershipService: MembershipService {
         }
     }
     
-    func fetchUserInfo(completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void) {
-        ConnectionUtils.performGetRequest(url: Api.userInfoUrl.url!, parameters: nil) { (data, error) in
+    func fetchUserInfo(premium: Bool? = nil, completion: @escaping (_ userInfo: UserInfoModel?, _ error: CustomError?) -> Void) {
+        let param = premium != nil ? ["premium": premium ?? true] : nil
+        ConnectionUtils.performGetRequest(url: Api.userInfoUrl.url!, parameters: param) { (data, error) in
             let userInfo : UserInfoModel? = (data != nil) ? UserInfoModel.init(data: data!) : nil
             completion(userInfo, error)
         }
@@ -217,6 +220,12 @@ class APIMembershipService: MembershipService {
     
     func uploadPurchaseReceipt(receiptString: String, price: String, currency: String,  completion: @escaping (CustomError?) -> Void) {
         ConnectionUtils.performPostRequest(url: Api.purchaseReceiptUrl.url!, parameters: ["receipt-data": receiptString, "price" : price, "currency": currency]) { (data, error) in
+            completion(error)
+        }
+    }
+    
+    func adaptyVerifySubscription(profileId: String, completion: @escaping (CustomError?) -> Void){
+        ConnectionUtils.performPostRequest(url: Api.validateAdaptyPurcahse.url!, parameters: ["profile_id": profileId]) { (data, error) in
             completion(error)
         }
     }
