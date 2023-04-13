@@ -3046,7 +3046,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUH-3l-oAp" customClass="PaywallPlansView" customModule="Tawazon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="378.33333333333337" width="414" height="376.33333333333337"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-N0-pyu">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-N0-pyu">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="376.33333333333331"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -3106,7 +3106,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="iyZ-2T-g8W" firstAttribute="centerX" secondItem="kl5-t4-wmo" secondAttribute="centerX" id="CPL-k6-PKy"/>
                                                                 <constraint firstItem="acb-YX-bGL" firstAttribute="width" secondItem="kl5-t4-wmo" secondAttribute="width" multiplier="0.3" id="RB7-AQ-HcH"/>
-                                                                <constraint firstAttribute="height" constant="104" id="SCc-pd-Div"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="104" id="SCc-pd-Div"/>
                                                                 <constraint firstItem="acb-YX-bGL" firstAttribute="leading" secondItem="kl5-t4-wmo" secondAttribute="leading" id="ao9-vP-uDR"/>
                                                                 <constraint firstItem="iyZ-2T-g8W" firstAttribute="top" secondItem="kl5-t4-wmo" secondAttribute="top" constant="28" id="gyg-2P-2Py"/>
                                                                 <constraint firstAttribute="trailing" secondItem="KtF-aF-ql1" secondAttribute="trailing" constant="12" id="o0S-p5-eIh"/>
@@ -3152,6 +3152,12 @@
                                     <outlet property="plansTableView" destination="6fb-N0-pyu" id="hYf-da-ELr"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxP-Cr-90E">
+                                <rect key="frame" x="186.33333333333334" y="772.66666666666663" width="41.333333333333343" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSw-Co-hoF" customClass="GradientButton" customModule="Tawazon" customModuleProvider="target">
                                 <rect key="frame" x="24" y="801" width="366" height="56"/>
                                 <constraints>
@@ -3162,12 +3168,6 @@
                                     <action selector="purchaseButtonTapped:" destination="9Cc-Aw-U8d" eventType="touchUpInside" id="atL-0C-p88"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxP-Cr-90E">
-                                <rect key="frame" x="186.33333333333334" y="772.66666666666663" width="41.333333333333343" height="20.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8VZ-eo-AoL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

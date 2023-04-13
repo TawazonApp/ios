@@ -85,7 +85,6 @@
 		048C6E4628E061050003C3BC /* WriteCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C6E4528E061050003C3BC /* WriteCommentViewController.swift */; };
 		0494389729C0702E006F3184 /* AdaptyPaywallVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389629C0702E006F3184 /* AdaptyPaywallVM.swift */; };
 		0494389A29C09D2D006F3184 /* BaseAdaptyPaywallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389929C09D2D006F3184 /* BaseAdaptyPaywallModel.swift */; };
-		0494389D29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */; };
 		0494389F29CB0AE8006F3184 /* GeneralBasePaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494389E29CB0AE8006F3184 /* GeneralBasePaywallViewController.swift */; };
 		049561F827B2F05D00955167 /* BaseLibrarySessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */; };
 		049D350227A95BE200304EF4 /* CampaignTrackingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */; };
@@ -558,7 +557,6 @@
 		048C6E4528E061050003C3BC /* WriteCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentViewController.swift; sourceTree = "<group>"; };
 		0494389629C0702E006F3184 /* AdaptyPaywallVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptyPaywallVM.swift; sourceTree = "<group>"; };
 		0494389929C09D2D006F3184 /* BaseAdaptyPaywallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdaptyPaywallModel.swift; sourceTree = "<group>"; };
-		0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdaptyPaywallViewController.swift; sourceTree = "<group>"; };
 		0494389E29CB0AE8006F3184 /* GeneralBasePaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBasePaywallViewController.swift; sourceTree = "<group>"; };
 		049561F727B2F05D00955167 /* BaseLibrarySessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLibrarySessionVM.swift; sourceTree = "<group>"; };
 		049D350127A95BE200304EF4 /* CampaignTrackingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTrackingModel.swift; sourceTree = "<group>"; };
@@ -1272,7 +1270,6 @@
 		0494389B29C713D1006F3184 /* Adapty */ = {
 			isa = PBXGroup;
 			children = (
-				0494389C29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift */,
 				0494389E29CB0AE8006F3184 /* GeneralBasePaywallViewController.swift */,
 			);
 			path = Adapty;
@@ -3134,7 +3131,6 @@
 				F3580BE4249CF38B00EBE1C1 /* MediaPlayerTrack.swift in Sources */,
 				F3B8BFC42587C3D200E2005A /* PremiumDiscountCell.swift in Sources */,
 				04090ADB29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift in Sources */,
-				0494389D29C713F7006F3184 /* BaseAdaptyPaywallViewController.swift in Sources */,
 				F334416D247950F500FA3234 /* ShareButtonView.swift in Sources */,
 				047CF2B5292B8A6300BF59AE /* TodaySectionModel.swift in Sources */,
 				04190382290FE8BB00D0840E /* PreparationSessionViewController.swift in Sources */,
@@ -3511,7 +3507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3561,7 +3557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.5.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

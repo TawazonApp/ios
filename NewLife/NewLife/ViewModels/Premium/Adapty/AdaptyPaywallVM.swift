@@ -136,9 +136,9 @@ class AdaptyPaywallVM: NSObject{
                 completion(profile, nil, nil)
             case let .failure(error):
                 if error.adaptyErrorCode == .paymentCancelled{
-                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenCancelProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : error.adaptyErrorCode])
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenCancelProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : "User cancelled the request"])
                 }else{
-                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenFailProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : error.adaptyErrorCode])
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenFailProcess, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName, "errorMessage" : self.errorHandling(error: error)])
                 }
                 
                 completion(nil, error, self.errorHandling(error: error))

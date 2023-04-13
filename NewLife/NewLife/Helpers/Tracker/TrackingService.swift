@@ -120,7 +120,7 @@ enum GeneralCustomEvents {
     static let paywallScreenLoad = "paywall_screen_load"
     static let paywallScreenSkip = "paywall_screen_skip"
     static let paywallScreenDiscountCode = "paywall_screen_discount_code"
-    static let paywallScreenBestPlan = "paywall_screen_best_plan"
+    static let paywallScreenSubmit = "paywall_screen_submit"
     static let paywallScreenAllPlans = "paywall_screen_all_plans"
     static let paywallScreenRestore = "paywall_screen_restore"
     static let paywallScreenTerms = "paywall_screen_terms"
@@ -133,7 +133,6 @@ enum GeneralCustomEvents {
 
     static let paywallAllPlansScreenLoad = "paywall_all_plans_screen_load"
     static let paywallAllPlansScreenSkip = "paywall_all_plans_screen_skip"
-    static let paywallAllPlansScreenSubmit = "paywall_all_plans_screen_submit"
     
     static let sessionPlayerScreenLoad = "session_player_screen_load"
     static let sessionPlayerScreenBgMusic = "session_player_screen_bg_music"

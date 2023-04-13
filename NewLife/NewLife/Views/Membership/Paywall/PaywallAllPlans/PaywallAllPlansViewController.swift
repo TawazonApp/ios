@@ -188,11 +188,6 @@ class PaywallAllPlansViewController: GeneralBasePaywallViewController {
         featuresTable.reloadData()
     }
     
-    @IBAction func purchaseButtonTapped(_ sender: Any) {
-        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallAllPlansScreenSubmit, payload: ["planId" : data.products[plansView.selectedPlan].productIdentifier, "planName" : data.products[plansView.selectedPlan].localizedTitle])
-        purchaseAction(product: data.products[plansView.selectedPlan])
-    }
-    
     @IBAction override func cancelButtonTapped(_ sender: UIButton) {
         TrackerManager.shared.sendClosePremiumEvent(viewName: Self.identifier)
         TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallAllPlansScreenSkip, payload: nil)

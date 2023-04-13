@@ -50,6 +50,9 @@ class GeneralBasePaywallViewController: HandleErrorViewController, SKPaymentTran
         if useAdaptySDK ?? false{ // use adapty RC
             if let selectedPlanIndex = plans?.enumerated().filter({ $0.element.isSelected == true }).map({ $0.offset }).first{
                 if let product = paywallVM.products?[selectedPlanIndex].product{
+                    
+                    TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenSubmit, payload: ["planId" : product.vendorProductId, "planName" : product.localizedTitle, "paywallName" : product.paywallName])
+                    
                     paywallVM.makePurchase(product: product){
                         (profile, error, errorMessage) in
                         LoadingHud.shared.hide(animated: true)

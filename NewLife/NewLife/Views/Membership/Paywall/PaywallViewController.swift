@@ -362,23 +362,6 @@ class PaywallViewController:GeneralBasePaywallViewController {
         }
         return attributedString
     }
-    
-    @IBAction func promoCodeButtonTapped(_ sender: UIButton) {
-        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenDiscountCode, payload: nil)
-        // open offerCode sheet
-        let paymentQueue = SKPaymentQueue.default()
-            if #available(iOS 14.0, *) {
-                paymentQueue.presentCodeRedemptionSheet()
-            }
-    }
-    
-    @IBAction func purchaseButtonTapped(_ sender: Any) {
-        if let bestPlan = plans?.first{
-            TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenBestPlan, payload: ["planId" : bestPlan.id, "planName" : bestPlan.title])
-            purchaseAction(product: BasePremiumVM.shared.products[bestPlan.priority - 1])
-        }
-        
-    }
  
     @IBAction func allPlansButtonTapped(_ sender: UIButton) {
         TrackerManager.shared.sendEvent(name: GeneralCustomEvents.paywallScreenAllPlans, payload: nil)

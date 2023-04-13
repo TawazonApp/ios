@@ -148,19 +148,19 @@
 "premiumPrivacyPolicy" = "سياسة الخصوصية";
 "premiumSummaryTrialPeriod" = "فترة تجريبية";
 
-"monthlyPurchaseTitle" = "الاشتراك الشهري";
+"monthlyPurchaseTitle" = "شهري";
 "monthlyPurchaseSubTitle" = "/ شهر";
 "monthlyPurchaseDescription" = "الخطة المختارة ستتجدد تلقائياً ضمن السعر المحدد بعد انتهاء الفترة التجريبية إلاّ اذا قمت بإلغاء الخدمة قبل ذلك.";
 
-"halfYearlyPurchaseTitle" = "اشتراك 6 أشهر";
+"halfYearlyPurchaseTitle" = "6 أشهر";
 "halfYearlyPurchaseSubTitle" = "/ 6 أشهر";
 "halfYearlyPurchaseDescription" = "الخطة المختارة ستتجدد تلقائياً ضمن السعر المحدد بعد انتهاء الفترة التجريبية إلاّ اذا قمت بإلغاء الخدمة قبل ذلك.";
 
-"threeMonthsPurchaseTitle" = "اشتراك 3 أشهر";
+"threeMonthsPurchaseTitle" = "3 أشهر";
 "threeMonthsPurchaseSubTitle" = "/ 3 أشهر";
 "threeMonthsPurchaseDescription" = "الخطة المختارة ستتجدد تلقائياً ضمن السعر المحدد بعد انتهاء الفترة التجريبية إلاّ اذا قمت بإلغاء الخدمة قبل ذلك.";
 
-"yearlyPurchaseTitle" = "الاشتراك السنوي";
+"yearlyPurchaseTitle" = "سنوي";
 "yearlyPurchaseSubTitle" = "/ سنة";
 "yearlyPurchaseDescription" = "الخطة المختارة ستتجدد تلقائياً ضمن السعر المحدد بعد انتهاء الفترة التجريبية إلاّ اذا قمت بإلغاء الخدمة قبل ذلك.";
 

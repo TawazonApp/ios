@@ -47,6 +47,10 @@ class PaywallPlansView: UIView {
         plans?[selectedPlan].isSelected = true
         plansTableView.reloadData()
         plansTableView.selectRow(at: IndexPath(row: selectedPlan, section: 0), animated: false, scrollPosition: .none)
+        
+        if (plansTableView.frame.maxY + self.frame.minY + 100) >= UIScreen.main.bounds.height{
+            plansTableView.isScrollEnabled = true
+        }
 //        setData()
 //        plansCollectionView.reloadData()
 //        plansCollectionView.selectItem(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)

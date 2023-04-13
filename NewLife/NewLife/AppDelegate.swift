@@ -214,6 +214,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initialViewContoller() {
+        
+        
         preFetchCachingData()
         let launchViewController = LaunchViewController.instantiate()
         navigationController = NavigationController.init(rootViewController: launchViewController)
