@@ -31,6 +31,10 @@
 "ChildrenSummaryText" = "مثلما يكبر رأس طفلك ويبرق بالذكاء، دع قلبه أيضاً يكبر ويشعّ بالنور، أعطوا أطفالكم التأمل مع التفكير";
 "MeditationsSummaryText" = "لا يدرك قيمة الحياة إلا مكافح مزاحم، يرى في غروب الشمس زوال يوم من عُمره";
 
+"moreTitleLabel" = "حسابي";
+"settingsTitleLabel" = "الاعدادات";
+"moreProfilePremiumLabel" = "بريميوم";
+"MoreReminderCellTitle" = "المنبه";
 "MoreUserProfileTitle" = "الملف الشخصي والحساب";
 "MoreMoodStatsTitle" = "مخطط المزاج والنشاط";
 "MoreDownloadLibraryTitle" = "مكتبة التحميلات ";
@@ -43,7 +47,9 @@
 "MoreOurStoryTitle" = "قصتنا";
 "MoreLoginTitle" = "تسجيل دخول";
 "moreGuidedTourTitle" = "إرشادات";
+"MoreSettingsTitle" = "الاعدادات";
 
+"MoreReminderCellSubTitle" = "حدد موعداَ للتأمل";
 "MoreUserProfileSubTitle" = "ملفك الشخصي واعدادات حسابك";
 "MoreMoodStatsSubTitle" = "تابع تقدم نشاطك في توازن";
 "MoreDownloadLibrarySubTitle" = "المحاضرات التي تستطيع تشغليها دون الحاجة إلى انترنت";
@@ -58,6 +64,7 @@
 "moreAppVersionSubTitle" = "الإصدار";
 "MoreLoginSubTitle" = "ليس لديك حساب شخصي";
 "moreGuidedTourSubTitle" = "دليل سريع لأهم أجزاء توازن";
+"MoreSettingsSubTitle" = "الإشعارات، اللغة، الدعم والمساعدة …";
 
 "calmnessWaterAudioTitle" = "هدوء الماء المنسل";
 "firewoodBurningAudioTitle" = "دفىء الحطب المحترق ";

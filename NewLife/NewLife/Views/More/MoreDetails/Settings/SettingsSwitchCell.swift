@@ -1,17 +1,17 @@
 //
-//  MoreSwitchCell.swift
-//  NewLife
+//  SettingsSwitchCell.swift
+//  Tawazon
 //
-//  Created by Shadi on 28/02/2019.
-//  Copyright © 2019 Inceptiontech. All rights reserved.
+//  Created by mac on 18/07/2023.
+//  Copyright © 2023 Inceptiontech. All rights reserved.
 //
 
 import UIKit
-import AudioToolbox
 
-class MoreSwitchCell: MoreCell {
+class SettingsSwitchCell: SettingsCell {
 
     @IBOutlet weak var switchControl: UISwitch!
+    @IBOutlet weak var contentBodyView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +19,10 @@ class MoreSwitchCell: MoreCell {
     }
     
     private func initialize() {
+        
+        contentBodyView.backgroundColor = .black.withAlphaComponent(0.6)
+        contentBodyView.roundCorners(corners: .allCorners, radius: 24)
+        
         switchControl.tintColor = UIColor.white.withAlphaComponent(0.2)
         switchControl.layer.cornerRadius = switchControl.frame.height / 2
         switchControl.backgroundColor = UIColor.white.withAlphaComponent(0.2)
@@ -26,7 +30,7 @@ class MoreSwitchCell: MoreCell {
     
     override func fillData() {
         super.fillData()
-        if let switchData = data as? MoreNotificationCellVM {
+        if let switchData = data as? NotificationCellVM {
            updateSwitchStatus()
             
             switchData.fetchStatusIfNeeded { [weak self] (error) in
@@ -38,7 +42,7 @@ class MoreSwitchCell: MoreCell {
     }
     
     private func updateSwitchStatus() {
-        guard let switchData = data as? MoreNotificationCellVM else {
+        guard let switchData = data as? NotificationCellVM else {
             return
         }
         switchControl.isOn = (switchData.switchValue) ?? false
@@ -47,7 +51,7 @@ class MoreSwitchCell: MoreCell {
 
     private func changeStatus(status: Bool) {
         
-        if let switchData = data as? MoreNotificationCellVM {
+        if let switchData = data as? NotificationCellVM {
             switchData.changeStatus(status: status) { [weak self] (error) in
                 self?.updateSwitchStatus()
             }
@@ -56,7 +60,6 @@ class MoreSwitchCell: MoreCell {
     }
     
     @IBAction func switchValueChanged(_ sender: UISwitch) {
-        SystemSoundID.play(sound: .switchOnOff)
         changeStatus(status: sender.isOn)
     }
     

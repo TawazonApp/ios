@@ -1,94 +1,52 @@
 //
-//  MoreCellVM.swift
-//  NewLife
+//  NewMoreCellVM.swift
+//  Tawazon
 //
-//  Created by Shadi on 28/02/2019.
-//  Copyright © 2019 Inceptiontech. All rights reserved.
+//  Created by mac on 13/07/2023.
+//  Copyright © 2023 Inceptiontech. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class MoreCellVM: NSObject {
-    
+class MoreCellVM: NSObject{
+
     enum MoreCellType: CaseIterable {
         case userProfile
         case login
-        case moodStats
-        case downloadedLibrary
-        case favorites
         case premium
-        case notifications
-        case lanaguge
-        case support
-        case privacyPolicy
-        case termsAndConditions
-        case ourStory
-//        case guidedTour
-        case appVersion
-        
-        
+        case moodStats
+        case library
+        case settings
     }
     
     let type: MoreCellType!
+    var bgImageName: String?
     var imageName: String?
     var title: String!
+    var detailedTitle: String!
     var subTitle: String?
     
     init(type: MoreCellType) {
         self.type = type
         super.init()
-        self.imageName = imageName(type: type)
+        self.bgImageName = bgImageName(type: type)
         self.title = title(type: type)
+        self.detailedTitle = detailedTitle(type: type)
         self.subTitle = subTitle(type: type)
+        self.imageName = imageName(type: type)
     }
 }
-
-extension MoreCellVM {
-    
-    private func imageName(type: MoreCellType) -> String {
-        var name: String = ""
-        switch type {
-        case .userProfile:
-            name = "MoreUserProfile"
-            break
-        case .login:
-            name = "MoreUserProfile"
-            break
-        case .downloadedLibrary:
-            name = "MoreDownloadLibrary"
-            break
-        case .favorites:
-            name = "MoreFavorites"
-            break
-        case .premium:
-            name = "MorePremium"
-            break
-        case .notifications:
-            name = "MoreNotifications"
-            break
-        case .lanaguge:
-            name = "LanguageIcon"
-            break
-        case .support:
-            name = "MoreSupport"
-            break
-        case .privacyPolicy:
-            name = "MorePrivacyPolicy"
-            break
-        case .termsAndConditions:
-            name = "MoreTermsAndConditions"
-            break
-        case .ourStory:
-            name = "MoreOurStory"
-            break
-        case .appVersion:
-            name = ""
-            break
-//        case .guidedTour:
-//            name = "MoreGuidedTour"
+extension MoreCellVM{
+    private func bgImageName(type: MoreCellType) -> String{
+        
+        var name : String = ""
+        switch type{
         case .moodStats:
-            name = "MoreCharts"
+            name = "MoreProgressStats"
             break
+        default:
+            name = ""
+            
         }
         return name
     }
@@ -97,46 +55,23 @@ extension MoreCellVM {
         var title: String = ""
         switch type {
         case .userProfile:
-            title = "MoreUserProfileTitle".localized
+            let isAnonymousUser = UserDefaults.isAnonymousUser()
+            title = isAnonymousUser ? "MoreUserProfileTitle".localized : (UserInfoManager.shared.getUserInfo()?.name ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
             break
         case .login:
              title = "MoreLoginTitle".localized
             break
-        case .downloadedLibrary:
-            title = "MoreDownloadLibraryTitle".localized
-            break
-        case .favorites:
-            title = "MoreFavoritesTitle".localized
-            break
         case .premium:
             title = "MorePremiumTitle".localized
             break
-        case .notifications:
-            title = "MoreNotificationsTitle".localized
-            break
-        case .lanaguge:
-            title = "changeLanguageCellTitle".localized
-            break
-        case .support:
-            title = "MoreSupportTitle".localized
-            break
-        case .privacyPolicy:
-            title = "MorePrivacyPolicyTitle".localized
-            break
-        case .termsAndConditions:
-            title = "MoreTermsAndConditionsTitle".localized
-            break
-        case .ourStory:
-            title = "MoreOurStoryTitle".localized
-            break
-        case .appVersion:
-            title = "moreAppVersionTitle".localized
-            break
-            
-//        case .guidedTour:
-//            title = "moreGuidedTourTitle".localized
         case .moodStats:
             title = "MoreMoodStatsTitle".localized
+            break
+        case .library:
+            title = "MoreDownloadLibraryTitle".localized
+            break
+        case .settings:
+            title = "MoreSettingsTitle".localized
             break
         }
         return title
@@ -151,86 +86,60 @@ extension MoreCellVM {
         case .login:
             subTitle = "MoreLoginSubTitle".localized
             break
-        case .downloadedLibrary:
-            subTitle = "MoreDownloadLibrarySubTitle".localized
-            break
-        case .favorites:
-            subTitle = "MoreFavoritesSubTitle".localized
+        case .moodStats:
+            subTitle = "MoreMoodStatsSubTitle".localized
             break
         case .premium:
             subTitle = "MorePremiumSubTitle".localized
             break
-        case .notifications:
-            subTitle = "MoreNotificationsSubTitle".localized
+        case .library:
+            subTitle = "MoreDownloadLibrarySubTitle".localized
             break
-        case .lanaguge:
-            subTitle = "changeLanguageAlertTitle".localized
-        case .support:
-            subTitle = "MoreSupportSubTitle".localized
+        case .settings:
+            subTitle = "MoreSettingsSubTitle".localized
             break
-        case .privacyPolicy:
-            subTitle = "MorePrivacyPolicySubTitle".localized
-            break
-        case .termsAndConditions:
-            subTitle = "MoreTermsAndConditionsSubTitle".localized
-            break
-        case .ourStory:
-            subTitle = "MoreOurStorySubTitle".localized
-            break
-        case .appVersion:
-            subTitle = "moreAppVersionSubTitle".localized.appending(" \(UIApplication.appVersion)")
-            break
-            
-//        case .guidedTour:
-//            subTitle = "moreGuidedTourSubTitle".localized
-        case .moodStats:
-            subTitle = "MoreMoodStatsSubTitle".localized
-            break
+        
         }
         return subTitle
     }
-}
-
-class MoreNotificationCellVM: MoreCellVM {
     
-    let service: MembershipService!
-    var notificationModel: NotificationStatusModel?
-    
-    var switchValue: Bool?  {
-        return notificationModel?.status.boolValue()
-    }
-    
-    init(service: MembershipService, type: MoreCellType) {
-        self.service = service
-        super.init(type: type)
-    }
-    
-    func fetchStatusIfNeeded(completion: @escaping (CustomError?) -> Void) {
-        if notificationModel != nil {
-            completion(nil)
-            return
-        }
-        fetchStatus { (error) in
-            completion(error)
-        }
-    }
-    
-    private func fetchStatus(completion: @escaping (CustomError?) -> Void) {
+    private func detailedTitle(type: MoreCellType) -> String {
+        var detailedTitle: String = ""
+        switch type {
+        case .userProfile:
+            let isAnonymousUser = UserDefaults.isAnonymousUser()
+            detailedTitle = isAnonymousUser ? "MoreUserProfileTitle".localized : (UserInfoManager.shared.getUserInfo()?.email ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            break
+        default:
+            detailedTitle = ""
+            break
         
-        service.notificationStatus { [weak self] (notificationModel, error) in
-            if notificationModel != nil {
-                self?.notificationModel = notificationModel!
-            }
-            completion(error)
         }
+        return detailedTitle
     }
     
-    func changeStatus(status: Bool, completion: @escaping (CustomError?) -> Void) {
-        
-        service.changeNotificationStatus(data: NotificationStatusModel(status: status.intValue())) { [weak self](error) in
-             self?.notificationModel?.status = status.intValue()
-            completion(error)
+    private func imageName(type: MoreCellType) -> String{
+        var name : String = ""
+        switch type{
+        case .userProfile:
+            name = "MoreUserProfile"
+            break
+        case .login:
+            name = "MoreUserProfile"
+            break
+        case .premium:
+            name = "MorePremium"
+            break
+        case .moodStats:
+            name = "MoreCharts"
+            break
+        case .settings:
+            name = "MoreSettings"
+            break
+        default:
+            name = ""
+            
         }
+        return name
     }
-    
 }

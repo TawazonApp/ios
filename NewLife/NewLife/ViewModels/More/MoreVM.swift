@@ -33,12 +33,14 @@ class MoreVM: NSObject {
         }
         
         for type in types {
-            if type == .notifications {
-                items.append(MoreNotificationCellVM.init(service: MembershipServiceFactory.service(), type: type))
-            } else {
+//            if type == .notifications {
+//                items.append(MoreNotificationCellVM.init(service: MembershipServiceFactory.service(), type: type))
+//            } else {
                 items.append(MoreCellVM.init(type: type))
-            }
+//            }
         }
         return items
     }
 }
+
+

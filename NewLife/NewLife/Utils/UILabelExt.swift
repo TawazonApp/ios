@@ -40,6 +40,10 @@ extension UILabel {
 
         let lengthForVisibleString: Int = self.vissibleTextLength
         let mutableString: String = self.text!
+        
+        if (((self.text?.count)! - lengthForVisibleString) <= 0){
+            return
+        }
         let trimmedString: String? = (mutableString as NSString).replacingCharacters(in: NSRange(location: lengthForVisibleString, length: ((self.text?.count)! - lengthForVisibleString)), with: "")
         let readMoreLength: Int = (readMoreText.count)
         let trimmedForReadMore: String = (trimmedString! as NSString).replacingCharacters(in: NSRange(location: ((trimmedString?.count ?? 0) - readMoreLength), length: readMoreLength), with: "") + trailingText

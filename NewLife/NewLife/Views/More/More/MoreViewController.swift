@@ -13,6 +13,8 @@ import AudioToolbox
 class MoreViewController: BaseViewController {
     
     @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var viewTitleLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,11 +43,23 @@ class MoreViewController: BaseViewController {
     }
     
     private func initialize() {
+        backgroundImage.image = UIImage(named: "MoreBg")
+        backgroundImage.contentMode = .scaleAspectFill
+        
+        viewTitleLabel.font = .lbc(ofSize: 24)
+        viewTitleLabel.textColor = .white
+        viewTitleLabel.text = "moreTitleLabel".localized
+        
         cancelButton.layer.cornerRadius = cancelButton.frame.height/2
         cancelButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         cancelButton.tintColor = UIColor.white
         cancelButton.setImage(#imageLiteral(resourceName: "Cancel.pdf"), for: .normal)
         cancelButton.isHidden = true
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+        tableView.backgroundColor = .clear
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -110,30 +124,30 @@ class MoreViewController: BaseViewController {
     }
     
     private func openViewController(cellData: MoreCellVM) {
-        if cellData.type == MoreCellVM.MoreCellType.privacyPolicy {
-            openPrivacyViewController()
-            return
-        }
-        
-        if cellData.type == MoreCellVM.MoreCellType.termsAndConditions {
-            openTermsAndConditionsViewController()
-            return
-        }
-        
-        if cellData.type == MoreCellVM.MoreCellType.ourStory {
-            openOurStoryViewController()
-            return
-        }
-        
-        if cellData.type == MoreCellVM.MoreCellType.downloadedLibrary {
-            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openDownloadedLibraryViewController()
-            return
-        }
-        if cellData.type == MoreCellVM.MoreCellType.favorites {
-            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openFavoritesViewController()
-            return
-        }
-        
+//        if cellData.type == MoreCellVM.MoreCellType.privacyPolicy {
+//            openPrivacyViewController()
+//            return
+//        }
+//
+//        if cellData.type == MoreCellVM.MoreCellType.termsAndConditions {
+//            openTermsAndConditionsViewController()
+//            return
+//        }
+//
+//        if cellData.type == MoreCellVM.MoreCellType.ourStory {
+//            openOurStoryViewController()
+//            return
+//        }
+//
+//        if cellData.type == MoreCellVM.MoreCellType.downloadedLibrary {
+//            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openDownloadedLibraryViewController()
+//            return
+//        }
+//        if cellData.type == MoreCellVM.MoreCellType.favorites {
+//            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openFavoritesViewController()
+//            return
+//        }
+//
         if cellData.type == MoreCellVM.MoreCellType.userProfile {
             openProfileViewController()
             return
@@ -145,20 +159,20 @@ class MoreViewController: BaseViewController {
             return
         }
         
-        if cellData.type == MoreCellVM.MoreCellType.lanaguge {
-            showLanguageAlert()
-            return
-        }
+//        if cellData.type == MoreCellVM.MoreCellType.lanaguge {
+//            showLanguageAlert()
+//            return
+//        }
         
         if cellData.type == MoreCellVM.MoreCellType.login {
             openLoginViewController()
             return
         }
         
-        if cellData.type == MoreCellVM.MoreCellType.support {
-            openSupportMailController()
-            return
-        }
+//        if cellData.type == MoreCellVM.MoreCellType.support {
+//            openSupportMailController()
+//            return
+//        }
         
         if cellData.type == MoreCellVM.MoreCellType.premium {
             TrackerManager.shared.sendEvent(name: GeneralCustomEvents.myAccountScreenPremium, payload: nil)
@@ -166,10 +180,10 @@ class MoreViewController: BaseViewController {
             return
         }
         
-//        if cellData.type == MoreCellVM.MoreCellType.guidedTour {
-//            startGuidedTour()
-//            return
-//        }
+        if cellData.type == MoreCellVM.MoreCellType.settings {
+            openSettingsViewController()
+            return
+        }
     }
     
     
@@ -206,6 +220,12 @@ class MoreViewController: BaseViewController {
     private func openProfileViewController()  {
         SystemSoundID.play(sound: .Sound1)
         let viewController = ProfileViewController.instantiate()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func openSettingsViewController()  {
+        SystemSoundID.play(sound: .Sound1)
+        let viewController = SettingsViewController.instantiate()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -272,15 +292,29 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         
         var cell: UITableViewCell!
         
-        if let cellData = moreData.items[indexPath.row] as? MoreNotificationCellVM {
-            let switchCell = tableView.dequeueReusableCell(withIdentifier: MoreSwitchCell.identifier) as! MoreSwitchCell
-            switchCell.data = cellData
-            cell = switchCell
-        } else if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.appVersion  {
-            let appVersionCell = tableView.dequeueReusableCell(withIdentifier: MoreAppVersionCell.identifier) as! MoreAppVersionCell
-            appVersionCell.data = moreData.items[indexPath.row]
-            cell = appVersionCell
-        } else {
+//        if let cellData = moreData.items[indexPath.row] as? MoreNotificationCellVM {
+//            let switchCell = tableView.dequeueReusableCell(withIdentifier: MoreSwitchCell.identifier) as! MoreSwitchCell
+//            switchCell.data = cellData
+//            cell = switchCell
+//        } else if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.appVersion  {
+//            let appVersionCell = tableView.dequeueReusableCell(withIdentifier: MoreAppVersionCell.identifier) as! MoreAppVersionCell
+//            appVersionCell.data = moreData.items[indexPath.row]
+//            cell = appVersionCell
+//        } else {
+        
+        if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.userProfile{
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: MoreProfileCell.identifier) as! MoreProfileCell
+            profileCell.data = moreData.items[indexPath.row]
+            cell = profileCell
+        } else if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.moodStats{
+            let statsCell = tableView.dequeueReusableCell(withIdentifier: MoreStatsCell.identifier) as! MoreStatsCell
+            statsCell.data = moreData.items[indexPath.row]
+            cell = statsCell
+        } else if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.library{
+            let libraryCell = tableView.dequeueReusableCell(withIdentifier: MoreLibraryCell.identifier) as! MoreLibraryCell
+            libraryCell.delegate = self
+            cell = libraryCell
+        }else{
             let arrowCell = tableView.dequeueReusableCell(withIdentifier: MoreArrowCell.identifier) as! MoreArrowCell
             arrowCell.data = moreData.items[indexPath.row]
             cell = arrowCell
@@ -290,15 +324,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height: CGFloat = 80
-        if moreData.items[indexPath.row].type == MoreCellVM.MoreCellType.appVersion {
-            let contentHeight = CGFloat(moreData.items.count) * height
-            let extraSpace = tableView.frame.height - contentHeight - 30
-            if extraSpace > 0 {
-                height += extraSpace
-            }
-        }
-        return height
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -369,6 +395,16 @@ extension MoreViewController: MFMailComposeViewControllerDelegate {
     }
 }
 
+extension MoreViewController: LibraryCollectionCellDelegate{
+    func openLibrary(type: MoreLibraryCellVM.MoreLibraryCellType) {
+        switch type {
+        case .downloads:
+            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openDownloadedLibraryViewController()
+        case .favorite:
+            UserDefaults.isAnonymousUser() ? showLoginPermissionAlert() : openFavoritesViewController()
+        }
+    }
+}
 extension MoreViewController {
     
     class func instantiate() -> MoreViewController {

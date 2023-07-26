@@ -11,6 +11,7 @@ import UIKit
 class MoreArrowCell: MoreCell {
 
     @IBOutlet weak var arrowImageview: UIImageView!
+    @IBOutlet weak var contentBodyView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,9 @@ class MoreArrowCell: MoreCell {
     
     private func initialize() {
         arrowImageview.image = #imageLiteral(resourceName: "CellArrow.pdf").flipIfNeeded
+
+        contentBodyView.backgroundColor = .black.withAlphaComponent(0.6)
+        contentBodyView.roundCorners(corners: .allCorners, radius: 24)
     }
     
 }

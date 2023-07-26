@@ -44,6 +44,12 @@ class LandingReminderViewController: HandleErrorViewController {
     var amButtonCorners : UIRectCorner?
     var calendar = Calendar.current
     
+    enum sourceView {
+        case landing
+        case settings
+    }
+    var fromView: sourceView = .landing
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         pmButtonCorners = Language.language == .english ? rightCorners : leftCorners
@@ -159,20 +165,42 @@ class LandingReminderViewController: HandleErrorViewController {
             tapAction.dayIndex = index
             weekDayView.addGestureRecognizer(tapAction)
             
-//            weekDayView.dayIndex = Language.language == .english ? index + 1 : index
             weekDayView.dayIndex = index + 1
-            let currentDayIndex = Calendar.current.component(.weekday, from: Date())
-            if currentDayIndex % 2 == 0{
-                if weekDayView.dayIndex! % 2 == 0{
-                    weekDayViewFormatting(weekDayView: weekDayView, selected: weekDayView.selected)
-                    weekDayView.selected = true
+            
+            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: {
+                notifications in
+                
+                if notifications.isEmpty{
+                    if self.fromView == .landing{
+                        let currentDayIndex = Calendar.current.component(.weekday, from: Date())
+                        if currentDayIndex % 2 == 0{
+                            if weekDayView.dayIndex! % 2 == 0{
+                                self.weekDayViewFormatting(weekDayView: weekDayView, selected: weekDayView.selected)
+                                weekDayView.selected = true
+                            }
+                        }else{
+                            if weekDayView.dayIndex! % 2 != 0{
+                                self.weekDayViewFormatting(weekDayView: weekDayView, selected: weekDayView.selected)
+                                weekDayView.selected = true
+                            }
+                        }
+                    }
+                    
+                }else{
+                    for notification in notifications {
+                        let dayIndex = (notification.trigger as! UNCalendarNotificationTrigger).dateComponents.weekday ?? 1
+                        
+                        self.weekDaysViews = self.weekDaysViews.enumerated().map{ (index, weekDayView) in
+                            if (dayIndex - 1) == index{
+                                let isSelected = weekDayView.selected
+                                self.weekDayViewFormatting(weekDayView: weekDayView, selected: isSelected)
+                            }
+                            return weekDayView
+                        }
+                    }
                 }
-            }else{
-                if weekDayView.dayIndex! % 2 != 0{
-                    weekDayViewFormatting(weekDayView: weekDayView, selected: weekDayView.selected)
-                    weekDayView.selected = true
-                }
-            }
+            })
+            
             return weekDayView
         }
         initializeDatePicker()
@@ -286,12 +314,17 @@ class LandingReminderViewController: HandleErrorViewController {
     private func weekDayViewFormatting(weekDayView: DayView, selected: Bool){
         if !selected{
             weekDayView.selected = true
-            weekDayView.backgroundColor = .lightSkyBlue.withAlphaComponent(0.4)
-            weekDayView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .bottomLeft, endPoint: .topRight, andRoundCornersWithRadius: 20)
+            DispatchQueue.main.async {
+                weekDayView.backgroundColor = .lightSkyBlue.withAlphaComponent(0.4)
+                weekDayView.gradientBorder(width: 1, colors: [.mayaBlue, .mauve, .white.withAlphaComponent(0)], startPoint: .bottomLeft, endPoint: .topRight, andRoundCornersWithRadius: 20)
+            }
+            
         }else{
             weekDayView.selected = false
-            weekDayView.backgroundColor = .white.withAlphaComponent(0.08)
-            weekDayView.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
+            DispatchQueue.main.async {
+                weekDayView.backgroundColor = .white.withAlphaComponent(0.08)
+                weekDayView.layer.sublayers?.first(where: {$0.name == UIView.kLayerNameGradientBorder})?.removeFromSuperlayer()
+            }
         }
     }
     @objc private func selectedTimeTapped(){
@@ -322,10 +355,10 @@ class LandingReminderViewController: HandleErrorViewController {
     
     private func scheduleReminder(){
         DispatchQueue.main.async {
-            let weekdaysReminder = self.weekDaysViews.filter({return $0.selected})
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            
             self.calendar.locale = .autoupdatingCurrent
             let selectedDate = self.datePicker.date
-            print("selectedDate: \(selectedDate)")
             self.scheduleReminderFor(date: selectedDate)
         }
     }
@@ -384,29 +417,40 @@ class LandingReminderViewController: HandleErrorViewController {
             if let error = error{
                 self.showErrorMessage( message: error.localizedDescription )
             }
-            self.openMainViewController()
+            self.openNextViewController(isSkipped: false)
         }
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
-        TrackerManager.shared.sendReminderSkipped()
-        TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingReminderSkip, payload: nil)
-        openMainViewController()
+        openNextViewController(isSkipped: true)
+        
     }
-    
+    private func openNextViewController(isSkipped: Bool){
+        if fromView == .landing{
+            if isSkipped{
+                TrackerManager.shared.sendReminderSkipped()
+                TrackerManager.shared.sendEvent(name: GeneralCustomEvents.landingReminderSkip, payload: nil)
+            }
+            openMainViewController()
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
     private func openMainViewController() {
         SystemSoundID.play(sound: .LaunchToHome)
         (UIApplication.shared.delegate as? AppDelegate)?.pushWindowToRootViewController(viewController: MainTabBarController.instantiate(), animated: true)
     }
     
+    
+    
 }
 
 extension LandingReminderViewController{
-    class func instantiate() -> LandingReminderViewController {
+    class func instantiate(from: sourceView = .landing) -> LandingReminderViewController {
         let storyboard = UIStoryboard(name: "Membership", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: LandingReminderViewController.identifier) as! LandingReminderViewController
         viewController.modalPresentationStyle = .fullScreen
-        
+        viewController.fromView = from
         return viewController
     }
 }

@@ -34,6 +34,10 @@
  
 "MeditationsSummaryText" = "No one realizes the value of life but a struggling fighter who sees the passing of a day in the sunset.";
  
+"MoreReminderCellTitle" = "Reminder";
+"moreTitleLabel" = "My Account";
+"settingsTitleLabel" = "Settings";
+"moreProfilePremiumLabel" = "Premium";
 "MoreUserProfileTitle" = "Profile and account";
 "MoreMoodStatsTitle" = "Mood and activity chart";
 "MoreDownloadLibraryTitle" = "Downloads";
@@ -46,7 +50,10 @@
 "MoreOurStoryTitle" = "Our Story";
 "MoreLoginTitle" = "Login";
 "moreGuidedTourTitle" = "Start tutorial";
- 
+"MoreSettingsTitle" = "Settings";
+
+
+"MoreReminderCellSubTitle" = "Set your meditation reminder";
 "MoreUserProfileSubTitle" = "Profile and account settings";
 "MoreMoodStatsSubTitle" = "Keep track of your activity progress in Tawazon";
 "MoreDownloadLibrarySubTitle" = "Session that you can run without the need for Internet";
@@ -61,7 +68,8 @@
 "moreAppVersionSubTitle" = "Version";
 "MoreLoginSubTitle" = "Not Registered";
 "moreGuidedTourSubTitle" = "A fast guide through the most important parts of Tawazon ";
- 
+"MoreSettingsSubTitle" = "Notifications, language, help and support...";
+
 "calmnessWaterAudioTitle" = "The silence of water";
 "firewoodBurningAudioTitle" = "The warmth of burning firewood";
 "pouringRainAudioTitle" = "Glory Rain";

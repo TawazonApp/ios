@@ -26,12 +26,16 @@ class MoreCell: UITableViewCell {
     }
     
     private func initialize() {
+        self.selectionStyle = .none
+        
         backgroundColor = UIColor.clear
         
-        titleLabel.font = UIFont.kacstPen(ofSize: 20)
+        contentView.backgroundColor = .clear
+        
+        titleLabel.font = UIFont.munaBoldFont(ofSize: 20)
         titleLabel.textColor = UIColor.white
         
-        subTitleLabel.font = UIFont.kacstPen(ofSize: 12)
+        subTitleLabel.font = UIFont.munaFont(ofSize: 14)
         subTitleLabel.textColor = UIColor.white.withAlphaComponent(0.6)
         
     }
