@@ -39,9 +39,12 @@ class PaywallViewController:GeneralBasePaywallViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var subPriceLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var discountNoteLabel: UILabel!
     @IBOutlet weak var subscribeButton: GradientButton!
     
+    
     @IBOutlet weak var plansNoteLabel: UILabel!
+    @IBOutlet weak var plansPriceNoteLabel: UILabel!
     @IBOutlet weak var allPlansButton: UIButton!
     @IBOutlet weak var dividerView: GradientView!
     
@@ -187,8 +190,14 @@ class PaywallViewController:GeneralBasePaywallViewController {
         subPriceLabel.textColor = darkView! ? .white.withAlphaComponent(0.56) : .darkIndigoTwo.withAlphaComponent(0.56)
         subPriceLabel.textAlignment = Language.language == .english ? .left : .right
         
-        discountLabel.font = .munaBoldFont(ofSize: 15)
-        discountLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
+        discountLabel.font = .munaBoldFont(ofSize: 24)
+        discountLabel.textColor = .slateBlue
+        discountLabel.textAlignment = Language.language == .english ? .left : .right
+        
+        discountNoteLabel.font = .munaBoldFont(ofSize: 15)
+        discountNoteLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
+        discountNoteLabel.textAlignment = .center
+        discountNoteLabel.text = ""
         
         subscribeButton.roundCorners(corners: .allCorners, radius: 16)
         subscribeButton.layer.cornerRadius = 22
@@ -202,6 +211,13 @@ class PaywallViewController:GeneralBasePaywallViewController {
         plansNoteLabel.textColor = darkView! ? .white.withAlphaComponent(0.71) : .darkIndigoTwo.withAlphaComponent(0.71)
         plansNoteLabel.text = "paywallPlansNoteLabel".localized
         plansNoteLabel.textAlignment = .center
+        
+        plansPriceNoteLabel.font = .munaFont(ofSize: 12)
+        plansPriceNoteLabel.numberOfLines = 0
+        plansPriceNoteLabel.lineBreakMode = .byWordWrapping
+        plansPriceNoteLabel.textColor = darkView! ? .white.withAlphaComponent(0.71) : .darkIndigoTwo.withAlphaComponent(0.71)
+        plansPriceNoteLabel.text = ""
+        plansPriceNoteLabel.textAlignment = .center
         
         allPlansButton.titleLabel?.font = .munaBoldFont(ofSize: 20)
         allPlansButton.tintColor = darkView! ? .lavenderBlue : .slateBlue
@@ -293,13 +309,13 @@ class PaywallViewController:GeneralBasePaywallViewController {
             self.subscribeButton.setTitle((data.remoteConfig?["page"] as? [String:Any])?["continueLabel"] as? String, for: .normal)
 
             self.features = self.paywallVM.paywallDetails?.premiumPage.featureItems
-            self.plans = self.paywallVM.plansArray
             
             if let adaptyProducts = paywallVM.products?.map({
                 return $0.product
             }){
                 self.products = adaptyProducts
             }
+            self.plans = self.paywallVM.plansArray
         }
     }
     
@@ -324,16 +340,39 @@ class PaywallViewController:GeneralBasePaywallViewController {
         if let bestPlan = plans?.first{
             bestPlan.isSelected = true
             bestPlanTitleLabel.text = bestPlan.title
-            priceLabel.text = bestPlan.price
             subPriceLabel.text = "(\(bestPlan.monthlyPrice ?? "")\("paywallMonthlyString".localized))"
-            if bestPlan.savingAmount > 0{
-                if Language.language == .english{
-                    discountLabel.text = "\("paywallSavingLabel".localized) \(bestPlan.savingAmount ?? 0)%"
-                }else{
-                    discountLabel.attributedText = discountLabelAttributeText(plan: bestPlan)
+            
+            if let bestPlanProduct = self.products?.first{
+                if let introOffer = bestPlanProduct.introductoryDiscount, (bestPlanProduct.introductoryOfferEligibility == .eligible){
+                    // show Intro offer info
+                    setOfferData(bestPlan: bestPlan, offerPrice: introOffer.price as NSDecimalNumber, productPrice: bestPlanProduct.skProduct.price, locale: bestPlanProduct.skProduct.priceLocale, promoOffer: false)
+                } else if let offer = bestPlanProduct.discounts.first, bestPlanProduct.promotionalOfferEligibility{
+                    setOfferData(bestPlan: bestPlan, offerPrice: offer.price as NSDecimalNumber, productPrice: bestPlanProduct.skProduct.price, locale: bestPlanProduct.skProduct.priceLocale, promoOffer: true)
+                } else{
+                    priceLabel.text = bestPlan.price
                 }
             }
         }
+    }
+    
+    private func setOfferData(bestPlan: PremiumPurchaseCellVM, offerPrice: NSDecimalNumber, productPrice: NSDecimalNumber, locale: Locale, promoOffer: Bool){
+        let attributedPrice: NSMutableAttributedString = NSMutableAttributedString(string: "\(bestPlan.price!)", attributes: [.font: UIFont.munaFont(ofSize: 16)])
+        attributedPrice.addAttribute(NSAttributedString.Key.strikethroughStyle, value: Language.language == .arabic ? 5 : 2, range: NSRange(location: 0, length: attributedPrice.length))
+        priceLabel.attributedText = attributedPrice
+        let offerPriceString = getPriceString(price: offerPrice, locale: locale)
+        discountLabel.text = offerPriceString
+        var discountNote = promoOffer ? "promotionalDiscountNoteLabel".localized : "introductoryDiscountNoteLabel".localized
+        let discountPercentage = (Double(truncating: productPrice) - Double(truncating: offerPrice)) / Double(truncating: productPrice) * 100
+        discountNote = String(format: discountNote, "\(Int(discountPercentage))%")
+        discountNoteLabel.text = discountNote
+        plansPriceNoteLabel.text = String(format: "plansPriceNoteLabel".localized, offerPriceString, bestPlan.price)
+    }
+    
+    func getPriceString(price: NSDecimalNumber, locale: Locale) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .currency
+        return formatter.string(from: price) ?? ""
     }
     
     private func restorePurchasesButtonAttributeText() -> NSMutableAttributedString {

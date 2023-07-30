@@ -547,7 +547,9 @@ Unless you cancel the service beforehand.";
 "paywallPlansNoteLabel" = "You can unsubscribe at any time";
 "paywallPromoButton" = "Do you have a Promo Code?";
 "paywallSavingLabel" = "Discount";
-
+"plansPriceNoteLabel" = "* %@ for the first year, then %@ yearly";
+"introductoryDiscountNoteLabel" = "%@ discount for new subscribers";
+"promotionalDiscountNoteLabel" = "An additional %@ discount on the annual plan";
 
 "TawazonTalkAuthorLabel" = "By";
 

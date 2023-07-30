@@ -21,7 +21,6 @@
 		04090AD329506CA0000413A4 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 04090AD129506CA0000413A4 /* image.png */; };
 		04090AD929599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090AD829599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift */; };
 		04090ADB29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090ADA29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift */; };
-		04090B1B295AC991000413A4 /* HomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 04090B1A295AC991000413A4 /* HomeVideo.mp4 */; };
 		04090B1D295B0825000413A4 /* NewFeatureAnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090B1C295B0825000413A4 /* NewFeatureAnnouncementViewController.swift */; };
 		040F339E27E0A4B5000B1E19 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */; };
 		040F33B327E1EB51000B1E19 /* BasePremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */; };
@@ -41,6 +40,8 @@
 		0432B7152876CDA8007400B3 /* DeleteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432B7142876CDA8007400B3 /* DeleteVM.swift */; };
 		0432B7172876DFD8007400B3 /* DeleteAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432B7162876DFD8007400B3 /* DeleteAccountModel.swift */; };
 		0432B71A288EB720007400B3 /* SeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432B719288EB720007400B3 /* SeriesViewController.swift */; };
+		0432C86F2A71068400678115 /* RamadanVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0432C86D2A71068400678115 /* RamadanVideo.mp4 */; };
+		0432C8702A71068400678115 /* HomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0432C86E2A71068400678115 /* HomeVideo.mp4 */; };
 		04384B7A27D429D100D3E5B7 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7927D429D100D3E5B7 /* Language.swift */; };
 		04384B7C27D5F52700D3E5B7 /* UXCamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04384B7B27D5F52700D3E5B7 /* UXCamService.swift */; };
 		043FCB272804274C00F25FA4 /* Premium4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043FCB262804274C00F25FA4 /* Premium4ViewController.swift */; };
@@ -190,7 +191,6 @@
 		F3202238223F11CA00CCC33A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3202237223F11CA00CCC33A /* BaseViewController.swift */; };
 		F320223A223F166200CCC33A /* ModelInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3202239223F166200CCC33A /* ModelInitializable.swift */; };
 		F320B19B26209878002EC8B4 /* RamdanPremiumDiscountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F320B19A26209878002EC8B4 /* RamdanPremiumDiscountCell.swift */; };
-		F320B1AE2621C56E002EC8B4 /* RamadanVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */; };
 		F320B1B32621C5A7002EC8B4 /* Sana.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F320B1B22621C5A7002EC8B4 /* Sana.ttc */; };
 		F32717BA24A5F3C600E3C88C /* PromoCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32717B924A5F3C600E3C88C /* PromoCodeViewController.swift */; };
 		F32717BC24A610D400E3C88C /* AppleLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32717BB24A610D400E3C88C /* AppleLoginModel.swift */; };
@@ -503,7 +503,6 @@
 		04090AD129506CA0000413A4 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		04090AD829599CB0000413A4 /* HomeTableTawazonTalkSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableTawazonTalkSectionCell.swift; sourceTree = "<group>"; };
 		04090ADA29599D1D000413A4 /* HomeTableTawazonTalkItemCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableTawazonTalkItemCollectionCell.swift; sourceTree = "<group>"; };
-		04090B1A295AC991000413A4 /* HomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo.mp4; sourceTree = "<group>"; };
 		04090B1C295B0825000413A4 /* NewFeatureAnnouncementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeatureAnnouncementViewController.swift; sourceTree = "<group>"; };
 		040F339D27E0A4B5000B1E19 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		040F33B227E1EB51000B1E19 /* BasePremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePremiumViewController.swift; sourceTree = "<group>"; };
@@ -523,6 +522,8 @@
 		0432B7142876CDA8007400B3 /* DeleteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteVM.swift; sourceTree = "<group>"; };
 		0432B7162876DFD8007400B3 /* DeleteAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountModel.swift; sourceTree = "<group>"; };
 		0432B719288EB720007400B3 /* SeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesViewController.swift; sourceTree = "<group>"; };
+		0432C86D2A71068400678115 /* RamadanVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = RamadanVideo.mp4; sourceTree = "<group>"; };
+		0432C86E2A71068400678115 /* HomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeVideo.mp4; sourceTree = "<group>"; };
 		04384B7927D429D100D3E5B7 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		04384B7B27D5F52700D3E5B7 /* UXCamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXCamService.swift; sourceTree = "<group>"; };
 		043FCB262804274C00F25FA4 /* Premium4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premium4ViewController.swift; sourceTree = "<group>"; };
@@ -681,7 +682,6 @@
 		F3202237223F11CA00CCC33A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F3202239223F166200CCC33A /* ModelInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInitializable.swift; sourceTree = "<group>"; };
 		F320B19A26209878002EC8B4 /* RamdanPremiumDiscountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamdanPremiumDiscountCell.swift; sourceTree = "<group>"; };
-		F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = RamadanVideo.mp4; sourceTree = "<group>"; };
 		F320B1B22621C5A7002EC8B4 /* Sana.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sana.ttc; sourceTree = "<group>"; };
 		F32717B924A5F3C600E3C88C /* PromoCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeViewController.swift; sourceTree = "<group>"; };
 		F32717BB24A610D400E3C88C /* AppleLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginModel.swift; sourceTree = "<group>"; };
@@ -1704,8 +1704,8 @@
 		F3715CEA224397FC00B7A465 /* HomeBackgroundVideos */ = {
 			isa = PBXGroup;
 			children = (
-				F320B1AD2621C56D002EC8B4 /* RamadanVideo.mp4 */,
-				04090B1A295AC991000413A4 /* HomeVideo.mp4 */,
+				0432C86E2A71068400678115 /* HomeVideo.mp4 */,
+				0432C86D2A71068400678115 /* RamadanVideo.mp4 */,
 			);
 			path = HomeBackgroundVideos;
 			sourceTree = "<group>";
@@ -2717,7 +2717,6 @@
 				F3DC424C2584B8E600BF18A7 /* KohinoorArabicSemibold.ttf in Resources */,
 				047CF29F292A0C7A00BF59AE /* TodayActivity.storyboard in Resources */,
 				F3DC8E1E2223DD0B00C7DEC4 /* Home.storyboard in Resources */,
-				F320B1AE2621C56E002EC8B4 /* RamadanVideo.mp4 in Resources */,
 				F3DC424D2584B8E600BF18A7 /* KohinoorArabicRegular.ttf in Resources */,
 				F3921CE522494F32002A12EC /* LoadingIndicator.json in Resources */,
 				F3C73B00223CF9730026B8E1 /* Sound1.wav in Resources */,
@@ -2734,10 +2733,11 @@
 				F3921CE122494ECE002A12EC /* BodyMeditation.json in Resources */,
 				F3C73B03223CF9730026B8E1 /* CancelLoginSignup.wav in Resources */,
 				F3DC8DE62223D3ED00C7DEC4 /* LaunchScreen.storyboard in Resources */,
+				0432C86F2A71068400678115 /* RamadanVideo.mp4 in Resources */,
 				04FBEBC228B25C9D00D9EBCF /* GuidedTourView.xib in Resources */,
 				F369267323295EFC00EA8771 /* PrivacyPolicy.rtf in Resources */,
 				F3DC8E202223DD1900C7DEC4 /* Categories.storyboard in Resources */,
-				04090B1B295AC991000413A4 /* HomeVideo.mp4 in Resources */,
+				0432C8702A71068400678115 /* HomeVideo.mp4 in Resources */,
 				F3DC8E2D2223E50A00C7DEC4 /* KacstPen.ttf in Resources */,
 				F34B99D02610CD8D00E571D0 /* SF-Pro-Text-Black.otf in Resources */,
 				F3921CE322494EE4002A12EC /* MonthlyMeditation.json in Resources */,
@@ -3550,7 +3550,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3601,7 +3601,7 @@
 				CODE_SIGN_ENTITLEMENTS = NewLife/NewLife.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SPU3Q5WZAL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

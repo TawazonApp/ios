@@ -57,8 +57,8 @@ class AdaptyPaywallVM: NSObject{
         for productData in products! {
             let plan = paywallDetails?.premiumPage.plans.first(where: { $0.id == productData.product.vendorProductId})
             let trialDescription = getTrialPeriod(product: productData.product.skProduct)
-            let discountPrice = productData.product.price
-            let discountPriceString = getPriceString(price: NSDecimalNumber(nonretainedObject: discountPrice), locale: productData.product.skProduct.priceLocale)
+            let discountPrice = NSDecimalNumber(value: Float(truncating: productData.product.price as NSNumber))
+            let discountPriceString = getPriceString(price: discountPrice, locale: productData.product.skProduct.priceLocale)
             var orgionalPriceString: String?
             let orgionalPrice = Float(truncating: productData.product.price as NSNumber)
             var priceDecimal = NSDecimalNumber(value: orgionalPrice)
