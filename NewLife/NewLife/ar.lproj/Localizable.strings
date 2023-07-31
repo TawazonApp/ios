@@ -533,7 +533,7 @@
 "paywallMonthlyString" = "/شهر";
 "paywallPlansNoteLabel" = "يمكنك الغاء الاشتراك في اي وقت";
 "paywallPromoButton" = "هل لديك كود خصم؟";
-"paywallSavingLabel" = "خصم";
+"paywallSavingLabel" = "وفّر";
 "plansPriceNoteLabel" = "%@ للسنة الاولى، ثم %@ سنويا";
 "introductoryDiscountNoteLabel" = "خصم %@ إضافي للمشتركين الجدد";
 "promotionalDiscountNoteLabel" = "خصم %@ إضافي على الخطة السنوية";

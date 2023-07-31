@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Adapty
 
 class PaywallPlansView: UIView {
     
@@ -21,6 +22,8 @@ class PaywallPlansView: UIView {
             }
         }
     }
+    
+    var products: [AdaptyPaywallProduct]?
     
     var selectedPlan: Int = NSNotFound
     
@@ -64,7 +67,9 @@ extension PaywallPlansView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaywallPlanTableViewCell.identifier) as! PaywallPlanTableViewCell
-        cell.plan = plans?[indexPath.row]
+        let plan = plans?[indexPath.row]
+        cell.product = products?.first(where: {$0.skProduct.productIdentifier == plan?.id})
+        cell.plan = plan
         return cell
     }
     

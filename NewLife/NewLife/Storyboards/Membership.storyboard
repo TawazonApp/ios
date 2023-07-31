@@ -3106,36 +3106,45 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bnO-ue-HHr">
-                                                                    <rect key="frame" x="137.66666666666666" y="56.333333333333343" width="90.666666666666657" height="28"/>
+                                                                    <rect key="frame" x="137.66666666666666" y="52.333333333333343" width="90.666666666666657" height="24"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtr-62-yao">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="28"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="24"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDr-aJ-1jc">
-                                                                            <rect key="frame" x="49.333333333333343" y="0.0" width="41.333333333333343" height="28"/>
+                                                                            <rect key="frame" x="49.333333333333343" y="0.0" width="41.333333333333343" height="24"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="28" id="CQn-fK-G8o"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="CQn-fK-G8o"/>
                                                                     </constraints>
                                                                 </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-8m-9AD">
+                                                                    <rect key="frame" x="24" y="80.333333333333329" width="318" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="iyZ-2T-g8W" firstAttribute="centerX" secondItem="kl5-t4-wmo" secondAttribute="centerX" id="CPL-k6-PKy"/>
+                                                                <constraint firstAttribute="trailing" secondItem="LoL-8m-9AD" secondAttribute="trailing" constant="24" id="NqF-2k-OyK"/>
                                                                 <constraint firstItem="acb-YX-bGL" firstAttribute="width" secondItem="kl5-t4-wmo" secondAttribute="width" multiplier="0.3" id="RB7-AQ-HcH"/>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="104" id="SCc-pd-Div"/>
+                                                                <constraint firstItem="LoL-8m-9AD" firstAttribute="top" secondItem="bnO-ue-HHr" secondAttribute="bottom" constant="4" id="X7B-sF-P9x"/>
                                                                 <constraint firstItem="acb-YX-bGL" firstAttribute="leading" secondItem="kl5-t4-wmo" secondAttribute="leading" id="ao9-vP-uDR"/>
                                                                 <constraint firstItem="iyZ-2T-g8W" firstAttribute="top" secondItem="kl5-t4-wmo" secondAttribute="top" constant="28" id="gyg-2P-2Py"/>
                                                                 <constraint firstAttribute="trailing" secondItem="KtF-aF-ql1" secondAttribute="trailing" constant="12" id="o0S-p5-eIh"/>
+                                                                <constraint firstItem="LoL-8m-9AD" firstAttribute="leading" secondItem="kl5-t4-wmo" secondAttribute="leading" constant="24" id="pnk-7D-fZL"/>
                                                                 <constraint firstItem="KtF-aF-ql1" firstAttribute="top" secondItem="kl5-t4-wmo" secondAttribute="top" constant="12" id="upG-Hj-fmk"/>
-                                                                <constraint firstItem="bnO-ue-HHr" firstAttribute="top" secondItem="iyZ-2T-g8W" secondAttribute="bottom" constant="8" id="vBl-v3-49P"/>
+                                                                <constraint firstItem="bnO-ue-HHr" firstAttribute="top" secondItem="iyZ-2T-g8W" secondAttribute="bottom" constant="4" id="vBl-v3-49P"/>
                                                                 <constraint firstItem="acb-YX-bGL" firstAttribute="top" secondItem="kl5-t4-wmo" secondAttribute="top" id="wWc-cK-5zI"/>
                                                                 <constraint firstItem="bnO-ue-HHr" firstAttribute="centerX" secondItem="kl5-t4-wmo" secondAttribute="centerX" id="xrq-21-JCF"/>
                                                             </constraints>
@@ -3150,6 +3159,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="discountLabel" destination="KtF-aF-ql1" id="MdH-PL-loj"/>
+                                                    <outlet property="discountNoteLabel" destination="LoL-8m-9AD" id="InT-6n-fHx"/>
                                                     <outlet property="planHeaderLabel" destination="acb-YX-bGL" id="jdZ-8w-twT"/>
                                                     <outlet property="planTitleLabel" destination="iyZ-2T-g8W" id="mA9-KX-LKP"/>
                                                     <outlet property="planView" destination="kl5-t4-wmo" id="0SH-nl-Yva"/>

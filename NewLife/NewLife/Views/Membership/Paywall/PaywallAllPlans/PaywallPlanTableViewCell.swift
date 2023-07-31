@@ -18,6 +18,7 @@ class PaywallPlanTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var subPriceLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var discountNoteLabel: UILabel!
     
     var darkView: Bool?{
         didSet{
@@ -31,6 +32,7 @@ class PaywallPlanTableViewCell: UITableViewCell {
             setData()
         }
     }
+    var product : AdaptyPaywallProduct!
     
 //    var productData : (isSelected: Bool, product: AdaptyPaywallProduct)!{
 //        didSet{
@@ -81,6 +83,11 @@ class PaywallPlanTableViewCell: UITableViewCell {
         
         discountLabel.font = .munaBoldFont(ofSize: 15)
         discountLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
+        
+        discountNoteLabel.font = .munaBoldFont(ofSize: 13)
+        discountNoteLabel.textAlignment = .center
+        discountNoteLabel.textColor = darkView! ? .lavenderBlue : .slateBlue
+        discountNoteLabel.text = ""
     }
     private func setData(){
         planHeaderLabel.layoutIfNeeded()
@@ -120,6 +127,22 @@ class PaywallPlanTableViewCell: UITableViewCell {
                 discountLabel.attributedText = discountLabelAttributeText(plan: plan)
             }
         }
+        
+        if let introOffer = product.introductoryDiscount, product.introductoryOfferEligibility == .eligible{
+            setOfferNote(offer: introOffer, promoOffer: false)
+        }else if let offer = product.discounts.first, product.promotionalOfferEligibility{
+            setOfferNote(offer: offer, promoOffer: true)
+        }else{
+            return
+        }
+        
+    }
+    
+    private func setOfferNote(offer: AdaptyProductDiscount, promoOffer: Bool){
+        var discountNote = promoOffer ? "promotionalDiscountNoteLabel".localized : "introductoryDiscountNoteLabel".localized
+        let discountPercentage = (Double(truncating: product.price as NSDecimalNumber) - Double(truncating: offer.price as NSDecimalNumber)) / Double(truncating: product.price as NSDecimalNumber) * 100
+        discountNote = String(format: discountNote, "\(Int(discountPercentage))%")
+        discountNoteLabel.text = discountNote
     }
     
     private func setAdaptyData(){

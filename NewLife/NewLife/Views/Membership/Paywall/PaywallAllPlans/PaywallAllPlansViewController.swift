@@ -54,6 +54,7 @@ class PaywallAllPlansViewController: GeneralBasePaywallViewController {
     override var plans: [PremiumPurchaseCellVM]? {
         didSet {
             plansView.plans = plans
+            plansView.products = products
             self.reloadData()
         }
     }
