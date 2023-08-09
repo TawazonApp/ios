@@ -33,11 +33,12 @@ class MoreLibraryCollectionCell: UICollectionViewCell {
         self.layer.cornerRadius = 24.0
         
         cellView.backgroundColor = .clear
-//        cellView.isHidden = true
+        cellView.layer.cornerRadius = 24.0
         
         backgroundColor = .black.withAlphaComponent(0.6)
         
         contentView.roundCorners(corners: .allCorners, radius: 24)
+        contentView.layer.cornerRadius = 24.0
         contentView.backgroundColor = .clear
         
         imageView.contentMode = .scaleAspectFill

@@ -24,6 +24,7 @@ class MoreStatsCell: MoreCell {
 
         contentBodyView.backgroundColor = .black.withAlphaComponent(0.6)
         contentBodyView.roundCorners(corners: .allCorners, radius: 24)
+        contentBodyView.layer.cornerRadius = 24
         
         statsImageView.contentMode = .scaleAspectFill
         statsImageView.clipsToBounds = false

@@ -1625,7 +1625,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cer-mj-jYe">
-                                                            <rect key="frame" x="0.0" y="8" width="341" height="16"/>
+                                                            <rect key="frame" x="0.0" y="8" width="341" height="0.0"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscountCheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-0T-C6J">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -1635,7 +1635,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="ساعد طفلك ايضا على حل مشاكل النوم" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVJ-ve-S5l">
-                                                                    <rect key="frame" x="28" y="0.0" width="313" height="16"/>
+                                                                    <rect key="frame" x="28" y="0.0" width="313" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="dz8-by-Y6E"/>
                                                                     </constraints>
@@ -1655,7 +1655,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1K-zA-BOe">
-                                                            <rect key="frame" x="0.0" y="-16" width="341" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="341" height="0.0"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiscountCheckIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OAH-5f-iWi">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -1665,7 +1665,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="تمتع بتأمّلات وقصص نوم جديدة اسبوعياً" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-Al-Rvb">
-                                                                    <rect key="frame" x="28" y="0.0" width="313" height="16"/>
+                                                                    <rect key="frame" x="28" y="0.0" width="313" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ub8-nb-13Z"/>
                                                                     </constraints>
@@ -2374,7 +2374,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-Uw-Q1S">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i1v-7r-u0C">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -2619,7 +2619,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qg-pU-lG3">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="O9D-Cm-PXL">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -3184,7 +3184,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1P-Ok-Vin">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iXo-fV-YyI">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -3545,7 +3545,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-6a-DzZ">
                                 <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="52T-9L-ILE">
-                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1104" height="1343.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>

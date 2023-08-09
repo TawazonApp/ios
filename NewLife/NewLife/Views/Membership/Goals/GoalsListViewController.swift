@@ -32,15 +32,6 @@ class GoalsListViewController: HandleErrorViewController {
         TrackerManager.shared.sendEvent(name: GeneralCustomEvents.goalsScreenLoad, payload: nil)
         fetchAndReload()
     }
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        view.layoutIfNeeded()
-//        view.subviews.forEach(){
-//            subView in
-//            subView.layoutIfNeeded()
-//        }
-//        scrollView.layoutIfNeeded()
-//    }
 
     private func initialize(){
         self.view.backgroundColor = .midnightBlueTwo

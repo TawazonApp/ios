@@ -16,6 +16,7 @@ class MoreLibraryCell: UITableViewCell {
 
     @IBOutlet weak var libraryCollection: UICollectionView!
     @IBOutlet weak var collectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var libraryCellContentView: UIView!
     
     private var collectionCellSpace: CGFloat = 16
     private var collectionCellWidth: CGFloat = 155
@@ -50,8 +51,13 @@ class MoreLibraryCell: UITableViewCell {
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        reloadData()
+    }
+    
     private func calculateCollectionDimensions() {
-        let availableWidth = libraryCollection.frame.width
+        let availableWidth = UIScreen.main.bounds.size.width - 48
         collectionCellWidth = (availableWidth - collectionCellSpace) / 2
         collectionCellHeight = collectionCellWidth / (155/116)
         collectionHeightConstraint.constant = collectionCellHeight
